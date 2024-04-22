@@ -1,0 +1,92 @@
+// ignore_for_file: unnecessary_getters_setters
+
+
+import 'index.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+
+class StaffInTaskListStruct extends BaseStruct {
+  StaffInTaskListStruct({
+    int? id,
+    StaffIdStruct? staffsId,
+  })  : _id = id,
+        _staffsId = staffsId;
+
+  // "id" field.
+  int? _id;
+  int get id => _id ?? 0;
+  set id(int? val) => _id = val;
+  void incrementId(int amount) => _id = id + amount;
+  bool hasId() => _id != null;
+
+  // "staffs_id" field.
+  StaffIdStruct? _staffsId;
+  StaffIdStruct get staffsId => _staffsId ?? StaffIdStruct();
+  set staffsId(StaffIdStruct? val) => _staffsId = val;
+  void updateStaffsId(Function(StaffIdStruct) updateFn) =>
+      updateFn(_staffsId ??= StaffIdStruct());
+  bool hasStaffsId() => _staffsId != null;
+
+  static StaffInTaskListStruct fromMap(Map<String, dynamic> data) =>
+      StaffInTaskListStruct(
+        id: castToType<int>(data['id']),
+        staffsId: StaffIdStruct.maybeFromMap(data['staffs_id']),
+      );
+
+  static StaffInTaskListStruct? maybeFromMap(dynamic data) => data is Map
+      ? StaffInTaskListStruct.fromMap(data.cast<String, dynamic>())
+      : null;
+
+  Map<String, dynamic> toMap() => {
+        'id': _id,
+        'staffs_id': _staffsId?.toMap(),
+      }.withoutNulls;
+
+  @override
+  Map<String, dynamic> toSerializableMap() => {
+        'id': serializeParam(
+          _id,
+          ParamType.int,
+        ),
+        'staffs_id': serializeParam(
+          _staffsId,
+          ParamType.DataStruct,
+        ),
+      }.withoutNulls;
+
+  static StaffInTaskListStruct fromSerializableMap(Map<String, dynamic> data) =>
+      StaffInTaskListStruct(
+        id: deserializeParam(
+          data['id'],
+          ParamType.int,
+          false,
+        ),
+        staffsId: deserializeStructParam(
+          data['staffs_id'],
+          ParamType.DataStruct,
+          false,
+          structBuilder: StaffIdStruct.fromSerializableMap,
+        ),
+      );
+
+  @override
+  String toString() => 'StaffInTaskListStruct(${toMap()})';
+
+  @override
+  bool operator ==(Object other) {
+    return other is StaffInTaskListStruct &&
+        id == other.id &&
+        staffsId == other.staffsId;
+  }
+
+  @override
+  int get hashCode => const ListEquality().hash([id, staffsId]);
+}
+
+StaffInTaskListStruct createStaffInTaskListStruct({
+  int? id,
+  StaffIdStruct? staffsId,
+}) =>
+    StaffInTaskListStruct(
+      id: id,
+      staffsId: staffsId ?? StaffIdStruct(),
+    );

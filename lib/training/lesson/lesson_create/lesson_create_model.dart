@@ -1,0 +1,209 @@
+import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
+import 'lesson_create_widget.dart' show LessonCreateWidget;
+import 'package:flutter/material.dart';
+
+class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
+  ///  Local state fields for this page.
+
+  List<TestListStruct> list = [];
+  void addToList(TestListStruct item) => list.add(item);
+  void removeFromList(TestListStruct item) => list.remove(item);
+  void removeAtIndexFromList(int index) => list.removeAt(index);
+  void insertAtIndexInList(int index, TestListStruct item) =>
+      list.insert(index, item);
+  void updateListAtIndex(int index, Function(TestListStruct) updateFn) =>
+      list[index] = updateFn(list[index]);
+
+  String uploadImage = '';
+
+  String uploadVideo = '';
+
+  String uploadFile = '';
+
+  String checkContent = ' ';
+
+  ///  State fields for stateful widgets in this page.
+
+  final unfocusNode = FocusNode();
+  // State field(s) for name widget.
+  FocusNode? nameFocusNode;
+  TextEditingController? nameTextController;
+  String? Function(BuildContext, String?)? nameTextControllerValidator;
+  // State field(s) for description widget.
+  FocusNode? descriptionFocusNode;
+  TextEditingController? descriptionTextController;
+  String? Function(BuildContext, String?)? descriptionTextControllerValidator;
+  // State field(s) for DropDown widget.
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
+  // State field(s) for test_id widget.
+  String? testIdValue;
+  FormFieldController<String>? testIdValueController;
+  // State field(s) for durationHours widget.
+  FocusNode? durationHoursFocusNode;
+  TextEditingController? durationHoursTextController;
+  String? Function(BuildContext, String?)? durationHoursTextControllerValidator;
+  bool isDataUploading1 = false;
+  FFUploadedFile uploadedLocalFile1 =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+
+  bool isDataUploading2 = false;
+  FFUploadedFile uploadedLocalFile2 =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+
+  bool isDataUploading3 = false;
+  FFUploadedFile uploadedLocalFile3 =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+
+  // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
+  ApiCallResponse? apiResultUploadVideo;
+  // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
+  ApiCallResponse? apiResultUploadImage;
+  // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
+  ApiCallResponse? apiResultFile;
+  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
+  bool? checkRefreshTokenBlock7;
+  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
+  bool? checkRefreshTokenBlock6;
+  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
+  bool? checkRefreshTokenBlock5;
+  // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
+  ApiCallResponse? apiResultUploadImage1;
+  // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
+  ApiCallResponse? apiResultFile1;
+  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
+  bool? checkRefreshTokenBlock9;
+  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
+  bool? checkRefreshTokenBlock8;
+  // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
+  ApiCallResponse? apiResultFile12;
+  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
+  bool? checkRefreshTokenBlock10;
+
+  @override
+  void initState(BuildContext context) {}
+
+  @override
+  void dispose() {
+    unfocusNode.dispose();
+    nameFocusNode?.dispose();
+    nameTextController?.dispose();
+
+    descriptionFocusNode?.dispose();
+    descriptionTextController?.dispose();
+
+    durationHoursFocusNode?.dispose();
+    durationHoursTextController?.dispose();
+  }
+
+  /// Action blocks.
+  Future testList(BuildContext context) async {
+    ApiCallResponse? apiResultListIdStaff;
+    bool? checkRefreshTokenBlock;
+
+    apiResultListIdStaff = await TestGroup.testListCall.call(
+      accessToken: FFAppState().accessToken,
+      filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffLogin,
+        r'''$.organization_id''',
+      ).toString().toString()}\"}}]}',
+    );
+    if ((apiResultListIdStaff.succeeded ?? true)) {
+      list = TestListDataStruct.maybeFromMap(
+              (apiResultListIdStaff.jsonBody ?? ''))!
+          .data
+          .toList()
+          .cast<TestListStruct>();
+    } else {
+      checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultListIdStaff.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      }
+    }
+  }
+
+  Future createLesson(BuildContext context) async {
+    ApiCallResponse? apiResultCreateLesson;
+    bool? checkRefreshTokenBlock11;
+
+    apiResultCreateLesson = await LessonGroup.postLessonCall.call(
+      requestDataJson: <String, dynamic>{
+        'status': 'published',
+        'name': nameTextController.text,
+        'description': descriptionTextController.text,
+        'content': checkContent,
+        'image_cover':
+            uploadImage != '' ? uploadImage : null,
+        'video': uploadVideo != '' ? uploadVideo : null,
+        'duration_hours': durationHoursTextController.text,
+        'test_id':
+            testIdValue != null && testIdValue != '' ? testIdValue : null,
+        'file': uploadFile != '' ? uploadFile : null,
+      },
+      accessToken: FFAppState().accessToken,
+    );
+    if ((apiResultCreateLesson.succeeded ?? true)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Tạo bài học thành công!',
+            style: TextStyle(
+              color: FlutterFlowTheme.of(context).primaryText,
+            ),
+          ),
+          duration: const Duration(milliseconds: 4000),
+          backgroundColor: FlutterFlowTheme.of(context).secondary,
+        ),
+      );
+
+      context.pushNamed(
+        'LessonsList',
+        extra: <String, dynamic>{
+          kTransitionInfoKey: const TransitionInfo(
+            hasTransition: true,
+            transitionType: PageTransitionType.fade,
+            duration: Duration(milliseconds: 0),
+          ),
+        },
+      );
+    } else {
+      checkRefreshTokenBlock11 = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultCreateLesson.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock11!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      }
+    }
+  }
+}
