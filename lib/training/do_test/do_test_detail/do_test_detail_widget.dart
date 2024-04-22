@@ -147,188 +147,323 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                child: SingleChildScrollView(
-                  primary: false,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Align(
-                        alignment: const AlignmentDirectional(0.0, 1.0),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.asset(
-                              'assets/images/ab2f86f664c11bcf601c50cd80c396b4.jpg',
-                              width: double.infinity,
-                              height: 230.0,
-                              fit: BoxFit.cover,
-                              alignment: const Alignment(0.0, 1.0),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                  child: SingleChildScrollView(
+                    primary: false,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Align(
+                          alignment: const AlignmentDirectional(0.0, 1.0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.asset(
+                                'assets/images/ab2f86f664c11bcf601c50cd80c396b4.jpg',
+                                width: double.infinity,
+                                height: 230.0,
+                                fit: BoxFit.cover,
+                                alignment: const Alignment(0.0, 1.0),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 0.0, 0.0),
-                        child: Text(
-                          '${widget.testName}',
-                          style: FlutterFlowTheme.of(context)
-                              .headlineMedium
-                              .override(
-                                fontFamily: 'Outfit',
-                                letterSpacing: 0.0,
-                              ),
-                        ),
-                      ),
-                      Align(
-                        alignment: const AlignmentDirectional(-1.0, 0.0),
-                        child: Padding(
+                        Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 0.0, 16.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Icon(
-                                    Icons.timelapse_outlined,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 24.0,
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        'Thời gian: ',
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                      Text(
-                                        valueOrDefault<String>(
-                                          widget.testTime?.toString(),
-                                          'Loading',
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                      Text(
-                                        'phút',
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                ].divide(const SizedBox(width: 4.0)),
-                              ),
-                              if (widget.percentCorect != null)
-                                Text(
-                                  '${widget.percentCorect?.toString()}',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
+                              16.0, 4.0, 0.0, 0.0),
+                          child: Text(
+                            '${widget.testName}',
+                            style: FlutterFlowTheme.of(context)
+                                .headlineMedium
+                                .override(
+                                  fontFamily: 'Outfit',
+                                  letterSpacing: 0.0,
                                 ),
-                            ],
                           ),
                         ),
-                      ),
-                      Divider(
-                        height: 20.0,
-                        thickness: 2.0,
-                        indent: 16.0,
-                        endIndent: 16.0,
-                        color: FlutterFlowTheme.of(context).alternate,
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
-                        child: Text(
-                          'Nội dung',
-                          style:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 4.0, 16.0, 0.0),
-                        child: Text(
-                          '${widget.testDescription}',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                        child: Builder(
-                          builder: (context) {
-                            final questionList = _model.list.toList();
-                            return ListView.separated(
-                              padding: EdgeInsets.zero,
-                              primary: false,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.vertical,
-                              itemCount: questionList.length,
-                              separatorBuilder: (_, __) =>
-                                  const SizedBox(height: 16.0),
-                              itemBuilder: (context, questionListIndex) {
-                                final questionListItem =
-                                    questionList[questionListIndex];
-                                return Container(
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 16.0, 0.0),
-                                    child: Column(
+                        Align(
+                          alignment: const AlignmentDirectional(-1.0, 0.0),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Icon(
+                                      Icons.timelapse_outlined,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
+                                    Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
                                       children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                            borderRadius:
-                                                BorderRadius.circular(40.0),
+                                        Text(
+                                          'Thời gian: ',
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                        Text(
+                                          valueOrDefault<String>(
+                                            widget.testTime?.toString(),
+                                            'Loading',
                                           ),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    8.0, 0.0, 0.0, 0.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Text(
-                                                  '${(questionListIndex + 1).toString()}.',
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                        Text(
+                                          'phút',
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ].divide(const SizedBox(width: 4.0)),
+                                ),
+                                if (widget.percentCorect != null)
+                                  Text(
+                                    '${widget.percentCorect?.toString()} điểm',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Divider(
+                          height: 20.0,
+                          thickness: 2.0,
+                          indent: 16.0,
+                          endIndent: 16.0,
+                          color: FlutterFlowTheme.of(context).alternate,
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 0.0, 0.0, 0.0),
+                          child: Text(
+                            'Nội dung',
+                            style: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 4.0, 16.0, 0.0),
+                          child: Text(
+                            '${widget.testDescription}',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 16.0, 0.0, 0.0),
+                          child: Builder(
+                            builder: (context) {
+                              final questionList = _model.list.toList();
+                              return ListView.separated(
+                                padding: EdgeInsets.zero,
+                                primary: false,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                itemCount: questionList.length,
+                                separatorBuilder: (_, __) =>
+                                    const SizedBox(height: 16.0),
+                                itemBuilder: (context, questionListIndex) {
+                                  final questionListItem =
+                                      questionList[questionListIndex];
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 16.0, 0.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              borderRadius:
+                                                  BorderRadius.circular(40.0),
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(8.0, 0.0, 0.0, 0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Text(
+                                                    '${(questionListIndex + 1).toString()}.',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Html(
+                                                      data: questionListItem
+                                                          .questionId.content,
+                                                      onLinkTap:
+                                                          (url, _, __, ___) =>
+                                                              launchURL(url!),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          if (questionListItem.answerType ==
+                                              'checkbox')
+                                            Builder(
+                                              builder: (context) {
+                                                final listAnswer =
+                                                    questionListItem
+                                                        .questionId.answers
+                                                        .toList();
+                                                return ListView.builder(
+                                                  padding: EdgeInsets.zero,
+                                                  shrinkWrap: true,
+                                                  scrollDirection:
+                                                      Axis.vertical,
+                                                  itemCount: listAnswer.length,
+                                                  itemBuilder: (context,
+                                                      listAnswerIndex) {
+                                                    final listAnswerItem =
+                                                        listAnswer[
+                                                            listAnswerIndex];
+                                                    return MultiSelectDoTestWidget(
+                                                      key: Key(
+                                                          'Keym0t_${listAnswerIndex}_of_${listAnswer.length}'),
+                                                      listQuestion:
+                                                          listAnswerItem
+                                                              .answersId,
+                                                      listAnswer:
+                                                          questionListItem
+                                                              .answers,
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            ),
+                                          if (questionListItem.answerType ==
+                                              'radio')
+                                            Builder(
+                                              builder: (context) {
+                                                final listAnswerRadio =
+                                                    questionListItem
+                                                        .questionId.answers
+                                                        .toList();
+                                                return ListView.builder(
+                                                  padding: EdgeInsets.zero,
+                                                  shrinkWrap: true,
+                                                  scrollDirection:
+                                                      Axis.vertical,
+                                                  itemCount:
+                                                      listAnswerRadio.length,
+                                                  itemBuilder: (context,
+                                                      listAnswerRadioIndex) {
+                                                    final listAnswerRadioItem =
+                                                        listAnswerRadio[
+                                                            listAnswerRadioIndex];
+                                                    return SelectDoTestWidget(
+                                                      key: Key(
+                                                          'Keyw3b_${listAnswerRadioIndex}_of_${listAnswerRadio.length}'),
+                                                      listQuestion:
+                                                          listAnswerRadioItem
+                                                              .answersId,
+                                                      listAnswer: questionListItem
+                                                                  .answers.isNotEmpty
+                                                          ? questionListItem
+                                                              .answers.first
+                                                          : AnswersListStruct(
+                                                              answersId:
+                                                                  TestAnswersIdStruct(
+                                                                id: '1',
+                                                              ),
+                                                            ),
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            ),
+                                          if (questionListItem.answerType ==
+                                              'text')
+                                            LongTextDoTestWidget(
+                                              key: Key(
+                                                  'Key6so_${questionListIndex}_of_${questionList.length}'),
+                                              listAnswerText: questionListItem
+                                                  .answerContent,
+                                            ),
+                                          if (questionListItem.answerType ==
+                                              'number')
+                                            Container(
+                                              width: double.infinity,
+                                              constraints: const BoxConstraints(
+                                                minHeight: 40.0,
+                                              ),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .alternate,
+                                                  width: 1.0,
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        8.0, 8.0, 8.0, 8.0),
+                                                child: Text(
+                                                  questionListItem
+                                                      .answerContent,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -338,140 +473,19 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
-                                                Expanded(
-                                                  child: Html(
-                                                    data: questionListItem
-                                                        .questionId.content,
-                                                    onLinkTap:
-                                                        (url, _, __, ___) =>
-                                                            launchURL(url!),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        if (questionListItem.answerType ==
-                                            'checkbox')
-                                          Builder(
-                                            builder: (context) {
-                                              final listAnswer =
-                                                  questionListItem
-                                                      .questionId.answers
-                                                      .toList();
-                                              return ListView.builder(
-                                                padding: EdgeInsets.zero,
-                                                shrinkWrap: true,
-                                                scrollDirection: Axis.vertical,
-                                                itemCount: listAnswer.length,
-                                                itemBuilder:
-                                                    (context, listAnswerIndex) {
-                                                  final listAnswerItem =
-                                                      listAnswer[
-                                                          listAnswerIndex];
-                                                  return MultiSelectDoTestWidget(
-                                                    key: Key(
-                                                        'Keym0t_${listAnswerIndex}_of_${listAnswer.length}'),
-                                                    listQuestion: listAnswerItem
-                                                        .answersId,
-                                                    listAnswer: questionListItem
-                                                        .answers,
-                                                  );
-                                                },
-                                              );
-                                            },
-                                          ),
-                                        if (questionListItem.answerType ==
-                                            'radio')
-                                          Builder(
-                                            builder: (context) {
-                                              final listAnswerRadio =
-                                                  questionListItem
-                                                      .questionId.answers
-                                                      .toList();
-                                              return ListView.builder(
-                                                padding: EdgeInsets.zero,
-                                                shrinkWrap: true,
-                                                scrollDirection: Axis.vertical,
-                                                itemCount:
-                                                    listAnswerRadio.length,
-                                                itemBuilder: (context,
-                                                    listAnswerRadioIndex) {
-                                                  final listAnswerRadioItem =
-                                                      listAnswerRadio[
-                                                          listAnswerRadioIndex];
-                                                  return SelectDoTestWidget(
-                                                    key: Key(
-                                                        'Keyw3b_${listAnswerRadioIndex}_of_${listAnswerRadio.length}'),
-                                                    listQuestion:
-                                                        listAnswerRadioItem
-                                                            .answersId,
-                                                    listAnswer: questionListItem
-                                                                .answers.isNotEmpty
-                                                        ? questionListItem
-                                                            .answers.first
-                                                        : AnswersListStruct(
-                                                            answersId:
-                                                                TestAnswersIdStruct(
-                                                              id: '1',
-                                                            ),
-                                                          ),
-                                                  );
-                                                },
-                                              );
-                                            },
-                                          ),
-                                        if (questionListItem.answerType ==
-                                            'text')
-                                          LongTextDoTestWidget(
-                                            key: Key(
-                                                'Key6so_${questionListIndex}_of_${questionList.length}'),
-                                            listAnswerText:
-                                                questionListItem.answerContent,
-                                          ),
-                                        if (questionListItem.answerType ==
-                                            'number')
-                                          Container(
-                                            width: double.infinity,
-                                            constraints: const BoxConstraints(
-                                              minHeight: 40.0,
-                                            ),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                              border: Border.all(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .alternate,
-                                                width: 1.0,
                                               ),
                                             ),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(8.0, 8.0, 8.0, 8.0),
-                                              child: Text(
-                                                questionListItem.answerContent,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                );
-                              },
-                            );
-                          },
+                                  );
+                                },
+                              );
+                            },
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

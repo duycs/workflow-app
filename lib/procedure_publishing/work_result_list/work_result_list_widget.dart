@@ -159,7 +159,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                       color: Color(0x00000000),
                                       width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
@@ -167,21 +167,21 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                           FlutterFlowTheme.of(context).primary,
                                       width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   errorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   focusedErrorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   filled: true,
                                   fillColor: FlutterFlowTheme.of(context)
@@ -430,7 +430,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                           children: [
                                                             TextSpan(
                                                               text:
-                                                                  'Công việc hoàn thành hôm nay:  ',
+                                                                  'Hoàn thành hôm nay:  ',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -536,115 +536,165 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                           functions
                                                                               .stringToDateTime(itemTaskDoneItem.dateEnd)) ==
                                                                       dateTimeFormat('dd/MM/yyyy', getCurrentTimestamp)),
-                                                              child: Container(
-                                                                width: double
-                                                                    .infinity,
-                                                                height: 100.0,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                ),
-                                                                child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10.0,
-                                                                          10.0,
-                                                                          10.0,
-                                                                          12.0),
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .end,
-                                                                    children: [
-                                                                      Expanded(
-                                                                        flex: 2,
-                                                                        child:
-                                                                            Column(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.center,
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
-                                                                          children:
-                                                                              [
-                                                                            Text(
-                                                                              'Lần chạy thứ: ${itemTaskDoneItem.publishedCount.toString()}',
-                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                    fontFamily: 'Readex Pro',
-                                                                                    fontSize: 14.0,
-                                                                                    letterSpacing: 0.0,
-                                                                                  ),
-                                                                            ),
-                                                                            Text(
-                                                                              'Thời gian tạo: ${dateTimeFormat('dd/MM/yyyy', functions.stringToDateTime(itemTaskDoneItem.dateCreated))}',
-                                                                              style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                    fontFamily: 'Readex Pro',
-                                                                                    fontSize: 13.0,
-                                                                                    letterSpacing: 0.0,
-                                                                                  ),
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-                                                                              child: Text(
-                                                                                'Người tạo: ${itemTaskDoneItem.userCreated.firstName}',
-                                                                                style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                              child: InkWell(
+                                                                splashColor: Colors
+                                                                    .transparent,
+                                                                focusColor: Colors
+                                                                    .transparent,
+                                                                hoverColor: Colors
+                                                                    .transparent,
+                                                                highlightColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                onTap:
+                                                                    () async {
+                                                                  context
+                                                                      .pushNamed(
+                                                                    'TaskDetail',
+                                                                    queryParameters:
+                                                                        {
+                                                                      'workflowId':
+                                                                          serializeParam(
+                                                                        itemsItem
+                                                                            .id,
+                                                                        ParamType
+                                                                            .String,
+                                                                      ),
+                                                                      'publishedCount':
+                                                                          serializeParam(
+                                                                        itemTaskDoneItem
+                                                                            .publishedCount,
+                                                                        ParamType
+                                                                            .int,
+                                                                      ),
+                                                                    }.withoutNulls,
+                                                                    extra: <String,
+                                                                        dynamic>{
+                                                                      kTransitionInfoKey:
+                                                                          const TransitionInfo(
+                                                                        hasTransition:
+                                                                            true,
+                                                                        transitionType:
+                                                                            PageTransitionType.fade,
+                                                                        duration:
+                                                                            Duration(milliseconds: 0),
+                                                                      ),
+                                                                    },
+                                                                  );
+                                                                },
+                                                                child:
+                                                                    Container(
+                                                                  width: double
+                                                                      .infinity,
+                                                                  height: 100.0,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                  ),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            10.0,
+                                                                            10.0,
+                                                                            10.0,
+                                                                            12.0),
+                                                                    child: Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .end,
+                                                                      children: [
+                                                                        Expanded(
+                                                                          flex:
+                                                                              2,
+                                                                          child:
+                                                                              Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.center,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children:
+                                                                                [
+                                                                              Text(
+                                                                                'Lần chạy thứ: ${itemTaskDoneItem.publishedCount.toString()}',
+                                                                                style: FlutterFlowTheme.of(context).bodyLarge.override(
                                                                                       fontFamily: 'Readex Pro',
-                                                                                      color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                      fontSize: 14.0,
+                                                                                      letterSpacing: 0.0,
+                                                                                    ),
+                                                                              ),
+                                                                              Text(
+                                                                                'Thời gian tạo: ${dateTimeFormat('dd/MM/yyyy', functions.stringToDateTime(itemTaskDoneItem.dateCreated))}',
+                                                                                style: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                      fontFamily: 'Readex Pro',
                                                                                       fontSize: 13.0,
                                                                                       letterSpacing: 0.0,
                                                                                     ),
                                                                               ),
-                                                                            ),
-                                                                          ].divide(const SizedBox(height: 4.0)),
-                                                                        ),
-                                                                      ),
-                                                                      Expanded(
-                                                                        child:
-                                                                            Column(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.end,
-                                                                          children:
-                                                                              [
-                                                                            Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                              crossAxisAlignment: CrossAxisAlignment.end,
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
-                                                                                  child: CircularPercentIndicator(
-                                                                                    percent: itemsItem.steps.where((e) => e.tasks.where((e) => (e.publishedCount == itemTaskDoneItem.publishedCount) && (e.status == 'done')).toList().isNotEmpty).toList().length / itemsItem.steps.length,
-                                                                                    radius: 20.0,
-                                                                                    lineWidth: 6.0,
-                                                                                    animation: true,
-                                                                                    animateFromLastPercent: true,
-                                                                                    progressColor: FlutterFlowTheme.of(context).primary,
-                                                                                    backgroundColor: FlutterFlowTheme.of(context).alternate,
-                                                                                  ),
-                                                                                ),
-                                                                                Text(
-                                                                                  '${itemsItem.steps.where((e) => e.tasks.where((e) => (e.publishedCount == itemTaskDoneItem.publishedCount) && (e.status == 'done')).toList().isNotEmpty).toList().length.toString()}/${itemsItem.steps.length.toString()}',
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                              Padding(
+                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+                                                                                child: Text(
+                                                                                  'Người tạo: ${itemTaskDoneItem.userCreated.firstName}',
+                                                                                  style: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                         fontFamily: 'Readex Pro',
+                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
                                                                                         fontSize: 13.0,
                                                                                         letterSpacing: 0.0,
-                                                                                        fontWeight: FontWeight.bold,
                                                                                       ),
                                                                                 ),
-                                                                              ].divide(const SizedBox(width: 8.0)),
-                                                                            ),
-                                                                          ].divide(const SizedBox(height: 5.0)),
+                                                                              ),
+                                                                            ].divide(const SizedBox(height: 4.0)),
+                                                                          ),
                                                                         ),
-                                                                      ),
-                                                                    ],
+                                                                        Expanded(
+                                                                          child:
+                                                                              Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.end,
+                                                                            children:
+                                                                                [
+                                                                              Row(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                crossAxisAlignment: CrossAxisAlignment.end,
+                                                                                children: [
+                                                                                  Padding(
+                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                                                                                    child: CircularPercentIndicator(
+                                                                                      percent: itemsItem.steps.where((e) => e.tasks.where((e) => (e.publishedCount == itemTaskDoneItem.publishedCount) && (e.status == 'done')).toList().isNotEmpty).toList().length / itemsItem.steps.length,
+                                                                                      radius: 20.0,
+                                                                                      lineWidth: 6.0,
+                                                                                      animation: true,
+                                                                                      animateFromLastPercent: true,
+                                                                                      progressColor: FlutterFlowTheme.of(context).primary,
+                                                                                      backgroundColor: FlutterFlowTheme.of(context).alternate,
+                                                                                    ),
+                                                                                  ),
+                                                                                  Text(
+                                                                                    '${itemsItem.steps.where((e) => e.tasks.where((e) => (e.publishedCount == itemTaskDoneItem.publishedCount) && (e.status == 'done')).toList().isNotEmpty).toList().length.toString()}/${itemsItem.steps.length.toString()}',
+                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                          fontFamily: 'Readex Pro',
+                                                                                          fontSize: 13.0,
+                                                                                          letterSpacing: 0.0,
+                                                                                          fontWeight: FontWeight.bold,
+                                                                                        ),
+                                                                                  ),
+                                                                                ].divide(const SizedBox(width: 8.0)),
+                                                                              ),
+                                                                            ].divide(const SizedBox(height: 5.0)),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),

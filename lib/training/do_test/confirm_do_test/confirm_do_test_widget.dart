@@ -88,7 +88,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
             primary: false,
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Row(
                   mainAxisSize: MainAxisSize.max,
@@ -124,32 +124,87 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                     children: [
                       Column(
                         mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                            'Tên bài thi: ${_model.list?.name}',
-                            style:
-                                FlutterFlowTheme.of(context).bodyLarge.override(
-                                      fontFamily: 'Readex Pro',
-                                      letterSpacing: 0.0,
-                                    ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 8.0),
+                            child: Text(
+                              '${_model.list?.name}',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                            ),
                           ),
-                          Text(
-                            'Thời gian: ${_model.list?.durationMinutes.toString()}',
-                            style:
-                                FlutterFlowTheme.of(context).bodyLarge.override(
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Icon(
+                                Icons.timelapse_sharp,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 20.0,
+                              ),
+                              Text(
+                                'Thời gian: ',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              Text(
+                                '${_model.list?.durationMinutes.toString()}',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
                                       fontFamily: 'Readex Pro',
                                       letterSpacing: 0.0,
                                     ),
+                              ),
+                            ].divide(const SizedBox(width: 4.0)),
                           ),
-                          Text(
-                            'Mô tả: ${_model.list?.description}',
-                            maxLines: 3,
-                            style:
-                                FlutterFlowTheme.of(context).bodyLarge.override(
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Icon(
+                                Icons.notes_sharp,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 20.0,
+                              ),
+                              Text(
+                                'Mô tả: ',
+                                maxLines: 3,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              Text(
+                                '${_model.list?.description}',
+                                maxLines: 3,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
                                       fontFamily: 'Readex Pro',
                                       letterSpacing: 0.0,
                                     ),
+                              ),
+                            ].divide(const SizedBox(width: 4.0)),
                           ),
                         ].divide(const SizedBox(height: 8.0)),
                       ),

@@ -32,50 +32,25 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultListData =
-          await ProcedureTemplateGroup.workflowsListCall.call(
-        accessToken: FFAppState().accessToken,
-        filter: '{\"_and\":[${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? '{\"organization_id\":{\"_eq\":\"' : ' '}${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? getJsonField(
-            FFAppState().staffLogin,
-            r'''$.organization_id''',
-          ).toString().toString() : ' '}${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? '\"}}' : ' '}]}',
-      );
-      if ((_model.apiResultListData?.succeeded ?? true)) {
-        setState(() {
-          _model.dataList = WorkflowsListDataStruct.maybeFromMap(
-                  (_model.apiResultListData?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<WorkflowsStruct>();
-        });
-      } else {
-        if (ErorrsStruct.maybeFromMap(
-                    (_model.apiResultListData?.jsonBody ?? ''))
-                ?.errors
-                .first
-                .extensions
-                .code ==
-            FFAppConstants.TokenExpired) {
-          _model.checkRefreshTokenBlockList =
-              await action_blocks.checkRefreshToken(
-            context,
-            jsonErrors: (_model.apiResultListData?.jsonBody ?? ''),
-          );
-          if (!_model.checkRefreshTokenBlockList!) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  FFAppConstants.ErrorLoadData,
-                  style: TextStyle(
-                    color: FlutterFlowTheme.of(context).primaryText,
-                  ),
-                ),
-                duration: const Duration(milliseconds: 4000),
-                backgroundColor: FlutterFlowTheme.of(context).error,
-              ),
-            );
-          }
-          return;
+      setState(() {});
+      _model.checkToken = await action_blocks.tokenReload(context);
+      if (_model.checkToken!) {
+        _model.apiResultListData =
+            await ProcedureTemplateGroup.workflowsListCall.call(
+          accessToken: FFAppState().accessToken,
+          filter: '{\"_and\":[{\"template\":{\"_neq\":\"1\"}}${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? ',{\"organization_id\":{\"_eq\":\"' : ' '}${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? getJsonField(
+              FFAppState().staffLogin,
+              r'''$.organization_id''',
+            ).toString().toString() : ' '}${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? '\"}}' : ' '}]}',
+        );
+        if ((_model.apiResultListData?.succeeded ?? true)) {
+          setState(() {
+            _model.dataList = WorkflowsListDataStruct.maybeFromMap(
+                    (_model.apiResultListData?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<WorkflowsStruct>();
+          });
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -90,11 +65,14 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
             ),
           );
         }
-      }
 
-      setState(() {
-        _model.isLoad = true;
-      });
+        setState(() {
+          _model.isLoad = true;
+        });
+      } else {
+        setState(() {});
+        return;
+      }
     });
 
     _model.textNameTextController ??= TextEditingController();

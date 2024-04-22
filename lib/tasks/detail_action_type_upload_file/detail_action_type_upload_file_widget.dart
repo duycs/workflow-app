@@ -52,73 +52,78 @@ class _DetailActionTypeUploadFileWidgetState
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        FFButtonWidget(
-          onPressed: ('1' == '1')
-              ? null
-              : () async {
-                  final selectedFiles = await selectFiles(
-                    multiFile: false,
-                  );
-                  if (selectedFiles != null) {
-                    setState(() => _model.isDataUploading = true);
-                    var selectedUploadedFiles = <FFUploadedFile>[];
-
-                    try {
-                      selectedUploadedFiles = selectedFiles
-                          .map((m) => FFUploadedFile(
-                                name: m.storagePath.split('/').last,
-                                bytes: m.bytes,
-                              ))
-                          .toList();
-                    } finally {
-                      _model.isDataUploading = false;
-                    }
-                    if (selectedUploadedFiles.length == selectedFiles.length) {
-                      setState(() {
-                        _model.uploadedLocalFile = selectedUploadedFiles.first;
-                      });
-                    } else {
-                      setState(() {});
-                      return;
-                    }
-                  }
-
-                  _model.apiResult7cn =
-                      await UploadFileGroup.uploadFileCall.call(
-                    accessToken: FFAppState().accessToken,
-                    file: _model.uploadedLocalFile,
-                  );
-                  if ((_model.apiResult7cn?.succeeded ?? true)) {
-                    await widget.calback?.call(
-                      getJsonField(
-                        (_model.apiResult7cn?.jsonBody ?? ''),
-                        r'''$.data.id''',
-                      ).toString(),
+        Flexible(
+          child: FFButtonWidget(
+            onPressed: ('1' == '1')
+                ? null
+                : () async {
+                    final selectedFiles = await selectFiles(
+                      multiFile: false,
                     );
-                    setState(() {});
-                  }
+                    if (selectedFiles != null) {
+                      setState(() => _model.isDataUploading = true);
+                      var selectedUploadedFiles = <FFUploadedFile>[];
 
-                  setState(() {});
-                },
-          text: 'Upload tài liệu',
-          icon: const Icon(
-            Icons.attach_file,
-            size: 20.0,
-          ),
-          options: FFButtonOptions(
-            height: 40.0,
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-            iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-            color: FlutterFlowTheme.of(context).alternate,
-            textStyle: FlutterFlowTheme.of(context).labelLarge.override(
-                  fontFamily: 'Readex Pro',
-                  fontSize: 13.0,
-                  letterSpacing: 0.0,
-                ),
-            borderSide: BorderSide(
-              color: FlutterFlowTheme.of(context).alternate,
+                      try {
+                        selectedUploadedFiles = selectedFiles
+                            .map((m) => FFUploadedFile(
+                                  name: m.storagePath.split('/').last,
+                                  bytes: m.bytes,
+                                ))
+                            .toList();
+                      } finally {
+                        _model.isDataUploading = false;
+                      }
+                      if (selectedUploadedFiles.length ==
+                          selectedFiles.length) {
+                        setState(() {
+                          _model.uploadedLocalFile =
+                              selectedUploadedFiles.first;
+                        });
+                      } else {
+                        setState(() {});
+                        return;
+                      }
+                    }
+
+                    _model.apiResult7cn =
+                        await UploadFileGroup.uploadFileCall.call(
+                      accessToken: FFAppState().accessToken,
+                      file: _model.uploadedLocalFile,
+                    );
+                    if ((_model.apiResult7cn?.succeeded ?? true)) {
+                      await widget.calback?.call(
+                        getJsonField(
+                          (_model.apiResult7cn?.jsonBody ?? ''),
+                          r'''$.data.id''',
+                        ).toString(),
+                      );
+                      setState(() {});
+                    }
+
+                    setState(() {});
+                  },
+            text: 'Upload tài liệu',
+            icon: const Icon(
+              Icons.attach_file,
+              size: 20.0,
             ),
-            borderRadius: BorderRadius.circular(8.0),
+            options: FFButtonOptions(
+              width: double.infinity,
+              height: 40.0,
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              color: FlutterFlowTheme.of(context).alternate,
+              textStyle: FlutterFlowTheme.of(context).labelLarge.override(
+                    fontFamily: 'Readex Pro',
+                    fontSize: 13.0,
+                    letterSpacing: 0.0,
+                  ),
+              borderSide: BorderSide(
+                color: FlutterFlowTheme.of(context).alternate,
+              ),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
           ),
         ),
       ].divide(const SizedBox(height: 6.0)),

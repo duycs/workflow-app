@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'operation_update_model.dart';
@@ -497,67 +498,77 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                       ) ??
                                       false;
                               if (confirmDialogResponse) {
-                                _model.apiResultOperationUpdate =
-                                    await OperationGroup.operationsUpdateCall
-                                        .call(
-                                  requestDataJson: <String, dynamic>{
-                                    'name': _model.textController1.text,
-                                    'status': _model.switchValue == true
-                                        ? 'done'
-                                        : 'draft',
-                                    'content': _model.textController2.text,
-                                    'description': _model.textController3.text,
-                                    'action_type': _model.dropDownValue,
-                                  },
-                                  accessToken: FFAppState().accessToken,
-                                  operationId: widget.operationUpdate?.id,
-                                );
+                                _model.apiResuftOperationUpdate =
+                                    await action_blocks.tokenReload(context);
                                 shouldSetState = true;
-                                if ((_model
-                                        .apiResultOperationUpdate?.succeeded ??
-                                    true)) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'Chỉnh sửa thành công!',
-                                        style: TextStyle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                        ),
-                                      ),
-                                      duration: const Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .secondary,
-                                    ),
-                                  );
-
-                                  context.pushNamed(
-                                    'OperationList',
-                                    extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
-                                        hasTransition: true,
-                                        transitionType: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                      ),
+                                if (_model.apiResuftOperationUpdate!) {
+                                  _model.apiResultOperationUpdate =
+                                      await OperationGroup.operationsUpdateCall
+                                          .call(
+                                    requestDataJson: <String, dynamic>{
+                                      'name': _model.textController1.text,
+                                      'status': _model.switchValue == true
+                                          ? 'done'
+                                          : 'draft',
+                                      'content': _model.textController2.text,
+                                      'description':
+                                          _model.textController3.text,
+                                      'action_type': _model.dropDownValue,
                                     },
+                                    accessToken: FFAppState().accessToken,
+                                    operationId: widget.operationUpdate?.id,
                                   );
-                                } else {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'Chỉnh sửa không thành công!',
-                                        style: TextStyle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
+                                  shouldSetState = true;
+                                  if ((_model.apiResultOperationUpdate
+                                          ?.succeeded ??
+                                      true)) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Chỉnh sửa thành công!',
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
                                         ),
+                                        duration: const Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondary,
                                       ),
-                                      duration: const Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .secondary,
-                                    ),
-                                  );
+                                    );
+
+                                    context.pushNamed(
+                                      'OperationList',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Chỉnh sửa không thành công!',
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
+                                        ),
+                                        duration: const Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context).error,
+                                      ),
+                                    );
+                                  }
+                                } else {
+                                  setState(() {});
+                                  if (shouldSetState) setState(() {});
+                                  return;
                                 }
                               } else {
                                 if (shouldSetState) setState(() {});

@@ -114,17 +114,8 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
-                  child: Text(
-                    'Danh sách bài thi theo chương trình đào tạo',
-                    style: FlutterFlowTheme.of(context).labelMedium.override(
-                          fontFamily: 'Readex Pro',
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 0.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -319,7 +310,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           itemCount: dataList.length,
-                          separatorBuilder: (_, __) => const SizedBox(height: 16.0),
+                          separatorBuilder: (_, __) => const SizedBox(height: 8.0),
                           itemBuilder: (context, dataListIndex) {
                             final dataListItem = dataList[dataListIndex];
                             return Padding(
@@ -367,17 +358,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        blurRadius: 3.0,
-                                        color: Color(0x33000000),
-                                        offset: Offset(
-                                          0.0,
-                                          1.0,
-                                        ),
-                                      )
-                                    ],
+                                        .primaryBackground,
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Padding(
@@ -398,7 +379,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                       .override(
                                                         fontFamily:
                                                             'Readex Pro',
-                                                        fontSize: 18.0,
+                                                        fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -410,7 +391,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                       .override(
                                                         fontFamily:
                                                             'Readex Pro',
-                                                        fontSize: 18.0,
+                                                        fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -439,6 +420,10 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -474,6 +459,10 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -509,6 +498,10 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -541,6 +534,10 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -573,7 +570,10 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
-                                                          fontSize: 14.0,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),

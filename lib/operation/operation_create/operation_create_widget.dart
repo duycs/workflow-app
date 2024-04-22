@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'operation_create_model.dart';
@@ -525,57 +526,73 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                     ) ??
                                     false;
                                 if (confirmDialogResponse) {
-                                  _model.apiResultOperationAdd =
-                                      await OperationGroup.operationAddCall
-                                          .call(
-                                    accessToken: FFAppState().accessToken,
-                                    requestDataJson: <String, dynamic>{
-                                      'status': _model.switchValue == true
-                                          ? 'done'
-                                          : 'darft',
-                                      'name': _model.textController1.text,
-                                      'description':
-                                          _model.textController3.text,
-                                      'content': _model.textController2.text,
-                                      'action_type': _model.dropDownValue,
-                                    },
-                                  );
+                                  _model.apiResuftRefreshTokenOperaAdd =
+                                      await action_blocks.tokenReload(context);
                                   shouldSetState = true;
-                                  if ((_model
-                                          .apiResultOperationAdd?.succeeded ??
-                                      true)) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Tạo mới thành công!',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                        ),
-                                        duration: const Duration(milliseconds: 4000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondary,
-                                      ),
+                                  if (_model.apiResuftRefreshTokenOperaAdd!) {
+                                    _model.apiResultOperationAdd =
+                                        await OperationGroup.operationAddCall
+                                            .call(
+                                      accessToken: FFAppState().accessToken,
+                                      requestDataJson: <String, dynamic>{
+                                        'status': _model.switchValue == true
+                                            ? 'done'
+                                            : 'darft',
+                                        'name': _model.textController1.text,
+                                        'description':
+                                            _model.textController3.text,
+                                        'content': _model.textController2.text,
+                                        'action_type': _model.dropDownValue,
+                                      },
                                     );
-                                    await widget.callback?.call();
-                                    Navigator.pop(context);
+                                    shouldSetState = true;
+                                    if ((_model
+                                            .apiResultOperationAdd?.succeeded ??
+                                        true)) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Tạo mới thành công!',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              const Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                        ),
+                                      );
+                                      await widget.callback?.call();
+                                      Navigator.pop(context);
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Tạo mới không thành công!',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              const Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                        ),
+                                      );
+                                    }
                                   } else {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Tạo mới không thành công!',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                        ),
-                                        duration: const Duration(milliseconds: 4000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context).error,
-                                      ),
-                                    );
+                                    setState(() {});
+                                    if (shouldSetState) setState(() {});
+                                    return;
                                   }
                                 } else {
                                   if (shouldSetState) setState(() {});

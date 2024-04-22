@@ -45,7 +45,7 @@ class LessonDetailHomePageModel
 
   String testId = '';
 
-  String status = 'draft';
+  String status = 'inprogress';
 
   ///  State fields for stateful widgets in this page.
 
@@ -64,6 +64,8 @@ class LessonDetailHomePageModel
   String? Function(BuildContext, String?)? commentsTextControllerValidator;
   // Stores action output result for [Backend Call - API (UpdateStaffLessonStatus)] action in Button widget.
   ApiCallResponse? apiResultUpdateStatus;
+  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
+  bool? checkRefreshTokenBlockabcd;
 
   @override
   void initState(BuildContext context) {}

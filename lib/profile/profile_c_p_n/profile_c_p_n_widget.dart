@@ -42,33 +42,6 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
     });
 
     animationsMap.addAll({
-      'imageOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          VisibilityEffect(duration: 1.ms),
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 500.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          ScaleEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 500.0.ms,
-            begin: const Offset(1.7, 1.7),
-            end: const Offset(1.0, 1.0),
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 500.0.ms,
-            begin: const Offset(0.0, 200.0),
-            end: const Offset(0.0, 0.0),
-          ),
-        ],
-      ),
       'blurOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
@@ -138,21 +111,49 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                         width: double.infinity,
                         child: Stack(
                           children: [
-                            ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                bottomLeft: Radius.circular(16.0),
-                                bottomRight: Radius.circular(16.0),
-                                topLeft: Radius.circular(0.0),
-                                topRight: Radius.circular(0.0),
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                await Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.fade,
+                                    child: FlutterFlowExpandedImageView(
+                                      image: Image.network(
+                                        '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.avatar}?access_token=${FFAppState().accessToken}',
+                                        fit: BoxFit.contain,
+                                      ),
+                                      allowRotation: false,
+                                      tag:
+                                          '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.avatar}?access_token=${FFAppState().accessToken}',
+                                      useHeroAnimation: true,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Hero(
+                                tag:
+                                    '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.avatar}?access_token=${FFAppState().accessToken}',
+                                transitionOnUserGestures: true,
+                                child: ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                    bottomLeft: Radius.circular(16.0),
+                                    bottomRight: Radius.circular(16.0),
+                                    topLeft: Radius.circular(0.0),
+                                    topRight: Radius.circular(0.0),
+                                  ),
+                                  child: Image.network(
+                                    '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.avatar}?access_token=${FFAppState().accessToken}',
+                                    width: double.infinity,
+                                    height: 470.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                               ),
-                              child: Image.network(
-                                '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.avatar}?access_token=${FFAppState().accessToken}',
-                                width: double.infinity,
-                                height: 470.0,
-                                fit: BoxFit.cover,
-                              ),
-                            ).animateOnPageLoad(
-                                animationsMap['imageOnPageLoadAnimation']!),
+                            ),
                             Align(
                               alignment: const AlignmentDirectional(0.0, 1.0),
                               child: Padding(
@@ -243,8 +244,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                           text: TextSpan(
                                                             children: [
                                                               const TextSpan(
-                                                                text:
-                                                                    'pexnic.vn',
+                                                                text: '',
                                                                 style:
                                                                     TextStyle(),
                                                               ),
@@ -456,25 +456,29 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                         ),
                                                       ],
                                                     ),
-                                                    Divider(
-                                                      height: 16.0,
-                                                      thickness: 1.0,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
-                                                    ),
-                                                    Text(
-                                                      'Rate',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .labelMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
+                                                    if ('1' == '2')
+                                                      Divider(
+                                                        height: 16.0,
+                                                        thickness: 1.0,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                      ),
+                                                    if ('1' == '2')
+                                                      Text(
+                                                        'Rate',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
                                                     Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -1006,18 +1010,63 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                         children: [
                                                           Expanded(
                                                             flex: 3,
-                                                            child: ClipRRect(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8.0),
-                                                              child:
-                                                                  Image.network(
-                                                                '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
-                                                                width: 190.0,
-                                                                height: 208.0,
-                                                                fit: BoxFit
-                                                                    .cover,
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                await Navigator
+                                                                    .push(
+                                                                  context,
+                                                                  PageTransition(
+                                                                    type: PageTransitionType
+                                                                        .fade,
+                                                                    child:
+                                                                        FlutterFlowExpandedImageView(
+                                                                      image: Image
+                                                                          .network(
+                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
+                                                                        fit: BoxFit
+                                                                            .contain,
+                                                                      ),
+                                                                      allowRotation:
+                                                                          false,
+                                                                      tag:
+                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
+                                                                      useHeroAnimation:
+                                                                          true,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                              child: Hero(
+                                                                tag:
+                                                                    '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
+                                                                transitionOnUserGestures:
+                                                                    true,
+                                                                child:
+                                                                    ClipRRect(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8.0),
+                                                                  child: Image
+                                                                      .network(
+                                                                    '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
+                                                                    width:
+                                                                        190.0,
+                                                                    height:
+                                                                        208.0,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
@@ -1036,19 +1085,64 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                                           0.0,
                                                                           4.0),
                                                                   child:
-                                                                      ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                    child: Image
-                                                                        .network(
-                                                                      'https://source.unsplash.com/random/1280x720?profile&52',
-                                                                      width:
-                                                                          160.0,
-                                                                      height:
-                                                                          100.0,
-                                                                      fit: BoxFit
-                                                                          .cover,
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
+                                                                      await Navigator
+                                                                          .push(
+                                                                        context,
+                                                                        PageTransition(
+                                                                          type:
+                                                                              PageTransitionType.fade,
+                                                                          child:
+                                                                              FlutterFlowExpandedImageView(
+                                                                            image:
+                                                                                Image.network(
+                                                                              'https://source.unsplash.com/random/1280x720?profile&52',
+                                                                              fit: BoxFit.contain,
+                                                                            ),
+                                                                            allowRotation:
+                                                                                false,
+                                                                            tag:
+                                                                                'imageTag7',
+                                                                            useHeroAnimation:
+                                                                                true,
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                    child: Hero(
+                                                                      tag:
+                                                                          'imageTag7',
+                                                                      transitionOnUserGestures:
+                                                                          true,
+                                                                      child:
+                                                                          ClipRRect(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8.0),
+                                                                        child: Image
+                                                                            .network(
+                                                                          'https://source.unsplash.com/random/1280x720?profile&52',
+                                                                          width:
+                                                                              160.0,
+                                                                          height:
+                                                                              100.0,
+                                                                          fit: BoxFit
+                                                                              .cover,
+                                                                        ),
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ),
@@ -1060,19 +1154,64 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                                           0.0,
                                                                           0.0),
                                                                   child:
-                                                                      ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                    child: Image
-                                                                        .network(
-                                                                      'https://source.unsplash.com/random/1280x720?profile&51',
-                                                                      width:
-                                                                          160.0,
-                                                                      height:
-                                                                          100.0,
-                                                                      fit: BoxFit
-                                                                          .cover,
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
+                                                                      await Navigator
+                                                                          .push(
+                                                                        context,
+                                                                        PageTransition(
+                                                                          type:
+                                                                              PageTransitionType.fade,
+                                                                          child:
+                                                                              FlutterFlowExpandedImageView(
+                                                                            image:
+                                                                                Image.network(
+                                                                              'https://source.unsplash.com/random/1280x720?profile&51',
+                                                                              fit: BoxFit.contain,
+                                                                            ),
+                                                                            allowRotation:
+                                                                                false,
+                                                                            tag:
+                                                                                'imageTag8',
+                                                                            useHeroAnimation:
+                                                                                true,
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                    child: Hero(
+                                                                      tag:
+                                                                          'imageTag8',
+                                                                      transitionOnUserGestures:
+                                                                          true,
+                                                                      child:
+                                                                          ClipRRect(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8.0),
+                                                                        child: Image
+                                                                            .network(
+                                                                          'https://source.unsplash.com/random/1280x720?profile&51',
+                                                                          width:
+                                                                              160.0,
+                                                                          height:
+                                                                              100.0,
+                                                                          fit: BoxFit
+                                                                              .cover,
+                                                                        ),
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ),

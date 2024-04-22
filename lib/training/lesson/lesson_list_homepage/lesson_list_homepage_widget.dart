@@ -356,6 +356,10 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                       listRowItem.status,
                                       ParamType.String,
                                     ),
+                                    'id': serializeParam(
+                                      listRowItem.id,
+                                      ParamType.String,
+                                    ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: const TransitionInfo(

@@ -383,6 +383,7 @@ class _ProcessTemplateDetailWidgetState
                                                     child:
                                                         ProcedureStepDetailWidget(
                                                       item: listViewItem,
+                                                      check: true,
                                                     ),
                                                   ),
                                                 );

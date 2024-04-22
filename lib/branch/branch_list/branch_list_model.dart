@@ -1,6 +1,8 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'branch_list_widget.dart' show BranchListWidget;
 import 'package:flutter/material.dart';
 
@@ -49,6 +51,7 @@ class BranchListModel extends FlutterFlowModel<BranchListWidget> {
   /// Action blocks.
   Future getLinkBranch(BuildContext context) async {
     ApiCallResponse? apiResultListBranch;
+    bool? apiResuftRefreshTokenBranchList;
 
     apiResultListBranch = await BranchGroup.branchListCall.call(
       accessToken: FFAppState().accessToken,
@@ -64,6 +67,40 @@ class BranchListModel extends FlutterFlowModel<BranchListWidget> {
           .data
           .toList()
           .cast<BranchListStruct>();
+    } else {
+      apiResuftRefreshTokenBranchList = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultListBranch.jsonBody ?? ''),
+      );
+      if (!apiResuftRefreshTokenBranchList!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Chỉnh sửa không thành công.Vui lonhf thử lại!',
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).secondary,
+          ),
+        );
+      }
+
+      return;
     }
   }
 }

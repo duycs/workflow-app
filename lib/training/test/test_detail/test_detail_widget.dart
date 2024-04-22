@@ -1,3 +1,4 @@
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -112,14 +113,42 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                         alignment: const AlignmentDirectional(0.0, 1.0),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.asset(
-                              'assets/images/ab2f86f664c11bcf601c50cd80c396b4.jpg',
-                              width: double.infinity,
-                              height: 150.0,
-                              fit: BoxFit.cover,
-                              alignment: const Alignment(0.0, 1.0),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              await Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.fade,
+                                  child: FlutterFlowExpandedImageView(
+                                    image: Image.asset(
+                                      'assets/images/ab2f86f664c11bcf601c50cd80c396b4.jpg',
+                                      fit: BoxFit.contain,
+                                      alignment: const Alignment(0.0, 1.0),
+                                    ),
+                                    allowRotation: false,
+                                    tag: 'imageTag',
+                                    useHeroAnimation: true,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Hero(
+                              tag: 'imageTag',
+                              transitionOnUserGestures: true,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.asset(
+                                  'assets/images/ab2f86f664c11bcf601c50cd80c396b4.jpg',
+                                  width: double.infinity,
+                                  height: 150.0,
+                                  fit: BoxFit.cover,
+                                  alignment: const Alignment(0.0, 1.0),
+                                ),
+                              ),
                             ),
                           ),
                         ),

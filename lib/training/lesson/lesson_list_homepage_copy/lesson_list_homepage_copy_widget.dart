@@ -334,129 +334,142 @@ class _LessonListHomepageCopyWidgetState
                                 child: Visibility(
                                   visible: (FFAppState().staffid != '') &&
                                       (_model.listLessonRow.isNotEmpty),
-                                  child: Builder(
-                                    builder: (context) {
-                                      final listRow =
-                                          _model.listLessonRow.toList();
-                                      return ListView.separated(
-                                        padding: const EdgeInsets.fromLTRB(
-                                          16.0,
-                                          0,
-                                          0,
-                                          0,
-                                        ),
-                                        primary: false,
-                                        scrollDirection: Axis.horizontal,
-                                        itemCount: listRow.length,
-                                        separatorBuilder: (_, __) =>
-                                            const SizedBox(width: 12.0),
-                                        itemBuilder: (context, listRowIndex) {
-                                          final listRowItem =
-                                              listRow[listRowIndex];
-                                          return InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              context.pushNamed(
-                                                'LessonDetail_HomePage',
-                                                queryParameters: {
-                                                  'listItems': serializeParam(
-                                                    listRowItem.lessionId
-                                                        .toMap(),
-                                                    ParamType.JSON,
-                                                  ),
-                                                  'status': serializeParam(
-                                                    listRowItem.status,
-                                                    ParamType.String,
-                                                  ),
-                                                }.withoutNulls,
-                                                extra: <String, dynamic>{
-                                                  kTransitionInfoKey:
-                                                      const TransitionInfo(
-                                                    hasTransition: true,
-                                                    transitionType:
-                                                        PageTransitionType.fade,
-                                                    duration: Duration(
-                                                        milliseconds: 0),
-                                                  ),
-                                                },
-                                              );
-                                            },
-                                            child: Container(
-                                              width: 105.0,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                borderRadius:
-                                                    BorderRadius.circular(4.0),
-                                                border: Border.all(
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 12.0),
+                                    child: Builder(
+                                      builder: (context) {
+                                        final listRow =
+                                            _model.listLessonRow.toList();
+                                        return ListView.separated(
+                                          padding: const EdgeInsets.fromLTRB(
+                                            16.0,
+                                            0,
+                                            0,
+                                            0,
+                                          ),
+                                          primary: false,
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: listRow.length,
+                                          separatorBuilder: (_, __) =>
+                                              const SizedBox(width: 12.0),
+                                          itemBuilder: (context, listRowIndex) {
+                                            final listRowItem =
+                                                listRow[listRowIndex];
+                                            return InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                context.pushNamed(
+                                                  'LessonDetail_HomePage',
+                                                  queryParameters: {
+                                                    'listItems': serializeParam(
+                                                      listRowItem.lessionId
+                                                          .toMap(),
+                                                      ParamType.JSON,
+                                                    ),
+                                                    'status': serializeParam(
+                                                      listRowItem.status,
+                                                      ParamType.String,
+                                                    ),
+                                                    'id': serializeParam(
+                                                      listRowItem.id,
+                                                      ParamType.String,
+                                                    ),
+                                                  }.withoutNulls,
+                                                  extra: <String, dynamic>{
+                                                    kTransitionInfoKey:
+                                                        const TransitionInfo(
+                                                      hasTransition: true,
+                                                      transitionType:
+                                                          PageTransitionType
+                                                              .fade,
+                                                      duration: Duration(
+                                                          milliseconds: 0),
+                                                    ),
+                                                  },
+                                                );
+                                              },
+                                              child: Container(
+                                                width: 105.0,
+                                                decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .alternate,
-                                                  width: 1.0,
+                                                      .secondaryBackground,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          4.0),
+                                                  border: Border.all(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
+                                                    width: 1.0,
+                                                  ),
                                                 ),
-                                              ),
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(6.0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Expanded(
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                        child: Image.network(
-                                                          '${FFAppConstants.ApiBaseUrl}/assets/${listRowItem.lessionId.imageCover}?access_token=${FFAppState().accessToken}',
-                                                          width:
-                                                              double.infinity,
-                                                          height:
-                                                              double.infinity,
-                                                          fit: BoxFit.cover,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(6.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Expanded(
+                                                        child: ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                          child: Image.network(
+                                                            '${FFAppConstants.ApiBaseUrl}/assets/${listRowItem.lessionId.imageCover}?access_token=${FFAppState().accessToken}',
+                                                            width:
+                                                                double.infinity,
+                                                            height:
+                                                                double.infinity,
+                                                            fit: BoxFit.cover,
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  4.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        listRowItem
-                                                            .lessionId.name,
-                                                        maxLines: 2,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 13.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                            ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    4.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          listRowItem
+                                                              .lessionId.name,
+                                                          maxLines: 2,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyLarge
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    },
+                                            );
+                                          },
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ),
                               ),
@@ -465,7 +478,7 @@ class _LessonListHomepageCopyWidgetState
                               (_model.listLessonRow2.isNotEmpty))
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 24.0, 5.0, 0.0),
+                                  16.0, 12.0, 5.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -580,151 +593,163 @@ class _LessonListHomepageCopyWidgetState
                                 child: Visibility(
                                   visible: (FFAppState().staffid != '') &&
                                       (_model.listLessonRow2.isNotEmpty),
-                                  child: Builder(
-                                    builder: (context) {
-                                      final listRow2 =
-                                          _model.listLessonRow2.toList();
-                                      return ListView.separated(
-                                        padding: const EdgeInsets.fromLTRB(
-                                          16.0,
-                                          0,
-                                          0,
-                                          0,
-                                        ),
-                                        primary: false,
-                                        scrollDirection: Axis.horizontal,
-                                        itemCount: listRow2.length,
-                                        separatorBuilder: (_, __) =>
-                                            const SizedBox(width: 12.0),
-                                        itemBuilder: (context, listRow2Index) {
-                                          final listRow2Item =
-                                              listRow2[listRow2Index];
-                                          return InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              context.pushNamed(
-                                                'LessonDetail_HomePage',
-                                                queryParameters: {
-                                                  'listItems': serializeParam(
-                                                    listRow2Item.lessionId
-                                                        .toMap(),
-                                                    ParamType.JSON,
-                                                  ),
-                                                  'status': serializeParam(
-                                                    listRow2Item.status,
-                                                    ParamType.String,
-                                                  ),
-                                                }.withoutNulls,
-                                                extra: <String, dynamic>{
-                                                  kTransitionInfoKey:
-                                                      const TransitionInfo(
-                                                    hasTransition: true,
-                                                    transitionType:
-                                                        PageTransitionType.fade,
-                                                    duration: Duration(
-                                                        milliseconds: 0),
-                                                  ),
-                                                },
-                                              );
-                                            },
-                                            child: Container(
-                                              width: 105.0,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                borderRadius:
-                                                    BorderRadius.circular(4.0),
-                                                border: Border.all(
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 12.0),
+                                    child: Builder(
+                                      builder: (context) {
+                                        final listRow2 =
+                                            _model.listLessonRow2.toList();
+                                        return ListView.separated(
+                                          padding: const EdgeInsets.fromLTRB(
+                                            16.0,
+                                            0,
+                                            0,
+                                            0,
+                                          ),
+                                          primary: false,
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: listRow2.length,
+                                          separatorBuilder: (_, __) =>
+                                              const SizedBox(width: 12.0),
+                                          itemBuilder:
+                                              (context, listRow2Index) {
+                                            final listRow2Item =
+                                                listRow2[listRow2Index];
+                                            return InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                context.pushNamed(
+                                                  'LessonDetail_HomePage',
+                                                  queryParameters: {
+                                                    'listItems': serializeParam(
+                                                      listRow2Item.lessionId
+                                                          .toMap(),
+                                                      ParamType.JSON,
+                                                    ),
+                                                    'status': serializeParam(
+                                                      listRow2Item.status,
+                                                      ParamType.String,
+                                                    ),
+                                                    'id': serializeParam(
+                                                      listRow2Item.id,
+                                                      ParamType.String,
+                                                    ),
+                                                  }.withoutNulls,
+                                                  extra: <String, dynamic>{
+                                                    kTransitionInfoKey:
+                                                        const TransitionInfo(
+                                                      hasTransition: true,
+                                                      transitionType:
+                                                          PageTransitionType
+                                                              .fade,
+                                                      duration: Duration(
+                                                          milliseconds: 0),
+                                                    ),
+                                                  },
+                                                );
+                                              },
+                                              child: Container(
+                                                width: 105.0,
+                                                decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .alternate,
-                                                  width: 1.0,
+                                                      .secondaryBackground,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          4.0),
+                                                  border: Border.all(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
+                                                    width: 1.0,
+                                                  ),
                                                 ),
-                                              ),
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(6.0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Expanded(
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                        child: Image.network(
-                                                          '${FFAppConstants.ApiBaseUrl}/assets/${listRow2Item.lessionId.imageCover}?access_token=${FFAppState().accessToken}',
-                                                          width:
-                                                              double.infinity,
-                                                          height:
-                                                              double.infinity,
-                                                          fit: BoxFit.cover,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(6.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Expanded(
+                                                        child: ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                          child: Image.network(
+                                                            '${FFAppConstants.ApiBaseUrl}/assets/${listRow2Item.lessionId.imageCover}?access_token=${FFAppState().accessToken}',
+                                                            width:
+                                                                double.infinity,
+                                                            height:
+                                                                double.infinity,
+                                                            fit: BoxFit.cover,
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  4.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        listRow2Item
-                                                            .lessionId.name,
-                                                        maxLines: 2,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 13.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                            ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    4.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          listRow2Item
+                                                              .lessionId.name,
+                                                          maxLines: 2,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyLarge
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    },
+                                            );
+                                          },
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          if ((FFAppState().staffid != '') &&
-                              (_model.listLessonRow.isNotEmpty))
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 24.0, 16.0, 0.0),
-                              child: Text(
-                                'Bài học khác',
-                                style: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                              ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 12.0, 16.0, 0.0),
+                            child: Text(
+                              'Bài học khác',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                             ),
+                          ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 8.0, 16.0, 0.0),
@@ -1244,6 +1269,10 @@ class _LessonListHomepageCopyWidgetState
                                                     listRow3Item.status,
                                                     ParamType.String,
                                                   ),
+                                                  'id': serializeParam(
+                                                    listRow3Item.id,
+                                                    ParamType.String,
+                                                  ),
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
@@ -1334,24 +1363,22 @@ class _LessonListHomepageCopyWidgetState
                                 ),
                               ),
                             ),
-                          if ((FFAppState().staffid != '') &&
-                              (_model.listLessonRow.isNotEmpty))
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 24.0, 16.0, 0.0),
-                              child: Text(
-                                'Hãy thử khám phá',
-                                style: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                              ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 24.0, 16.0, 0.0),
+                            child: Text(
+                              'Hãy thử khám phá',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                             ),
+                          ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 8.0, 16.0, 0.0),
@@ -1607,6 +1634,10 @@ class _LessonListHomepageCopyWidgetState
                                                 ParamType.JSON,
                                               ),
                                               'status': serializeParam(
+                                                '',
+                                                ParamType.String,
+                                              ),
+                                              'id': serializeParam(
                                                 '',
                                                 ParamType.String,
                                               ),

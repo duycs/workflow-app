@@ -204,7 +204,7 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Ngày xuất bản',
+                        'Ngày tạo:',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               letterSpacing: 0.0,

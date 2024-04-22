@@ -463,8 +463,6 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                       fontWeight: FontWeight.normal,
                                     ),
                                 borderRadius: BorderRadius.circular(20.0),
-                                hoverTextColor:
-                                    FlutterFlowTheme.of(context).primary,
                               ),
                             ),
                             FFButtonWidget(
@@ -534,8 +532,6 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(20.0),
-                                hoverTextColor:
-                                    FlutterFlowTheme.of(context).primary,
                               ),
                             ),
                           ].divide(const SizedBox(width: 6.0)),
@@ -610,7 +606,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                               'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primary,
+                                                              .secondaryText,
                                                           fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                           fontStyle:

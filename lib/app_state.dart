@@ -138,6 +138,12 @@ class FFAppState extends ChangeNotifier {
   set staffOrganization(dynamic value) {
     _staffOrganization = value;
   }
+
+  int _dataTimeStartToken = 0;
+  int get dataTimeStartToken => _dataTimeStartToken;
+  set dataTimeStartToken(int value) {
+    _dataTimeStartToken = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

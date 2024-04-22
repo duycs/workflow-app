@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -1369,15 +1370,57 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                   child: Padding(
                                                     padding:
                                                         const EdgeInsets.all(2.0),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                      child: Image.network(
-                                                        'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
-                                                        width: 120.0,
-                                                        height: 120.0,
-                                                        fit: BoxFit.cover,
+                                                    child: InkWell(
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      focusColor:
+                                                          Colors.transparent,
+                                                      hoverColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                      onTap: () async {
+                                                        await Navigator.push(
+                                                          context,
+                                                          PageTransition(
+                                                            type:
+                                                                PageTransitionType
+                                                                    .fade,
+                                                            child:
+                                                                FlutterFlowExpandedImageView(
+                                                              image:
+                                                                  Image.network(
+                                                                'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                                fit: BoxFit
+                                                                    .contain,
+                                                              ),
+                                                              allowRotation:
+                                                                  false,
+                                                              tag:
+                                                                  'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                              useHeroAnimation:
+                                                                  true,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                      child: Hero(
+                                                        tag:
+                                                            'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                        transitionOnUserGestures:
+                                                            true,
+                                                        child: ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                          child: Image.network(
+                                                            'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                            width: 120.0,
+                                                            height: 120.0,
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -1655,63 +1698,24 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                         width: 50.0,
                                                         decoration:
                                                             const BoxDecoration(),
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Text(
-                                                              '10',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
-                                                                    fontSize:
-                                                                        13.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                            ),
-                                                            Text(
-                                                              '/',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
-                                                                    fontSize:
-                                                                        13.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                            ),
-                                                            Text(
-                                                              '20',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
-                                                                    fontSize:
-                                                                        13.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                            ),
-                                                          ],
-                                                        ),
+                                                      ),
+                                                      Text(
+                                                        '${dataListItem.staffLessions.where((e) => e.status == 'done').toList().length.toString()}/${dataListItem.staffLessions.length.toString()}',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
                                                       ),
                                                       Text(
                                                         'Đã học',
@@ -1743,63 +1747,24 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                         width: 50.0,
                                                         decoration:
                                                             const BoxDecoration(),
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Text(
-                                                              '10',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
-                                                                    fontSize:
-                                                                        13.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                            ),
-                                                            Text(
-                                                              '/',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
-                                                                    fontSize:
-                                                                        13.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                            ),
-                                                            Text(
-                                                              '15',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
-                                                                    fontSize:
-                                                                        13.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                            ),
-                                                          ],
-                                                        ),
+                                                      ),
+                                                      Text(
+                                                        '${dataListItem.staffTests.where((e) => e.status == 'published').toList().length.toString()}/${dataListItem.staffTests.length.toString()}',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      12.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
                                                       ),
                                                       Text(
                                                         'Đã test',
@@ -1948,7 +1913,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                         MainAxisSize.max,
                                                     children: [
                                                       Text(
-                                                        '10/15',
+                                                        '${dataListItem.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1)).toList().length.toString()}/${dataListItem.tasks.length.toString()}',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -1966,7 +1931,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                 ),
                                                       ),
                                                       Text(
-                                                        'HT trễ',
+                                                        'To do',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -1992,7 +1957,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                         MainAxisSize.max,
                                                     children: [
                                                       Text(
-                                                        '10/15',
+                                                        '${dataListItem.tasks.where((e) => e.tasksId.status == 'done').toList().length.toString()}/${dataListItem.tasks.length.toString()}',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -2010,7 +1975,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                 ),
                                                       ),
                                                       Text(
-                                                        'HT đúng',
+                                                        'Done',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -2036,7 +2001,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                         MainAxisSize.max,
                                                     children: [
                                                       Text(
-                                                        '90/100',
+                                                        '${dataListItem.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 0)).toList().length.toString()}/${dataListItem.tasks.length.toString()}',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -2054,7 +2019,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                 ),
                                                       ),
                                                       Text(
-                                                        'Chưa HT',
+                                                        'Wait',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)

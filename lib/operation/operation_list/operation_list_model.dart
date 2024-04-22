@@ -1,6 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'operation_list_widget.dart' show OperationListWidget;
 import 'package:flutter/material.dart';
 
@@ -59,21 +60,28 @@ class OperationListModel extends FlutterFlowModel<OperationListWidget> {
 
   /// Action blocks.
   Future getLinkOperations(BuildContext context) async {
+    bool? apiResutfRefreshTokenOperations;
     ApiCallResponse? apiResultOperations;
 
-    apiResultOperations = await OperationGroup.operationListCall.call(
-      accessToken: FFAppState().accessToken,
-      filter: '{\"_and\":[{}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
-        FFAppState().staffLogin,
-        r'''$.organization_id''',
-      ).toString().toString()}\"}}'}${(seachName != '') && (seachName != ' ') ? ',{\"name\":{\"_icontains\":\"$seachName\"}}' : ' '}${(searchStatus != '') && (searchStatus != ' ') ? ',{\"status\":{\"_eq\":\"$searchStatus\"}}' : ' '}${(searchAction != '') && (searchAction != ' ') ? ',{\"action_type\":{\"_eq\":\"$searchAction\"}}' : ' '}${(searchDateStart != '') && (searchDateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"$searchDateStart\"}}' : ''}${(searchDateEnd != '') && (searchDateEnd != ' ') ? ',{\"date_created\":{\"_lte\":\"$searchDateEnd\"}}' : ' '}]}',
-    );
-    if ((apiResultOperations.succeeded ?? true)) {
-      operationList = OperationsListDataStruct.maybeFromMap(
-              (apiResultOperations.jsonBody ?? ''))!
-          .data
-          .toList()
-          .cast<OperationsStruct>();
+    apiResutfRefreshTokenOperations = await action_blocks.tokenReload(context);
+    if (apiResutfRefreshTokenOperations!) {
+      apiResultOperations = await OperationGroup.operationListCall.call(
+        accessToken: FFAppState().accessToken,
+        filter:
+            '{\"_and\":[{}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
+          FFAppState().staffLogin,
+          r'''$.organization_id''',
+        ).toString().toString()}\"}}'}${(seachName != '') && (seachName != ' ') ? ',{\"name\":{\"_icontains\":\"$seachName\"}}' : ' '}${(searchStatus != '') && (searchStatus != ' ') ? ',{\"status\":{\"_eq\":\"$searchStatus\"}}' : ' '}${(searchAction != '') && (searchAction != ' ') ? ',{\"action_type\":{\"_eq\":\"$searchAction\"}}' : ' '}${(searchDateStart != '') && (searchDateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"$searchDateStart\"}}' : ''}${(searchDateEnd != '') && (searchDateEnd != ' ') ? ',{\"date_created\":{\"_lte\":\"$searchDateEnd\"}}' : ' '}]}',
+      );
+      if ((apiResultOperations.succeeded ?? true)) {
+        operationList = OperationsListDataStruct.maybeFromMap(
+                (apiResultOperations.jsonBody ?? ''))!
+            .data
+            .toList()
+            .cast<OperationsStruct>();
+      }
+    } else {
+      return;
     }
   }
 }

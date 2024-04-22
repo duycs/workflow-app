@@ -18,6 +18,8 @@ class StaffListStruct extends BaseStruct {
     String? title,
     List<StaffTasksStruct>? tasks,
     bool? check,
+    List<StaffLessionStruct>? staffLessions,
+    List<StaffListStruct>? staffTests,
   })  : _id = id,
         _status = status,
         _cccd = cccd,
@@ -29,7 +31,9 @@ class StaffListStruct extends BaseStruct {
         _userId = userId,
         _title = title,
         _tasks = tasks,
-        _check = check;
+        _check = check,
+        _staffLessions = staffLessions,
+        _staffTests = staffTests;
 
   // "id" field.
   String? _id;
@@ -112,6 +116,22 @@ class StaffListStruct extends BaseStruct {
   set check(bool? val) => _check = val;
   bool hasCheck() => _check != null;
 
+  // "staff_lessions" field.
+  List<StaffLessionStruct>? _staffLessions;
+  List<StaffLessionStruct> get staffLessions => _staffLessions ?? const [];
+  set staffLessions(List<StaffLessionStruct>? val) => _staffLessions = val;
+  void updateStaffLessions(Function(List<StaffLessionStruct>) updateFn) =>
+      updateFn(_staffLessions ??= []);
+  bool hasStaffLessions() => _staffLessions != null;
+
+  // "staff_tests" field.
+  List<StaffListStruct>? _staffTests;
+  List<StaffListStruct> get staffTests => _staffTests ?? const [];
+  set staffTests(List<StaffListStruct>? val) => _staffTests = val;
+  void updateStaffTests(Function(List<StaffListStruct>) updateFn) =>
+      updateFn(_staffTests ??= []);
+  bool hasStaffTests() => _staffTests != null;
+
   static StaffListStruct fromMap(Map<String, dynamic> data) => StaffListStruct(
         id: data['id'] as String?,
         status: data['status'] as String?,
@@ -128,6 +148,14 @@ class StaffListStruct extends BaseStruct {
           StaffTasksStruct.fromMap,
         ),
         check: data['check'] as bool?,
+        staffLessions: getStructList(
+          data['staff_lessions'],
+          StaffLessionStruct.fromMap,
+        ),
+        staffTests: getStructList(
+          data['staff_tests'],
+          StaffListStruct.fromMap,
+        ),
       );
 
   static StaffListStruct? maybeFromMap(dynamic data) => data is Map
@@ -147,6 +175,8 @@ class StaffListStruct extends BaseStruct {
         'title': _title,
         'tasks': _tasks?.map((e) => e.toMap()).toList(),
         'check': _check,
+        'staff_lessions': _staffLessions?.map((e) => e.toMap()).toList(),
+        'staff_tests': _staffTests?.map((e) => e.toMap()).toList(),
       }.withoutNulls;
 
   @override
@@ -199,6 +229,16 @@ class StaffListStruct extends BaseStruct {
         'check': serializeParam(
           _check,
           ParamType.bool,
+        ),
+        'staff_lessions': serializeParam(
+          _staffLessions,
+          ParamType.DataStruct,
+          true,
+        ),
+        'staff_tests': serializeParam(
+          _staffTests,
+          ParamType.DataStruct,
+          true,
         ),
       }.withoutNulls;
 
@@ -268,6 +308,18 @@ class StaffListStruct extends BaseStruct {
           ParamType.bool,
           false,
         ),
+        staffLessions: deserializeStructParam<StaffLessionStruct>(
+          data['staff_lessions'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: StaffLessionStruct.fromSerializableMap,
+        ),
+        staffTests: deserializeStructParam<StaffListStruct>(
+          data['staff_tests'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: StaffListStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -288,7 +340,9 @@ class StaffListStruct extends BaseStruct {
         userId == other.userId &&
         title == other.title &&
         listEquality.equals(tasks, other.tasks) &&
-        check == other.check;
+        check == other.check &&
+        listEquality.equals(staffLessions, other.staffLessions) &&
+        listEquality.equals(staffTests, other.staffTests);
   }
 
   @override
@@ -304,7 +358,9 @@ class StaffListStruct extends BaseStruct {
         userId,
         title,
         tasks,
-        check
+        check,
+        staffLessions,
+        staffTests
       ]);
 }
 

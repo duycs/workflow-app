@@ -446,29 +446,6 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                       ),
                                                     ),
                                                   ),
-                                                  if (_model.listEmail
-                                                      .map((e) => e.email)
-                                                      .toList()
-                                                      .contains(_model
-                                                          .emailAddressTextController
-                                                          .text))
-                                                    Text(
-                                                      'Email đã tồn tại.',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .error,
-                                                                fontSize: 10.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                    ),
                                                 ],
                                               ),
                                             ),

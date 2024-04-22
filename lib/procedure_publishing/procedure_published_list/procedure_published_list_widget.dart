@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -12,7 +11,6 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:provider/provider.dart';
 import 'procedure_published_list_model.dart';
 export 'procedure_published_list_model.dart';
 
@@ -37,23 +35,8 @@ class _ProcedurePublishedListWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultProcedurePublishedList =
-          await ProcedurePublishedGroup.procedurePublishedListCall.call(
-        accessToken: FFAppState().accessToken,
-        filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffLogin,
-          r'''$.organization_id''',
-        ).toString().toString()}\"}}]}',
-      );
-      if ((_model.apiResultProcedurePublishedList?.succeeded ?? true)) {
-        setState(() {
-          _model.dataList = ProcedurePublishedListDataStruct.maybeFromMap(
-                  (_model.apiResultProcedurePublishedList?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<ProcedurePublishedListStruct>();
-        });
-      }
+      await _model.getProcedurePublishedList(context);
+      setState(() {});
     });
 
     _model.textController ??= TextEditingController();
@@ -69,8 +52,6 @@ class _ProcedurePublishedListWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -188,7 +169,7 @@ class _ProcedurePublishedListWidgetState
                                       color: Color(0x00000000),
                                       width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
@@ -196,21 +177,21 @@ class _ProcedurePublishedListWidgetState
                                           FlutterFlowTheme.of(context).primary,
                                       width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   errorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   focusedErrorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   filled: true,
                                   fillColor: FlutterFlowTheme.of(context)

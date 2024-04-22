@@ -1116,6 +1116,8 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                                                         ProcedureStepDetailWidget(
                                                                       item:
                                                                           listViewItem,
+                                                                      check:
+                                                                          false,
                                                                     ),
                                                                   ),
                                                                 );

@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -103,24 +104,81 @@ class _DetailActionTypeImageWidgetState
                     if (((_model.uploadedLocalFile.bytes?.isEmpty ??
                                 true)) &&
                         (widget.image!.operations.first.operationsId.files.isNotEmpty))
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.network(
-                          '${FFAppConstants.ApiBaseUrl}/assets/${widget.image?.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                          width: 350.0,
-                          height: 200.0,
-                          fit: BoxFit.cover,
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.network(
+                                  '${FFAppConstants.ApiBaseUrl}/assets/${widget.image?.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: false,
+                                tag:
+                                    '${FFAppConstants.ApiBaseUrl}/assets/${widget.image?.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag:
+                              '${FFAppConstants.ApiBaseUrl}/assets/${widget.image?.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              '${FFAppConstants.ApiBaseUrl}/assets/${widget.image?.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                              width: 350.0,
+                              height: 200.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
                       ),
                     if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false))
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.memory(
-                          _model.uploadedLocalFile.bytes ??
-                              Uint8List.fromList([]),
-                          width: 350.0,
-                          height: 200.0,
-                          fit: BoxFit.cover,
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.memory(
+                                  _model.uploadedLocalFile.bytes ??
+                                      Uint8List.fromList([]),
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: false,
+                                tag: 'imageTag2',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag2',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.memory(
+                              _model.uploadedLocalFile.bytes ??
+                                  Uint8List.fromList([]),
+                              width: 350.0,
+                              height: 200.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
                       ),
                     FFButtonWidget(
@@ -208,13 +266,42 @@ class _DetailActionTypeImageWidgetState
               ),
             ),
           if (widget.image?.status == 'done')
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(
-                '${FFAppConstants.ApiBaseUrl}/assets/${widget.image?.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                width: 350.0,
-                height: 200.0,
-                fit: BoxFit.cover,
+            InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () async {
+                await Navigator.push(
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.fade,
+                    child: FlutterFlowExpandedImageView(
+                      image: Image.network(
+                        '${FFAppConstants.ApiBaseUrl}/assets/${widget.image?.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                        fit: BoxFit.contain,
+                      ),
+                      allowRotation: false,
+                      tag:
+                          '${FFAppConstants.ApiBaseUrl}/assets/${widget.image?.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                      useHeroAnimation: true,
+                    ),
+                  ),
+                );
+              },
+              child: Hero(
+                tag:
+                    '${FFAppConstants.ApiBaseUrl}/assets/${widget.image?.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                transitionOnUserGestures: true,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.network(
+                    '${FFAppConstants.ApiBaseUrl}/assets/${widget.image?.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                    width: 350.0,
+                    height: 200.0,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
         ].divide(const SizedBox(height: 6.0)),

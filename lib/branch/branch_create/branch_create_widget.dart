@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -559,6 +560,59 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                                     .error,
                                           ),
                                         );
+                                        _model.apiResuftRefreshTokenbranch =
+                                            await action_blocks
+                                                .checkRefreshToken(
+                                          context,
+                                          jsonErrors: (_model
+                                                  .apiResultCreateBranch
+                                                  ?.jsonBody ??
+                                              ''),
+                                        );
+                                        shouldSetState = true;
+                                        if (!_model
+                                            .apiResuftRefreshTokenbranch!) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                FFAppConstants.ErrorLoadData,
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                ),
+                                              ),
+                                              duration:
+                                                  const Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
+                                            ),
+                                          );
+                                        } else {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Tạo mới không thành công. Vui lòng thử lại!',
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                ),
+                                              ),
+                                              duration:
+                                                  const Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
+                                            ),
+                                          );
+                                        }
+
+                                        if (shouldSetState) setState(() {});
+                                        return;
                                       }
                                     } else {
                                       if (shouldSetState) setState(() {});

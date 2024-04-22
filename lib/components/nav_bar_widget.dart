@@ -122,7 +122,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                       fontFamily: 'Readex Pro',
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      fontSize: 12.0,
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -304,7 +304,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                         fontFamily: 'Readex Pro',
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        fontSize: 12.0,
+                                        fontSize: 14.0,
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -347,7 +347,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
-                              Icons.home_outlined,
+                              Icons.location_city,
                               color: widget.selectedPageIndex == 4
                                   ? FlutterFlowTheme.of(context)
                                       .secondaryBackground

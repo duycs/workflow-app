@@ -25,6 +25,8 @@ class OperationUpdateModel extends FlutterFlowModel<OperationUpdateWidget> {
   FormFieldController<String>? dropDownValueController;
   // State field(s) for Switch widget.
   bool? switchValue;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? apiResuftOperationUpdate;
   // Stores action output result for [Backend Call - API (OperationsUpdate)] action in Button widget.
   ApiCallResponse? apiResultOperationUpdate;
 

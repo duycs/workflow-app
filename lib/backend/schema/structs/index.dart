@@ -68,6 +68,7 @@ export 'staff_answer_list_struct.dart';
 export 'staff_answer_list_data_struct.dart';
 export 'staff_id_struct.dart';
 export 'staff_in_task_list_struct.dart';
+export 'staff_lession_struct.dart';
 export 'staff_list_struct.dart';
 export 'staff_list_data_struct.dart';
 export 'staff_list_info_struct.dart';

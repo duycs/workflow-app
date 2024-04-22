@@ -421,7 +421,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                                                 Text(
                                                   listViewItem.lessionsId.name
                                                       .maybeHandleOverflow(
-                                                    maxChars: 35,
+                                                    maxChars: 32,
                                                     replacement: '…',
                                                   ),
                                                   maxLines: 2,

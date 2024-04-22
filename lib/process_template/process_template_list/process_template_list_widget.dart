@@ -676,72 +676,63 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                       ),
                                                                     ],
                                                                   ),
-                                                                  Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Container(
-                                                                        width: functions
-                                                                            .stringToInt((int var1) {
-                                                                              return var1 != 0 ? (num.parse((280 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                            }(listGridItem.steps.length))
-                                                                            .toDouble(),
-                                                                        height: functions
-                                                                            .stringToInt((int var1) {
-                                                                              return var1 != 0 ? (num.parse((40 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                            }(listGridItem.steps.length))
-                                                                            .toDouble(),
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryBackground,
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(2.0),
-                                                                          shape:
-                                                                              BoxShape.rectangle,
-                                                                          border:
-                                                                              Border.all(
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryText,
-                                                                          ),
-                                                                        ),
-                                                                        alignment: const AlignmentDirectional(
+                                                                  Align(
+                                                                    alignment:
+                                                                        const AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
-                                                                        child:
-                                                                            Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: EdgeInsets.all(valueOrDefault<double>(
-                                                                                functions
-                                                                                    .stringToInt((int var1) {
-                                                                                      return var1 != 0 ? (num.parse((8 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                                    }(listGridItem.steps.length))
-                                                                                    .toDouble(),
-                                                                                0.0,
-                                                                              )),
-                                                                              child: Text(
-                                                                                '${(listStepIndex + 1).toString()}.',
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Readex Pro',
-                                                                                      fontSize: functions
-                                                                                          .stringToInt((int var1) {
-                                                                                            return var1 != 0 ? (num.parse((14 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                                          }(listGridItem.steps.length))
-                                                                                          .toDouble(),
-                                                                                      letterSpacing: 0.0,
-                                                                                    ),
-                                                                              ),
+                                                                    child: Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .min,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
+                                                                      children: [
+                                                                        Container(
+                                                                          width: functions
+                                                                              .stringToInt((int var1) {
+                                                                                return var1 != 1 && var1 != 0
+                                                                                    ? (num.parse((260 / var1.round()).toStringAsFixed(0))).toString()
+                                                                                    : var1 == 0
+                                                                                        ? 0.toString()
+                                                                                        : 150.toString();
+                                                                              }(listGridItem.steps.length))
+                                                                              .toDouble(),
+                                                                          height: functions
+                                                                              .stringToInt((int var1) {
+                                                                                return var1 != 0 ? (num.parse((40 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
+                                                                              }(listGridItem.steps.length))
+                                                                              .toDouble(),
+                                                                          constraints:
+                                                                              const BoxConstraints(
+                                                                            maxWidth:
+                                                                                double.infinity,
+                                                                            maxHeight:
+                                                                                double.infinity,
+                                                                          ),
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryBackground,
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(2.0),
+                                                                            shape:
+                                                                                BoxShape.rectangle,
+                                                                            border:
+                                                                                Border.all(
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
                                                                             ),
-                                                                            Expanded(
-                                                                              child: Padding(
+                                                                          ),
+                                                                          alignment: const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.min,
+                                                                            children: [
+                                                                              Padding(
                                                                                 padding: EdgeInsets.all(valueOrDefault<double>(
                                                                                   functions
                                                                                       .stringToInt((int var1) {
@@ -751,7 +742,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                                   0.0,
                                                                                 )),
                                                                                 child: Text(
-                                                                                  'Tên bước',
+                                                                                  '${(listStepIndex + 1).toString()}.',
                                                                                   maxLines: 2,
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: 'Readex Pro',
@@ -764,11 +755,36 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                                       ),
                                                                                 ),
                                                                               ),
-                                                                            ),
-                                                                          ],
+                                                                              Expanded(
+                                                                                child: Padding(
+                                                                                  padding: EdgeInsets.all(valueOrDefault<double>(
+                                                                                    functions
+                                                                                        .stringToInt((int var1) {
+                                                                                          return var1 != 0 ? (num.parse((8 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
+                                                                                        }(listGridItem.steps.length))
+                                                                                        .toDouble(),
+                                                                                    0.0,
+                                                                                  )),
+                                                                                  child: Text(
+                                                                                    'Tên bước',
+                                                                                    maxLines: 2,
+                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                          fontFamily: 'Readex Pro',
+                                                                                          fontSize: functions
+                                                                                              .stringToInt((int var1) {
+                                                                                                return var1 != 0 ? (num.parse((14 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
+                                                                                              }(listGridItem.steps.length))
+                                                                                              .toDouble(),
+                                                                                          letterSpacing: 0.0,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
                                                                         ),
-                                                                      ),
-                                                                    ],
+                                                                      ],
+                                                                    ),
                                                                   ),
                                                                 ],
                                                               ),

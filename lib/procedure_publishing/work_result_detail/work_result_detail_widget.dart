@@ -383,7 +383,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                             : ' ',
                                                         fit: BoxFit.contain,
                                                       ),
-                                                      allowRotation: true,
+                                                      allowRotation: false,
                                                       tag: (dataListItem
                                                                       .actionType ==
                                                                   'image') &&

@@ -30,10 +30,10 @@ class ProcedureListModel extends FlutterFlowModel<ProcedureListWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in ProcedureList widget.
+  bool? checkToken;
   // Stores action output result for [Backend Call - API (workflowsList)] action in ProcedureList widget.
   ApiCallResponse? apiResultListData;
-  // Stores action output result for [Action Block - CheckRefreshToken] action in ProcedureList widget.
-  bool? checkRefreshTokenBlockList;
   // State field(s) for TextName widget.
   FocusNode? textNameFocusNode;
   TextEditingController? textNameTextController;
@@ -56,7 +56,7 @@ class ProcedureListModel extends FlutterFlowModel<ProcedureListWidget> {
     apiResultListSearchData =
         await ProcedureTemplateGroup.workflowsListCall.call(
       accessToken: FFAppState().accessToken,
-      filter: '{\"_and\":[{}${(searchName != null && searchName != '') && (searchName != ' ') ? ',{\"name\":{\"_icontains\":\"$searchName\"}}' : ' '}${(dateStart != null && dateStart != '') && (dateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"$dateStart\"}}' : ' '}${(dateEnd != null && dateEnd != '') && (dateEnd != ' ') ? ',{\"date_created\":{\"_lte\":\"$dateEnd\"}}' : ' '}${(staffsId != null && staffsId != '') && (staffsId != ' ') ? ',{\"steps\":{\"staffs\":{\"staffs_id\":{\"_eq\":\"$staffsId\"}}}}' : ' '}${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? ',{\"organization_id\":{\"_eq\":\"' : ' '}${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? getJsonField(
+      filter: '{\"_and\":[{},{\"template\":{\"_neq\":\"1\"}}${(searchName != null && searchName != '') && (searchName != ' ') ? ',{\"name\":{\"_icontains\":\"$searchName\"}}' : ' '}${(dateStart != null && dateStart != '') && (dateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"$dateStart\"}}' : ' '}${(dateEnd != null && dateEnd != '') && (dateEnd != ' ') ? ',{\"date_created\":{\"_lte\":\"$dateEnd\"}}' : ' '}${(staffsId != null && staffsId != '') && (staffsId != ' ') ? ',{\"steps\":{\"staffs\":{\"staffs_id\":{\"_eq\":\"$staffsId\"}}}}' : ' '}${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? ',{\"organization_id\":{\"_eq\":\"' : ' '}${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? getJsonField(
           FFAppState().staffLogin,
           r'''$.organization_id''',
         ).toString().toString() : ' '}${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? '\"}}' : ' '}]}',

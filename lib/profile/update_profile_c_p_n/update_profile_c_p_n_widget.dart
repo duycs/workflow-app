@@ -1007,18 +1007,63 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                           children: [
                                                             Expanded(
                                                               flex: 3,
-                                                              child: ClipRRect(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
+                                                              child: InkWell(
+                                                                splashColor: Colors
+                                                                    .transparent,
+                                                                focusColor: Colors
+                                                                    .transparent,
+                                                                hoverColor: Colors
+                                                                    .transparent,
+                                                                highlightColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                onTap:
+                                                                    () async {
+                                                                  await Navigator
+                                                                      .push(
+                                                                    context,
+                                                                    PageTransition(
+                                                                      type: PageTransitionType
+                                                                          .fade,
+                                                                      child:
+                                                                          FlutterFlowExpandedImageView(
+                                                                        image: Image
+                                                                            .network(
+                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
+                                                                          fit: BoxFit
+                                                                              .contain,
+                                                                        ),
+                                                                        allowRotation:
+                                                                            false,
+                                                                        tag:
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
+                                                                        useHeroAnimation:
+                                                                            true,
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                                child: Hero(
+                                                                  tag:
+                                                                      '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
+                                                                  transitionOnUserGestures:
+                                                                      true,
+                                                                  child:
+                                                                      ClipRRect(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
                                                                             8.0),
-                                                                child: Image
-                                                                    .network(
-                                                                  '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
-                                                                  width: 190.0,
-                                                                  height: 208.0,
-                                                                  fit: BoxFit
-                                                                      .cover,
+                                                                    child: Image
+                                                                        .network(
+                                                                      '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
+                                                                      width:
+                                                                          190.0,
+                                                                      height:
+                                                                          208.0,
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                    ),
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ),
@@ -1037,19 +1082,61 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                             0.0,
                                                                             4.0),
                                                                     child:
-                                                                        ClipRRect(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                      child: Image
-                                                                          .network(
-                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
-                                                                        width:
-                                                                            160.0,
-                                                                        height:
-                                                                            100.0,
-                                                                        fit: BoxFit
-                                                                            .cover,
+                                                                        InkWell(
+                                                                      splashColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      focusColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      hoverColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      highlightColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      onTap:
+                                                                          () async {
+                                                                        await Navigator
+                                                                            .push(
+                                                                          context,
+                                                                          PageTransition(
+                                                                            type:
+                                                                                PageTransitionType.fade,
+                                                                            child:
+                                                                                FlutterFlowExpandedImageView(
+                                                                              image: Image.network(
+                                                                                '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
+                                                                                fit: BoxFit.contain,
+                                                                              ),
+                                                                              allowRotation: false,
+                                                                              tag: '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
+                                                                              useHeroAnimation: true,
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      },
+                                                                      child:
+                                                                          Hero(
+                                                                        tag:
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
+                                                                        transitionOnUserGestures:
+                                                                            true,
+                                                                        child:
+                                                                            ClipRRect(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(8.0),
+                                                                          child:
+                                                                              Image.network(
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
+                                                                            width:
+                                                                                160.0,
+                                                                            height:
+                                                                                100.0,
+                                                                            fit:
+                                                                                BoxFit.cover,
+                                                                          ),
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -1061,19 +1148,61 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                             0.0,
                                                                             0.0),
                                                                     child:
-                                                                        ClipRRect(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                      child: Image
-                                                                          .network(
-                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
-                                                                        width:
-                                                                            160.0,
-                                                                        height:
-                                                                            100.0,
-                                                                        fit: BoxFit
-                                                                            .cover,
+                                                                        InkWell(
+                                                                      splashColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      focusColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      hoverColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      highlightColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      onTap:
+                                                                          () async {
+                                                                        await Navigator
+                                                                            .push(
+                                                                          context,
+                                                                          PageTransition(
+                                                                            type:
+                                                                                PageTransitionType.fade,
+                                                                            child:
+                                                                                FlutterFlowExpandedImageView(
+                                                                              image: Image.network(
+                                                                                '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
+                                                                                fit: BoxFit.contain,
+                                                                              ),
+                                                                              allowRotation: false,
+                                                                              tag: '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
+                                                                              useHeroAnimation: true,
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      },
+                                                                      child:
+                                                                          Hero(
+                                                                        tag:
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
+                                                                        transitionOnUserGestures:
+                                                                            true,
+                                                                        child:
+                                                                            ClipRRect(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(8.0),
+                                                                          child:
+                                                                              Image.network(
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
+                                                                            width:
+                                                                                160.0,
+                                                                            height:
+                                                                                100.0,
+                                                                            fit:
+                                                                                BoxFit.cover,
+                                                                          ),
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -1096,22 +1225,67 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                           children: [
                                                             Expanded(
                                                               flex: 3,
-                                                              child: ClipRRect(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
+                                                              child: InkWell(
+                                                                splashColor: Colors
+                                                                    .transparent,
+                                                                focusColor: Colors
+                                                                    .transparent,
+                                                                hoverColor: Colors
+                                                                    .transparent,
+                                                                highlightColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                onTap:
+                                                                    () async {
+                                                                  await Navigator
+                                                                      .push(
+                                                                    context,
+                                                                    PageTransition(
+                                                                      type: PageTransitionType
+                                                                          .fade,
+                                                                      child:
+                                                                          FlutterFlowExpandedImageView(
+                                                                        image: Image
+                                                                            .memory(
+                                                                          _model.uploadedLocalFile1.bytes ??
+                                                                              Uint8List.fromList([]),
+                                                                          fit: BoxFit
+                                                                              .contain,
+                                                                        ),
+                                                                        allowRotation:
+                                                                            false,
+                                                                        tag:
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
+                                                                        useHeroAnimation:
+                                                                            true,
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                                child: Hero(
+                                                                  tag:
+                                                                      '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
+                                                                  transitionOnUserGestures:
+                                                                      true,
+                                                                  child:
+                                                                      ClipRRect(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
                                                                             8.0),
-                                                                child: Image
-                                                                    .memory(
-                                                                  _model.uploadedLocalFile1
-                                                                          .bytes ??
-                                                                      Uint8List
-                                                                          .fromList(
+                                                                    child: Image
+                                                                        .memory(
+                                                                      _model.uploadedLocalFile1
+                                                                              .bytes ??
+                                                                          Uint8List.fromList(
                                                                               []),
-                                                                  width: 190.0,
-                                                                  height: 208.0,
-                                                                  fit: BoxFit
-                                                                      .cover,
+                                                                      width:
+                                                                          190.0,
+                                                                      height:
+                                                                          208.0,
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                    ),
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ),
@@ -1130,20 +1304,62 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                             0.0,
                                                                             4.0),
                                                                     child:
-                                                                        ClipRRect(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                      child: Image
-                                                                          .memory(
-                                                                        _model.uploadedLocalFile1.bytes ??
-                                                                            Uint8List.fromList([]),
-                                                                        width:
-                                                                            160.0,
-                                                                        height:
-                                                                            100.0,
-                                                                        fit: BoxFit
-                                                                            .cover,
+                                                                        InkWell(
+                                                                      splashColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      focusColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      hoverColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      highlightColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      onTap:
+                                                                          () async {
+                                                                        await Navigator
+                                                                            .push(
+                                                                          context,
+                                                                          PageTransition(
+                                                                            type:
+                                                                                PageTransitionType.fade,
+                                                                            child:
+                                                                                FlutterFlowExpandedImageView(
+                                                                              image: Image.memory(
+                                                                                _model.uploadedLocalFile1.bytes ?? Uint8List.fromList([]),
+                                                                                fit: BoxFit.contain,
+                                                                              ),
+                                                                              allowRotation: false,
+                                                                              tag: '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
+                                                                              useHeroAnimation: true,
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      },
+                                                                      child:
+                                                                          Hero(
+                                                                        tag:
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
+                                                                        transitionOnUserGestures:
+                                                                            true,
+                                                                        child:
+                                                                            ClipRRect(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(8.0),
+                                                                          child:
+                                                                              Image.memory(
+                                                                            _model.uploadedLocalFile1.bytes ??
+                                                                                Uint8List.fromList([]),
+                                                                            width:
+                                                                                160.0,
+                                                                            height:
+                                                                                100.0,
+                                                                            fit:
+                                                                                BoxFit.cover,
+                                                                          ),
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -1155,20 +1371,62 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                             0.0,
                                                                             0.0),
                                                                     child:
-                                                                        ClipRRect(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                      child: Image
-                                                                          .memory(
-                                                                        _model.uploadedLocalFile1.bytes ??
-                                                                            Uint8List.fromList([]),
-                                                                        width:
-                                                                            160.0,
-                                                                        height:
-                                                                            100.0,
-                                                                        fit: BoxFit
-                                                                            .cover,
+                                                                        InkWell(
+                                                                      splashColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      focusColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      hoverColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      highlightColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      onTap:
+                                                                          () async {
+                                                                        await Navigator
+                                                                            .push(
+                                                                          context,
+                                                                          PageTransition(
+                                                                            type:
+                                                                                PageTransitionType.fade,
+                                                                            child:
+                                                                                FlutterFlowExpandedImageView(
+                                                                              image: Image.memory(
+                                                                                _model.uploadedLocalFile1.bytes ?? Uint8List.fromList([]),
+                                                                                fit: BoxFit.contain,
+                                                                              ),
+                                                                              allowRotation: false,
+                                                                              tag: '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
+                                                                              useHeroAnimation: true,
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      },
+                                                                      child:
+                                                                          Hero(
+                                                                        tag:
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.image}?access_token=${FFAppState().accessToken}',
+                                                                        transitionOnUserGestures:
+                                                                            true,
+                                                                        child:
+                                                                            ClipRRect(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(8.0),
+                                                                          child:
+                                                                              Image.memory(
+                                                                            _model.uploadedLocalFile1.bytes ??
+                                                                                Uint8List.fromList([]),
+                                                                            width:
+                                                                                160.0,
+                                                                            height:
+                                                                                100.0,
+                                                                            fit:
+                                                                                BoxFit.cover,
+                                                                          ),
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ),

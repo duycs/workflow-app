@@ -475,8 +475,6 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                       fontWeight: FontWeight.normal,
                                     ),
                                 borderRadius: BorderRadius.circular(20.0),
-                                hoverTextColor:
-                                    FlutterFlowTheme.of(context).primary,
                               ),
                             ),
                             FFButtonWidget(
@@ -557,8 +555,6 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(20.0),
-                                hoverTextColor:
-                                    FlutterFlowTheme.of(context).primary,
                               ),
                             ),
                           ].divide(const SizedBox(width: 6.0)),
@@ -595,27 +591,6 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          FlutterFlowIconButton(
-                                            borderColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryText,
-                                            borderRadius: 20.0,
-                                            borderWidth: 1.0,
-                                            buttonSize: 40.0,
-                                            fillColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .alternate,
-                                            icon: Icon(
-                                              Icons.check,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              size: 24.0,
-                                            ),
-                                            onPressed: () {
-                                              print('IconButton pressed ...');
-                                            },
-                                          ),
                                           Expanded(
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -655,7 +630,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                               'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primary,
+                                                              .secondaryText,
                                                           letterSpacing: 0.0,
                                                           fontStyle:
                                                               FontStyle.italic,

@@ -421,8 +421,7 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                                       ? FlutterFlowTheme.of(context).alternate
                                       : FlutterFlowTheme.of(context).alternate,
                                   inactiveThumbColor: ('1' == '1')
-                                      ? FlutterFlowTheme.of(context)
-                                          .secondaryText
+                                      ? FlutterFlowTheme.of(context).primary
                                       : FlutterFlowTheme.of(context)
                                           .secondaryText,
                                 ),

@@ -53,6 +53,8 @@ class BranchCreateModel extends FlutterFlowModel<BranchCreateWidget> {
 
   // Stores action output result for [Backend Call - API (BranchAdd)] action in Button widget.
   ApiCallResponse? apiResultCreateBranch;
+  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
+  bool? apiResuftRefreshTokenbranch;
 
   @override
   void initState(BuildContext context) {

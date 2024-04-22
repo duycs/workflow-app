@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/do_test/confirm_do_test/confirm_do_test_widget.dart';
 import '/training/lesson/menu_delete/menu_delete_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -22,10 +23,12 @@ class LessonDetailHomePageWidget extends StatefulWidget {
     super.key,
     required this.listItems,
     required this.status,
-  });
+    String? id,
+  }) : id = id ?? '';
 
   final dynamic listItems;
   final String? status;
+  final String id;
 
   @override
   State<LessonDetailHomePageWidget> createState() =>
@@ -45,10 +48,7 @@ class _LessonDetailHomePageWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.status = getJsonField(
-        widget.listItems,
-        r'''$.status''',
-      ).toString().toString();
+      _model.status = widget.status!;
       await _model.getComments(context);
       setState(() {});
       await _model.getHeart(context);
@@ -111,7 +111,8 @@ class _LessonDetailHomePageWidgetState
                       ),
                 ),
               ),
-              if (_model.status == 'draft')
+              if ((_model.status == 'draft') &&
+                  (widget.id != ''))
                 FFButtonWidget(
                   onPressed: () async {
                     var confirmDialogResponse = await showDialog<bool>(
@@ -140,10 +141,7 @@ class _LessonDetailHomePageWidgetState
                       _model.apiResultUpdateStatus =
                           await LessonGroup.updateStaffLessonStatusCall.call(
                         accessToken: FFAppState().accessToken,
-                        id: getJsonField(
-                          widget.listItems,
-                          r'''$.id''',
-                        ).toString(),
+                        id: widget.id,
                       );
                       if ((_model.apiResultUpdateStatus?.succeeded ?? true)) {
                         setState(() {
@@ -162,6 +160,29 @@ class _LessonDetailHomePageWidgetState
                                 FlutterFlowTheme.of(context).secondary,
                           ),
                         );
+                      } else {
+                        _model.checkRefreshTokenBlockabcd =
+                            await action_blocks.checkRefreshToken(
+                          context,
+                          jsonErrors:
+                              (_model.apiResultUpdateStatus?.jsonBody ?? ''),
+                        );
+                        if (!_model.checkRefreshTokenBlockabcd!) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                FFAppConstants.ErrorLoadData,
+                                style: TextStyle(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                ),
+                              ),
+                              duration: const Duration(milliseconds: 4000),
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).error,
+                            ),
+                          );
+                        }
                       }
                     }
 
@@ -1649,48 +1670,25 @@ class _LessonDetailHomePageWidgetState
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 0.0, 4.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              await showDialog(
-                                context: context,
-                                builder: (alertDialogContext) {
-                                  return AlertDialog(
-                                    title: Text(widget.status!),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(alertDialogContext),
-                                        child: const Text('Ok'),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            child: Text(
-                              'Trạng thái học: ${() {
-                                if (widget.status == 'draft') {
-                                  return 'chưa học';
-                                } else if (widget.status == 'inprogress') {
-                                  return 'đang học';
-                                } else if (widget.status == 'done') {
-                                  return 'học xong';
-                                } else {
-                                  return ' ';
-                                }
-                              }()}',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
+                          child: Text(
+                            'Trạng thái học: ${() {
+                              if (_model.status == 'draft') {
+                                return 'Chưa học';
+                              } else if (_model.status == 'inprogress') {
+                                return 'Đang học';
+                              } else if (_model.status == 'done') {
+                                return 'Hoàn thành';
+                              } else {
+                                return ' ';
+                              }
+                            }()}',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  fontSize: 14.0,
+                                  letterSpacing: 0.0,
+                                ),
                           ),
                         ),
                       Padding(
@@ -1871,7 +1869,8 @@ class _LessonDetailHomePageWidgetState
                           ].divide(const SizedBox(width: 24.0)),
                         ),
                       ),
-                      if (_model.testId != '')
+                      if ((_model.testId != '') &&
+                          (_model.status != 'draft'))
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 16.0, 12.0, 0.0),
@@ -1920,16 +1919,6 @@ class _LessonDetailHomePageWidgetState
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBackground,
-                                        boxShadow: const [
-                                          BoxShadow(
-                                            blurRadius: 3.0,
-                                            color: Color(0x33000000),
-                                            offset: Offset(
-                                              0.0,
-                                              1.0,
-                                            ),
-                                          )
-                                        ],
                                         borderRadius:
                                             BorderRadius.circular(12.0),
                                       ),
@@ -1986,12 +1975,7 @@ class _LessonDetailHomePageWidgetState
                                         .primaryBackground,
                                     boxShadow: const [
                                       BoxShadow(
-                                        blurRadius: 3.0,
                                         color: Color(0x33000000),
-                                        offset: Offset(
-                                          0.0,
-                                          1.0,
-                                        ),
                                       )
                                     ],
                                     borderRadius: BorderRadius.circular(12.0),

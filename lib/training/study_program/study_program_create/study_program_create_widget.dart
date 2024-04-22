@@ -407,7 +407,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                               Text(
                                                 listViewItem.lessionsId.name
                                                     .maybeHandleOverflow(
-                                                  maxChars: 35,
+                                                  maxChars: 32,
                                                   replacement: '…',
                                                 ),
                                                 maxLines: 2,
