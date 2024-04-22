@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -136,475 +137,581 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
           centerTitle: false,
           elevation: 2.0,
         ),
-        body: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
-          child: SingleChildScrollView(
-            primary: false,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
-                  child: Row(
+        body: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                child: SingleChildScrollView(
+                  primary: false,
+                  child: Column(
                     mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: _model.textController,
-                          focusNode: _model.textFieldFocusNode,
-                          onChanged: (_) => EasyDebounce.debounce(
-                            '_model.textController',
-                            const Duration(milliseconds: 500),
-                            () async {
-                              if (_model.textController.text != '') {
-                                _model.apiResultGetTaWaitFilter =
-                                    await TaskGroup.getListTaskCall.call(
-                                  accessToken: FFAppState().accessToken,
-                                  filter:
-                                      '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                    FFAppState().staffLogin,
-                                    r'''$.id''',
-                                  ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-                                    FFAppState().staffLogin,
-                                    r'''$.organization_id''',
-                                  ).toString()}\"}}},{\"name\":{\"_icontains\":\"${_model.textController.text}\"}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"0\"}}]}',
-                                );
-                                if ((_model
-                                        .apiResultGetTaWaitFilter?.succeeded ??
-                                    true)) {
-                                  setState(() {
-                                    _model.list =
-                                        TaskListDataStruct.maybeFromMap((_model
-                                                    .apiResultGetTaWaitFilter
-                                                    ?.jsonBody ??
-                                                ''))!
-                                            .data
-                                            .toList()
-                                            .cast<TaskListStruct>();
-                                  });
-                                }
-                              } else {
-                                _model.apiResultGetTaWait =
-                                    await TaskGroup.getListTaskCall.call(
-                                  accessToken: FFAppState().accessToken,
-                                  filter:
-                                      '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                    FFAppState().staffLogin,
-                                    r'''$.id''',
-                                  ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-                                    FFAppState().staffLogin,
-                                    r'''$.organization_id''',
-                                  ).toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"0\"}}]}',
-                                );
-                                if ((_model.apiResultGetTaWait?.succeeded ??
-                                    true)) {
-                                  setState(() {
-                                    _model.list =
-                                        TaskListDataStruct.maybeFromMap((_model
-                                                    .apiResultGetTaWait
-                                                    ?.jsonBody ??
-                                                ''))!
-                                            .data
-                                            .toList()
-                                            .cast<TaskListStruct>();
-                                  });
-                                }
-                              }
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: TextFormField(
+                                controller: _model.textController,
+                                focusNode: _model.textFieldFocusNode,
+                                onChanged: (_) => EasyDebounce.debounce(
+                                  '_model.textController',
+                                  const Duration(milliseconds: 500),
+                                  () async {
+                                    if (_model.textController.text != '') {
+                                      _model.apiResultGetTaWaitFilter =
+                                          await TaskGroup.getListTaskCall.call(
+                                        accessToken: FFAppState().accessToken,
+                                        filter:
+                                            '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                          FFAppState().staffLogin,
+                                          r'''$.id''',
+                                        ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                          FFAppState().staffLogin,
+                                          r'''$.organization_id''',
+                                        ).toString()}\"}}},{\"name\":{\"_icontains\":\"${_model.textController.text}\"}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"0\"}}]}',
+                                      );
+                                      if ((_model.apiResultGetTaWaitFilter
+                                              ?.succeeded ??
+                                          true)) {
+                                        setState(() {
+                                          _model.list = TaskListDataStruct
+                                                  .maybeFromMap((_model
+                                                          .apiResultGetTaWaitFilter
+                                                          ?.jsonBody ??
+                                                      ''))!
+                                              .data
+                                              .toList()
+                                              .cast<TaskListStruct>();
+                                        });
+                                      }
+                                    } else {
+                                      _model.apiResultGetTaWait =
+                                          await TaskGroup.getListTaskCall.call(
+                                        accessToken: FFAppState().accessToken,
+                                        filter:
+                                            '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                          FFAppState().staffLogin,
+                                          r'''$.id''',
+                                        ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                          FFAppState().staffLogin,
+                                          r'''$.organization_id''',
+                                        ).toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"0\"}}]}',
+                                      );
+                                      if ((_model
+                                              .apiResultGetTaWait?.succeeded ??
+                                          true)) {
+                                        setState(() {
+                                          _model.list =
+                                              TaskListDataStruct.maybeFromMap(
+                                                      (_model.apiResultGetTaWait
+                                                              ?.jsonBody ??
+                                                          ''))!
+                                                  .data
+                                                  .toList()
+                                                  .cast<TaskListStruct>();
+                                        });
+                                      }
+                                    }
 
-                              setState(() {});
+                                    setState(() {});
 
-                              setState(() {});
-                            },
-                          ),
-                          autofocus: false,
-                          textInputAction: TextInputAction.search,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
+                                    setState(() {});
+                                  },
                                 ),
-                            hintText: 'Tìm kiếm...',
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
+                                autofocus: false,
+                                textInputAction: TextInputAction.search,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  hintText: 'Tìm kiếm...',
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  filled: true,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  contentPadding:
+                                      const EdgeInsetsDirectional.fromSTEB(
+                                          20.0, 0.0, 0.0, 0.0),
+                                  prefixIcon: const Icon(
+                                    Icons.search,
+                                    size: 24.0,
+                                  ),
+                                  suffixIcon: _model
+                                          .textController!.text.isNotEmpty
+                                      ? InkWell(
+                                          onTap: () async {
+                                            _model.textController?.clear();
+                                            if (_model.textController.text !=
+                                                    '') {
+                                              _model.apiResultGetTaWaitFilter =
+                                                  await TaskGroup
+                                                      .getListTaskCall
+                                                      .call(
+                                                accessToken:
+                                                    FFAppState().accessToken,
+                                                filter:
+                                                    '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                                  FFAppState().staffLogin,
+                                                  r'''$.id''',
+                                                ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                                  FFAppState().staffLogin,
+                                                  r'''$.organization_id''',
+                                                ).toString()}\"}}},{\"name\":{\"_icontains\":\"${_model.textController.text}\"}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"0\"}}]}',
+                                              );
+                                              if ((_model
+                                                      .apiResultGetTaWaitFilter
+                                                      ?.succeeded ??
+                                                  true)) {
+                                                setState(() {
+                                                  _model
+                                                      .list = TaskListDataStruct
+                                                          .maybeFromMap((_model
+                                                                  .apiResultGetTaWaitFilter
+                                                                  ?.jsonBody ??
+                                                              ''))!
+                                                      .data
+                                                      .toList()
+                                                      .cast<TaskListStruct>();
+                                                });
+                                              }
+                                            } else {
+                                              _model.apiResultGetTaWait =
+                                                  await TaskGroup
+                                                      .getListTaskCall
+                                                      .call(
+                                                accessToken:
+                                                    FFAppState().accessToken,
+                                                filter:
+                                                    '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                                  FFAppState().staffLogin,
+                                                  r'''$.id''',
+                                                ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                                  FFAppState().staffLogin,
+                                                  r'''$.organization_id''',
+                                                ).toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"0\"}}]}',
+                                              );
+                                              if ((_model.apiResultGetTaWait
+                                                      ?.succeeded ??
+                                                  true)) {
+                                                setState(() {
+                                                  _model
+                                                      .list = TaskListDataStruct
+                                                          .maybeFromMap((_model
+                                                                  .apiResultGetTaWait
+                                                                  ?.jsonBody ??
+                                                              ''))!
+                                                      .data
+                                                      .toList()
+                                                      .cast<TaskListStruct>();
+                                                });
+                                              }
+                                            }
+
+                                            setState(() {});
+
+                                            setState(() {});
+                                            setState(() {});
+                                          },
+                                          child: Icon(
+                                            Icons.clear,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 18.0,
+                                          ),
+                                        )
+                                      : null,
                                 ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                                cursorColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                validator: _model.textControllerValidator
+                                    .asValidator(context),
+                              ),
+                            ),
+                            Builder(
+                              builder: (context) => FlutterFlowIconButton(
+                                borderColor: Colors.transparent,
+                                borderRadius: 10.0,
+                                borderWidth: 1.0,
+                                buttonSize: 50.0,
+                                icon: Icon(
+                                  Icons.tune_rounded,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 30.0,
+                                ),
+                                onPressed: () async {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: FilterTaskListWaitWidget(
+                                            filterSearch:
+                                                _model.textController.text,
+                                            dateStart: _model.dateStartFilter,
+                                            dateEnd: _model.dateEndFilter,
+                                            type: _model.typeFilter,
+                                            callback: (data,
+                                                dateStartCallback,
+                                                dateEndCallback,
+                                                typeCallback) async {
+                                              setState(() {
+                                                _model.list = data!
+                                                    .toList()
+                                                    .cast<TaskListStruct>();
+                                                _model.dateStartFilter =
+                                                    dateStartCallback;
+                                                _model.dateEndFilter =
+                                                    dateEndCallback;
+                                                _model.typeFilter =
+                                                    typeCallback;
+                                              });
+                                            },
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FFButtonWidget(
+                              onPressed: () {
+                                print('Button pressed ...');
+                              },
+                              text:
+                                  'Chờ thực hiện (${_model.list.length.toString()})',
+                              options: FFButtonOptions(
+                                width: 115.0,
+                                height: 30.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      fontSize: 11.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                borderRadius: BorderRadius.circular(20.0),
+                                hoverTextColor:
+                                    FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                            FFButtonWidget(
+                              onPressed: () async {
+                                context.pushNamed(
+                                  'TaskList',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
+                              },
+                              text:
+                                  'Đang thực hiện (${_model.taskToDo.length.toString()})',
+                              options: FFButtonOptions(
+                                width: 115.0,
+                                height: 30.0,
+                                padding: const EdgeInsets.all(0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context)
                                     .primaryBackground,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).primary,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            filled: true,
-                            fillColor:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                20.0, 0.0, 0.0, 0.0),
-                            prefixIcon: const Icon(
-                              Icons.search,
-                              size: 24.0,
-                            ),
-                            suffixIcon: _model.textController!.text.isNotEmpty
-                                ? InkWell(
-                                    onTap: () async {
-                                      _model.textController?.clear();
-                                      if (_model.textController.text != '') {
-                                        _model.apiResultGetTaWaitFilter =
-                                            await TaskGroup.getListTaskCall
-                                                .call(
-                                          accessToken: FFAppState().accessToken,
-                                          filter:
-                                              '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffLogin,
-                                            r'''$.id''',
-                                          ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffLogin,
-                                            r'''$.organization_id''',
-                                          ).toString()}\"}}},{\"name\":{\"_icontains\":\"${_model.textController.text}\"}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"0\"}}]}',
-                                        );
-                                        if ((_model.apiResultGetTaWaitFilter
-                                                ?.succeeded ??
-                                            true)) {
-                                          setState(() {
-                                            _model.list = TaskListDataStruct
-                                                    .maybeFromMap((_model
-                                                            .apiResultGetTaWaitFilter
-                                                            ?.jsonBody ??
-                                                        ''))!
-                                                .data
-                                                .toList()
-                                                .cast<TaskListStruct>();
-                                          });
-                                        }
-                                      } else {
-                                        _model.apiResultGetTaWait =
-                                            await TaskGroup.getListTaskCall
-                                                .call(
-                                          accessToken: FFAppState().accessToken,
-                                          filter:
-                                              '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffLogin,
-                                            r'''$.id''',
-                                          ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffLogin,
-                                            r'''$.organization_id''',
-                                          ).toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"0\"}}]}',
-                                        );
-                                        if ((_model.apiResultGetTaWait
-                                                ?.succeeded ??
-                                            true)) {
-                                          setState(() {
-                                            _model.list = TaskListDataStruct
-                                                    .maybeFromMap((_model
-                                                            .apiResultGetTaWait
-                                                            ?.jsonBody ??
-                                                        ''))!
-                                                .data
-                                                .toList()
-                                                .cast<TaskListStruct>();
-                                          });
-                                        }
-                                      }
-
-                                      setState(() {});
-
-                                      setState(() {});
-                                      setState(() {});
-                                    },
-                                    child: Icon(
-                                      Icons.clear,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
-                                      size: 18.0,
+                                      fontSize: 11.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
                                     ),
-                                  )
-                                : null,
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                          cursorColor: FlutterFlowTheme.of(context).primary,
-                          validator: _model.textControllerValidator
-                              .asValidator(context),
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
+                            FFButtonWidget(
+                              onPressed: () async {
+                                context.pushNamed(
+                                  'TaskListDone',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
+                              },
+                              text:
+                                  'Hoàn thành (${_model.taskDone.length.toString()})',
+                              options: FFButtonOptions(
+                                width: 115.0,
+                                height: 30.0,
+                                padding: const EdgeInsets.all(0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontSize: 11.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                                hoverTextColor:
+                                    FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ].divide(const SizedBox(width: 6.0)),
                         ),
                       ),
                       Builder(
-                        builder: (context) => FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 10.0,
-                          borderWidth: 1.0,
-                          buttonSize: 50.0,
-                          icon: Icon(
-                            Icons.tune_rounded,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 30.0,
-                          ),
-                          onPressed: () async {
-                            await showDialog(
-                              context: context,
-                              builder: (dialogContext) {
-                                return Dialog(
-                                  elevation: 0,
-                                  insetPadding: EdgeInsets.zero,
-                                  backgroundColor: Colors.transparent,
-                                  alignment: const AlignmentDirectional(0.0, 0.0)
-                                      .resolve(Directionality.of(context)),
-                                  child: GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: FilterTaskListWaitWidget(
-                                      filterSearch: _model.textController.text,
-                                      dateStart: _model.dateStartFilter,
-                                      dateEnd: _model.dateEndFilter,
-                                      type: _model.typeFilter,
-                                      callback: (data, dateStartCallback,
-                                          dateEndCallback, typeCallback) async {
-                                        setState(() {
-                                          _model.list = data!
-                                              .toList()
-                                              .cast<TaskListStruct>();
-                                          _model.dateStartFilter =
-                                              dateStartCallback;
-                                          _model.dateEndFilter =
-                                              dateEndCallback;
-                                          _model.typeFilter = typeCallback;
-                                        });
-                                      },
-                                    ),
-                                  ),
-                                );
-                              },
-                            ).then((value) => setState(() {}));
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      FFButtonWidget(
-                        onPressed: () async {
-                          context.pushNamed(
-                            'TaskListDone',
-                            extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
-                                hasTransition: true,
-                                transitionType: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                              ),
-                            },
-                          );
-                        },
-                        text:
-                            'Hoàn thành (${_model.taskDone.length.toString()})',
-                        options: FFButtonOptions(
-                          width: 115.0,
-                          height: 30.0,
-                          padding: const EdgeInsets.all(0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          textStyle: FlutterFlowTheme.of(context)
-                              .titleSmall
-                              .override(
-                                fontFamily: 'Readex Pro',
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                fontSize: 11.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.normal,
-                              ),
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(20.0),
-                          hoverTextColor: FlutterFlowTheme.of(context).primary,
-                        ),
-                      ),
-                      FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
-                        },
-                        text:
-                            'Chờ thực hiện (${_model.list.length.toString()})',
-                        options: FFButtonOptions(
-                          width: 115.0,
-                          height: 30.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    fontSize: 11.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                          borderRadius: BorderRadius.circular(20.0),
-                          hoverTextColor: FlutterFlowTheme.of(context).primary,
-                        ),
-                      ),
-                      FFButtonWidget(
-                        onPressed: () async {
-                          context.pushNamed(
-                            'TaskList',
-                            extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
-                                hasTransition: true,
-                                transitionType: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                              ),
-                            },
-                          );
-                        },
-                        text:
-                            'Đang thực hiện (${_model.taskToDo.length.toString()})',
-                        options: FFButtonOptions(
-                          width: 115.0,
-                          height: 30.0,
-                          padding: const EdgeInsets.all(0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          textStyle: FlutterFlowTheme.of(context)
-                              .titleSmall
-                              .override(
-                                fontFamily: 'Readex Pro',
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                fontSize: 11.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.normal,
-                              ),
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                      ),
-                    ].divide(const SizedBox(width: 6.0)),
-                  ),
-                ),
-                Builder(
-                  builder: (context) {
-                    final dataList = _model.list.toList();
-                    return ListView.separated(
-                      padding: EdgeInsets.zero,
-                      primary: false,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: dataList.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 16.0),
-                      itemBuilder: (context, dataListIndex) {
-                        final dataListItem = dataList[dataListIndex];
-                        return Container(
-                          decoration: BoxDecoration(
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                4.0, 8.0, 4.0, 16.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    FlutterFlowIconButton(
-                                      borderColor: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      borderRadius: 20.0,
-                                      borderWidth: 1.0,
-                                      buttonSize: 40.0,
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      icon: Icon(
-                                        Icons.check,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24.0,
-                                      ),
-                                      onPressed: () {
-                                        print('IconButton pressed ...');
-                                      },
-                                    ),
-                                    Expanded(
-                                      child: Column(
+                        builder: (context) {
+                          final dataList = _model.list.toList();
+                          return ListView.separated(
+                            padding: EdgeInsets.zero,
+                            primary: false,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            itemCount: dataList.length,
+                            separatorBuilder: (_, __) => const SizedBox(height: 16.0),
+                            itemBuilder: (context, dataListIndex) {
+                              final dataListItem = dataList[dataListIndex];
+                              return Container(
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      4.0, 8.0, 4.0, 16.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    4.0, 0.0, 0.0, 0.0),
-                                            child: Text(
-                                              dataListItem.name,
-                                              maxLines: 2,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
+                                          FlutterFlowIconButton(
+                                            borderColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryText,
+                                            borderRadius: 20.0,
+                                            borderWidth: 1.0,
+                                            buttonSize: 40.0,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .alternate,
+                                            icon: Icon(
+                                              Icons.check,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              size: 24.0,
+                                            ),
+                                            onPressed: () {
+                                              print('IconButton pressed ...');
+                                            },
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          4.0, 0.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    dataListItem.name,
+                                                    maxLines: 2,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
                                                   ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          4.0, 0.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    '#${dataListItem.workflowId.name}',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          letterSpacing: 0.0,
+                                                          fontStyle:
+                                                              FontStyle.italic,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    4.0, 0.0, 0.0, 0.0),
+                                          FlutterFlowIconButton(
+                                            borderRadius: 20.0,
+                                            borderWidth: 1.0,
+                                            buttonSize: 40.0,
+                                            icon: FaIcon(
+                                              FontAwesomeIcons.angleRight,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              size: 18.0,
+                                            ),
+                                            onPressed: () async {
+                                              context.pushNamed(
+                                                'TaskDetail',
+                                                queryParameters: {
+                                                  'workflowId': serializeParam(
+                                                    dataListItem.workflowId.id,
+                                                    ParamType.String,
+                                                  ),
+                                                  'publishedCount':
+                                                      serializeParam(
+                                                    dataListItem.publishedCount,
+                                                    ParamType.int,
+                                                  ),
+                                                }.withoutNulls,
+                                              );
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                      if (_model.isShow == false)
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  8.0, 6.0, 0.0, 6.0),
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              setState(() {
+                                                _model.isShow = true;
+                                              });
+                                            },
                                             child: Text(
-                                              '#${dataListItem.workflowId.name}',
+                                              'Xem thêm thông tin',
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
@@ -613,239 +720,392 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primary,
+                                                    fontSize: 12.0,
                                                     letterSpacing: 0.0,
                                                     fontStyle: FontStyle.italic,
                                                   ),
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                    ),
-                                    FlutterFlowIconButton(
-                                      borderRadius: 20.0,
-                                      borderWidth: 1.0,
-                                      buttonSize: 40.0,
-                                      icon: FaIcon(
-                                        FontAwesomeIcons.angleRight,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        size: 18.0,
-                                      ),
-                                      onPressed: () async {
-                                        context.pushNamed(
-                                          'TaskDetail',
-                                          queryParameters: {
-                                            'workflowId': serializeParam(
-                                              dataListItem.workflowId.id,
-                                              ParamType.String,
-                                            ),
-                                            'publishedCount': serializeParam(
-                                              dataListItem.publishedCount,
-                                              ParamType.int,
-                                            ),
-                                          }.withoutNulls,
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                if (_model.isShow == false)
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 6.0, 0.0, 6.0),
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        setState(() {
-                                          _model.isShow = true;
-                                        });
-                                      },
-                                      child: Text(
-                                        'Xem thêm thông tin',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              fontSize: 12.0,
-                                              letterSpacing: 0.0,
-                                              fontStyle: FontStyle.italic,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                if (_model.isShow == true)
-                                  Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      if (dataListItem
-                                                  .createdUserId.firstName !=
-                                              '')
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 0.0, 8.0, 6.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Icon(
-                                                Icons.person,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 20.0,
+                                        ),
+                                      if (_model.isShow == true)
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            if (dataListItem.createdUserId
+                                                        .firstName !=
+                                                    '')
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        8.0, 0.0, 8.0, 6.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.person,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      size: 20.0,
+                                                    ),
+                                                    Text(
+                                                      'Người tạo:',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            fontSize: 13.0,
+                                                            letterSpacing: 0.0,
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                          ),
+                                                    ),
+                                                    Expanded(
+                                                      child: Text(
+                                                        dataListItem
+                                                            .createdUserId
+                                                            .firstName,
+                                                        textAlign:
+                                                            TextAlign.end,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Readex Pro',
+                                                              fontSize: 13.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
+                                                      ),
+                                                    ),
+                                                  ].divide(
+                                                      const SizedBox(width: 8.0)),
+                                                ),
                                               ),
-                                              Text(
-                                                'Người tạo:',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      8.0, 0.0, 8.0, 6.0),
+                                              child: Row(
+                                                mainAxisSize:
+                                                    MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Icon(
+                                                    Icons
+                                                        .confirmation_num_outlined,
+                                                    color:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondaryText,
+                                                    size: 20.0,
+                                                  ),
+                                                  Text(
+                                                    'Chạy lần thứ:',
+                                                    style: FlutterFlowTheme
+                                                            .of(context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
                                                           fontSize: 13.0,
                                                           letterSpacing: 0.0,
-                                                          fontStyle:
-                                                              FontStyle.italic,
+                                                          fontStyle: FontStyle
+                                                              .italic,
                                                         ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Text(
+                                                      dataListItem
+                                                          .publishedCount
+                                                          .toString(),
+                                                      textAlign:
+                                                          TextAlign.end,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            fontSize: 13.0,
+                                                            letterSpacing:
+                                                                0.0,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                ].divide(
+                                                    const SizedBox(width: 8.0)),
                                               ),
-                                              Expanded(
+                                            ),
+                                            if (dataListItem.dateCreated != '')
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        8.0, 0.0, 8.0, 6.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.timer,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      size: 20.0,
+                                                    ),
+                                                    Text(
+                                                      'Ngày tạo:',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            fontSize: 13.0,
+                                                            letterSpacing: 0.0,
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                          ),
+                                                    ),
+                                                    Expanded(
+                                                      child: Text(
+                                                        dateTimeFormat(
+                                                            'HH:mm dd/MM/yyyy',
+                                                            functions
+                                                                .stringToDateTime(
+                                                                    dataListItem
+                                                                        .dateCreated)),
+                                                        textAlign:
+                                                            TextAlign.end,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Readex Pro',
+                                                              fontSize: 13.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
+                                                      ),
+                                                    ),
+                                                  ].divide(
+                                                      const SizedBox(width: 8.0)),
+                                                ),
+                                              ),
+                                            if (dataListItem.timeOperate != '')
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        8.0, 0.0, 8.0, 6.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.av_timer,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      size: 20.0,
+                                                    ),
+                                                    Text(
+                                                      'Bắt đầu (dự kiến):',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            fontSize: 13.0,
+                                                            letterSpacing: 0.0,
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                          ),
+                                                    ),
+                                                    Expanded(
+                                                      child: Text(
+                                                        dataListItem
+                                                            .timeOperate,
+                                                        textAlign:
+                                                            TextAlign.end,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Readex Pro',
+                                                              fontSize: 13.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
+                                                      ),
+                                                    ),
+                                                  ].divide(
+                                                      const SizedBox(width: 8.0)),
+                                                ),
+                                              ),
+                                            if (dataListItem.estimateInSecond !=
+                                                0)
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        8.0, 0.0, 8.0, 6.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.update_sharp,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      size: 20.0,
+                                                    ),
+                                                    Text(
+                                                      'T.gian thực hiện (dự kiến):',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            fontSize: 13.0,
+                                                            letterSpacing: 0.0,
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                          ),
+                                                    ),
+                                                    Expanded(
+                                                      child: Text(
+                                                        dataListItem.estimateInSecond.toString(),
+                                                        textAlign:
+                                                            TextAlign.end,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Readex Pro',
+                                                              fontSize: 13.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
+                                                      ),
+                                                    ),
+                                                  ].divide(
+                                                      const SizedBox(width: 8.0)),
+                                                ),
+                                              ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(8.0, 0.0, 0.0, 6.0),
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  setState(() {
+                                                    _model.isShow = false;
+                                                  });
+                                                },
                                                 child: Text(
-                                                  dataListItem
-                                                      .createdUserId.firstName,
-                                                  textAlign: TextAlign.end,
+                                                  'Ẩn bớt',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
                                                             'Readex Pro',
-                                                        fontSize: 13.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                ),
-                                              ),
-                                            ].divide(const SizedBox(width: 8.0)),
-                                          ),
-                                        ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                8.0, 0.0, 8.0, 6.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Icon(
-                                              Icons.confirmation_num_outlined,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              size: 20.0,
-                                            ),
-                                            Text(
-                                              'Chạy lần thứ:',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        fontSize: 13.0,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        fontSize: 12.0,
                                                         letterSpacing: 0.0,
                                                         fontStyle:
                                                             FontStyle.italic,
                                                       ),
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                dataListItem.publishedCount
-                                                    .toString(),
-                                                textAlign: TextAlign.end,
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily:
-                                                          'Readex Pro',
-                                                      fontSize: 13.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
+                                                ),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ],
                                         ),
-                                      ),
-                                      if (dataListItem.dateCreated != '')
+                                      if (dataListItem.actionType !=
+                                          'to_do_list')
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 6.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
                                             children: [
                                               Icon(
-                                                Icons.timer,
+                                                Icons.notes_sharp,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryText,
                                                 size: 20.0,
                                               ),
-                                              Text(
-                                                'Ngày tạo:',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                              if (dataListItem.actionType !=
+                                                  'to_do_list')
+                                                Expanded(
+                                                  child: Text(
+                                                    'Nội dung: ${dataListItem.operations.first.operationsId.content}',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
-                                                          fontSize: 13.0,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          fontSize: 14.0,
                                                           letterSpacing: 0.0,
-                                                          fontStyle:
-                                                              FontStyle.italic,
                                                         ),
-                                              ),
-                                              Expanded(
-                                                child: Text(
-                                                  dateTimeFormat(
-                                                      'HH:mm dd/MM/yyyy',
-                                                      functions.stringToDateTime(
-                                                          dataListItem
-                                                              .dateCreated)),
-                                                  textAlign: TextAlign.end,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        fontSize: 13.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
+                                                  ),
                                                 ),
-                                              ),
                                             ].divide(const SizedBox(width: 8.0)),
                                           ),
                                         ),
-                                      if (dataListItem.timeOperate != '')
+                                      if (dataListItem.status == 'done')
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
@@ -856,14 +1116,14 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                 MainAxisAlignment.start,
                                             children: [
                                               Icon(
-                                                Icons.av_timer,
+                                                Icons.notes_sharp,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryText,
                                                 size: 20.0,
                                               ),
                                               Text(
-                                                'Bắt đầu (dự kiến):',
+                                                'Nội dung:',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -875,244 +1135,96 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                           fontStyle:
                                                               FontStyle.italic,
                                                         ),
-                                              ),
-                                              Expanded(
-                                                child: Text(
-                                                  dataListItem.timeOperate,
-                                                  textAlign: TextAlign.end,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        fontSize: 13.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                ),
-                                              ),
-                                            ].divide(const SizedBox(width: 8.0)),
-                                          ),
-                                        ),
-                                      if (dataListItem.estimateInSecond != 0)
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 0.0, 8.0, 6.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Icon(
-                                                Icons.update_sharp,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 20.0,
-                                              ),
-                                              Text(
-                                                'T.gian thực hiện (dự kiến):',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          fontSize: 13.0,
-                                                          letterSpacing: 0.0,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                        ),
-                                              ),
-                                              Expanded(
-                                                child: Text(
-                                                  dataListItem.estimateInSecond.toString(),
-                                                  textAlign: TextAlign.end,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        fontSize: 13.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                ),
                                               ),
                                             ].divide(const SizedBox(width: 8.0)),
                                           ),
                                         ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 0.0, 0.0, 6.0),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            setState(() {
-                                              _model.isShow = false;
-                                            });
-                                          },
-                                          child: Text(
-                                            'Ẩn bớt',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  fontSize: 12.0,
-                                                  letterSpacing: 0.0,
-                                                  fontStyle: FontStyle.italic,
-                                                ),
+                                            0.0, 16.0, 0.0, 0.0),
+                                        child: Container(
+                                          decoration: const BoxDecoration(),
+                                          child: Visibility(
+                                            visible: dataListItem.actionType ==
+                                                'to_do_list',
+                                            child: WaitActionTypeToDoListWidget(
+                                              key: Key(
+                                                  'Key84y_${dataListIndex}_of_${dataList.length}'),
+                                              listData: dataListItem.operations,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        decoration: const BoxDecoration(),
+                                        child: Visibility(
+                                          visible: dataListItem.actionType ==
+                                              'approved',
+                                          child: WaitActionTypeApproveWidget(
+                                            key: Key(
+                                                'Keyetv_${dataListIndex}_of_${dataList.length}'),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: double.infinity,
+                                        decoration: const BoxDecoration(),
+                                        child: Visibility(
+                                          visible: dataListItem.actionType ==
+                                              'image',
+                                          child: WaitActionTypeImageWidget(
+                                            key: Key(
+                                                'Key3y6_${dataListIndex}_of_${dataList.length}'),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: double.infinity,
+                                        decoration: const BoxDecoration(),
+                                        child: Visibility(
+                                          visible: dataListItem.actionType ==
+                                              'upload_file',
+                                          child: WaitActionTypeUploadFileWidget(
+                                            key: Key(
+                                                'Key0qe_${dataListIndex}_of_${dataList.length}'),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        decoration: const BoxDecoration(),
+                                        child: Visibility(
+                                          visible: dataListItem.actionType ==
+                                              'submit_text',
+                                          child: WaitActionTypeSubmitTextWidget(
+                                            key: Key(
+                                                'Keys6z_${dataListIndex}_of_${dataList.length}'),
                                           ),
                                         ),
                                       ),
                                     ],
                                   ),
-                                if (dataListItem.actionType != 'to_do_list')
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 0.0, 8.0, 6.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Icon(
-                                          Icons.notes_sharp,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          size: 20.0,
-                                        ),
-                                        if (dataListItem.actionType !=
-                                            'to_do_list')
-                                          Expanded(
-                                            child: Text(
-                                              'Nội dung: ${dataListItem.operations.first.operationsId.content}',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    fontSize: 14.0,
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                            ),
-                                          ),
-                                      ].divide(const SizedBox(width: 8.0)),
-                                    ),
-                                  ),
-                                if (dataListItem.status == 'done')
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 0.0, 8.0, 6.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Icon(
-                                          Icons.notes_sharp,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          size: 20.0,
-                                        ),
-                                        Text(
-                                          'Nội dung:',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 13.0,
-                                                letterSpacing: 0.0,
-                                                fontStyle: FontStyle.italic,
-                                              ),
-                                        ),
-                                      ].divide(const SizedBox(width: 8.0)),
-                                    ),
-                                  ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 16.0, 0.0, 0.0),
-                                  child: Container(
-                                    decoration: const BoxDecoration(),
-                                    child: Visibility(
-                                      visible: dataListItem.actionType ==
-                                          'to_do_list',
-                                      child: WaitActionTypeToDoListWidget(
-                                        key: Key(
-                                            'Key84y_${dataListIndex}_of_${dataList.length}'),
-                                        listData: dataListItem.operations,
-                                      ),
-                                    ),
-                                  ),
                                 ),
-                                Container(
-                                  decoration: const BoxDecoration(),
-                                  child: Visibility(
-                                    visible:
-                                        dataListItem.actionType == 'approved',
-                                    child: WaitActionTypeApproveWidget(
-                                      key: Key(
-                                          'Keyetv_${dataListIndex}_of_${dataList.length}'),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  width: double.infinity,
-                                  decoration: const BoxDecoration(),
-                                  child: Visibility(
-                                    visible: dataListItem.actionType == 'image',
-                                    child: WaitActionTypeImageWidget(
-                                      key: Key(
-                                          'Key3y6_${dataListIndex}_of_${dataList.length}'),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  width: double.infinity,
-                                  decoration: const BoxDecoration(),
-                                  child: Visibility(
-                                    visible: dataListItem.actionType ==
-                                        'upload_file',
-                                    child: WaitActionTypeUploadFileWidget(
-                                      key: Key(
-                                          'Key0qe_${dataListIndex}_of_${dataList.length}'),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  decoration: const BoxDecoration(),
-                                  child: Visibility(
-                                    visible: dataListItem.actionType ==
-                                        'submit_text',
-                                    child: WaitActionTypeSubmitTextWidget(
-                                      key: Key(
-                                          'Keys6z_${dataListIndex}_of_${dataList.length}'),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-              ],
+              ),
             ),
-          ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+              child: wrapWithModel(
+                model: _model.navBarModel,
+                updateCallback: () => setState(() {}),
+                child: const NavBarWidget(
+                  selectedPageIndex: 1,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -1256,7 +1256,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               'a8d33527-375b-4599-ac70-6a3fcad1de39'))
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 8.0, 16.0, 12.0),
+                              16.0, 8.0, 16.0, 0.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,
@@ -1342,7 +1342,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               'a8d33527-375b-4599-ac70-6a3fcad1de39'))
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 8.0, 16.0, 12.0),
+                              16.0, 8.0, 16.0, 0.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,
@@ -1428,7 +1428,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               'a8d33527-375b-4599-ac70-6a3fcad1de39'))
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 12.0, 16.0, 0.0),
+                              16.0, 12.0, 16.0, 12.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,

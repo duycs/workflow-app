@@ -911,7 +911,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 6.0, 0.0, 6.0),
+                                                  8.0, 6.0, 0.0, 6.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
                                             focusColor: Colors.transparent,
@@ -1374,8 +1374,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                               ),
                                             Padding(
                                               padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 0.0, 0.0, 6.0),
+                                                  .fromSTEB(8.0, 0.0, 0.0, 6.0),
                                               child: InkWell(
                                                 splashColor: Colors.transparent,
                                                 focusColor: Colors.transparent,

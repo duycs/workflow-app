@@ -103,7 +103,7 @@ class _ProfileStaffWidgetState extends State<ProfileStaffWidget> {
                               fontFamily: 'Readex Pro',
                               fontSize: 18.0,
                               letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.normal,
                             ),
                       ),
                     ),

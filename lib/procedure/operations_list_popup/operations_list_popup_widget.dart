@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -78,6 +79,9 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
         _model.isLoad = true;
       });
     });
+
+    _model.textNameTextController ??= TextEditingController();
+    _model.textNameFocusNode ??= FocusNode();
 
     _model.tabBarController = TabController(
       vsync: this,
@@ -167,6 +171,106 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                             ],
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 12.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _model.textNameTextController,
+                                  focusNode: _model.textNameFocusNode,
+                                  onChanged: (_) => EasyDebounce.debounce(
+                                    '_model.textNameTextController',
+                                    const Duration(milliseconds: 2000),
+                                    () => setState(() {}),
+                                  ),
+                                  autofocus: false,
+                                  textInputAction: TextInputAction.search,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    hintText: 'Tìm kiếm ...',
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    contentPadding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 0.0, 0.0),
+                                    prefixIcon: const Icon(
+                                      Icons.search_rounded,
+                                    ),
+                                    suffixIcon: _model.textNameTextController!
+                                            .text.isNotEmpty
+                                        ? InkWell(
+                                            onTap: () async {
+                                              _model.textNameTextController
+                                                  ?.clear();
+                                              setState(() {});
+                                            },
+                                            child: const Icon(
+                                              Icons.clear,
+                                              size: 22,
+                                            ),
+                                          )
+                                        : null,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  validator: _model
+                                      .textNameTextControllerValidator
+                                      .asValidator(context),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                         Divider(
                           height: 1.0,
                           thickness: 1.0,
@@ -223,7 +327,10 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                           final operationsListNew = _model
                                               .operationList
                                               .where((e) =>
-                                                  e.executeId == '')
+                                                  (e.executeId == '') &&
+                                                  (e.name.contains(_model
+                                                      .textNameTextController
+                                                      .text)))
                                               .toList();
                                           return ListView.builder(
                                             padding: EdgeInsets.zero,
@@ -380,7 +487,10 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                               .operationList
                                               .where((e) =>
                                                   (e.executeId != '') &&
-                                                  (e.executeId != 'null'))
+                                                  (e.executeId != 'null') &&
+                                                  (e.name.contains(_model
+                                                      .textNameTextController
+                                                      .text)))
                                               .toList();
                                           return ListView.builder(
                                             padding: EdgeInsets.zero,

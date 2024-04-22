@@ -19,6 +19,7 @@ class LessonsStruct extends BaseStruct {
     FileStruct? file,
     List<ReactsStruct>? reacts,
     String? organizationId,
+    List<ProgramsIdddStruct>? programs,
   })  : _id = id,
         _status = status,
         _name = name,
@@ -31,7 +32,8 @@ class LessonsStruct extends BaseStruct {
         _durationHours = durationHours,
         _file = file,
         _reacts = reacts,
-        _organizationId = organizationId;
+        _organizationId = organizationId,
+        _programs = programs;
 
   // "id" field.
   String? _id;
@@ -117,6 +119,14 @@ class LessonsStruct extends BaseStruct {
   set organizationId(String? val) => _organizationId = val;
   bool hasOrganizationId() => _organizationId != null;
 
+  // "programs" field.
+  List<ProgramsIdddStruct>? _programs;
+  List<ProgramsIdddStruct> get programs => _programs ?? const [];
+  set programs(List<ProgramsIdddStruct>? val) => _programs = val;
+  void updatePrograms(Function(List<ProgramsIdddStruct>) updateFn) =>
+      updateFn(_programs ??= []);
+  bool hasPrograms() => _programs != null;
+
   static LessonsStruct fromMap(Map<String, dynamic> data) => LessonsStruct(
         id: data['id'] as String?,
         status: data['status'] as String?,
@@ -134,6 +144,10 @@ class LessonsStruct extends BaseStruct {
           ReactsStruct.fromMap,
         ),
         organizationId: data['organization_id'] as String?,
+        programs: getStructList(
+          data['programs'],
+          ProgramsIdddStruct.fromMap,
+        ),
       );
 
   static LessonsStruct? maybeFromMap(dynamic data) =>
@@ -153,6 +167,7 @@ class LessonsStruct extends BaseStruct {
         'file': _file?.toMap(),
         'reacts': _reacts?.map((e) => e.toMap()).toList(),
         'organization_id': _organizationId,
+        'programs': _programs?.map((e) => e.toMap()).toList(),
       }.withoutNulls;
 
   @override
@@ -209,6 +224,11 @@ class LessonsStruct extends BaseStruct {
         'organization_id': serializeParam(
           _organizationId,
           ParamType.String,
+        ),
+        'programs': serializeParam(
+          _programs,
+          ParamType.DataStruct,
+          true,
         ),
       }.withoutNulls;
 
@@ -281,6 +301,12 @@ class LessonsStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        programs: deserializeStructParam<ProgramsIdddStruct>(
+          data['programs'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: ProgramsIdddStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -302,7 +328,8 @@ class LessonsStruct extends BaseStruct {
         durationHours == other.durationHours &&
         file == other.file &&
         listEquality.equals(reacts, other.reacts) &&
-        organizationId == other.organizationId;
+        organizationId == other.organizationId &&
+        listEquality.equals(programs, other.programs);
   }
 
   @override
@@ -319,7 +346,8 @@ class LessonsStruct extends BaseStruct {
         durationHours,
         file,
         reacts,
-        organizationId
+        organizationId,
+        programs
       ]);
 }
 

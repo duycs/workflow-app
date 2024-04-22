@@ -312,29 +312,29 @@ class _ProcedurePublishedListWidgetState
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 10.0, 0.0, 0.0),
-                        child: Text(
-                          (_model.searchName != '') ||
-                                  (_model.dateStart != '') ||
-                                  (_model.dateEnd != '') ||
-                                  (_model.searchUserCreated != '')
-                              ? '#Kết quả hiển thị theo bộ lọc'
-                              : '',
-                          style:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 13.0,
-                                    letterSpacing: 0.0,
-                                    fontStyle: FontStyle.italic,
-                                  ),
+                      if ((_model.searchName != '') ||
+                          (_model.dateStart != '') ||
+                          (_model.dateEnd != '') ||
+                          (_model.searchUserCreated != ''))
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 10.0, 0.0, 0.0),
+                          child: Text(
+                            '#Kết quả hiển thị theo bộ lọc',
+                            style: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  fontSize: 13.0,
+                                  letterSpacing: 0.0,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                          ),
                         ),
-                      ),
                       if (_model.dataList.isNotEmpty)
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 6.0, 16.0, 16.0),
+                              16.0, 10.0, 16.0, 16.0),
                           child: Builder(
                             builder: (context) {
                               final items = _model.dataList.toList();

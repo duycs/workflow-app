@@ -218,281 +218,248 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                               },
                                               onEnded: () async {
                                                 var shouldSetState = false;
-                                                if (_model.timerMilliseconds ==
-                                                    0) {
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackBar(
-                                                      content: Text(
-                                                        'Hết thời gian làm bài',
-                                                        style: TextStyle(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                        ),
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      'Hết thời gian làm bài',
+                                                      style: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
                                                       ),
-                                                      duration: const Duration(
-                                                          milliseconds: 4000),
-                                                      backgroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .warning,
                                                     ),
-                                                  );
-                                                  while (_model.loopQuestion <
-                                                      _model.list!.questions
-                                                          .length) {
-                                                    if (_model.requestData
-                                                            .where((e) =>
-                                                                e.questionId ==
-                                                                (_model.list?.questions[
-                                                                        _model
-                                                                            .loopQuestion])
-                                                                    ?.questionsId
-                                                                    .id)
-                                                            .toList().isEmpty) {
-                                                      setState(() {
-                                                        _model.addToRequestData(
-                                                            RequestAnswerStaffStruct(
-                                                          status: 'published',
-                                                          correct: 0,
-                                                          answerType: (_model
-                                                                      .list
-                                                                      ?.questions[
-                                                                  _model
-                                                                      .loopQuestion])
-                                                              ?.questionsId
-                                                              .answerType,
-                                                          staffId: getJsonField(
-                                                            FFAppState()
-                                                                .staffLogin,
-                                                            r'''$.id''',
-                                                          ).toString(),
-                                                          questionId: (_model
-                                                                      .list
-                                                                      ?.questions[
-                                                                  _model
-                                                                      .loopQuestion])
-                                                              ?.questionsId
-                                                              .id,
-                                                        ));
-                                                      });
-                                                    }
+                                                    duration: const Duration(
+                                                        milliseconds: 4000),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .warning,
+                                                  ),
+                                                );
+                                                while (_model.loopQuestion <
+                                                    _model.list!.questions
+                                                        .length) {
+                                                  if (_model.requestData
+                                                          .where((e) =>
+                                                              e.questionId ==
+                                                              (_model.list?.questions[
+                                                                      _model
+                                                                          .loopQuestion])
+                                                                  ?.questionsId
+                                                                  .id)
+                                                          .toList().isEmpty) {
                                                     setState(() {
-                                                      _model.loopQuestion =
-                                                          _model.loopQuestion +
-                                                              1;
+                                                      _model.addToRequestData(
+                                                          RequestAnswerStaffStruct(
+                                                        status: 'published',
+                                                        correct: 0,
+                                                        answerType: (_model.list
+                                                                    ?.questions[
+                                                                _model
+                                                                    .loopQuestion])
+                                                            ?.questionsId
+                                                            .answerType,
+                                                        staffId: getJsonField(
+                                                          FFAppState()
+                                                              .staffLogin,
+                                                          r'''$.id''',
+                                                        ).toString(),
+                                                        questionId: (_model.list
+                                                                    ?.questions[
+                                                                _model
+                                                                    .loopQuestion])
+                                                            ?.questionsId
+                                                            .id,
+                                                      ));
                                                     });
                                                   }
                                                   setState(() {
-                                                    _model.dateEnd = functions
-                                                        .datetimeToString(
-                                                            getCurrentTimestamp
-                                                                .toString());
-                                                    _model.loopQuestion = 0;
+                                                    _model.loopQuestion =
+                                                        _model.loopQuestion + 1;
                                                   });
-                                                  _model.apiResultCreateStaffTest2 =
+                                                }
+                                                setState(() {
+                                                  _model.dateEnd = functions
+                                                      .datetimeToString(
+                                                          getCurrentTimestamp
+                                                              .toString());
+                                                  _model.loopQuestion = 0;
+                                                });
+                                                _model.apiResultCreateStaffTest2 =
+                                                    await DoTestGroup
+                                                        .createStaffTestsCall
+                                                        .call(
+                                                  requestDataJson: <String,
+                                                      dynamic>{
+                                                    'status': 'published',
+                                                    'score': getJsonField(
+                                                      <String, int>{
+                                                        'map': 100,
+                                                      },
+                                                      r'''$.map''',
+                                                    ),
+                                                    'date_start':
+                                                        _model.dateStart,
+                                                    'date_end': _model.dateEnd,
+                                                    'staff_id':
+                                                        FFAppState().staffid,
+                                                    'test_id': widget.testId,
+                                                  },
+                                                  accessToken:
+                                                      FFAppState().accessToken,
+                                                );
+                                                shouldSetState = true;
+                                                if ((_model
+                                                        .apiResultCreateStaffTest2
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  setState(() {
+                                                    _model.testId =
+                                                        getJsonField(
+                                                      (_model.apiResultCreateStaffTest2
+                                                              ?.jsonBody ??
+                                                          ''),
+                                                      r'''$.data.id''',
+                                                    ).toString();
+                                                    _model.testTime =
+                                                        getJsonField(
+                                                      (_model.apiResultCreateStaffTest2
+                                                              ?.jsonBody ??
+                                                          ''),
+                                                      r'''$.data.test_id.duration_minutes''',
+                                                    );
+                                                    _model.testName =
+                                                        getJsonField(
+                                                      (_model.apiResultCreateStaffTest2
+                                                              ?.jsonBody ??
+                                                          ''),
+                                                      r'''$.data.test_id.name''',
+                                                    ).toString();
+                                                    _model.testDescription =
+                                                        getJsonField(
+                                                      (_model.apiResultCreateStaffTest2
+                                                              ?.jsonBody ??
+                                                          ''),
+                                                      r'''$.data.test_id.description''',
+                                                    ).toString();
+                                                  });
+                                                  while (_model.loopId <
+                                                      _model
+                                                          .requestData.length) {
+                                                    setState(() {
+                                                      _model
+                                                          .updateRequestDataAtIndex(
+                                                        _model.loopId,
+                                                        (e) => e
+                                                          ..staffTestId =
+                                                              getJsonField(
+                                                            (_model.apiResultCreateStaffTest
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$.data.id''',
+                                                          ).toString(),
+                                                      );
+                                                    });
+                                                    setState(() {
+                                                      _model.loopId =
+                                                          _model.loopId + 1;
+                                                    });
+                                                  }
+                                                  setState(() {
+                                                    _model.loopId = 0;
+                                                  });
+                                                  _model.apiResultCreateStaffAnswer2 =
                                                       await DoTestGroup
-                                                          .createStaffTestsCall
+                                                          .createStaffAnswerCall
                                                           .call(
-                                                    requestDataJson: <String,
-                                                        dynamic>{
-                                                      'status': 'published',
-                                                      'score': getJsonField(
-                                                        <String, int>{
-                                                          'map': 100,
-                                                        },
-                                                        r'''$.map''',
-                                                      ),
-                                                      'date_start':
-                                                          _model.dateStart,
-                                                      'date_end':
-                                                          _model.dateEnd,
-                                                      'staff_id':
-                                                          FFAppState().staffid,
-                                                      'test_id': widget.testId,
-                                                    },
                                                     accessToken: FFAppState()
                                                         .accessToken,
+                                                    requestJson: _model
+                                                        .requestData
+                                                        .map((e) => e.toMap())
+                                                        .toList(),
                                                   );
                                                   shouldSetState = true;
                                                   if ((_model
-                                                          .apiResultCreateStaffTest2
+                                                          .apiResultCreateStaffAnswer2
                                                           ?.succeeded ??
                                                       true)) {
-                                                    setState(() {
-                                                      _model.testId =
-                                                          getJsonField(
-                                                        (_model.apiResultCreateStaffTest2
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$.data.id''',
-                                                      ).toString();
-                                                      _model.testTime =
-                                                          getJsonField(
-                                                        (_model.apiResultCreateStaffTest2
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$.data.test_id.duration_minutes''',
-                                                      );
-                                                      _model.testName =
-                                                          getJsonField(
-                                                        (_model.apiResultCreateStaffTest2
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$.data.test_id.name''',
-                                                      ).toString();
-                                                      _model.testDescription =
-                                                          getJsonField(
-                                                        (_model.apiResultCreateStaffTest2
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$.data.test_id.description''',
-                                                      ).toString();
-                                                    });
-                                                    while (_model.loopId <
-                                                        _model.requestData
-                                                            .length) {
-                                                      setState(() {
-                                                        _model
-                                                            .updateRequestDataAtIndex(
-                                                          _model.loopId,
-                                                          (e) => e
-                                                            ..staffTestId =
-                                                                getJsonField(
-                                                              (_model.apiResultCreateStaffTest
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                              r'''$.data.id''',
-                                                            ).toString(),
-                                                        );
-                                                      });
-                                                      setState(() {
-                                                        _model.loopId =
-                                                            _model.loopId + 1;
-                                                      });
-                                                    }
-                                                    setState(() {
-                                                      _model.loopId = 0;
-                                                    });
-                                                    _model.apiResultCreateStaffAnswer2 =
+                                                    _model.apiResultCaculatorScores2 =
                                                         await DoTestGroup
-                                                            .createStaffAnswerCall
+                                                            .calculateTestScoresCall
                                                             .call(
                                                       accessToken: FFAppState()
                                                           .accessToken,
-                                                      requestJson: _model
-                                                          .requestData
-                                                          .map((e) => e.toMap())
-                                                          .toList(),
+                                                      staffTestId:
+                                                          _model.testId,
                                                     );
                                                     shouldSetState = true;
                                                     if ((_model
-                                                            .apiResultCreateStaffAnswer2
+                                                            .apiResultCaculatorScores2
                                                             ?.succeeded ??
                                                         true)) {
-                                                      _model.apiResultCaculatorScores2 =
-                                                          await DoTestGroup
-                                                              .calculateTestScoresCall
-                                                              .call(
-                                                        accessToken:
-                                                            FFAppState()
-                                                                .accessToken,
-                                                        staffTestId:
-                                                            _model.testId,
-                                                      );
-                                                      shouldSetState = true;
-                                                      if ((_model
-                                                              .apiResultCaculatorScores2
-                                                              ?.succeeded ??
-                                                          true)) {
-                                                        await showDialog(
-                                                          context: context,
-                                                          builder:
-                                                              (alertDialogContext) {
-                                                            return AlertDialog(
-                                                              title: const Text(
-                                                                  'Thông báo'),
-                                                              content: const Text(
-                                                                  'Nộp bài thi thành công!'),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext),
-                                                                  child: const Text(
-                                                                      'Ok'),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          },
-                                                        );
-
-                                                        context.pushNamed(
-                                                          'DoTestDetail',
-                                                          queryParameters: {
-                                                            'testId':
-                                                                serializeParam(
-                                                              _model.testId,
-                                                              ParamType.String,
-                                                            ),
-                                                            'testName':
-                                                                serializeParam(
-                                                              _model.testName,
-                                                              ParamType.String,
-                                                            ),
-                                                            'testTime':
-                                                                serializeParam(
-                                                              _model.testTime,
-                                                              ParamType.int,
-                                                            ),
-                                                            'testDescription':
-                                                                serializeParam(
-                                                              _model
-                                                                  .testDescription,
-                                                              ParamType.String,
-                                                            ),
-                                                          }.withoutNulls,
-                                                        );
-
-                                                        if (shouldSetState) {
-                                                          setState(() {});
-                                                        }
-                                                        return;
-                                                      } else {
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: Text(
-                                                              'lỗi tính  điểm',
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title: const Text(
+                                                                'Thông báo'),
+                                                            content: const Text(
+                                                                'Nộp bài thi thành công!'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    const Text('Ok'),
                                                               ),
-                                                            ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    4000),
-                                                            backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .error,
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
+
+                                                      context.pushNamed(
+                                                        'DoTestDetail',
+                                                        queryParameters: {
+                                                          'testId':
+                                                              serializeParam(
+                                                            _model.testId,
+                                                            ParamType.String,
                                                           ),
-                                                        );
-                                                        if (shouldSetState) {
-                                                          setState(() {});
-                                                        }
-                                                        return;
+                                                          'testName':
+                                                              serializeParam(
+                                                            _model.testName,
+                                                            ParamType.String,
+                                                          ),
+                                                          'testTime':
+                                                              serializeParam(
+                                                            _model.testTime,
+                                                            ParamType.int,
+                                                          ),
+                                                          'testDescription':
+                                                              serializeParam(
+                                                            _model
+                                                                .testDescription,
+                                                            ParamType.String,
+                                                          ),
+                                                        }.withoutNulls,
+                                                      );
+
+                                                      if (shouldSetState) {
+                                                        setState(() {});
                                                       }
+                                                      return;
                                                     } else {
                                                       ScaffoldMessenger.of(
                                                               context)
                                                           .showSnackBar(
                                                         SnackBar(
                                                           content: Text(
-                                                            'lỗi tạo đáp án bài thi',
+                                                            'lỗi tính  điểm',
                                                             style: TextStyle(
                                                               color: FlutterFlowTheme
                                                                       .of(context)
@@ -519,7 +486,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                         .showSnackBar(
                                                       SnackBar(
                                                         content: Text(
-                                                          'lỗi tạo bài thi',
+                                                          'lỗi tạo đáp án bài thi',
                                                           style: TextStyle(
                                                             color: FlutterFlowTheme
                                                                     .of(context)
@@ -539,7 +506,32 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                     }
                                                     return;
                                                   }
+                                                } else {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'lỗi tạo bài thi',
+                                                        style: TextStyle(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                        ),
+                                                      ),
+                                                      duration: const Duration(
+                                                          milliseconds: 4000),
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                    ),
+                                                  );
+                                                  if (shouldSetState) {
+                                                    setState(() {});
+                                                  }
+                                                  return;
                                                 }
+
                                                 if (shouldSetState) {
                                                   setState(() {});
                                                 }

@@ -72,10 +72,10 @@ class WorkResultListModel extends FlutterFlowModel<WorkResultListWidget> {
           ).toString().toString()}\"}}';
         } else if (FFAppState().user.role ==
             '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-          return getJsonField(
+          return ',{\"departments\":{\"departments_id\":{\"id\":{\"_eq\":\"${getJsonField(
             FFAppState().staffLogin,
             r'''$.department_id''',
-          ).toString().toString();
+          ).toString().toString()}\"}}}}';
         } else {
           return ',{\"_or\":[{\"_and\":[{\"steps\":{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
             FFAppState().staffLogin,

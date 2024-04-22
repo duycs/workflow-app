@@ -108,6 +108,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                                     fontFamily: 'Outfit',
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
                                   ),
                         ),
                         FlutterFlowIconButton(

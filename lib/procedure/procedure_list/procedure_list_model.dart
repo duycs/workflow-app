@@ -32,6 +32,8 @@ class ProcedureListModel extends FlutterFlowModel<ProcedureListWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (workflowsList)] action in ProcedureList widget.
   ApiCallResponse? apiResultListData;
+  // Stores action output result for [Action Block - CheckRefreshToken] action in ProcedureList widget.
+  bool? checkRefreshTokenBlockList;
   // State field(s) for TextName widget.
   FocusNode? textNameFocusNode;
   TextEditingController? textNameTextController;

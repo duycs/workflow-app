@@ -282,29 +282,29 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 10.0, 0.0, 0.0),
-                        child: Text(
-                          (_model.nameSearch != '') ||
-                                  (_model.dateStart != '') ||
-                                  (_model.dateEnd != '') ||
-                                  (_model.userCreated != '')
-                              ? '#Kết quả hiển thị theo bộ lọc'
-                              : '',
-                          style:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 13.0,
-                                    letterSpacing: 0.0,
-                                    fontStyle: FontStyle.italic,
-                                  ),
+                      if ((_model.nameSearch != '') ||
+                          (_model.dateStart != '') ||
+                          (_model.dateEnd != '') ||
+                          (_model.userCreated != ''))
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 10.0, 0.0, 0.0),
+                          child: Text(
+                            '#Kết quả hiển thị theo bộ lọc',
+                            style: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  fontSize: 13.0,
+                                  letterSpacing: 0.0,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                          ),
                         ),
-                      ),
                       if (_model.dataList.isNotEmpty)
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 6.0, 16.0, 16.0),
+                              16.0, 10.0, 16.0, 16.0),
                           child: Builder(
                             builder: (context) {
                               final items = _model.dataList.toList();
@@ -656,10 +656,8 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                   ],
                                                 ),
                                                 expanded: Visibility(
-                                                  visible: (itemsItem
-                                                          .steps.isNotEmpty) &&
-                                                      (itemsItem.steps.first
-                                                          .tasks.isNotEmpty),
+                                                  visible: _model
+                                                      .dataList.isNotEmpty,
                                                   child: Builder(
                                                     builder: (context) {
                                                       final itemPublishedList =

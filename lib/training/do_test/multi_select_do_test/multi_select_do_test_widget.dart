@@ -125,7 +125,13 @@ class _MultiSelectDoTestWidgetState extends State<MultiSelectDoTestWidget> {
                       return FlutterFlowTheme.of(context).primary;
                     } else if ((widget.listAnswer.isEmpty) &&
                         (widget.listQuestion?.correct != 1)) {
-                      return FlutterFlowTheme.of(context).noColor;
+                      return FlutterFlowTheme.of(context).primaryText;
+                    } else if ((widget.listQuestion?.correct == 1) &&
+                        (widget.listAnswer
+                                ?.where((e) =>
+                                    e.answersId.id == widget.listQuestion?.id)
+                                .toList().isEmpty)) {
+                      return FlutterFlowTheme.of(context).primary;
                     } else {
                       return FlutterFlowTheme.of(context).primaryText;
                     }

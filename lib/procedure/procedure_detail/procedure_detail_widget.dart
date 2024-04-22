@@ -225,6 +225,7 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                           labelStyle:
                               FlutterFlowTheme.of(context).titleMedium.override(
                                     fontFamily: 'Readex Pro',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                           unselectedLabelStyle: const TextStyle(),
@@ -1248,57 +1249,58 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                       ),
                     ],
                   ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      context.pushNamed(
-                        'ProcedureUpdate',
-                        queryParameters: {
-                          'itemData': serializeParam(
-                            _model.data,
-                            ParamType.DataStruct,
-                          ),
-                          'stepListPar': serializeParam(
-                            _model.stepsList,
-                            ParamType.DataStruct,
-                            true,
-                          ),
-                          'check': serializeParam(
-                            true,
-                            ParamType.bool,
-                          ),
-                        }.withoutNulls,
-                      );
-                    },
-                    text: 'Chỉnh sửa',
-                    icon: const Icon(
-                      Icons.edit,
-                      size: 15.0,
-                    ),
-                    options: FFButtonOptions(
-                      width: double.infinity,
-                      height: 40.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.white,
-                                letterSpacing: 0.0,
-                              ),
-                      elevation: 3.0,
-                      borderSide: const BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
+                if (_model.idLoad == true)
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        context.pushNamed(
+                          'ProcedureUpdate',
+                          queryParameters: {
+                            'itemData': serializeParam(
+                              _model.data,
+                              ParamType.DataStruct,
+                            ),
+                            'stepListPar': serializeParam(
+                              _model.stepsList,
+                              ParamType.DataStruct,
+                              true,
+                            ),
+                            'check': serializeParam(
+                              true,
+                              ParamType.bool,
+                            ),
+                          }.withoutNulls,
+                        );
+                      },
+                      text: 'Chỉnh sửa',
+                      icon: const Icon(
+                        Icons.edit,
+                        size: 15.0,
                       ),
-                      borderRadius: BorderRadius.circular(8.0),
+                      options: FFButtonOptions(
+                        width: double.infinity,
+                        height: 40.0,
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).primary,
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                        elevation: 3.0,
+                        borderSide: const BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
           ),

@@ -416,7 +416,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                           .override(
                                             fontFamily: 'Readex Pro',
                                             color: FlutterFlowTheme.of(context)
-                                                .error,
+                                                .secondaryText,
                                             fontSize: 10.0,
                                             letterSpacing: 0.0,
                                             fontStyle: FontStyle.italic,

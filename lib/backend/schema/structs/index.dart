@@ -52,6 +52,7 @@ export 'program_struct.dart';
 export 'program_id_create_departments_struct.dart';
 export 'program_lesson_data_struct.dart';
 export 'programs_id_struct.dart';
+export 'programs_iddd_struct.dart';
 export 'question_answer_object_struct.dart';
 export 'question_answers_struct.dart';
 export 'question_answers_id_struct.dart';

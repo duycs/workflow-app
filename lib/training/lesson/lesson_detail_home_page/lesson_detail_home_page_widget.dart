@@ -21,9 +21,11 @@ class LessonDetailHomePageWidget extends StatefulWidget {
   const LessonDetailHomePageWidget({
     super.key,
     required this.listItems,
+    required this.status,
   });
 
   final dynamic listItems;
+  final String? status;
 
   @override
   State<LessonDetailHomePageWidget> createState() =>
@@ -1643,6 +1645,54 @@ class _LessonDetailHomePageWidgetState
                           ),
                         ),
                       ),
+                      if (widget.status != null && widget.status != '')
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              12.0, 0.0, 0.0, 4.0),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              await showDialog(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return AlertDialog(
+                                    title: Text(widget.status!),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: const Text('Ok'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            child: Text(
+                              'Trạng thái học: ${() {
+                                if (widget.status == 'draft') {
+                                  return 'chưa học';
+                                } else if (widget.status == 'inprogress') {
+                                  return 'đang học';
+                                } else if (widget.status == 'done') {
+                                  return 'học xong';
+                                } else {
+                                  return ' ';
+                                }
+                              }()}',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                        ),
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             12.0, 4.0, 12.0, 4.0),

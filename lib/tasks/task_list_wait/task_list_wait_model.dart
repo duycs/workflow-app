@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'task_list_wait_widget.dart' show TaskListWaitWidget;
 import 'package:flutter/material.dart';
@@ -57,14 +58,20 @@ class TaskListWaitModel extends FlutterFlowModel<TaskListWaitWidget> {
   ApiCallResponse? apiResultGetTaWaitFilter;
   // Stores action output result for [Backend Call - API (GetListTask)] action in TextField widget.
   ApiCallResponse? apiResultGetTaWait;
+  // Model for navBar component.
+  late NavBarModel navBarModel;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    navBarModel = createModel(context, () => NavBarModel());
+  }
 
   @override
   void dispose() {
     unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
+
+    navBarModel.dispose();
   }
 }

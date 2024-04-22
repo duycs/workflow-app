@@ -367,6 +367,10 @@ class _LessonListHomepageCopyWidgetState
                                                         .toMap(),
                                                     ParamType.JSON,
                                                   ),
+                                                  'status': serializeParam(
+                                                    listRowItem.status,
+                                                    ParamType.String,
+                                                  ),
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
@@ -608,6 +612,10 @@ class _LessonListHomepageCopyWidgetState
                                                     listRow2Item.lessionId
                                                         .toMap(),
                                                     ParamType.JSON,
+                                                  ),
+                                                  'status': serializeParam(
+                                                    listRow2Item.status,
+                                                    ParamType.String,
                                                   ),
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
@@ -1232,6 +1240,10 @@ class _LessonListHomepageCopyWidgetState
                                                         .toMap(),
                                                     ParamType.JSON,
                                                   ),
+                                                  'status': serializeParam(
+                                                    listRow3Item.status,
+                                                    ParamType.String,
+                                                  ),
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
@@ -1593,6 +1605,10 @@ class _LessonListHomepageCopyWidgetState
                                               'listItems': serializeParam(
                                                 listItem.toMap(),
                                                 ParamType.JSON,
+                                              ),
+                                              'status': serializeParam(
+                                                '',
+                                                ParamType.String,
                                               ),
                                             }.withoutNulls,
                                             extra: <String, dynamic>{

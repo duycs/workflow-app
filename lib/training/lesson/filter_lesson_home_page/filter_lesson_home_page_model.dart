@@ -36,11 +36,11 @@ class FilterLessonHomePageModel
 
   ///  State fields for stateful widgets in this component.
 
+  DateTime? datePicked1;
+  DateTime? datePicked2;
   // State field(s) for DropDownStatus widget.
   String? dropDownStatusValue;
   FormFieldController<String>? dropDownStatusValueController;
-  DateTime? datePicked1;
-  DateTime? datePicked2;
   // State field(s) for LessonFavoriteStatus widget.
   String? lessonFavoriteStatusValue;
   FormFieldController<String>? lessonFavoriteStatusValueController;

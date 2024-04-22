@@ -1069,6 +1069,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                     labelStyle:
                         FlutterFlowTheme.of(context).titleMedium.override(
                               fontFamily: 'Readex Pro',
+                              fontSize: 14.0,
                               letterSpacing: 0.0,
                             ),
                     unselectedLabelStyle: const TextStyle(),
@@ -1543,11 +1544,11 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                 fillColor:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                elevation: 2.0,
+                                                elevation: 0.0,
                                                 borderColor:
                                                     FlutterFlowTheme.of(context)
                                                         .alternate,
-                                                borderWidth: 2.0,
+                                                borderWidth: 1.0,
                                                 borderRadius: 8.0,
                                                 margin: const EdgeInsetsDirectional
                                                     .fromSTEB(
@@ -1570,11 +1571,6 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                 .secondaryBackground,
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
-                                            border: Border.all(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                            ),
                                           ),
                                           child: Padding(
                                             padding:
@@ -1779,11 +1775,6 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                 .secondaryBackground,
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
-                                            border: Border.all(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                            ),
                                           ),
                                           child: Padding(
                                             padding:

@@ -11,12 +11,12 @@ class FilterLessonUserModel extends FlutterFlowModel<FilterLessonUserWidget> {
 
   ///  State fields for stateful widgets in this component.
 
+  DateTime? datePicked1;
+  DateTime? datePicked2;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  DateTime? datePicked1;
-  DateTime? datePicked2;
 
   @override
   void initState(BuildContext context) {}

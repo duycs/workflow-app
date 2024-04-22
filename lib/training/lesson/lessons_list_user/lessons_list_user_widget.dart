@@ -418,6 +418,10 @@ class _LessonsListUserWidgetState extends State<LessonsListUserWidget> {
                                                         .toMap(),
                                                     ParamType.JSON,
                                                   ),
+                                                  'status': serializeParam(
+                                                    itemLessonStaffItem.status,
+                                                    ParamType.String,
+                                                  ),
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:

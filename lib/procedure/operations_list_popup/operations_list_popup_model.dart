@@ -26,6 +26,10 @@ class OperationsListPopupModel
 
   // Stores action output result for [Backend Call - API (OperationList)] action in OperationsListPopup widget.
   ApiCallResponse? apiResult9q7;
+  // State field(s) for TextName widget.
+  FocusNode? textNameFocusNode;
+  TextEditingController? textNameTextController;
+  String? Function(BuildContext, String?)? textNameTextControllerValidator;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -36,6 +40,9 @@ class OperationsListPopupModel
 
   @override
   void dispose() {
+    textNameFocusNode?.dispose();
+    textNameTextController?.dispose();
+
     tabBarController?.dispose();
   }
 }
