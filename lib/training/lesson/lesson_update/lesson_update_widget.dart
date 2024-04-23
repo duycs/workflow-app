@@ -1022,7 +1022,6 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     final selectedFiles = await selectFiles(
-                                      allowedExtensions: ['pdf'],
                                       multiFile: false,
                                     );
                                     if (selectedFiles != null) {

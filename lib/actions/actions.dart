@@ -77,23 +77,25 @@ Future<bool?> tokenReload(BuildContext context) async {
     refreshToken: FFAppState().refreshToken,
   );
   if ((apiResultRefreshTokenCheck.succeeded ?? true)) {
-    FFAppState().accessToken = LoginResourceDataStruct.maybeFromMap(
-            (apiResultRefreshTokenCheck.jsonBody ?? ''))!
-        .data
-        .accessToken;
-    FFAppState().refreshToken = LoginResourceDataStruct.maybeFromMap(
-            (apiResultRefreshTokenCheck.jsonBody ?? ''))!
-        .data
-        .refreshToken;
-    FFAppState().expires = LoginResourceDataStruct.maybeFromMap(
-            (apiResultRefreshTokenCheck.jsonBody ?? ''))!
-        .data
-        .expires;
-    FFAppState().dataTimeStartToken = DateTime.now().microsecondsSinceEpoch +
-        LoginResourceDataStruct.maybeFromMap(
-                (apiResultRefreshTokenCheck.jsonBody ?? ''))!
-            .data
-            .expires;
+    FFAppState().update(() {
+      FFAppState().accessToken = LoginResourceDataStruct.maybeFromMap(
+              (apiResultRefreshTokenCheck?.jsonBody ?? ''))!
+          .data
+          .accessToken;
+      FFAppState().refreshToken = LoginResourceDataStruct.maybeFromMap(
+              (apiResultRefreshTokenCheck?.jsonBody ?? ''))!
+          .data
+          .refreshToken;
+      FFAppState().expires = LoginResourceDataStruct.maybeFromMap(
+              (apiResultRefreshTokenCheck?.jsonBody ?? ''))!
+          .data
+          .expires;
+      FFAppState().dataTimeStartToken = DateTime.now().microsecondsSinceEpoch +
+          LoginResourceDataStruct.maybeFromMap(
+                  (apiResultRefreshTokenCheck?.jsonBody ?? ''))!
+              .data
+              .expires;
+    });
   } else {
     await action_blocks.clearSession(context);
 

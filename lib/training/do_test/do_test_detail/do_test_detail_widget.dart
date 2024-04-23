@@ -48,6 +48,9 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setState(() {
+        _model.listNull = [];
+      });
       _model.apiResultGetStaffAnswerList =
           await DoTestGroup.staffAnswerListCall.call(
         accessToken: FFAppState().accessToken,
@@ -137,34 +140,19 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                 ),
                               ),
                             ),
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                FlutterFlowIconButton(
-                                  borderColor: Colors.transparent,
-                                  borderRadius: 30.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 60.0,
-                                  icon: Icon(
-                                    Icons.arrow_back_rounded,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 30.0,
-                                  ),
-                                  onPressed: () async {
-                                    context.safePop();
-                                  },
-                                ),
-                                Text(
-                                  'Chi tiết bài thi',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ],
+                            FlutterFlowIconButton(
+                              borderColor: Colors.transparent,
+                              borderRadius: 30.0,
+                              borderWidth: 1.0,
+                              buttonSize: 60.0,
+                              icon: Icon(
+                                Icons.arrow_back_rounded,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 30.0,
+                              ),
+                              onPressed: () async {
+                                context.safePop();
+                              },
                             ),
                           ],
                         ),
@@ -525,7 +513,11 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                               .answersId,
                                                       listAnswer:
                                                           questionListItem
-                                                              .answers,
+                                                                  .answers
+                                                                  .isNotEmpty
+                                                              ? questionListItem
+                                                                  .answers
+                                                              : _model.listNull,
                                                     );
                                                   },
                                                 );

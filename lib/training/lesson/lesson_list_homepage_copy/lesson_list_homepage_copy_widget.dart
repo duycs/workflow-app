@@ -1747,6 +1747,8 @@ class _LessonListHomepageCopyWidgetState
                                                 Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     if (listItem.imageCover !=
                                                             '')

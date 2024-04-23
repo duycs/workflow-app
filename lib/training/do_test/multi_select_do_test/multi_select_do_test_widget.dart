@@ -59,21 +59,20 @@ class _MultiSelectDoTestWidgetState extends State<MultiSelectDoTestWidget> {
             unselectedWidgetColor: FlutterFlowTheme.of(context).secondaryText,
           ),
           child: Checkbox(
-            value: _model.checkboxValue ??=
-                widget.listAnswer != null && (widget.listAnswer)!.isNotEmpty
-                    ? () {
-                        if (widget.listQuestion?.correct == 1) {
-                          return true;
-                        } else if (widget.listAnswer!
-                                .where((e) =>
-                                    e.answersId.id == widget.listQuestion?.id)
-                                .toList().isNotEmpty) {
-                          return true;
-                        } else {
-                          return false;
-                        }
-                      }()
-                    : false,
+            value: _model.checkboxValue ??= () {
+              if (widget.listQuestion?.correct == 1) {
+                return true;
+              } else if ((widget.listAnswer!
+                          .where(
+                              (e) => e.answersId.id == widget.listQuestion?.id)
+                          .toList().isNotEmpty) &&
+                  (widget.listAnswer != null &&
+                      (widget.listAnswer)!.isNotEmpty)) {
+                return true;
+              } else {
+                return false;
+              }
+            }(),
             onChanged: ('1' == '1')
                 ? null
                 : (newValue) async {

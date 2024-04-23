@@ -124,7 +124,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                     children: [
                       Column(
                         mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
@@ -135,6 +135,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                   .bodyLarge
                                   .override(
                                     fontFamily: 'Readex Pro',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -174,6 +175,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Icon(
                                 Icons.notes_sharp,
@@ -194,17 +196,17 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                              Text(
-                                '${_model.list?.description}',
-                                maxLines: 3,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyLarge
-                                    .override(
+                            ].divide(const SizedBox(width: 4.0)),
+                          ),
+                          Text(
+                            '${_model.list?.description}',
+                            maxLines: 10,
+                            style:
+                                FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Readex Pro',
+                                      fontSize: 13.0,
                                       letterSpacing: 0.0,
                                     ),
-                              ),
-                            ].divide(const SizedBox(width: 4.0)),
                           ),
                         ].divide(const SizedBox(height: 8.0)),
                       ),
