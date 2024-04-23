@@ -482,5 +482,6 @@ String aDayInThePast(DateTime today) {
 bool isTokenExpired(int lastTokenDate) {
   int currentTimetamp = DateTime.now().microsecondsSinceEpoch;
 
-  return currentTimetamp <= lastTokenDate;
+  bool check = (currentTimetamp - lastTokenDate) > 0;
+  return check;
 }

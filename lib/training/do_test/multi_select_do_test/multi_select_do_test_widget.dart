@@ -82,27 +82,27 @@ class _MultiSelectDoTestWidgetState extends State<MultiSelectDoTestWidget> {
               width: 2,
               color: FlutterFlowTheme.of(context).secondaryText,
             ),
-            activeColor: (widget.listAnswer != null &&
-                        (widget.listAnswer)!.isNotEmpty) !=
-                    null
-                ? () {
-                    if ((widget.listQuestion?.correct == 1) &&
-                        (widget.listAnswer!
-                                .where((e) =>
-                                    e.answersId.id == widget.listQuestion?.id)
-                                .toList().isNotEmpty)) {
-                      return FlutterFlowTheme.of(context).secondary;
-                    } else if ((widget.listQuestion?.correct != 1) &&
-                        (widget.listAnswer!
-                                .where((e) =>
-                                    e.answersId.id == widget.listQuestion?.id)
-                                .toList().isNotEmpty)) {
-                      return FlutterFlowTheme.of(context).error;
-                    } else {
-                      return FlutterFlowTheme.of(context).accent1;
-                    }
-                  }()
-                : const Color(0x00000000),
+            activeColor: () {
+              if ((widget.listQuestion?.correct == 1) &&
+                  (widget.listAnswer!
+                          .where(
+                              (e) => e.answersId.id == widget.listQuestion?.id)
+                          .toList().isNotEmpty) &&
+                  (widget.listAnswer != null &&
+                      (widget.listAnswer)!.isNotEmpty)) {
+                return FlutterFlowTheme.of(context).secondary;
+              } else if ((widget.listQuestion?.correct != 1) &&
+                  (widget.listAnswer!
+                          .where(
+                              (e) => e.answersId.id == widget.listQuestion?.id)
+                          .toList().isNotEmpty) &&
+                  (widget.listAnswer != null &&
+                      (widget.listAnswer)!.isNotEmpty)) {
+                return FlutterFlowTheme.of(context).error;
+              } else {
+                return FlutterFlowTheme.of(context).accent1;
+              }
+            }(),
             checkColor: ('1' == '1') ? null : FlutterFlowTheme.of(context).info,
           ),
         ),
@@ -119,13 +119,17 @@ class _MultiSelectDoTestWidgetState extends State<MultiSelectDoTestWidget> {
                         (widget.listAnswer!
                                 .where((e) =>
                                     e.answersId.id == widget.listQuestion?.id)
-                                .toList().isNotEmpty)) {
+                                .toList().isNotEmpty) &&
+                        (widget.listAnswer != null &&
+                            (widget.listAnswer)!.isNotEmpty)) {
                       return FlutterFlowTheme.of(context).secondary;
                     } else if ((widget.listQuestion?.correct != 1) &&
                         (widget.listAnswer!
                                 .where((e) =>
                                     e.answersId.id == widget.listQuestion?.id)
-                                .toList().isNotEmpty)) {
+                                .toList().isNotEmpty) &&
+                        (widget.listAnswer != null &&
+                            (widget.listAnswer)!.isNotEmpty)) {
                       return FlutterFlowTheme.of(context).error;
                     } else if ((widget.listAnswer.isEmpty) &&
                         (widget.listQuestion?.correct == 1)) {
@@ -133,11 +137,7 @@ class _MultiSelectDoTestWidgetState extends State<MultiSelectDoTestWidget> {
                     } else if ((widget.listAnswer.isEmpty) &&
                         (widget.listQuestion?.correct != 1)) {
                       return FlutterFlowTheme.of(context).primaryText;
-                    } else if ((widget.listQuestion?.correct == 1) &&
-                        (widget.listAnswer
-                                ?.where((e) =>
-                                    e.answersId.id == widget.listQuestion?.id)
-                                .toList().isEmpty)) {
+                    } else if (widget.listQuestion?.correct == 1) {
                       return FlutterFlowTheme.of(context).primary;
                     } else {
                       return FlutterFlowTheme.of(context).primaryText;

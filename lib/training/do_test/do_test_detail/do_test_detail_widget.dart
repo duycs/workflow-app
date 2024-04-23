@@ -151,7 +151,16 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                 size: 30.0,
                               ),
                               onPressed: () async {
-                                context.safePop();
+                                context.pushNamed(
+                                  'DoTestList',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
                               },
                             ),
                           ],

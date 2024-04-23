@@ -292,6 +292,8 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
       } else {
         await uploadFileFile(context);
       }
+
+      return;
     }
   }
 }

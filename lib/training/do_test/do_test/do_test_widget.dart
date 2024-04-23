@@ -65,7 +65,6 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                 FFAppState().staffLogin,
                 r'''$.id''',
               ).toString().toString(),
-              correct: 0,
               questionId: '',
             ));
           });
