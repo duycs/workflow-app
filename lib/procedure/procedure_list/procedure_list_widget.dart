@@ -33,45 +33,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       setState(() {});
-      var confirmDialogResponse = await showDialog<bool>(
-            context: context,
-            builder: (alertDialogContext) {
-              return AlertDialog(
-                content: Text(FFAppState().dataTimeStartToken.toString()),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                    child: const Text('Cancel'),
-                  ),
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                    child: const Text('Confirm'),
-                  ),
-                ],
-              );
-            },
-          ) ??
-          false;
       _model.checkToken = await action_blocks.tokenReload(context);
-      confirmDialogResponse = await showDialog<bool>(
-            context: context,
-            builder: (alertDialogContext) {
-              return AlertDialog(
-                content: Text(_model.checkToken!.toString()),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                    child: const Text('Cancel'),
-                  ),
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                    child: const Text('Confirm'),
-                  ),
-                ],
-              );
-            },
-          ) ??
-          false;
       if (_model.checkToken!) {
         _model.apiResultListData =
             await ProcedureTemplateGroup.workflowsListCall.call(

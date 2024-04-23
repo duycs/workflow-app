@@ -120,7 +120,8 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
         FFAppState().refreshToken = loginData!.data.refreshToken;
         FFAppState().expires = loginData!.data.expires;
         FFAppState().dataTimeStartToken =
-            DateTime.now().microsecondsSinceEpoch + loginData!.data.expires;
+            (DateTime.now().microsecondsSinceEpoch / 1000).round() +
+                loginData!.data.expires;
         await getUserMe(context);
         apiResultGetStaffId = await UserGroup.getStaffIdCall.call(
           accessToken: FFAppState().accessToken,

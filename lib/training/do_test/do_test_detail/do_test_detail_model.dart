@@ -32,6 +32,11 @@ class DoTestDetailModel extends FlutterFlowModel<DoTestDetailWidget> {
   ApiCallResponse? apiResultGetStaffAnswerList;
   // Stores action output result for [Action Block - CheckRefreshToken] action in DoTestDetail widget.
   bool? checkRefreshTokenBlock67;
+  // State field(s) for Checkbox widget.
+
+  Map<QuestionAnswerObjectStruct, bool> checkboxValueMap = {};
+  List<QuestionAnswerObjectStruct> get checkboxCheckedItems =>
+      checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
 
   @override
   void initState(BuildContext context) {}

@@ -659,6 +659,164 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                 ),
                                             ].divide(const SizedBox(height: 8.0)),
                                           ),
+                                          if (questionListItem.answerType ==
+                                              'checkbox')
+                                            Builder(
+                                              builder: (context) {
+                                                final listAnswer2 =
+                                                    questionListItem
+                                                        .questionId.answers
+                                                        .toList();
+                                                return ListView.builder(
+                                                  padding: EdgeInsets.zero,
+                                                  shrinkWrap: true,
+                                                  scrollDirection:
+                                                      Axis.vertical,
+                                                  itemCount: listAnswer2.length,
+                                                  itemBuilder: (context,
+                                                      listAnswer2Index) {
+                                                    final listAnswer2Item =
+                                                        listAnswer2[
+                                                            listAnswer2Index];
+                                                    return Container(
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .noColor,
+                                                      ),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Theme(
+                                                            data: ThemeData(
+                                                              checkboxTheme:
+                                                                  CheckboxThemeData(
+                                                                visualDensity:
+                                                                    VisualDensity
+                                                                        .compact,
+                                                                materialTapTargetSize:
+                                                                    MaterialTapTargetSize
+                                                                        .shrinkWrap,
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              4.0),
+                                                                ),
+                                                              ),
+                                                              unselectedWidgetColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                            ),
+                                                            child: Checkbox(
+                                                              value: _model
+                                                                      .checkboxValueMap[
+                                                                  listAnswer2Item] ??= () {
+                                                                if (listAnswer2Item
+                                                                        .answersId
+                                                                        .correct ==
+                                                                    1) {
+                                                                  return true;
+                                                                } else if (questionListItem
+                                                                        .answers
+                                                                        .where((e) =>
+                                                                            e.answersId.id ==
+                                                                            listAnswer2Item.answersId.id)
+                                                                        .toList().isNotEmpty) {
+                                                                  return true;
+                                                                } else {
+                                                                  return false;
+                                                                }
+                                                              }(),
+                                                              onChanged: ('1' ==
+                                                                      '1')
+                                                                  ? null
+                                                                  : (newValue) async {
+                                                                      setState(() =>
+                                                                          _model.checkboxValueMap[listAnswer2Item] =
+                                                                              newValue!);
+                                                                    },
+                                                              side: BorderSide(
+                                                                width: 2,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                              ),
+                                                              activeColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                              checkColor: ('1' ==
+                                                                      '1')
+                                                                  ? null
+                                                                  : FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .info,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            listAnswer2Item
+                                                                .answersId
+                                                                .content,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: () {
+                                                                    if ((listAnswer2Item.answersId.correct ==
+                                                                            1) &&
+                                                                        (questionListItem.answers.where((e) => e.answersId.id == listAnswer2Item.answersId.id).toList().isNotEmpty)) {
+                                                                      return FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary;
+                                                                    } else if ((listAnswer2Item.answersId.correct !=
+                                                                            1) &&
+                                                                        (questionListItem.answers.where((e) => e.answersId.id == listAnswer2Item.answersId.id).toList().isNotEmpty)) {
+                                                                      return FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error;
+                                                                    } else if ((listAnswer2Item.answersId.correct ==
+                                                                            1) &&
+                                                                        (questionListItem.answers.isEmpty)) {
+                                                                      return FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary;
+                                                                    } else if ((listAnswer2Item.answersId.correct !=
+                                                                            1) &&
+                                                                        (questionListItem.answers.isEmpty)) {
+                                                                      return FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText;
+                                                                    } else if (listAnswer2Item
+                                                                            .answersId
+                                                                            .correct !=
+                                                                        1) {
+                                                                      return FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary;
+                                                                    } else {
+                                                                      return FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText;
+                                                                    }
+                                                                  }(),
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            ),
                                         ].divide(const SizedBox(height: 8.0)),
                                       ),
                                     ),

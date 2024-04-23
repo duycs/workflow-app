@@ -998,14 +998,15 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                     if ((_model.nameTextController.text != '') &&
                         (_model.checkContent != '') &&
                         (_model.descriptionTextController.text != '') &&
-                        (_model.durationHoursTextController.text != '')) {
+                        (_model.durationHoursTextController.text != '') &&
+                        (_model.uploadImage != '')) {
                       await _model.createLesson(context);
                       setState(() {});
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                            'Kiểm tra lại các trường tiêu đề, nội dung, mô tả, thời gian!',
+                            'Kiểm tra lại ảnh bài học, tiêu đề, nội dung, mô tả, thời gian!',
                             style: TextStyle(
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),

@@ -500,95 +500,20 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.center,
                                                   children: [
-                                                    Align(
-                                                      alignment:
-                                                          const AlignmentDirectional(
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(3.0),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10.0),
+                                                        child: Image.network(
+                                                          '${FFAppConstants.ApiBaseUrl}/assets/${listItemsItem.imageCover}?access_token=${FFAppState().accessToken}',
+                                                          width: 100.0,
+                                                          height: 100.0,
+                                                          fit: BoxFit.cover,
+                                                          alignment: const Alignment(
                                                               0.0, 0.0),
-                                                      child: Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      10.0),
-                                                          border: Border.all(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondary,
-                                                          ),
-                                                        ),
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Align(
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  0.0, 0.0),
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              if (listItemsItem
-                                                                          .imageCover !=
-                                                                      '')
-                                                                Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                          .all(
-                                                                              3.0),
-                                                                  child:
-                                                                      ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            10.0),
-                                                                    child: Image
-                                                                        .network(
-                                                                      '${FFAppConstants.ApiBaseUrl}/assets/${listItemsItem.imageCover}?access_token=${FFAppState().accessToken}',
-                                                                      width:
-                                                                          100.0,
-                                                                      height:
-                                                                          100.0,
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                      alignment:
-                                                                          const Alignment(
-                                                                              0.0,
-                                                                              0.0),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              if (listItemsItem
-                                                                          .imageCover ==
-                                                                      '')
-                                                                Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                          .all(
-                                                                              3.0),
-                                                                  child:
-                                                                      ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            10.0),
-                                                                    child: Image
-                                                                        .asset(
-                                                                      'assets/images/unnamed.png',
-                                                                      width:
-                                                                          100.0,
-                                                                      height:
-                                                                          100.0,
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                      alignment:
-                                                                          const Alignment(
-                                                                              0.0,
-                                                                              0.0),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                            ],
-                                                          ),
                                                         ),
                                                       ),
                                                     ),
