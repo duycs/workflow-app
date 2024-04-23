@@ -458,17 +458,58 @@ class _LessonsListUserWidgetState extends State<LessonsListUserWidget> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.center,
                                                   children: [
-                                                    ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                      child: Image.network(
-                                                        '${FFAppConstants.ApiBaseUrl}/assets/${itemLessonStaffItem.lessionId.imageCover}?access_token=${FFAppState().accessToken}',
-                                                        width: 100.0,
-                                                        height: 100.0,
-                                                        fit: BoxFit.cover,
-                                                        alignment:
-                                                            const Alignment(0.0, 0.0),
+                                                    Container(
+                                                      decoration:
+                                                          const BoxDecoration(),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          if (itemLessonStaffItem
+                                                                      .lessionId
+                                                                      .imageCover !=
+                                                                  '')
+                                                            ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                              child:
+                                                                  Image.network(
+                                                                '${FFAppConstants.ApiBaseUrl}/assets/${itemLessonStaffItem.lessionId.imageCover}?access_token=${FFAppState().accessToken}',
+                                                                width: 100.0,
+                                                                height: 100.0,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                                alignment:
+                                                                    const Alignment(
+                                                                        0.0,
+                                                                        0.0),
+                                                              ),
+                                                            ),
+                                                          if (itemLessonStaffItem
+                                                                      .lessionId
+                                                                      .imageCover ==
+                                                                  '')
+                                                            ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                              child:
+                                                                  Image.asset(
+                                                                'assets/images/unnamed.png',
+                                                                width: 100.0,
+                                                                height: 100.0,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                                alignment:
+                                                                    const Alignment(
+                                                                        0.0,
+                                                                        0.0),
+                                                              ),
+                                                            ),
+                                                        ],
                                                       ),
                                                     ),
                                                     Flexible(

@@ -103,45 +103,6 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 30.0,
-            ),
-            onPressed: () async {
-              context.pushNamed(
-                'DoTestList',
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                  ),
-                },
-              );
-            },
-          ),
-          title: Text(
-            'Chi tiết bài test',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 20.0,
-                  letterSpacing: 0.0,
-                ),
-          ),
-          actions: const [],
-          centerTitle: false,
-          elevation: 2.0,
-        ),
         body: SafeArea(
           top: true,
           child: Column(
@@ -157,21 +118,55 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Align(
-                          alignment: const AlignmentDirectional(0.0, 1.0),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'assets/images/ab2f86f664c11bcf601c50cd80c396b4.jpg',
-                                width: double.infinity,
-                                height: 230.0,
-                                fit: BoxFit.cover,
-                                alignment: const Alignment(0.0, 1.0),
+                        Stack(
+                          alignment: const AlignmentDirectional(-1.0, -1.0),
+                          children: [
+                            Align(
+                              alignment: const AlignmentDirectional(0.0, 1.0),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    'assets/images/career_center-interview-what_exactly_are_aptitude_tests.jpg',
+                                    width: double.infinity,
+                                    height: 200.0,
+                                    fit: BoxFit.cover,
+                                    alignment: const Alignment(0.0, 0.0),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 30.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 60.0,
+                                  icon: Icon(
+                                    Icons.arrow_back_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 30.0,
+                                  ),
+                                  onPressed: () async {
+                                    context.safePop();
+                                  },
+                                ),
+                                Text(
+                                  'Chi tiết bài thi',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -211,10 +206,8 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                             borderRadius:
                                                 BorderRadius.circular(100.0),
                                             border: Border.all(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                              width: 2.0,
+                                              color: const Color(0xFF38B647),
+                                              width: 1.0,
                                             ),
                                           ),
                                           alignment:
@@ -231,9 +224,8 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                   .bodyLarge
                                                   .override(
                                                     fontFamily: 'Readex Pro',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondary,
+                                                    color: const Color(0xFF38B647),
+                                                    fontSize: 14.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                             ),
@@ -257,7 +249,7 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
-                                              width: 2.0,
+                                              width: 1.0,
                                             ),
                                           ),
                                           alignment:
@@ -277,6 +269,7 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .error,
+                                                    fontSize: 14.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                             ),
@@ -353,7 +346,7 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                           fontFamily: 'Readex Pro',
                                           color: FlutterFlowTheme.of(context)
                                               .error,
-                                          fontSize: 16.0,
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -473,13 +466,9 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                               1)
                                                           .toList()
                                                           .length)
-                                                    Icon(
-                                                      Icons
-                                                          .check_circle_outlined,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .success,
+                                                    const Icon(
+                                                      Icons.check,
+                                                      color: Color(0xFF38B647),
                                                       size: 24.0,
                                                     ),
                                                   if (questionListItem.answers
@@ -662,6 +651,8 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                                   .of(context)
                                                               .error,
                                                           letterSpacing: 0.0,
+                                                          fontStyle:
+                                                              FontStyle.italic,
                                                         ),
                                                   ),
                                                 ),

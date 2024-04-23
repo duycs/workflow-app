@@ -422,7 +422,10 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                                             .fromSTEB(4.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
-                                                      detailViewItem.status,
+                                                      detailViewItem.status ==
+                                                              'published'
+                                                          ? 'Hoạt động'
+                                                          : 'Không hoạt động',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)

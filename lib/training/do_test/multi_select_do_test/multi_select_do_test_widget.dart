@@ -59,17 +59,21 @@ class _MultiSelectDoTestWidgetState extends State<MultiSelectDoTestWidget> {
             unselectedWidgetColor: FlutterFlowTheme.of(context).secondaryText,
           ),
           child: Checkbox(
-            value: _model.checkboxValue ??= () {
-              if (widget.listQuestion?.correct == 1) {
-                return true;
-              } else if (widget.listAnswer!
-                      .where((e) => e.answersId.id == widget.listQuestion?.id)
-                      .toList().isNotEmpty) {
-                return true;
-              } else {
-                return false;
-              }
-            }(),
+            value: _model.checkboxValue ??=
+                widget.listAnswer != null && (widget.listAnswer)!.isNotEmpty
+                    ? () {
+                        if (widget.listQuestion?.correct == 1) {
+                          return true;
+                        } else if (widget.listAnswer!
+                                .where((e) =>
+                                    e.answersId.id == widget.listQuestion?.id)
+                                .toList().isNotEmpty) {
+                          return true;
+                        } else {
+                          return false;
+                        }
+                      }()
+                    : false,
             onChanged: ('1' == '1')
                 ? null
                 : (newValue) async {
@@ -79,23 +83,27 @@ class _MultiSelectDoTestWidgetState extends State<MultiSelectDoTestWidget> {
               width: 2,
               color: FlutterFlowTheme.of(context).secondaryText,
             ),
-            activeColor: () {
-              if ((widget.listQuestion?.correct == 1) &&
-                  (widget.listAnswer!
-                          .where(
-                              (e) => e.answersId.id == widget.listQuestion?.id)
-                          .toList().isNotEmpty)) {
-                return FlutterFlowTheme.of(context).secondary;
-              } else if ((widget.listQuestion?.correct != 1) &&
-                  (widget.listAnswer!
-                          .where(
-                              (e) => e.answersId.id == widget.listQuestion?.id)
-                          .toList().isNotEmpty)) {
-                return FlutterFlowTheme.of(context).error;
-              } else {
-                return FlutterFlowTheme.of(context).accent1;
-              }
-            }(),
+            activeColor: (widget.listAnswer != null &&
+                        (widget.listAnswer)!.isNotEmpty) !=
+                    null
+                ? () {
+                    if ((widget.listQuestion?.correct == 1) &&
+                        (widget.listAnswer!
+                                .where((e) =>
+                                    e.answersId.id == widget.listQuestion?.id)
+                                .toList().isNotEmpty)) {
+                      return FlutterFlowTheme.of(context).secondary;
+                    } else if ((widget.listQuestion?.correct != 1) &&
+                        (widget.listAnswer!
+                                .where((e) =>
+                                    e.answersId.id == widget.listQuestion?.id)
+                                .toList().isNotEmpty)) {
+                      return FlutterFlowTheme.of(context).error;
+                    } else {
+                      return FlutterFlowTheme.of(context).accent1;
+                    }
+                  }()
+                : const Color(0x00000000),
             checkColor: ('1' == '1') ? null : FlutterFlowTheme.of(context).info,
           ),
         ),

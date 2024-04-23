@@ -107,22 +107,6 @@ class _DoTestWidgetState extends State<DoTestWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          automaticallyImplyLeading: false,
-          title: Text(
-            'Nội dung bài test',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 20.0,
-                  letterSpacing: 0.0,
-                ),
-          ),
-          actions: const [],
-          centerTitle: false,
-          elevation: 2.0,
-        ),
         body: SafeArea(
           top: true,
           child: Visibility(
@@ -147,11 +131,11 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Image.asset(
-                                      'assets/images/ab2f86f664c11bcf601c50cd80c396b4.jpg',
+                                      'assets/images/career_center-interview-what_exactly_are_aptitude_tests.jpg',
                                       width: double.infinity,
-                                      height: 230.0,
+                                      height: 200.0,
                                       fit: BoxFit.cover,
-                                      alignment: const Alignment(0.0, 1.0),
+                                      alignment: const Alignment(0.0, 0.0),
                                     ),
                                   ),
                                 ),
