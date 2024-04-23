@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -399,62 +400,72 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                   if (confirmDialogResponse) {
                     if (_model.newPasswordTextController.text ==
                         _model.confirmPassTextController.text) {
-                      _model.apiResultUpdate =
-                          await StaffGroup.updatePasswordCall.call(
-                        accessToken: FFAppState().accessToken,
-                        requestDataJson: <String, String>{
-                          'email': FFAppState().user.email,
-                          'password': _model.passwordTextController.text,
-                          'new_password': _model.confirmPassTextController.text,
-                        },
-                      );
+                      _model.reloadTokenUpdatePassword =
+                          await action_blocks.tokenReload(context);
                       shouldSetState = true;
-                      if ((_model.apiResultUpdate?.succeeded ?? true)) {
-                        if (getJsonField(
-                              (_model.apiResultUpdate?.jsonBody ?? ''),
-                              r'''$.status''',
-                            ).toString() ==
-                            '204') {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'Cập nhật thành công!',
-                                style: TextStyle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                      if (_model.reloadTokenUpdatePassword!) {
+                        _model.apiResultUpdate =
+                            await StaffGroup.updatePasswordCall.call(
+                          accessToken: FFAppState().accessToken,
+                          requestDataJson: <String, String>{
+                            'email': FFAppState().user.email,
+                            'password': _model.passwordTextController.text,
+                            'new_password':
+                                _model.confirmPassTextController.text,
+                          },
+                        );
+                        shouldSetState = true;
+                        if ((_model.apiResultUpdate?.succeeded ?? true)) {
+                          if (getJsonField(
+                                (_model.apiResultUpdate?.jsonBody ?? ''),
+                                r'''$.status''',
+                              ).toString() ==
+                              '204') {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Cập nhật thành công!',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
                                 ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
                               ),
-                              duration: const Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).secondary,
-                            ),
-                          );
+                            );
 
-                          context.pushNamed(
-                            'Profile',
-                            extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
-                                hasTransition: true,
-                                transitionType: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                              ),
-                            },
-                          );
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'Mật khẩu không đúng!',
-                                style: TextStyle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                            context.pushNamed(
+                              'Profile',
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: const TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 0),
                                 ),
+                              },
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Mật khẩu không đúng!',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).error,
                               ),
-                              duration: const Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).error,
-                            ),
-                          );
+                            );
+                          }
+                        } else {
+                          setState(() {});
+                          if (shouldSetState) setState(() {});
+                          return;
                         }
                       }
                     } else {

@@ -345,6 +345,10 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                         dataListItem.percentCorrect,
                                         ParamType.int,
                                       ),
+                                      'goodScore': serializeParam(
+                                        dataListItem.testId.goodScore,
+                                        ParamType.int,
+                                      ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
                                       kTransitionInfoKey: const TransitionInfo(

@@ -103,10 +103,10 @@ class TestCreateModel extends FlutterFlowModel<TestCreateWidget> {
   late QuestionTestModel questionTestModel;
   // Stores action output result for [Backend Call - API (questionListOne)] action in Button widget.
   ApiCallResponse? apiResultAddQuestion;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? reloadTokenCreateTest;
   // Stores action output result for [Backend Call - API (CreateTest)] action in Button widget.
   ApiCallResponse? apiResultCreateTest;
-  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
-  bool? checkRefreshTokenBlock78;
 
   @override
   void initState(BuildContext context) {

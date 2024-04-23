@@ -78,8 +78,6 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
   // State field(s) for programs_id widget.
   String? programsIdValue;
   FormFieldController<String>? programsIdValueController;
-  // Stores action output result for [Backend Call - API (Postdepartment)] action in Button widget.
-  ApiCallResponse? apiResultjly;
 
   @override
   void initState(BuildContext context) {}
@@ -100,7 +98,7 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
   /// Action blocks.
   Future getLinkBranchList(BuildContext context) async {
     ApiCallResponse? apiResultist;
-    bool? checkRefreshTokenBlock;
+    bool? checkRefreshTokenBlockad;
 
     apiResultist = await BranchGroup.branchListCall.call(
       accessToken: FFAppState().accessToken,
@@ -117,11 +115,11 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
               .toList()
               .cast<BranchListStruct>();
     } else {
-      checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
+      checkRefreshTokenBlockad = await action_blocks.checkRefreshToken(
         context,
         jsonErrors: (apiResultist.jsonBody ?? ''),
       );
-      if (!checkRefreshTokenBlock!) {
+      if (!checkRefreshTokenBlockad!) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -134,12 +132,15 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await getLinkBranchList(context);
       }
     }
   }
 
   Future getPrograms(BuildContext context) async {
     ApiCallResponse? apiResultList;
+    bool? checkRefreshTokenBlockdf;
 
     apiResultList = await StudyProgramGroup.studyProgramListCall.call(
       accessToken: FFAppState().accessToken,
@@ -154,6 +155,87 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
           .data
           .toList()
           .cast<StudyProgramListStruct>();
+    } else {
+      checkRefreshTokenBlockdf = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultList.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlockdf!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await getLinkBranchList(context);
+      }
+    }
+  }
+
+  Future postDepartment(BuildContext context) async {
+    ApiCallResponse? apiResultPostDepartment;
+    bool? checkRefreshTokenBlockak;
+
+    apiResultPostDepartment = await DepartmentGroup.postdepartmentCall.call(
+      accessToken: FFAppState().accessToken,
+      name: nameTextController.text,
+      description: descriptionTextController.text,
+      code: codeTextController.text,
+      branchId: dropDownBranchIdValue,
+      programsIdJson: programIds.map((e) => e.toMap()).toList(),
+    );
+    if ((apiResultPostDepartment.succeeded ?? true)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Tạo bộ phận thành công!',
+            style: TextStyle(
+              color: FlutterFlowTheme.of(context).primaryText,
+            ),
+          ),
+          duration: const Duration(milliseconds: 4000),
+          backgroundColor: FlutterFlowTheme.of(context).secondary,
+        ),
+      );
+
+      context.pushNamed(
+        'DepartmentList',
+        extra: <String, dynamic>{
+          kTransitionInfoKey: const TransitionInfo(
+            hasTransition: true,
+            transitionType: PageTransitionType.fade,
+            duration: Duration(milliseconds: 0),
+          ),
+        },
+      );
+    } else {
+      checkRefreshTokenBlockak = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultPostDepartment.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlockak!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await postDepartment(context);
+      }
     }
   }
 }

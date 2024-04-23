@@ -859,66 +859,35 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                               setState(() {
                                 _model.loop = 0;
                               });
-                              _model.apiResultCreateTest =
-                                  await TestGroup.createTestCall.call(
-                                accessToken: FFAppState().accessToken,
-                                requestDataJson: <String, dynamic>{
-                                  'status': 'published',
-                                  'name': _model.textController1.text,
-                                  'description': _model.textController3.text,
-                                  'duration_minutes':
-                                      _model.textController4.text,
-                                  'questions': getJsonField(
-                                    <String, List<dynamic>>{
-                                      'map': _model.questionIdAdd,
-                                    },
-                                    r'''$.map''',
-                                  ),
-                                  'good_score': _model.textController2.text,
-                                },
-                              );
+                              _model.reloadTokenCreateTest =
+                                  await action_blocks.tokenReload(context);
                               shouldSetState = true;
-                              if ((_model.apiResultCreateTest?.succeeded ??
-                                  true)) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Tạo mới bài thi thành công',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
+                              if (_model.reloadTokenCreateTest!) {
+                                _model.apiResultCreateTest =
+                                    await TestGroup.createTestCall.call(
+                                  accessToken: FFAppState().accessToken,
+                                  requestDataJson: <String, dynamic>{
+                                    'status': 'published',
+                                    'name': _model.textController1.text,
+                                    'description': _model.textController3.text,
+                                    'duration_minutes':
+                                        _model.textController4.text,
+                                    'questions': getJsonField(
+                                      <String, List<dynamic>>{
+                                        'map': _model.questionIdAdd,
+                                      },
+                                      r'''$.map''',
                                     ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).secondary,
-                                  ),
-                                );
-
-                                context.pushNamed(
-                                  'TestList',
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                    ),
+                                    'good_score': _model.textController2.text,
                                   },
                                 );
-                              } else {
-                                _model.checkRefreshTokenBlock78 =
-                                    await action_blocks.checkRefreshToken(
-                                  context,
-                                  jsonErrors:
-                                      (_model.apiResultCreateTest?.jsonBody ??
-                                          ''),
-                                );
                                 shouldSetState = true;
-                                if (!_model.checkRefreshTokenBlock78!) {
+                                if ((_model.apiResultCreateTest?.succeeded ??
+                                    true)) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        FFAppConstants.ErrorLoadData,
+                                        'Tạo mới bài thi thành công',
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -926,10 +895,26 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                       ),
                                       duration: const Duration(milliseconds: 4000),
                                       backgroundColor:
-                                          FlutterFlowTheme.of(context).error,
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
                                     ),
                                   );
+
+                                  context.pushNamed(
+                                    'TestList',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
                                 }
+                              } else {
+                                setState(() {});
+                                if (shouldSetState) setState(() {});
+                                return;
                               }
                             } else {
                               if (shouldSetState) setState(() {});

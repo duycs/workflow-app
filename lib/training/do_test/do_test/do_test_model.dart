@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/instant_timer.dart';
 import 'do_test_widget.dart' show DoTestWidget;
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
@@ -61,6 +62,7 @@ class DoTestModel extends FlutterFlowModel<DoTestWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (TestOne)] action in DoTest widget.
   ApiCallResponse? apiResultGetLessionTest;
+  InstantTimer? instantTimer;
   // State field(s) for Timer widget.
   int timerMilliseconds = 0;
   String timerValue = StopWatchTimer.getDisplayTime(
@@ -102,6 +104,7 @@ class DoTestModel extends FlutterFlowModel<DoTestWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
+    instantTimer?.cancel();
     timerController.dispose();
   }
 }

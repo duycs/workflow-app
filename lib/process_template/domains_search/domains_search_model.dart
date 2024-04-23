@@ -38,6 +38,8 @@ class DomainsSearchModel extends FlutterFlowModel<DomainsSearchWidget> {
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
+  // Stores action output result for [Action Block - tokenReload] action in DomainsSearch widget.
+  bool? tokenSearchDomainsSearch;
   // Stores action output result for [Backend Call - API (GetDomainsList)] action in DomainsSearch widget.
   ApiCallResponse? apiResultlld;
   // State field(s) for TextName widget.

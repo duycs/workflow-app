@@ -34,12 +34,20 @@ class UpdateProfileUserModel extends FlutterFlowModel<UpdateProfileUserWidget> {
   TextEditingController? addressTextController;
   String? Function(BuildContext, String?)? addressTextControllerValidator;
   DateTime? datePicked;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? reloadTokenUpdateStaff;
   // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
   ApiCallResponse? apiResultUploadImage;
   // Stores action output result for [Backend Call - API (UpdateStaff)] action in Button widget.
   ApiCallResponse? apiResultUpdateStaff;
   // Stores action output result for [Backend Call - API (UpdateUserStaff)] action in Button widget.
   ApiCallResponse? apiResultUpdateUserStaff;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? reloadTokenUpdateStaff1;
+  // Stores action output result for [Backend Call - API (UpdateStaff)] action in Button widget.
+  ApiCallResponse? apiResultUpdateStaff1;
+  // Stores action output result for [Backend Call - API (UpdateUserStaff)] action in Button widget.
+  ApiCallResponse? apiResultUpdateUserStaff1;
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));

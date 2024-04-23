@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -9,7 +8,6 @@ import '/flutter_flow/form_field_controller.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:provider/provider.dart';
 import 'department_create_model.dart';
 export 'department_create_model.dart';
 
@@ -62,8 +60,6 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -565,7 +561,6 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    var shouldSetState = false;
                     if ((_model.nameTextController.text != '') &&
                         (_model.codeTextController.text != '') &&
                         (_model.descriptionTextController.text != '') &&
@@ -586,43 +581,9 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                         setState(() {
                           _model.loop = 0;
                         });
-                        _model.apiResultjly =
-                            await DepartmentGroup.postdepartmentCall.call(
-                          accessToken: FFAppState().accessToken,
-                          name: _model.nameTextController.text,
-                          description: _model.descriptionTextController.text,
-                          code: _model.codeTextController.text,
-                          branchId: _model.dropDownBranchIdValue,
-                          programsIdJson:
-                              _model.programIds.map((e) => e.toMap()).toList(),
-                        );
-                        shouldSetState = true;
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Tạo bộ phận thành công!',
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
-                            ),
-                            duration: const Duration(milliseconds: 4000),
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).secondary,
-                          ),
-                        );
-
-                        context.pushNamed(
-                          'DepartmentList',
-                          extra: <String, dynamic>{
-                            kTransitionInfoKey: const TransitionInfo(
-                              hasTransition: true,
-                              transitionType: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                            ),
-                          },
-                        );
+                        await _model.postDepartment(context);
+                        setState(() {});
                       } else {
-                        if (shouldSetState) setState(() {});
                         return;
                       }
                     } else {
@@ -638,11 +599,8 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                           backgroundColor: FlutterFlowTheme.of(context).error,
                         ),
                       );
-                      if (shouldSetState) setState(() {});
                       return;
                     }
-
-                    if (shouldSetState) setState(() {});
                   },
                   text: 'Lưu',
                   options: FFButtonOptions(

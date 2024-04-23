@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -40,21 +41,28 @@ class _TestsDropdownWidgetState extends State<TestsDropdownWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultTestList = await TestGroup.testListCall.call(
-        filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffLogin,
-          r'''$.organization_id''',
-        ).toString().toString()}\"}}]}',
-        accessToken: FFAppState().accessToken,
-      );
-      if ((_model.apiResultTestList?.succeeded ?? true)) {
-        setState(() {
-          _model.dataListTest = TestListDataStruct.maybeFromMap(
-                  (_model.apiResultTestList?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<TestListStruct>();
-        });
+      _model.tokenReloadTestsDropdown =
+          await action_blocks.tokenReload(context);
+      if (_model.tokenReloadTestsDropdown!) {
+        _model.apiResultTestList = await TestGroup.testListCall.call(
+          filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.organization_id''',
+          ).toString().toString()}\"}}]}',
+          accessToken: FFAppState().accessToken,
+        );
+        if ((_model.apiResultTestList?.succeeded ?? true)) {
+          setState(() {
+            _model.dataListTest = TestListDataStruct.maybeFromMap(
+                    (_model.apiResultTestList?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<TestListStruct>();
+          });
+        }
+      } else {
+        setState(() {});
+        return;
       }
     });
   }

@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/procedure_step_detail/procedure_step_detail_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -37,116 +38,124 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultStepData =
-          await ProcedureTemplateGroup.workflowsOneCall.call(
-        accessToken: FFAppState().accessToken,
-        id: widget.workflowsId,
-      );
-      if ((_model.apiResultStepData?.succeeded ?? true)) {
-        setState(() {
-          _model.stepsList = functions
-              .sortArrayStepList((getJsonField(
-                (_model.apiResultStepData?.jsonBody ?? ''),
-                r'''$.data.steps''',
-                true,
-              )!
-                      .toList()
-                      .map<WorkflowsStepCreateStruct?>(
-                          WorkflowsStepCreateStruct.maybeFromMap)
-                      .toList() as Iterable<WorkflowsStepCreateStruct?>)
-                  .withoutNulls
-                  .toList())
-              .toList()
-              .cast<WorkflowsStepCreateStruct>();
-          _model.data = WorkflowsStepCreateStruct(
-            id: getJsonField(
-              (_model.apiResultStepData?.jsonBody ?? ''),
-              r'''$.data.id''',
-            ).toString().toString(),
-            status: getJsonField(
-              (_model.apiResultStepData?.jsonBody ?? ''),
-              r'''$.data.status''',
-            ).toString().toString(),
-            name: getJsonField(
-              (_model.apiResultStepData?.jsonBody ?? ''),
-              r'''$.data.name''',
-            ).toString().toString(),
-            description: getJsonField(
-              (_model.apiResultStepData?.jsonBody ?? ''),
-              r'''$.data.description''',
-            ).toString().toString(),
-            remind: getJsonField(
-              (_model.apiResultStepData?.jsonBody ?? ''),
-              r'''$.data.remind''',
-            ),
-            remindInSecond: getJsonField(
-              (_model.apiResultStepData?.jsonBody ?? ''),
-              r'''$.data.remind_in_second''',
-            ),
-            remind2: getJsonField(
-              (_model.apiResultStepData?.jsonBody ?? ''),
-              r'''$.data.remind_2''',
-            ),
-            cron: getJsonField(
-              (_model.apiResultStepData?.jsonBody ?? ''),
-              r'''$.data.cron''',
-            ).toString().toString(),
-            departments: (getJsonField(
-              (_model.apiResultStepData?.jsonBody ?? ''),
-              r'''$.data.departments''',
-              true,
-            )
-                    ?.toList()
-                    .map<DepartmentListStruct?>(
-                        DepartmentListStruct.maybeFromMap)
-                    .toList() as Iterable<DepartmentListStruct?>)
-                .withoutNulls,
-          );
-        });
-        if ((getJsonField(
-              (_model.apiResultStepData?.jsonBody ?? ''),
-              r'''$.data.departments''',
-            )
-                    .toList()
-                    .map<DepartmentListStruct?>(
-                        DepartmentListStruct.maybeFromMap)
-                    .toList() as Iterable<DepartmentListStruct?>)
-                .withoutNulls.isNotEmpty) {
-          setState(() {});
-        } else {
+      setState(() {});
+      _model.tokenReloadProcedureDetail =
+          await action_blocks.tokenReload(context);
+      if (_model.tokenReloadProcedureDetail!) {
+        _model.apiResultStepData =
+            await ProcedureTemplateGroup.workflowsOneCall.call(
+          accessToken: FFAppState().accessToken,
+          id: widget.workflowsId,
+        );
+        if ((_model.apiResultStepData?.succeeded ?? true)) {
           setState(() {
-            _model.updateDataStruct(
-              (e) => e
-                ..staffs = (getJsonField(
+            _model.stepsList = functions
+                .sortArrayStepList((getJsonField(
                   (_model.apiResultStepData?.jsonBody ?? ''),
-                  r'''$.data.staffs''',
+                  r'''$.data.steps''',
                   true,
                 )!
                         .toList()
-                        .map<StaffsStepStruct?>(StaffsStepStruct.maybeFromMap)
-                        .toList() as Iterable<StaffsStepStruct?>)
+                        .map<WorkflowsStepCreateStruct?>(
+                            WorkflowsStepCreateStruct.maybeFromMap)
+                        .toList() as Iterable<WorkflowsStepCreateStruct?>)
                     .withoutNulls
-                    .toList(),
+                    .toList())
+                .toList()
+                .cast<WorkflowsStepCreateStruct>();
+            _model.data = WorkflowsStepCreateStruct(
+              id: getJsonField(
+                (_model.apiResultStepData?.jsonBody ?? ''),
+                r'''$.data.id''',
+              ).toString().toString(),
+              status: getJsonField(
+                (_model.apiResultStepData?.jsonBody ?? ''),
+                r'''$.data.status''',
+              ).toString().toString(),
+              name: getJsonField(
+                (_model.apiResultStepData?.jsonBody ?? ''),
+                r'''$.data.name''',
+              ).toString().toString(),
+              description: getJsonField(
+                (_model.apiResultStepData?.jsonBody ?? ''),
+                r'''$.data.description''',
+              ).toString().toString(),
+              remind: getJsonField(
+                (_model.apiResultStepData?.jsonBody ?? ''),
+                r'''$.data.remind''',
+              ),
+              remindInSecond: getJsonField(
+                (_model.apiResultStepData?.jsonBody ?? ''),
+                r'''$.data.remind_in_second''',
+              ),
+              remind2: getJsonField(
+                (_model.apiResultStepData?.jsonBody ?? ''),
+                r'''$.data.remind_2''',
+              ),
+              cron: getJsonField(
+                (_model.apiResultStepData?.jsonBody ?? ''),
+                r'''$.data.cron''',
+              ).toString().toString(),
+              departments: (getJsonField(
+                (_model.apiResultStepData?.jsonBody ?? ''),
+                r'''$.data.departments''',
+                true,
+              )
+                      ?.toList()
+                      .map<DepartmentListStruct?>(
+                          DepartmentListStruct.maybeFromMap)
+                      .toList() as Iterable<DepartmentListStruct?>)
+                  .withoutNulls,
             );
           });
-        }
+          if ((getJsonField(
+                (_model.apiResultStepData?.jsonBody ?? ''),
+                r'''$.data.departments''',
+              )
+                      .toList()
+                      .map<DepartmentListStruct?>(
+                          DepartmentListStruct.maybeFromMap)
+                      .toList() as Iterable<DepartmentListStruct?>)
+                  .withoutNulls.isNotEmpty) {
+            setState(() {});
+          } else {
+            setState(() {
+              _model.updateDataStruct(
+                (e) => e
+                  ..staffs = (getJsonField(
+                    (_model.apiResultStepData?.jsonBody ?? ''),
+                    r'''$.data.staffs''',
+                    true,
+                  )!
+                          .toList()
+                          .map<StaffsStepStruct?>(StaffsStepStruct.maybeFromMap)
+                          .toList() as Iterable<StaffsStepStruct?>)
+                      .withoutNulls
+                      .toList(),
+              );
+            });
+          }
 
-        setState(() {
-          _model.idLoad = true;
-        });
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Lỗi tải dữ liệu!',
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
+          setState(() {
+            _model.idLoad = true;
+          });
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Lỗi tải dữ liệu!',
+                style: TextStyle(
+                  color: FlutterFlowTheme.of(context).primaryText,
+                ),
               ),
+              duration: const Duration(milliseconds: 4000),
+              backgroundColor: FlutterFlowTheme.of(context).error,
             ),
-            duration: const Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
-        );
+          );
+          return;
+        }
+      } else {
+        setState(() {});
         return;
       }
     });

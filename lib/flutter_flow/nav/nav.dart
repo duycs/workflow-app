@@ -346,6 +346,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'percentCorect',
               ParamType.int,
             ),
+            goodScore: params.getParam(
+              'goodScore',
+              ParamType.int,
+            ),
           ),
         ),
         FFRoute(
@@ -470,11 +474,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'BranchList',
           path: '/branchList',
           builder: (context, params) => const BranchListWidget(),
-        ),
-        FFRoute(
-          name: 'DoTestCopy',
-          path: '/doTestCopy',
-          builder: (context, params) => const DoTestCopyWidget(),
         ),
         FFRoute(
           name: 'StaffDetail',

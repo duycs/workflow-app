@@ -1197,16 +1197,19 @@ class _TestListWidgetState extends State<TestListWidget> {
                                                                           -1.0,
                                                                           0.0),
                                                                   child: Text(
-                                                                    listItemTestItem
-                                                                        .status,
+                                                                    listItemTestItem.status ==
+                                                                            'published'
+                                                                        ? 'Hoạt động'
+                                                                        : 'Không hoạt động',
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodySmall
                                                                         .override(
                                                                           fontFamily:
                                                                               'Readex Pro',
-                                                                          color:
-                                                                              const Color(0xFF00A907),
+                                                                          color: listItemTestItem.status == 'published'
+                                                                              ? const Color(0xFF00A907)
+                                                                              : FlutterFlowTheme.of(context).tertiary,
                                                                           letterSpacing:
                                                                               0.0,
                                                                           fontWeight:

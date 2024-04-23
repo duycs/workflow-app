@@ -1,6 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'branch_list_widget.dart' show BranchListWidget;
@@ -50,56 +49,27 @@ class BranchListModel extends FlutterFlowModel<BranchListWidget> {
 
   /// Action blocks.
   Future getLinkBranch(BuildContext context) async {
+    bool? reloadTokenBranchList;
     ApiCallResponse? apiResultListBranch;
-    bool? apiResuftRefreshTokenBranchList;
 
-    apiResultListBranch = await BranchGroup.branchListCall.call(
-      accessToken: FFAppState().accessToken,
-      filter:
-          '{\"_and\":[{}${(filter != '') && (filter != ' ') ? ',{\"name\":{\"_icontains\":\"$filter\"}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-        FFAppState().staffLogin,
-        r'''$.organization_id''',
-      ).toString().toString()}\"}}}'}]}',
-    );
-    if ((apiResultListBranch.succeeded ?? true)) {
-      listBranch = BranchListDataStruct.maybeFromMap(
-              (apiResultListBranch.jsonBody ?? ''))!
-          .data
-          .toList()
-          .cast<BranchListStruct>();
-    } else {
-      apiResuftRefreshTokenBranchList = await action_blocks.checkRefreshToken(
-        context,
-        jsonErrors: (apiResultListBranch.jsonBody ?? ''),
+    reloadTokenBranchList = await action_blocks.tokenReload(context);
+    if (reloadTokenBranchList!) {
+      apiResultListBranch = await BranchGroup.branchListCall.call(
+        accessToken: FFAppState().accessToken,
+        filter:
+            '{\"_and\":[{}${(filter != '') && (filter != ' ') ? ',{\"name\":{\"_icontains\":\"$filter\"}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+          FFAppState().staffLogin,
+          r'''$.organization_id''',
+        ).toString().toString()}\"}}}'}]}',
       );
-      if (!apiResuftRefreshTokenBranchList!) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              FFAppConstants.ErrorLoadData,
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: const Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Chỉnh sửa không thành công.Vui lonhf thử lại!',
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: const Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).secondary,
-          ),
-        );
+      if ((apiResultListBranch.succeeded ?? true)) {
+        listBranch = BranchListDataStruct.maybeFromMap(
+                (apiResultListBranch.jsonBody ?? ''))!
+            .data
+            .toList()
+            .cast<BranchListStruct>();
       }
-
+    } else {
       return;
     }
   }

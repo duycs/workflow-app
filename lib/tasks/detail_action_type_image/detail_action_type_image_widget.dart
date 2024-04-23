@@ -265,7 +265,8 @@ class _DetailActionTypeImageWidgetState
                 ),
               ),
             ),
-          if (widget.image?.status == 'done')
+          if ((widget.image?.status == 'done') &&
+              (widget.image!.operations.first.operationsId.files.isNotEmpty))
             InkWell(
               splashColor: Colors.transparent,
               focusColor: Colors.transparent,

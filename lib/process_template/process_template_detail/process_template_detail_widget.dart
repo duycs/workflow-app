@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/procedure_step_detail/procedure_step_detail_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -40,37 +41,45 @@ class _ProcessTemplateDetailWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       setState(() {});
-      _model.apiResultm7u = await ProcedureTemplateGroup.workflowsOneCall.call(
-        accessToken: FFAppState().accessToken,
-        id: widget.id,
-      );
-      if ((_model.apiResultm7u?.succeeded ?? true)) {
-        setState(() {
-          _model.data = WorkflowsStepCreateStruct(
-            name: getJsonField(
-              (_model.apiResultm7u?.jsonBody ?? ''),
-              r'''$.data.name''',
-            ).toString().toString(),
-          );
-          _model.stepList = functions
-              .sortArrayStepList((getJsonField(
+      _model.tokenReloadProcessTemplateDetail =
+          await action_blocks.tokenReload(context);
+      if (_model.tokenReloadProcessTemplateDetail!) {
+        _model.apiResultm7u =
+            await ProcedureTemplateGroup.workflowsOneCall.call(
+          accessToken: FFAppState().accessToken,
+          id: widget.id,
+        );
+        if ((_model.apiResultm7u?.succeeded ?? true)) {
+          setState(() {
+            _model.data = WorkflowsStepCreateStruct(
+              name: getJsonField(
                 (_model.apiResultm7u?.jsonBody ?? ''),
-                r'''$.data.steps''',
-                true,
-              )!
-                      .toList()
-                      .map<WorkflowsStepCreateStruct?>(
-                          WorkflowsStepCreateStruct.maybeFromMap)
-                      .toList() as Iterable<WorkflowsStepCreateStruct?>)
-                  .withoutNulls
-                  .toList())
-              .toList()
-              .cast<WorkflowsStepCreateStruct>();
+                r'''$.data.name''',
+              ).toString().toString(),
+            );
+            _model.stepList = functions
+                .sortArrayStepList((getJsonField(
+                  (_model.apiResultm7u?.jsonBody ?? ''),
+                  r'''$.data.steps''',
+                  true,
+                )!
+                        .toList()
+                        .map<WorkflowsStepCreateStruct?>(
+                            WorkflowsStepCreateStruct.maybeFromMap)
+                        .toList() as Iterable<WorkflowsStepCreateStruct?>)
+                    .withoutNulls
+                    .toList())
+                .toList()
+                .cast<WorkflowsStepCreateStruct>();
+          });
+        }
+        setState(() {
+          _model.isLoad = true;
         });
+      } else {
+        setState(() {});
+        return;
       }
-      setState(() {
-        _model.isLoad = true;
-      });
     });
   }
 

@@ -22,6 +22,7 @@ class DoTestDetailWidget extends StatefulWidget {
     this.testTime,
     this.testDescription,
     this.percentCorect,
+    required this.goodScore,
   });
 
   final String? testId;
@@ -29,6 +30,7 @@ class DoTestDetailWidget extends StatefulWidget {
   final int? testTime;
   final String? testDescription;
   final int? percentCorect;
+  final int? goodScore;
 
   @override
   State<DoTestDetailWidget> createState() => _DoTestDetailWidgetState();
@@ -171,18 +173,120 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 4.0, 0.0, 0.0),
-                          child: Text(
-                            '${widget.testName}',
-                            style: FlutterFlowTheme.of(context)
-                                .headlineMedium
-                                .override(
-                                  fontFamily: 'Outfit',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 4.0, 0.0, 0.0),
+                              child: Text(
+                                '${widget.testName}',
+                                style: FlutterFlowTheme.of(context)
+                                    .headlineMedium
+                                    .override(
+                                      fontFamily: 'Outfit',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ),
+                            if ((widget.percentCorect != null) &&
+                                (widget.goodScore != null))
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  if ((widget.percentCorect ==
+                                          widget.goodScore) ||
+                                      (widget.percentCorect! >
+                                          widget.goodScore!))
+                                    Align(
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 16.0, 0.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(100.0),
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              width: 2.0,
+                                            ),
+                                          ),
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    6.0, 4.0, 6.0, 4.0),
+                                            child: Text(
+                                              'Đạt',
+                                              textAlign: TextAlign.center,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyLarge
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondary,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  if (widget.percentCorect! < widget.goodScore!)
+                                    Align(
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 16.0, 0.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(100.0),
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
+                                              width: 2.0,
+                                            ),
+                                          ),
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    6.0, 4.0, 6.0, 4.0),
+                                            child: Text(
+                                              'Trượt',
+                                              textAlign: TextAlign.center,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyLarge
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .error,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                          ],
                         ),
                         Align(
                           alignment: const AlignmentDirectional(-1.0, 0.0),
@@ -330,7 +434,7 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                             ),
                                             child: Padding(
                                               padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(8.0, 0.0, 0.0, 0.0),
+                                                  .fromSTEB(8.0, 0.0, 8.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -354,6 +458,53 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                               launchURL(url!),
                                                     ),
                                                   ),
+                                                  if (questionListItem.answers
+                                                          .where((e) =>
+                                                              e.answersId
+                                                                  .correct ==
+                                                              1)
+                                                          .toList()
+                                                          .length ==
+                                                      questionListItem
+                                                          .questionId.answers
+                                                          .where((e) =>
+                                                              e.answersId
+                                                                  .correct ==
+                                                              1)
+                                                          .toList()
+                                                          .length)
+                                                    Icon(
+                                                      Icons
+                                                          .check_circle_outlined,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .success,
+                                                      size: 24.0,
+                                                    ),
+                                                  if (questionListItem.answers
+                                                          .where((e) =>
+                                                              e.answersId
+                                                                  .correct ==
+                                                              1)
+                                                          .toList()
+                                                          .length !=
+                                                      questionListItem
+                                                          .questionId.answers
+                                                          .where((e) =>
+                                                              e.answersId
+                                                                  .correct ==
+                                                              1)
+                                                          .toList()
+                                                          .length)
+                                                    Icon(
+                                                      Icons.close,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                      size: 24.0,
+                                                    ),
                                                 ],
                                               ),
                                             ),
@@ -439,43 +590,84 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                   'Key6so_${questionListIndex}_of_${questionList.length}'),
                                               listAnswerText: questionListItem
                                                   .answerContent,
+                                              questionAnswer: questionListItem
+                                                  .questionId
+                                                  .answers
+                                                  .first
+                                                  .answersId
+                                                  .content,
+                                              corect: questionListItem.correct,
                                             ),
-                                          if (questionListItem.answerType ==
-                                              'number')
-                                            Container(
-                                              width: double.infinity,
-                                              constraints: const BoxConstraints(
-                                                minHeight: 40.0,
-                                              ),
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10.0),
-                                                border: Border.all(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
-                                                  width: 1.0,
+                                          Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              if (questionListItem.answerType ==
+                                                  'number')
+                                                Container(
+                                                  width: double.infinity,
+                                                  constraints: const BoxConstraints(
+                                                    minHeight: 40.0,
+                                                  ),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                    border: Border.all(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                      width: 1.0,
+                                                    ),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 8.0,
+                                                                8.0, 8.0),
+                                                    child: Text(
+                                                      questionListItem
+                                                          .answerContent,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
-                                              child: Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        8.0, 8.0, 8.0, 8.0),
-                                                child: Text(
-                                                  questionListItem
-                                                      .answerContent,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                              if ((questionListItem.correct ==
+                                                      0) &&
+                                                  (questionListItem
+                                                          .answerType ==
+                                                      'number'))
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          12.0, 0.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'Đáp án đúng: ${questionListItem.questionId.answers.isNotEmpty ? questionListItem.questionId.answers.first.answersId.content : ' '}',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .error,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
                                                 ),
-                                              ),
-                                            ),
-                                        ],
+                                            ].divide(const SizedBox(height: 8.0)),
+                                          ),
+                                        ].divide(const SizedBox(height: 8.0)),
                                       ),
                                     ),
                                   );

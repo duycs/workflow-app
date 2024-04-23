@@ -1,6 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'report_image_widget.dart' show ReportImageWidget;
 import 'package:flutter/material.dart';
 
@@ -44,22 +45,28 @@ class ReportImageModel extends FlutterFlowModel<ReportImageWidget> {
 
   /// Action blocks.
   Future getReportImages(BuildContext context) async {
+    bool? reloadTokenTasks;
     ApiCallResponse? apiResultGetReportImage;
 
-    apiResultGetReportImage = await TaskGroup.getListTaskCall.call(
-      accessToken: FFAppState().accessToken,
-      filter:
-          '{\"_and\":[{},{\"status\":{\"_eq\":\"done\"}}, {\"action_type\":{\"_eq\":\"image\"}}${(nameProcedure != '') && (nameProcedure != ' ') ? ',{\"workflow_id\":{\"name\":{\"_icontains\":\"$nameProcedure\"}}}' : ' '}${(nameSearch != '') && (nameSearch != ' ') ? ',{\"staffs\":{\"staffs_id\":{\"user_id\":{\"first_name\":{\"_icontains\":\"$nameSearch\"}}}}}' : ' '}${(startDate != '') && (endDate != ' ') ? ',{\"operations\":{\"operations_id\":{\"date_updated\":{\"_gte\":\"$startDate\"}}}}' : ' '}${(endDate != '') && (endDate != ' ') ? ',{\"operations\":{\"operations_id\":{\"date_updated\":{\"_lte\":\"$endDate\"}}}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-        FFAppState().staffLogin,
-        r'''$.organization_id''',
-      ).toString().toString()}\"}}}'}]}',
-    );
-    if ((apiResultGetReportImage.succeeded ?? true)) {
-      reportImage = TaskListDataStruct.maybeFromMap(
-              (apiResultGetReportImage.jsonBody ?? ''))!
-          .data
-          .toList()
-          .cast<TaskListStruct>();
+    reloadTokenTasks = await action_blocks.tokenReload(context);
+    if (reloadTokenTasks!) {
+      apiResultGetReportImage = await TaskGroup.getListTaskCall.call(
+        accessToken: FFAppState().accessToken,
+        filter:
+            '{\"_and\":[{},{\"status\":{\"_eq\":\"done\"}}, {\"action_type\":{\"_eq\":\"image\"}}${(nameProcedure != '') && (nameProcedure != ' ') ? ',{\"workflow_id\":{\"name\":{\"_icontains\":\"$nameProcedure\"}}}' : ' '}${(nameSearch != '') && (nameSearch != ' ') ? ',{\"staffs\":{\"staffs_id\":{\"user_id\":{\"first_name\":{\"_icontains\":\"$nameSearch\"}}}}}' : ' '}${(startDate != '') && (endDate != ' ') ? ',{\"operations\":{\"operations_id\":{\"date_updated\":{\"_gte\":\"$startDate\"}}}}' : ' '}${(endDate != '') && (endDate != ' ') ? ',{\"operations\":{\"operations_id\":{\"date_updated\":{\"_lte\":\"$endDate\"}}}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+          FFAppState().staffLogin,
+          r'''$.organization_id''',
+        ).toString().toString()}\"}}}'}]}',
+      );
+      if ((apiResultGetReportImage.succeeded ?? true)) {
+        reportImage = TaskListDataStruct.maybeFromMap(
+                (apiResultGetReportImage.jsonBody ?? ''))!
+            .data
+            .toList()
+            .cast<TaskListStruct>();
+      }
+    } else {
+      return;
     }
   }
 }

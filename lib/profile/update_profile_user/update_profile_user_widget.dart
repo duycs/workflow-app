@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import 'dart:ui';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -1003,135 +1004,314 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                         0.0, 0.0, 0.0, 20.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        if ((_model.uploadedLocalFile.bytes
-                                                    ?.isNotEmpty ??
-                                                false)) {
-                                          _model.apiResultUploadImage =
-                                              await UploadFileGroup
-                                                  .uploadFileCall
-                                                  .call(
-                                            accessToken:
-                                                FFAppState().accessToken,
-                                            file: _model.uploadedLocalFile,
-                                          );
-                                          if ((_model.apiResultUploadImage
-                                                  ?.succeeded ??
-                                              true)) {
-                                            setState(() {
-                                              _model.image = getJsonField(
-                                                (_model.apiResultUploadImage
-                                                        ?.jsonBody ??
-                                                    ''),
-                                                r'''$.data.id''',
-                                              ).toString();
-                                            });
-                                            _model.apiResultUpdateStaff =
-                                                await StaffGroup.updateStaffCall
-                                                    .call(
-                                              accessToken:
-                                                  FFAppState().accessToken,
-                                              id: FFAppState().user.id,
-                                              requestDataJson: <String,
-                                                  dynamic>{
-                                                'first_name': _model
-                                                    .nameTextController.text,
-                                                'avatar': (_model
-                                                                .uploadedLocalFile
-                                                                .bytes
-                                                                ?.isNotEmpty ??
-                                                            false)
-                                                    ? _model.uploadedLocalFile
-                                                    : getJsonField(
-                                                        widget.data,
-                                                        r'''$.user_id.avatar''',
-                                                      ),
-                                              },
-                                            );
-                                            if ((_model.apiResultUpdateStaff
-                                                    ?.succeeded ??
-                                                true)) {
-                                              _model.apiResultUpdateUserStaff =
-                                                  await StaffGroup
-                                                      .updateUserStaffCall
+                                        var shouldSetState = false;
+                                        var confirmDialogResponse =
+                                            await showDialog<bool>(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: const Text('Xác nhận'),
+                                                      content: const Text(
+                                                          'Bạn chắc chắn muốn lưu?'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext,
+                                                                  false),
+                                                          child: const Text('Hủy'),
+                                                        ),
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext,
+                                                                  true),
+                                                          child:
+                                                              const Text('Xác nhận'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                ) ??
+                                                false;
+                                        if (confirmDialogResponse) {
+                                          if ((_model.uploadedLocalFile.bytes
+                                                      ?.isNotEmpty ??
+                                                  false)) {
+                                            _model.reloadTokenUpdateStaff =
+                                                await action_blocks
+                                                    .tokenReload(context);
+                                            shouldSetState = true;
+                                            if (_model
+                                                .reloadTokenUpdateStaff!) {
+                                              _model.apiResultUploadImage =
+                                                  await UploadFileGroup
+                                                      .uploadFileCall
                                                       .call(
                                                 accessToken:
                                                     FFAppState().accessToken,
-                                                staffId: getJsonField(
-                                                  FFAppState().staffLogin,
-                                                  r'''$.id''',
-                                                ).toString(),
-                                                requestDataJson: <String,
-                                                    String>{
-                                                  'cccd': _model
-                                                      .addressTextController
-                                                      .text,
-                                                  'gender': _model
-                                                      .textController4.text,
-                                                  'phone': _model
-                                                      .hotlineTextController
-                                                      .text,
-                                                  'dob': _model.datePicked !=
-                                                          null
-                                                      ? dateTimeFormat(
-                                                          'yyyy-MM-dd',
-                                                          functions.stringToDateTime(
-                                                              _model.datePicked
-                                                                  ?.toString()))
-                                                      : dateTimeFormat(
-                                                          'yyyy-MM-dd',
-                                                          functions
-                                                              .stringToDateTime(
-                                                                  getJsonField(
-                                                            widget.data,
-                                                            r'''$.dob''',
-                                                          ).toString())),
-                                                },
+                                                file: _model.uploadedLocalFile,
                                               );
-                                              if ((_model
-                                                      .apiResultUpdateUserStaff
+                                              shouldSetState = true;
+                                              if ((_model.apiResultUploadImage
                                                       ?.succeeded ??
                                                   true)) {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      'Cập nhật thành công!',
-                                                      style: TextStyle(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                      ),
-                                                    ),
-                                                    duration: const Duration(
-                                                        milliseconds: 4000),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondary,
-                                                  ),
-                                                );
-
-                                                context.pushNamed(
-                                                  'Profile',
-                                                  extra: <String, dynamic>{
-                                                    kTransitionInfoKey:
-                                                        const TransitionInfo(
-                                                      hasTransition: true,
-                                                      transitionType:
-                                                          PageTransitionType
-                                                              .fade,
-                                                      duration: Duration(
-                                                          milliseconds: 0),
-                                                    ),
+                                                setState(() {
+                                                  _model.image = getJsonField(
+                                                    (_model.apiResultUploadImage
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$.data.id''',
+                                                  ).toString();
+                                                });
+                                                _model.apiResultUpdateStaff =
+                                                    await StaffGroup
+                                                        .updateStaffCall
+                                                        .call(
+                                                  accessToken:
+                                                      FFAppState().accessToken,
+                                                  id: FFAppState().user.id,
+                                                  requestDataJson: <String,
+                                                      dynamic>{
+                                                    'first_name': _model
+                                                        .nameTextController
+                                                        .text,
+                                                    'avatar': (_model
+                                                                    .uploadedLocalFile
+                                                                    .bytes
+                                                                    ?.isNotEmpty ??
+                                                                false)
+                                                        ? _model.image
+                                                        : getJsonField(
+                                                            widget.data,
+                                                            r'''$.user_id.avatar''',
+                                                          ),
                                                   },
                                                 );
+                                                shouldSetState = true;
+                                                if ((_model.apiResultUpdateStaff
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  _model.apiResultUpdateUserStaff =
+                                                      await StaffGroup
+                                                          .updateUserStaffCall
+                                                          .call(
+                                                    accessToken: FFAppState()
+                                                        .accessToken,
+                                                    staffId: getJsonField(
+                                                      FFAppState().staffLogin,
+                                                      r'''$.id''',
+                                                    ).toString(),
+                                                    requestDataJson: <String,
+                                                        String>{
+                                                      'cccd': _model
+                                                          .addressTextController
+                                                          .text,
+                                                      'gender': (_model
+                                                                      .textController4
+                                                                      .text ==
+                                                                  'Nam') ||
+                                                              (_model.textController4
+                                                                      .text ==
+                                                                  'nam')
+                                                          ? 'male'
+                                                          : 'female',
+                                                      'phone': _model
+                                                          .hotlineTextController
+                                                          .text,
+                                                      'dob': _model.datePicked !=
+                                                              null
+                                                          ? dateTimeFormat(
+                                                              'yyyy-MM-dd',
+                                                              functions.stringToDateTime(
+                                                                  _model
+                                                                      .datePicked
+                                                                      ?.toString()))
+                                                          : dateTimeFormat(
+                                                              'yyyy-MM-dd',
+                                                              functions
+                                                                  .stringToDateTime(
+                                                                      getJsonField(
+                                                                widget.data,
+                                                                r'''$.dob''',
+                                                              ).toString())),
+                                                    },
+                                                  );
+                                                  shouldSetState = true;
+                                                  if ((_model
+                                                          .apiResultUpdateUserStaff
+                                                          ?.succeeded ??
+                                                      true)) {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(
+                                                          'Cập nhật thành công!',
+                                                          style: TextStyle(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                          ),
+                                                        ),
+                                                        duration: const Duration(
+                                                            milliseconds: 4000),
+                                                        backgroundColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondary,
+                                                      ),
+                                                    );
+
+                                                    context.pushNamed(
+                                                      'Profile',
+                                                      extra: <String, dynamic>{
+                                                        kTransitionInfoKey:
+                                                            const TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                          duration: Duration(
+                                                              milliseconds: 0),
+                                                        ),
+                                                      },
+                                                    );
+                                                  }
+                                                }
                                               }
+                                            } else {
+                                              setState(() {});
+                                              if (shouldSetState) {
+                                                setState(() {});
+                                              }
+                                              return;
+                                            }
+                                          } else {
+                                            _model.reloadTokenUpdateStaff1 =
+                                                await action_blocks
+                                                    .tokenReload(context);
+                                            shouldSetState = true;
+                                            if (_model
+                                                .reloadTokenUpdateStaff1!) {
+                                              _model.apiResultUpdateStaff1 =
+                                                  await StaffGroup
+                                                      .updateStaffCall
+                                                      .call(
+                                                accessToken:
+                                                    FFAppState().accessToken,
+                                                id: FFAppState().user.id,
+                                                requestDataJson: <String,
+                                                    dynamic>{
+                                                  'first_name': _model
+                                                      .nameTextController.text,
+                                                },
+                                              );
+                                              shouldSetState = true;
+                                              if ((_model.apiResultUpdateStaff1
+                                                      ?.succeeded ??
+                                                  true)) {
+                                                _model.apiResultUpdateUserStaff1 =
+                                                    await StaffGroup
+                                                        .updateUserStaffCall
+                                                        .call(
+                                                  accessToken:
+                                                      FFAppState().accessToken,
+                                                  staffId: getJsonField(
+                                                    FFAppState().staffLogin,
+                                                    r'''$.id''',
+                                                  ).toString(),
+                                                  requestDataJson: <String,
+                                                      String>{
+                                                    'cccd': _model
+                                                        .addressTextController
+                                                        .text,
+                                                    'gender': (_model
+                                                                    .textController4
+                                                                    .text ==
+                                                                'Nam') ||
+                                                            (_model.textController4
+                                                                    .text ==
+                                                                'nam')
+                                                        ? 'male'
+                                                        : 'female',
+                                                    'phone': _model
+                                                        .hotlineTextController
+                                                        .text,
+                                                    'dob': _model.datePicked !=
+                                                            null
+                                                        ? dateTimeFormat(
+                                                            'yyyy-MM-dd',
+                                                            functions.stringToDateTime(
+                                                                _model
+                                                                    .datePicked
+                                                                    ?.toString()))
+                                                        : dateTimeFormat(
+                                                            'yyyy-MM-dd',
+                                                            functions
+                                                                .stringToDateTime(
+                                                                    getJsonField(
+                                                              widget.data,
+                                                              r'''$.dob''',
+                                                            ).toString())),
+                                                  },
+                                                );
+                                                shouldSetState = true;
+                                                if ((_model
+                                                        .apiResultUpdateUserStaff1
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'Cập nhật thành công!',
+                                                        style: TextStyle(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                        ),
+                                                      ),
+                                                      duration: const Duration(
+                                                          milliseconds: 4000),
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondary,
+                                                    ),
+                                                  );
+
+                                                  context.pushNamed(
+                                                    'Profile',
+                                                    extra: <String, dynamic>{
+                                                      kTransitionInfoKey:
+                                                          const TransitionInfo(
+                                                        hasTransition: true,
+                                                        transitionType:
+                                                            PageTransitionType
+                                                                .fade,
+                                                        duration: Duration(
+                                                            milliseconds: 0),
+                                                      ),
+                                                    },
+                                                  );
+                                                }
+                                              }
+                                            } else {
+                                              setState(() {});
+                                              if (shouldSetState) {
+                                                setState(() {});
+                                              }
+                                              return;
                                             }
                                           }
+                                        } else {
+                                          if (shouldSetState) setState(() {});
+                                          return;
                                         }
 
-                                        setState(() {});
+                                        if (shouldSetState) setState(() {});
                                       },
                                       text: 'Cập nhật',
                                       options: FFButtonOptions(

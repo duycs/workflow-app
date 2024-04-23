@@ -84,6 +84,8 @@ class FilterLessonModel extends FlutterFlowModel<FilterLessonWidget> {
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await programs(context);
       }
     }
   }

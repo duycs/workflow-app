@@ -39,40 +39,28 @@ class _QuestionTestWidgetState extends State<QuestionTestWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultQuestionList = await QuestionGroup.questionListCall.call(
-        accessToken: FFAppState().accessToken,
-        filter: '{\"_and\":[{},{\"organization_id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffLogin,
-          r'''$.organization_id''',
-        ).toString().toString()}\"}}]}',
-      );
-      if ((_model.apiResultQuestionList?.succeeded ?? true)) {
-        setState(() {
-          _model.questionList = QuestionObjectListDataStruct.maybeFromMap(
-                  (_model.apiResultQuestionList?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<QuestionObjectStruct>();
-        });
-      } else {
-        _model.checkRefreshTokenBlock23 = await action_blocks.checkRefreshToken(
-          context,
-          jsonErrors: (_model.apiResultQuestionList?.jsonBody ?? ''),
+      _model.reloadTokenQuestion = await action_blocks.tokenReload(context);
+      if (_model.reloadTokenQuestion!) {
+        _model.apiResultQuestionList =
+            await QuestionGroup.questionListCall.call(
+          accessToken: FFAppState().accessToken,
+          filter: '{\"_and\":[{},{\"organization_id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.organization_id''',
+          ).toString().toString()}\"}}]}',
         );
-        if (!_model.checkRefreshTokenBlock23!) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                FFAppConstants.ErrorLoadData,
-                style: TextStyle(
-                  color: FlutterFlowTheme.of(context).primaryText,
-                ),
-              ),
-              duration: const Duration(milliseconds: 4000),
-              backgroundColor: FlutterFlowTheme.of(context).error,
-            ),
-          );
+        if ((_model.apiResultQuestionList?.succeeded ?? true)) {
+          setState(() {
+            _model.questionList = QuestionObjectListDataStruct.maybeFromMap(
+                    (_model.apiResultQuestionList?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<QuestionObjectStruct>();
+          });
         }
+      } else {
+        setState(() {});
+        return;
       }
     });
   }

@@ -59,6 +59,8 @@ class ProcessTemplateListModel
 
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Action Block - tokenReload] action in ProcessTemplateList widget.
+  bool? tokenReloadProcessTemplateList;
   // Stores action output result for [Backend Call - API (workflowsList)] action in ProcessTemplateList widget.
   ApiCallResponse? apiResultListData;
   // Stores action output result for [Backend Call - API (GetCategoriesList)] action in ProcessTemplateList widget.

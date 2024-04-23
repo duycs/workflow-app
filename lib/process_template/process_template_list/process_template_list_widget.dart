@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/process_template/domains_search/domains_search_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -35,93 +36,101 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultListData =
-          await ProcedureTemplateGroup.workflowsListCall.call(
-        accessToken: FFAppState().accessToken,
-        filter: '{\"_and\":[{\"template\":{\"_eq\":\"1\"}}]}',
-      );
-      if ((_model.apiResultListData?.succeeded ?? true)) {
+      setState(() {});
+      _model.tokenReloadProcessTemplateList =
+          await action_blocks.tokenReload(context);
+      if (_model.tokenReloadProcessTemplateList!) {
+        _model.apiResultListData =
+            await ProcedureTemplateGroup.workflowsListCall.call(
+          accessToken: FFAppState().accessToken,
+          filter: '{\"_and\":[{\"template\":{\"_eq\":\"1\"}}]}',
+        );
+        if ((_model.apiResultListData?.succeeded ?? true)) {
+          setState(() {
+            _model.dataList = WorkflowsListDataStruct.maybeFromMap(
+                    (_model.apiResultListData?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<WorkflowsStruct>();
+          });
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Lỗi tải dữ liệu!',
+                style: TextStyle(
+                  color: FlutterFlowTheme.of(context).primaryText,
+                ),
+              ),
+              duration: const Duration(milliseconds: 4000),
+              backgroundColor: FlutterFlowTheme.of(context).error,
+            ),
+          );
+        }
+
+        _model.apiResultx0q = await CategoriesGroup.getCategoriesListCall.call(
+          accessToken: FFAppState().accessToken,
+        );
+        if ((_model.apiResultx0q?.succeeded ?? true)) {
+          setState(() {
+            _model.addToCategoriesList(CategoriesListStruct(
+              id: '1',
+              name: 'Tất cả',
+            ));
+          });
+          while (_model.loop <
+              CategoriesListDataStruct.maybeFromMap(
+                      (_model.apiResultx0q?.jsonBody ?? ''))!
+                  .data
+                  .length) {
+            setState(() {
+              _model.addToCategoriesList(CategoriesListDataStruct.maybeFromMap(
+                      (_model.apiResultx0q?.jsonBody ?? ''))!
+                  .data[_model.loop]);
+            });
+            setState(() {
+              _model.loop = _model.loop + 1;
+            });
+          }
+          setState(() {
+            _model.loop = 0;
+          });
+        }
+        _model.apiResultlld = await DomainGroup.getDomainsListCall.call(
+          accessToken: FFAppState().accessToken,
+        );
+        if ((_model.apiResultlld?.succeeded ?? true)) {
+          setState(() {
+            _model.addToDomainList(DomainsListStruct(
+              id: '1',
+              name: 'Tất cả',
+            ));
+          });
+          while (_model.loop <
+              DomainsListDataStruct.maybeFromMap(
+                      (_model.apiResultlld?.jsonBody ?? ''))!
+                  .data
+                  .length) {
+            setState(() {
+              _model.addToDomainList(DomainsListDataStruct.maybeFromMap(
+                      (_model.apiResultlld?.jsonBody ?? ''))!
+                  .data[_model.loop]);
+            });
+            setState(() {
+              _model.loop = _model.loop + 1;
+            });
+          }
+          setState(() {
+            _model.loop = 0;
+          });
+        }
         setState(() {
-          _model.dataList = WorkflowsListDataStruct.maybeFromMap(
-                  (_model.apiResultListData?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<WorkflowsStruct>();
+          _model.isLoad = true;
         });
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Lỗi tải dữ liệu!',
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: const Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
-        );
+        setState(() {});
+        return;
       }
-
-      _model.apiResultx0q = await CategoriesGroup.getCategoriesListCall.call(
-        accessToken: FFAppState().accessToken,
-      );
-      if ((_model.apiResultx0q?.succeeded ?? true)) {
-        setState(() {
-          _model.addToCategoriesList(CategoriesListStruct(
-            id: '1',
-            name: 'Tất cả',
-          ));
-        });
-        while (_model.loop <
-            CategoriesListDataStruct.maybeFromMap(
-                    (_model.apiResultx0q?.jsonBody ?? ''))!
-                .data
-                .length) {
-          setState(() {
-            _model.addToCategoriesList(CategoriesListDataStruct.maybeFromMap(
-                    (_model.apiResultx0q?.jsonBody ?? ''))!
-                .data[_model.loop]);
-          });
-          setState(() {
-            _model.loop = _model.loop + 1;
-          });
-        }
-        setState(() {
-          _model.loop = 0;
-        });
-      }
-      _model.apiResultlld = await DomainGroup.getDomainsListCall.call(
-        accessToken: FFAppState().accessToken,
-      );
-      if ((_model.apiResultlld?.succeeded ?? true)) {
-        setState(() {
-          _model.addToDomainList(DomainsListStruct(
-            id: '1',
-            name: 'Tất cả',
-          ));
-        });
-        while (_model.loop <
-            DomainsListDataStruct.maybeFromMap(
-                    (_model.apiResultlld?.jsonBody ?? ''))!
-                .data
-                .length) {
-          setState(() {
-            _model.addToDomainList(DomainsListDataStruct.maybeFromMap(
-                    (_model.apiResultlld?.jsonBody ?? ''))!
-                .data[_model.loop]);
-          });
-          setState(() {
-            _model.loop = _model.loop + 1;
-          });
-        }
-        setState(() {
-          _model.loop = 0;
-        });
-      }
-      setState(() {
-        _model.isLoad = true;
-      });
     });
 
     _model.textNameTextController ??= TextEditingController();

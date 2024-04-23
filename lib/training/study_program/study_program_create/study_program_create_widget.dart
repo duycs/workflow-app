@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -462,57 +463,69 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                         const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 24.0),
                     child: FFButtonWidget(
                       onPressed: () async {
+                        var shouldSetState = false;
                         if (_model.formKey.currentState == null ||
                             !_model.formKey.currentState!.validate()) {
                           return;
                         }
-                        setState(() {
-                          _model.updateRequestDataStruct(
-                            (e) => e..status = 'published',
+                        _model.tokenReloadStudyProgramCreate =
+                            await action_blocks.tokenReload(context);
+                        shouldSetState = true;
+                        if (_model.tokenReloadStudyProgramCreate!) {
+                          setState(() {
+                            _model.updateRequestDataStruct(
+                              (e) => e..status = 'published',
+                            );
+                          });
+                          _model.apiResulti4j = await StudyProgramGroup
+                              .studyProgramCreateCall
+                              .call(
+                            requestDataJson: _model.requestData?.toMap(),
+                            accessToken: FFAppState().accessToken,
                           );
-                        });
-                        _model.apiResulti4j =
-                            await StudyProgramGroup.studyProgramCreateCall.call(
-                          requestDataJson: _model.requestData?.toMap(),
-                          accessToken: FFAppState().accessToken,
-                        );
-                        if ((_model.apiResulti4j?.succeeded ?? true)) {
-                          Navigator.pop(context);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'Tạo mới thành công!',
-                                style: TextStyle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                          shouldSetState = true;
+                          if ((_model.apiResulti4j?.succeeded ?? true)) {
+                            Navigator.pop(context);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Tạo mới thành công!',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
                                 ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
                               ),
-                              duration: const Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).secondary,
-                            ),
-                          );
+                            );
+                          } else {
+                            Navigator.pop(context);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Tạo mới thất bại!',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).error,
+                              ),
+                            );
+                          }
+
+                          await widget.callBackList?.call();
                         } else {
-                          Navigator.pop(context);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'Tạo mới thất bại!',
-                                style: TextStyle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                              ),
-                              duration: const Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).error,
-                            ),
-                          );
+                          setState(() {});
+                          if (shouldSetState) setState(() {});
+                          return;
                         }
 
-                        await widget.callBackList?.call();
-
-                        setState(() {});
+                        if (shouldSetState) setState(() {});
                       },
                       text: 'Lưu',
                       options: FFButtonOptions(

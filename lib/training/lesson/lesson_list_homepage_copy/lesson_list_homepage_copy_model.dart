@@ -146,6 +146,8 @@ class LessonListHomepageCopyModel
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await getListLesson(context);
       }
     }
   }
@@ -183,6 +185,8 @@ class LessonListHomepageCopyModel
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await getListLessonRow(context);
       }
     }
   }
@@ -194,7 +198,7 @@ class LessonListHomepageCopyModel
     apiResultListRow2 = await LessonGroup.employeeLessonListCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}},{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}},{\"date_created\":{\"_lte\":\"${dateTimeFormat('yyyy-MM-dd', getCurrentTimestamp)}\"}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '}]}',
+          '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}},{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}},{\"date_created\":{\"_lte\":\"${dateTimeFormat('yyyy-MM-dd', getCurrentTimestamp)}T23:59:03.955000Z\"}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '}]}',
     );
     if ((apiResultListRow2.succeeded ?? true)) {
       listLessonRow2 = EmployeeLessonListDataStruct.maybeFromMap(
@@ -220,6 +224,8 @@ class LessonListHomepageCopyModel
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await getListLessonRow2(context);
       }
     }
   }
@@ -231,7 +237,7 @@ class LessonListHomepageCopyModel
     apiResultListRow3 = await LessonGroup.employeeLessonListCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '},{\"_and\":[{\"lession_id\":{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}}},{\"lession_id\":{\"date_created\":{\"_lte\":\"${dateTimeFormat('yyyy-MM-dd', getCurrentTimestamp)}\"}}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]}]}',
+          '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '},{\"_and\":[{\"lession_id\":{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}}},{\"lession_id\":{\"date_created\":{\"_lte\":\"${dateTimeFormat('yyyy-MM-dd', getCurrentTimestamp)}T23:59:03.955000Z\"}}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]}]}',
     );
     if ((apiResultListRow3.succeeded ?? true)) {
       listLessonRow3 = EmployeeLessonListDataStruct.maybeFromMap(
@@ -257,6 +263,8 @@ class LessonListHomepageCopyModel
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await getListLessonRow3(context);
       }
     }
   }

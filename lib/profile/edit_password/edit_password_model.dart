@@ -52,6 +52,8 @@ class EditPasswordModel extends FlutterFlowModel<EditPasswordWidget> {
     return null;
   }
 
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? reloadTokenUpdatePassword;
   // Stores action output result for [Backend Call - API (UpdatePassword)] action in Button widget.
   ApiCallResponse? apiResultUpdate;
 

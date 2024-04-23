@@ -28,6 +28,8 @@ class ProcessTemplateDetailModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in ProcessTemplateDetail widget.
+  bool? tokenReloadProcessTemplateDetail;
   // Stores action output result for [Backend Call - API (workflowsOne)] action in ProcessTemplateDetail widget.
   ApiCallResponse? apiResultm7u;
   // Stores action output result for [Backend Call - API (workflowCopy)] action in Button widget.

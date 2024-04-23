@@ -78,6 +78,8 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await getComments(context);
       }
     }
   }
@@ -113,6 +115,8 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await getDetail(context);
       }
     }
   }
@@ -154,6 +158,8 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await getHeart(context);
       }
     }
   }

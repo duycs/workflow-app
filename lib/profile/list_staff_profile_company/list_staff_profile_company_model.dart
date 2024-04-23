@@ -1,6 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'list_staff_profile_company_widget.dart'
     show ListStaffProfileCompanyWidget;
 import 'package:flutter/material.dart';
@@ -40,18 +41,25 @@ class ListStaffProfileCompanyModel
 
   /// Action blocks.
   Future getLinkStaff(BuildContext context) async {
+    bool? reloadTokenGetStaffList;
     ApiCallResponse? apiResultGetListStaff;
 
-    apiResultGetListStaff = await StaffGroup.getStaffListCall.call(
-      accessToken: FFAppState().accessToken,
-      filter: filter,
-    );
-    if ((apiResultGetListStaff.succeeded ?? true)) {
-      listStaff = StaffListDataStruct.maybeFromMap(
-              (apiResultGetListStaff.jsonBody ?? ''))!
-          .data
-          .toList()
-          .cast<StaffListStruct>();
+    reloadTokenGetStaffList = await action_blocks.tokenReload(context);
+    if (reloadTokenGetStaffList!) {
+      apiResultGetListStaff = await StaffGroup.getStaffListCall.call(
+        accessToken: FFAppState().accessToken,
+        filter: filter,
+      );
+      if ((apiResultGetListStaff.succeeded ?? true)) {
+        listStaff = StaffListDataStruct.maybeFromMap(
+                (apiResultGetListStaff.jsonBody ?? ''))!
+            .data
+            .toList()
+            .cast<StaffListStruct>();
+      }
+    } else {
+      FFAppState().update(() {});
+      return;
     }
   }
 }

@@ -41,7 +41,7 @@ class TaskListWaitModel extends FlutterFlowModel<TaskListWaitWidget> {
 
   String? typeFilter = '';
 
-  bool isShow = false;
+  String? isShow;
 
   ///  State fields for stateful widgets in this page.
 

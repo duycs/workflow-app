@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -891,82 +892,96 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                         Expanded(
                           child: FFButtonWidget(
                             onPressed: () async {
-                              setState(() {
-                                _model.updateRequestDataStruct(
-                                  (e) => e
-                                    ..status = 'published'
-                                    ..autoCorrect = 1,
-                                );
-                              });
-                              if (_model.formKey.currentState == null ||
-                                  !_model.formKey.currentState!.validate()) {
-                                return;
-                              }
-                              if (_model.requestData!.answers
-                                      .where((e) => e.correct == 1)
-                                      .toList().isNotEmpty) {
-                                _model.apiResultCreate =
-                                    await QuestionGroup.questionCreateCall.call(
-                                  requestDataJson: _model.requestData?.toMap(),
-                                  accessToken: FFAppState().accessToken,
-                                );
-                                if ((_model.apiResultCreate?.succeeded ??
-                                    true)) {
-                                  Navigator.pop(context);
-                                  await widget.callBackList?.call();
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'Tạo mới thành công!',
-                                        style: TextStyle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                        ),
-                                      ),
-                                      duration: const Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .secondary,
-                                    ),
+                              var shouldSetState = false;
+                              setState(() {});
+                              _model.tokenReloadQuestionCreate =
+                                  await action_blocks.tokenReload(context);
+                              shouldSetState = true;
+                              if (_model.tokenReloadQuestionCreate!) {
+                                setState(() {
+                                  _model.updateRequestDataStruct(
+                                    (e) => e
+                                      ..status = 'published'
+                                      ..autoCorrect = 1,
                                   );
-                                } else {
-                                  Navigator.pop(context);
-                                  await widget.callBackList?.call();
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'Tạo mới thất bại!',
-                                        style: TextStyle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
+                                });
+                                if (_model.formKey.currentState == null ||
+                                    !_model.formKey.currentState!.validate()) {
+                                  return;
+                                }
+                                if (_model.requestData!.answers
+                                        .where((e) => e.correct == 1)
+                                        .toList().isNotEmpty) {
+                                  _model.apiResultCreate = await QuestionGroup
+                                      .questionCreateCall
+                                      .call(
+                                    requestDataJson:
+                                        _model.requestData?.toMap(),
+                                    accessToken: FFAppState().accessToken,
+                                  );
+                                  shouldSetState = true;
+                                  if ((_model.apiResultCreate?.succeeded ??
+                                      true)) {
+                                    Navigator.pop(context);
+                                    await widget.callBackList?.call();
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Tạo mới thành công!',
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
                                         ),
+                                        duration: const Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondary,
                                       ),
-                                      duration: const Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context).error,
-                                    ),
+                                    );
+                                  } else {
+                                    Navigator.pop(context);
+                                    await widget.callBackList?.call();
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Tạo mới thất bại!',
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
+                                        ),
+                                        duration: const Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context).error,
+                                      ),
+                                    );
+                                  }
+                                } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text(
+                                            'Vui lòng nhập 1 đáp án đúng!'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
                                   );
                                 }
                               } else {
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title:
-                                          const Text('Vui lòng nhập 1 đáp án đúng!'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
+                                setState(() {});
+                                if (shouldSetState) setState(() {});
+                                return;
                               }
 
-                              setState(() {});
+                              if (shouldSetState) setState(() {});
                             },
                             text: 'Lưu',
                             options: FFButtonOptions(

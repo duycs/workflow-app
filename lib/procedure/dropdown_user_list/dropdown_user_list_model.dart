@@ -43,6 +43,8 @@ class DropdownUserListModel extends FlutterFlowModel<DropdownUserListWidget> {
 
   ///  State fields for stateful widgets in this component.
 
+  // Stores action output result for [Action Block - tokenReload] action in DropdownUserList widget.
+  bool? tokenReloadDropdownUserList;
   // Stores action output result for [Backend Call - API (GetStaffList)] action in DropdownUserList widget.
   ApiCallResponse? apiResultList;
   // Stores action output result for [Backend Call - API (GetStaffList)] action in DropdownUserList widget.

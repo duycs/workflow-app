@@ -54,10 +54,10 @@ class LessonDetailHomePageModel
   ApiCallResponse? apiResultDeleteHeart;
   // Stores action output result for [Backend Call - API (postHeart)] action in Icon widget.
   ApiCallResponse? apiResultoan;
-  // State field(s) for comment widget.
-  FocusNode? commentFocusNode;
-  TextEditingController? commentTextController;
-  String? Function(BuildContext, String?)? commentTextControllerValidator;
+  // State field(s) for text widget.
+  FocusNode? textFocusNode;
+  TextEditingController? textTextController;
+  String? Function(BuildContext, String?)? textTextControllerValidator;
   // State field(s) for comments widget.
   FocusNode? commentsFocusNode;
   TextEditingController? commentsTextController;
@@ -73,8 +73,8 @@ class LessonDetailHomePageModel
   @override
   void dispose() {
     unfocusNode.dispose();
-    commentFocusNode?.dispose();
-    commentTextController?.dispose();
+    textFocusNode?.dispose();
+    textTextController?.dispose();
 
     commentsFocusNode?.dispose();
     commentsTextController?.dispose();
@@ -112,6 +112,8 @@ class LessonDetailHomePageModel
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await postComment(context);
       }
     }
   }
@@ -157,6 +159,8 @@ class LessonDetailHomePageModel
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await getComments(context);
       }
     }
   }
@@ -222,6 +226,8 @@ class LessonDetailHomePageModel
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await getHeart(context);
       }
     }
   }

@@ -24,10 +24,10 @@ class QuestionListModel extends FlutterFlowModel<QuestionListWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in QuestionList widget.
+  bool? tokenReloadQuestionList;
   // Stores action output result for [Backend Call - API (questionList)] action in QuestionList widget.
   ApiCallResponse? apiResultQuestionList;
-  // Stores action output result for [Action Block - CheckRefreshToken] action in QuestionList widget.
-  bool? checkRefreshTokenBlockd;
   // State field(s) for questionName widget.
   FocusNode? questionNameFocusNode;
   TextEditingController? questionNameTextController;
@@ -45,43 +45,40 @@ class QuestionListModel extends FlutterFlowModel<QuestionListWidget> {
 
   /// Action blocks.
   Future getListQuestion(BuildContext context) async {
-    ApiCallResponse? apiResultQuestionList;
-    bool? checkRefreshTokenBlock14;
+    bool? tokenReloadGetlistQuestion;
+    ApiCallResponse? apiResultQuestionListSearch;
 
-    apiResultQuestionList = await QuestionGroup.questionListCall.call(
-      accessToken: FFAppState().accessToken,
-      filter: questionNameTextController.text != ''
-          ? '{\"_and\":[{\"content\":{\"_icontains\":\"${questionNameTextController.text}\"}}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
-              FFAppState().staffLogin,
-              r'''$.organization_id''',
-            ).toString().toString()}\"}}'}]}'
-          : '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
-              FFAppState().staffLogin,
-              r'''$.organization_id''',
-            ).toString().toString()}\"}}]}',
-    );
-    if ((apiResultQuestionList.succeeded ?? true)) {
-      dataList = (getJsonField(
-        (apiResultQuestionList.jsonBody ?? ''),
-        r'''$.data''',
-        true,
-      )!
-              .toList()
-              .map<QuestionObjectStruct?>(QuestionObjectStruct.maybeFromMap)
-              .toList() as Iterable<QuestionObjectStruct?>)
-          .withoutNulls
-          .toList()
-          .cast<QuestionObjectStruct>();
-    } else {
-      checkRefreshTokenBlock14 = await action_blocks.checkRefreshToken(
-        context,
-        jsonErrors: (apiResultQuestionList.jsonBody ?? ''),
+    tokenReloadGetlistQuestion = await action_blocks.tokenReload(context);
+    if (tokenReloadGetlistQuestion!) {
+      apiResultQuestionListSearch = await QuestionGroup.questionListCall.call(
+        accessToken: FFAppState().accessToken,
+        filter: questionNameTextController.text != ''
+            ? '{\"_and\":[{\"content\":{\"_icontains\":\"${questionNameTextController.text}\"}}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
+                FFAppState().staffLogin,
+                r'''$.organization_id''',
+              ).toString().toString()}\"}}'}]}'
+            : '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
+                FFAppState().staffLogin,
+                r'''$.organization_id''',
+              ).toString().toString()}\"}}]}',
       );
-      if (!checkRefreshTokenBlock14!) {
+      if ((apiResultQuestionListSearch.succeeded ?? true)) {
+        dataList = (getJsonField(
+          (apiResultQuestionList?.jsonBody ?? ''),
+          r'''$.data''',
+          true,
+        )!
+                .toList()
+                .map<QuestionObjectStruct?>(QuestionObjectStruct.maybeFromMap)
+                .toList() as Iterable<QuestionObjectStruct?>)
+            .withoutNulls
+            .toList()
+            .cast<QuestionObjectStruct>();
+      } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              FFAppConstants.ErrorLoadData,
+              'Lỗi tải dữ liệu!',
               style: TextStyle(
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
@@ -91,6 +88,8 @@ class QuestionListModel extends FlutterFlowModel<QuestionListWidget> {
           ),
         );
       }
+    } else {
+      return;
     }
   }
 }

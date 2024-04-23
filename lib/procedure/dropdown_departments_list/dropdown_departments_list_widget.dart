@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/check_box_toggle/check_box_toggle_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -45,162 +46,169 @@ class _DropdownDepartmentsListWidgetState
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       setState(() {});
-      if (widget.dataPar!.isNotEmpty) {
-        _model.apiResultDatade =
-            await DepartmentGroup.getDepartmentListCall.call(
-          accessToken: FFAppState().accessToken,
-          filter: '{\"_and\":[${() {
-            if (FFAppState().user.role ==
-                '82073000-1ba2-43a4-a55c-459d17c23b68') {
-              return '{\"organization_id\":{\"_eq\":\"';
-            } else if (FFAppState().user.role ==
-                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-              return '{\"branch_id\":{\"id\":{\"_eq\":\"';
-            } else {
-              return ' ';
-            }
-          }()}${() {
-            if (FFAppState().user.role ==
-                '82073000-1ba2-43a4-a55c-459d17c23b68') {
-              return getJsonField(
-                FFAppState().staffLogin,
-                r'''$.organization_id''',
-              ).toString().toString();
-            } else if (FFAppState().user.role ==
-                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-              return getJsonField(
-                FFAppState().staffBranch,
-                r'''$.id''',
-              ).toString().toString();
-            } else {
-              return ' ';
-            }
-          }()}${() {
-            if (FFAppState().user.role ==
-                '82073000-1ba2-43a4-a55c-459d17c23b68') {
-              return '\"}}';
-            } else if (FFAppState().user.role ==
-                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-              return '\"}}}';
-            } else {
-              return ' ';
-            }
-          }()},{\"status\":{\"_eq\":\"published\"}}]}',
-        );
-        if ((_model.apiResultDatade?.succeeded ?? true)) {
+      _model.tokenReloadDropdownDepartmentsList =
+          await action_blocks.tokenReload(context);
+      if (_model.tokenReloadDropdownDepartmentsList!) {
+        if (widget.dataPar!.isNotEmpty) {
+          _model.apiResultDatade =
+              await DepartmentGroup.getDepartmentListCall.call(
+            accessToken: FFAppState().accessToken,
+            filter: '{\"_and\":[${() {
+              if (FFAppState().user.role ==
+                  '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                return '{\"organization_id\":{\"_eq\":\"';
+              } else if (FFAppState().user.role ==
+                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                return '{\"branch_id\":{\"id\":{\"_eq\":\"';
+              } else {
+                return ' ';
+              }
+            }()}${() {
+              if (FFAppState().user.role ==
+                  '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                return getJsonField(
+                  FFAppState().staffLogin,
+                  r'''$.organization_id''',
+                ).toString().toString();
+              } else if (FFAppState().user.role ==
+                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                return getJsonField(
+                  FFAppState().staffBranch,
+                  r'''$.id''',
+                ).toString().toString();
+              } else {
+                return ' ';
+              }
+            }()}${() {
+              if (FFAppState().user.role ==
+                  '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                return '\"}}';
+              } else if (FFAppState().user.role ==
+                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                return '\"}}}';
+              } else {
+                return ' ';
+              }
+            }()},{\"status\":{\"_eq\":\"published\"}}]}',
+          );
+          if ((_model.apiResultDatade?.succeeded ?? true)) {
+            setState(() {
+              _model.data = DepartmentListDataStruct.maybeFromMap(
+                      (_model.apiResultDatade?.jsonBody ?? ''))!
+                  .data
+                  .toList()
+                  .cast<DepartmentListStruct>();
+            });
+          }
+          while (_model.loop < _model.data.length) {
+            setState(() {
+              _model.updateDataAtIndex(
+                _model.loop,
+                (e) => e..checkDep = false,
+              );
+            });
+            setState(() {
+              _model.loop = _model.loop + 1;
+            });
+          }
           setState(() {
-            _model.data = DepartmentListDataStruct.maybeFromMap(
-                    (_model.apiResultDatade?.jsonBody ?? ''))!
-                .data
-                .toList()
-                .cast<DepartmentListStruct>();
+            _model.loop = 0;
           });
-        }
-        while (_model.loop < _model.data.length) {
-          setState(() {
-            _model.updateDataAtIndex(
-              _model.loop,
-              (e) => e..checkDep = false,
-            );
-          });
-          setState(() {
-            _model.loop = _model.loop + 1;
-          });
-        }
-        setState(() {
-          _model.loop = 0;
-        });
-        while (_model.loop < _model.data.length) {
-          while (_model.loop2 < widget.dataPar!.length) {
-            if ((widget.dataPar?[_model.loop2])?.departmentsId.id ==
-                _model.data[_model.loop].id) {
+          while (_model.loop < _model.data.length) {
+            while (_model.loop2 < widget.dataPar!.length) {
+              if ((widget.dataPar?[_model.loop2])?.departmentsId.id ==
+                  _model.data[_model.loop].id) {
+                setState(() {
+                  _model.updateDataAtIndex(
+                    _model.loop,
+                    (e) => e..checkDep = true,
+                  );
+                });
+              }
               setState(() {
-                _model.updateDataAtIndex(
-                  _model.loop,
-                  (e) => e..checkDep = true,
-                );
+                _model.loop2 = _model.loop2 + 1;
               });
             }
             setState(() {
-              _model.loop2 = _model.loop2 + 1;
+              _model.loop2 = 0;
+            });
+            setState(() {
+              _model.loop = _model.loop + 1;
             });
           }
           setState(() {
             _model.loop2 = 0;
+            _model.loop = 0;
           });
+        } else {
+          _model.apiResulfilter =
+              await DepartmentGroup.getDepartmentListCall.call(
+            accessToken: FFAppState().accessToken,
+            filter: '{\"_and\":[${() {
+              if (FFAppState().user.role ==
+                  '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                return '{\"organization_id\":{\"_eq\":\"';
+              } else if (FFAppState().user.role ==
+                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                return '{\"branch_id\":{\"id\":{\"_eq\":\"';
+              } else {
+                return ' ';
+              }
+            }()}${() {
+              if (FFAppState().user.role ==
+                  '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                return getJsonField(
+                  FFAppState().staffLogin,
+                  r'''$.organization_id''',
+                ).toString().toString();
+              } else if (FFAppState().user.role ==
+                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                return getJsonField(
+                  FFAppState().staffBranch,
+                  r'''$.id''',
+                ).toString().toString();
+              } else {
+                return ' ';
+              }
+            }()}${() {
+              if (FFAppState().user.role ==
+                  '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                return '\"}}';
+              } else if (FFAppState().user.role ==
+                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                return '\"}}}';
+              } else {
+                return ' ';
+              }
+            }()},{\"status\":{\"_eq\":\"published\"}}]}',
+          );
+          if ((_model.apiResulfilter?.succeeded ?? true)) {
+            setState(() {
+              _model.data = DepartmentListDataStruct.maybeFromMap(
+                      (_model.apiResulfilter?.jsonBody ?? ''))!
+                  .data
+                  .toList()
+                  .cast<DepartmentListStruct>();
+            });
+          }
+          while (_model.loop < _model.data.length) {
+            setState(() {
+              _model.updateDataAtIndex(
+                _model.loop,
+                (e) => e..checkDep = false,
+              );
+            });
+            setState(() {
+              _model.loop = _model.loop + 1;
+            });
+          }
           setState(() {
-            _model.loop = _model.loop + 1;
+            _model.loop = 0;
           });
         }
-        setState(() {
-          _model.loop2 = 0;
-          _model.loop = 0;
-        });
       } else {
-        _model.apiResulfilter =
-            await DepartmentGroup.getDepartmentListCall.call(
-          accessToken: FFAppState().accessToken,
-          filter: '{\"_and\":[${() {
-            if (FFAppState().user.role ==
-                '82073000-1ba2-43a4-a55c-459d17c23b68') {
-              return '{\"organization_id\":{\"_eq\":\"';
-            } else if (FFAppState().user.role ==
-                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-              return '{\"branch_id\":{\"id\":{\"_eq\":\"';
-            } else {
-              return ' ';
-            }
-          }()}${() {
-            if (FFAppState().user.role ==
-                '82073000-1ba2-43a4-a55c-459d17c23b68') {
-              return getJsonField(
-                FFAppState().staffLogin,
-                r'''$.organization_id''',
-              ).toString().toString();
-            } else if (FFAppState().user.role ==
-                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-              return getJsonField(
-                FFAppState().staffBranch,
-                r'''$.id''',
-              ).toString().toString();
-            } else {
-              return ' ';
-            }
-          }()}${() {
-            if (FFAppState().user.role ==
-                '82073000-1ba2-43a4-a55c-459d17c23b68') {
-              return '\"}}';
-            } else if (FFAppState().user.role ==
-                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-              return '\"}}}';
-            } else {
-              return ' ';
-            }
-          }()},{\"status\":{\"_eq\":\"published\"}}]}',
-        );
-        if ((_model.apiResulfilter?.succeeded ?? true)) {
-          setState(() {
-            _model.data = DepartmentListDataStruct.maybeFromMap(
-                    (_model.apiResulfilter?.jsonBody ?? ''))!
-                .data
-                .toList()
-                .cast<DepartmentListStruct>();
-          });
-        }
-        while (_model.loop < _model.data.length) {
-          setState(() {
-            _model.updateDataAtIndex(
-              _model.loop,
-              (e) => e..checkDep = false,
-            );
-          });
-          setState(() {
-            _model.loop = _model.loop + 1;
-          });
-        }
-        setState(() {
-          _model.loop = 0;
-        });
+        setState(() {});
+        return;
       }
     });
 

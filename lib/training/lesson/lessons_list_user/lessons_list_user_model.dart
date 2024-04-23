@@ -83,6 +83,8 @@ class LessonsListUserModel extends FlutterFlowModel<LessonsListUserWidget> {
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await getLessons(context);
       }
     }
   }

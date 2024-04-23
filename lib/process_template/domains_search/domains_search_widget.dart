@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/check_box_toggle/check_box_toggle_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -42,64 +43,72 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultlld = await DomainGroup.getDomainsListCall.call(
-        accessToken: FFAppState().accessToken,
-      );
-      if ((_model.apiResultlld?.succeeded ?? true)) {
-        setState(() {
-          _model.domainList = DomainsListDataStruct.maybeFromMap(
-                  (_model.apiResultlld?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<DomainsListStruct>();
-        });
-        while (_model.loop < _model.domainList.length) {
+      setState(() {});
+      _model.tokenSearchDomainsSearch =
+          await action_blocks.tokenReload(context);
+      if (_model.tokenSearchDomainsSearch!) {
+        _model.apiResultlld = await DomainGroup.getDomainsListCall.call(
+          accessToken: FFAppState().accessToken,
+        );
+        if ((_model.apiResultlld?.succeeded ?? true)) {
           setState(() {
-            _model.updateDomainListAtIndex(
-              _model.loop,
-              (e) => e..check = false,
-            );
+            _model.domainList = DomainsListDataStruct.maybeFromMap(
+                    (_model.apiResultlld?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<DomainsListStruct>();
           });
+          while (_model.loop < _model.domainList.length) {
+            setState(() {
+              _model.updateDomainListAtIndex(
+                _model.loop,
+                (e) => e..check = false,
+              );
+            });
+            setState(() {
+              _model.loop = _model.loop + 1;
+            });
+          }
           setState(() {
-            _model.loop = _model.loop + 1;
+            _model.loop = 0;
           });
         }
-        setState(() {
-          _model.loop = 0;
-        });
-      }
-      setState(() {});
-      if (widget.search!.isNotEmpty) {
-        while (_model.loop < widget.search!.length) {
-          while (_model.loop2 < _model.domainList.length) {
-            if ((widget.search?[_model.loop]) ==
-                _model.domainList[_model.loop2].id) {
+        setState(() {});
+        if (widget.search!.isNotEmpty) {
+          while (_model.loop < widget.search!.length) {
+            while (_model.loop2 < _model.domainList.length) {
+              if ((widget.search?[_model.loop]) ==
+                  _model.domainList[_model.loop2].id) {
+                setState(() {
+                  _model.updateDomainListAtIndex(
+                    _model.loop2,
+                    (e) => e..check = true,
+                  );
+                });
+              }
               setState(() {
-                _model.updateDomainListAtIndex(
-                  _model.loop2,
-                  (e) => e..check = true,
-                );
+                _model.loop2 = _model.loop2 + 1;
               });
             }
             setState(() {
-              _model.loop2 = _model.loop2 + 1;
+              _model.loop2 = 0;
+            });
+            setState(() {
+              _model.loop = _model.loop + 1;
             });
           }
           setState(() {
             _model.loop2 = 0;
-          });
-          setState(() {
-            _model.loop = _model.loop + 1;
+            _model.loop = 0;
           });
         }
         setState(() {
-          _model.loop2 = 0;
-          _model.loop = 0;
+          _model.isLoad = true;
         });
+      } else {
+        setState(() {});
+        return;
       }
-      setState(() {
-        _model.isLoad = true;
-      });
     });
 
     _model.textNameTextController ??= TextEditingController();

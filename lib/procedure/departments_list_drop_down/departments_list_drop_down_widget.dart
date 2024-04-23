@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -42,54 +43,62 @@ class _DepartmentsListDropDownWidgetState
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultList = await DepartmentGroup.getDepartmentListCall.call(
-        accessToken: FFAppState().accessToken,
-        filter: '{\"_and\":[${() {
-          if (FFAppState().user.role ==
-              '82073000-1ba2-43a4-a55c-459d17c23b68') {
-            return '{\"organization_id\":{\"_eq\":\"';
-          } else if (FFAppState().user.role ==
-              'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-            return '{\"branch_id\":{\"id\":{\"_eq\":\"';
-          } else {
-            return ' ';
-          }
-        }()}${() {
-          if (FFAppState().user.role ==
-              '82073000-1ba2-43a4-a55c-459d17c23b68') {
-            return getJsonField(
-              FFAppState().staffLogin,
-              r'''$.organization_id''',
-            ).toString().toString();
-          } else if (FFAppState().user.role ==
-              'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-            return getJsonField(
-              FFAppState().staffBranch,
-              r'''$.id''',
-            ).toString().toString();
-          } else {
-            return ' ';
-          }
-        }()}${() {
-          if (FFAppState().user.role ==
-              '82073000-1ba2-43a4-a55c-459d17c23b68') {
-            return '\"}}';
-          } else if (FFAppState().user.role ==
-              'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-            return '\"}}}';
-          } else {
-            return ' ';
-          }
-        }()},{\"status\":{\"_eq\":\"published\"}}]}',
-      );
-      if ((_model.apiResultList?.succeeded ?? true)) {
-        setState(() {
-          _model.data = DepartmentListDataStruct.maybeFromMap(
-                  (_model.apiResultList?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<DepartmentListStruct>();
-        });
+      setState(() {});
+      _model.tokenReloadDepartmentsListDropDown =
+          await action_blocks.tokenReload(context);
+      if (_model.tokenReloadDepartmentsListDropDown!) {
+        _model.apiResultList = await DepartmentGroup.getDepartmentListCall.call(
+          accessToken: FFAppState().accessToken,
+          filter: '{\"_and\":[${() {
+            if (FFAppState().user.role ==
+                '82073000-1ba2-43a4-a55c-459d17c23b68') {
+              return '{\"organization_id\":{\"_eq\":\"';
+            } else if (FFAppState().user.role ==
+                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+              return '{\"branch_id\":{\"id\":{\"_eq\":\"';
+            } else {
+              return ' ';
+            }
+          }()}${() {
+            if (FFAppState().user.role ==
+                '82073000-1ba2-43a4-a55c-459d17c23b68') {
+              return getJsonField(
+                FFAppState().staffLogin,
+                r'''$.organization_id''',
+              ).toString().toString();
+            } else if (FFAppState().user.role ==
+                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+              return getJsonField(
+                FFAppState().staffBranch,
+                r'''$.id''',
+              ).toString().toString();
+            } else {
+              return ' ';
+            }
+          }()}${() {
+            if (FFAppState().user.role ==
+                '82073000-1ba2-43a4-a55c-459d17c23b68') {
+              return '\"}}';
+            } else if (FFAppState().user.role ==
+                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+              return '\"}}}';
+            } else {
+              return ' ';
+            }
+          }()},{\"status\":{\"_eq\":\"published\"}}]}',
+        );
+        if ((_model.apiResultList?.succeeded ?? true)) {
+          setState(() {
+            _model.data = DepartmentListDataStruct.maybeFromMap(
+                    (_model.apiResultList?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<DepartmentListStruct>();
+          });
+        }
+      } else {
+        setState(() {});
+        return;
       }
     });
   }

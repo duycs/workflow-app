@@ -33,6 +33,8 @@ class AddWorkflowMarketModel extends FlutterFlowModel<AddWorkflowMarketWidget> {
 
   ///  State fields for stateful widgets in this component.
 
+  // Stores action output result for [Action Block - tokenReload] action in AddWorkflowMarket widget.
+  bool? tokenReloadAddWorkflowMarket;
   // Stores action output result for [Backend Call - API (GetCategoriesList)] action in AddWorkflowMarket widget.
   ApiCallResponse? apiResultwkg;
   // Stores action output result for [Backend Call - API (GetDomainsList)] action in AddWorkflowMarket widget.

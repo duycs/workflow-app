@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -929,85 +930,98 @@ class _QuestionUpdateWidgetState extends State<QuestionUpdateWidget> {
                         Expanded(
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (_model.formKey.currentState == null ||
-                                  !_model.formKey.currentState!.validate()) {
-                                return;
-                              }
+                              var shouldSetState = false;
                               setState(() {});
-                              if (_model.dataList!.answers
-                                      .where((e) => e.correct == 1)
-                                      .toList().isNotEmpty) {
-                                _model.apiResultUpdate =
-                                    await QuestionGroup.questionUpdateCall.call(
-                                  accessToken: FFAppState().accessToken,
-                                  requestDataJson: _model.dataList?.toMap(),
-                                );
-                                if ((_model.apiResultUpdate?.succeeded ??
-                                    true)) {
-                                  Navigator.pop(context);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'Cập nhật thành công!',
-                                        style: TextStyle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
+                              _model.tokenReloadQuestionUpdate =
+                                  await action_blocks.tokenReload(context);
+                              shouldSetState = true;
+                              if (_model.tokenReloadQuestionUpdate!) {
+                                if (_model.formKey.currentState == null ||
+                                    !_model.formKey.currentState!.validate()) {
+                                  return;
+                                }
+                                setState(() {});
+                                if (_model.dataList!.answers
+                                        .where((e) => e.correct == 1)
+                                        .toList().isNotEmpty) {
+                                  _model.apiResultUpdate = await QuestionGroup
+                                      .questionUpdateCall
+                                      .call(
+                                    accessToken: FFAppState().accessToken,
+                                    requestDataJson: _model.dataList?.toMap(),
+                                  );
+                                  shouldSetState = true;
+                                  if ((_model.apiResultUpdate?.succeeded ??
+                                      true)) {
+                                    Navigator.pop(context);
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Cập nhật thành công!',
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
                                         ),
+                                        duration: const Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondary,
                                       ),
-                                      duration: const Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .secondary,
-                                    ),
+                                    );
+                                  } else {
+                                    Navigator.pop(context);
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Cập nhật thất bại!',
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
+                                        ),
+                                        duration: const Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context).error,
+                                      ),
+                                    );
+                                  }
+
+                                  context.pushNamed(
+                                    'QuestionList',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
                                   );
                                 } else {
-                                  Navigator.pop(context);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'Cập nhật thất bại!',
-                                        style: TextStyle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                        ),
-                                      ),
-                                      duration: const Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context).error,
-                                    ),
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text(
+                                            'Vui lòng nhập 1 đáp án đúng!'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
                                   );
                                 }
-
-                                context.pushNamed(
-                                  'QuestionList',
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                    ),
-                                  },
-                                );
                               } else {
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title:
-                                          const Text('Vui lòng nhập 1 đáp án đúng!'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
+                                setState(() {});
+                                if (shouldSetState) setState(() {});
+                                return;
                               }
 
-                              setState(() {});
+                              if (shouldSetState) setState(() {});
                             },
                             text: 'Lưu',
                             options: FFButtonOptions(

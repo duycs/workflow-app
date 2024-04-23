@@ -254,9 +254,18 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                                     TextStyle(),
                                                               ),
                                                               TextSpan(
-                                                                text: _model
-                                                                    .organizationDetail!
-                                                                    .hotline,
+                                                                text: (_model.organizationDetail?.hotline !=
+                                                                                null &&
+                                                                            _model.organizationDetail?.hotline !=
+                                                                                '') &&
+                                                                        (_model.organizationDetail?.hotline !=
+                                                                            'undefined') &&
+                                                                        (_model.organizationDetail?.hotline !=
+                                                                            'null')
+                                                                    ? _model
+                                                                        .organizationDetail!
+                                                                        .hotline
+                                                                    : 'Chưa có Hotline',
                                                                 style:
                                                                     const TextStyle(),
                                                               )
@@ -267,6 +276,9 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                                 .override(
                                                                   fontFamily:
                                                                       'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -479,124 +491,136 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                                       0.0,
                                                                 ),
                                                       ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        RatingBar.builder(
-                                                          onRatingUpdate: (newValue) =>
-                                                              setState(() =>
-                                                                  _model.ratingBarValue =
-                                                                      newValue),
-                                                          itemBuilder: (context,
-                                                                  index) =>
-                                                              Icon(
-                                                            Icons.star_rounded,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondary,
-                                                          ),
-                                                          direction:
-                                                              Axis.horizontal,
-                                                          initialRating: _model
-                                                                  .ratingBarValue ??=
-                                                              5.0,
-                                                          unratedColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .accent2,
-                                                          itemCount: 5,
-                                                          itemSize: 24.0,
-                                                          glowColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  6.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          RatingBar.builder(
+                                                            onRatingUpdate: (newValue) =>
+                                                                setState(() =>
+                                                                    _model.ratingBarValue =
+                                                                        newValue),
+                                                            itemBuilder:
+                                                                (context,
+                                                                        index) =>
+                                                                    Icon(
+                                                              Icons
+                                                                  .star_rounded,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
                                                                   .secondary,
-                                                        ),
-                                                        FFButtonWidget(
-                                                          onPressed: () async {
-                                                            context.pushNamed(
-                                                              'ListBranchProfile',
-                                                              extra: <String,
-                                                                  dynamic>{
-                                                                kTransitionInfoKey:
-                                                                    const TransitionInfo(
-                                                                  hasTransition:
-                                                                      true,
-                                                                  transitionType:
-                                                                      PageTransitionType
-                                                                          .fade,
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          0),
-                                                                ),
-                                                              },
-                                                            );
-                                                          },
-                                                          text: 'Xem thêm',
-                                                          options:
-                                                              FFButtonOptions(
-                                                            height: 40.0,
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        24.0,
-                                                                        0.0,
-                                                                        24.0,
-                                                                        0.0),
-                                                            iconPadding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      color: Colors
-                                                                          .white,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                            elevation: 3.0,
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Colors
-                                                                  .transparent,
-                                                              width: 2.0,
                                                             ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        12.0),
-                                                            hoverColor:
+                                                            direction:
+                                                                Axis.horizontal,
+                                                            initialRating: _model
+                                                                    .ratingBarValue ??=
+                                                                5.0,
+                                                            unratedColor:
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .accent1,
-                                                            hoverBorderSide:
-                                                                BorderSide(
+                                                                    .accent2,
+                                                            itemCount: 5,
+                                                            itemSize: 24.0,
+                                                            glowColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary,
+                                                          ),
+                                                          FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              context.pushNamed(
+                                                                'ListBranchProfile',
+                                                                extra: <String,
+                                                                    dynamic>{
+                                                                  kTransitionInfoKey:
+                                                                      const TransitionInfo(
+                                                                    hasTransition:
+                                                                        true,
+                                                                    transitionType:
+                                                                        PageTransitionType
+                                                                            .fade,
+                                                                    duration: Duration(
+                                                                        milliseconds:
+                                                                            0),
+                                                                  ),
+                                                                },
+                                                              );
+                                                            },
+                                                            text: 'Xem thêm',
+                                                            options:
+                                                                FFButtonOptions(
+                                                              height: 40.0,
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          24.0,
+                                                                          0.0,
+                                                                          24.0,
+                                                                          0.0),
+                                                              iconPadding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
                                                               color: FlutterFlowTheme
                                                                       .of(context)
                                                                   .primary,
-                                                              width: 2.0,
-                                                            ),
-                                                            hoverTextColor:
-                                                                FlutterFlowTheme.of(
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Readex Pro',
+                                                                        color: Colors
+                                                                            .white,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                              elevation: 3.0,
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          12.0),
+                                                              hoverColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .accent1,
+                                                              hoverBorderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primaryText,
+                                                                    .primary,
+                                                                width: 2.0,
+                                                              ),
+                                                              hoverTextColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
                                                     Divider(
                                                       height: 16.0,
@@ -911,9 +935,23 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                           ),
                                                     ),
                                                     Html(
-                                                      data: _model
-                                                          .organizationDetail!
-                                                          .description,
+                                                      data: (_model
+                                                                          .organizationDetail
+                                                                          ?.description !=
+                                                                      null &&
+                                                                  _model.organizationDetail
+                                                                          ?.description !=
+                                                                      '') &&
+                                                              (_model.organizationDetail
+                                                                      ?.description !=
+                                                                  'undefined') &&
+                                                              (_model.organizationDetail
+                                                                      ?.description !=
+                                                                  'null')
+                                                          ? _model
+                                                              .organizationDetail!
+                                                              .description
+                                                          : 'Chưa có thông tin giới thiệu',
                                                       onLinkTap:
                                                           (url, _, __, ___) =>
                                                               launchURL(url!),
@@ -938,8 +976,22 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                           ),
                                                     ),
                                                     Text(
-                                                      _model.organizationDetail!
-                                                          .address,
+                                                      (_model.organizationDetail?.address !=
+                                                                      null &&
+                                                                  _model
+                                                                          .organizationDetail
+                                                                          ?.address !=
+                                                                      '') &&
+                                                              (_model.organizationDetail
+                                                                      ?.address !=
+                                                                  'undefined') &&
+                                                              (_model.organizationDetail
+                                                                      ?.address !=
+                                                                  'null')
+                                                          ? _model
+                                                              .organizationDetail!
+                                                              .address
+                                                          : 'Chưa có địa chỉ',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium

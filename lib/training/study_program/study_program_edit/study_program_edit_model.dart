@@ -40,8 +40,12 @@ class StudyProgramEditModel extends FlutterFlowModel<StudyProgramEditWidget> {
   late LessionsDropdownModel lessionsDropdownModel;
   // Stores action output result for [Action Block - addList] action in LessionsDropdown widget.
   bool? updateLessionItem;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? tokenStudyProgramEdit;
   // Stores action output result for [Backend Call - API (StudyProgramLessionsUpdate)] action in Button widget.
   ApiCallResponse? apiResultuus;
+  // Stores action output result for [Backend Call - API (SynchronizedStaffLesson)] action in Button widget.
+  ApiCallResponse? apiResultSynchronizedStaffLesson;
 
   @override
   void initState(BuildContext context) {

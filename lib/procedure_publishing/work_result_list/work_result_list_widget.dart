@@ -417,7 +417,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                       padding:
                                                           const EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  0.0,
+                                                                  4.0,
                                                                   0.0,
                                                                   0.0,
                                                                   16.0),

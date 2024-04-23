@@ -69,7 +69,7 @@ Future clearSession(BuildContext context) async {
 Future<bool?> tokenReload(BuildContext context) async {
   ApiCallResponse? apiResultRefreshTokenCheck;
 
-  if (functions.isTokenExpired(FFAppState().dataTimeStartToken) == true) {
+  if (functions.isTokenExpired(FFAppState().dataTimeStartToken) == false) {
     return true;
   }
 
@@ -89,6 +89,11 @@ Future<bool?> tokenReload(BuildContext context) async {
             (apiResultRefreshTokenCheck.jsonBody ?? ''))!
         .data
         .expires;
+    FFAppState().dataTimeStartToken = DateTime.now().microsecondsSinceEpoch +
+        LoginResourceDataStruct.maybeFromMap(
+                (apiResultRefreshTokenCheck.jsonBody ?? ''))!
+            .data
+            .expires;
   } else {
     await action_blocks.clearSession(context);
 

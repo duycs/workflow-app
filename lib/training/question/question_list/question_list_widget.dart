@@ -35,37 +35,37 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultQuestionList = await QuestionGroup.questionListCall.call(
-        accessToken: FFAppState().accessToken,
-        filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffLogin,
-          r'''$.organization_id''',
-        ).toString().toString()}\"}}]}',
-      );
-      if ((_model.apiResultQuestionList?.succeeded ?? true)) {
-        setState(() {
-          _model.dataList = (getJsonField(
-            (_model.apiResultQuestionList?.jsonBody ?? ''),
-            r'''$.data''',
-            true,
-          )!
-                  .toList()
-                  .map<QuestionObjectStruct?>(QuestionObjectStruct.maybeFromMap)
-                  .toList() as Iterable<QuestionObjectStruct?>)
-              .withoutNulls
-              .toList()
-              .cast<QuestionObjectStruct>();
-        });
-      } else {
-        _model.checkRefreshTokenBlockd = await action_blocks.checkRefreshToken(
-          context,
-          jsonErrors: (_model.apiResultQuestionList?.jsonBody ?? ''),
+      setState(() {});
+      _model.tokenReloadQuestionList = await action_blocks.tokenReload(context);
+      if (_model.tokenReloadQuestionList!) {
+        _model.apiResultQuestionList =
+            await QuestionGroup.questionListCall.call(
+          accessToken: FFAppState().accessToken,
+          filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.organization_id''',
+          ).toString().toString()}\"}}]}',
         );
-        if (!_model.checkRefreshTokenBlockd!) {
+        if ((_model.apiResultQuestionList?.succeeded ?? true)) {
+          setState(() {
+            _model.dataList = (getJsonField(
+              (_model.apiResultQuestionList?.jsonBody ?? ''),
+              r'''$.data''',
+              true,
+            )!
+                    .toList()
+                    .map<QuestionObjectStruct?>(
+                        QuestionObjectStruct.maybeFromMap)
+                    .toList() as Iterable<QuestionObjectStruct?>)
+                .withoutNulls
+                .toList()
+                .cast<QuestionObjectStruct>();
+          });
+        } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                FFAppConstants.ErrorLoadData,
+                'Lỗi tải dữ liệu!',
                 style: TextStyle(
                   color: FlutterFlowTheme.of(context).primaryText,
                 ),
@@ -75,11 +75,14 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
             ),
           );
         }
-      }
 
-      setState(() {
-        _model.isLoad = true;
-      });
+        setState(() {
+          _model.isLoad = true;
+        });
+      } else {
+        setState(() {});
+        return;
+      }
     });
 
     _model.questionNameTextController ??= TextEditingController();

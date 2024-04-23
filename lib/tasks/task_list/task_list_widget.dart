@@ -576,44 +576,50 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             Expanded(
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    dataListItem.name,
-                                                    maxLines: 2,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          fontSize: 14.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                  ),
-                                                  Text(
-                                                    '#${dataListItem.workflowId.name}',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          fontSize: 13.0,
-                                                          letterSpacing: 0.0,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                        ),
-                                                  ),
-                                                ],
+                                              child: Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        12.0, 0.0, 4.0, 0.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      dataListItem.name,
+                                                      maxLines: 2,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            fontSize: 14.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                    ),
+                                                    Text(
+                                                      '#${dataListItem.workflowId.name}',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                             FFButtonWidget(
@@ -830,7 +836,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                 height: 30.0,
                                                 padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
-                                                        8.0, 0.0, 8.0, 0.0),
+                                                        6.0, 0.0, 6.0, 0.0),
                                                 iconPadding:
                                                     const EdgeInsetsDirectional
                                                         .fromSTEB(
@@ -845,7 +851,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                           fontFamily:
                                                               'Readex Pro',
                                                           color: Colors.white,
-                                                          fontSize: 13.0,
+                                                          fontSize: 12.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
@@ -900,10 +906,10 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                 );
                                               },
                                             ),
-                                          ].divide(const SizedBox(width: 4.0)),
+                                          ],
                                         ),
                                       ),
-                                      if (_model.isShow == false)
+                                      if (_model.isShow != dataListItem.id)
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
@@ -915,11 +921,11 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
                                               setState(() {
-                                                _model.isShow = true;
+                                                _model.isShow = dataListItem.id;
                                               });
                                             },
                                             child: Text(
-                                              'Xem thêm thông tin',
+                                              'Xem thêm',
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
@@ -935,7 +941,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                             ),
                                           ),
                                         ),
-                                      if (_model.isShow)
+                                      if (_model.isShow == dataListItem.id)
                                         Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
@@ -1379,7 +1385,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   setState(() {
-                                                    _model.isShow = false;
+                                                    _model.isShow = '';
                                                   });
                                                 },
                                                 child: Text(

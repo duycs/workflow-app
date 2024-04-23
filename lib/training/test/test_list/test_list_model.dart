@@ -1,6 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'test_list_widget.dart' show TestListWidget;
@@ -40,42 +39,28 @@ class TestListModel extends FlutterFlowModel<TestListWidget> {
 
   /// Action blocks.
   Future getListTest(BuildContext context) async {
+    bool? reloadTokenTestlist;
     ApiCallResponse? apiResultTestList;
-    bool? checkRefreshTokenBlock;
 
-    apiResultTestList = await TestGroup.testListCall.call(
-      accessToken: FFAppState().accessToken,
-      filter:
-          '{\"_and\":[{}${(filter != '') && (filter != ' ') ? ',{\"name\":{\"_icontains\":\"$filter\"}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-        FFAppState().staffLogin,
-        r'''$.organization_id''',
-      ).toString().toString()}\"}}}'}]}',
-    );
-    if ((apiResultTestList.succeeded ?? true)) {
-      listTest =
-          TestListDataStruct.maybeFromMap((apiResultTestList.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<TestListStruct>();
-    } else {
-      checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
-        context,
-        jsonErrors: (apiResultTestList.jsonBody ?? ''),
+    reloadTokenTestlist = await action_blocks.tokenReload(context);
+    if (reloadTokenTestlist!) {
+      apiResultTestList = await TestGroup.testListCall.call(
+        accessToken: FFAppState().accessToken,
+        filter:
+            '{\"_and\":[{}${(filter != '') && (filter != ' ') ? ',{\"name\":{\"_icontains\":\"$filter\"}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+          FFAppState().staffLogin,
+          r'''$.organization_id''',
+        ).toString().toString()}\"}}}'}]}',
       );
-      if (!checkRefreshTokenBlock!) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              FFAppConstants.ErrorLoadData,
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: const Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
-        );
+      if ((apiResultTestList.succeeded ?? true)) {
+        listTest = TestListDataStruct.maybeFromMap(
+                (apiResultTestList.jsonBody ?? ''))!
+            .data
+            .toList()
+            .cast<TestListStruct>();
       }
+    } else {
+      return;
     }
   }
 }

@@ -825,6 +825,8 @@ class StudyProgramGroup {
       StudyProgramCreateCall();
   static StudyProgramLessionsUpdateCall studyProgramLessionsUpdateCall =
       StudyProgramLessionsUpdateCall();
+  static SynchronizedStaffLessonCall synchronizedStaffLessonCall =
+      SynchronizedStaffLessonCall();
 }
 
 class StudyProgramListCall {
@@ -948,6 +950,36 @@ class StudyProgramLessionsUpdateCall {
   }
 }
 
+class SynchronizedStaffLessonCall {
+  Future<ApiCallResponse> call({
+    String? programId = '',
+    String? accessToken = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "program_id": "$programId"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'SynchronizedStaffLesson',
+      apiUrl:
+          '${StudyProgramGroup.baseUrl}/flows/trigger/b1888ea3-9709-4c01-821d-9573d1171060',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 /// End StudyProgram Group Code
 
 /// Start DoTest Group Code
@@ -982,7 +1014,7 @@ class StaffsTestsListCall {
       },
       params: {
         'fields':
-            "id,status,test_id.id,test_id.name,score,date_start,date_end,total_correct,total_incorrect,test_id.duration_minutes,date_created,percent_correct",
+            "id,status,test_id.id,test_id.name,score,date_start,date_end,total_correct,total_incorrect,test_id.duration_minutes,date_created,percent_correct,test_id.good_score",
         'filter': filter,
         'sort': "-date_created",
       },

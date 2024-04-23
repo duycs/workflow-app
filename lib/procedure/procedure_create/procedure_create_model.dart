@@ -141,6 +141,8 @@ class ProcedureCreateModel extends FlutterFlowModel<ProcedureCreateWidget> {
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? tokenReloadProcedureCreate;
   // Stores action output result for [Backend Call - API (GetDepartmentList)] action in Button widget.
   ApiCallResponse? apiResult4dr;
   // Stores action output result for [Backend Call - API (workflowsCreate)] action in Button widget.

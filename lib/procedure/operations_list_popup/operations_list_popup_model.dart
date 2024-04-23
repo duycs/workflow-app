@@ -24,6 +24,8 @@ class OperationsListPopupModel
 
   ///  State fields for stateful widgets in this component.
 
+  // Stores action output result for [Action Block - tokenReload] action in OperationsListPopup widget.
+  bool? tokenOperationsListPopup;
   // Stores action output result for [Backend Call - API (OperationList)] action in OperationsListPopup widget.
   ApiCallResponse? apiResult9q7;
   // State field(s) for TextName widget.

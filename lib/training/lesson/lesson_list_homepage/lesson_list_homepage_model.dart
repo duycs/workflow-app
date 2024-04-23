@@ -88,6 +88,8 @@ class LessonListHomepageModel
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await getListLesson(context);
       }
     }
   }

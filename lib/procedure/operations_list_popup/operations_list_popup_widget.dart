@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -42,42 +43,50 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResult9q7 = await OperationGroup.operationListCall.call(
-        accessToken: FFAppState().accessToken,
-        filter:
-            '{\"_and\":[{}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffLogin,
-          r'''$.organization_id''',
-        ).toString().toString()}\"}}'}]}',
-      );
-      if ((_model.apiResult9q7?.succeeded ?? true)) {
+      setState(() {});
+      _model.tokenOperationsListPopup =
+          await action_blocks.tokenReload(context);
+      if (_model.tokenOperationsListPopup!) {
+        _model.apiResult9q7 = await OperationGroup.operationListCall.call(
+          accessToken: FFAppState().accessToken,
+          filter:
+              '{\"_and\":[{}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.organization_id''',
+          ).toString().toString()}\"}}'}]}',
+        );
+        if ((_model.apiResult9q7?.succeeded ?? true)) {
+          setState(() {
+            _model.operationList = OperationsListDataStruct.maybeFromMap(
+                    (_model.apiResult9q7?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<OperationsStruct>();
+          });
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Lỗi tải dữ liệu!',
+                style: TextStyle(
+                  color: FlutterFlowTheme.of(context).primaryText,
+                ),
+              ),
+              duration: const Duration(milliseconds: 4000),
+              backgroundColor: FlutterFlowTheme.of(context).error,
+            ),
+          );
+          Navigator.pop(context);
+          return;
+        }
+
         setState(() {
-          _model.operationList = OperationsListDataStruct.maybeFromMap(
-                  (_model.apiResult9q7?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<OperationsStruct>();
+          _model.isLoad = true;
         });
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Lỗi tải dữ liệu!',
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: const Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
-        );
-        Navigator.pop(context);
+        setState(() {});
         return;
       }
-
-      setState(() {
-        _model.isLoad = true;
-      });
     });
 
     _model.textNameTextController ??= TextEditingController();

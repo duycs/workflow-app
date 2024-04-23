@@ -21,6 +21,8 @@ class TestsDropdownModel extends FlutterFlowModel<TestsDropdownWidget> {
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
+  // Stores action output result for [Action Block - tokenReload] action in TestsDropdown widget.
+  bool? tokenReloadTestsDropdown;
   // Stores action output result for [Backend Call - API (TestList)] action in TestsDropdown widget.
   ApiCallResponse? apiResultTestList;
   // State field(s) for DropDown widget.

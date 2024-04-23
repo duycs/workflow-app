@@ -20,6 +20,8 @@ class LessionsDropdownModel extends FlutterFlowModel<LessionsDropdownWidget> {
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
+  // Stores action output result for [Action Block - tokenReload] action in LessionsDropdown widget.
+  bool? tokenReloadLessionsDropdown;
   // Stores action output result for [Backend Call - API (GetLessonList)] action in LessionsDropdown widget.
   ApiCallResponse? apiResultLessonList;
   // State field(s) for DropDown widget.

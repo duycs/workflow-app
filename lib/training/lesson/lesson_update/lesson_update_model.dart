@@ -62,31 +62,6 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
   FFUploadedFile uploadedLocalFile3 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
-  // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
-  ApiCallResponse? apiResultUploadVideo;
-  // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
-  ApiCallResponse? apiResultUploadImage;
-  // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
-  ApiCallResponse? apiResultFile;
-  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
-  bool? checkRefreshTokenBlock3;
-  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
-  bool? checkRefreshTokenBlock2;
-  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
-  bool? checkRefreshTokenBlock1;
-  // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
-  ApiCallResponse? apiResultUploadImage1;
-  // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
-  ApiCallResponse? apiResultFile1;
-  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
-  bool? checkRefreshTokenBlock5;
-  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
-  bool? checkRefreshTokenBlock4;
-  // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
-  ApiCallResponse? apiResultFile2;
-  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
-  bool? checkRefreshTokenBlock6;
-
   @override
   void initState(BuildContext context) {}
 
@@ -139,6 +114,8 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await testList(context);
       }
     }
   }
@@ -258,6 +235,8 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
               backgroundColor: FlutterFlowTheme.of(context).error,
             ),
           );
+        } else {
+          await updateLesson(context);
         }
       }
     } else {
@@ -366,7 +345,120 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
               backgroundColor: FlutterFlowTheme.of(context).error,
             ),
           );
+        } else {
+          await updateLesson(context);
         }
+      }
+    }
+  }
+
+  Future uploadFileVideo(BuildContext context) async {
+    ApiCallResponse? apiResultUploadVideo;
+    bool? checkRefreshTokenBlockef;
+
+    apiResultUploadVideo = await UploadFileGroup.uploadFileCall.call(
+      accessToken: FFAppState().accessToken,
+      file: uploadedLocalFile2,
+    );
+    if ((apiResultUploadVideo.succeeded ?? true)) {
+      uploadVideo = getJsonField(
+        (apiResultUploadVideo.jsonBody ?? ''),
+        r'''$.data.id''',
+      ).toString().toString();
+    } else {
+      checkRefreshTokenBlockef = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultUploadVideo.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlockef!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await uploadFileVideo(context);
+      }
+    }
+  }
+
+  Future uploadFileImage(BuildContext context) async {
+    ApiCallResponse? apiResultUploadImage;
+    bool? checkRefreshTokenBlockgh;
+
+    apiResultUploadImage = await UploadFileGroup.uploadFileCall.call(
+      accessToken: FFAppState().accessToken,
+      file: uploadedLocalFile1,
+    );
+    if ((apiResultUploadImage.succeeded ?? true)) {
+      uploadImage = getJsonField(
+        (apiResultUploadImage.jsonBody ?? ''),
+        r'''$.data.id''',
+      ).toString().toString();
+    } else {
+      checkRefreshTokenBlockgh = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultUploadImage.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlockgh!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await uploadFileImage(context);
+      }
+    }
+  }
+
+  Future uploadFileFile(BuildContext context) async {
+    ApiCallResponse? apiResultUploadFileFile;
+    bool? checkRefreshTokenBlockbn;
+
+    apiResultUploadFileFile = await UploadFileGroup.uploadFileCall.call(
+      accessToken: FFAppState().accessToken,
+      file: uploadedLocalFile3,
+    );
+    if ((apiResultUploadFileFile.succeeded ?? true)) {
+      uploadFile = getJsonField(
+        (apiResultUploadFileFile.jsonBody ?? ''),
+        r'''$.data.id''',
+      ).toString().toString();
+    } else {
+      checkRefreshTokenBlockbn = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultUploadFileFile.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlockbn!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await uploadFileFile(context);
       }
     }
   }

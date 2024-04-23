@@ -38,10 +38,10 @@ class StudyProgramListModel extends FlutterFlowModel<StudyProgramListWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in StudyProgramList widget.
+  bool? tokenReloadStudyProgramList;
   // Stores action output result for [Backend Call - API (StudyProgramList)] action in StudyProgramList widget.
   ApiCallResponse? apiResultStudyProgramList;
-  // Stores action output result for [Action Block - CheckRefreshToken] action in StudyProgramList widget.
-  bool? checkRefreshTokenBlock45;
   // State field(s) for TextFieldNameSearch widget.
   FocusNode? textFieldNameSearchFocusNode;
   TextEditingController? textFieldNameSearchTextController;
@@ -60,38 +60,36 @@ class StudyProgramListModel extends FlutterFlowModel<StudyProgramListWidget> {
 
   /// Action blocks.
   Future getListProgram(BuildContext context) async {
+    bool? tokenReloadCallBackGetListProgram;
     ApiCallResponse? apiResultStudyProgramListSearch;
-    bool? checkRefreshTokenBlock1;
 
-    apiResultStudyProgramListSearch =
-        await StudyProgramGroup.studyProgramListCall.call(
-      accessToken: FFAppState().accessToken,
-      filter:
-          '{\"_and\":[{}${(nameSearch != null && nameSearch != '') && (nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"$nameSearch\"}}' : ' '}${(lessionsNameSearch != null && lessionsNameSearch != '') && (lessionsNameSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"$lessionsNameSearch\"}}}}' : ' '}${(dateStartSearch != null && dateStartSearch != '') && (dateStartSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"$dateStartSearch\"}}}}' : ' '}${(dateEndSearch != null && dateEndSearch != '') && (dateEndSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"$dateEndSearch\"}}}}' : ' '}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
-        FFAppState().staffLogin,
-        r'''$.organization_id''',
-      ).toString().toString()}\"}}'}]}',
-    );
-    if ((apiResultStudyProgramListSearch.succeeded ?? true)) {
-      dataList = StudyProgramListDataStruct.maybeFromMap(
-              (apiResultStudyProgramListSearch.jsonBody ?? ''))!
-          .data
-          .toList()
-          .cast<StudyProgramListStruct>();
-      meta = StudyProgramListDataStruct.maybeFromMap(
-              (apiResultStudyProgramListSearch.jsonBody ?? ''))
-          ?.meta;
-      checkShow = null;
-    } else {
-      checkRefreshTokenBlock1 = await action_blocks.checkRefreshToken(
-        context,
-        jsonErrors: (apiResultStudyProgramListSearch.jsonBody ?? ''),
+    tokenReloadCallBackGetListProgram =
+        await action_blocks.tokenReload(context);
+    if (tokenReloadCallBackGetListProgram!) {
+      apiResultStudyProgramListSearch =
+          await StudyProgramGroup.studyProgramListCall.call(
+        accessToken: FFAppState().accessToken,
+        filter:
+            '{\"_and\":[{}${(nameSearch != null && nameSearch != '') && (nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"$nameSearch\"}}' : ' '}${(lessionsNameSearch != null && lessionsNameSearch != '') && (lessionsNameSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"$lessionsNameSearch\"}}}}' : ' '}${(dateStartSearch != null && dateStartSearch != '') && (dateStartSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"$dateStartSearch\"}}}}' : ' '}${(dateEndSearch != null && dateEndSearch != '') && (dateEndSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"$dateEndSearch\"}}}}' : ' '}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
+          FFAppState().staffLogin,
+          r'''$.organization_id''',
+        ).toString().toString()}\"}}'}]}',
       );
-      if (!checkRefreshTokenBlock1!) {
+      if ((apiResultStudyProgramListSearch.succeeded ?? true)) {
+        dataList = StudyProgramListDataStruct.maybeFromMap(
+                (apiResultStudyProgramListSearch.jsonBody ?? ''))!
+            .data
+            .toList()
+            .cast<StudyProgramListStruct>();
+        meta = StudyProgramListDataStruct.maybeFromMap(
+                (apiResultStudyProgramListSearch.jsonBody ?? ''))
+            ?.meta;
+        checkShow = null;
+      } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              FFAppConstants.ErrorLoadData,
+              'Lỗi tải dữ liệu!',
               style: TextStyle(
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
@@ -101,8 +99,11 @@ class StudyProgramListModel extends FlutterFlowModel<StudyProgramListWidget> {
           ),
         );
       }
-    }
 
-    isLoad = true;
+      isLoad = true;
+    } else {
+      FFAppState().update(() {});
+      return;
+    }
   }
 }

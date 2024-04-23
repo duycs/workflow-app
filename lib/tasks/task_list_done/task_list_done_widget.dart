@@ -603,117 +603,126 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Expanded(
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Expanded(
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            4.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                child: Text(
-                                                                  dataListItem
-                                                                      .name,
-                                                                  maxLines: 2,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  10.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Expanded(
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          4.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    dataListItem
+                                                                        .name,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Readex Pro',
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                        ),
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            4.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                child: Text(
-                                                                  '#${dataListItem.workflowId.name}',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontStyle:
-                                                                            FontStyle.italic,
-                                                                      ),
+                                                                Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          4.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    '#${dataListItem.workflowId.name}',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Readex Pro',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                        ),
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                            ],
+                                                              ],
+                                                            ),
                                                           ),
-                                                        ),
-                                                        FlutterFlowIconButton(
-                                                          borderRadius: 20.0,
-                                                          borderWidth: 1.0,
-                                                          buttonSize: 40.0,
-                                                          icon: FaIcon(
-                                                            FontAwesomeIcons
-                                                                .angleRight,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText,
-                                                            size: 18.0,
+                                                          FlutterFlowIconButton(
+                                                            borderRadius: 20.0,
+                                                            borderWidth: 1.0,
+                                                            buttonSize: 40.0,
+                                                            icon: FaIcon(
+                                                              FontAwesomeIcons
+                                                                  .angleRight,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                              size: 18.0,
+                                                            ),
+                                                            onPressed:
+                                                                () async {
+                                                              context.pushNamed(
+                                                                'TaskDetail',
+                                                                queryParameters:
+                                                                    {
+                                                                  'workflowId':
+                                                                      serializeParam(
+                                                                    dataListItem
+                                                                        .workflowId
+                                                                        .id,
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                  'publishedCount':
+                                                                      serializeParam(
+                                                                    dataListItem
+                                                                        .publishedCount,
+                                                                    ParamType
+                                                                        .int,
+                                                                  ),
+                                                                }.withoutNulls,
+                                                              );
+                                                            },
                                                           ),
-                                                          onPressed: () async {
-                                                            context.pushNamed(
-                                                              'TaskDetail',
-                                                              queryParameters: {
-                                                                'workflowId':
-                                                                    serializeParam(
-                                                                  dataListItem
-                                                                      .workflowId
-                                                                      .id,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'publishedCount':
-                                                                    serializeParam(
-                                                                  dataListItem
-                                                                      .publishedCount,
-                                                                  ParamType.int,
-                                                                ),
-                                                              }.withoutNulls,
-                                                            );
-                                                          },
-                                                        ),
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
                                               ),
-                                              if (_model.isShow == false)
+                                              if (_model.isShow !=
+                                                  dataListItem.id)
                                                 Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
-                                                          8.0, 6.0, 0.0, 6.0),
+                                                          10.0, 6.0, 0.0, 6.0),
                                                   child: InkWell(
                                                     splashColor:
                                                         Colors.transparent,
@@ -725,11 +734,12 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                         Colors.transparent,
                                                     onTap: () async {
                                                       setState(() {
-                                                        _model.isShow = true;
+                                                        _model.isShow =
+                                                            dataListItem.id;
                                                       });
                                                     },
                                                     child: Text(
-                                                      'Xem thêm thông tin',
+                                                      'Xem thêm',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
@@ -747,7 +757,8 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                              if (_model.isShow == true)
+                                              if (_model.isShow ==
+                                                  dataListItem.id)
                                                 Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -1268,7 +1279,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                         onTap: () async {
                                                           setState(() {
                                                             _model.isShow =
-                                                                false;
+                                                                null;
                                                           });
                                                         },
                                                         child: Text(

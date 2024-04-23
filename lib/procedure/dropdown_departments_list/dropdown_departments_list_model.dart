@@ -36,6 +36,8 @@ class DropdownDepartmentsListModel
 
   ///  State fields for stateful widgets in this component.
 
+  // Stores action output result for [Action Block - tokenReload] action in DropdownDepartmentsList widget.
+  bool? tokenReloadDropdownDepartmentsList;
   // Stores action output result for [Backend Call - API (GetDepartmentList)] action in DropdownDepartmentsList widget.
   ApiCallResponse? apiResultDatade;
   // Stores action output result for [Backend Call - API (GetDepartmentList)] action in DropdownDepartmentsList widget.

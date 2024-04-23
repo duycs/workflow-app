@@ -21,10 +21,10 @@ class QuestionTestModel extends FlutterFlowModel<QuestionTestWidget> {
 
   ///  State fields for stateful widgets in this component.
 
+  // Stores action output result for [Action Block - tokenReload] action in questionTest widget.
+  bool? reloadTokenQuestion;
   // Stores action output result for [Backend Call - API (questionList)] action in questionTest widget.
   ApiCallResponse? apiResultQuestionList;
-  // Stores action output result for [Action Block - CheckRefreshToken] action in questionTest widget.
-  bool? checkRefreshTokenBlock23;
   // State field(s) for question widget.
   String? questionValue;
   FormFieldController<String>? questionValueController;

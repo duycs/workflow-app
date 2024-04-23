@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -9,7 +8,6 @@ import '/flutter_flow/form_field_controller.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:provider/provider.dart';
 import 'department_update_model.dart';
 export 'department_update_model.dart';
 
@@ -89,8 +87,6 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -590,7 +586,6 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    var shouldSetState = false;
                     if ((_model.nameTextController.text != '') &&
                         (_model.codeTextController.text != '') &&
                         (_model.descriptionTextController.text != '') &&
@@ -613,47 +608,9 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                         setState(() {
                           _model.loop = 0;
                         });
-                        _model.apiResultjly =
-                            await DepartmentGroup.pathDepartmentCall.call(
-                          accessToken: FFAppState().accessToken,
-                          name: _model.nameTextController.text,
-                          code: _model.codeTextController.text,
-                          branchId: _model.dropDownBranchIdValue,
-                          description: _model.descriptionTextController.text,
-                          departmentId: getJsonField(
-                            widget.items,
-                            r'''$.id''',
-                          ).toString(),
-                          programsIdJson:
-                              _model.programIds.map((e) => e.toMap()).toList(),
-                        );
-                        shouldSetState = true;
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Cập nhật bộ phận thành công!',
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
-                            ),
-                            duration: const Duration(milliseconds: 4000),
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).secondary,
-                          ),
-                        );
-
-                        context.pushNamed(
-                          'DepartmentList',
-                          extra: <String, dynamic>{
-                            kTransitionInfoKey: const TransitionInfo(
-                              hasTransition: true,
-                              transitionType: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                            ),
-                          },
-                        );
+                        await _model.pathDepartment(context);
+                        setState(() {});
                       } else {
-                        if (shouldSetState) setState(() {});
                         return;
                       }
                     } else {
@@ -669,11 +626,8 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                           backgroundColor: FlutterFlowTheme.of(context).error,
                         ),
                       );
-                      if (shouldSetState) setState(() {});
                       return;
                     }
-
-                    if (shouldSetState) setState(() {});
                   },
                   text: 'Cập nhật',
                   options: FFButtonOptions(

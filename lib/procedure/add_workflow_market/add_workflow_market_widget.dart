@@ -42,33 +42,63 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultwkg = await CategoriesGroup.getCategoriesListCall.call(
-        accessToken: FFAppState().accessToken,
-      );
-      if ((_model.apiResultwkg?.succeeded ?? true)) {
-        setState(() {
-          _model.categoryList = CategoriesListDataStruct.maybeFromMap(
-                  (_model.apiResultwkg?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<CategoriesListStruct>();
-        });
-        _model.apiResultDomain = await DomainGroup.getDomainsListCall.call(
+      setState(() {});
+      _model.tokenReloadAddWorkflowMarket =
+          await action_blocks.tokenReload(context);
+      if (_model.tokenReloadAddWorkflowMarket!) {
+        _model.apiResultwkg = await CategoriesGroup.getCategoriesListCall.call(
           accessToken: FFAppState().accessToken,
         );
-        if ((_model.apiResultDomain?.succeeded ?? true)) {
+        if ((_model.apiResultwkg?.succeeded ?? true)) {
           setState(() {
-            _model.domainList = DomainsListDataStruct.maybeFromMap(
-                    (_model.apiResultDomain?.jsonBody ?? ''))!
+            _model.categoryList = CategoriesListDataStruct.maybeFromMap(
+                    (_model.apiResultwkg?.jsonBody ?? ''))!
                 .data
                 .toList()
-                .cast<DomainsListStruct>();
+                .cast<CategoriesListStruct>();
+          });
+          _model.apiResultDomain = await DomainGroup.getDomainsListCall.call(
+            accessToken: FFAppState().accessToken,
+          );
+          if ((_model.apiResultDomain?.succeeded ?? true)) {
+            setState(() {
+              _model.domainList = DomainsListDataStruct.maybeFromMap(
+                      (_model.apiResultDomain?.jsonBody ?? ''))!
+                  .data
+                  .toList()
+                  .cast<DomainsListStruct>();
+            });
+          } else {
+            _model.checkRefreshTokenBlocks =
+                await action_blocks.checkRefreshToken(
+              context,
+              jsonErrors: (_model.apiResultDomain?.jsonBody ?? ''),
+            );
+            if (!_model.checkRefreshTokenBlocka!) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    FFAppConstants.ErrorLoadData,
+                    style: TextStyle(
+                      color: FlutterFlowTheme.of(context).primaryText,
+                    ),
+                  ),
+                  duration: const Duration(milliseconds: 4000),
+                  backgroundColor: FlutterFlowTheme.of(context).error,
+                ),
+              );
+            }
+            return;
+          }
+
+          setState(() {
+            _model.isLoad = true;
           });
         } else {
-          _model.checkRefreshTokenBlocks =
+          _model.checkRefreshTokenBlocka =
               await action_blocks.checkRefreshToken(
             context,
-            jsonErrors: (_model.apiResultDomain?.jsonBody ?? ''),
+            jsonErrors: (_model.apiResultwkg?.jsonBody ?? ''),
           );
           if (!_model.checkRefreshTokenBlocka!) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -86,29 +116,8 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
           }
           return;
         }
-
-        setState(() {
-          _model.isLoad = true;
-        });
       } else {
-        _model.checkRefreshTokenBlocka = await action_blocks.checkRefreshToken(
-          context,
-          jsonErrors: (_model.apiResultwkg?.jsonBody ?? ''),
-        );
-        if (!_model.checkRefreshTokenBlocka!) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                FFAppConstants.ErrorLoadData,
-                style: TextStyle(
-                  color: FlutterFlowTheme.of(context).primaryText,
-                ),
-              ),
-              duration: const Duration(milliseconds: 4000),
-              backgroundColor: FlutterFlowTheme.of(context).error,
-            ),
-          );
-        }
+        setState(() {});
         return;
       }
     });

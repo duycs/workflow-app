@@ -41,7 +41,7 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
 
   String? typeFilter = '';
 
-  bool isShow = false;
+  String? isShow;
 
   ///  State fields for stateful widgets in this page.
 

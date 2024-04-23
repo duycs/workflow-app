@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -38,21 +39,28 @@ class _LessionsDropdownWidgetState extends State<LessionsDropdownWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultLessonList = await LessonGroup.getLessonListCall.call(
-        accessToken: FFAppState().accessToken,
-        filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffLogin,
-          r'''$.organization_id''',
-        ).toString().toString()}\"}}]}',
-      );
-      if ((_model.apiResultLessonList?.succeeded ?? true)) {
-        setState(() {
-          _model.dataList = LessonsListDataStruct.maybeFromMap(
-                  (_model.apiResultLessonList?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<LessonsStruct>();
-        });
+      _model.tokenReloadLessionsDropdown =
+          await action_blocks.tokenReload(context);
+      if (_model.tokenReloadLessionsDropdown!) {
+        _model.apiResultLessonList = await LessonGroup.getLessonListCall.call(
+          accessToken: FFAppState().accessToken,
+          filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.organization_id''',
+          ).toString().toString()}\"}}]}',
+        );
+        if ((_model.apiResultLessonList?.succeeded ?? true)) {
+          setState(() {
+            _model.dataList = LessonsListDataStruct.maybeFromMap(
+                    (_model.apiResultLessonList?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<LessonsStruct>();
+          });
+        }
+      } else {
+        setState(() {});
+        return;
       }
     });
   }

@@ -12,6 +12,7 @@ import '/procedure/dropdown_departments_list/dropdown_departments_list_widget.da
 import '/procedure/dropdown_user_list/dropdown_user_list_widget.dart';
 import '/procedure/procedure_step_create/procedure_step_create_widget.dart';
 import '/procedure/procedure_step_menu/procedure_step_menu_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
@@ -127,97 +128,27 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                 onPressed: () async {
                   var shouldSetState = false;
                   setState(() {});
-                  if (_model.requestData?.name != null &&
-                      _model.requestData?.name != '') {
-                    setState(() {});
-                    if (_model.dropDownRunValue == '2') {
-                      while (_model.loop < _model.staffList.length) {
-                        setState(() {
-                          _model.updateRequestDataStruct(
-                            (e) => e
-                              ..updateStaffs(
-                                (e) => e.add(StaffsStepStruct(
-                                  staffsId: StaffIdStruct(
-                                    id: _model
-                                        .staffList[_model.loop].staffsId.id,
-                                  ),
-                                )),
-                              ),
-                          );
-                        });
-                        setState(() {
-                          _model.loop = _model.loop + 1;
-                        });
-                      }
-                      setState(() {
-                        _model.loop = 0;
-                      });
-                    } else if (_model.dropDownRunValue == '1') {
-                      setState(() {
-                        _model.updateRequestDataStruct(
-                          (e) =>
-                              e..departments = _model.departmentsList.toList(),
-                        );
-                      });
-                    } else {
-                      _model.apiResult4dr =
-                          await DepartmentGroup.getDepartmentListCall.call(
-                        accessToken: FFAppState().accessToken,
-                        filter: '{\"_and\":[${() {
-                          if (FFAppState().user.role ==
-                              '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                            return '{\"organization_id\":{\"_eq\":\"';
-                          } else if (FFAppState().user.role ==
-                              'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                            return '{\"branch_id\":{\"id\":{\"_eq\":\"';
-                          } else {
-                            return ' ';
-                          }
-                        }()}${() {
-                          if (FFAppState().user.role ==
-                              '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                            return getJsonField(
-                              FFAppState().staffLogin,
-                              r'''$.organization_id''',
-                            ).toString();
-                          } else if (FFAppState().user.role ==
-                              'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                            return getJsonField(
-                              FFAppState().staffBranch,
-                              r'''$.id''',
-                            ).toString();
-                          } else {
-                            return ' ';
-                          }
-                        }()}${() {
-                          if (FFAppState().user.role ==
-                              '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                            return '\"}}';
-                          } else if (FFAppState().user.role ==
-                              'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                            return '\"}}}';
-                          } else {
-                            return ' ';
-                          }
-                        }()},{\"status\":{\"_eq\":\"published\"}}]}',
-                      );
-                      shouldSetState = true;
-                      if ((_model.apiResult4dr?.succeeded ?? true)) {
-                        while (_model.loop <
-                            DepartmentListDataStruct.maybeFromMap(
-                                    (_model.apiResult4dr?.jsonBody ?? ''))!
-                                .data
-                                .length) {
+                  _model.tokenReloadProcedureCreate =
+                      await action_blocks.tokenReload(context);
+                  shouldSetState = true;
+                  if (_model.tokenReloadProcedureCreate!) {
+                    if (_model.requestData?.name != null &&
+                        _model.requestData?.name != '') {
+                      setState(() {});
+                      if (_model.dropDownRunValue == '2') {
+                        while (_model.loop < _model.staffList.length) {
                           setState(() {
-                            _model.addToDepartmentsList(DepartmentsIdStruct(
-                              departmentsId: DepartmentsStruct(
-                                id: (DepartmentListDataStruct.maybeFromMap(
-                                            (_model.apiResult4dr?.jsonBody ??
-                                                ''))
-                                        ?.data[_model.loop])
-                                    ?.id,
-                              ),
-                            ));
+                            _model.updateRequestDataStruct(
+                              (e) => e
+                                ..updateStaffs(
+                                  (e) => e.add(StaffsStepStruct(
+                                    staffsId: StaffIdStruct(
+                                      id: _model
+                                          .staffList[_model.loop].staffsId.id,
+                                    ),
+                                  )),
+                                ),
+                            );
                           });
                           setState(() {
                             _model.loop = _model.loop + 1;
@@ -226,29 +157,108 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                         setState(() {
                           _model.loop = 0;
                         });
+                      } else if (_model.dropDownRunValue == '1') {
                         setState(() {
                           _model.updateRequestDataStruct(
                             (e) => e
                               ..departments = _model.departmentsList.toList(),
                           );
                         });
+                      } else {
+                        _model.apiResult4dr =
+                            await DepartmentGroup.getDepartmentListCall.call(
+                          accessToken: FFAppState().accessToken,
+                          filter: '{\"_and\":[${() {
+                            if (FFAppState().user.role ==
+                                '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                              return '{\"organization_id\":{\"_eq\":\"';
+                            } else if (FFAppState().user.role ==
+                                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                              return '{\"branch_id\":{\"id\":{\"_eq\":\"';
+                            } else {
+                              return ' ';
+                            }
+                          }()}${() {
+                            if (FFAppState().user.role ==
+                                '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                              return getJsonField(
+                                FFAppState().staffLogin,
+                                r'''$.organization_id''',
+                              ).toString();
+                            } else if (FFAppState().user.role ==
+                                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                              return getJsonField(
+                                FFAppState().staffBranch,
+                                r'''$.id''',
+                              ).toString();
+                            } else {
+                              return ' ';
+                            }
+                          }()}${() {
+                            if (FFAppState().user.role ==
+                                '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                              return '\"}}';
+                            } else if (FFAppState().user.role ==
+                                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                              return '\"}}}';
+                            } else {
+                              return ' ';
+                            }
+                          }()},{\"status\":{\"_eq\":\"published\"}}]}',
+                        );
+                        shouldSetState = true;
+                        if ((_model.apiResult4dr?.succeeded ?? true)) {
+                          while (_model.loop <
+                              DepartmentListDataStruct.maybeFromMap(
+                                      (_model.apiResult4dr?.jsonBody ?? ''))!
+                                  .data
+                                  .length) {
+                            setState(() {
+                              _model.addToDepartmentsList(DepartmentsIdStruct(
+                                departmentsId: DepartmentsStruct(
+                                  id: (DepartmentListDataStruct.maybeFromMap(
+                                              (_model.apiResult4dr?.jsonBody ??
+                                                  ''))
+                                          ?.data[_model.loop])
+                                      ?.id,
+                                ),
+                              ));
+                            });
+                            setState(() {
+                              _model.loop = _model.loop + 1;
+                            });
+                          }
+                          setState(() {
+                            _model.loop = 0;
+                          });
+                          setState(() {
+                            _model.updateRequestDataStruct(
+                              (e) => e
+                                ..departments = _model.departmentsList.toList(),
+                            );
+                          });
+                        }
                       }
-                    }
 
-                    setState(() {});
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Vui lòng nhập tên vui trình!',
-                          style: TextStyle(
-                            color: FlutterFlowTheme.of(context).primaryText,
+                      setState(() {});
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Vui lòng nhập tên vui trình!',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
                           ),
+                          duration: const Duration(milliseconds: 4000),
+                          backgroundColor: FlutterFlowTheme.of(context).error,
                         ),
-                        duration: const Duration(milliseconds: 4000),
-                        backgroundColor: FlutterFlowTheme.of(context).error,
-                      ),
-                    );
+                      );
+                      if (shouldSetState) setState(() {});
+                      return;
+                    }
+                  } else {
+                    setState(() {});
                     if (shouldSetState) setState(() {});
                     return;
                   }

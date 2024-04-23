@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/check_box_toggle/check_box_toggle_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -43,132 +44,139 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       setState(() {});
-      if (widget.dataPar!.isNotEmpty) {
-        _model.apiResultList = await StaffGroup.getStaffListCall.call(
-          accessToken: FFAppState().accessToken,
-          filter: () {
-            if (FFAppState().user.role ==
-                '82073000-1ba2-43a4-a55c-459d17c23b68') {
-              return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                FFAppState().staffLogin,
-                r'''$.organization_id''',
-              ).toString().toString()}\"}}}]}';
-            } else if (FFAppState().user.role ==
-                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-              return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                FFAppState().staffLogin,
-                r'''$.branch_id''',
-              ).toString().toString()}\"}}}]}';
-            } else if (FFAppState().user.role ==
-                '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-              return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                FFAppState().staffLogin,
-                r'''$.department_id''',
-              ).toString().toString()}\"}}}]}';
-            } else {
-              return '{\"_and\":[]}';
-            }
-          }(),
-        );
-        if ((_model.apiResultList?.succeeded ?? true)) {
+      _model.tokenReloadDropdownUserList =
+          await action_blocks.tokenReload(context);
+      if (_model.tokenReloadDropdownUserList!) {
+        if (widget.dataPar!.isNotEmpty) {
+          _model.apiResultList = await StaffGroup.getStaffListCall.call(
+            accessToken: FFAppState().accessToken,
+            filter: () {
+              if (FFAppState().user.role ==
+                  '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                  FFAppState().staffLogin,
+                  r'''$.organization_id''',
+                ).toString().toString()}\"}}}]}';
+              } else if (FFAppState().user.role ==
+                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                  FFAppState().staffLogin,
+                  r'''$.branch_id''',
+                ).toString().toString()}\"}}}]}';
+              } else if (FFAppState().user.role ==
+                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                  FFAppState().staffLogin,
+                  r'''$.department_id''',
+                ).toString().toString()}\"}}}]}';
+              } else {
+                return '{\"_and\":[]}';
+              }
+            }(),
+          );
+          if ((_model.apiResultList?.succeeded ?? true)) {
+            setState(() {
+              _model.staffList = StaffListDataStruct.maybeFromMap(
+                      (_model.apiResultList?.jsonBody ?? ''))!
+                  .data
+                  .toList()
+                  .cast<StaffListStruct>();
+            });
+          }
+          while (_model.loop < _model.staffList.length) {
+            setState(() {
+              _model.updateStaffListAtIndex(
+                _model.loop,
+                (e) => e..check = false,
+              );
+            });
+            setState(() {
+              _model.loop = _model.loop + 1;
+            });
+          }
           setState(() {
-            _model.staffList = StaffListDataStruct.maybeFromMap(
-                    (_model.apiResultList?.jsonBody ?? ''))!
-                .data
-                .toList()
-                .cast<StaffListStruct>();
+            _model.loop = 0;
           });
-        }
-        while (_model.loop < _model.staffList.length) {
-          setState(() {
-            _model.updateStaffListAtIndex(
-              _model.loop,
-              (e) => e..check = false,
-            );
-          });
-          setState(() {
-            _model.loop = _model.loop + 1;
-          });
-        }
-        setState(() {
-          _model.loop = 0;
-        });
-        while (_model.loop < _model.staffList.length) {
-          while (_model.loop2 < widget.dataPar!.length) {
-            if (_model.staffList[_model.loop].id ==
-                (widget.dataPar?[_model.loop2])?.staffsId.id) {
+          while (_model.loop < _model.staffList.length) {
+            while (_model.loop2 < widget.dataPar!.length) {
+              if (_model.staffList[_model.loop].id ==
+                  (widget.dataPar?[_model.loop2])?.staffsId.id) {
+                setState(() {
+                  _model.updateStaffListAtIndex(
+                    _model.loop,
+                    (e) => e..check = true,
+                  );
+                });
+              }
               setState(() {
-                _model.updateStaffListAtIndex(
-                  _model.loop,
-                  (e) => e..check = true,
-                );
+                _model.loop2 = _model.loop2 + 1;
               });
             }
             setState(() {
-              _model.loop2 = _model.loop2 + 1;
+              _model.loop2 = 0;
+            });
+            setState(() {
+              _model.loop = _model.loop + 1;
             });
           }
           setState(() {
             _model.loop2 = 0;
+            _model.loop = 0;
           });
+        } else {
+          _model.apiResultListData = await StaffGroup.getStaffListCall.call(
+            accessToken: FFAppState().accessToken,
+            filter: () {
+              if (FFAppState().user.role ==
+                  '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                  FFAppState().staffLogin,
+                  r'''$.organization_id''',
+                ).toString().toString()}\"}}}]}';
+              } else if (FFAppState().user.role ==
+                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                  FFAppState().staffLogin,
+                  r'''$.branch_id''',
+                ).toString().toString()}\"}}}]}';
+              } else if (FFAppState().user.role ==
+                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                  FFAppState().staffLogin,
+                  r'''$.department_id''',
+                ).toString().toString()}\"}}}]}';
+              } else {
+                return '{\"_and\":[]}';
+              }
+            }(),
+          );
+          if ((_model.apiResultListData?.succeeded ?? true)) {
+            setState(() {
+              _model.staffList = StaffListDataStruct.maybeFromMap(
+                      (_model.apiResultListData?.jsonBody ?? ''))!
+                  .data
+                  .toList()
+                  .cast<StaffListStruct>();
+            });
+          }
+          while (_model.loop < _model.staffList.length) {
+            setState(() {
+              _model.updateStaffListAtIndex(
+                _model.loop,
+                (e) => e..check = false,
+              );
+            });
+            setState(() {
+              _model.loop = _model.loop + 1;
+            });
+          }
           setState(() {
-            _model.loop = _model.loop + 1;
+            _model.loop = 0;
           });
         }
-        setState(() {
-          _model.loop2 = 0;
-          _model.loop = 0;
-        });
       } else {
-        _model.apiResultListData = await StaffGroup.getStaffListCall.call(
-          accessToken: FFAppState().accessToken,
-          filter: () {
-            if (FFAppState().user.role ==
-                '82073000-1ba2-43a4-a55c-459d17c23b68') {
-              return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                FFAppState().staffLogin,
-                r'''$.organization_id''',
-              ).toString().toString()}\"}}}]}';
-            } else if (FFAppState().user.role ==
-                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-              return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                FFAppState().staffLogin,
-                r'''$.branch_id''',
-              ).toString().toString()}\"}}}]}';
-            } else if (FFAppState().user.role ==
-                '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-              return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                FFAppState().staffLogin,
-                r'''$.department_id''',
-              ).toString().toString()}\"}}}]}';
-            } else {
-              return '{\"_and\":[]}';
-            }
-          }(),
-        );
-        if ((_model.apiResultListData?.succeeded ?? true)) {
-          setState(() {
-            _model.staffList = StaffListDataStruct.maybeFromMap(
-                    (_model.apiResultListData?.jsonBody ?? ''))!
-                .data
-                .toList()
-                .cast<StaffListStruct>();
-          });
-        }
-        while (_model.loop < _model.staffList.length) {
-          setState(() {
-            _model.updateStaffListAtIndex(
-              _model.loop,
-              (e) => e..check = false,
-            );
-          });
-          setState(() {
-            _model.loop = _model.loop + 1;
-          });
-        }
-        setState(() {
-          _model.loop = 0;
-        });
+        setState(() {});
+        return;
       }
     });
 

@@ -417,7 +417,8 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                         text: TextSpan(
                                                           children: [
                                                             TextSpan(
-                                                              text: '#1 ',
+                                                              text:
+                                                                  '#${(itemOperationIndex + 1).toString()} ',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -839,7 +840,8 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                   text: TextSpan(
                                                     children: [
                                                       TextSpan(
-                                                        text: '#1 ',
+                                                        text:
+                                                            '#${(itemUserCreatedIndex + 1).toString()} ',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -1253,7 +1255,8 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                         text: TextSpan(
                                                           children: [
                                                             TextSpan(
-                                                              text: '#1 ',
+                                                              text:
+                                                                  '#${(itemDefaultIndex + 1).toString()} ',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium

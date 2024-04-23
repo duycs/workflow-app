@@ -43,6 +43,8 @@ class QuestionCreateModel extends FlutterFlowModel<QuestionCreateWidget> {
       textAnswerNumberTextControllerValidator;
   // State field(s) for Checkbox widget.
   bool? checkboxValue;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? tokenReloadQuestionCreate;
   // Stores action output result for [Backend Call - API (questionCreate)] action in Button widget.
   ApiCallResponse? apiResultCreate;
 

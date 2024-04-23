@@ -53,7 +53,7 @@ class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
     String? status,
   }) async {
     ApiCallResponse? apiResultList;
-    bool? checkRefreshTokenBlock;
+    bool? checkRefreshTokenBlocktt;
 
     apiResultList = await DepartmentGroup.getDepartmentListCall.call(
       accessToken: FFAppState().accessToken,
@@ -99,11 +99,11 @@ class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
           .toList()
           .cast<DepartmentListStruct>();
     } else {
-      checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
+      checkRefreshTokenBlocktt = await action_blocks.checkRefreshToken(
         context,
         jsonErrors: (apiResultList.jsonBody ?? ''),
       );
-      if (!checkRefreshTokenBlock!) {
+      if (!checkRefreshTokenBlocktt!) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -116,6 +116,8 @@ class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await getDepartmentList(context);
       }
     }
   }

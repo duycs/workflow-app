@@ -1,6 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'list_branch_profile_widget.dart' show ListBranchProfileWidget;
 import 'package:flutter/material.dart';
 
@@ -52,37 +53,52 @@ class ListBranchProfileModel extends FlutterFlowModel<ListBranchProfileWidget> {
 
   /// Action blocks.
   Future getDepartmentList(BuildContext context) async {
+    bool? reloadTokenDepartmentList;
     ApiCallResponse? apiResultDepartmentList;
 
-    apiResultDepartmentList = await DepartmentGroup.getDepartmentListCall.call(
-      accessToken: FFAppState().accessToken,
-    );
-    if ((apiResultDepartmentList.succeeded ?? true)) {
-      departmentList = DepartmentListDataStruct.maybeFromMap(
-              (apiResultDepartmentList.jsonBody ?? ''))!
-          .data
-          .toList()
-          .cast<DepartmentListStruct>();
+    reloadTokenDepartmentList = await action_blocks.tokenReload(context);
+    if (reloadTokenDepartmentList!) {
+      apiResultDepartmentList =
+          await DepartmentGroup.getDepartmentListCall.call(
+        accessToken: FFAppState().accessToken,
+      );
+      if ((apiResultDepartmentList.succeeded ?? true)) {
+        departmentList = DepartmentListDataStruct.maybeFromMap(
+                (apiResultDepartmentList.jsonBody ?? ''))!
+            .data
+            .toList()
+            .cast<DepartmentListStruct>();
+      }
+    } else {
+      FFAppState().update(() {});
+      return;
     }
   }
 
   Future getLinkBranch(BuildContext context) async {
+    bool? reloadTokenBaranchList1;
     ApiCallResponse? apiResultldh;
 
-    apiResultldh = await BranchGroup.branchListCall.call(
-      accessToken: FFAppState().accessToken,
-      filter:
-          '{\"_and\":[{}${(search != '') && (search != ' ') ? ',{\"name\":{\"_icontains\":\"$search\"}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-        FFAppState().staffLogin,
-        r'''$.organization_id''',
-      ).toString().toString()}\"}}}'}]}',
-    );
-    if ((apiResultldh.succeeded ?? true)) {
-      listBranch =
-          BranchListDataStruct.maybeFromMap((apiResultldh.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<BranchListStruct>();
+    reloadTokenBaranchList1 = await action_blocks.tokenReload(context);
+    if (reloadTokenBaranchList1!) {
+      apiResultldh = await BranchGroup.branchListCall.call(
+        accessToken: FFAppState().accessToken,
+        filter:
+            '{\"_and\":[{}${(search != '') && (search != ' ') ? ',{\"name\":{\"_icontains\":\"$search\"}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+          FFAppState().staffLogin,
+          r'''$.organization_id''',
+        ).toString().toString()}\"}}}'}]}',
+      );
+      if ((apiResultldh.succeeded ?? true)) {
+        listBranch =
+            BranchListDataStruct.maybeFromMap((apiResultldh.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<BranchListStruct>();
+      }
+    } else {
+      FFAppState().update(() {});
+      return;
     }
   }
 }

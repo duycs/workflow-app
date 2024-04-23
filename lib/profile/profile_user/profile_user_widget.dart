@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -31,20 +32,26 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultUser = await StaffGroup.getStaffGetOneCall.call(
-        accessToken: FFAppState().accessToken,
-        staffId: getJsonField(
-          FFAppState().staffLogin,
-          r'''$.id''',
-        ).toString().toString(),
-      );
-      if ((_model.apiResultUser?.succeeded ?? true)) {
-        setState(() {
-          _model.user = getJsonField(
-            (_model.apiResultUser?.jsonBody ?? ''),
-            r'''$.data''',
-          );
-        });
+      _model.reloadTokenStaffOne = await action_blocks.tokenReload(context);
+      if (_model.reloadTokenStaffOne!) {
+        _model.apiResultUser = await StaffGroup.getStaffGetOneCall.call(
+          accessToken: FFAppState().accessToken,
+          staffId: getJsonField(
+            FFAppState().staffLogin,
+            r'''$.id''',
+          ).toString().toString(),
+        );
+        if ((_model.apiResultUser?.succeeded ?? true)) {
+          setState(() {
+            _model.user = getJsonField(
+              (_model.apiResultUser?.jsonBody ?? ''),
+              r'''$.data''',
+            );
+          });
+        }
+      } else {
+        setState(() {});
+        return;
       }
     });
   }
@@ -282,7 +289,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Số điên thoại',
+                                      'Số điện thoại',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(

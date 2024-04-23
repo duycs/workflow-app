@@ -78,8 +78,6 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
   // State field(s) for programs_id widget.
   String? programsIdValue;
   FormFieldController<String>? programsIdValueController;
-  // Stores action output result for [Backend Call - API (PathDepartment)] action in Button widget.
-  ApiCallResponse? apiResultjly;
 
   @override
   void initState(BuildContext context) {}
@@ -134,6 +132,8 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await getLinkBranchList(context);
       }
     }
   }
@@ -173,6 +173,72 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await getPrograms(context);
+      }
+    }
+  }
+
+  Future pathDepartment(BuildContext context) async {
+    ApiCallResponse? apiResultPathDepartment;
+    bool? checkRefreshTokenBlockhg;
+
+    apiResultPathDepartment = await DepartmentGroup.pathDepartmentCall.call(
+      accessToken: FFAppState().accessToken,
+      name: nameTextController.text,
+      code: codeTextController.text,
+      branchId: dropDownBranchIdValue,
+      description: descriptionTextController.text,
+      departmentId: getJsonField(
+        widget.items,
+        r'''$.id''',
+      ).toString().toString(),
+      programsIdJson: programIds.map((e) => e.toMap()).toList(),
+    );
+    if ((apiResultPathDepartment.succeeded ?? true)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Cập nhật bộ phận thành công!',
+            style: TextStyle(
+              color: FlutterFlowTheme.of(context).primaryText,
+            ),
+          ),
+          duration: const Duration(milliseconds: 4000),
+          backgroundColor: FlutterFlowTheme.of(context).secondary,
+        ),
+      );
+
+      context.pushNamed(
+        'DepartmentList',
+        extra: <String, dynamic>{
+          kTransitionInfoKey: const TransitionInfo(
+            hasTransition: true,
+            transitionType: PageTransitionType.fade,
+            duration: Duration(milliseconds: 0),
+          ),
+        },
+      );
+    } else {
+      checkRefreshTokenBlockhg = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultPathDepartment.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlockhg!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await pathDepartment(context);
       }
     }
   }

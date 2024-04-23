@@ -35,35 +35,34 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultStudyProgramList =
-          await StudyProgramGroup.studyProgramListCall.call(
-        accessToken: FFAppState().accessToken,
-        filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffLogin,
-          r'''$.organization_id''',
-        ).toString().toString()}\"}}]}',
-      );
-      if ((_model.apiResultStudyProgramList?.succeeded ?? true)) {
-        setState(() {
-          _model.dataList = StudyProgramListDataStruct.maybeFromMap(
-                  (_model.apiResultStudyProgramList?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<StudyProgramListStruct>();
-          _model.meta = StudyProgramListDataStruct.maybeFromMap(
-                  (_model.apiResultStudyProgramList?.jsonBody ?? ''))
-              ?.meta;
-        });
-      } else {
-        _model.checkRefreshTokenBlock45 = await action_blocks.checkRefreshToken(
-          context,
-          jsonErrors: (_model.apiResultStudyProgramList?.jsonBody ?? ''),
+      setState(() {});
+      _model.tokenReloadStudyProgramList =
+          await action_blocks.tokenReload(context);
+      if (_model.tokenReloadStudyProgramList!) {
+        _model.apiResultStudyProgramList =
+            await StudyProgramGroup.studyProgramListCall.call(
+          accessToken: FFAppState().accessToken,
+          filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.organization_id''',
+          ).toString().toString()}\"}}]}',
         );
-        if (!_model.checkRefreshTokenBlock45!) {
+        if ((_model.apiResultStudyProgramList?.succeeded ?? true)) {
+          setState(() {
+            _model.dataList = StudyProgramListDataStruct.maybeFromMap(
+                    (_model.apiResultStudyProgramList?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<StudyProgramListStruct>();
+            _model.meta = StudyProgramListDataStruct.maybeFromMap(
+                    (_model.apiResultStudyProgramList?.jsonBody ?? ''))
+                ?.meta;
+          });
+        } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                FFAppConstants.ErrorLoadData,
+                'Lỗi tải dữ liệu!',
                 style: TextStyle(
                   color: FlutterFlowTheme.of(context).primaryText,
                 ),
@@ -73,11 +72,14 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
             ),
           );
         }
-      }
 
-      setState(() {
-        _model.isLoad = true;
-      });
+        setState(() {
+          _model.isLoad = true;
+        });
+      } else {
+        setState(() {});
+        return;
+      }
     });
 
     _model.textFieldNameSearchTextController ??= TextEditingController();
@@ -585,93 +587,82 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
                                               children: [
-                                                Builder(
-                                                  builder: (context) =>
-                                                      FlutterFlowIconButton(
-                                                    borderRadius: 20.0,
-                                                    borderWidth: 1.0,
-                                                    buttonSize: 40.0,
-                                                    icon: Icon(
-                                                      Icons.edit,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      size: 24.0,
-                                                    ),
-                                                    onPressed: () async {
-                                                      await showDialog(
-                                                        context: context,
-                                                        builder:
-                                                            (dialogContext) {
-                                                          return Dialog(
-                                                            elevation: 0,
-                                                            insetPadding:
-                                                                EdgeInsets.zero,
-                                                            backgroundColor:
-                                                                Colors
-                                                                    .transparent,
-                                                            alignment: const AlignmentDirectional(
-                                                                    0.0, 1.0)
-                                                                .resolve(
-                                                                    Directionality.of(
-                                                                        context)),
-                                                            child:
-                                                                GestureDetector(
-                                                              onTap: () => _model
-                                                                      .unfocusNode
-                                                                      .canRequestFocus
-                                                                  ? FocusScope.of(
-                                                                          context)
-                                                                      .requestFocus(
-                                                                          _model
-                                                                              .unfocusNode)
-                                                                  : FocusScope.of(
-                                                                          context)
-                                                                      .unfocus(),
-                                                              child:
-                                                                  StudyProgramEditWidget(
-                                                                dataDetail:
-                                                                    dataListViewItem,
-                                                                callBackList1:
-                                                                    () async {
-                                                                  setState(() {
-                                                                    _model.checkShow =
-                                                                        null;
-                                                                    _model.dataList =
-                                                                        [];
-                                                                    _model.meta =
-                                                                        null;
-                                                                    _model.isLoad =
-                                                                        false;
-                                                                    _model.nameSearch =
-                                                                        '';
-                                                                    _model.dateEndSearch =
-                                                                        '';
-                                                                    _model.dateStartSearch =
-                                                                        '';
-                                                                    _model.lessionsNameSearch =
-                                                                        '';
-                                                                  });
-                                                                  setState(() {
-                                                                    _model
-                                                                        .textFieldNameSearchTextController
-                                                                        ?.clear();
-                                                                  });
-                                                                  await _model
-                                                                      .getListProgram(
-                                                                          context);
-                                                                  setState(
-                                                                      () {});
-                                                                },
-                                                              ),
-                                                            ),
-                                                          );
-                                                        },
-                                                      ).then((value) =>
-                                                          setState(() {}));
-                                                    },
+                                                FlutterFlowIconButton(
+                                                  borderRadius: 20.0,
+                                                  borderWidth: 1.0,
+                                                  buttonSize: 40.0,
+                                                  icon: Icon(
+                                                    Icons.edit,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    size: 24.0,
                                                   ),
+                                                  onPressed: () async {
+                                                    await showModalBottomSheet(
+                                                      isScrollControlled: true,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      enableDrag: false,
+                                                      context: context,
+                                                      builder: (context) {
+                                                        return GestureDetector(
+                                                          onTap: () => _model
+                                                                  .unfocusNode
+                                                                  .canRequestFocus
+                                                              ? FocusScope.of(
+                                                                      context)
+                                                                  .requestFocus(
+                                                                      _model
+                                                                          .unfocusNode)
+                                                              : FocusScope.of(
+                                                                      context)
+                                                                  .unfocus(),
+                                                          child: Padding(
+                                                            padding: MediaQuery
+                                                                .viewInsetsOf(
+                                                                    context),
+                                                            child:
+                                                                StudyProgramEditWidget(
+                                                              dataDetail:
+                                                                  dataListViewItem,
+                                                              callBackList1:
+                                                                  () async {
+                                                                setState(() {
+                                                                  _model.checkShow =
+                                                                      null;
+                                                                  _model.dataList =
+                                                                      [];
+                                                                  _model.meta =
+                                                                      null;
+                                                                  _model.isLoad =
+                                                                      false;
+                                                                  _model.nameSearch =
+                                                                      '';
+                                                                  _model.dateEndSearch =
+                                                                      '';
+                                                                  _model.dateStartSearch =
+                                                                      '';
+                                                                  _model.lessionsNameSearch =
+                                                                      '';
+                                                                });
+                                                                setState(() {
+                                                                  _model
+                                                                      .textFieldNameSearchTextController
+                                                                      ?.clear();
+                                                                });
+                                                                await _model
+                                                                    .getListProgram(
+                                                                        context);
+                                                                setState(() {});
+                                                              },
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    ).then((value) =>
+                                                        safeSetState(() {}));
+                                                  },
                                                 ),
                                                 Expanded(
                                                   flex: 2,

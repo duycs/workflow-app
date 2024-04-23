@@ -497,86 +497,42 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                         return;
                                       }
 
-                                      _model.apiResultCreateBranch =
-                                          await BranchGroup.branchAddCall.call(
-                                        accessToken: FFAppState().accessToken,
-                                        requesDataJson: <String, dynamic>{
-                                          'name': _model
-                                              .branchNameTextController.text,
-                                          'status': 'published',
-                                          'description': _model
-                                              .descriptionBranchTextController
-                                              .text,
-                                          'code': _model
-                                              .branchCodeTextController.text,
-                                          'organization_id': <String, dynamic>{
-                                            'id': getJsonField(
-                                              FFAppState().staffLogin,
-                                              r'''$.organiztion_id''',
-                                            ),
-                                          },
-                                        },
-                                      );
+                                      _model.reloadTokenBranchAdd =
+                                          await action_blocks
+                                              .tokenReload(context);
                                       shouldSetState = true;
-                                      if ((_model.apiResultCreateBranch
-                                              ?.succeeded ??
-                                          true)) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Tạo mới thành công',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
+                                      if (_model.reloadTokenBranchAdd!) {
+                                        _model.apiResultCreateBranch =
+                                            await BranchGroup.branchAddCall
+                                                .call(
+                                          accessToken: FFAppState().accessToken,
+                                          requesDataJson: <String, dynamic>{
+                                            'name': _model
+                                                .branchNameTextController.text,
+                                            'status': 'published',
+                                            'description': _model
+                                                .descriptionBranchTextController
+                                                .text,
+                                            'code': _model
+                                                .branchCodeTextController.text,
+                                            'organization_id':
+                                                <String, dynamic>{
+                                              'id': getJsonField(
+                                                FFAppState().staffLogin,
+                                                r'''$.organiztion_id''',
                                               ),
-                                            ),
-                                            duration:
-                                                const Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary,
-                                          ),
-                                        );
-                                        await widget.callBackList?.call();
-                                        Navigator.pop(context);
-                                      } else {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Tạo mới không thành công',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                              ),
-                                            ),
-                                            duration:
-                                                const Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .error,
-                                          ),
-                                        );
-                                        _model.apiResuftRefreshTokenbranch =
-                                            await action_blocks
-                                                .checkRefreshToken(
-                                          context,
-                                          jsonErrors: (_model
-                                                  .apiResultCreateBranch
-                                                  ?.jsonBody ??
-                                              ''),
+                                            },
+                                          },
                                         );
                                         shouldSetState = true;
-                                        if (!_model
-                                            .apiResuftRefreshTokenbranch!) {
+                                        if ((_model.apiResultCreateBranch
+                                                ?.succeeded ??
+                                            true)) {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             SnackBar(
                                               content: Text(
-                                                FFAppConstants.ErrorLoadData,
+                                                'Tạo mới thành công',
                                                 style: TextStyle(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -587,15 +543,17 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                                   const Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
-                                                      .error,
+                                                      .secondary,
                                             ),
                                           );
+                                          await widget.callBackList?.call();
+                                          Navigator.pop(context);
                                         } else {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             SnackBar(
                                               content: Text(
-                                                'Tạo mới không thành công. Vui lòng thử lại!',
+                                                'Tạo mới không thành công',
                                                 style: TextStyle(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -610,7 +568,8 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                             ),
                                           );
                                         }
-
+                                      } else {
+                                        setState(() {});
                                         if (shouldSetState) setState(() {});
                                         return;
                                       }

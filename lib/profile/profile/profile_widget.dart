@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -31,19 +32,25 @@ class _ProfileWidgetState extends State<ProfileWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultGetDetail = await StaffGroup.getStaffGetOneCall.call(
-        accessToken: FFAppState().accessToken,
-        staffId: getJsonField(
-          FFAppState().staffLogin,
-          r'''$.id''',
-        ).toString().toString(),
-      );
-      if ((_model.apiResultGetDetail?.succeeded ?? true)) {
-        setState(() {
-          _model.staffDetail = StaffTasksDataStruct.maybeFromMap(
-                  (_model.apiResultGetDetail?.jsonBody ?? ''))
-              ?.data;
-        });
+      _model.reloadTokenStaffGetOne = await action_blocks.tokenReload(context);
+      if (_model.reloadTokenStaffGetOne!) {
+        _model.apiResultGetDetail = await StaffGroup.getStaffGetOneCall.call(
+          accessToken: FFAppState().accessToken,
+          staffId: getJsonField(
+            FFAppState().staffLogin,
+            r'''$.id''',
+          ).toString().toString(),
+        );
+        if ((_model.apiResultGetDetail?.succeeded ?? true)) {
+          setState(() {
+            _model.staffDetail = StaffTasksDataStruct.maybeFromMap(
+                    (_model.apiResultGetDetail?.jsonBody ?? ''))
+                ?.data;
+          });
+        }
+      } else {
+        setState(() {});
+        return;
       }
     });
   }

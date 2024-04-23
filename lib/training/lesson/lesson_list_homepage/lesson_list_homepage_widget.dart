@@ -40,7 +40,6 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await Future.delayed(const Duration(milliseconds: 2000));
       if (FFAppState().staffid != '') {
         await _model.getListLesson(context);
         setState(() {});
@@ -315,30 +314,20 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                             fontStyle: FontStyle.italic,
                           ),
                     ),
-                  Container(
-                    width: double.infinity,
-                    height: MediaQuery.sizeOf(context).height * 1.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: BorderRadius.circular(0.0),
-                    ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                     child: Builder(
                       builder: (context) {
-                        final listRow = _model.listLesson.toList();
-                        return GridView.builder(
+                        final list = _model.listLesson.toList();
+                        return ListView.separated(
                           padding: EdgeInsets.zero,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            crossAxisSpacing: 10.0,
-                            mainAxisSpacing: 15.0,
-                            childAspectRatio: 1.0,
-                          ),
-                          primary: false,
+                          shrinkWrap: true,
                           scrollDirection: Axis.vertical,
-                          itemCount: listRow.length,
-                          itemBuilder: (context, listRowIndex) {
-                            final listRowItem = listRow[listRowIndex];
+                          itemCount: list.length,
+                          separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                          itemBuilder: (context, listIndex) {
+                            final listItem = list[listIndex];
                             return InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -349,15 +338,15 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                   'LessonDetail_HomePage',
                                   queryParameters: {
                                     'listItems': serializeParam(
-                                      listRowItem.lessionId.toMap(),
+                                      listItem.lessionId.toMap(),
                                       ParamType.JSON,
                                     ),
                                     'status': serializeParam(
-                                      listRowItem.status,
+                                      listItem.status,
                                       ParamType.String,
                                     ),
                                     'id': serializeParam(
-                                      listRowItem.id,
+                                      listItem.id,
                                       ParamType.String,
                                     ),
                                   }.withoutNulls,
@@ -371,48 +360,116 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                 );
                               },
                               child: Container(
+                                height: 120.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  borderRadius: BorderRadius.circular(12.0),
+                                  borderRadius: BorderRadius.circular(4.0),
                                   border: Border.all(
                                     color:
                                         FlutterFlowTheme.of(context).alternate,
-                                    width: 1.0,
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: Column(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Expanded(
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            '${FFAppConstants.ApiBaseUrl}/assets/${listRowItem.lessionId.imageCover}?access_token=${FFAppState().accessToken}',
-                                            width: double.infinity,
-                                            height: 100.0,
-                                            fit: BoxFit.cover,
-                                          ),
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.network(
+                                          '${FFAppConstants.ApiBaseUrl}/assets/${listItem.lessionId.imageCover}?access_token=${FFAppState().accessToken}',
+                                          width: 100.0,
+                                          height: 100.0,
+                                          fit: BoxFit.cover,
+                                          alignment: const Alignment(0.0, 0.0),
                                         ),
                                       ),
-                                      Text(
-                                        listRowItem.lessionId.name,
-                                        maxLines: 2,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.normal,
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.stretch,
+                                          children: [
+                                            Expanded(
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.stretch,
+                                                children: [
+                                                  Text(
+                                                    listItem.lessionId.name,
+                                                    maxLines: 2,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 15.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 4.0,
+                                                                0.0, 4.0),
+                                                    child: Text(
+                                                      listItem.lessionId
+                                                          .description,
+                                                      maxLines: 2,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodySmall
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Icon(
+                                                  Icons.timelapse_outlined,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 20.0,
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    '${listItem.lessionId.durationHours.toString()} phút',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodySmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ].divide(const SizedBox(width: 4.0)),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ].divide(const SizedBox(height: 4.0)),
+                                    ].divide(const SizedBox(width: 8.0)),
                                   ),
                                 ),
                               ),
@@ -422,6 +479,118 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                       },
                     ),
                   ),
+                  if ('1' == '2')
+                    Container(
+                      width: double.infinity,
+                      height: 300.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(0.0),
+                      ),
+                      child: Visibility(
+                        visible: '1' == '1',
+                        child: Builder(
+                          builder: (context) {
+                            final listRow = _model.listLesson.toList();
+                            return GridView.builder(
+                              padding: EdgeInsets.zero,
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                crossAxisSpacing: 10.0,
+                                mainAxisSpacing: 15.0,
+                                childAspectRatio: 1.0,
+                              ),
+                              primary: false,
+                              scrollDirection: Axis.vertical,
+                              itemCount: listRow.length,
+                              itemBuilder: (context, listRowIndex) {
+                                final listRowItem = listRow[listRowIndex];
+                                return InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      'LessonDetail_HomePage',
+                                      queryParameters: {
+                                        'listItems': serializeParam(
+                                          listRowItem.lessionId.toMap(),
+                                          ParamType.JSON,
+                                        ),
+                                        'status': serializeParam(
+                                          listRowItem.status,
+                                          ParamType.String,
+                                        ),
+                                        'id': serializeParam(
+                                          listRowItem.id,
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Expanded(
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              child: Image.network(
+                                                '${FFAppConstants.ApiBaseUrl}/assets/${listRowItem.lessionId.imageCover}?access_token=${FFAppState().accessToken}',
+                                                width: double.infinity,
+                                                height: 100.0,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            listRowItem.lessionId.name,
+                                            maxLines: 2,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyLarge
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  fontSize: 13.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                          ),
+                                        ].divide(const SizedBox(height: 4.0)),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      ),
+                    ),
                 ].divide(const SizedBox(height: 8.0)),
               ),
             ),

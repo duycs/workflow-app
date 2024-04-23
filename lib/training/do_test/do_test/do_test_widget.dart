@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/instant_timer.dart';
 import '/training/do_test/long_text_list_question/long_text_list_question_widget.dart';
 import '/training/do_test/number_list_question/number_list_question_widget.dart';
 import '/training/do_test/select_list_question/select_list_question_widget.dart';
@@ -75,7 +76,13 @@ class _DoTestWidgetState extends State<DoTestWidget> {
         setState(() {
           _model.loopList = 0;
         });
-        _model.timerController.onStartTimer();
+        _model.instantTimer = InstantTimer.periodic(
+          duration: const Duration(milliseconds: 1000),
+          callback: (timer) async {
+            _model.timerController.onStartTimer();
+          },
+          startImmediately: true,
+        );
       }
     });
 
@@ -180,15 +187,22 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                     ),
                                     Row(
                                       mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
                                       children: [
-                                        Text(
-                                          'Thời gian: ',
-                                          style: FlutterFlowTheme.of(context)
-                                              .labelMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                letterSpacing: 0.0,
-                                              ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 4.0),
+                                          child: Text(
+                                            'Thời gian: ',
+                                            style: FlutterFlowTheme.of(context)
+                                                .labelMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
                                         ),
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -445,6 +459,22 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                             _model
                                                                 .testDescription,
                                                             ParamType.String,
+                                                          ),
+                                                          'percentCorect':
+                                                              serializeParam(
+                                                            getJsonField(
+                                                              (_model.apiResultCaculatorScores2
+                                                                      ?.jsonBody ??
+                                                                  ''),
+                                                              r'''$.percent_corect''',
+                                                            ),
+                                                            ParamType.int,
+                                                          ),
+                                                          'goodScore':
+                                                              serializeParam(
+                                                            _model.list
+                                                                ?.goodScore,
+                                                            ParamType.int,
                                                           ),
                                                         }.withoutNulls,
                                                       );
@@ -917,7 +947,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                       });
                                                     },
                                                   ),
-                                              ],
+                                              ].divide(const SizedBox(height: 4.0)),
                                             ),
                                           ),
                                         ),
@@ -940,17 +970,17 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                 context: context,
                                 builder: (alertDialogContext) {
                                   return AlertDialog(
-                                    title: const Text('Bạn chắc chắn nộp?'),
+                                    title: const Text('Bạn xác nhận nộp bài thi?'),
                                     actions: [
                                       TextButton(
                                         onPressed: () => Navigator.pop(
                                             alertDialogContext, false),
-                                        child: const Text('Cancel'),
+                                        child: const Text('Thoát'),
                                       ),
                                       TextButton(
                                         onPressed: () => Navigator.pop(
                                             alertDialogContext, true),
-                                        child: const Text('Confirm'),
+                                        child: const Text('Xác nhận'),
                                       ),
                                     ],
                                   );
@@ -1146,6 +1176,10 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                               ''),
                                           r'''$.percent_corect''',
                                         ),
+                                        ParamType.int,
+                                      ),
+                                      'goodScore': serializeParam(
+                                        _model.list?.goodScore,
                                         ParamType.int,
                                       ),
                                     }.withoutNulls,

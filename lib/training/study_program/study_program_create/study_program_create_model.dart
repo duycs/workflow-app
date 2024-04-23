@@ -41,6 +41,8 @@ class StudyProgramCreateModel
   late LessionsDropdownModel lessionsDropdownModel;
   // Stores action output result for [Action Block - LessionsAddList] action in LessionsDropdown widget.
   bool? lessionsAddListCheck;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? tokenReloadStudyProgramCreate;
   // Stores action output result for [Backend Call - API (StudyProgramCreate)] action in Button widget.
   ApiCallResponse? apiResulti4j;
 

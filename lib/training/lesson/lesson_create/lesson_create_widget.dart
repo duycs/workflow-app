@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
@@ -7,11 +6,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
-import '/actions/actions.dart' as action_blocks;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:provider/provider.dart';
 import 'lesson_create_model.dart';
 export 'lesson_create_model.dart';
 
@@ -57,8 +54,6 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -987,247 +982,25 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                   onPressed: () async {
                     if ((_model.uploadedLocalFile2.bytes?.isNotEmpty ??
                             false)) {
-                      _model.apiResultUploadVideo =
-                          await UploadFileGroup.uploadFileCall.call(
-                        accessToken: FFAppState().accessToken,
-                        file: _model.uploadedLocalFile2,
-                      );
-                      if ((_model.apiResultUploadVideo?.succeeded ?? true)) {
-                        setState(() {
-                          _model.uploadVideo = getJsonField(
-                            (_model.apiResultUploadVideo?.jsonBody ?? ''),
-                            r'''$.data.id''',
-                          ).toString();
-                        });
-                        if ((_model.uploadedLocalFile1.bytes?.isNotEmpty ??
-                                false)) {
-                          _model.apiResultUploadImage =
-                              await UploadFileGroup.uploadFileCall.call(
-                            accessToken: FFAppState().accessToken,
-                            file: _model.uploadedLocalFile1,
-                          );
-                          if ((_model.apiResultUploadImage?.succeeded ??
-                              true)) {
-                            setState(() {
-                              _model.uploadImage = getJsonField(
-                                (_model.apiResultUploadImage?.jsonBody ?? ''),
-                                r'''$.data.id''',
-                              ).toString();
-                            });
-                            if ((_model.uploadedLocalFile3.bytes?.isNotEmpty ??
-                                    false)) {
-                              _model.apiResultFile =
-                                  await UploadFileGroup.uploadFileCall.call(
-                                accessToken: FFAppState().accessToken,
-                                file: _model.uploadedLocalFile3,
-                              );
-                              if ((_model.apiResultFile?.succeeded ?? true)) {
-                                setState(() {
-                                  _model.uploadFile = getJsonField(
-                                    (_model.apiResultFile?.jsonBody ?? ''),
-                                    r'''$.data.id''',
-                                  ).toString();
-                                });
-                              } else {
-                                _model.checkRefreshTokenBlock7 =
-                                    await action_blocks.checkRefreshToken(
-                                  context,
-                                  jsonErrors:
-                                      (_model.apiResultFile?.jsonBody ?? ''),
-                                );
-                                if (!_model.checkRefreshTokenBlock7!) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        FFAppConstants.ErrorLoadData,
-                                        style: TextStyle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                        ),
-                                      ),
-                                      duration: const Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context).error,
-                                    ),
-                                  );
-                                }
-                              }
-                            }
-                          } else {
-                            _model.checkRefreshTokenBlock6 =
-                                await action_blocks.checkRefreshToken(
-                              context,
-                              jsonErrors:
-                                  (_model.apiResultUploadImage?.jsonBody ?? ''),
-                            );
-                            if (!_model.checkRefreshTokenBlock6!) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    FFAppConstants.ErrorLoadData,
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                  ),
-                                  duration: const Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).error,
-                                ),
-                              );
-                            }
-                          }
-                        }
-                      } else {
-                        _model.checkRefreshTokenBlock5 =
-                            await action_blocks.checkRefreshToken(
-                          context,
-                          jsonErrors:
-                              (_model.apiResultUploadVideo?.jsonBody ?? ''),
-                        );
-                        if (!_model.checkRefreshTokenBlock5!) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                FFAppConstants.ErrorLoadData,
-                                style: TextStyle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                              ),
-                              duration: const Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).error,
-                            ),
-                          );
-                        }
-                      }
-                    } else {
-                      if ((_model.uploadedLocalFile1.bytes?.isNotEmpty ??
-                              false)) {
-                        _model.apiResultUploadImage1 =
-                            await UploadFileGroup.uploadFileCall.call(
-                          accessToken: FFAppState().accessToken,
-                          file: _model.uploadedLocalFile1,
-                        );
-                        if ((_model.apiResultUploadImage1?.succeeded ?? true)) {
-                          setState(() {
-                            _model.uploadImage = getJsonField(
-                              (_model.apiResultUploadImage1?.jsonBody ?? ''),
-                              r'''$.data.id''',
-                            ).toString();
-                          });
-                          if ((_model.uploadedLocalFile3.bytes?.isNotEmpty ??
-                                  false)) {
-                            _model.apiResultFile1 =
-                                await UploadFileGroup.uploadFileCall.call(
-                              accessToken: FFAppState().accessToken,
-                              file: _model.uploadedLocalFile3,
-                            );
-                            if ((_model.apiResultFile1?.succeeded ?? true)) {
-                              setState(() {
-                                _model.uploadFile = getJsonField(
-                                  (_model.apiResultFile1?.jsonBody ?? ''),
-                                  r'''$.data.id''',
-                                ).toString();
-                              });
-                            } else {
-                              _model.checkRefreshTokenBlock9 =
-                                  await action_blocks.checkRefreshToken(
-                                context,
-                                jsonErrors:
-                                    (_model.apiResultFile1?.jsonBody ?? ''),
-                              );
-                              if (!_model.checkRefreshTokenBlock9!) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      FFAppConstants.ErrorLoadData,
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).error,
-                                  ),
-                                );
-                              }
-                            }
-                          }
-                        } else {
-                          _model.checkRefreshTokenBlock8 =
-                              await action_blocks.checkRefreshToken(
-                            context,
-                            jsonErrors:
-                                (_model.apiResultUploadImage1?.jsonBody ?? ''),
-                          );
-                          if (!_model.checkRefreshTokenBlock8!) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  FFAppConstants.ErrorLoadData,
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                ),
-                                duration: const Duration(milliseconds: 4000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).error,
-                              ),
-                            );
-                          }
-                        }
-                      } else {
-                        if ((_model.uploadedLocalFile3.bytes?.isNotEmpty ??
-                                false)) {
-                          _model.apiResultFile12 =
-                              await UploadFileGroup.uploadFileCall.call(
-                            accessToken: FFAppState().accessToken,
-                            file: _model.uploadedLocalFile3,
-                          );
-                          if ((_model.apiResultFile12?.succeeded ?? true)) {
-                            setState(() {
-                              _model.uploadFile = getJsonField(
-                                (_model.apiResultFile12?.jsonBody ?? ''),
-                                r'''$.data.id''',
-                              ).toString();
-                            });
-                          } else {
-                            _model.checkRefreshTokenBlock10 =
-                                await action_blocks.checkRefreshToken(
-                              context,
-                              jsonErrors:
-                                  (_model.apiResultFile12?.jsonBody ?? ''),
-                            );
-                            if (!_model.checkRefreshTokenBlock10!) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    FFAppConstants.ErrorLoadData,
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                  ),
-                                  duration: const Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).error,
-                                ),
-                              );
-                            }
-                          }
-                        }
-                      }
+                      await _model.uploadFIleVideo(context);
+                      setState(() {});
                     }
-
+                    if ((_model.uploadedLocalFile1.bytes?.isNotEmpty ??
+                            false)) {
+                      await _model.uploadFIleImage(context);
+                      setState(() {});
+                    }
+                    if ((_model.uploadedLocalFile3.bytes?.isNotEmpty ??
+                            false)) {
+                      await _model.uploadFileFile(context);
+                      setState(() {});
+                    }
                     if ((_model.nameTextController.text != '') &&
                         (_model.checkContent != '') &&
                         (_model.descriptionTextController.text != '') &&
                         (_model.durationHoursTextController.text != '')) {
                       await _model.createLesson(context);
+                      setState(() {});
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -1242,8 +1015,6 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                         ),
                       );
                     }
-
-                    setState(() {});
                   },
                   text: 'Lưu',
                   options: FFButtonOptions(

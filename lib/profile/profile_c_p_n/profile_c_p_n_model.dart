@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'profile_c_p_n_widget.dart' show ProfileCPNWidget;
 import 'package:flutter/material.dart';
 
@@ -34,19 +35,27 @@ class ProfileCPNModel extends FlutterFlowModel<ProfileCPNWidget> {
 
   /// Action blocks.
   Future getLinkOrganization(BuildContext context) async {
+    bool? reloadTokenOrganization;
     ApiCallResponse? apiResultGetOrganization;
 
-    apiResultGetOrganization = await OrganizationGroup.getOrganizationCall.call(
-      organizationId: getJsonField(
-        FFAppState().staffLogin,
-        r'''$.organization_id''',
-      ).toString().toString(),
-      accessToken: FFAppState().accessToken,
-    );
-    if ((apiResultGetOrganization.succeeded ?? true)) {
-      organizationDetail = OrganizationListDataStruct.maybeFromMap(
-              (apiResultGetOrganization.jsonBody ?? ''))
-          ?.data;
+    reloadTokenOrganization = await action_blocks.tokenReload(context);
+    if (reloadTokenOrganization!) {
+      apiResultGetOrganization =
+          await OrganizationGroup.getOrganizationCall.call(
+        organizationId: getJsonField(
+          FFAppState().staffLogin,
+          r'''$.organization_id''',
+        ).toString().toString(),
+        accessToken: FFAppState().accessToken,
+      );
+      if ((apiResultGetOrganization.succeeded ?? true)) {
+        organizationDetail = OrganizationListDataStruct.maybeFromMap(
+                (apiResultGetOrganization.jsonBody ?? ''))
+            ?.data;
+      }
+    } else {
+      FFAppState().update(() {});
+      return;
     }
   }
 }

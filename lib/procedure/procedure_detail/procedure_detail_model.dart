@@ -31,6 +31,8 @@ class ProcedureDetailModel extends FlutterFlowModel<ProcedureDetailWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in ProcedureDetail widget.
+  bool? tokenReloadProcedureDetail;
   // Stores action output result for [Backend Call - API (workflowsOne)] action in ProcedureDetail widget.
   ApiCallResponse? apiResultStepData;
   // State field(s) for TabBar widget.

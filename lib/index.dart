@@ -100,7 +100,6 @@ export '/profile/training_progress/training_progress_widget.dart'
 export '/training/test/test_update/test_update_widget.dart'
     show TestUpdateWidget;
 export '/branch/branch_list/branch_list_widget.dart' show BranchListWidget;
-export '/training/do_test_copy/do_test_copy_widget.dart' show DoTestCopyWidget;
 export '/staff/staff_detail/staff_detail_widget.dart' show StaffDetailWidget;
 export '/department/department_list/department_list_widget.dart'
     show DepartmentListWidget;

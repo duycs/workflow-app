@@ -51,6 +51,8 @@ class BranchUpdateModel extends FlutterFlowModel<BranchUpdateWidget> {
     return null;
   }
 
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? refreshTokenBranchUpdate;
   // Stores action output result for [Backend Call - API (BranchUpdate)] action in Button widget.
   ApiCallResponse? apiResultCreateBranch;
 
