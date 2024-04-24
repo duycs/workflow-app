@@ -817,12 +817,13 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                                                     '1'
                                                                 ? true
                                                                 : false,
-                                                        onChanged:
-                                                            (newValue) async {
-                                                          setState(() => _model
-                                                                  .checkboxValue1 =
-                                                              newValue!);
-                                                        },
+                                                        onChanged: ('2' == '2')
+                                                            ? null
+                                                            : (newValue) async {
+                                                                setState(() =>
+                                                                    _model.checkboxValue1 =
+                                                                        newValue!);
+                                                              },
                                                         side: BorderSide(
                                                           width: 2,
                                                           color: FlutterFlowTheme
@@ -833,9 +834,10 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primary,
-                                                        checkColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
+                                                        checkColor: ('2' == '2')
+                                                            ? null
+                                                            : FlutterFlowTheme
+                                                                    .of(context)
                                                                 .info,
                                                       ),
                                                     ),
@@ -949,12 +951,13 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                                                 '1'
                                                             ? true
                                                             : false,
-                                                    onChanged:
-                                                        (newValue) async {
-                                                      setState(() => _model
-                                                              .checkboxValue2 =
-                                                          newValue!);
-                                                    },
+                                                    onChanged: ('2' == '2')
+                                                        ? null
+                                                        : (newValue) async {
+                                                            setState(() => _model
+                                                                    .checkboxValue2 =
+                                                                newValue!);
+                                                          },
                                                     side: BorderSide(
                                                       width: 2,
                                                       color:
@@ -966,8 +969,9 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                                         FlutterFlowTheme.of(
                                                                 context)
                                                             .primary,
-                                                    checkColor:
-                                                        FlutterFlowTheme.of(
+                                                    checkColor: ('2' == '2')
+                                                        ? null
+                                                        : FlutterFlowTheme.of(
                                                                 context)
                                                             .info,
                                                   ),

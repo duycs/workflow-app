@@ -27,16 +27,26 @@ class TaskDetailModel extends FlutterFlowModel<TaskDetailWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in TaskDetail widget.
+  bool? getTaskListToken;
   // Stores action output result for [Backend Call - API (GetListTask)] action in TaskDetail widget.
   ApiCallResponse? apiResultGetTaskList;
   // Stores action output result for [Backend Call - API (UpdateOperation)] action in detail_action_type_to_do_list widget.
   ApiCallResponse? apiResultCheckList;
+  // Stores action output result for [Action Block - tokenReload] action in detail_action_type_approve widget.
+  bool? confirmToken;
   // Stores action output result for [Backend Call - API (ConfirmOperation)] action in detail_action_type_approve widget.
-  ApiCallResponse? apiResuonfirm;
+  ApiCallResponse? apiResultConfirm;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? apiResultx5lToken;
   // Stores action output result for [Backend Call - API (UpdateOperation)] action in Button widget.
   ApiCallResponse? apiResultx5l;
+  // Stores action output result for [Action Block - tokenReload] action in detail_action_type_upload_file widget.
+  bool? apiResultl2eToken;
   // Stores action output result for [Backend Call - API (UpdateOperation)] action in detail_action_type_upload_file widget.
   ApiCallResponse? apiResultl2e;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? downloadToken;
 
   @override
   void initState(BuildContext context) {}

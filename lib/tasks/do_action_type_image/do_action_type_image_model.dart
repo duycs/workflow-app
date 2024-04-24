@@ -10,6 +10,8 @@ class DoActionTypeImageModel extends FlutterFlowModel<DoActionTypeImageWidget> {
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? imageToken;
   // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
   ApiCallResponse? apiResultImage;
 

@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import 'dart:ui';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -1866,169 +1867,209 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                           if ((_model.uploadedLocalFile1.bytes
                                                       ?.isNotEmpty ??
                                                   false)) {
-                                            _model.apiResultUploadImage =
-                                                await UploadFileGroup
-                                                    .uploadFileCall
-                                                    .call(
-                                              accessToken:
-                                                  FFAppState().accessToken,
-                                              file: _model.uploadedLocalFile1,
-                                            );
-                                            if ((_model.apiResultUploadImage
-                                                    ?.succeeded ??
-                                                true)) {
-                                              setState(() {
-                                                _model.imageId = getJsonField(
-                                                  (_model.apiResultUploadImage
-                                                          ?.jsonBody ??
-                                                      ''),
-                                                  r'''$.data.id''',
-                                                ).toString();
-                                              });
+                                            _model.uploadImageToken =
+                                                await action_blocks
+                                                    .tokenReload(context);
+                                            if (_model.uploadImageToken!) {
+                                              _model.apiResultUploadImage =
+                                                  await UploadFileGroup
+                                                      .uploadFileCall
+                                                      .call(
+                                                accessToken:
+                                                    FFAppState().accessToken,
+                                                file: _model.uploadedLocalFile1,
+                                              );
+                                              if ((_model.apiResultUploadImage
+                                                      ?.succeeded ??
+                                                  true)) {
+                                                setState(() {
+                                                  _model.imageId = getJsonField(
+                                                    (_model.apiResultUploadImage
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$.data.id''',
+                                                  ).toString();
+                                                });
+                                              }
+                                            } else {
+                                              setState(() {});
                                             }
                                           }
                                           if ((_model.uploadedLocalFile2.bytes
                                                       ?.isNotEmpty ??
                                                   false)) {
-                                            _model.apiResultUploadVideo =
-                                                await UploadFileGroup
-                                                    .uploadFileCall
-                                                    .call(
-                                              accessToken:
-                                                  FFAppState().accessToken,
-                                              file: _model.uploadedLocalFile2,
-                                            );
-                                            if ((_model.apiResultUploadVideo
-                                                    ?.succeeded ??
-                                                true)) {
-                                              setState(() {
-                                                _model.videoId = getJsonField(
-                                                  (_model.apiResultUploadVideo
-                                                          ?.jsonBody ??
-                                                      ''),
-                                                  r'''$.data.id''',
-                                                ).toString();
-                                              });
+                                            _model.uploadVideoToken =
+                                                await action_blocks
+                                                    .tokenReload(context);
+                                            if (_model.uploadVideoToken!) {
+                                              _model.apiResultUploadVideo =
+                                                  await UploadFileGroup
+                                                      .uploadFileCall
+                                                      .call(
+                                                accessToken:
+                                                    FFAppState().accessToken,
+                                                file: _model.uploadedLocalFile2,
+                                              );
+                                              if ((_model.apiResultUploadVideo
+                                                      ?.succeeded ??
+                                                  true)) {
+                                                setState(() {
+                                                  _model.videoId = getJsonField(
+                                                    (_model.apiResultUploadVideo
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$.data.id''',
+                                                  ).toString();
+                                                });
+                                              }
+                                            } else {
+                                              setState(() {});
                                             }
                                           }
                                           if ((_model.uploadedLocalFile3.bytes
                                                       ?.isNotEmpty ??
                                                   false)) {
-                                            _model.apiResultUploadLogo =
-                                                await UploadFileGroup
-                                                    .uploadFileCall
-                                                    .call(
-                                              accessToken:
-                                                  FFAppState().accessToken,
-                                              file: _model.uploadedLocalFile3,
-                                            );
-                                            if ((_model.apiResultUploadLogo
-                                                    ?.succeeded ??
-                                                true)) {
-                                              setState(() {
-                                                _model.logoId = getJsonField(
-                                                  (_model.apiResultUploadLogo
-                                                          ?.jsonBody ??
-                                                      ''),
-                                                  r'''$.data.id''',
-                                                ).toString();
-                                              });
+                                            _model.uploadLogoToken =
+                                                await action_blocks
+                                                    .tokenReload(context);
+                                            if (_model.uploadLogoToken!) {
+                                              _model.apiResultUploadLogo =
+                                                  await UploadFileGroup
+                                                      .uploadFileCall
+                                                      .call(
+                                                accessToken:
+                                                    FFAppState().accessToken,
+                                                file: _model.uploadedLocalFile3,
+                                              );
+                                              if ((_model.apiResultUploadLogo
+                                                      ?.succeeded ??
+                                                  true)) {
+                                                setState(() {
+                                                  _model.logoId = getJsonField(
+                                                    (_model.apiResultUploadLogo
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$.data.id''',
+                                                  ).toString();
+                                                });
+                                              }
+                                            } else {
+                                              setState(() {});
                                             }
                                           }
                                           if ((_model.uploadedLocalFile4.bytes
                                                       ?.isNotEmpty ??
                                                   false)) {
-                                            _model.apiResultUploadAvatar =
-                                                await UploadFileGroup
-                                                    .uploadFileCall
+                                            _model.uploadAvatarToken =
+                                                await action_blocks
+                                                    .tokenReload(context);
+                                            if (_model.uploadAvatarToken!) {
+                                              _model.apiResultUploadAvatar =
+                                                  await UploadFileGroup
+                                                      .uploadFileCall
+                                                      .call(
+                                                accessToken:
+                                                    FFAppState().accessToken,
+                                                file: _model.uploadedLocalFile4,
+                                              );
+                                              if ((_model.apiResultUploadAvatar
+                                                      ?.succeeded ??
+                                                  true)) {
+                                                setState(() {
+                                                  _model.avatarId =
+                                                      getJsonField(
+                                                    (_model.apiResultUploadAvatar
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$.data.id''',
+                                                  ).toString();
+                                                });
+                                              }
+                                            } else {
+                                              setState(() {});
+                                            }
+                                          }
+                                          _model.updateOrganizationToken =
+                                              await action_blocks
+                                                  .tokenReload(context);
+                                          if (_model.updateOrganizationToken!) {
+                                            _model.apiResultUpdateOrganization =
+                                                await OrganizationGroup
+                                                    .updateOrganizationCall
                                                     .call(
                                               accessToken:
                                                   FFAppState().accessToken,
-                                              file: _model.uploadedLocalFile4,
-                                            );
-                                            if ((_model.apiResultUploadAvatar
-                                                    ?.succeeded ??
-                                                true)) {
-                                              setState(() {
-                                                _model.avatarId = getJsonField(
-                                                  (_model.apiResultUploadAvatar
-                                                          ?.jsonBody ??
-                                                      ''),
-                                                  r'''$.data.id''',
-                                                ).toString();
-                                              });
-                                            }
-                                          }
-                                          _model.apiResultUpdateOrganization =
-                                              await OrganizationGroup
-                                                  .updateOrganizationCall
-                                                  .call(
-                                            accessToken:
-                                                FFAppState().accessToken,
-                                            organizationId: getJsonField(
-                                              FFAppState().staffLogin,
-                                              r'''$.organization_id''',
-                                            ).toString(),
-                                            requestDataJson: <String, dynamic>{
-                                              'name': _model
-                                                  .nameTextController.text,
-                                              'hotline': _model
-                                                  .hotlineTextController.text,
-                                              'avatar':
-                                                  _model.avatarId != ''
-                                                      ? _model.avatarId
-                                                      : widget.data?.avatar,
-                                              'logo': _model.logoId != ''
-                                                  ? _model.logoId
-                                                  : widget.data?.logo,
-                                              'address': _model
-                                                  .addressTextController.text,
-                                              'image': _model.imageId != ''
-                                                  ? _model.imageId
-                                                  : widget.data?.image,
-                                              'video': _model.videoId != ''
-                                                  ? _model.videoId
-                                                  : widget.data?.video,
-                                              'description':
-                                                  _model.description2,
-                                            },
-                                          );
-                                          if ((_model
-                                                  .apiResultUpdateOrganization
-                                                  ?.succeeded ??
-                                              true)) {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              SnackBar(
-                                                content: Text(
-                                                  'Cập nhật thành công',
-                                                  style: TextStyle(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                  ),
-                                                ),
-                                                duration: const Duration(
-                                                    milliseconds: 4000),
-                                                backgroundColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondary,
-                                              ),
-                                            );
-
-                                            context.pushNamed(
-                                              'DetailProfileCPN',
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    const TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
-                                                ),
+                                              organizationId: getJsonField(
+                                                FFAppState().staffLogin,
+                                                r'''$.organization_id''',
+                                              ).toString(),
+                                              requestDataJson: <String,
+                                                  dynamic>{
+                                                'name': _model
+                                                    .nameTextController.text,
+                                                'hotline': _model
+                                                    .hotlineTextController.text,
+                                                'avatar': _model.avatarId != ''
+                                                    ? _model.avatarId
+                                                    : widget.data?.avatar,
+                                                'logo': _model.logoId != ''
+                                                    ? _model.logoId
+                                                    : widget.data?.logo,
+                                                'address': _model
+                                                    .addressTextController.text,
+                                                'image':
+                                                    _model.imageId != ''
+                                                        ? _model.imageId
+                                                        : widget.data?.image,
+                                                'video':
+                                                    _model.videoId != ''
+                                                        ? _model.videoId
+                                                        : widget.data?.video,
+                                                'description':
+                                                    _model.description2,
                                               },
                                             );
+                                            if ((_model
+                                                    .apiResultUpdateOrganization
+                                                    ?.succeeded ??
+                                                true)) {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'Cập nhật thành công',
+                                                    style: TextStyle(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                                  ),
+                                                  duration: const Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondary,
+                                                ),
+                                              );
+
+                                              context.pushNamed(
+                                                'DetailProfileCPN',
+                                                extra: <String, dynamic>{
+                                                  kTransitionInfoKey:
+                                                      const TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType.fade,
+                                                    duration: Duration(
+                                                        milliseconds: 0),
+                                                  ),
+                                                },
+                                              );
+                                            }
+                                          } else {
+                                            setState(() {});
                                           }
 
                                           setState(() {});

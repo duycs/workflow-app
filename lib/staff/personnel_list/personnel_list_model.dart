@@ -27,14 +27,20 @@ class PersonnelListModel extends FlutterFlowModel<PersonnelListWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in PersonnelList widget.
+  bool? getStaffListToken;
   // Stores action output result for [Backend Call - API (GetStaffList)] action in PersonnelList widget.
   ApiCallResponse? apiResultGetStaffList;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // Stores action output result for [Action Block - tokenReload] action in TextField widget.
+  bool? filterToken;
   // Stores action output result for [Backend Call - API (GetStaffList)] action in TextField widget.
   ApiCallResponse? apiResultFilter;
+  // Stores action output result for [Action Block - tokenReload] action in TextField widget.
+  bool? getNoFilterToken;
   // Stores action output result for [Backend Call - API (GetStaffList)] action in TextField widget.
   ApiCallResponse? apiResultGetNoFilter;
 

@@ -15,6 +15,8 @@ class ConfirmDoTestModel extends FlutterFlowModel<ConfirmDoTestWidget> {
 
   ///  State fields for stateful widgets in this component.
 
+  // Stores action output result for [Action Block - tokenReload] action in ConfirmDoTest widget.
+  bool? getTestToken;
   // Stores action output result for [Backend Call - API (TestOne)] action in ConfirmDoTest widget.
   ApiCallResponse? apiResultGetTest;
 

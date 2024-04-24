@@ -149,6 +149,8 @@ class ProcedureUpdateModel extends FlutterFlowModel<ProcedureUpdateWidget> {
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? tokenReloadProcedurUpdate;
   // Stores action output result for [Backend Call - API (workflowUpdate)] action in Button widget.
   ApiCallResponse? apiResultUpdate;
   // Stores action output result for [Backend Call - API (DeleteWorkflowsStep)] action in Button widget.
@@ -323,6 +325,9 @@ class ProcedureUpdateModel extends FlutterFlowModel<ProcedureUpdateWidget> {
     BuildContext context, {
     List<StaffListStruct>? item,
   }) async {
+    updateDataUpdateStruct(
+      (e) => e..staffs = [],
+    );
     while (loop < item!.length) {
       updateDataUpdateStruct(
         (e) => e

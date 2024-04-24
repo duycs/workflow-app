@@ -10,6 +10,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -1202,194 +1203,192 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                 child: FFButtonWidget(
                   onPressed: () async {
                     if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
-                      _model.apiResultUploadImage =
-                          await UploadFileGroup.uploadFileCall.call(
-                        file: _model.uploadedLocalFile,
-                        accessToken: FFAppState().accessToken,
-                      );
-                      if ((_model.apiResultUploadImage?.succeeded ?? true)) {
-                        setState(() {
-                          _model.avatarid = getJsonField(
-                            (_model.apiResultUploadImage?.jsonBody ?? ''),
-                            r'''$.data.id''',
-                          ).toString();
-                        });
-                      }
-                      _model.apiResultUpdateStaff =
-                          await StaffGroup.updateStaffCall.call(
-                        accessToken: FFAppState().accessToken,
-                        id: getJsonField(
-                          widget.staffDetail,
-                          r'''$.user_id.id''',
-                        ).toString(),
-                        requestDataJson: <String, dynamic>{
-                          'first_name': _model.nameTextController.text,
-                          'last_name': _model.nameTextController.text,
-                          'email': _model.emailTextController.text,
-                          'password': 'Abcd@1234',
-                          'status': 'active',
-                          'role': _model.roleValue,
-                          'cccd': _model.cccdTextController.text,
-                          'gender': _model.radioButtonValue == 'Nam'
-                              ? 'male'
-                              : 'female',
-                          'dob': _model.dob,
-                          'phone': _model.phoneTextController.text,
-                          'department_id': () {
-                            if (_model.selectDepartment != null) {
-                              return _model.selectDepartment?.id;
-                            } else if (_model.roleValue ==
-                                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                              return null;
-                            } else {
-                              return getJsonField(
-                                widget.staffDetail,
-                                r'''$.department_id.id''',
-                              );
-                            }
-                          }(),
-                          'branch_id': getJsonField(
-                            FFAppState().staffLogin,
-                            r'''$.branch_id''',
-                          ),
-                          'avatar': _model.avatarid,
-                          'title': () {
-                            if (_model.roleValue ==
-                                '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
-                              return 'Nhân viên';
-                            } else if (_model.roleValue ==
-                                '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                              return 'Quản lý bộ phận';
-                            } else if (_model.roleValue ==
-                                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                              return 'Quản lý chi nhánh';
-                            } else {
-                              return null;
-                            }
-                          }(),
-                        },
-                      );
-                      if ((_model.apiResultUpdateStaff?.succeeded ?? true)) {
-                        _model.apiResultUpdateUserStaff2 =
-                            await StaffGroup.updateUserStaffCall.call(
+                      _model.uploadImageToken =
+                          await action_blocks.tokenReload(context);
+                      if (_model.uploadImageToken!) {
+                        _model.apiResultUploadImage =
+                            await UploadFileGroup.uploadFileCall.call(
+                          file: _model.uploadedLocalFile,
                           accessToken: FFAppState().accessToken,
-                          staffId: getJsonField(
-                            widget.staffDetail,
-                            r'''$.id''',
-                          ).toString(),
-                          requestDataJson: <String, dynamic>{
-                            'title': () {
-                              if (_model.roleValue ==
-                                  '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
-                                return 'Nhân viên';
-                              } else if (_model.roleValue ==
-                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                return 'Quản lý bộ phận';
-                              } else if (_model.roleValue ==
-                                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                return 'Quản lý chi nhánh';
-                              } else {
-                                return null;
-                              }
-                            }(),
-                          },
                         );
-                        if ((_model.apiResultUpdateUserStaff2?.succeeded ??
-                            true)) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'Cập nhật thành công',
-                                style: TextStyle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
+                        if ((_model.apiResultUploadImage?.succeeded ?? true)) {
+                          setState(() {
+                            _model.avatarid = getJsonField(
+                              (_model.apiResultUploadImage?.jsonBody ?? ''),
+                              r'''$.data.id''',
+                            ).toString();
+                          });
+                        }
+                        _model.updateStaffToken =
+                            await action_blocks.tokenReload(context);
+                        if (_model.updateStaffToken!) {
+                          _model.apiResultUpdateStaff =
+                              await StaffGroup.updateStaffCall.call(
+                            accessToken: FFAppState().accessToken,
+                            id: getJsonField(
+                              widget.staffDetail,
+                              r'''$.user_id.id''',
+                            ).toString(),
+                            requestDataJson: <String, dynamic>{
+                              'first_name': _model.nameTextController.text,
+                              'last_name': _model.nameTextController.text,
+                              'email': _model.emailTextController.text,
+                              'password': 'Abcd@1234',
+                              'status': 'active',
+                              'role': _model.roleValue,
+                              'cccd': _model.cccdTextController.text,
+                              'gender': _model.radioButtonValue == 'Nam'
+                                  ? 'male'
+                                  : 'female',
+                              'dob': _model.dob,
+                              'phone': _model.phoneTextController.text,
+                              'department_id': () {
+                                if (_model.selectDepartment != null) {
+                                  return _model.selectDepartment?.id;
+                                } else if (_model.roleValue ==
+                                    'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                  return null;
+                                } else {
+                                  return getJsonField(
+                                    widget.staffDetail,
+                                    r'''$.department_id.id''',
+                                  );
+                                }
+                              }(),
+                              'branch_id': getJsonField(
+                                FFAppState().staffLogin,
+                                r'''$.branch_id''',
                               ),
-                              duration: const Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).secondary,
-                            ),
-                          );
-
-                          context.pushNamed(
-                            'PersonnelList',
-                            extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
-                                hasTransition: true,
-                                transitionType: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                              ),
+                              'avatar': _model.avatarid,
+                              'title': () {
+                                if (_model.roleValue ==
+                                    '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
+                                  return 'Nhân viên';
+                                } else if (_model.roleValue ==
+                                    '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                  return 'Quản lý bộ phận';
+                                } else if (_model.roleValue ==
+                                    'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                  return 'Quản lý chi nhánh';
+                                } else {
+                                  return null;
+                                }
+                              }(),
                             },
                           );
+                          if ((_model.apiResultUpdateStaff?.succeeded ??
+                              true)) {
+                            _model.updateUserStaff2Token =
+                                await action_blocks.tokenReload(context);
+                            if (_model.updateUserStaff2Token!) {
+                              _model.apiResultUpdateUserStaff2 =
+                                  await StaffGroup.updateUserStaffCall.call(
+                                accessToken: FFAppState().accessToken,
+                                staffId: getJsonField(
+                                  widget.staffDetail,
+                                  r'''$.id''',
+                                ).toString(),
+                                requestDataJson: <String, dynamic>{
+                                  'title': () {
+                                    if (_model.roleValue ==
+                                        '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
+                                      return 'Nhân viên';
+                                    } else if (_model.roleValue ==
+                                        '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                      return 'Quản lý bộ phận';
+                                    } else if (_model.roleValue ==
+                                        'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                      return 'Quản lý chi nhánh';
+                                    } else {
+                                      return null;
+                                    }
+                                  }(),
+                                },
+                              );
+                              if ((_model
+                                      .apiResultUpdateUserStaff2?.succeeded ??
+                                  true)) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Cập nhật thành công',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
+                                  ),
+                                );
+
+                                context.pushNamed(
+                                  'PersonnelList',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
+                              }
+                            } else {
+                              setState(() {});
+                            }
+                          }
+                        } else {
+                          setState(() {});
                         }
+                      } else {
+                        setState(() {});
                       }
                     } else {
-                      _model.apiResultUpdateNoImage =
-                          await StaffGroup.updateStaffCall.call(
-                        accessToken: FFAppState().accessToken,
-                        id: getJsonField(
-                          widget.staffDetail,
-                          r'''$.user_id.id''',
-                        ).toString(),
-                        requestDataJson: <String, dynamic>{
-                          'first_name': _model.nameTextController.text,
-                          'last_name': _model.nameTextController.text,
-                          'email': _model.emailTextController.text,
-                          'password': 'Abcd@1234',
-                          'status': 'active',
-                          'role': _model.roleValue,
-                          'cccd': _model.cccdTextController.text,
-                          'gender': _model.radioButtonValue == 'Nam'
-                              ? 'male'
-                              : 'female',
-                          'dob': _model.dob,
-                          'phone': _model.phoneTextController.text,
-                          'department_id': () {
-                            if (_model.selectDepartment != null) {
-                              return _model.selectDepartment?.id;
-                            } else if (_model.roleValue ==
-                                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                              return null;
-                            } else {
-                              return getJsonField(
-                                widget.staffDetail,
-                                r'''$.department_id.id''',
-                              );
-                            }
-                          }(),
-                          'branch_id': getJsonField(
-                            FFAppState().staffLogin,
-                            r'''$.branch_id''',
-                          ),
-                          'avatar': getJsonField(
-                            widget.staffDetail,
-                            r'''$.user_id.avatar''',
-                          ),
-                          'title': () {
-                            if (_model.roleValue ==
-                                '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
-                              return 'Nhân viên';
-                            } else if (_model.roleValue ==
-                                '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                              return 'Quản lý bộ phận';
-                            } else if (_model.roleValue ==
-                                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                              return 'Quản lý chi nhánh';
-                            } else {
-                              return null;
-                            }
-                          }(),
-                        },
-                      );
-                      if ((_model.apiResultUpdateNoImage?.succeeded ?? true)) {
-                        _model.apiResultUpdateUserStaff =
-                            await StaffGroup.updateUserStaffCall.call(
+                      _model.updateNoImageToken =
+                          await action_blocks.tokenReload(context);
+                      if (_model.updateNoImageToken!) {
+                        _model.apiResultUpdateNoImage =
+                            await StaffGroup.updateStaffCall.call(
                           accessToken: FFAppState().accessToken,
-                          staffId: getJsonField(
+                          id: getJsonField(
                             widget.staffDetail,
-                            r'''$.id''',
+                            r'''$.user_id.id''',
                           ).toString(),
                           requestDataJson: <String, dynamic>{
+                            'first_name': _model.nameTextController.text,
+                            'last_name': _model.nameTextController.text,
+                            'email': _model.emailTextController.text,
+                            'password': 'Abcd@1234',
+                            'status': 'active',
+                            'role': _model.roleValue,
+                            'cccd': _model.cccdTextController.text,
+                            'gender': _model.radioButtonValue == 'Nam'
+                                ? 'male'
+                                : 'female',
+                            'dob': _model.dob,
+                            'phone': _model.phoneTextController.text,
+                            'department_id': () {
+                              if (_model.selectDepartment != null) {
+                                return _model.selectDepartment?.id;
+                              } else if (_model.roleValue ==
+                                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                return null;
+                              } else {
+                                return getJsonField(
+                                  widget.staffDetail,
+                                  r'''$.department_id.id''',
+                                );
+                              }
+                            }(),
+                            'branch_id': getJsonField(
+                              FFAppState().staffLogin,
+                              r'''$.branch_id''',
+                            ),
+                            'avatar': getJsonField(
+                              widget.staffDetail,
+                              r'''$.user_id.avatar''',
+                            ),
                             'title': () {
                               if (_model.roleValue ==
                                   '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
@@ -1406,34 +1405,69 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                             }(),
                           },
                         );
-                        if ((_model.apiResultUpdateUserStaff?.succeeded ??
+                        if ((_model.apiResultUpdateNoImage?.succeeded ??
                             true)) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'Cập nhật thành công',
-                                style: TextStyle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                          _model.updateUserStaffToken =
+                              await action_blocks.tokenReload(context);
+                          if (_model.updateUserStaffToken!) {
+                            _model.apiResultUpdateUserStaff =
+                                await StaffGroup.updateUserStaffCall.call(
+                              accessToken: FFAppState().accessToken,
+                              staffId: getJsonField(
+                                widget.staffDetail,
+                                r'''$.id''',
+                              ).toString(),
+                              requestDataJson: <String, dynamic>{
+                                'title': () {
+                                  if (_model.roleValue ==
+                                      '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
+                                    return 'Nhân viên';
+                                  } else if (_model.roleValue ==
+                                      '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                    return 'Quản lý bộ phận';
+                                  } else if (_model.roleValue ==
+                                      'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                    return 'Quản lý chi nhánh';
+                                  } else {
+                                    return null;
+                                  }
+                                }(),
+                              },
+                            );
+                            if ((_model.apiResultUpdateUserStaff?.succeeded ??
+                                true)) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Cập nhật thành công',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).secondary,
                                 ),
-                              ),
-                              duration: const Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).secondary,
-                            ),
-                          );
+                              );
 
-                          context.pushNamed(
-                            'PersonnelList',
-                            extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
-                                hasTransition: true,
-                                transitionType: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                              ),
-                            },
-                          );
+                              context.pushNamed(
+                                'PersonnelList',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: const TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
+                              );
+                            }
+                          } else {
+                            setState(() {});
+                          }
                         }
+                      } else {
+                        setState(() {});
                       }
                     }
 

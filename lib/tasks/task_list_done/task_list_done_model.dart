@@ -54,10 +54,16 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // Stores action output result for [Action Block - tokenReload] action in TextField widget.
+  bool? getTaskDoneFilterToken;
   // Stores action output result for [Backend Call - API (GetListTask)] action in TextField widget.
   ApiCallResponse? apiResultGetTaskDoneFilter;
+  // Stores action output result for [Action Block - tokenReload] action in TextField widget.
+  bool? getListTaskDoneToken;
   // Stores action output result for [Backend Call - API (GetListTask)] action in TextField widget.
   ApiCallResponse? apiResultGetListTaskDone;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? downloadfileToken;
   // Model for navBar component.
   late NavBarModel navBarModel;
 

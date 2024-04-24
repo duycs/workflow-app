@@ -51,39 +51,25 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
       setState(() {
         _model.listNull = [];
       });
-      _model.apiResultGetStaffAnswerList =
-          await DoTestGroup.staffAnswerListCall.call(
-        accessToken: FFAppState().accessToken,
-        filter:
-            '{\"_and\":[{\"staff_test_id\":{\"_eq\":\"${widget.testId}\"}}]}',
-      );
-      if ((_model.apiResultGetStaffAnswerList?.succeeded ?? true)) {
-        setState(() {
-          _model.list = StaffAnswerListDataStruct.maybeFromMap(
-                  (_model.apiResultGetStaffAnswerList?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<StaffAnswerListStruct>();
-        });
-      } else {
-        _model.checkRefreshTokenBlock67 = await action_blocks.checkRefreshToken(
-          context,
-          jsonErrors: (_model.apiResultGetStaffAnswerList?.jsonBody ?? ''),
+      _model.getStaffAnswerListToken = await action_blocks.tokenReload(context);
+      if (_model.getStaffAnswerListToken!) {
+        _model.apiResultGetStaffAnswerList =
+            await DoTestGroup.staffAnswerListCall.call(
+          accessToken: FFAppState().accessToken,
+          filter:
+              '{\"_and\":[{\"staff_test_id\":{\"_eq\":\"${widget.testId}\"}}]}',
         );
-        if (!_model.checkRefreshTokenBlock67!) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                FFAppConstants.ErrorLoadData,
-                style: TextStyle(
-                  color: FlutterFlowTheme.of(context).primaryText,
-                ),
-              ),
-              duration: const Duration(milliseconds: 4000),
-              backgroundColor: FlutterFlowTheme.of(context).error,
-            ),
-          );
+        if ((_model.apiResultGetStaffAnswerList?.succeeded ?? true)) {
+          setState(() {
+            _model.list = StaffAnswerListDataStruct.maybeFromMap(
+                    (_model.apiResultGetStaffAnswerList?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<StaffAnswerListStruct>();
+          });
         }
+      } else {
+        setState(() {});
       }
     });
   }

@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'filter_personnel_list_model.dart';
@@ -187,29 +188,36 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            _model.apiResultClearFilter =
-                                await StaffGroup.getStaffListCall.call(
-                              accessToken: FFAppState().accessToken,
-                            );
-                            if ((_model.apiResultClearFilter?.succeeded ??
-                                true)) {
-                              setState(() {
-                                _model.list = StaffListDataStruct.maybeFromMap(
-                                        (_model.apiResultClearFilter
-                                                ?.jsonBody ??
-                                            ''))!
-                                    .data
-                                    .toList()
-                                    .cast<StaffListStruct>();
-                              });
-                              setState(() {
-                                _model.statusValueController?.reset();
-                              });
-                              await widget.callback?.call(
-                                _model.list,
-                                _model.statusValue,
+                            _model.clearFilterToken =
+                                await action_blocks.tokenReload(context);
+                            if (_model.clearFilterToken!) {
+                              _model.apiResultClearFilter =
+                                  await StaffGroup.getStaffListCall.call(
+                                accessToken: FFAppState().accessToken,
                               );
-                              Navigator.pop(context);
+                              if ((_model.apiResultClearFilter?.succeeded ??
+                                  true)) {
+                                setState(() {
+                                  _model.list =
+                                      StaffListDataStruct.maybeFromMap((_model
+                                                  .apiResultClearFilter
+                                                  ?.jsonBody ??
+                                              ''))!
+                                          .data
+                                          .toList()
+                                          .cast<StaffListStruct>();
+                                });
+                                setState(() {
+                                  _model.statusValueController?.reset();
+                                });
+                                await widget.callback?.call(
+                                  _model.list,
+                                  _model.statusValue,
+                                );
+                                Navigator.pop(context);
+                              }
+                            } else {
+                              setState(() {});
                             }
 
                             setState(() {});
@@ -243,53 +251,61 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            _model.apiResultFilter =
-                                await StaffGroup.getStaffListCall.call(
-                              accessToken: FFAppState().accessToken,
-                              filter:
-                                  '{\"_and\":[${widget.filterSearch != null && widget.filterSearch != '' ? '{\"user_id\":{\"first_name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}${() {
-                                if ((_model.statusValue != null &&
-                                        _model.statusValue != '') &&
-                                    (_model.statusValue == 'Hoạt động')) {
-                                  return '{\"status\":{\"_eq\":\"active\"}}';
-                                } else if ((_model.statusValue != null &&
-                                        _model.statusValue != '') &&
-                                    (_model.statusValue == 'Không hoạt động')) {
-                                  return '{\"status\":{\"_neq\":\"active\"}}';
-                                } else {
-                                  return ' ';
-                                }
-                              }()}]}',
-                            );
-                            if ((_model.apiResultFilter?.succeeded ?? true)) {
-                              setState(() {
-                                _model.list = StaffListDataStruct.maybeFromMap(
-                                        (_model.apiResultFilter?.jsonBody ??
-                                            ''))!
-                                    .data
-                                    .toList()
-                                    .cast<StaffListStruct>();
-                              });
-                              await widget.callback?.call(
-                                _model.list,
-                                _model.statusValue,
+                            _model.filterToken =
+                                await action_blocks.tokenReload(context);
+                            if (_model.filterToken!) {
+                              _model.apiResultFilter =
+                                  await StaffGroup.getStaffListCall.call(
+                                accessToken: FFAppState().accessToken,
+                                filter:
+                                    '{\"_and\":[${widget.filterSearch != null && widget.filterSearch != '' ? '{\"user_id\":{\"first_name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}${() {
+                                  if ((_model.statusValue != null &&
+                                          _model.statusValue != '') &&
+                                      (_model.statusValue == 'Hoạt động')) {
+                                    return '{\"status\":{\"_eq\":\"active\"}}';
+                                  } else if ((_model.statusValue != null &&
+                                          _model.statusValue != '') &&
+                                      (_model.statusValue ==
+                                          'Không hoạt động')) {
+                                    return '{\"status\":{\"_neq\":\"active\"}}';
+                                  } else {
+                                    return ' ';
+                                  }
+                                }()}]}',
                               );
-                              Navigator.pop(context);
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Lỗi Lọc',
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
+                              if ((_model.apiResultFilter?.succeeded ?? true)) {
+                                setState(() {
+                                  _model.list =
+                                      StaffListDataStruct.maybeFromMap((_model
+                                                  .apiResultFilter?.jsonBody ??
+                                              ''))!
+                                          .data
+                                          .toList()
+                                          .cast<StaffListStruct>();
+                                });
+                                await widget.callback?.call(
+                                  _model.list,
+                                  _model.statusValue,
+                                );
+                                Navigator.pop(context);
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Lỗi Lọc',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
                                     ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).error,
                                   ),
-                                  duration: const Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).error,
-                                ),
-                              );
+                                );
+                              }
+                            } else {
+                              setState(() {});
                             }
 
                             setState(() {});

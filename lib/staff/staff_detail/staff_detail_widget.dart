@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -37,25 +38,30 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (widget.staffDetail != null) {
-        _model.apiResultGetStaffInfo = await UserGroup.getStaffIdCall.call(
-          accessToken: FFAppState().accessToken,
-          userId: StaffListStruct.maybeFromMap(widget.staffDetail)?.id,
-        );
-        if ((_model.apiResultGetStaffInfo?.succeeded ?? true)) {
-          setState(() {
-            _model.staffData = functions.stringToJson(getJsonField(
-              (_model.apiResultGetStaffInfo?.jsonBody ?? ''),
-              r'''$.staff''',
-            ).toString().toString());
-            _model.department = functions.stringToJson(getJsonField(
-              (_model.apiResultGetStaffInfo?.jsonBody ?? ''),
-              r'''$.department''',
-            ).toString().toString());
-            _model.branch = functions.stringToJson(getJsonField(
-              (_model.apiResultGetStaffInfo?.jsonBody ?? ''),
-              r'''$.branch''',
-            ).toString().toString());
-          });
+        _model.getStaffInfoToken = await action_blocks.tokenReload(context);
+        if (_model.getStaffInfoToken!) {
+          _model.apiResultGetStaffInfo = await UserGroup.getStaffIdCall.call(
+            accessToken: FFAppState().accessToken,
+            userId: StaffListStruct.maybeFromMap(widget.staffDetail)?.id,
+          );
+          if ((_model.apiResultGetStaffInfo?.succeeded ?? true)) {
+            setState(() {
+              _model.staffData = functions.stringToJson(getJsonField(
+                (_model.apiResultGetStaffInfo?.jsonBody ?? ''),
+                r'''$.staff''',
+              ).toString().toString());
+              _model.department = functions.stringToJson(getJsonField(
+                (_model.apiResultGetStaffInfo?.jsonBody ?? ''),
+                r'''$.department''',
+              ).toString().toString());
+              _model.branch = functions.stringToJson(getJsonField(
+                (_model.apiResultGetStaffInfo?.jsonBody ?? ''),
+                r'''$.branch''',
+              ).toString().toString());
+            });
+          }
+        } else {
+          setState(() {});
         }
       }
     });

@@ -11,6 +11,7 @@ import '/tasks/do_action_type_image/do_action_type_image_widget.dart';
 import '/tasks/do_action_type_to_do_list/do_action_type_to_do_list_widget.dart';
 import '/tasks/do_action_type_upload_file/do_action_type_upload_file_widget.dart';
 import '/tasks/filter_task_list/filter_task_list_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
@@ -50,44 +51,49 @@ class _TaskListWidgetState extends State<TaskListWidget> {
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"1\"}}]}';
       await _model.getTaskToDo(context);
       setState(() {});
-      _model.apiResultCaculatorTotal = await TaskGroup.getListTaskCall.call(
-        accessToken: FFAppState().accessToken,
-        filter:
-            '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffLogin,
-          r'''$.id''',
-        ).toString().toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffLogin,
-          r'''$.organization_id''',
-        ).toString().toString()}\"}}}]}',
-      );
-      if ((_model.apiResultCaculatorTotal?.succeeded ?? true)) {
-        setState(() {
-          _model.totalDone = TaskListDataStruct.maybeFromMap(
-                  (_model.apiResultCaculatorTotal?.jsonBody ?? ''))!
-              .data
-              .where((e) => e.status == 'done')
-              .toList()
-              .toList()
-              .cast<TaskListStruct>();
-          _model.totalWait = TaskListDataStruct.maybeFromMap(
-                  (_model.apiResultCaculatorTotal?.jsonBody ?? ''))!
-              .data
-              .where((e) =>
-                  (e.status == 'todo') &&
-                  (e.current.toString() == '0'))
-              .toList()
-              .toList()
-              .cast<TaskListStruct>();
-          _model.filter =
+      _model.caculatorTotalToken = await action_blocks.tokenReload(context);
+      if (_model.caculatorTotalToken!) {
+        _model.apiResultCaculatorTotal = await TaskGroup.getListTaskCall.call(
+          accessToken: FFAppState().accessToken,
+          filter:
               '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
             FFAppState().staffLogin,
             r'''$.id''',
           ).toString().toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
             FFAppState().staffLogin,
             r'''$.organization_id''',
-          ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"1\"}}]}';
-        });
+          ).toString().toString()}\"}}}]}',
+        );
+        if ((_model.apiResultCaculatorTotal?.succeeded ?? true)) {
+          setState(() {
+            _model.totalDone = TaskListDataStruct.maybeFromMap(
+                    (_model.apiResultCaculatorTotal?.jsonBody ?? ''))!
+                .data
+                .where((e) => e.status == 'done')
+                .toList()
+                .toList()
+                .cast<TaskListStruct>();
+            _model.totalWait = TaskListDataStruct.maybeFromMap(
+                    (_model.apiResultCaculatorTotal?.jsonBody ?? ''))!
+                .data
+                .where((e) =>
+                    (e.status == 'todo') &&
+                    (e.current.toString() == '0'))
+                .toList()
+                .toList()
+                .cast<TaskListStruct>();
+            _model.filter =
+                '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+              FFAppState().staffLogin,
+              r'''$.id''',
+            ).toString().toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+              FFAppState().staffLogin,
+              r'''$.organization_id''',
+            ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"1\"}}]}';
+          });
+        }
+      } else {
+        setState(() {});
       }
     });
 
@@ -656,166 +662,208 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                         ) ??
                                                         false;
                                                 if (confirmDialogResponse) {
-                                                  _model.apiResultConfirmOperationCopy2 =
-                                                      await TaskGroup
-                                                          .confirmOperationCall
-                                                          .call(
-                                                    accessToken: FFAppState()
-                                                        .accessToken,
-                                                    staffId:
-                                                        FFAppState().staffid,
-                                                    taskId: dataListItem.id,
-                                                    submitType: dataListItem
-                                                                .actionType ==
-                                                            'approve'
-                                                        ? 'approve'
-                                                        : 'submit',
-                                                  );
+                                                  _model.confirmOperationCopy2Token =
+                                                      await action_blocks
+                                                          .tokenReload(context);
                                                   shouldSetState = true;
-                                                  if ((_model
-                                                          .apiResultConfirmOperationCopy2
-                                                          ?.succeeded ??
-                                                      true)) {
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(
-                                                      SnackBar(
-                                                        content: Text(
-                                                          'Submit thành công',
-                                                          style: TextStyle(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText,
-                                                          ),
-                                                        ),
-                                                        duration: const Duration(
-                                                            milliseconds: 4000),
-                                                        backgroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
-                                                      ),
+                                                  if (_model
+                                                      .confirmOperationCopy2Token!) {
+                                                    _model.apiResultConfirmOperationCopy2 =
+                                                        await TaskGroup
+                                                            .confirmOperationCall
+                                                            .call(
+                                                      accessToken: FFAppState()
+                                                          .accessToken,
+                                                      staffId:
+                                                          FFAppState().staffid,
+                                                      taskId: dataListItem.id,
+                                                      submitType: dataListItem
+                                                                  .actionType ==
+                                                              'approve'
+                                                          ? 'approve'
+                                                          : 'submit',
                                                     );
-                                                  } else {
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(
-                                                      SnackBar(
-                                                        content: Text(
-                                                          'Submit thất bại',
-                                                          style: TextStyle(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText,
-                                                          ),
-                                                        ),
-                                                        duration: const Duration(
-                                                            milliseconds: 4000),
-                                                        backgroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .error,
-                                                      ),
-                                                    );
-                                                  }
-
-                                                  _model.apiResultGetWorkflowCopy =
-                                                      await ProcedureTemplateGroup
-                                                          .workflowsOneCall
-                                                          .call(
-                                                    accessToken: FFAppState()
-                                                        .accessToken,
-                                                    id: dataListItem
-                                                        .workflowId.id,
-                                                  );
-                                                  shouldSetState = true;
-                                                  if ((_model
-                                                          .apiResultGetWorkflowCopy
-                                                          ?.succeeded ??
-                                                      true)) {
-                                                    setState(() {
-                                                      _model
-                                                          .stepList = OneWorkFlowDataStruct
-                                                              .maybeFromMap((_model
-                                                                      .apiResultGetWorkflowCopy
-                                                                      ?.jsonBody ??
-                                                                  ''))
-                                                          ?.data;
-                                                    });
-                                                  }
-                                                  if (_model.stepList!.steps
-                                                          .length >
-                                                      dataListItem.number) {
-                                                    while (_model.loop <
-                                                        _model.stepList!.steps
-                                                            .length) {
-                                                      if (dataListItem.number ==
-                                                          (_model
-                                                                  .stepList!
-                                                                  .steps[_model
-                                                                      .loop]
-                                                                  .number -
-                                                              1)) {
-                                                        _model.apiResultqt8Copy =
-                                                            await TaskGroup
-                                                                .receiveTaskCall
-                                                                .call(
-                                                          accessToken:
-                                                              FFAppState()
-                                                                  .accessToken,
-                                                          workflowId:
-                                                              dataListItem
-                                                                  .workflowId
-                                                                  .id,
-                                                          staffId: (_model
-                                                                      .stepList
-                                                                      ?.steps[
-                                                                  _model.loop])
-                                                              ?.staffs
-                                                              .first
-                                                              .staffsId
-                                                              .id,
-                                                        );
-                                                        shouldSetState = true;
-                                                        if (!(_model
-                                                                .apiResultqt8Copy
-                                                                ?.succeeded ??
-                                                            true)) {
-                                                          ScaffoldMessenger.of(
-                                                                  context)
-                                                              .showSnackBar(
-                                                            SnackBar(
-                                                              content: Text(
-                                                                'Nhận thất bại',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                ),
-                                                              ),
-                                                              duration: const Duration(
-                                                                  milliseconds:
-                                                                      4000),
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary,
+                                                    shouldSetState = true;
+                                                    if ((_model
+                                                            .apiResultConfirmOperationCopy2
+                                                            ?.succeeded ??
+                                                        true)) {
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                            'Submit thành công',
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
                                                             ),
-                                                          );
-                                                        }
-                                                      }
-                                                      setState(() {
-                                                        _model.loop =
-                                                            _model.loop + 1;
-                                                      });
+                                                          ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  4000),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondary,
+                                                        ),
+                                                      );
+                                                    } else {
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                            'Submit thất bại',
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                            ),
+                                                          ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  4000),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .error,
+                                                        ),
+                                                      );
                                                     }
-                                                    setState(() {
-                                                      _model.loop = 0;
-                                                    });
+
+                                                    _model.getWorkflowCopyToken =
+                                                        await action_blocks
+                                                            .tokenReload(
+                                                                context);
+                                                    shouldSetState = true;
+                                                    if (_model
+                                                        .getWorkflowCopyToken!) {
+                                                      _model.apiResultGetWorkflowCopy =
+                                                          await ProcedureTemplateGroup
+                                                              .workflowsOneCall
+                                                              .call(
+                                                        accessToken:
+                                                            FFAppState()
+                                                                .accessToken,
+                                                        id: dataListItem
+                                                            .workflowId.id,
+                                                      );
+                                                      shouldSetState = true;
+                                                      if ((_model
+                                                              .apiResultGetWorkflowCopy
+                                                              ?.succeeded ??
+                                                          true)) {
+                                                        setState(() {
+                                                          _model.stepList =
+                                                              OneWorkFlowDataStruct
+                                                                      .maybeFromMap(
+                                                                          (_model.apiResultGetWorkflowCopy?.jsonBody ??
+                                                                              ''))
+                                                                  ?.data;
+                                                        });
+                                                      }
+                                                      if (_model.stepList!.steps
+                                                              .length >
+                                                          dataListItem.number) {
+                                                        while (_model.loop <
+                                                            _model.stepList!
+                                                                .steps.length) {
+                                                          if (dataListItem
+                                                                  .number ==
+                                                              (_model
+                                                                      .stepList!
+                                                                      .steps[_model
+                                                                          .loop]
+                                                                      .number -
+                                                                  1)) {
+                                                            _model.apiResultqt8CopyToken =
+                                                                await action_blocks
+                                                                    .tokenReload(
+                                                                        context);
+                                                            shouldSetState =
+                                                                true;
+                                                            if (_model
+                                                                .apiResultqt8CopyToken!) {
+                                                              _model.apiResultqt8Copy =
+                                                                  await TaskGroup
+                                                                      .receiveTaskCall
+                                                                      .call(
+                                                                accessToken:
+                                                                    FFAppState()
+                                                                        .accessToken,
+                                                                workflowId:
+                                                                    dataListItem
+                                                                        .workflowId
+                                                                        .id,
+                                                                staffId: (_model
+                                                                            .stepList
+                                                                            ?.steps[
+                                                                        _model
+                                                                            .loop])
+                                                                    ?.staffs
+                                                                    .first
+                                                                    .staffsId
+                                                                    .id,
+                                                              );
+                                                              shouldSetState =
+                                                                  true;
+                                                              if (!(_model
+                                                                      .apiResultqt8Copy
+                                                                      ?.succeeded ??
+                                                                  true)) {
+                                                                ScaffoldMessenger.of(
+                                                                        context)
+                                                                    .showSnackBar(
+                                                                  SnackBar(
+                                                                    content:
+                                                                        Text(
+                                                                      'Nhận thất bại',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                      ),
+                                                                    ),
+                                                                    duration: const Duration(
+                                                                        milliseconds:
+                                                                            4000),
+                                                                    backgroundColor:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .secondary,
+                                                                  ),
+                                                                );
+                                                              }
+                                                            } else {
+                                                              setState(() {});
+                                                              if (shouldSetState) {
+                                                                setState(() {});
+                                                              }
+                                                              return;
+                                                            }
+                                                          }
+                                                          setState(() {
+                                                            _model.loop =
+                                                                _model.loop + 1;
+                                                          });
+                                                        }
+                                                        setState(() {
+                                                          _model.loop = 0;
+                                                        });
+                                                      }
+                                                      await _model
+                                                          .getTaskToDo(context);
+                                                    } else {
+                                                      setState(() {});
+                                                    }
+                                                  } else {
+                                                    setState(() {});
+                                                    if (shouldSetState) {
+                                                      setState(() {});
+                                                    }
+                                                    return;
                                                   }
-                                                  await _model
-                                                      .getTaskToDo(context);
                                                 } else {
                                                   if (shouldSetState) {
                                                     setState(() {});
@@ -1752,66 +1800,73 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                             key: Key(
                                                 'Keyyhw_${dataListIndex}_of_${dataList.length}'),
                                             callback: (result) async {
-                                              _model.apiResultConfirmOperationCopy =
-                                                  await TaskGroup
-                                                      .confirmOperationCall
-                                                      .call(
-                                                accessToken:
-                                                    FFAppState().accessToken,
-                                                staffId: FFAppState().staffid,
-                                                taskId: dataListItem.id,
-                                                submitType: 'reject',
-                                              );
-                                              if ((_model
-                                                      .apiResultConfirmOperationCopy
-                                                      ?.succeeded ??
-                                                  true)) {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      'Submit thành công',
-                                                      style: TextStyle(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                      ),
-                                                    ),
-                                                    duration: const Duration(
-                                                        milliseconds: 4000),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondary,
-                                                  ),
+                                              _model.confirmOperationCopyToken =
+                                                  await action_blocks
+                                                      .tokenReload(context);
+                                              if (_model
+                                                  .confirmOperationCopyToken!) {
+                                                _model.apiResultConfirmOperationCopy =
+                                                    await TaskGroup
+                                                        .confirmOperationCall
+                                                        .call(
+                                                  accessToken:
+                                                      FFAppState().accessToken,
+                                                  staffId: FFAppState().staffid,
+                                                  taskId: dataListItem.id,
+                                                  submitType: 'reject',
                                                 );
-                                              } else {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      'Submit thất bại',
-                                                      style: TextStyle(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
+                                                if ((_model
+                                                        .apiResultConfirmOperationCopy
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'Submit thành công',
+                                                        style: TextStyle(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                        ),
                                                       ),
+                                                      duration: const Duration(
+                                                          milliseconds: 4000),
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondary,
                                                     ),
-                                                    duration: const Duration(
-                                                        milliseconds: 4000),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .error,
-                                                  ),
-                                                );
-                                              }
+                                                  );
+                                                } else {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'Submit thất bại',
+                                                        style: TextStyle(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                        ),
+                                                      ),
+                                                      duration: const Duration(
+                                                          milliseconds: 4000),
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                    ),
+                                                  );
+                                                }
 
-                                              await _model.getTaskToDo(context);
-                                              setState(() {});
-                                              setState(() {});
+                                                await _model
+                                                    .getTaskToDo(context);
+                                                setState(() {});
+                                                setState(() {});
+                                              } else {
+                                                setState(() {});
+                                              }
 
                                               setState(() {});
                                             },
@@ -1847,71 +1902,83 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                     listdata: datatodolistItem,
                                                     callback: (status,
                                                         operationId) async {
-                                                      _model.apiResultUpdateoperationCopyCopyCopyCopy =
-                                                          await TaskGroup
-                                                              .updateOperationCall
-                                                              .call(
-                                                        accessToken:
-                                                            FFAppState()
-                                                                .accessToken,
-                                                        requestDataJson: <String,
-                                                            dynamic>{
-                                                          'status': status,
-                                                        },
-                                                        operationId:
-                                                            operationId,
-                                                      );
-                                                      if ((_model
-                                                              .apiResultUpdateoperation
-                                                              ?.succeeded ??
-                                                          true)) {
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: Text(
-                                                              'Xác nhận thành công',
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                              ),
-                                                            ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    4000),
-                                                            backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondary,
-                                                          ),
+                                                      _model.updateoperationCopyCopyCopyCopyToken =
+                                                          await action_blocks
+                                                              .tokenReload(
+                                                                  context);
+                                                      if (_model
+                                                          .updateoperationCopyCopyCopyCopyToken!) {
+                                                        _model.apiResultUpdateoperationCopyCopyCopyCopy =
+                                                            await TaskGroup
+                                                                .updateOperationCall
+                                                                .call(
+                                                          accessToken:
+                                                              FFAppState()
+                                                                  .accessToken,
+                                                          requestDataJson: <String,
+                                                              dynamic>{
+                                                            'status': status,
+                                                          },
+                                                          operationId:
+                                                              operationId,
                                                         );
-                                                      } else {
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: Text(
-                                                              'Xác nhận thất bại',
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
+                                                        if ((_model
+                                                                .apiResultUpdateoperation
+                                                                ?.succeeded ??
+                                                            true)) {
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                            SnackBar(
+                                                              content: Text(
+                                                                'Xác nhận thành công',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                ),
                                                               ),
+                                                              duration: const Duration(
+                                                                  milliseconds:
+                                                                      4000),
+                                                              backgroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondary,
                                                             ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    4000),
-                                                            backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .error,
-                                                          ),
-                                                        );
-                                                      }
+                                                          );
+                                                        } else {
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                            SnackBar(
+                                                              content: Text(
+                                                                'Xác nhận thất bại',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                ),
+                                                              ),
+                                                              duration: const Duration(
+                                                                  milliseconds:
+                                                                      4000),
+                                                              backgroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .error,
+                                                            ),
+                                                          );
+                                                        }
 
-                                                      await _model
-                                                          .getTaskToDo(context);
+                                                        await _model
+                                                            .getTaskToDo(
+                                                                context);
+                                                      } else {
+                                                        setState(() {});
+                                                      }
 
                                                       setState(() {});
                                                     },
@@ -1998,75 +2065,87 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                           ) ??
                                                           false;
                                                   if (confirmDialogResponse) {
-                                                    _model.apiResultUpdateoperation2 =
-                                                        await TaskGroup
-                                                            .updateOperationCall
-                                                            .call(
-                                                      accessToken: FFAppState()
-                                                          .accessToken,
-                                                      requestDataJson: <String,
-                                                          dynamic>{
-                                                        'status': 'done',
-                                                        'result':
-                                                            _model.submitText,
-                                                      },
-                                                      operationId: dataListItem
-                                                          .operations
-                                                          .first
-                                                          .operationsId
-                                                          .id,
-                                                    );
+                                                    _model.updateoperation2Token =
+                                                        await action_blocks
+                                                            .tokenReload(
+                                                                context);
                                                     shouldSetState = true;
-                                                    if ((_model
-                                                            .apiResultUpdateoperation2
-                                                            ?.succeeded ??
-                                                        true)) {
-                                                      ScaffoldMessenger.of(
-                                                              context)
-                                                          .showSnackBar(
-                                                        SnackBar(
-                                                          content: Text(
-                                                            'Lưu thành công!',
-                                                            style: TextStyle(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryText,
-                                                            ),
-                                                          ),
-                                                          duration: const Duration(
-                                                              milliseconds:
-                                                                  4000),
-                                                          backgroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .secondary,
-                                                        ),
+                                                    if (_model
+                                                        .updateoperation2Token!) {
+                                                      _model.apiResultUpdateoperation2 =
+                                                          await TaskGroup
+                                                              .updateOperationCall
+                                                              .call(
+                                                        accessToken:
+                                                            FFAppState()
+                                                                .accessToken,
+                                                        requestDataJson: <String,
+                                                            dynamic>{
+                                                          'status': 'done',
+                                                          'result':
+                                                              _model.submitText,
+                                                        },
+                                                        operationId:
+                                                            dataListItem
+                                                                .operations
+                                                                .first
+                                                                .operationsId
+                                                                .id,
                                                       );
-                                                    } else {
-                                                      ScaffoldMessenger.of(
-                                                              context)
-                                                          .showSnackBar(
-                                                        SnackBar(
-                                                          content: Text(
-                                                            'Lưu thất bại!',
-                                                            style: TextStyle(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryText,
+                                                      shouldSetState = true;
+                                                      if ((_model
+                                                              .apiResultUpdateoperation2
+                                                              ?.succeeded ??
+                                                          true)) {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              'Lưu thành công!',
+                                                              style: TextStyle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                              ),
                                                             ),
+                                                            duration: const Duration(
+                                                                milliseconds:
+                                                                    4000),
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary,
                                                           ),
-                                                          duration: const Duration(
-                                                              milliseconds:
-                                                                  4000),
-                                                          backgroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .error,
-                                                        ),
-                                                      );
-                                                    }
+                                                        );
+                                                      } else {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              'Lưu thất bại!',
+                                                              style: TextStyle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                              ),
+                                                            ),
+                                                            duration: const Duration(
+                                                                milliseconds:
+                                                                    4000),
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                          ),
+                                                        );
+                                                      }
 
-                                                    setState(() {});
+                                                      setState(() {});
+                                                    } else {
+                                                      setState(() {});
+                                                    }
                                                   } else {
                                                     if (shouldSetState) {
                                                       setState(() {});

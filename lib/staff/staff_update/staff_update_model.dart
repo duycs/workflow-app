@@ -132,14 +132,24 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
   FormFieldController<String>? departmentValueController;
   // State field(s) for SwitchListTile widget.
   bool? switchListTileValue;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? uploadImageToken;
   // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
   ApiCallResponse? apiResultUploadImage;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? updateStaffToken;
   // Stores action output result for [Backend Call - API (UpdateStaff)] action in Button widget.
   ApiCallResponse? apiResultUpdateStaff;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? updateUserStaff2Token;
   // Stores action output result for [Backend Call - API (UpdateUserStaff)] action in Button widget.
   ApiCallResponse? apiResultUpdateUserStaff2;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? updateNoImageToken;
   // Stores action output result for [Backend Call - API (UpdateStaff)] action in Button widget.
   ApiCallResponse? apiResultUpdateNoImage;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? updateUserStaffToken;
   // Stores action output result for [Backend Call - API (UpdateUserStaff)] action in Button widget.
   ApiCallResponse? apiResultUpdateUserStaff;
 

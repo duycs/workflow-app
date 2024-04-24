@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/tasks/do_action_type_upload_file/do_action_type_upload_file_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'task_list_widget.dart' show TaskListWidget;
 import 'package:flutter/material.dart';
 
@@ -65,16 +66,24 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in TaskList widget.
+  bool? caculatorTotalToken;
   // Stores action output result for [Backend Call - API (GetListTask)] action in TaskList widget.
   ApiCallResponse? apiResultCaculatorTotal;
   // State field(s) for TextFieldName widget.
   FocusNode? textFieldNameFocusNode;
   TextEditingController? textFieldNameTextController;
   String? Function(BuildContext, String?)? textFieldNameTextControllerValidator;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? confirmOperationCopy2Token;
   // Stores action output result for [Backend Call - API (ConfirmOperation)] action in Button widget.
   ApiCallResponse? apiResultConfirmOperationCopy2;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? getWorkflowCopyToken;
   // Stores action output result for [Backend Call - API (workflowsOne)] action in Button widget.
   ApiCallResponse? apiResultGetWorkflowCopy;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? apiResultqt8CopyToken;
   // Stores action output result for [Backend Call - API (ReceiveTask)] action in Button widget.
   ApiCallResponse? apiResultqt8Copy;
   // Models for do_action_type_upload_file dynamic component.
@@ -84,10 +93,16 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
   ApiCallResponse? apiResultUpdateoperation;
   // Stores action output result for [Backend Call - API (UpdateOperation)] action in do_action_type_image widget.
   ApiCallResponse? apiResultUpdateoperationCopyCopy;
+  // Stores action output result for [Action Block - tokenReload] action in do_action_type_approve widget.
+  bool? confirmOperationCopyToken;
   // Stores action output result for [Backend Call - API (ConfirmOperation)] action in do_action_type_approve widget.
   ApiCallResponse? apiResultConfirmOperationCopy;
+  // Stores action output result for [Action Block - tokenReload] action in do_action_type_to_do_list widget.
+  bool? updateoperationCopyCopyCopyCopyToken;
   // Stores action output result for [Backend Call - API (UpdateOperation)] action in do_action_type_to_do_list widget.
   ApiCallResponse? apiResultUpdateoperationCopyCopyCopyCopy;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? updateoperation2Token;
   // Stores action output result for [Backend Call - API (UpdateOperation)] action in Button widget.
   ApiCallResponse? apiResultUpdateoperation2;
   // Model for navBar component.
@@ -112,18 +127,24 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
 
   /// Action blocks.
   Future getTaskToDo(BuildContext context) async {
+    bool? getTaskListToken;
     ApiCallResponse? apiResultGetTaskList;
 
-    apiResultGetTaskList = await TaskGroup.getListTaskCall.call(
-      accessToken: FFAppState().accessToken,
-      filter: filter,
-    );
-    if ((apiResultGetTaskList.succeeded ?? true)) {
-      list = TaskListDataStruct.maybeFromMap(
-              (apiResultGetTaskList.jsonBody ?? ''))!
-          .data
-          .toList()
-          .cast<TaskListStruct>();
+    getTaskListToken = await action_blocks.tokenReload(context);
+    if (getTaskListToken!) {
+      apiResultGetTaskList = await TaskGroup.getListTaskCall.call(
+        accessToken: FFAppState().accessToken,
+        filter: filter,
+      );
+      if ((apiResultGetTaskList.succeeded ?? true)) {
+        list = TaskListDataStruct.maybeFromMap(
+                (apiResultGetTaskList.jsonBody ?? ''))!
+            .data
+            .toList()
+            .cast<TaskListStruct>();
+      }
+    } else {
+      FFAppState().update(() {});
     }
   }
 }

@@ -2098,6 +2098,12 @@ class _ProfileWidgetState extends State<ProfileWidget>
                           onTap: () async {
                             context.pushNamed(
                               'DoTestList',
+                              queryParameters: {
+                                'lessionId': serializeParam(
+                                  '',
+                                  ParamType.String,
+                                ),
+                              }.withoutNulls,
                               extra: <String, dynamic>{
                                 kTransitionInfoKey: const TransitionInfo(
                                   hasTransition: true,

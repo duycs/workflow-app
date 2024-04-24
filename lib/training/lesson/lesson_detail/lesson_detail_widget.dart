@@ -68,18 +68,17 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
-            borderColor: FlutterFlowTheme.of(context).noColor,
-            borderRadius: 40.0,
-            borderWidth: 0.0,
-            buttonSize: 40.0,
-            fillColor: FlutterFlowTheme.of(context).noColor,
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
             icon: Icon(
               Icons.arrow_back_rounded,
               color: FlutterFlowTheme.of(context).primaryText,
-              size: 24.0,
+              size: 30.0,
             ),
             onPressed: () async {
-              context.safePop();
+              context.pop();
               setState(() {
                 _model.checkFile = '1';
               });
@@ -1661,6 +1660,10 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                           _model.listDetail,
                                           r'''$.test_id''',
                                         ).toString(),
+                                        ParamType.String,
+                                      ),
+                                      'lessionId': serializeParam(
+                                        '',
                                         ParamType.String,
                                       ),
                                     }.withoutNulls,

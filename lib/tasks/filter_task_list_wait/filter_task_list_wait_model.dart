@@ -23,8 +23,12 @@ class FilterTaskListWaitModel
       typeValueController?.value = val != null ? [val] : [];
   DateTime? datePicked1;
   DateTime? datePicked2;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? clearFilterToken;
   // Stores action output result for [Backend Call - API (GetListTask)] action in Button widget.
   ApiCallResponse? apiResultClearFilter;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? filterToken;
   // Stores action output result for [Backend Call - API (GetListTask)] action in Button widget.
   ApiCallResponse? apiResultFilter;
 

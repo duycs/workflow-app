@@ -135,7 +135,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                             final datePicked1Date = await showDatePicker(
                               context: context,
                               initialDate: getCurrentTimestamp,
-                              firstDate: getCurrentTimestamp,
+                              firstDate: DateTime(1900),
                               lastDate: DateTime(2050),
                               builder: (context, child) {
                                 return wrapInMaterialDatePickerTheme(
@@ -217,7 +217,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                             final datePicked2Date = await showDatePicker(
                               context: context,
                               initialDate: getCurrentTimestamp,
-                              firstDate: getCurrentTimestamp,
+                              firstDate: DateTime(1900),
                               lastDate: DateTime(2050),
                               builder: (context, child) {
                                 return wrapInMaterialDatePickerTheme(

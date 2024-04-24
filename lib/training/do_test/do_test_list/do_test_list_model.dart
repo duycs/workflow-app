@@ -1,6 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'do_test_list_widget.dart' show DoTestListWidget;
@@ -44,38 +43,24 @@ class DoTestListModel extends FlutterFlowModel<DoTestListWidget> {
 
   /// Action blocks.
   Future getListStaffTest(BuildContext context) async {
+    bool? getListStaffTestToken;
     ApiCallResponse? apiResultGetListStaffTest;
-    bool? checkRefreshTokenBlock;
 
-    apiResultGetListStaffTest = await DoTestGroup.staffsTestsListCall.call(
-      accessToken: FFAppState().accessToken,
-      filter: filter,
-    );
-    if ((apiResultGetListStaffTest.succeeded ?? true)) {
-      list = StaffsTestsListDataStruct.maybeFromMap(
-              (apiResultGetListStaffTest.jsonBody ?? ''))!
-          .data
-          .toList()
-          .cast<StaffsTestsListStruct>();
-    } else {
-      checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
-        context,
-        jsonErrors: (apiResultGetListStaffTest.jsonBody ?? ''),
+    getListStaffTestToken = await action_blocks.tokenReload(context);
+    if (getListStaffTestToken!) {
+      apiResultGetListStaffTest = await DoTestGroup.staffsTestsListCall.call(
+        accessToken: FFAppState().accessToken,
+        filter: filter,
       );
-      if (!checkRefreshTokenBlock!) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              FFAppConstants.ErrorLoadData,
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: const Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
-        );
+      if ((apiResultGetListStaffTest.succeeded ?? true)) {
+        list = StaffsTestsListDataStruct.maybeFromMap(
+                (apiResultGetListStaffTest.jsonBody ?? ''))!
+            .data
+            .toList()
+            .cast<StaffsTestsListStruct>();
       }
+    } else {
+      FFAppState().update(() {});
     }
   }
 }

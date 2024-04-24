@@ -72,18 +72,21 @@ class ProcedurePublishedListModel
             ).toString().toString()}\"}}';
           } else if (FFAppState().user.role ==
               'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-            return ',{\"steps\":{\"tasks\":{\"created_staff_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
+            return ',{\"steps\":{\"tasks\":{\"submit_staff_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
               FFAppState().staffLogin,
               r'''$.branch_id''',
             ).toString().toString()}\"}}}}}';
           } else if (FFAppState().user.role ==
               '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-            return ',{\"steps\":{\"tasks\":{\"created_staff_id\":{\"department_id\":{\"_eq\":\"${getJsonField(
+            return ',{\"steps\":{\"tasks\":{\"submit_staff_id\":{\"department_id\":{\"_eq\":\"${getJsonField(
               FFAppState().staffLogin,
               r'''$.department_id''',
             ).toString().toString()}\"}}}}}';
           } else {
-            return ',{\"steps\":{\"tasks\":{\"created_staff_id\":{\"user_id\":{\"_eq\":\"${FFAppState().user.id}\"}}}}}';
+            return ',{\"steps\":{\"tasks\":{\"submit_staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
+              FFAppState().staffLogin,
+              r'''$.id''',
+            ).toString().toString()}\"}}}}}';
           }
         }()}${(searchName != '') && (searchName != ' ') ? ',{\"name\":{\"_icontains\":\"$searchName\"}}' : ' '}${(dateStart != '') && (dateStart != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_gte\":\"$dateStart\"}}}}' : ' '}${(dateEnd != '') && (dateEnd != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_lte\":\"$dateEnd\"}}}}' : ' '}${(searchUserCreated != '') && (searchUserCreated != ' ') ? ',{\"steps\":{\"tasks\":{\"user_created\":{\"first_name\":{\"_icontains\":\"$searchUserCreated\"}}}}}' : ' '}]}',
       );

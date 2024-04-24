@@ -75,6 +75,7 @@ export 'staff_list_info_struct.dart';
 export 'staff_step_one_struct.dart';
 export 'staff_tasks_struct.dart';
 export 'staff_tasks_id_struct.dart';
+export 'staff_test_lesson_struct.dart';
 export 'staffs_alias_struct.dart';
 export 'staffs_step_struct.dart';
 export 'staffs_tests_list_struct.dart';

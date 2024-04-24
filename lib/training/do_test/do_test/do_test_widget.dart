@@ -22,9 +22,11 @@ class DoTestWidget extends StatefulWidget {
   const DoTestWidget({
     super.key,
     required this.testId,
+    required this.lessionId,
   });
 
   final String? testId;
+  final String? lessionId;
 
   @override
   State<DoTestWidget> createState() => _DoTestWidgetState();
@@ -46,42 +48,47 @@ class _DoTestWidgetState extends State<DoTestWidget> {
         _model.dateStart =
             functions.datetimeToString(getCurrentTimestamp.toString());
       });
-      _model.apiResultGetLessionTest = await TestGroup.testOneCall.call(
-        testsId: widget.testId,
-        accessToken: FFAppState().accessToken,
-      );
-      if ((_model.apiResultGetLessionTest?.succeeded ?? true)) {
-        setState(() {
-          _model.list = TestListStruct.maybeFromMap(getJsonField(
-            (_model.apiResultGetLessionTest?.jsonBody ?? ''),
-            r'''$.data''',
-          ));
-        });
-        while (_model.loopList < _model.list!.questions.length) {
+      _model.getLessionTestToken = await action_blocks.tokenReload(context);
+      if (_model.getLessionTestToken!) {
+        _model.apiResultGetLessionTest = await TestGroup.testOneCall.call(
+          testsId: widget.testId,
+          accessToken: FFAppState().accessToken,
+        );
+        if ((_model.apiResultGetLessionTest?.succeeded ?? true)) {
           setState(() {
-            _model.addToRequestData(RequestAnswerStaffStruct(
-              status: 'published',
-              staffId: getJsonField(
-                FFAppState().staffLogin,
-                r'''$.id''',
-              ).toString().toString(),
-              questionId: '',
+            _model.list = TestListStruct.maybeFromMap(getJsonField(
+              (_model.apiResultGetLessionTest?.jsonBody ?? ''),
+              r'''$.data''',
             ));
           });
+          while (_model.loopList < _model.list!.questions.length) {
+            setState(() {
+              _model.addToRequestData(RequestAnswerStaffStruct(
+                status: 'published',
+                staffId: getJsonField(
+                  FFAppState().staffLogin,
+                  r'''$.id''',
+                ).toString().toString(),
+                questionId: '',
+              ));
+            });
+            setState(() {
+              _model.loopList = _model.loopList + 1;
+            });
+          }
           setState(() {
-            _model.loopList = _model.loopList + 1;
+            _model.loopList = 0;
           });
+          _model.instantTimer = InstantTimer.periodic(
+            duration: const Duration(milliseconds: 1000),
+            callback: (timer) async {
+              _model.timerController.onStartTimer();
+            },
+            startImmediately: true,
+          );
         }
-        setState(() {
-          _model.loopList = 0;
-        });
-        _model.instantTimer = InstantTimer.periodic(
-          duration: const Duration(milliseconds: 1000),
-          callback: (timer) async {
-            _model.timerController.onStartTimer();
-          },
-          startImmediately: true,
-        );
+      } else {
+        setState(() {});
       }
     });
 
@@ -303,6 +310,8 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                     'staff_id':
                                                         FFAppState().staffid,
                                                     'test_id': widget.testId,
+                                                    'lession_id':
+                                                        widget.lessionId,
                                                   },
                                                   accessToken:
                                                       FFAppState().accessToken,
@@ -1031,226 +1040,190 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                   getCurrentTimestamp.toString());
                               _model.loopQuestion = 0;
                             });
-                            _model.apiResultCreateStaffTest =
-                                await DoTestGroup.createStaffTestsCall.call(
-                              requestDataJson: <String, dynamic>{
-                                'status': 'published',
-                                'score': getJsonField(
-                                  <String, int>{
-                                    'map': 100,
-                                  },
-                                  r'''$.map''',
-                                ),
-                                'date_start': _model.dateStart,
-                                'date_end': _model.dateEnd,
-                                'staff_id': FFAppState().staffid,
-                                'test_id': widget.testId,
-                              },
-                              accessToken: FFAppState().accessToken,
-                            );
+                            _model.createStaffTestToken =
+                                await action_blocks.tokenReload(context);
                             shouldSetState = true;
-                            if ((_model.apiResultCreateStaffTest?.succeeded ??
-                                true)) {
-                              setState(() {
-                                _model.testId = getJsonField(
-                                  (_model.apiResultCreateStaffTest?.jsonBody ??
-                                      ''),
-                                  r'''$.data.id''',
-                                ).toString();
-                                _model.testTime = getJsonField(
-                                  (_model.apiResultCreateStaffTest?.jsonBody ??
-                                      ''),
-                                  r'''$.data.test_id.duration_minutes''',
-                                );
-                                _model.testName = getJsonField(
-                                  (_model.apiResultCreateStaffTest?.jsonBody ??
-                                      ''),
-                                  r'''$.data.test_id.name''',
-                                ).toString();
-                                _model.testDescription = getJsonField(
-                                  (_model.apiResultCreateStaffTest?.jsonBody ??
-                                      ''),
-                                  r'''$.data.test_id.description''',
-                                ).toString();
-                              });
-                              while (
-                                  _model.loopId < _model.requestData.length) {
-                                setState(() {
-                                  _model.updateRequestDataAtIndex(
-                                    _model.loopId,
-                                    (e) => e
-                                      ..staffTestId = getJsonField(
-                                        (_model.apiResultCreateStaffTest
-                                                ?.jsonBody ??
-                                            ''),
-                                        r'''$.data.id''',
-                                      ).toString(),
-                                  );
-                                });
-                                setState(() {
-                                  _model.loopId = _model.loopId + 1;
-                                });
-                              }
-                              setState(() {
-                                _model.loopId = 0;
-                              });
-                              _model.apiResultCreateStaffAnswer =
-                                  await DoTestGroup.createStaffAnswerCall.call(
+                            if (_model.createStaffTestToken!) {
+                              _model.apiResultCreateStaffTest =
+                                  await DoTestGroup.createStaffTestsCall.call(
+                                requestDataJson: <String, dynamic>{
+                                  'status': 'published',
+                                  'score': getJsonField(
+                                    <String, int>{
+                                      'map': 100,
+                                    },
+                                    r'''$.map''',
+                                  ),
+                                  'date_start': _model.dateStart,
+                                  'date_end': _model.dateEnd,
+                                  'staff_id': FFAppState().staffid,
+                                  'test_id': widget.testId,
+                                  'lession_id': widget.lessionId,
+                                },
                                 accessToken: FFAppState().accessToken,
-                                requestJson: _model.requestData
-                                    .map((e) => e.toMap())
-                                    .toList(),
                               );
                               shouldSetState = true;
-                              if ((_model
-                                      .apiResultCreateStaffAnswer?.succeeded ??
+                              if ((_model.apiResultCreateStaffTest?.succeeded ??
                                   true)) {
-                                _model.apiResultCaculatorScores =
-                                    await DoTestGroup.calculateTestScoresCall
-                                        .call(
-                                  accessToken: FFAppState().accessToken,
-                                  staffTestId: _model.testId,
-                                );
-                                shouldSetState = true;
-                                if ((_model
-                                        .apiResultCaculatorScores?.succeeded ??
-                                    true)) {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: const Text('Thông báo'),
-                                        content:
-                                            const Text('Nộp bài thi thành công!'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: const Text('Ok'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-
-                                  context.pushNamed(
-                                    'DoTestDetail',
-                                    queryParameters: {
-                                      'testId': serializeParam(
-                                        _model.testId,
-                                        ParamType.String,
-                                      ),
-                                      'testName': serializeParam(
-                                        _model.testName,
-                                        ParamType.String,
-                                      ),
-                                      'testTime': serializeParam(
-                                        _model.testTime,
-                                        ParamType.int,
-                                      ),
-                                      'testDescription': serializeParam(
-                                        _model.testDescription,
-                                        ParamType.String,
-                                      ),
-                                      'percentCorect': serializeParam(
-                                        getJsonField(
-                                          (_model.apiResultCaculatorScores
-                                                  ?.jsonBody ??
-                                              ''),
-                                          r'''$.percent_corect''',
-                                        ),
-                                        ParamType.int,
-                                      ),
-                                      'goodScore': serializeParam(
-                                        _model.list?.goodScore,
-                                        ParamType.int,
-                                      ),
-                                    }.withoutNulls,
-                                  );
-
-                                  if (shouldSetState) setState(() {});
-                                  return;
-                                } else {
-                                  _model.checkRefreshTokenBlock2 =
-                                      await action_blocks.checkRefreshToken(
-                                    context,
-                                    jsonErrors: (_model.apiResultCaculatorScores
+                                setState(() {
+                                  _model.testId = getJsonField(
+                                    (_model.apiResultCreateStaffTest
                                             ?.jsonBody ??
                                         ''),
+                                    r'''$.data.id''',
+                                  ).toString();
+                                  _model.testTime = getJsonField(
+                                    (_model.apiResultCreateStaffTest
+                                            ?.jsonBody ??
+                                        ''),
+                                    r'''$.data.test_id.duration_minutes''',
+                                  );
+                                  _model.testName = getJsonField(
+                                    (_model.apiResultCreateStaffTest
+                                            ?.jsonBody ??
+                                        ''),
+                                    r'''$.data.test_id.name''',
+                                  ).toString();
+                                  _model.testDescription = getJsonField(
+                                    (_model.apiResultCreateStaffTest
+                                            ?.jsonBody ??
+                                        ''),
+                                    r'''$.data.test_id.description''',
+                                  ).toString();
+                                });
+                                while (
+                                    _model.loopId < _model.requestData.length) {
+                                  setState(() {
+                                    _model.updateRequestDataAtIndex(
+                                      _model.loopId,
+                                      (e) => e
+                                        ..staffTestId = getJsonField(
+                                          (_model.apiResultCreateStaffTest
+                                                  ?.jsonBody ??
+                                              ''),
+                                          r'''$.data.id''',
+                                        ).toString(),
+                                    );
+                                  });
+                                  setState(() {
+                                    _model.loopId = _model.loopId + 1;
+                                  });
+                                }
+                                setState(() {
+                                  _model.loopId = 0;
+                                });
+                                _model.createStaffAnswerToken =
+                                    await action_blocks.tokenReload(context);
+                                shouldSetState = true;
+                                if (_model.createStaffAnswerToken!) {
+                                  _model.apiResultCreateStaffAnswer =
+                                      await DoTestGroup.createStaffAnswerCall
+                                          .call(
+                                    accessToken: FFAppState().accessToken,
+                                    requestJson: _model.requestData
+                                        .map((e) => e.toMap())
+                                        .toList(),
                                   );
                                   shouldSetState = true;
-                                  if (!_model.checkRefreshTokenBlock2!) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          FFAppConstants.ErrorLoadData,
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                        ),
-                                        duration: const Duration(milliseconds: 4000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context).error,
-                                      ),
-                                    );
+                                  if ((_model.apiResultCreateStaffAnswer
+                                          ?.succeeded ??
+                                      true)) {
+                                    _model.caculatorScoresToken =
+                                        await action_blocks
+                                            .tokenReload(context);
+                                    shouldSetState = true;
+                                    if (_model.caculatorScoresToken!) {
+                                      _model.apiResultCaculatorScores =
+                                          await DoTestGroup
+                                              .calculateTestScoresCall
+                                              .call(
+                                        accessToken: FFAppState().accessToken,
+                                        staffTestId: _model.testId,
+                                      );
+                                      shouldSetState = true;
+                                      if ((_model.apiResultCaculatorScores
+                                              ?.succeeded ??
+                                          true)) {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              title: const Text('Thông báo'),
+                                              content: const Text(
+                                                  'Nộp bài thi thành công!'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: const Text('Ok'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+
+                                        context.pushNamed(
+                                          'DoTestDetail',
+                                          queryParameters: {
+                                            'testId': serializeParam(
+                                              _model.testId,
+                                              ParamType.String,
+                                            ),
+                                            'testName': serializeParam(
+                                              _model.testName,
+                                              ParamType.String,
+                                            ),
+                                            'testTime': serializeParam(
+                                              _model.testTime,
+                                              ParamType.int,
+                                            ),
+                                            'testDescription': serializeParam(
+                                              _model.testDescription,
+                                              ParamType.String,
+                                            ),
+                                            'percentCorect': serializeParam(
+                                              getJsonField(
+                                                (_model.apiResultCaculatorScores
+                                                        ?.jsonBody ??
+                                                    ''),
+                                                r'''$.percent_corect''',
+                                              ),
+                                              ParamType.int,
+                                            ),
+                                            'goodScore': serializeParam(
+                                              _model.list?.goodScore,
+                                              ParamType.int,
+                                            ),
+                                          }.withoutNulls,
+                                        );
+
+                                        if (shouldSetState) setState(() {});
+                                        return;
+                                      } else {
+                                        if (shouldSetState) setState(() {});
+                                        return;
+                                      }
+                                    } else {
+                                      setState(() {});
+                                      if (shouldSetState) setState(() {});
+                                      return;
+                                    }
+                                  } else {
+                                    if (shouldSetState) setState(() {});
+                                    return;
                                   }
+                                } else {
+                                  setState(() {});
                                   if (shouldSetState) setState(() {});
                                   return;
                                 }
                               } else {
-                                _model.checkRefreshTokenBlock1 =
-                                    await action_blocks.checkRefreshToken(
-                                  context,
-                                  jsonErrors: (_model.apiResultCreateStaffAnswer
-                                          ?.jsonBody ??
-                                      ''),
-                                );
-                                shouldSetState = true;
-                                if (!_model.checkRefreshTokenBlock1!) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        FFAppConstants.ErrorLoadData,
-                                        style: TextStyle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                        ),
-                                      ),
-                                      duration: const Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context).error,
-                                    ),
-                                  );
-                                }
                                 if (shouldSetState) setState(() {});
                                 return;
                               }
                             } else {
-                              _model.checkRefreshTokenBlock =
-                                  await action_blocks.checkRefreshToken(
-                                context,
-                                jsonErrors: (_model
-                                        .apiResultCreateStaffTest?.jsonBody ??
-                                    ''),
-                              );
-                              shouldSetState = true;
-                              if (!_model.checkRefreshTokenBlock!) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      FFAppConstants.ErrorLoadData,
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).error,
-                                  ),
-                                );
-                              }
+                              setState(() {});
                               if (shouldSetState) setState(() {});
                               return;
                             }

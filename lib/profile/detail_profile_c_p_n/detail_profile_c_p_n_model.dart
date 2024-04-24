@@ -14,6 +14,8 @@ class DetailProfileCPNModel extends FlutterFlowModel<DetailProfileCPNWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in DetailProfileCPN widget.
+  bool? getOrganizationToken;
   // Stores action output result for [Backend Call - API (GetOneOrganization)] action in DetailProfileCPN widget.
   ApiCallResponse? apiResultGetOrganization;
 

@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -14,9 +15,11 @@ class ConfirmDoTestWidget extends StatefulWidget {
   const ConfirmDoTestWidget({
     super.key,
     required this.testId,
+    required this.lessionId,
   });
 
   final String? testId;
+  final String? lessionId;
 
   @override
   State<ConfirmDoTestWidget> createState() => _ConfirmDoTestWidgetState();
@@ -38,18 +41,23 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultGetTest = await TestGroup.testOneCall.call(
-        testsId: widget.testId,
-        accessToken: FFAppState().accessToken,
-      );
-      if ((_model.apiResultGetTest?.succeeded ?? true)) {
-        setState(() {
-          _model.list = TestListStruct.maybeFromMap(getJsonField(
-            (_model.apiResultGetTest?.jsonBody ?? ''),
-            r'''$.data''',
-          ));
-          _model.testId = widget.testId!;
-        });
+      _model.getTestToken = await action_blocks.tokenReload(context);
+      if (_model.getTestToken!) {
+        _model.apiResultGetTest = await TestGroup.testOneCall.call(
+          testsId: widget.testId,
+          accessToken: FFAppState().accessToken,
+        );
+        if ((_model.apiResultGetTest?.succeeded ?? true)) {
+          setState(() {
+            _model.list = TestListStruct.maybeFromMap(getJsonField(
+              (_model.apiResultGetTest?.jsonBody ?? ''),
+              r'''$.data''',
+            ));
+            _model.testId = widget.testId!;
+          });
+        }
+      } else {
+        setState(() {});
       }
     });
   }
@@ -257,6 +265,10 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                     queryParameters: {
                                       'testId': serializeParam(
                                         widget.testId,
+                                        ParamType.String,
+                                      ),
+                                      'lessionId': serializeParam(
+                                        widget.lessionId,
                                         ParamType.String,
                                       ),
                                     }.withoutNulls,

@@ -54,8 +54,12 @@ class TaskListWaitModel extends FlutterFlowModel<TaskListWaitWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // Stores action output result for [Action Block - tokenReload] action in TextField widget.
+  bool? getTaWaitFilterToken;
   // Stores action output result for [Backend Call - API (GetListTask)] action in TextField widget.
   ApiCallResponse? apiResultGetTaWaitFilter;
+  // Stores action output result for [Action Block - tokenReload] action in TextField widget.
+  bool? getTaWaitToken;
   // Stores action output result for [Backend Call - API (GetListTask)] action in TextField widget.
   ApiCallResponse? apiResultGetTaWait;
   // Model for navBar component.

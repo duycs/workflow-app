@@ -245,7 +245,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                            'Vui lòng nhập tên vui trình!',
+                            'Vui lòng nhập tên quy trình!',
                             style: TextStyle(
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),

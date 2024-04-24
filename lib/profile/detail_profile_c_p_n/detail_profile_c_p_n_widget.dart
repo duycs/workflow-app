@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -38,20 +39,25 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultGetOrganization =
-          await OrganizationGroup.getOneOrganizationCall.call(
-        accessToken: FFAppState().accessToken,
-        organizationId: getJsonField(
-          FFAppState().staffLogin,
-          r'''$.organization_id''',
-        ).toString().toString(),
-      );
-      if ((_model.apiResultGetOrganization?.succeeded ?? true)) {
-        setState(() {
-          _model.data = OrganizationListDataStruct.maybeFromMap(
-                  (_model.apiResultGetOrganization?.jsonBody ?? ''))
-              ?.data;
-        });
+      _model.getOrganizationToken = await action_blocks.tokenReload(context);
+      if (_model.getOrganizationToken!) {
+        _model.apiResultGetOrganization =
+            await OrganizationGroup.getOneOrganizationCall.call(
+          accessToken: FFAppState().accessToken,
+          organizationId: getJsonField(
+            FFAppState().staffLogin,
+            r'''$.organization_id''',
+          ).toString().toString(),
+        );
+        if ((_model.apiResultGetOrganization?.succeeded ?? true)) {
+          setState(() {
+            _model.data = OrganizationListDataStruct.maybeFromMap(
+                    (_model.apiResultGetOrganization?.jsonBody ?? ''))
+                ?.data;
+          });
+        }
+      } else {
+        setState(() {});
       }
     });
 

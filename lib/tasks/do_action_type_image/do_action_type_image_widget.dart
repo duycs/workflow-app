@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'do_action_type_image_model.dart';
@@ -184,18 +185,24 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                         }
                       }
 
-                      _model.apiResultImage =
-                          await UploadFileGroup.uploadFileCall.call(
-                        accessToken: FFAppState().accessToken,
-                        file: _model.uploadedLocalFile,
-                      );
-                      if ((_model.apiResultImage?.succeeded ?? true)) {
-                        await widget.callback?.call(
-                          getJsonField(
-                            (_model.apiResultImage?.jsonBody ?? ''),
-                            r'''$.data.id''',
-                          ).toString(),
+                      _model.imageToken =
+                          await action_blocks.tokenReload(context);
+                      if (_model.imageToken!) {
+                        _model.apiResultImage =
+                            await UploadFileGroup.uploadFileCall.call(
+                          accessToken: FFAppState().accessToken,
+                          file: _model.uploadedLocalFile,
                         );
+                        if ((_model.apiResultImage?.succeeded ?? true)) {
+                          await widget.callback?.call(
+                            getJsonField(
+                              (_model.apiResultImage?.jsonBody ?? ''),
+                              r'''$.data.id''',
+                            ).toString(),
+                          );
+                        }
+                      } else {
+                        setState(() {});
                       }
 
                       setState(() {});

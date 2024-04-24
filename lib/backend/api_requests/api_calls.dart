@@ -53,7 +53,7 @@ class ProcedurePublishedListCall {
       },
       params: {
         'fields':
-            "steps.tasks.id, steps.tasks.name, steps.tasks.workflow_id, steps.tasks.published_count, steps.tasks.date_created, steps.number, steps.tasks.operations.operations_id.content, steps.tasks.operations.operations_id.files.directus_files_id.id, steps.tasks.operations.operations_id.result,id,name,steps.id,steps.tasks.user_created.first_name,steps.tasks.status, steps.tasks.created_user_id.first_name, steps.tasks.created_user_id.email,organization_id,steps.staffs.staffs_id.id,departments.departments_id.staffs.id,branch_id, steps.tasks.date_end,steps.departments.departments_id.staffs.id,steps.departments.departments_id.id,departments.departments_id.id,steps.tasks.created_staff_id.branch_id, steps.tasks.created_staff_id.department_id, steps.tasks.created_staff_id.user_id",
+            "steps.tasks.id, steps.tasks.name, steps.tasks.workflow_id, steps.tasks.published_count, steps.tasks.date_created, steps.number, steps.tasks.operations.operations_id.content, steps.tasks.operations.operations_id.files.directus_files_id.id, steps.tasks.operations.operations_id.result,id,name,steps.id,steps.tasks.user_created.first_name,steps.tasks.status, steps.tasks.created_user_id.first_name, steps.tasks.created_user_id.email,organization_id,steps.staffs.staffs_id.id,departments.departments_id.staffs.id,branch_id, steps.tasks.date_end,steps.departments.departments_id.staffs.id,steps.departments.departments_id.id,departments.departments_id.id,steps.tasks.created_staff_id.branch_id, steps.tasks.created_staff_id.department_id, steps.tasks.created_staff_id.user_id,steps.tasks.submit_staff_id.branch_id, steps.tasks.submit_staff_id.department_id,steps.tasks.submit_staff_id.id",
         'filter': filter,
         'offset': offset,
         'limit': limit,
@@ -1014,7 +1014,7 @@ class StaffsTestsListCall {
       },
       params: {
         'fields':
-            "id,status,test_id.id,test_id.name,score,date_start,date_end,total_correct,total_incorrect,test_id.duration_minutes,date_created,percent_correct,test_id.good_score",
+            "id,status,test_id.id,test_id.name,score,date_start,date_end,total_correct,total_incorrect,test_id.duration_minutes,date_created,percent_correct,test_id.good_score,lession_id.name, lession_id.id",
         'filter': filter,
         'sort': "-date_created",
       },

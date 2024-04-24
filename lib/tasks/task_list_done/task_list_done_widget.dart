@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/tasks/done_action_type_to_do_list/done_action_type_to_do_list_widget.dart';
 import '/tasks/filter_task_list_done/filter_task_list_done_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
@@ -165,58 +166,74 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                   const Duration(milliseconds: 500),
                                   () async {
                                     if (_model.textController.text != '') {
-                                      _model.apiResultGetTaskDoneFilter =
-                                          await TaskGroup.getListTaskCall.call(
-                                        accessToken: FFAppState().accessToken,
-                                        filter:
-                                            '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                          FFAppState().staffLogin,
-                                          r'''$.id''',
-                                        ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-                                          FFAppState().staffLogin,
-                                          r'''$.organization_id''',
-                                        ).toString()}\"}}},{\"name\":{\"_icontains\":\"${_model.textController.text}\"}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
-                                      );
-                                      if ((_model.apiResultGetTaskDoneFilter
-                                              ?.succeeded ??
-                                          true)) {
-                                        setState(() {
-                                          _model.list = TaskListDataStruct
-                                                  .maybeFromMap((_model
-                                                          .apiResultGetTaskDoneFilter
-                                                          ?.jsonBody ??
-                                                      ''))!
-                                              .data
-                                              .toList()
-                                              .cast<TaskListStruct>();
-                                        });
+                                      _model.getTaskDoneFilterToken =
+                                          await action_blocks
+                                              .tokenReload(context);
+                                      if (_model.getTaskDoneFilterToken!) {
+                                        _model.apiResultGetTaskDoneFilter =
+                                            await TaskGroup.getListTaskCall
+                                                .call(
+                                          accessToken: FFAppState().accessToken,
+                                          filter:
+                                              '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                            FFAppState().staffLogin,
+                                            r'''$.id''',
+                                          ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                            FFAppState().staffLogin,
+                                            r'''$.organization_id''',
+                                          ).toString()}\"}}},{\"name\":{\"_icontains\":\"${_model.textController.text}\"}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
+                                        );
+                                        if ((_model.apiResultGetTaskDoneFilter
+                                                ?.succeeded ??
+                                            true)) {
+                                          setState(() {
+                                            _model.list = TaskListDataStruct
+                                                    .maybeFromMap((_model
+                                                            .apiResultGetTaskDoneFilter
+                                                            ?.jsonBody ??
+                                                        ''))!
+                                                .data
+                                                .toList()
+                                                .cast<TaskListStruct>();
+                                          });
+                                        }
+                                      } else {
+                                        setState(() {});
                                       }
                                     } else {
-                                      _model.apiResultGetListTaskDone =
-                                          await TaskGroup.getListTaskCall.call(
-                                        accessToken: FFAppState().accessToken,
-                                        filter:
-                                            '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                          FFAppState().staffLogin,
-                                          r'''$.id''',
-                                        ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-                                          FFAppState().staffLogin,
-                                          r'''$.organization_id''',
-                                        ).toString()}\"}}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
-                                      );
-                                      if ((_model.apiResultGetListTaskDone
-                                              ?.succeeded ??
-                                          true)) {
-                                        setState(() {
-                                          _model.list = TaskListDataStruct
-                                                  .maybeFromMap((_model
-                                                          .apiResultGetListTaskDone
-                                                          ?.jsonBody ??
-                                                      ''))!
-                                              .data
-                                              .toList()
-                                              .cast<TaskListStruct>();
-                                        });
+                                      _model.getListTaskDoneToken =
+                                          await action_blocks
+                                              .tokenReload(context);
+                                      if (_model.getListTaskDoneToken!) {
+                                        _model.apiResultGetListTaskDone =
+                                            await TaskGroup.getListTaskCall
+                                                .call(
+                                          accessToken: FFAppState().accessToken,
+                                          filter:
+                                              '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                            FFAppState().staffLogin,
+                                            r'''$.id''',
+                                          ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                            FFAppState().staffLogin,
+                                            r'''$.organization_id''',
+                                          ).toString()}\"}}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
+                                        );
+                                        if ((_model.apiResultGetListTaskDone
+                                                ?.succeeded ??
+                                            true)) {
+                                          setState(() {
+                                            _model.list = TaskListDataStruct
+                                                    .maybeFromMap((_model
+                                                            .apiResultGetListTaskDone
+                                                            ?.jsonBody ??
+                                                        ''))!
+                                                .data
+                                                .toList()
+                                                .cast<TaskListStruct>();
+                                          });
+                                        }
+                                      } else {
+                                        setState(() {});
                                       }
                                     }
 
@@ -289,68 +306,84 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                             _model.textController?.clear();
                                             if (_model.textController.text !=
                                                     '') {
-                                              _model.apiResultGetTaskDoneFilter =
-                                                  await TaskGroup
-                                                      .getListTaskCall
-                                                      .call(
-                                                accessToken:
-                                                    FFAppState().accessToken,
-                                                filter:
-                                                    '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                                  FFAppState().staffLogin,
-                                                  r'''$.id''',
-                                                ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-                                                  FFAppState().staffLogin,
-                                                  r'''$.organization_id''',
-                                                ).toString()}\"}}},{\"name\":{\"_icontains\":\"${_model.textController.text}\"}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
-                                              );
-                                              if ((_model
-                                                      .apiResultGetTaskDoneFilter
-                                                      ?.succeeded ??
-                                                  true)) {
-                                                setState(() {
-                                                  _model
-                                                      .list = TaskListDataStruct
-                                                          .maybeFromMap((_model
-                                                                  .apiResultGetTaskDoneFilter
-                                                                  ?.jsonBody ??
-                                                              ''))!
-                                                      .data
-                                                      .toList()
-                                                      .cast<TaskListStruct>();
-                                                });
+                                              _model.getTaskDoneFilterToken =
+                                                  await action_blocks
+                                                      .tokenReload(context);
+                                              if (_model
+                                                  .getTaskDoneFilterToken!) {
+                                                _model.apiResultGetTaskDoneFilter =
+                                                    await TaskGroup
+                                                        .getListTaskCall
+                                                        .call(
+                                                  accessToken:
+                                                      FFAppState().accessToken,
+                                                  filter:
+                                                      '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                                    FFAppState().staffLogin,
+                                                    r'''$.id''',
+                                                  ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                                    FFAppState().staffLogin,
+                                                    r'''$.organization_id''',
+                                                  ).toString()}\"}}},{\"name\":{\"_icontains\":\"${_model.textController.text}\"}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
+                                                );
+                                                if ((_model
+                                                        .apiResultGetTaskDoneFilter
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  setState(() {
+                                                    _model
+                                                        .list = TaskListDataStruct
+                                                            .maybeFromMap((_model
+                                                                    .apiResultGetTaskDoneFilter
+                                                                    ?.jsonBody ??
+                                                                ''))!
+                                                        .data
+                                                        .toList()
+                                                        .cast<TaskListStruct>();
+                                                  });
+                                                }
+                                              } else {
+                                                setState(() {});
                                               }
                                             } else {
-                                              _model.apiResultGetListTaskDone =
-                                                  await TaskGroup
-                                                      .getListTaskCall
-                                                      .call(
-                                                accessToken:
-                                                    FFAppState().accessToken,
-                                                filter:
-                                                    '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                                  FFAppState().staffLogin,
-                                                  r'''$.id''',
-                                                ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-                                                  FFAppState().staffLogin,
-                                                  r'''$.organization_id''',
-                                                ).toString()}\"}}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
-                                              );
-                                              if ((_model
-                                                      .apiResultGetListTaskDone
-                                                      ?.succeeded ??
-                                                  true)) {
-                                                setState(() {
-                                                  _model
-                                                      .list = TaskListDataStruct
-                                                          .maybeFromMap((_model
-                                                                  .apiResultGetListTaskDone
-                                                                  ?.jsonBody ??
-                                                              ''))!
-                                                      .data
-                                                      .toList()
-                                                      .cast<TaskListStruct>();
-                                                });
+                                              _model.getListTaskDoneToken =
+                                                  await action_blocks
+                                                      .tokenReload(context);
+                                              if (_model
+                                                  .getListTaskDoneToken!) {
+                                                _model.apiResultGetListTaskDone =
+                                                    await TaskGroup
+                                                        .getListTaskCall
+                                                        .call(
+                                                  accessToken:
+                                                      FFAppState().accessToken,
+                                                  filter:
+                                                      '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                                    FFAppState().staffLogin,
+                                                    r'''$.id''',
+                                                  ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                                    FFAppState().staffLogin,
+                                                    r'''$.organization_id''',
+                                                  ).toString()}\"}}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
+                                                );
+                                                if ((_model
+                                                        .apiResultGetListTaskDone
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  setState(() {
+                                                    _model
+                                                        .list = TaskListDataStruct
+                                                            .maybeFromMap((_model
+                                                                    .apiResultGetListTaskDone
+                                                                    ?.jsonBody ??
+                                                                ''))!
+                                                        .data
+                                                        .toList()
+                                                        .cast<TaskListStruct>();
+                                                  });
+                                                }
+                                              } else {
+                                                setState(() {});
                                               }
                                             }
 
@@ -1701,20 +1734,32 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                   .first
                                                                   .operationsId
                                                                   .files.isNotEmpty) {
-                                                            await actions
-                                                                .downloadFile(
-                                                              '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                              dataListItem.name,
-                                                              dataListItem
-                                                                  .operations
-                                                                  .first
-                                                                  .operationsId
-                                                                  .files
-                                                                  .first
-                                                                  .directusFilesId
-                                                                  .filenameDownload,
-                                                            );
+                                                            _model.downloadfileToken =
+                                                                await action_blocks
+                                                                    .tokenReload(
+                                                                        context);
+                                                            if (_model
+                                                                .downloadfileToken!) {
+                                                              await actions
+                                                                  .downloadFile(
+                                                                '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                dataListItem
+                                                                    .name,
+                                                                dataListItem
+                                                                    .operations
+                                                                    .first
+                                                                    .operationsId
+                                                                    .files
+                                                                    .first
+                                                                    .directusFilesId
+                                                                    .filenameDownload,
+                                                              );
+                                                            } else {
+                                                              setState(() {});
+                                                            }
                                                           }
+
+                                                          setState(() {});
                                                         },
                                                         text: 'Tải tài liệu',
                                                         icon: const Icon(

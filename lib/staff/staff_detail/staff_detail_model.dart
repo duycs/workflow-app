@@ -15,6 +15,8 @@ class StaffDetailModel extends FlutterFlowModel<StaffDetailWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
+  // Stores action output result for [Action Block - tokenReload] action in StaffDetail widget.
+  bool? getStaffInfoToken;
   // Stores action output result for [Backend Call - API (GetStaffId)] action in StaffDetail widget.
   ApiCallResponse? apiResultGetStaffInfo;
 

@@ -60,6 +60,8 @@ class DoTestModel extends FlutterFlowModel<DoTestWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in DoTest widget.
+  bool? getLessionTestToken;
   // Stores action output result for [Backend Call - API (TestOne)] action in DoTest widget.
   ApiCallResponse? apiResultGetLessionTest;
   InstantTimer? instantTimer;
@@ -85,18 +87,18 @@ class DoTestModel extends FlutterFlowModel<DoTestWidget> {
   List<AnswersListStruct> get checkboxCheckedItems =>
       checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
 
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? createStaffTestToken;
   // Stores action output result for [Backend Call - API (CreateStaffTests)] action in Button widget.
   ApiCallResponse? apiResultCreateStaffTest;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? createStaffAnswerToken;
   // Stores action output result for [Backend Call - API (CreateStaffAnswer)] action in Button widget.
   ApiCallResponse? apiResultCreateStaffAnswer;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? caculatorScoresToken;
   // Stores action output result for [Backend Call - API (CalculateTestScores)] action in Button widget.
   ApiCallResponse? apiResultCaculatorScores;
-  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
-  bool? checkRefreshTokenBlock2;
-  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
-  bool? checkRefreshTokenBlock1;
-  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
-  bool? checkRefreshTokenBlock;
 
   @override
   void initState(BuildContext context) {}

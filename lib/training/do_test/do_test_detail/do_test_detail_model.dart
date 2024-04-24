@@ -28,10 +28,10 @@ class DoTestDetailModel extends FlutterFlowModel<DoTestDetailWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in DoTestDetail widget.
+  bool? getStaffAnswerListToken;
   // Stores action output result for [Backend Call - API (StaffAnswerList)] action in DoTestDetail widget.
   ApiCallResponse? apiResultGetStaffAnswerList;
-  // Stores action output result for [Action Block - CheckRefreshToken] action in DoTestDetail widget.
-  bool? checkRefreshTokenBlock67;
   // State field(s) for Checkbox widget.
 
   Map<QuestionAnswerObjectStruct, bool> checkboxValueMap = {};

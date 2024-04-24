@@ -1,16 +1,14 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/provider.dart';
 import 'sign_up_model.dart';
 export 'sign_up_model.dart';
 
@@ -33,22 +31,6 @@ class _SignUpWidgetState extends State<SignUpWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => SignUpModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultgetListUser = await UserGroup.getListUserCall.call(
-        accessToken: FFAppState().accessToken,
-      );
-      if ((_model.apiResultgetListUser?.succeeded ?? true)) {
-        setState(() {
-          _model.listEmail = ListUserStruct.maybeFromMap(
-                  (_model.apiResultgetListUser?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<UserStruct>();
-        });
-      }
-    });
 
     _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
@@ -104,8 +86,6 @@ class _SignUpWidgetState extends State<SignUpWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -1376,160 +1356,174 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                       .validate()) {
                                                 return;
                                               }
-                                              _model.apiResultCreateUser =
-                                                  await AuthenGroup
-                                                      .createOrganizationUserCall
-                                                      .call(
-                                                requestDataJson: <String,
-                                                    dynamic>{
-                                                  'email': _model
-                                                      .emailAddressTextController
-                                                      .text,
-                                                  'password': _model
-                                                      .passwordTextController
-                                                      .text,
-                                                  'role':
-                                                      '82073000-1ba2-43a4-a55c-459d17c23b68',
-                                                  'first_name': _model
-                                                      .nameTextController.text,
-                                                  'last_name': _model
-                                                      .nameTextController.text,
-                                                  'status': 'active',
-                                                  'organization': _model
-                                                      .organizationTextController
-                                                      .text,
-                                                  'cccd': _model
-                                                      .cccdTextController.text,
-                                                  'gender':
-                                                      _model.radioButtonValue ==
-                                                              'Nam'
-                                                          ? 'male'
-                                                          : 'female',
-                                                  'phone': _model
-                                                      .phoneTextController.text,
-                                                  'dob':
-                                                      dateTimeFormat('yyyy-MM-dd', _model.datePicked),
-                                                  'avatar':
-                                                      '6f2dfeb5-4df6-4b73-93c4-109f72133a25',
-                                                  'logo':
-                                                      '1fdaeaf9-74e3-42e9-94b5-acb9f3996949',
-                                                  'image':
-                                                      '1fdaeaf9-74e3-42e9-94b5-acb9f3996949',
-                                                  'video':
-                                                      '1fdaeaf9-74e3-42e9-94b5-acb9f3996949',
-                                                  'title': 'Admin tổ chức',
-                                                },
-                                              );
+                                              _model.createUserToken =
+                                                  await action_blocks
+                                                      .tokenReload(context);
                                               shouldSetState = true;
-                                              if ((_model.apiResultCreateUser
-                                                      ?.succeeded ??
-                                                  true)) {
-                                                if (getJsonField(
-                                                      (_model.apiResultCreateUser
-                                                              ?.jsonBody ??
-                                                          ''),
-                                                      r'''$.message''',
-                                                    ).toString() ==
-                                                    'Đã tồn tại email user') {
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackBar(
-                                                      content: Text(
-                                                        'Đã tồn tại email user',
-                                                        style: TextStyle(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
+                                              if (_model.createUserToken!) {
+                                                _model.apiResultCreateUser =
+                                                    await AuthenGroup
+                                                        .createOrganizationUserCall
+                                                        .call(
+                                                  requestDataJson: <String,
+                                                      dynamic>{
+                                                    'email': _model
+                                                        .emailAddressTextController
+                                                        .text,
+                                                    'password': _model
+                                                        .passwordTextController
+                                                        .text,
+                                                    'role':
+                                                        '82073000-1ba2-43a4-a55c-459d17c23b68',
+                                                    'first_name': _model
+                                                        .nameTextController
+                                                        .text,
+                                                    'last_name': _model
+                                                        .nameTextController
+                                                        .text,
+                                                    'status': 'active',
+                                                    'organization': _model
+                                                        .organizationTextController
+                                                        .text,
+                                                    'cccd': _model
+                                                        .cccdTextController
+                                                        .text,
+                                                    'gender':
+                                                        _model.radioButtonValue ==
+                                                                'Nam'
+                                                            ? 'male'
+                                                            : 'female',
+                                                    'phone': _model
+                                                        .phoneTextController
+                                                        .text,
+                                                    'dob':
+                                                        dateTimeFormat('yyyy-MM-dd', _model.datePicked),
+                                                    'avatar':
+                                                        '6f2dfeb5-4df6-4b73-93c4-109f72133a25',
+                                                    'logo':
+                                                        '1fdaeaf9-74e3-42e9-94b5-acb9f3996949',
+                                                    'image':
+                                                        '1fdaeaf9-74e3-42e9-94b5-acb9f3996949',
+                                                    'video':
+                                                        '1fdaeaf9-74e3-42e9-94b5-acb9f3996949',
+                                                    'title': 'Admin tổ chức',
+                                                  },
+                                                );
+                                                shouldSetState = true;
+                                                if ((_model.apiResultCreateUser
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  if (getJsonField(
+                                                        (_model.apiResultCreateUser
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                        r'''$.message''',
+                                                      ).toString() ==
+                                                      'Đã tồn tại email user') {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(
+                                                          'Đã tồn tại email user',
+                                                          style: TextStyle(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                          ),
                                                         ),
+                                                        duration: const Duration(
+                                                            milliseconds: 4000),
+                                                        backgroundColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
                                                       ),
-                                                      duration: const Duration(
-                                                          milliseconds: 4000),
-                                                      backgroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .error,
-                                                    ),
-                                                  );
-                                                  if (shouldSetState) {
-                                                    setState(() {});
+                                                    );
+                                                    if (shouldSetState) {
+                                                      setState(() {});
+                                                    }
+                                                    return;
+                                                  } else {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(
+                                                          'Đăng ký thành công',
+                                                          style: TextStyle(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                          ),
+                                                        ),
+                                                        duration: const Duration(
+                                                            milliseconds: 4000),
+                                                        backgroundColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondary,
+                                                      ),
+                                                    );
+
+                                                    context.pushNamed(
+                                                      'Login',
+                                                      extra: <String, dynamic>{
+                                                        kTransitionInfoKey:
+                                                            const TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                          duration: Duration(
+                                                              milliseconds: 0),
+                                                        ),
+                                                      },
+                                                    );
+
+                                                    if (shouldSetState) {
+                                                      setState(() {});
+                                                    }
+                                                    return;
                                                   }
-                                                  return;
                                                 } else {
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackBar(
-                                                      content: Text(
-                                                        'Đăng ký thành công',
-                                                        style: TextStyle(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                        ),
-                                                      ),
-                                                      duration: const Duration(
-                                                          milliseconds: 4000),
-                                                      backgroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondary,
-                                                    ),
-                                                  );
-
-                                                  context.pushNamed(
-                                                    'Login',
-                                                    extra: <String, dynamic>{
-                                                      kTransitionInfoKey:
-                                                          const TransitionInfo(
-                                                        hasTransition: true,
-                                                        transitionType:
-                                                            PageTransitionType
-                                                                .fade,
-                                                        duration: Duration(
-                                                            milliseconds: 0),
-                                                      ),
-                                                    },
-                                                  );
-
+                                                  var confirmDialogResponse =
+                                                      await showDialog<bool>(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                title: const Text(
+                                                                    'yhsdfghsd'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            false),
+                                                                    child: const Text(
+                                                                        'Cancel'),
+                                                                  ),
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            true),
+                                                                    child: const Text(
+                                                                        'Confirm'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          ) ??
+                                                          false;
                                                   if (shouldSetState) {
                                                     setState(() {});
                                                   }
                                                   return;
                                                 }
                                               } else {
-                                                var confirmDialogResponse =
-                                                    await showDialog<bool>(
-                                                          context: context,
-                                                          builder:
-                                                              (alertDialogContext) {
-                                                            return AlertDialog(
-                                                              title: const Text(
-                                                                  'yhsdfghsd'),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          false),
-                                                                  child: const Text(
-                                                                      'Cancel'),
-                                                                ),
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          true),
-                                                                  child: const Text(
-                                                                      'Confirm'),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          },
-                                                        ) ??
-                                                        false;
-                                                if (shouldSetState) {
-                                                  setState(() {});
-                                                }
-                                                return;
+                                                setState(() {});
                                               }
                                             }
 

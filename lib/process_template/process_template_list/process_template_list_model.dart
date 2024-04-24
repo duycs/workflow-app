@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'process_template_list_widget.dart' show ProcessTemplateListWidget;
 import 'package:flutter/material.dart';
 
@@ -92,34 +93,41 @@ class ProcessTemplateListModel
 
   /// Action blocks.
   Future callSearchList(BuildContext context) async {
+    bool? processTemplateListSearchToken;
     ApiCallResponse? apiResultListDataSearch;
 
-    apiResultListDataSearch =
-        await ProcedureTemplateGroup.workflowsListCall.call(
-      accessToken: FFAppState().accessToken,
-      filter: '{\"_and\":[{\"template\":{\"_eq\":\"1\"}}${domainSearch.isNotEmpty ? ',{\"domain_id\":{\"_in\":[${(List<String> strings) {
-          return strings.map((str) => '"$str"').join(',');
-        }(domainSearch.toList())}]}}' : ' '}${(categoryId != '') && (categoryId != '1') && (categoryId != ' ') ? ',{\"category_id\":{\"_eq\":\"$categoryId\"}}' : ' '}${textNameTextController.text != '' ? ',{\"name\":{\"_contains\":\"${textNameTextController.text}\"}}' : ' '}]}',
-    );
-    if ((apiResultListDataSearch.succeeded ?? true)) {
-      dataList = WorkflowsListDataStruct.maybeFromMap(
-              (apiResultListDataSearch.jsonBody ?? ''))!
-          .data
-          .toList()
-          .cast<WorkflowsStruct>();
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Lỗi tải dữ liệu!',
-            style: TextStyle(
-              color: FlutterFlowTheme.of(context).primaryText,
-            ),
-          ),
-          duration: const Duration(milliseconds: 4000),
-          backgroundColor: FlutterFlowTheme.of(context).error,
-        ),
+    processTemplateListSearchToken = await action_blocks.tokenReload(context);
+    if (processTemplateListSearchToken!) {
+      apiResultListDataSearch =
+          await ProcedureTemplateGroup.workflowsListCall.call(
+        accessToken: FFAppState().accessToken,
+        filter: '{\"_and\":[{\"template\":{\"_eq\":\"1\"}}${domainSearch.isNotEmpty ? ',{\"domain_id\":{\"_in\":[${(List<String> strings) {
+            return strings.map((str) => '"$str"').join(',');
+          }(domainSearch.toList())}]}}' : ' '}${(categoryId != '') && (categoryId != '1') && (categoryId != ' ') ? ',{\"category_id\":{\"_eq\":\"$categoryId\"}}' : ' '}${textNameTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${textNameTextController.text}\"}}' : ' '}]}',
       );
+      if ((apiResultListDataSearch.succeeded ?? true)) {
+        dataList = WorkflowsListDataStruct.maybeFromMap(
+                (apiResultListDataSearch.jsonBody ?? ''))!
+            .data
+            .toList()
+            .cast<WorkflowsStruct>();
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Lỗi tải dữ liệu!',
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      }
+    } else {
+      FFAppState().update(() {});
+      return;
     }
   }
 }

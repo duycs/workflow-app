@@ -86,6 +86,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'testId',
               ParamType.String,
             ),
+            lessionId: params.getParam(
+              'lessionId',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -355,7 +359,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'DoTestList',
           path: '/doTestList',
-          builder: (context, params) => const DoTestListWidget(),
+          builder: (context, params) => DoTestListWidget(
+            lessionId: params.getParam(
+              'lessionId',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'StaffUpdate',

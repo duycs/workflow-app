@@ -12,6 +12,7 @@ import '/procedure/dropdown_departments_list/dropdown_departments_list_widget.da
 import '/procedure/dropdown_user_list/dropdown_user_list_widget.dart';
 import '/procedure/procedure_step_create/procedure_step_create_widget.dart';
 import '/procedure/procedure_step_menu/procedure_step_menu_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
@@ -457,513 +458,544 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
               child: FFButtonWidget(
                 onPressed: () async {
                   var shouldSetState = false;
-                  setState(() {
-                    _model.requestUpdate = null;
-                  });
-                  if (_model.dataUpdate?.name != null &&
-                      _model.dataUpdate?.name != '') {
+                  setState(() {});
+                  _model.tokenReloadProcedurUpdate =
+                      await action_blocks.tokenReload(context);
+                  shouldSetState = true;
+                  if (_model.tokenReloadProcedurUpdate!) {
                     setState(() {
-                      _model.updateDataUpdateStruct(
-                        (e) => e
-                          ..status = 'published'
-                          ..id = widget.itemData?.id,
-                      );
-                      _model.loop = 0;
+                      _model.requestUpdate = null;
                     });
-                    if (_model.checkType == '3') {
-                      while (_model.loop < _model.checkOne.length) {
-                        if (_model.checkOne[_model.loop].type == true) {
-                          setState(() {
-                            _model.addToCheckCron(
-                                _model.checkOne[_model.loop].title);
-                          });
-                        }
-                        setState(() {
-                          _model.loop = _model.loop + 1;
-                        });
-                      }
-                      setState(() {
-                        _model.loop = 0;
-                      });
-                      while (_model.loop < _model.checkTwo.length) {
-                        if (_model.checkTwo[_model.loop].type == true) {
-                          setState(() {
-                            _model.addToCheckCron(
-                                _model.checkTwo[_model.loop].title);
-                          });
-                        }
-                        setState(() {
-                          _model.loop = _model.loop + 1;
-                        });
-                      }
-                      setState(() {
-                        _model.loop = 0;
-                      });
-                      while (_model.loop < _model.checkThrees.length) {
-                        if (_model.checkThrees[_model.loop].type == true) {
-                          setState(() {
-                            _model.addToCheckCron(
-                                _model.checkThrees[_model.loop].title);
-                          });
-                        }
-                        setState(() {
-                          _model.loop = _model.loop + 1;
-                        });
-                      }
-                      setState(() {
-                        _model.loop = 0;
-                      });
-                      while (_model.loop < _model.checkBoxFour.length) {
-                        if (_model.checkBoxFour[_model.loop].type == true) {
-                          setState(() {
-                            _model.addToCheckCron(
-                                _model.checkBoxFour[_model.loop].title);
-                          });
-                        }
-                        setState(() {
-                          _model.loop = _model.loop + 1;
-                        });
-                      }
-                      setState(() {
-                        _model.loop = 0;
-                      });
-                      while (_model.loop < _model.checkBoxFive.length) {
-                        if (_model.checkBoxFive[_model.loop].type == true) {
-                          setState(() {
-                            _model.addToCheckCron(
-                                _model.checkBoxFive[_model.loop].title);
-                          });
-                        }
-                        setState(() {
-                          _model.loop = _model.loop + 1;
-                        });
-                      }
-                      setState(() {
-                        _model.loop = 0;
-                      });
-                      while (_model.loop < _model.checkBoxSix.length) {
-                        if (_model.checkBoxSix[_model.loop].type == true) {
-                          setState(() {
-                            _model.addToCheckCron(
-                                _model.checkBoxSix[_model.loop].title);
-                          });
-                        }
-                        setState(() {
-                          _model.loop = _model.loop + 1;
-                        });
-                      }
-                      setState(() {
-                        _model.loop = 0;
-                      });
-                    } else if (_model.checkType == '2') {
+                    if (_model.dataUpdate?.name != null &&
+                        _model.dataUpdate?.name != '') {
                       setState(() {
                         _model.updateDataUpdateStruct(
                           (e) => e
-                            ..cron = functions.limitPublished(_model.checkType!,
-                                _model.groupWeekValues?.toList()),
+                            ..status = 'published'
+                            ..id = widget.itemData?.id,
                         );
+                        _model.loop = 0;
                       });
-                    } else if (_model.checkType == '1') {
-                      setState(() {
-                        _model.updateDataUpdateStruct(
-                          (e) => e
-                            ..cron = functions.limitPublished(_model.checkType!,
-                                _model.groupWeekValues?.toList()),
-                        );
-                      });
-                    } else {
-                      setState(() {
-                        _model.updateDataUpdateStruct(
-                          (e) => e
-                            ..cron = functions.limitPublished(_model.checkType!,
-                                _model.groupWeekValues?.toList()),
-                        );
-                      });
-                    }
+                      if (_model.checkType == '3') {
+                        while (_model.loop < _model.checkOne.length) {
+                          if (_model.checkOne[_model.loop].type == true) {
+                            setState(() {
+                              _model.addToCheckCron(
+                                  _model.checkOne[_model.loop].title);
+                            });
+                          }
+                          setState(() {
+                            _model.loop = _model.loop + 1;
+                          });
+                        }
+                        setState(() {
+                          _model.loop = 0;
+                        });
+                        while (_model.loop < _model.checkTwo.length) {
+                          if (_model.checkTwo[_model.loop].type == true) {
+                            setState(() {
+                              _model.addToCheckCron(
+                                  _model.checkTwo[_model.loop].title);
+                            });
+                          }
+                          setState(() {
+                            _model.loop = _model.loop + 1;
+                          });
+                        }
+                        setState(() {
+                          _model.loop = 0;
+                        });
+                        while (_model.loop < _model.checkThrees.length) {
+                          if (_model.checkThrees[_model.loop].type == true) {
+                            setState(() {
+                              _model.addToCheckCron(
+                                  _model.checkThrees[_model.loop].title);
+                            });
+                          }
+                          setState(() {
+                            _model.loop = _model.loop + 1;
+                          });
+                        }
+                        setState(() {
+                          _model.loop = 0;
+                        });
+                        while (_model.loop < _model.checkBoxFour.length) {
+                          if (_model.checkBoxFour[_model.loop].type == true) {
+                            setState(() {
+                              _model.addToCheckCron(
+                                  _model.checkBoxFour[_model.loop].title);
+                            });
+                          }
+                          setState(() {
+                            _model.loop = _model.loop + 1;
+                          });
+                        }
+                        setState(() {
+                          _model.loop = 0;
+                        });
+                        while (_model.loop < _model.checkBoxFive.length) {
+                          if (_model.checkBoxFive[_model.loop].type == true) {
+                            setState(() {
+                              _model.addToCheckCron(
+                                  _model.checkBoxFive[_model.loop].title);
+                            });
+                          }
+                          setState(() {
+                            _model.loop = _model.loop + 1;
+                          });
+                        }
+                        setState(() {
+                          _model.loop = 0;
+                        });
+                        while (_model.loop < _model.checkBoxSix.length) {
+                          if (_model.checkBoxSix[_model.loop].type == true) {
+                            setState(() {
+                              _model.addToCheckCron(
+                                  _model.checkBoxSix[_model.loop].title);
+                            });
+                          }
+                          setState(() {
+                            _model.loop = _model.loop + 1;
+                          });
+                        }
+                        setState(() {
+                          _model.loop = 0;
+                        });
+                      } else if (_model.checkType == '2') {
+                        setState(() {
+                          _model.checkCron =
+                              _model.groupWeekValues!.toList().cast<String>();
+                        });
+                      } else if (_model.checkType == '1') {
+                        setState(() {
+                          _model.checkCron = [];
+                        });
+                      } else {
+                        setState(() {
+                          _model.checkCron = [];
+                        });
+                      }
 
-                    setState(() {
-                      _model.requestUpdate = RequestWorkflowsCreateStruct(
-                        name: _model.dataUpdate?.name,
-                        description: _model.dataUpdate?.description,
-                        status: _model.dataUpdate?.status,
-                        remind: _model.dataUpdate?.remind,
-                        limitPublished: _model.dataUpdate?.limitPublished,
-                        remind2: _model.dataUpdate?.remind2,
-                        remindInSecond: _model.dataUpdate?.remindInSecond,
-                        id: _model.dataUpdate?.id,
-                        cron: functions.limitPublished(
-                            _model.checkType!, _model.checkCron.toList()),
-                      );
-                    });
-                    while (_model.loop < _model.dataUpdate!.staffs.length) {
                       setState(() {
-                        _model.updateRequestUpdateStruct(
-                          (e) => e
-                            ..updateStaffs(
-                              (e) => e.add(StaffsStepStruct(
-                                staffsId: StaffIdStruct(
-                                  id: (_model.dataUpdate?.staffs[_model.loop])
-                                      ?.staffsId
-                                      .id,
-                                ),
-                              )),
-                            )
-                            ..departments = [],
+                        _model.requestUpdate = RequestWorkflowsCreateStruct(
+                          name: _model.dataUpdate?.name,
+                          description: _model.dataUpdate?.description,
+                          status: _model.dataUpdate?.status,
+                          remind: _model.dataUpdate?.remind,
+                          limitPublished: _model.dataUpdate?.limitPublished,
+                          remind2: _model.dataUpdate?.remind2,
+                          remindInSecond: _model.dataUpdate?.remindInSecond,
+                          id: _model.dataUpdate?.id,
+                          cron: functions.limitPublished(
+                              _model.checkType!, _model.checkCron.toList()),
                         );
                       });
+                      while (_model.loop < _model.dataUpdate!.staffs.length) {
+                        setState(() {
+                          _model.updateRequestUpdateStruct(
+                            (e) => e
+                              ..updateStaffs(
+                                (e) => e.add(StaffsStepStruct(
+                                  staffsId: StaffIdStruct(
+                                    id: (_model
+                                            .dataUpdate?.staffs[_model.loop])
+                                        ?.staffsId
+                                        .id,
+                                  ),
+                                )),
+                              )
+                              ..departments = [],
+                          );
+                        });
+                        setState(() {
+                          _model.loop = _model.loop + 1;
+                        });
+                      }
                       setState(() {
-                        _model.loop = _model.loop + 1;
+                        _model.loop = 0;
                       });
-                    }
-                    setState(() {
-                      _model.loop = 0;
-                    });
-                    while (
-                        _model.loop < _model.dataUpdate!.departments.length) {
+                      while (
+                          _model.loop < _model.dataUpdate!.departments.length) {
+                        setState(() {
+                          _model.updateRequestUpdateStruct(
+                            (e) => e
+                              ..updateDepartments(
+                                (e) => e.add(DepartmentsIdStruct(
+                                  departmentsId: DepartmentsStruct(
+                                    id: (_model.dataUpdate
+                                            ?.departments[_model.loop])
+                                        ?.departmentsId
+                                        .id,
+                                  ),
+                                )),
+                              )
+                              ..staffs = [],
+                          );
+                        });
+                        setState(() {
+                          _model.loop = _model.loop + 1;
+                        });
+                      }
                       setState(() {
-                        _model.updateRequestUpdateStruct(
-                          (e) => e
-                            ..updateDepartments(
-                              (e) => e.add(DepartmentsIdStruct(
-                                departmentsId: DepartmentsStruct(
-                                  id: (_model.dataUpdate
-                                          ?.departments[_model.loop])
-                                      ?.departmentsId
-                                      .id,
-                                ),
-                              )),
-                            )
-                            ..staffs = [],
-                        );
+                        _model.loop = 0;
                       });
-                      setState(() {
-                        _model.loop = _model.loop + 1;
-                      });
-                    }
-                    setState(() {
-                      _model.loop = 0;
-                    });
-                    _model.apiResultUpdate =
-                        await ProcedureTemplateGroup.workflowUpdateCall.call(
-                      accessToken: FFAppState().accessToken,
-                      requestDataJson: _model.requestUpdate?.toMap(),
-                    );
-                    shouldSetState = true;
-                    if ((_model.apiResultUpdate?.succeeded ?? true)) {
-                      _model.apiResultDeleteStep = await ProcedureTemplateGroup
-                          .deleteWorkflowsStepCall
-                          .call(
+                      _model.apiResultUpdate =
+                          await ProcedureTemplateGroup.workflowUpdateCall.call(
                         accessToken: FFAppState().accessToken,
-                        workflowsId: widget.itemData?.id,
-                        stepIdList: _model.stepDelete,
+                        requestDataJson: _model.requestUpdate?.toMap(),
                       );
                       shouldSetState = true;
-                      if ((_model.apiResultDeleteStep?.succeeded ?? true)) {
-                        while (_model.loop < _model.stepList.length) {
+                      if ((_model.apiResultUpdate?.succeeded ?? true)) {
+                        _model.apiResultDeleteStep =
+                            await ProcedureTemplateGroup.deleteWorkflowsStepCall
+                                .call(
+                          accessToken: FFAppState().accessToken,
+                          workflowsId: widget.itemData?.id,
+                          stepIdList: _model.stepDelete,
+                        );
+                        shouldSetState = true;
+                        if ((_model.apiResultDeleteStep?.succeeded ?? true)) {
+                          while (_model.loop < _model.stepList.length) {
+                            setState(() {
+                              _model.updateStepListAtIndex(
+                                _model.loop,
+                                (e) => e..number = _model.loop + 1,
+                              );
+                            });
+                            setState(() {
+                              _model.loop = _model.loop + 1;
+                            });
+                          }
                           setState(() {
-                            _model.updateStepListAtIndex(
-                              _model.loop,
-                              (e) => e..number = _model.loop + 1,
+                            _model.loop = 0;
+                          });
+                          while (_model.loop < _model.stepList.length) {
+                            if (_model.stepList[_model.loop].id != '') {
+                              setState(() {
+                                _model.addToCreateUpdate(
+                                    WorkflowsStepCreateStruct(
+                                  id: _model.stepList[_model.loop].id,
+                                  name: _model.stepList[_model.loop].name,
+                                  status: _model.stepList[_model.loop].status,
+                                  description:
+                                      _model.stepList[_model.loop].description,
+                                  executeType:
+                                      _model.stepList[_model.loop].executeType,
+                                  actionType:
+                                      _model.stepList[_model.loop].actionType,
+                                  staffsAlias:
+                                      _model.stepList[_model.loop].staffsAlias,
+                                  timeOperate:
+                                      _model.stepList[_model.loop].timeOperate,
+                                  estimateInSecond: _model
+                                      .stepList[_model.loop].estimateInSecond,
+                                  number: _model.stepList[_model.loop].number,
+                                ));
+                              });
+                              while (_model.loop2 <
+                                  _model.stepList[_model.loop].staffs.length) {
+                                setState(() {
+                                  _model.updateCreateUpdateAtIndex(
+                                    _model.createUpdate.length - 1,
+                                    (e) => e
+                                      ..updateStaffs(
+                                        (e) => e.add(StaffsStepStruct(
+                                          staffsId: StaffIdStruct(
+                                            id: _model
+                                                .stepList[_model.loop]
+                                                .staffs[_model.loop2]
+                                                .staffsId
+                                                .id,
+                                          ),
+                                        )),
+                                      ),
+                                  );
+                                });
+                                setState(() {
+                                  _model.loop2 = _model.loop2 + 1;
+                                });
+                              }
+                              setState(() {
+                                _model.loop2 = 0;
+                              });
+                              while (_model.loop2 <
+                                  _model.stepList[_model.loop].departments
+                                      .length) {
+                                setState(() {
+                                  _model.updateCreateUpdateAtIndex(
+                                    _model.createUpdate.length - 1,
+                                    (e) => e
+                                      ..updateDepartments(
+                                        (e) => e.add(DepartmentListStruct(
+                                          departmentsId: DepartmentsStruct(
+                                            id: _model
+                                                .stepList[_model.loop]
+                                                .departments[_model.loop2]
+                                                .departmentsId
+                                                .id,
+                                          ),
+                                        )),
+                                      ),
+                                  );
+                                });
+                                setState(() {
+                                  _model.loop2 = _model.loop2 + 1;
+                                });
+                              }
+                              setState(() {
+                                _model.loop2 = 0;
+                              });
+                              while (_model.loop2 <
+                                  _model.stepList[_model.loop].operations
+                                      .length) {
+                                if (_model.stepList[_model.loop]
+                                            .operations[_model.loop2].id !=
+                                        '') {
+                                  setState(() {
+                                    _model.updateCreateUpdateAtIndex(
+                                      _model.createUpdate.length - 1,
+                                      (e) => e
+                                        ..updateOperations(
+                                          (e) => e.add(OperationsStruct(
+                                            content: _model
+                                                .stepList[_model.loop]
+                                                .operations[_model.loop2]
+                                                .content,
+                                            actionType: _model
+                                                .stepList[_model.loop]
+                                                .operations[_model.loop2]
+                                                .actionType,
+                                            id: _model.stepList[_model.loop]
+                                                .operations[_model.loop2].id,
+                                          )),
+                                        ),
+                                    );
+                                  });
+                                } else {
+                                  setState(() {
+                                    _model.updateCreateUpdateAtIndex(
+                                      _model.createUpdate.length - 1,
+                                      (e) => e
+                                        ..updateOperations(
+                                          (e) => e.add(OperationsStruct(
+                                            content: _model
+                                                .stepList[_model.loop]
+                                                .operations[_model.loop2]
+                                                .content,
+                                            actionType: _model
+                                                .stepList[_model.loop]
+                                                .operations[_model.loop2]
+                                                .actionType,
+                                          )),
+                                        ),
+                                    );
+                                  });
+                                }
+
+                                setState(() {
+                                  _model.loop2 = _model.loop2 + 1;
+                                });
+                              }
+                              setState(() {
+                                _model.loop2 = 0;
+                              });
+                            } else {
+                              setState(() {
+                                _model
+                                    .addToCreateStep(WorkflowsStepCreateStruct(
+                                  name: _model.stepList[_model.loop].name,
+                                  status: _model.stepList[_model.loop].status,
+                                  description:
+                                      _model.stepList[_model.loop].description,
+                                  executeType:
+                                      _model.stepList[_model.loop].executeType,
+                                  actionType:
+                                      _model.stepList[_model.loop].actionType,
+                                  staffsAlias:
+                                      _model.stepList[_model.loop].staffsAlias,
+                                  timeOperate:
+                                      _model.stepList[_model.loop].timeOperate,
+                                  estimateInSecond: _model
+                                      .stepList[_model.loop].estimateInSecond,
+                                  number: _model.stepList[_model.loop].number,
+                                  workflowId: widget.itemData?.id,
+                                ));
+                              });
+                              while (_model.loop2 <
+                                  _model.stepList[_model.loop].staffs.length) {
+                                setState(() {
+                                  _model.updateCreateStepAtIndex(
+                                    _model.createStep.length - 1,
+                                    (e) => e
+                                      ..updateStaffs(
+                                        (e) => e.add(StaffsStepStruct(
+                                          staffsId: StaffIdStruct(
+                                            id: _model
+                                                .stepList[_model.loop]
+                                                .staffs[_model.loop2]
+                                                .staffsId
+                                                .id,
+                                          ),
+                                        )),
+                                      ),
+                                  );
+                                });
+                                setState(() {
+                                  _model.loop2 = _model.loop2 + 1;
+                                });
+                              }
+                              setState(() {
+                                _model.loop2 = 0;
+                              });
+                              while (_model.loop2 <
+                                  _model.stepList[_model.loop].departments
+                                      .length) {
+                                setState(() {
+                                  _model.updateCreateStepAtIndex(
+                                    _model.createStep.length - 1,
+                                    (e) => e
+                                      ..updateDepartments(
+                                        (e) => e.add(DepartmentListStruct(
+                                          departmentsId: DepartmentsStruct(
+                                            id: _model
+                                                .stepList[_model.loop]
+                                                .departments[_model.loop2]
+                                                .departmentsId
+                                                .id,
+                                          ),
+                                        )),
+                                      ),
+                                  );
+                                });
+                                setState(() {
+                                  _model.loop2 = _model.loop2 + 1;
+                                });
+                              }
+                              setState(() {
+                                _model.loop2 = 0;
+                              });
+                              while (_model.loop2 <
+                                  _model.stepList[_model.loop].operations
+                                      .length) {
+                                if (_model.stepList[_model.loop]
+                                            .operations[_model.loop2].id !=
+                                        '') {
+                                  setState(() {
+                                    _model.updateCreateStepAtIndex(
+                                      _model.createStep.length - 1,
+                                      (e) => e
+                                        ..updateOperations(
+                                          (e) => e.add(OperationsStruct(
+                                            content: _model
+                                                .stepList[_model.loop]
+                                                .operations[_model.loop2]
+                                                .content,
+                                            actionType: _model
+                                                .stepList[_model.loop]
+                                                .operations[_model.loop2]
+                                                .actionType,
+                                            id: _model.stepList[_model.loop]
+                                                .operations[_model.loop2].id,
+                                          )),
+                                        ),
+                                    );
+                                  });
+                                } else {
+                                  setState(() {
+                                    _model.updateCreateStepAtIndex(
+                                      _model.createStep.length - 1,
+                                      (e) => e
+                                        ..updateOperations(
+                                          (e) => e.add(OperationsStruct(
+                                            content: _model
+                                                .stepList[_model.loop]
+                                                .operations[_model.loop2]
+                                                .content,
+                                            actionType: _model
+                                                .stepList[_model.loop]
+                                                .operations[_model.loop2]
+                                                .actionType,
+                                          )),
+                                        ),
+                                    );
+                                  });
+                                }
+
+                                setState(() {
+                                  _model.loop2 = _model.loop2 + 1;
+                                });
+                              }
+                              setState(() {
+                                _model.loop2 = 0;
+                              });
+                            }
+
+                            setState(() {
+                              _model.loop = _model.loop + 1;
+                            });
+                          }
+                          setState(() {
+                            _model.loop = 0;
+                            _model.loop2 = 0;
+                          });
+                          while (_model.loop < _model.createStep.length) {
+                            _model.apiResultj7m = await ProcedureTemplateGroup
+                                .stepCreateWorkflowsCall
+                                .call(
+                              accessToken: FFAppState().accessToken,
+                              requestDataJson:
+                                  _model.createStep[_model.loop].toMap(),
                             );
-                          });
-                          setState(() {
-                            _model.loop = _model.loop + 1;
-                          });
-                        }
-                        setState(() {
-                          _model.loop = 0;
-                        });
-                        while (_model.loop < _model.stepList.length) {
-                          if (_model.stepList[_model.loop].id != '') {
-                            setState(() {
-                              _model
-                                  .addToCreateUpdate(WorkflowsStepCreateStruct(
-                                id: _model.stepList[_model.loop].id,
-                                name: _model.stepList[_model.loop].name,
-                                status: _model.stepList[_model.loop].status,
-                                description:
-                                    _model.stepList[_model.loop].description,
-                                executeType:
-                                    _model.stepList[_model.loop].executeType,
-                                actionType:
-                                    _model.stepList[_model.loop].actionType,
-                                staffsAlias:
-                                    _model.stepList[_model.loop].staffsAlias,
-                                timeOperate:
-                                    _model.stepList[_model.loop].timeOperate,
-                                estimateInSecond: _model
-                                    .stepList[_model.loop].estimateInSecond,
-                                number: _model.stepList[_model.loop].number,
-                              ));
-                            });
-                            while (_model.loop2 <
-                                _model.stepList[_model.loop].staffs.length) {
-                              setState(() {
-                                _model.updateCreateUpdateAtIndex(
-                                  _model.createUpdate.length - 1,
-                                  (e) => e
-                                    ..updateStaffs(
-                                      (e) => e.add(StaffsStepStruct(
-                                        staffsId: StaffIdStruct(
-                                          id: _model.stepList[_model.loop]
-                                              .staffs[_model.loop2].staffsId.id,
-                                        ),
-                                      )),
-                                    ),
-                                );
-                              });
-                              setState(() {
-                                _model.loop2 = _model.loop2 + 1;
-                              });
+                            shouldSetState = true;
+                            if ((_model.apiResultj7m?.succeeded ?? true)) {
+                              setState(() {});
                             }
                             setState(() {
-                              _model.loop2 = 0;
-                            });
-                            while (_model.loop2 <
-                                _model
-                                    .stepList[_model.loop].departments.length) {
-                              setState(() {
-                                _model.updateCreateUpdateAtIndex(
-                                  _model.createUpdate.length - 1,
-                                  (e) => e
-                                    ..updateDepartments(
-                                      (e) => e.add(DepartmentListStruct(
-                                        departmentsId: DepartmentsStruct(
-                                          id: _model
-                                              .stepList[_model.loop]
-                                              .departments[_model.loop2]
-                                              .departmentsId
-                                              .id,
-                                        ),
-                                      )),
-                                    ),
-                                );
-                              });
-                              setState(() {
-                                _model.loop2 = _model.loop2 + 1;
-                              });
-                            }
-                            setState(() {
-                              _model.loop2 = 0;
-                            });
-                            while (_model.loop2 <
-                                _model
-                                    .stepList[_model.loop].operations.length) {
-                              if (_model.stepList[_model.loop]
-                                          .operations[_model.loop2].id !=
-                                      '') {
-                                setState(() {
-                                  _model.updateCreateUpdateAtIndex(
-                                    _model.createUpdate.length - 1,
-                                    (e) => e
-                                      ..updateOperations(
-                                        (e) => e.add(OperationsStruct(
-                                          content: _model.stepList[_model.loop]
-                                              .operations[_model.loop2].content,
-                                          actionType: _model
-                                              .stepList[_model.loop]
-                                              .operations[_model.loop2]
-                                              .actionType,
-                                          id: _model.stepList[_model.loop]
-                                              .operations[_model.loop2].id,
-                                        )),
-                                      ),
-                                  );
-                                });
-                              } else {
-                                setState(() {
-                                  _model.updateCreateUpdateAtIndex(
-                                    _model.createUpdate.length - 1,
-                                    (e) => e
-                                      ..updateOperations(
-                                        (e) => e.add(OperationsStruct(
-                                          content: _model.stepList[_model.loop]
-                                              .operations[_model.loop2].content,
-                                          actionType: _model
-                                              .stepList[_model.loop]
-                                              .operations[_model.loop2]
-                                              .actionType,
-                                        )),
-                                      ),
-                                  );
-                                });
-                              }
-
-                              setState(() {
-                                _model.loop2 = _model.loop2 + 1;
-                              });
-                            }
-                            setState(() {
-                              _model.loop2 = 0;
-                            });
-                          } else {
-                            setState(() {
-                              _model.addToCreateStep(WorkflowsStepCreateStruct(
-                                name: _model.stepList[_model.loop].name,
-                                status: _model.stepList[_model.loop].status,
-                                description:
-                                    _model.stepList[_model.loop].description,
-                                executeType:
-                                    _model.stepList[_model.loop].executeType,
-                                actionType:
-                                    _model.stepList[_model.loop].actionType,
-                                staffsAlias:
-                                    _model.stepList[_model.loop].staffsAlias,
-                                timeOperate:
-                                    _model.stepList[_model.loop].timeOperate,
-                                estimateInSecond: _model
-                                    .stepList[_model.loop].estimateInSecond,
-                                number: _model.stepList[_model.loop].number,
-                                workflowId: widget.itemData?.id,
-                              ));
-                            });
-                            while (_model.loop2 <
-                                _model.stepList[_model.loop].staffs.length) {
-                              setState(() {
-                                _model.updateCreateStepAtIndex(
-                                  _model.createStep.length - 1,
-                                  (e) => e
-                                    ..updateStaffs(
-                                      (e) => e.add(StaffsStepStruct(
-                                        staffsId: StaffIdStruct(
-                                          id: _model.stepList[_model.loop]
-                                              .staffs[_model.loop2].staffsId.id,
-                                        ),
-                                      )),
-                                    ),
-                                );
-                              });
-                              setState(() {
-                                _model.loop2 = _model.loop2 + 1;
-                              });
-                            }
-                            setState(() {
-                              _model.loop2 = 0;
-                            });
-                            while (_model.loop2 <
-                                _model
-                                    .stepList[_model.loop].departments.length) {
-                              setState(() {
-                                _model.updateCreateStepAtIndex(
-                                  _model.createStep.length - 1,
-                                  (e) => e
-                                    ..updateDepartments(
-                                      (e) => e.add(DepartmentListStruct(
-                                        departmentsId: DepartmentsStruct(
-                                          id: _model
-                                              .stepList[_model.loop]
-                                              .departments[_model.loop2]
-                                              .departmentsId
-                                              .id,
-                                        ),
-                                      )),
-                                    ),
-                                );
-                              });
-                              setState(() {
-                                _model.loop2 = _model.loop2 + 1;
-                              });
-                            }
-                            setState(() {
-                              _model.loop2 = 0;
-                            });
-                            while (_model.loop2 <
-                                _model
-                                    .stepList[_model.loop].operations.length) {
-                              if (_model.stepList[_model.loop]
-                                          .operations[_model.loop2].id !=
-                                      '') {
-                                setState(() {
-                                  _model.updateCreateStepAtIndex(
-                                    _model.createStep.length - 1,
-                                    (e) => e
-                                      ..updateOperations(
-                                        (e) => e.add(OperationsStruct(
-                                          content: _model.stepList[_model.loop]
-                                              .operations[_model.loop2].content,
-                                          actionType: _model
-                                              .stepList[_model.loop]
-                                              .operations[_model.loop2]
-                                              .actionType,
-                                          id: _model.stepList[_model.loop]
-                                              .operations[_model.loop2].id,
-                                        )),
-                                      ),
-                                  );
-                                });
-                              } else {
-                                setState(() {
-                                  _model.updateCreateStepAtIndex(
-                                    _model.createStep.length - 1,
-                                    (e) => e
-                                      ..updateOperations(
-                                        (e) => e.add(OperationsStruct(
-                                          content: _model.stepList[_model.loop]
-                                              .operations[_model.loop2].content,
-                                          actionType: _model
-                                              .stepList[_model.loop]
-                                              .operations[_model.loop2]
-                                              .actionType,
-                                        )),
-                                      ),
-                                  );
-                                });
-                              }
-
-                              setState(() {
-                                _model.loop2 = _model.loop2 + 1;
-                              });
-                            }
-                            setState(() {
-                              _model.loop2 = 0;
+                              _model.loop = _model.loop + 1;
                             });
                           }
-
                           setState(() {
-                            _model.loop = _model.loop + 1;
+                            _model.loop = 0;
                           });
-                        }
-                        setState(() {
-                          _model.loop = 0;
-                          _model.loop2 = 0;
-                        });
-                        while (_model.loop < _model.createStep.length) {
-                          _model.apiResultj7m = await ProcedureTemplateGroup
-                              .stepCreateWorkflowsCall
-                              .call(
-                            accessToken: FFAppState().accessToken,
-                            requestDataJson:
-                                _model.createStep[_model.loop].toMap(),
+                          while (_model.loop < _model.createUpdate.length) {
+                            _model.apiResult2eo = await ProcedureTemplateGroup
+                                .stepUpdateCall
+                                .call(
+                              accessToken: FFAppState().accessToken,
+                              requestDataJson:
+                                  _model.createUpdate[_model.loop].toMap(),
+                            );
+                            shouldSetState = true;
+                            if ((_model.apiResult2eo?.succeeded ?? true)) {
+                              setState(() {});
+                            }
+                            setState(() {
+                              _model.loop = _model.loop + 1;
+                            });
+                          }
+                          setState(() {
+                            _model.loop = 0;
+                          });
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Lỗi cập nhật dữ liệu!',
+                                style: TextStyle(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                ),
+                              ),
+                              duration: const Duration(milliseconds: 4000),
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).error,
+                            ),
                           );
-                          shouldSetState = true;
-                          if ((_model.apiResultj7m?.succeeded ?? true)) {
-                            setState(() {});
-                          }
-                          setState(() {
-                            _model.loop = _model.loop + 1;
-                          });
+                          if (shouldSetState) setState(() {});
+                          return;
                         }
-                        setState(() {
-                          _model.loop = 0;
-                        });
-                        while (_model.loop < _model.createUpdate.length) {
-                          _model.apiResult2eo =
-                              await ProcedureTemplateGroup.stepUpdateCall.call(
-                            accessToken: FFAppState().accessToken,
-                            requestDataJson:
-                                _model.createUpdate[_model.loop].toMap(),
-                          );
-                          shouldSetState = true;
-                          if ((_model.apiResult2eo?.succeeded ?? true)) {
-                            setState(() {});
-                          }
-                          setState(() {
-                            _model.loop = _model.loop + 1;
-                          });
-                        }
-                        setState(() {
-                          _model.loop = 0;
-                        });
+
+                        context.pushNamed('ProcedureList');
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
@@ -981,12 +1013,24 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                         return;
                       }
 
-                      context.pushNamed('ProcedureList');
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Cập nhật quy trình thành công!',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: const Duration(milliseconds: 4000),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
+                        ),
+                      );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                            'Lỗi cập nhật dữ liệu!',
+                            'Vui lòng nhập tên quy trình!',
                             style: TextStyle(
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),
@@ -998,32 +1042,8 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                       if (shouldSetState) setState(() {});
                       return;
                     }
-
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Cập nhật quy trình thành công!',
-                          style: TextStyle(
-                            color: FlutterFlowTheme.of(context).primaryText,
-                          ),
-                        ),
-                        duration: const Duration(milliseconds: 4000),
-                        backgroundColor: FlutterFlowTheme.of(context).secondary,
-                      ),
-                    );
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Vui lòng nhập tên quy trình!',
-                          style: TextStyle(
-                            color: FlutterFlowTheme.of(context).primaryText,
-                          ),
-                        ),
-                        duration: const Duration(milliseconds: 4000),
-                        backgroundColor: FlutterFlowTheme.of(context).error,
-                      ),
-                    );
+                    setState(() {});
                     if (shouldSetState) setState(() {});
                     return;
                   }
@@ -1637,6 +1657,11 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                   ?.staffs,
                                                               callback:
                                                                   (item) async {
+                                                                await _model
+                                                                    .addStaff(
+                                                                  context,
+                                                                  item: item,
+                                                                );
                                                                 setState(() {});
                                                               },
                                                             ),
@@ -1841,6 +1866,15 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                   ?.departments,
                                                               callback:
                                                                   (item) async {
+                                                                setState(() {
+                                                                  _model
+                                                                      .updateDataUpdateStruct(
+                                                                    (e) => e
+                                                                      ..departments =
+                                                                          item!
+                                                                              .toList(),
+                                                                  );
+                                                                });
                                                                 setState(() {});
                                                               },
                                                             ),

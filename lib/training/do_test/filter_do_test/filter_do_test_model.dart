@@ -24,8 +24,12 @@ class FilterDoTestModel extends FlutterFlowModel<FilterDoTestWidget> {
 
   DateTime? datePicked1;
   DateTime? datePicked2;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? clearListStaffTestToken;
   // Stores action output result for [Backend Call - API (StaffsTestsList)] action in Button widget.
   ApiCallResponse? apiResultClearListStaffTest;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? filterListStaffTestToken;
   // Stores action output result for [Backend Call - API (StaffsTestsList)] action in Button widget.
   ApiCallResponse? apiResultFilterListStaffTest;
 

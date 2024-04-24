@@ -1159,7 +1159,12 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                         (_model.checkContent != '') &&
                         (_model.descriptionTextController.text != '') &&
                         (_model.durationHoursTextController.text != '') &&
-                        (_model.uploadImage != '')) {
+                        ((_model.uploadImage != '') ||
+                            (getJsonField(
+                                  widget.items,
+                                  r'''$.image_cover''',
+                                ) !=
+                                null))) {
                       await _model.updateLesson(context);
                       setState(() {});
                     } else {

@@ -57,7 +57,7 @@ class LessonsListUserModel extends FlutterFlowModel<LessonsListUserWidget> {
       filter: '{\"_and\":[{}${',{\"staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.id''',
-      ).toString().toString()}\"}}}'}${(nameSearch != '') && (nameSearch != ' ') ? ', {\"lession_id\":{\"name\":{\"_icontains\":\"$nameSearch\"}}}' : ' '}${(dateStartSearch != '') && (dateStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_gte\":\"$dateStartSearch\"}}}' : '  '}${(dateEndStartSearch != '') && (dateEndStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_lte\":\"$dateEndStartSearch\"}}}' : ' '}]}',
+      ).toString().toString()}\"}}}'}${(nameSearch != '') && (nameSearch != ' ') ? ', {\"lession_id\":{\"name\":{\"_icontains\":\"$nameSearch\"}}}' : ' '}${(dateStartSearch != '') && (dateStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_gte\":\"$dateStartSearch\"}}}' : '  '}${(dateEndStartSearch != '') && (dateEndStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_lte\":\"${dateEndStartSearch}T23:59:03.955000Z\"}}}' : ' '}]}',
     );
     if ((apiResultLinkLessonStaff.succeeded ?? true)) {
       listLessonStaff = EmployeeLessonListDataStruct.maybeFromMap(

@@ -69,10 +69,16 @@ class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
+  // Stores action output result for [Action Block - tokenReload] action in StaffCreate widget.
+  bool? listDeparmentToken;
   // Stores action output result for [Backend Call - API (GetDepartmentList)] action in StaffCreate widget.
   ApiCallResponse? apiResultListDeparment;
+  // Stores action output result for [Action Block - tokenReload] action in StaffCreate widget.
+  bool? getListBranchToken;
   // Stores action output result for [Backend Call - API (BranchList)] action in StaffCreate widget.
   ApiCallResponse? apiResultGetListBranch;
+  // Stores action output result for [Action Block - tokenReload] action in StaffCreate widget.
+  bool? getListUserToken;
   // Stores action output result for [Backend Call - API (GetListUser)] action in StaffCreate widget.
   ApiCallResponse? apiResultgetListUser;
   bool isDataUploading = false;
@@ -159,12 +165,20 @@ class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
   FormFieldController<String>? departmentValueController;
   // State field(s) for SwitchListTile widget.
   bool? switchListTileValue;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? uploadImageToken;
   // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
   ApiCallResponse? apiResultuploadImage;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? createBToken;
   // Stores action output result for [Backend Call - API (CreateStaff)] action in Button widget.
   ApiCallResponse? apiResultCreateB;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? createOToken;
   // Stores action output result for [Backend Call - API (CreateStaff)] action in Button widget.
   ApiCallResponse? apiResultCreateO;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? createDSToken;
   // Stores action output result for [Backend Call - API (CreateStaff)] action in Button widget.
   ApiCallResponse? apiResultCreateDS;
   // Stores action output result for [Backend Call - API (CreateStaff)] action in Button widget.

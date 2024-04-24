@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -316,29 +317,35 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            _model.apiResultClearListStaffTest =
-                                await DoTestGroup.staffsTestsListCall.call(
-                              accessToken: FFAppState().accessToken,
-                              filter:
-                                  '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"test_id\":{\"name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}]}',
-                            );
-                            if ((_model
-                                    .apiResultClearListStaffTest?.succeeded ??
-                                true)) {
-                              _model.llst =
-                                  StaffsTestsListDataStruct.maybeFromMap((_model
-                                              .apiResultClearListStaffTest
-                                              ?.jsonBody ??
-                                          ''))!
-                                      .data
-                                      .toList()
-                                      .cast<StaffsTestsListStruct>();
-                              await widget.callback?.call(
-                                _model.llst,
-                                ' ',
-                                ' ',
+                            _model.clearListStaffTestToken =
+                                await action_blocks.tokenReload(context);
+                            if (_model.clearListStaffTestToken!) {
+                              _model.apiResultClearListStaffTest =
+                                  await DoTestGroup.staffsTestsListCall.call(
+                                accessToken: FFAppState().accessToken,
+                                filter:
+                                    '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"test_id\":{\"name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}]}',
                               );
-                              Navigator.pop(context);
+                              if ((_model
+                                      .apiResultClearListStaffTest?.succeeded ??
+                                  true)) {
+                                _model.llst =
+                                    StaffsTestsListDataStruct.maybeFromMap(
+                                            (_model.apiResultClearListStaffTest
+                                                    ?.jsonBody ??
+                                                ''))!
+                                        .data
+                                        .toList()
+                                        .cast<StaffsTestsListStruct>();
+                                await widget.callback?.call(
+                                  _model.llst,
+                                  ' ',
+                                  ' ',
+                                );
+                                Navigator.pop(context);
+                              }
+                            } else {
+                              setState(() {});
                             }
 
                             setState(() {});
@@ -372,33 +379,39 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            _model.apiResultFilterListStaffTest =
-                                await DoTestGroup.staffsTestsListCall.call(
-                              accessToken: FFAppState().accessToken,
-                              filter:
-                                  '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"test_id\":{\"name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}${_model.dateStart != '' ? ',{\"date_start\":{\"_gte\":\"${_model.dateStart}\"}}' : ' '}${_model.dateEnd != '' ? ',{\"date_start\":{\"_lte\":\"${_model.dateEnd}\"}}' : ' '}]}',
-                            );
-                            if ((_model
-                                    .apiResultFilterListStaffTest?.succeeded ??
-                                true)) {
-                              _model.llst =
+                            _model.filterListStaffTestToken =
+                                await action_blocks.tokenReload(context);
+                            if (_model.filterListStaffTestToken!) {
+                              _model.apiResultFilterListStaffTest =
+                                  await DoTestGroup.staffsTestsListCall.call(
+                                accessToken: FFAppState().accessToken,
+                                filter:
+                                    '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"test_id\":{\"name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}${_model.dateStart != '' ? ',{\"date_start\":{\"_gte\":\"${_model.dateStart}\"}}' : ' '}${_model.dateEnd != '' ? ',{\"date_start\":{\"_lte\":\"${_model.dateEnd}\"}}' : ' '}]}',
+                              );
+                              if ((_model.apiResultFilterListStaffTest
+                                      ?.succeeded ??
+                                  true)) {
+                                _model.llst =
+                                    StaffsTestsListDataStruct.maybeFromMap(
+                                            (_model.apiResultFilterListStaffTest
+                                                    ?.jsonBody ??
+                                                ''))!
+                                        .data
+                                        .toList()
+                                        .cast<StaffsTestsListStruct>();
+                                await widget.callback?.call(
                                   StaffsTestsListDataStruct.maybeFromMap((_model
                                               .apiResultFilterListStaffTest
                                               ?.jsonBody ??
-                                          ''))!
-                                      .data
-                                      .toList()
-                                      .cast<StaffsTestsListStruct>();
-                              await widget.callback?.call(
-                                StaffsTestsListDataStruct.maybeFromMap((_model
-                                            .apiResultFilterListStaffTest
-                                            ?.jsonBody ??
-                                        ''))
-                                    ?.data,
-                                _model.dateStart,
-                                _model.dateEnd,
-                              );
-                              Navigator.pop(context);
+                                          ''))
+                                      ?.data,
+                                  _model.dateStart,
+                                  _model.dateEnd,
+                                );
+                                Navigator.pop(context);
+                              }
+                            } else {
+                              setState(() {});
                             }
 
                             setState(() {});

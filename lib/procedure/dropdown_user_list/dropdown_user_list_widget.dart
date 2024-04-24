@@ -455,10 +455,12 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                             builder: (context) {
                               final listView = _model.staffList
                                   .where((e) =>
-                                      e.userId.firstName.contains(
-                                          _model.textNameTextController.text) ||
-                                      e.userId.email.contains(
-                                          _model.textNameTextController.text))
+                                      e.userId.firstName.toLowerCase().contains(
+                                          _model.textNameTextController.text
+                                              .toLowerCase()) ||
+                                      e.userId.email.toLowerCase().contains(
+                                          _model.textNameTextController.text
+                                              .toLowerCase()))
                                   .toList();
                               return ListView.separated(
                                 padding: EdgeInsets.zero,

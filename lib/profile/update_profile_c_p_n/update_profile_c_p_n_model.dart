@@ -47,14 +47,24 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
   FFUploadedFile uploadedLocalFile2 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? uploadImageToken;
   // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
   ApiCallResponse? apiResultUploadImage;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? uploadVideoToken;
   // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
   ApiCallResponse? apiResultUploadVideo;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? uploadLogoToken;
   // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
   ApiCallResponse? apiResultUploadLogo;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? uploadAvatarToken;
   // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
   ApiCallResponse? apiResultUploadAvatar;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? updateOrganizationToken;
   // Stores action output result for [Backend Call - API (UpdateOrganization)] action in Button widget.
   ApiCallResponse? apiResultUpdateOrganization;
   bool isDataUploading3 = false;

@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -258,24 +259,30 @@ class _DoActionTypeUploadFileWidgetState
                     }
                   }
 
-                  _model.apiResultUploadFile =
-                      await UploadFileGroup.uploadFileCall.call(
-                    accessToken: FFAppState().accessToken,
-                    file: _model.uploadedLocalFile,
-                  );
-                  if ((_model.apiResultUploadFile?.succeeded ?? true)) {
-                    setState(() {
-                      _model.fileName = getJsonField(
-                        (_model.apiResultUploadFile?.jsonBody ?? ''),
-                        r'''$.data.filename_download''',
-                      ).toString();
-                    });
-                    await widget.callback?.call(
-                      getJsonField(
-                        (_model.apiResultUploadFile?.jsonBody ?? ''),
-                        r'''$.data.id''',
-                      ).toString(),
+                  _model.uploadFileToken =
+                      await action_blocks.tokenReload(context);
+                  if (_model.uploadFileToken!) {
+                    _model.apiResultUploadFile =
+                        await UploadFileGroup.uploadFileCall.call(
+                      accessToken: FFAppState().accessToken,
+                      file: _model.uploadedLocalFile,
                     );
+                    if ((_model.apiResultUploadFile?.succeeded ?? true)) {
+                      setState(() {
+                        _model.fileName = getJsonField(
+                          (_model.apiResultUploadFile?.jsonBody ?? ''),
+                          r'''$.data.filename_download''',
+                        ).toString();
+                      });
+                      await widget.callback?.call(
+                        getJsonField(
+                          (_model.apiResultUploadFile?.jsonBody ?? ''),
+                          r'''$.data.id''',
+                        ).toString(),
+                      );
+                    }
+                  } else {
+                    setState(() {});
                   }
 
                   setState(() {});
@@ -309,11 +316,19 @@ class _DoActionTypeUploadFileWidgetState
                   (widget.fileTail != '6f2dfeb5-4df6-4b73-93c4-109f72133a25'))
                 FFButtonWidget(
                   onPressed: () async {
-                    await actions.downloadFile(
-                      '${FFAppConstants.ApiBaseUrl}/assets/${widget.file}?access_token=${FFAppState().accessToken}',
-                      widget.type!,
-                      widget.fileTail!,
-                    );
+                    _model.downloadFileToken =
+                        await action_blocks.tokenReload(context);
+                    if (_model.downloadFileToken!) {
+                      await actions.downloadFile(
+                        '${FFAppConstants.ApiBaseUrl}/assets/${widget.file}?access_token=${FFAppState().accessToken}',
+                        widget.type!,
+                        widget.fileTail!,
+                      );
+                    } else {
+                      setState(() {});
+                    }
+
+                    setState(() {});
                   },
                   text: 'Tải tài liệu',
                   icon: const Icon(

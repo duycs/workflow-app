@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -414,30 +415,36 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                               _model.dateEnd = '';
                               _model.type = '';
                             });
-                            _model.apiResultClearFilter =
-                                await TaskGroup.getListTaskCall.call(
-                              accessToken: FFAppState().accessToken,
-                              filter:
-                                  '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                FFAppState().staffLogin,
-                                r'''$.id''',
-                              ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-                                FFAppState().staffLogin,
-                                r'''$.organization_id''',
-                              ).toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"1\"}}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"name\":{\"_icontains\":\"${widget.filterSearch}\"}}' : ' '}]}',
-                            );
-                            if ((_model.apiResultClearFilter?.succeeded ??
-                                true)) {
-                              await widget.callback?.call(
-                                TaskListDataStruct.maybeFromMap((_model
-                                            .apiResultClearFilter?.jsonBody ??
-                                        ''))
-                                    ?.data,
-                                _model.dateStart,
-                                _model.dateEnd,
-                                ' ',
+                            _model.clearFilterToken =
+                                await action_blocks.tokenReload(context);
+                            if (_model.clearFilterToken!) {
+                              _model.apiResultClearFilter =
+                                  await TaskGroup.getListTaskCall.call(
+                                accessToken: FFAppState().accessToken,
+                                filter:
+                                    '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                  FFAppState().staffLogin,
+                                  r'''$.id''',
+                                ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                  FFAppState().staffLogin,
+                                  r'''$.organization_id''',
+                                ).toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"1\"}}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"name\":{\"_icontains\":\"${widget.filterSearch}\"}}' : ' '}]}',
                               );
-                              Navigator.pop(context);
+                              if ((_model.apiResultClearFilter?.succeeded ??
+                                  true)) {
+                                await widget.callback?.call(
+                                  TaskListDataStruct.maybeFromMap((_model
+                                              .apiResultClearFilter?.jsonBody ??
+                                          ''))
+                                      ?.data,
+                                  _model.dateStart,
+                                  _model.dateEnd,
+                                  ' ',
+                                );
+                                Navigator.pop(context);
+                              }
+                            } else {
+                              setState(() {});
                             }
 
                             setState(() {});
@@ -471,43 +478,50 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            _model.apiResultFilter =
-                                await TaskGroup.getListTaskCall.call(
-                              accessToken: FFAppState().accessToken,
-                              filter: '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                FFAppState().staffLogin,
-                                r'''$.id''',
-                              ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-                                FFAppState().staffLogin,
-                                r'''$.organization_id''',
-                              ).toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"1\"}}${_model.dateStart != '' ? ',{\"date_created\":{\"_gte\":\"${dateTimeFormat('yyyy-MM-dd', functions.stringToDateTime(_model.dateStart))}\"}}' : ' '}${_model.dateEnd != '' ? ',{\"date_created\":{\"_lte\":\"${dateTimeFormat('yyyy-MM-dd', functions.stringToDateTime(_model.dateEnd))}\"}}' : ' '}${_model.typeValue != ' ' ? ',{\"action_type\":{\"_eq\":\"${() {
-                                  if (_model.typeValue == 'Submit Text') {
-                                    return 'submit_text';
-                                  } else if (_model.typeValue ==
-                                      'Upload File') {
-                                    return 'upload_file';
-                                  } else if (_model.typeValue == 'Image') {
-                                    return 'image';
-                                  } else if (_model.typeValue == 'Check List') {
-                                    return 'to_do_list';
-                                  } else if (_model.typeValue == 'Approve') {
-                                    return ' approve';
-                                  } else {
-                                    return ' ';
-                                  }
-                                }()}\"}}' : ' '}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"name\":{\"_icontains\":\"${widget.filterSearch}\"}}' : ' '}]}',
-                            );
-                            if ((_model.apiResultFilter?.succeeded ?? true)) {
-                              await widget.callback?.call(
-                                TaskListDataStruct.maybeFromMap(
-                                        (_model.apiResultFilter?.jsonBody ??
-                                            ''))
-                                    ?.data,
-                                _model.dateStart,
-                                _model.dateEnd,
-                                _model.typeValue,
+                            _model.filterToken =
+                                await action_blocks.tokenReload(context);
+                            if (_model.filterToken!) {
+                              _model.apiResultFilter =
+                                  await TaskGroup.getListTaskCall.call(
+                                accessToken: FFAppState().accessToken,
+                                filter: '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                  FFAppState().staffLogin,
+                                  r'''$.id''',
+                                ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                  FFAppState().staffLogin,
+                                  r'''$.organization_id''',
+                                ).toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"1\"}}${_model.dateStart != '' ? ',{\"date_created\":{\"_gte\":\"${dateTimeFormat('yyyy-MM-dd', functions.stringToDateTime(_model.dateStart))}\"}}' : ' '}${_model.dateEnd != '' ? ',{\"date_created\":{\"_lte\":\"${dateTimeFormat('yyyy-MM-dd', functions.stringToDateTime(_model.dateEnd))}\"}}' : ' '}${_model.typeValue != ' ' ? ',{\"action_type\":{\"_eq\":\"${() {
+                                    if (_model.typeValue == 'Submit Text') {
+                                      return 'submit_text';
+                                    } else if (_model.typeValue ==
+                                        'Upload File') {
+                                      return 'upload_file';
+                                    } else if (_model.typeValue == 'Image') {
+                                      return 'image';
+                                    } else if (_model.typeValue ==
+                                        'Check List') {
+                                      return 'to_do_list';
+                                    } else if (_model.typeValue == 'Approve') {
+                                      return ' approve';
+                                    } else {
+                                      return ' ';
+                                    }
+                                  }()}\"}}' : ' '}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"name\":{\"_icontains\":\"${widget.filterSearch}\"}}' : ' '}]}',
                               );
-                              Navigator.pop(context);
+                              if ((_model.apiResultFilter?.succeeded ?? true)) {
+                                await widget.callback?.call(
+                                  TaskListDataStruct.maybeFromMap(
+                                          (_model.apiResultFilter?.jsonBody ??
+                                              ''))
+                                      ?.data,
+                                  _model.dateStart,
+                                  _model.dateEnd,
+                                  _model.typeValue,
+                                );
+                                Navigator.pop(context);
+                              }
+                            } else {
+                              setState(() {});
                             }
 
                             setState(() {});

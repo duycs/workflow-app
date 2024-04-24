@@ -337,9 +337,12 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                               .operationList
                                               .where((e) =>
                                                   (e.executeId == '') &&
-                                                  (e.name.contains(_model
-                                                      .textNameTextController
-                                                      .text)))
+                                                  (e.name
+                                                      .toLowerCase()
+                                                      .contains(_model
+                                                          .textNameTextController
+                                                          .text
+                                                          .toLowerCase())))
                                               .toList();
                                           return ListView.builder(
                                             padding: EdgeInsets.zero,

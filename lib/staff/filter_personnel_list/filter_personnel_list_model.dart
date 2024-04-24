@@ -25,8 +25,12 @@ class FilterPersonnelListModel
   String? get statusValue => statusValueController?.value?.firstOrNull;
   set statusValue(String? val) =>
       statusValueController?.value = val != null ? [val] : [];
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? clearFilterToken;
   // Stores action output result for [Backend Call - API (GetStaffList)] action in Button widget.
   ApiCallResponse? apiResultClearFilter;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? filterToken;
   // Stores action output result for [Backend Call - API (GetStaffList)] action in Button widget.
   ApiCallResponse? apiResultFilter;
 

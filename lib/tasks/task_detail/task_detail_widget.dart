@@ -10,6 +10,7 @@ import '/tasks/detail_action_type_approve/detail_action_type_approve_widget.dart
 import '/tasks/detail_action_type_image/detail_action_type_image_widget.dart';
 import '/tasks/detail_action_type_to_do_list/detail_action_type_to_do_list_widget.dart';
 import '/tasks/detail_action_type_upload_file/detail_action_type_upload_file_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -47,26 +48,31 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultGetTaskList = await TaskGroup.getListTaskCall.call(
-        accessToken: FFAppState().accessToken,
-        filter:
-            '{\"_and\":[{\"workflow_id\":{\"_eq\":\"${widget.workflowId}\"}},{\"published_count\":{\"_eq\":\"${widget.publishedCount?.toString()}\"}}]}',
-      );
-      if ((_model.apiResultGetTaskList?.succeeded ?? true)) {
+      _model.getTaskListToken = await action_blocks.tokenReload(context);
+      if (_model.getTaskListToken!) {
+        _model.apiResultGetTaskList = await TaskGroup.getListTaskCall.call(
+          accessToken: FFAppState().accessToken,
+          filter:
+              '{\"_and\":[{\"workflow_id\":{\"_eq\":\"${widget.workflowId}\"}},{\"published_count\":{\"_eq\":\"${widget.publishedCount?.toString()}\"}}]}',
+        );
+        if ((_model.apiResultGetTaskList?.succeeded ?? true)) {
+          setState(() {
+            _model.list = TaskListDataStruct.maybeFromMap(
+                    (_model.apiResultGetTaskList?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<TaskListStruct>();
+          });
+        } else {
+          return;
+        }
+
         setState(() {
-          _model.list = TaskListDataStruct.maybeFromMap(
-                  (_model.apiResultGetTaskList?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<TaskListStruct>();
+          _model.isLoad = true;
         });
       } else {
-        return;
+        setState(() {});
       }
-
-      setState(() {
-        _model.isLoad = true;
-      });
     });
   }
 
@@ -970,66 +976,75 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                     'Keyshn_${dataListIndex}_of_${dataList.length}'),
                                                 data: dataListItem,
                                                 callback: (result) async {
-                                                  _model.apiResuonfirm =
-                                                      await TaskGroup
-                                                          .confirmOperationCall
-                                                          .call(
-                                                    accessToken: FFAppState()
-                                                        .accessToken,
-                                                    taskId: dataListItem.id,
-                                                    staffId: getJsonField(
-                                                      FFAppState().staffLogin,
-                                                      r'''$.id''',
-                                                    ).toString(),
-                                                    submitType: 'reject',
-                                                  );
-                                                  if ((_model.apiResuonfirm
-                                                          ?.succeeded ??
-                                                      true)) {
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(
-                                                      SnackBar(
-                                                        content: Text(
-                                                          'Thành công',
-                                                          style: TextStyle(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText,
-                                                          ),
-                                                        ),
-                                                        duration: const Duration(
-                                                            milliseconds: 4000),
-                                                        backgroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
-                                                      ),
+                                                  _model.confirmToken =
+                                                      await action_blocks
+                                                          .tokenReload(context);
+                                                  if (_model.confirmToken!) {
+                                                    _model.apiResultConfirm =
+                                                        await TaskGroup
+                                                            .confirmOperationCall
+                                                            .call(
+                                                      accessToken: FFAppState()
+                                                          .accessToken,
+                                                      taskId: dataListItem.id,
+                                                      staffId: getJsonField(
+                                                        FFAppState().staffLogin,
+                                                        r'''$.id''',
+                                                      ).toString(),
+                                                      submitType: 'reject',
                                                     );
-                                                  } else {
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(
-                                                      SnackBar(
-                                                        content: Text(
-                                                          'Thất bại',
-                                                          style: TextStyle(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText,
+                                                    if ((_model.apiResultConfirm
+                                                            ?.succeeded ??
+                                                        true)) {
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                            'Thành công',
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                            ),
                                                           ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  4000),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondary,
                                                         ),
-                                                        duration: const Duration(
-                                                            milliseconds: 4000),
-                                                        backgroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .error,
-                                                      ),
-                                                    );
-                                                  }
+                                                      );
+                                                    } else {
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                            'Thất bại',
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                            ),
+                                                          ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  4000),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .error,
+                                                        ),
+                                                      );
+                                                    }
 
-                                                  setState(() {});
+                                                    setState(() {});
+                                                  } else {
+                                                    setState(() {});
+                                                  }
 
                                                   setState(() {});
                                                 },
@@ -1128,79 +1143,86 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                   ) ??
                                                                   false;
                                                           if (confirmDialogResponse) {
-                                                            _model.apiResultx5l =
-                                                                await TaskGroup
-                                                                    .updateOperationCall
-                                                                    .call(
-                                                              accessToken:
-                                                                  FFAppState()
-                                                                      .accessToken,
-                                                              operationId:
-                                                                  dataListItem
-                                                                      .operations
-                                                                      .first
-                                                                      .operationsId
-                                                                      .id,
-                                                              requestDataJson: <String,
-                                                                  dynamic>{
-                                                                'status':
-                                                                    'done',
-                                                                'result': _model
-                                                                    .submitText,
-                                                              },
-                                                            );
-                                                            if ((_model
-                                                                    .apiResultx5l
-                                                                    ?.succeeded ??
-                                                                true)) {
-                                                              ScaffoldMessenger
-                                                                      .of(context)
-                                                                  .showSnackBar(
-                                                                SnackBar(
-                                                                  content: Text(
-                                                                    'Xác nhận thành công',
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                    ),
-                                                                  ),
-                                                                  duration: const Duration(
-                                                                      milliseconds:
-                                                                          4000),
-                                                                  backgroundColor:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondary,
-                                                                ),
+                                                            _model.apiResultx5lToken =
+                                                                await action_blocks
+                                                                    .tokenReload(
+                                                                        context);
+                                                            if (_model
+                                                                .apiResultx5lToken!) {
+                                                              _model.apiResultx5l =
+                                                                  await TaskGroup
+                                                                      .updateOperationCall
+                                                                      .call(
+                                                                accessToken:
+                                                                    FFAppState()
+                                                                        .accessToken,
+                                                                operationId:
+                                                                    dataListItem
+                                                                        .operations
+                                                                        .first
+                                                                        .operationsId
+                                                                        .id,
+                                                                requestDataJson: <String,
+                                                                    dynamic>{
+                                                                  'status':
+                                                                      'done',
+                                                                  'result': _model
+                                                                      .submitText,
+                                                                },
                                                               );
-                                                            } else {
-                                                              ScaffoldMessenger
-                                                                      .of(context)
-                                                                  .showSnackBar(
-                                                                SnackBar(
-                                                                  content: Text(
-                                                                    'Xác nhận thất bại',
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
+                                                              if ((_model
+                                                                      .apiResultx5l
+                                                                      ?.succeeded ??
+                                                                  true)) {
+                                                                ScaffoldMessenger.of(
+                                                                        context)
+                                                                    .showSnackBar(
+                                                                  SnackBar(
+                                                                    content:
+                                                                        Text(
+                                                                      'Xác nhận thành công',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                      ),
                                                                     ),
+                                                                    duration: const Duration(
+                                                                        milliseconds:
+                                                                            4000),
+                                                                    backgroundColor:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .secondary,
                                                                   ),
-                                                                  duration: const Duration(
-                                                                      milliseconds:
-                                                                          4000),
-                                                                  backgroundColor:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondary,
-                                                                ),
-                                                              );
-                                                            }
+                                                                );
+                                                              } else {
+                                                                ScaffoldMessenger.of(
+                                                                        context)
+                                                                    .showSnackBar(
+                                                                  SnackBar(
+                                                                    content:
+                                                                        Text(
+                                                                      'Xác nhận thất bại',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                      ),
+                                                                    ),
+                                                                    duration: const Duration(
+                                                                        milliseconds:
+                                                                            4000),
+                                                                    backgroundColor:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .secondary,
+                                                                  ),
+                                                                );
+                                                              }
 
-                                                            setState(() {});
+                                                              setState(() {});
+                                                            } else {
+                                                              setState(() {});
+                                                            }
                                                           } else {
                                                             Navigator.pop(
                                                                 context);
@@ -1573,73 +1595,80 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                   ),
                                                               );
                                                             });
-                                                            _model.apiResultl2e =
-                                                                await TaskGroup
-                                                                    .updateOperationCall
-                                                                    .call(
-                                                              accessToken:
-                                                                  FFAppState()
-                                                                      .accessToken,
-                                                              operationId:
-                                                                  dataListItem
-                                                                      .operations
-                                                                      .first
-                                                                      .operationsId
-                                                                      .id,
-                                                              requestDataJson:
-                                                                  _model
-                                                                      .responseData
-                                                                      ?.toMap(),
-                                                            );
-                                                            if ((_model
-                                                                    .apiResultl2e
-                                                                    ?.succeeded ??
-                                                                true)) {
-                                                              ScaffoldMessenger
-                                                                      .of(context)
-                                                                  .showSnackBar(
-                                                                SnackBar(
-                                                                  content: Text(
-                                                                    'Update thành công',
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                    ),
-                                                                  ),
-                                                                  duration: const Duration(
-                                                                      milliseconds:
-                                                                          4000),
-                                                                  backgroundColor:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondary,
-                                                                ),
+                                                            _model.apiResultl2eToken =
+                                                                await action_blocks
+                                                                    .tokenReload(
+                                                                        context);
+                                                            if (_model
+                                                                .apiResultl2eToken!) {
+                                                              _model.apiResultl2e =
+                                                                  await TaskGroup
+                                                                      .updateOperationCall
+                                                                      .call(
+                                                                accessToken:
+                                                                    FFAppState()
+                                                                        .accessToken,
+                                                                operationId:
+                                                                    dataListItem
+                                                                        .operations
+                                                                        .first
+                                                                        .operationsId
+                                                                        .id,
+                                                                requestDataJson:
+                                                                    _model
+                                                                        .responseData
+                                                                        ?.toMap(),
                                                               );
+                                                              if ((_model
+                                                                      .apiResultl2e
+                                                                      ?.succeeded ??
+                                                                  true)) {
+                                                                ScaffoldMessenger.of(
+                                                                        context)
+                                                                    .showSnackBar(
+                                                                  SnackBar(
+                                                                    content:
+                                                                        Text(
+                                                                      'Update thành công',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                      ),
+                                                                    ),
+                                                                    duration: const Duration(
+                                                                        milliseconds:
+                                                                            4000),
+                                                                    backgroundColor:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .secondary,
+                                                                  ),
+                                                                );
+                                                              } else {
+                                                                ScaffoldMessenger.of(
+                                                                        context)
+                                                                    .showSnackBar(
+                                                                  SnackBar(
+                                                                    content:
+                                                                        Text(
+                                                                      'Update thất bại',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                      ),
+                                                                    ),
+                                                                    duration: const Duration(
+                                                                        milliseconds:
+                                                                            4000),
+                                                                    backgroundColor:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .error,
+                                                                  ),
+                                                                );
+                                                              }
                                                             } else {
-                                                              ScaffoldMessenger
-                                                                      .of(context)
-                                                                  .showSnackBar(
-                                                                SnackBar(
-                                                                  content: Text(
-                                                                    'Update thất bại',
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                    ),
-                                                                  ),
-                                                                  duration: const Duration(
-                                                                      milliseconds:
-                                                                          4000),
-                                                                  backgroundColor:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .error,
-                                                                ),
-                                                              );
+                                                              setState(() {});
                                                             }
 
                                                             setState(() {});
@@ -1662,19 +1691,31 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                       Expanded(
                                                         child: FFButtonWidget(
                                                           onPressed: () async {
-                                                            await actions
-                                                                .downloadFile(
-                                                              '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                              dataListItem.name,
-                                                              dataListItem
-                                                                  .operations
-                                                                  .first
-                                                                  .operationsId
-                                                                  .files
-                                                                  .first
-                                                                  .directusFilesId
-                                                                  .filenameDownload,
-                                                            );
+                                                            _model.downloadToken =
+                                                                await action_blocks
+                                                                    .tokenReload(
+                                                                        context);
+                                                            if (_model
+                                                                .downloadToken!) {
+                                                              await actions
+                                                                  .downloadFile(
+                                                                '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                dataListItem
+                                                                    .name,
+                                                                dataListItem
+                                                                    .operations
+                                                                    .first
+                                                                    .operationsId
+                                                                    .files
+                                                                    .first
+                                                                    .directusFilesId
+                                                                    .filenameDownload,
+                                                              );
+                                                            } else {
+                                                              setState(() {});
+                                                            }
+
+                                                            setState(() {});
                                                           },
                                                           text: 'Tải tài liệu',
                                                           icon: const Icon(

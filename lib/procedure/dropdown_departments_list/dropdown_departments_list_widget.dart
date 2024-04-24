@@ -484,8 +484,9 @@ class _DropdownDepartmentsListWidgetState
                           child: Builder(
                             builder: (context) {
                               final listView = _model.data
-                                  .where((e) => e.name.contains(
-                                      _model.textNameTextController.text))
+                                  .where((e) => e.name.toLowerCase().contains(
+                                      _model.textNameTextController.text
+                                          .toLowerCase()))
                                   .toList();
                               return ListView.separated(
                                 padding: EdgeInsets.zero,
@@ -659,7 +660,7 @@ class _DropdownDepartmentsListWidgetState
                                     _model.data[_model.loop].staffs.length) {
                                   setState(() {
                                     _model.updateCallBackDataAtIndex(
-                                      _model.loop,
+                                      _model.callBackData.length - 1,
                                       (e) => e
                                         ..updateCheckStaff(
                                           (e) => e.add(StaffsStepStruct(

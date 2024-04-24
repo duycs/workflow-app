@@ -12,7 +12,12 @@ import 'do_test_list_model.dart';
 export 'do_test_list_model.dart';
 
 class DoTestListWidget extends StatefulWidget {
-  const DoTestListWidget({super.key});
+  const DoTestListWidget({
+    super.key,
+    this.lessionId,
+  });
+
+  final String? lessionId;
 
   @override
   State<DoTestListWidget> createState() => _DoTestListWidgetState();
@@ -31,8 +36,9 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       setState(() {
-        _model.filter =
-            '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}}]}';
+        _model.filter = widget.lessionId != null && widget.lessionId != ''
+            ? '{\"_and\":[{\"lession_id\":{\"id\":{\"_eq\":\"${widget.lessionId}\"}}},{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}]}'
+            : '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}}]}';
       });
       await _model.getListStaffTest(context);
       setState(() {});
@@ -74,35 +80,42 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pushNamed(
-                'Profile',
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                  ),
-                },
-              );
+              if (widget.lessionId != null && widget.lessionId != '') {
+                context.pushNamed(
+                  'LessonList_HomepageCopy',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: const TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 0),
+                    ),
+                  },
+                );
+              } else {
+                context.pushNamed(
+                  'Profile',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: const TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 0),
+                    ),
+                  },
+                );
+              }
             },
           ),
-          title: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Danh sách bài thi',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 20.0,
-                      letterSpacing: 0.0,
-                    ),
-              ),
-            ],
+          title: Text(
+            'Danh sách bài thi',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Outfit',
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  fontSize: 20.0,
+                  letterSpacing: 0.0,
+                ),
           ),
           actions: const [],
-          centerTitle: true,
+          centerTitle: false,
           elevation: 2.0,
         ),
         body: SafeArea(
@@ -113,188 +126,193 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: _model.textController,
-                          focusNode: _model.textFieldFocusNode,
-                          onChanged: (_) => EasyDebounce.debounce(
-                            '_model.textController',
-                            const Duration(milliseconds: 500),
-                            () async {
-                              if (_model.textController.text != '') {
-                                setState(() {
-                                  _model.filter =
-                                      '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}},{\"test_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
-                                });
-                                await _model.getListStaffTest(context);
-                                setState(() {});
-                              } else {
-                                setState(() {
-                                  _model.filter =
-                                      '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}}]}';
-                                });
-                                await _model.getListStaffTest(context);
-                                setState(() {});
-                              }
-                            },
-                          ),
-                          autofocus: false,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'Tìm kiếm...',
-                            labelStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
+                if (widget.lessionId == null || widget.lessionId == '')
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: _model.textController,
+                            focusNode: _model.textFieldFocusNode,
+                            onChanged: (_) => EasyDebounce.debounce(
+                              '_model.textController',
+                              const Duration(milliseconds: 500),
+                              () async {
+                                if (_model.textController.text != '') {
+                                  setState(() {
+                                    _model.filter =
+                                        '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}},{\"test_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
+                                  });
+                                  await _model.getListStaffTest(context);
+                                  setState(() {});
+                                } else {
+                                  setState(() {
+                                    _model.filter =
+                                        '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}}]}';
+                                  });
+                                  await _model.getListStaffTest(context);
+                                  setState(() {});
+                                }
+                              },
                             ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).primary,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            filled: true,
-                            fillColor:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                20.0, 0.0, 0.0, 0.0),
-                            prefixIcon: const Icon(
-                              Icons.search_sharp,
-                              size: 24.0,
-                            ),
-                            suffixIcon: _model.textController!.text.isNotEmpty
-                                ? InkWell(
-                                    onTap: () async {
-                                      _model.textController?.clear();
-                                      if (_model.textController.text != '') {
-                                        setState(() {
-                                          _model.filter =
-                                              '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}},{\"test_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
-                                        });
-                                        await _model.getListStaffTest(context);
-                                        setState(() {});
-                                      } else {
-                                        setState(() {
-                                          _model.filter =
-                                              '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}}]}';
-                                        });
-                                        await _model.getListStaffTest(context);
-                                        setState(() {});
-                                      }
-
-                                      setState(() {});
-                                    },
-                                    child: Icon(
-                                      Icons.clear,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 18.0,
-                                    ),
-                                  )
-                                : null,
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
+                            autofocus: false,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'Tìm kiếm...',
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
                                     fontFamily: 'Readex Pro',
                                     letterSpacing: 0.0,
                                   ),
-                          cursorColor: FlutterFlowTheme.of(context).primary,
-                          validator: _model.textControllerValidator
-                              .asValidator(context),
-                        ),
-                      ),
-                      Builder(
-                        builder: (context) => FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 10.0,
-                          borderWidth: 1.0,
-                          buttonSize: 50.0,
-                          icon: Icon(
-                            Icons.tune_rounded,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 30.0,
-                          ),
-                          onPressed: () async {
-                            await showDialog(
-                              context: context,
-                              builder: (dialogContext) {
-                                return Dialog(
-                                  elevation: 0,
-                                  insetPadding: EdgeInsets.zero,
-                                  backgroundColor: Colors.transparent,
-                                  alignment: const AlignmentDirectional(0.0, 0.0)
-                                      .resolve(Directionality.of(context)),
-                                  child: GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: FilterDoTestWidget(
-                                      filterSearch: _model.textController.text,
-                                      dateStart: _model.dateStartFilter,
-                                      dateEnd: _model.dateEndFilter,
-                                      callback: (listCallback,
-                                          dateStartCallback,
-                                          dateEndCallback) async {
-                                        setState(() {
-                                          _model.list = listCallback!
-                                              .toList()
-                                              .cast<StaffsTestsListStruct>();
-                                          _model.dateStartFilter =
-                                              dateStartCallback!;
-                                          _model.dateEndFilter =
-                                              dateEndCallback!;
-                                        });
-                                      },
-                                    ),
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
                                   ),
-                                );
-                              },
-                            ).then((value) => setState(() {}));
-                          },
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
+                              filled: true,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 0.0, 0.0, 0.0),
+                              prefixIcon: const Icon(
+                                Icons.search_sharp,
+                                size: 24.0,
+                              ),
+                              suffixIcon: _model.textController!.text.isNotEmpty
+                                  ? InkWell(
+                                      onTap: () async {
+                                        _model.textController?.clear();
+                                        if (_model.textController.text != '') {
+                                          setState(() {
+                                            _model.filter =
+                                                '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}},{\"test_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
+                                          });
+                                          await _model
+                                              .getListStaffTest(context);
+                                          setState(() {});
+                                        } else {
+                                          setState(() {
+                                            _model.filter =
+                                                '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}}]}';
+                                          });
+                                          await _model
+                                              .getListStaffTest(context);
+                                          setState(() {});
+                                        }
+
+                                        setState(() {});
+                                      },
+                                      child: Icon(
+                                        Icons.clear,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 18.0,
+                                      ),
+                                    )
+                                  : null,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                            cursorColor: FlutterFlowTheme.of(context).primary,
+                            validator: _model.textControllerValidator
+                                .asValidator(context),
+                          ),
                         ),
-                      ),
-                    ],
+                        Builder(
+                          builder: (context) => FlutterFlowIconButton(
+                            borderColor: Colors.transparent,
+                            borderRadius: 10.0,
+                            borderWidth: 1.0,
+                            buttonSize: 50.0,
+                            icon: Icon(
+                              Icons.tune_rounded,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 30.0,
+                            ),
+                            onPressed: () async {
+                              await showDialog(
+                                context: context,
+                                builder: (dialogContext) {
+                                  return Dialog(
+                                    elevation: 0,
+                                    insetPadding: EdgeInsets.zero,
+                                    backgroundColor: Colors.transparent,
+                                    alignment: const AlignmentDirectional(0.0, 0.0)
+                                        .resolve(Directionality.of(context)),
+                                    child: GestureDetector(
+                                      onTap: () => _model
+                                              .unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                      child: FilterDoTestWidget(
+                                        filterSearch:
+                                            _model.textController.text,
+                                        dateStart: _model.dateStartFilter,
+                                        dateEnd: _model.dateEndFilter,
+                                        callback: (listCallback,
+                                            dateStartCallback,
+                                            dateEndCallback) async {
+                                          setState(() {
+                                            _model.list = listCallback!
+                                                .toList()
+                                                .cast<StaffsTestsListStruct>();
+                                            _model.dateStartFilter =
+                                                dateStartCallback!;
+                                            _model.dateEndFilter =
+                                                dateEndCallback!;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ).then((value) => setState(() {}));
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
                 Container(
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -495,7 +513,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                           children: [
                                             Expanded(
                                               child: Text(
-                                                'Tên bài học',
+                                                dataListItem.lessionId.name,
                                                 maxLines: 2,
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -526,7 +544,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                             ),
                                             Expanded(
                                               child: Text(
-                                                'Số câu đúng/sai',
+                                                'Số câu đúng/sai:',
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyMedium
@@ -558,7 +576,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                               'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primary,
+                                                              .primaryText,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
@@ -576,7 +594,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .error,
+                                                              .primaryText,
                                                     ),
                                                   )
                                                 ],

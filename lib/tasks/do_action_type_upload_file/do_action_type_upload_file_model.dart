@@ -16,8 +16,12 @@ class DoActionTypeUploadFileModel
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? uploadFileToken;
   // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
   ApiCallResponse? apiResultUploadFile;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? downloadFileToken;
 
   @override
   void initState(BuildContext context) {}

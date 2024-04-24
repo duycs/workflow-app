@@ -14,15 +14,6 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
 
   bool checkPassword = false;
 
-  List<UserStruct> listEmail = [];
-  void addToListEmail(UserStruct item) => listEmail.add(item);
-  void removeFromListEmail(UserStruct item) => listEmail.remove(item);
-  void removeAtIndexFromListEmail(int index) => listEmail.removeAt(index);
-  void insertAtIndexInListEmail(int index, UserStruct item) =>
-      listEmail.insert(index, item);
-  void updateListEmailAtIndex(int index, Function(UserStruct) updateFn) =>
-      listEmail[index] = updateFn(listEmail[index]);
-
   bool checkDob = false;
 
   bool checkEmail = false;
@@ -31,8 +22,6 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
-  // Stores action output result for [Backend Call - API (GetListUser)] action in SignUp widget.
-  ApiCallResponse? apiResultgetListUser;
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressTextController;
@@ -132,6 +121,8 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
   DateTime? datePicked;
   // State field(s) for RadioButton widget.
   FormFieldController<String>? radioButtonValueController;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? createUserToken;
   // Stores action output result for [Backend Call - API (CreateOrganizationUser)] action in Button widget.
   ApiCallResponse? apiResultCreateUser;
 

@@ -439,8 +439,11 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                 child: Builder(
                                   builder: (context) {
                                     final listView = _model.domainList
-                                        .where((e) => e.name.contains(
-                                            _model.textNameTextController.text))
+                                        .where((e) => e.name
+                                            .toLowerCase()
+                                            .contains(_model
+                                                .textNameTextController.text
+                                                .toLowerCase()))
                                         .toList();
                                     return ListView.separated(
                                       padding: EdgeInsets.zero,
