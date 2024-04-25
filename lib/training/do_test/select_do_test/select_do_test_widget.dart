@@ -82,7 +82,7 @@ class _SelectDoTestWidgetState extends State<SelectDoTestWidget> {
               if ((widget.listQuestion?.id ==
                       widget.listAnswer?.answersId.id) &&
                   (widget.listQuestion?.correct == 1)) {
-                return FlutterFlowTheme.of(context).secondary;
+                return FlutterFlowTheme.of(context).primary;
               } else if ((widget.listQuestion?.id ==
                       widget.listAnswer?.answersId.id) &&
                   (widget.listQuestion?.correct != 1)) {

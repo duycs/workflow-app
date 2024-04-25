@@ -1,9 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
@@ -59,17 +61,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
       widget.data,
       r'''$.user_id.email''',
     ).toString().toString());
-    _model.textFieldFocusNode1 ??= FocusNode();
-
-    _model.textController4 ??= TextEditingController(
-        text: getJsonField(
-                  widget.data,
-                  r'''$.gender''',
-                ).toString().toString() ==
-                'male'
-            ? 'Nam'
-            : 'Nữ');
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.textFieldFocusNode ??= FocusNode();
 
     _model.addressTextController ??= TextEditingController(
         text: getJsonField(
@@ -498,7 +490,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                       controller: _model
                                                           .textController3,
                                                       focusNode: _model
-                                                          .textFieldFocusNode1,
+                                                          .textFieldFocusNode,
                                                       autofocus: false,
                                                       readOnly: true,
                                                       obscureText: false,
@@ -609,102 +601,64 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 8.0, 0.0),
-                                                  child: TextFormField(
-                                                    controller:
-                                                        _model.textController4,
-                                                    focusNode: _model
-                                                        .textFieldFocusNode2,
-                                                    autofocus: false,
-                                                    obscureText: false,
-                                                    decoration: InputDecoration(
-                                                      labelText: 'Giới tính',
-                                                      labelStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      hintStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .alternate,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(40.0),
-                                                      ),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(40.0),
-                                                      ),
-                                                      errorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(40.0),
-                                                      ),
-                                                      focusedErrorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(40.0),
-                                                      ),
-                                                      contentPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  20.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
+                                                  child: FlutterFlowDropDown<
+                                                      String>(
+                                                    controller: _model
+                                                            .dropDownValueController ??=
+                                                        FormFieldController<
+                                                            String>(
+                                                      _model.dropDownValue ??=
+                                                          getJsonField(
+                                                                    widget.data,
+                                                                    r'''$.gender''',
+                                                                  ).toString() ==
+                                                                  'male'
+                                                              ? 'Nam'
+                                                              : 'Nữ',
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
+                                                    options: const ['Nam', 'Nữ'],
+                                                    onChanged: (val) =>
+                                                        setState(() => _model
+                                                                .dropDownValue =
+                                                            val),
+                                                    width: double.infinity,
+                                                    height: 50.0,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
                                                           letterSpacing: 0.0,
                                                         ),
-                                                    validator: _model
-                                                        .textController4Validator
-                                                        .asValidator(context),
+                                                    hintText: 'Giới tính',
+                                                    icon: Icon(
+                                                      Icons
+                                                          .keyboard_arrow_down_rounded,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      size: 20.0,
+                                                    ),
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                    elevation: 2.0,
+                                                    borderColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .alternate,
+                                                    borderWidth: 2.0,
+                                                    borderRadius: 40.0,
+                                                    margin:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 4.0,
+                                                                16.0, 4.0),
+                                                    hidesUnderline: true,
+                                                    isOverButton: true,
+                                                    isSearchable: false,
+                                                    isMultiSelect: false,
                                                   ),
                                                 ),
                                                 Padding(
@@ -1108,15 +1062,11 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                       'cccd': _model
                                                           .addressTextController
                                                           .text,
-                                                      'gender': (_model
-                                                                      .textController4
-                                                                      .text ==
-                                                                  'Nam') ||
-                                                              (_model.textController4
-                                                                      .text ==
-                                                                  'nam')
-                                                          ? 'male'
-                                                          : 'female',
+                                                      'gender':
+                                                          _model.dropDownValue ==
+                                                                  'Nam'
+                                                              ? 'male'
+                                                              : 'female',
                                                       'phone': _model
                                                           .hotlineTextController
                                                           .text,
@@ -1227,15 +1177,11 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                     'cccd': _model
                                                         .addressTextController
                                                         .text,
-                                                    'gender': (_model
-                                                                    .textController4
-                                                                    .text ==
-                                                                'Nam') ||
-                                                            (_model.textController4
-                                                                    .text ==
-                                                                'nam')
-                                                        ? 'male'
-                                                        : 'female',
+                                                    'gender':
+                                                        _model.dropDownValue ==
+                                                                'Nam'
+                                                            ? 'male'
+                                                            : 'female',
                                                     'phone': _model
                                                         .hotlineTextController
                                                         .text,

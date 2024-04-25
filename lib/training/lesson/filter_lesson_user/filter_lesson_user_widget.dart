@@ -203,7 +203,7 @@ class _FilterLessonUserWidgetState extends State<FilterLessonUserWidget> {
                                   (_model.dateStart != '') &&
                                           (_model.dateStart != ' ')
                                       ? _model.dateStart
-                                      : 'Ngày bắt đầu',
+                                      : 'Từ ngày',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -288,7 +288,7 @@ class _FilterLessonUserWidgetState extends State<FilterLessonUserWidget> {
                                   (_model.dateEnd != '') &&
                                           (_model.dateEnd != ' ')
                                       ? _model.dateEnd
-                                      : 'Ngày kết thúc',
+                                      : 'Đến hết ngày',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(

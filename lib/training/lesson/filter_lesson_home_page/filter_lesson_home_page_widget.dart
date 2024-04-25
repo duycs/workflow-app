@@ -336,7 +336,7 @@ class _FilterLessonHomePageWidgetState
                                           : ((widget.dateEnd != '') &&
                                                   (widget.dateEnd != '0')
                                               ? widget.dateEnd
-                                              : 'Đến ngày'),
+                                              : 'Đến hết ngày'),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(

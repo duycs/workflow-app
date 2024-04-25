@@ -922,8 +922,8 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                   shouldSetState = true;
                                   if ((_model.apiResultCreate?.succeeded ??
                                       true)) {
-                                    Navigator.pop(context);
                                     await widget.callBackList?.call();
+                                    Navigator.pop(context);
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
@@ -940,8 +940,8 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                       ),
                                     );
                                   } else {
-                                    Navigator.pop(context);
                                     await widget.callBackList?.call();
+                                    Navigator.pop(context);
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(

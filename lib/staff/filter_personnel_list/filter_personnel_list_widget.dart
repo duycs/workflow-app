@@ -271,7 +271,29 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                   } else {
                                     return ' ';
                                   }
-                                }()}]}',
+                                }()}]}${() {
+                                  if (FFAppState().user.role ==
+                                      '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                                    return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                      FFAppState().staffLogin,
+                                      r'''$.organization_id''',
+                                    ).toString()}\"}}}]}';
+                                  } else if (FFAppState().user.role ==
+                                      'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                    return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                      FFAppState().staffLogin,
+                                      r'''$.branch_id''',
+                                    ).toString()}\"}}}]}';
+                                  } else if (FFAppState().user.role ==
+                                      '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                    return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                      FFAppState().staffLogin,
+                                      r'''$.department_id''',
+                                    ).toString()}\"}}}]}';
+                                  } else {
+                                    return '{\"_and\":[]}';
+                                  }
+                                }()}',
                               );
                               if ((_model.apiResultFilter?.succeeded ?? true)) {
                                 setState(() {

@@ -156,7 +156,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                             ),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 8.0, 16.0, 12.0),
+                                  16.0, 8.0, 16.0, 0.0),
                               child: Container(
                                 width: double.infinity,
                                 height: 50.0,
@@ -369,9 +369,29 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              if ((_model.nameSearchTextController.text !=
+                                          '') ||
+                                  (_model.status != ''))
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 5.0, 0.0, 0.0),
+                                  child: Text(
+                                    '#Kết quả tìm kiếm theo bộ lọc',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                          fontStyle: FontStyle.italic,
+                                        ),
+                                  ),
+                                ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 44.0),
+                                    0.0, 12.0, 0.0, 16.0),
                                 child: Builder(
                                   builder: (context) {
                                     final listItems = _model.list.toList();
@@ -427,7 +447,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .primaryBackground,
                                                 borderRadius:
-                                                    BorderRadius.circular(20.0),
+                                                    BorderRadius.circular(8.0),
                                                 border: Border.all(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -440,10 +460,11 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                      CrossAxisAlignment
+                                                          .stretch,
                                                   children: [
                                                     Text(
-                                                      listItemsItem.name,
+                                                      '${(listItemsIndex + 1).toString()}. ${listItemsItem.name}',
                                                       maxLines: 2,
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -470,7 +491,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                                                       0.0,
                                                                       8.0,
                                                                       0.0,
-                                                                      4.0),
+                                                                      0.0),
                                                           child: Text(
                                                             'Mã bộ phận: ',
                                                             style: FlutterFlowTheme
@@ -479,6 +500,8 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                                                 .override(
                                                                   fontFamily:
                                                                       'Readex Pro',
+                                                                  fontSize:
+                                                                      13.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -491,7 +514,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                                                       0.0,
                                                                       8.0,
                                                                       0.0,
-                                                                      4.0),
+                                                                      0.0),
                                                           child: Text(
                                                             listItemsItem.code,
                                                             style: FlutterFlowTheme
@@ -500,60 +523,8 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                                                 .override(
                                                                   fontFamily:
                                                                       'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      4.0,
-                                                                      0.0,
-                                                                      4.0),
-                                                          child: Text(
-                                                            'Trạng thái: ',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      4.0,
-                                                                      0.0,
-                                                                      4.0),
-                                                          child: Text(
-                                                            listItemsItem.status ==
-                                                                    'published'
-                                                                ? 'Hoạt động'
-                                                                : 'Không hoạt động',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodySmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
+                                                                  fontSize:
+                                                                      14.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -584,6 +555,8 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                                                 .override(
                                                                   fontFamily:
                                                                       'Readex Pro',
+                                                                  fontSize:
+                                                                      13.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -598,13 +571,75 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                                                       0.0,
                                                                       0.0),
                                                           child: Text(
-                                                            '20',
+                                                            listItemsItem
+                                                                .staffs.length
+                                                                .toString(),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodySmall
                                                                 .override(
                                                                   fontFamily:
                                                                       'Readex Pro',
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'Trạng thái: ',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            listItemsItem.status ==
+                                                                    'published'
+                                                                ? 'Hoạt động'
+                                                                : 'Không hoạt động',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  fontSize:
+                                                                      14.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),

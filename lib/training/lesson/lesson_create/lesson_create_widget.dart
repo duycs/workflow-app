@@ -9,6 +9,7 @@ import '/flutter_flow/upload_data.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'lesson_create_model.dart';
 export 'lesson_create_model.dart';
 
@@ -190,6 +191,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Readex Pro',
+                                    fontSize: 16.0,
                                     letterSpacing: 0.0,
                                   ),
                               alignLabelWithHint: false,
@@ -235,6 +237,8 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                   fontFamily: 'Readex Pro',
                                   letterSpacing: 0.0,
                                 ),
+                            maxLength: 50,
+                            maxLengthEnforcement: MaxLengthEnforcement.enforced,
                             validator: _model.descriptionTextControllerValidator
                                 .asValidator(context),
                           ),

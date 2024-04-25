@@ -219,7 +219,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                                           _model.dateStartFilter != '') &&
                                       (_model.dateStartFilter != ' ')
                                   ? _model.dateStartFilter!
-                                  : 'Ngày bắt đầu',
+                                  : 'Từ ngày',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
@@ -303,7 +303,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                                           _model.dateEndFilter != '') &&
                                       (_model.dateEndFilter != ' ')
                                   ? _model.dateEndFilter!
-                                  : 'Ngày kết thúc',
+                                  : 'Đến hết ngày',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium

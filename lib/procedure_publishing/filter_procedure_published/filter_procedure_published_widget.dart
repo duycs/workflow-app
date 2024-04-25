@@ -226,7 +226,7 @@ class _FilterProcedurePublishedWidgetState
                                 (_model.dateStart != '') &&
                                         (_model.dateStart != ' ')
                                     ? _model.dateStart
-                                    : 'Ngày bắt đầu',
+                                    : 'Từ ngày',
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -310,7 +310,7 @@ class _FilterProcedurePublishedWidgetState
                                 (_model.dateEnd != '') &&
                                         (_model.dateEnd != ' ')
                                     ? _model.dateEnd
-                                    : 'Ngày kết thúc',
+                                    : 'Đến hết ngày',
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -491,8 +491,8 @@ class _FilterProcedurePublishedWidgetState
                             onPressed: () async {
                               await widget.callBack?.call(
                                 _model.nameTextController1.text,
-                                widget.dateStart,
-                                widget.dateEnd,
+                                _model.dateStart,
+                                _model.dateEnd,
                                 _model.nameTextController2.text,
                               );
                               Navigator.pop(context);

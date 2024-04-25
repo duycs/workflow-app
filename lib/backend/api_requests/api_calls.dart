@@ -1014,7 +1014,7 @@ class StaffsTestsListCall {
       },
       params: {
         'fields':
-            "id,status,test_id.id,test_id.name,score,date_start,date_end,total_correct,total_incorrect,test_id.duration_minutes,date_created,percent_correct,test_id.good_score,lession_id.name, lession_id.id",
+            "id,status,test_id.id,test_id.name,score,date_start,date_end,total_correct,total_incorrect,test_id.duration_minutes,date_created,percent_correct,test_id.good_score,lession_id.name, lession_id.id, lession_id.image_cover,test_id.description",
         'filter': filter,
         'sort': "-date_created",
       },
@@ -1280,7 +1280,7 @@ class TestOneCall {
       },
       params: {
         'fields':
-            "id, status, name, description, duration_minutes, questions.questions_id.id, questions.questions_id.content, questions.questions_id.status, questions.questions_id.content, questions.questions_id.answer_type, questions.questions_id.auto_correct,questions.id, questions.questions_id.answers.answers_id.id, questions.questions_id.answers.answers_id.content, questions.questions_id.answers.answers_id.correct",
+            "id, status, name, description, duration_minutes, questions.questions_id.id, questions.questions_id.content, questions.questions_id.status, questions.questions_id.content, questions.questions_id.answer_type, questions.questions_id.auto_correct,questions.id, questions.questions_id.answers.answers_id.id, questions.questions_id.answers.answers_id.content, questions.questions_id.answers.answers_id.correct,good_score",
       },
       returnBody: true,
       encodeBodyUtf8: false,

@@ -131,9 +131,11 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                     setState(() {
                                       _model.nameSearch =
                                           _model.textController.text;
+                                      _model.dataList = [];
                                     });
                                     await _model
                                         .getProcedurePublishedList(context);
+                                    setState(() {});
                                     setState(() {});
                                   },
                                 ),
@@ -200,10 +202,12 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                             setState(() {
                                               _model.nameSearch =
                                                   _model.textController.text;
+                                              _model.dataList = [];
                                             });
                                             await _model
                                                 .getProcedurePublishedList(
                                                     context);
+                                            setState(() {});
                                             setState(() {});
                                             setState(() {});
                                           },

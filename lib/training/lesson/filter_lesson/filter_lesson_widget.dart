@@ -279,7 +279,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                                         'yyyy-MM-dd', _model.dateStart)
                                     : (widget.dateEnd != ''
                                         ? widget.dateEnd
-                                        : 'Đến ngày'),
+                                        : 'Đến hết ngày'),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(

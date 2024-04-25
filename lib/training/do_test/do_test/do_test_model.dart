@@ -75,12 +75,18 @@ class DoTestModel extends FlutterFlowModel<DoTestWidget> {
   FlutterFlowTimerController timerController =
       FlutterFlowTimerController(StopWatchTimer(mode: StopWatchMode.countDown));
 
+  // Stores action output result for [Action Block - tokenReload] action in Timer widget.
+  bool? createStaffTestToken1;
   // Stores action output result for [Backend Call - API (CreateStaffTests)] action in Timer widget.
-  ApiCallResponse? apiResultCreateStaffTest2;
+  ApiCallResponse? apiResultCreateStaffTest1;
+  // Stores action output result for [Action Block - tokenReload] action in Timer widget.
+  bool? createStaffAnswerToken1;
   // Stores action output result for [Backend Call - API (CreateStaffAnswer)] action in Timer widget.
-  ApiCallResponse? apiResultCreateStaffAnswer2;
+  ApiCallResponse? apiResultCreateStaffAnswer1;
+  // Stores action output result for [Action Block - tokenReload] action in Timer widget.
+  bool? caculatorScoresToken1;
   // Stores action output result for [Backend Call - API (CalculateTestScores)] action in Timer widget.
-  ApiCallResponse? apiResultCaculatorScores2;
+  ApiCallResponse? apiResultCaculatorScores1;
   // State field(s) for Checkbox widget.
 
   Map<AnswersListStruct, bool> checkboxValueMap = {};

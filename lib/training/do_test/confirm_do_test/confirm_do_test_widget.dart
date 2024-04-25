@@ -16,10 +16,12 @@ class ConfirmDoTestWidget extends StatefulWidget {
     super.key,
     required this.testId,
     required this.lessionId,
+    this.avatar,
   });
 
   final String? testId;
   final String? lessionId;
+  final String? avatar;
 
   @override
   State<ConfirmDoTestWidget> createState() => _ConfirmDoTestWidgetState();
@@ -271,7 +273,22 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                         widget.lessionId,
                                         ParamType.String,
                                       ),
+                                      'avatar': serializeParam(
+                                        widget.avatar,
+                                        ParamType.String,
+                                      ),
+                                      'goodScore': serializeParam(
+                                        _model.list?.goodScore,
+                                        ParamType.int,
+                                      ),
                                     }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
                                   );
                                 },
                                 text: 'Xác nhận',

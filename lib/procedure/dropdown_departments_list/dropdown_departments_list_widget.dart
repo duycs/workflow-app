@@ -206,6 +206,10 @@ class _DropdownDepartmentsListWidgetState
             _model.loop = 0;
           });
         }
+
+        setState(() {
+          _model.isLoad = true;
+        });
       } else {
         setState(() {});
         return;
@@ -250,489 +254,511 @@ class _DropdownDepartmentsListWidgetState
             ],
             borderRadius: BorderRadius.circular(12.0),
           ),
-          child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    primary: false,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 12.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: TextFormField(
-                                  controller: _model.textNameTextController,
-                                  focusNode: _model.textNameFocusNode,
-                                  onChanged: (_) => EasyDebounce.debounce(
-                                    '_model.textNameTextController',
-                                    const Duration(milliseconds: 2000),
-                                    () => setState(() {}),
-                                  ),
-                                  autofocus: false,
-                                  textInputAction: TextInputAction.search,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
+          child: Visibility(
+            visible: _model.isLoad == true,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 0.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SingleChildScrollView(
+                      primary: false,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 12.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: TextFormField(
+                                    controller: _model.textNameTextController,
+                                    focusNode: _model.textNameFocusNode,
+                                    onChanged: (_) => EasyDebounce.debounce(
+                                      '_model.textNameTextController',
+                                      const Duration(milliseconds: 2000),
+                                      () => setState(() {}),
+                                    ),
+                                    autofocus: false,
+                                    textInputAction: TextInputAction.search,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      hintText: 'Tên bộ phận ...',
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          width: 1.0,
                                         ),
-                                    hintText: 'Tên bộ phận ...',
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          width: 1.0,
                                         ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        width: 1.0,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        width: 1.0,
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 1.0,
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 1.0,
+                                      contentPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              16.0, 0.0, 0.0, 0.0),
+                                      prefixIcon: const Icon(
+                                        Icons.search_rounded,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    contentPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 0.0, 0.0, 0.0),
-                                    prefixIcon: const Icon(
-                                      Icons.search_rounded,
-                                    ),
-                                    suffixIcon: _model.textNameTextController!
-                                            .text.isNotEmpty
-                                        ? InkWell(
-                                            onTap: () async {
-                                              _model.textNameTextController
-                                                  ?.clear();
-                                              setState(() {});
-                                            },
-                                            child: const Icon(
-                                              Icons.clear,
-                                              size: 22,
-                                            ),
-                                          )
-                                        : null,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  validator: _model
-                                      .textNameTextControllerValidator
-                                      .asValidator(context),
-                                ),
-                              ),
-                              FlutterFlowIconButton(
-                                borderRadius: 20.0,
-                                borderWidth: 1.0,
-                                buttonSize: 40.0,
-                                icon: Icon(
-                                  Icons.close,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 24.0,
-                                ),
-                                onPressed: () async {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 8.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              if (_model.data
-                                      .where((e) => e.checkDep == true)
-                                      .toList()
-                                      .length ==
-                                  _model.data.length)
-                                Switch.adaptive(
-                                  value: _model.switchValue1 ??= true,
-                                  onChanged: (newValue) async {
-                                    setState(
-                                        () => _model.switchValue1 = newValue);
-
-                                    if (!newValue) {
-                                      while (_model.loop < _model.data.length) {
-                                        setState(() {
-                                          _model.updateDataAtIndex(
-                                            _model.loop,
-                                            (e) => e..checkDep = false,
-                                          );
-                                        });
-                                        setState(() {
-                                          _model.loop = _model.loop + 1;
-                                        });
-                                      }
-                                      setState(() {
-                                        _model.loop = 0;
-                                      });
-                                      setState(() {
-                                        _model.switchValue1 = true;
-                                      });
-                                    }
-                                  },
-                                  activeColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  activeTrackColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  inactiveTrackColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  inactiveThumbColor:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                              if (_model.data
-                                      .where((e) => e.checkDep == true)
-                                      .toList()
-                                      .length !=
-                                  _model.data.length)
-                                Switch.adaptive(
-                                  value: _model.switchValue2 ??= false,
-                                  onChanged: (newValue) async {
-                                    setState(
-                                        () => _model.switchValue2 = newValue);
-                                    if (newValue) {
-                                      while (_model.loop < _model.data.length) {
-                                        setState(() {
-                                          _model.updateDataAtIndex(
-                                            _model.loop,
-                                            (e) => e..checkDep = true,
-                                          );
-                                        });
-                                        setState(() {
-                                          _model.loop = _model.loop + 1;
-                                        });
-                                      }
-                                      setState(() {
-                                        _model.loop = 0;
-                                      });
-                                      setState(() {
-                                        _model.switchValue2 = false;
-                                      });
-                                    }
-                                  },
-                                  activeColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  activeTrackColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  inactiveTrackColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  inactiveThumbColor:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  'Chọn tất cả',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        fontSize: 14.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 16.0),
-                          child: Builder(
-                            builder: (context) {
-                              final listView = _model.data
-                                  .where((e) => e.name.toLowerCase().contains(
-                                      _model.textNameTextController.text
-                                          .toLowerCase()))
-                                  .toList();
-                              return ListView.separated(
-                                padding: EdgeInsets.zero,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                itemCount: listView.length,
-                                separatorBuilder: (_, __) =>
-                                    const SizedBox(height: 16.0),
-                                itemBuilder: (context, listViewIndex) {
-                                  final listViewItem = listView[listViewIndex];
-                                  return Container(
-                                    decoration: const BoxDecoration(),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            wrapWithModel(
-                                              model: _model.checkBoxToggleModels
-                                                  .getModel(
-                                                '${listViewItem.id}${listViewItem.name}${listViewItem.checkDep.toString()}',
-                                                listViewIndex,
+                                      suffixIcon: _model.textNameTextController!
+                                              .text.isNotEmpty
+                                          ? InkWell(
+                                              onTap: () async {
+                                                _model.textNameTextController
+                                                    ?.clear();
+                                                setState(() {});
+                                              },
+                                              child: const Icon(
+                                                Icons.clear,
+                                                size: 22,
                                               ),
-                                              updateCallback: () =>
-                                                  setState(() {}),
-                                              updateOnChange: true,
-                                              child: CheckBoxToggleWidget(
-                                                key: Key(
-                                                  'Keyeub_${'${listViewItem.id}${listViewItem.name}${listViewItem.checkDep.toString()}'}',
+                                            )
+                                          : null,
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    validator: _model
+                                        .textNameTextControllerValidator
+                                        .asValidator(context),
+                                  ),
+                                ),
+                                FlutterFlowIconButton(
+                                  borderRadius: 20.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 40.0,
+                                  icon: Icon(
+                                    Icons.close,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () async {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 8.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                if (_model.data
+                                        .where((e) => e.checkDep == true)
+                                        .toList()
+                                        .length ==
+                                    _model.data.length)
+                                  Switch.adaptive(
+                                    value: _model.switchValue1 ??= true,
+                                    onChanged: (newValue) async {
+                                      setState(() =>
+                                          _model.switchValue1 = newValue);
+
+                                      if (!newValue) {
+                                        while (
+                                            _model.loop < _model.data.length) {
+                                          setState(() {
+                                            _model.updateDataAtIndex(
+                                              _model.loop,
+                                              (e) => e..checkDep = false,
+                                            );
+                                          });
+                                          setState(() {
+                                            _model.loop = _model.loop + 1;
+                                          });
+                                        }
+                                        setState(() {
+                                          _model.loop = 0;
+                                        });
+                                        setState(() {
+                                          _model.switchValue1 = true;
+                                        });
+                                      }
+                                    },
+                                    activeColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    activeTrackColor:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    inactiveTrackColor:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    inactiveThumbColor:
+                                        FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                  ),
+                                if (_model.data
+                                        .where((e) => e.checkDep == true)
+                                        .toList()
+                                        .length !=
+                                    _model.data.length)
+                                  Switch.adaptive(
+                                    value: _model.switchValue2 ??= false,
+                                    onChanged: (newValue) async {
+                                      setState(() =>
+                                          _model.switchValue2 = newValue);
+                                      if (newValue) {
+                                        while (
+                                            _model.loop < _model.data.length) {
+                                          setState(() {
+                                            _model.updateDataAtIndex(
+                                              _model.loop,
+                                              (e) => e..checkDep = true,
+                                            );
+                                          });
+                                          setState(() {
+                                            _model.loop = _model.loop + 1;
+                                          });
+                                        }
+                                        setState(() {
+                                          _model.loop = 0;
+                                        });
+                                        setState(() {
+                                          _model.switchValue2 = false;
+                                        });
+                                      }
+                                    },
+                                    activeColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    activeTrackColor:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    inactiveTrackColor:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    inactiveThumbColor:
+                                        FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                  ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Chọn tất cả',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 14.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 16.0),
+                            child: Builder(
+                              builder: (context) {
+                                final listView = _model.data
+                                    .where((e) => e.name.toLowerCase().contains(
+                                        _model.textNameTextController.text
+                                            .toLowerCase()))
+                                    .toList();
+                                return ListView.separated(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: listView.length,
+                                  separatorBuilder: (_, __) =>
+                                      const SizedBox(height: 16.0),
+                                  itemBuilder: (context, listViewIndex) {
+                                    final listViewItem =
+                                        listView[listViewIndex];
+                                    return Container(
+                                      decoration: const BoxDecoration(),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              wrapWithModel(
+                                                model: _model
+                                                    .checkBoxToggleModels
+                                                    .getModel(
+                                                  '${listViewItem.id}${listViewItem.name}${listViewItem.checkDep.toString()}',
+                                                  listViewIndex,
                                                 ),
-                                                checkParam:
-                                                    listViewItem.checkDep,
-                                                color: 'colorUser',
-                                                callBack: (checkCall) async {
-                                                  setState(() {
-                                                    _model.loop = 0;
-                                                  });
-                                                  while (_model.loop <
-                                                      _model.data.length) {
-                                                    setState(() {});
-                                                    if (listViewItem.id ==
-                                                        _model.data[_model.loop]
-                                                            .id) {
+                                                updateCallback: () =>
+                                                    setState(() {}),
+                                                updateOnChange: true,
+                                                child: CheckBoxToggleWidget(
+                                                  key: Key(
+                                                    'Keyeub_${'${listViewItem.id}${listViewItem.name}${listViewItem.checkDep.toString()}'}',
+                                                  ),
+                                                  checkParam:
+                                                      listViewItem.checkDep,
+                                                  color: 'colorUser',
+                                                  callBack: (checkCall) async {
+                                                    setState(() {
+                                                      _model.loop = 0;
+                                                    });
+                                                    while (_model.loop <
+                                                        _model.data.length) {
+                                                      setState(() {});
+                                                      if (listViewItem.id ==
+                                                          _model
+                                                              .data[_model.loop]
+                                                              .id) {
+                                                        setState(() {
+                                                          _model
+                                                              .updateDataAtIndex(
+                                                            _model.loop,
+                                                            (e) => e
+                                                              ..checkDep =
+                                                                  checkCall,
+                                                          );
+                                                        });
+                                                      }
                                                       setState(() {
-                                                        _model
-                                                            .updateDataAtIndex(
-                                                          _model.loop,
-                                                          (e) => e
-                                                            ..checkDep =
-                                                                checkCall,
-                                                        );
+                                                        _model.loop =
+                                                            _model.loop + 1;
                                                       });
                                                     }
                                                     setState(() {
-                                                      _model.loop =
-                                                          _model.loop + 1;
+                                                      _model.loop = 0;
                                                     });
-                                                  }
-                                                  setState(() {
-                                                    _model.loop = 0;
-                                                  });
-                                                },
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        4.0, 0.0, 0.0, 0.0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      listViewItem.name,
-                                                      maxLines: 2,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                          ),
-                                                    ),
-                                                  ],
+                                                  },
                                                 ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                        ),
-                        Divider(
-                          height: 1.0,
-                          thickness: 1.0,
-                          color: FlutterFlowTheme.of(context).alternate,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            Navigator.pop(context);
-                          },
-                          text: 'Đóng',
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                            ),
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            setState(() {
-                              _model.callBackData = [];
-                            });
-                            while (_model.loop < _model.data.length) {
-                              if (_model.data[_model.loop].checkDep == true) {
-                                setState(() {
-                                  _model.addToCallBackData(DepartmentsIdStruct(
-                                    departmentsId: DepartmentsStruct(
-                                      id: _model.data[_model.loop].id,
-                                      name: _model.data[_model.loop].name,
-                                    ),
-                                  ));
-                                });
-                                while (_model.loop2 <
-                                    _model.data[_model.loop].staffs.length) {
-                                  setState(() {
-                                    _model.updateCallBackDataAtIndex(
-                                      _model.callBackData.length - 1,
-                                      (e) => e
-                                        ..updateCheckStaff(
-                                          (e) => e.add(StaffsStepStruct(
-                                            staffsId: StaffIdStruct(
-                                              id: _model.data[_model.loop]
-                                                  .staffs[_model.loop2].id,
-                                              userId: UserIdStruct(
-                                                firstName: _model
-                                                    .data[_model.loop]
-                                                    .staffs[_model.loop2]
-                                                    .userId
-                                                    .firstName,
+                                              Expanded(
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          4.0, 0.0, 0.0, 0.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        listViewItem.name,
+                                                        maxLines: 2,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
                                               ),
-                                            ),
-                                          )),
-                                        ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     );
-                                  });
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                          Divider(
+                            height: 1.0,
+                            thickness: 1.0,
+                            color: FlutterFlowTheme.of(context).alternate,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 24.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                Navigator.pop(context);
+                              },
+                              text: 'Đóng',
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                setState(() {
+                                  _model.callBackData = [];
+                                });
+                                while (_model.loop < _model.data.length) {
+                                  if (_model.data[_model.loop].checkDep ==
+                                      true) {
+                                    setState(() {
+                                      _model.addToCallBackData(
+                                          DepartmentsIdStruct(
+                                        departmentsId: DepartmentsStruct(
+                                          id: _model.data[_model.loop].id,
+                                          name: _model.data[_model.loop].name,
+                                        ),
+                                      ));
+                                    });
+                                    while (_model.loop2 <
+                                        _model
+                                            .data[_model.loop].staffs.length) {
+                                      setState(() {
+                                        _model.updateCallBackDataAtIndex(
+                                          _model.callBackData.length - 1,
+                                          (e) => e
+                                            ..updateCheckStaff(
+                                              (e) => e.add(StaffsStepStruct(
+                                                staffsId: StaffIdStruct(
+                                                  id: _model.data[_model.loop]
+                                                      .staffs[_model.loop2].id,
+                                                  userId: UserIdStruct(
+                                                    firstName: _model
+                                                        .data[_model.loop]
+                                                        .staffs[_model.loop2]
+                                                        .userId
+                                                        .firstName,
+                                                  ),
+                                                ),
+                                              )),
+                                            ),
+                                        );
+                                      });
+                                      setState(() {
+                                        _model.loop2 = _model.loop2 + 1;
+                                      });
+                                    }
+                                    setState(() {
+                                      _model.loop2 = 0;
+                                    });
+                                  } else {
+                                    setState(() {});
+                                  }
+
                                   setState(() {
-                                    _model.loop2 = _model.loop2 + 1;
+                                    _model.loop = _model.loop + 1;
                                   });
                                 }
                                 setState(() {
+                                  _model.loop = 0;
                                   _model.loop2 = 0;
                                 });
-                              } else {
-                                setState(() {});
-                              }
-
-                              setState(() {
-                                _model.loop = _model.loop + 1;
-                              });
-                            }
-                            setState(() {
-                              _model.loop = 0;
-                              _model.loop2 = 0;
-                            });
-                            Navigator.pop(context);
-                            await widget.callback?.call(
-                              _model.callBackData,
-                            );
-                          },
-                          text: 'Xác nhận',
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
+                                Navigator.pop(context);
+                                await widget.callback?.call(
+                                  _model.callBackData,
+                                );
+                              },
+                              text: 'Xác nhận',
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
                                 ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
                             ),
-                            borderRadius: BorderRadius.circular(20.0),
                           ),
-                        ),
+                        ].divide(const SizedBox(width: 12.0)),
                       ),
-                    ].divide(const SizedBox(width: 12.0)),
-                  ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),

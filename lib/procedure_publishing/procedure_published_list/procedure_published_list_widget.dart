@@ -145,6 +145,7 @@ class _ProcedurePublishedListWidgetState
                                     await _model
                                         .getProcedurePublishedList(context);
                                     setState(() {});
+                                    setState(() {});
                                   },
                                 ),
                                 autofocus: false,
@@ -214,6 +215,7 @@ class _ProcedurePublishedListWidgetState
                                             await _model
                                                 .getProcedurePublishedList(
                                                     context);
+                                            setState(() {});
                                             setState(() {});
                                             setState(() {});
                                           },

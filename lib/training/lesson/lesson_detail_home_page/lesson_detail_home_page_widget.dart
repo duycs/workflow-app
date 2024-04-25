@@ -295,7 +295,7 @@ class _LessonDetailHomePageWidgetState
                                     children: [
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 8.0, 0.0, 16.0),
+                                            0.0, 8.0, 0.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
                                           decoration: BoxDecoration(
@@ -1383,207 +1383,212 @@ class _LessonDetailHomePageWidgetState
                                         ),
                                       ),
                                       if (_model.checkFile == '0')
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            border: Border.all(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 16.0, 0.0, 0.0),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                              ),
                                             ),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(4.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                if ((((String type) {
-                                                          return type
-                                                              .split('.')
-                                                              .last;
-                                                        }(getJsonField(
-                                                          widget.listItems,
-                                                          r'''$.file.filename_download''',
-                                                        ).toString())) ==
-                                                        'pdf') ||
-                                                    (((String type) {
-                                                          return type
-                                                              .split('.')
-                                                              .last;
-                                                        }(getJsonField(
-                                                          widget.listItems,
-                                                          r'''$.file.filename_download''',
-                                                        ).toString())) ==
-                                                        'pdfa') ||
-                                                    (((String type) {
-                                                          return type
-                                                              .split('.')
-                                                              .last;
-                                                        }(getJsonField(
-                                                          widget.listItems,
-                                                          r'''$.file.filename_download''',
-                                                        ).toString())) ==
-                                                        'pdfx') ||
-                                                    (((String type) {
-                                                          return type
-                                                              .split('.')
-                                                              .last;
-                                                        }(getJsonField(
-                                                          widget.listItems,
-                                                          r'''$.file.filename_download''',
-                                                        ).toString())) ==
-                                                        'pdft') ||
-                                                    (((String type) {
-                                                          return type
-                                                              .split('.')
-                                                              .last;
-                                                        }(getJsonField(
-                                                          widget.listItems,
-                                                          r'''$.file.filename_download''',
-                                                        ).toString())) ==
-                                                        'pdfvt') ||
-                                                    (((String type) {
-                                                          return type
-                                                              .split('.')
-                                                              .last;
-                                                        }(getJsonField(
-                                                          widget.listItems,
-                                                          r'''$.file.filename_download''',
-                                                        ).toString())) ==
-                                                        'pdfua'))
-                                                  FlutterFlowPdfViewer(
-                                                    networkPath:
-                                                        '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
-                                                      widget.listItems,
-                                                      r'''$.file.id''',
-                                                    ).toString()}?access_token=${FFAppState().accessToken}',
-                                                    width: double.infinity,
-                                                    height: 500.0,
-                                                    horizontalScroll: false,
-                                                  ),
-                                                if ((((String type) {
-                                                          return type
-                                                              .split('.')
-                                                              .last;
-                                                        }(getJsonField(
-                                                          widget.listItems,
-                                                          r'''$.file.filename_download''',
-                                                        ).toString())) ==
-                                                        'jpeg') ||
-                                                    (((String type) {
-                                                          return type
-                                                              .split('.')
-                                                              .last;
-                                                        }(getJsonField(
-                                                          widget.listItems,
-                                                          r'''$.file.filename_download''',
-                                                        ).toString())) ==
-                                                        'png') ||
-                                                    (((String type) {
-                                                          return type
-                                                              .split('.')
-                                                              .last;
-                                                        }(getJsonField(
-                                                          widget.listItems,
-                                                          r'''$.file.filename_download''',
-                                                        ).toString())) ==
-                                                        'gif') ||
-                                                    (((String type) {
-                                                          return type
-                                                              .split('.')
-                                                              .last;
-                                                        }(getJsonField(
-                                                          widget.listItems,
-                                                          r'''$.file.filename_download''',
-                                                        ).toString())) ==
-                                                        'jpg') ||
-                                                    (((String type) {
-                                                          return type
-                                                              .split('.')
-                                                              .last;
-                                                        }(getJsonField(
-                                                          widget.listItems,
-                                                          r'''$.file.filename_download''',
-                                                        ).toString())) ==
-                                                        'bmp') ||
-                                                    (((String type) {
-                                                          return type
-                                                              .split('.')
-                                                              .last;
-                                                        }(getJsonField(
-                                                          widget.listItems,
-                                                          r'''$.file.filename_download''',
-                                                        ).toString())) ==
-                                                        'tiff') ||
-                                                    (((String type) {
-                                                          return type
-                                                              .split('.')
-                                                              .last;
-                                                        }(getJsonField(
-                                                          widget.listItems,
-                                                          r'''$.file.filename_download''',
-                                                        ).toString())) ==
-                                                        'tif') ||
-                                                    (((String type) {
-                                                          return type
-                                                              .split('.')
-                                                              .last;
-                                                        }(getJsonField(
-                                                          widget.listItems,
-                                                          r'''$.file.filename_download''',
-                                                        ).toString())) ==
-                                                        'raw') ||
-                                                    (((String type) {
-                                                          return type
-                                                              .split('.')
-                                                              .last;
-                                                        }(getJsonField(
-                                                          widget.listItems,
-                                                          r'''$.file.filename_download''',
-                                                        ).toString())) ==
-                                                        'webp') ||
-                                                    (((String type) {
-                                                          return type
-                                                              .split('.')
-                                                              .last;
-                                                        }(getJsonField(
-                                                          widget.listItems,
-                                                          r'''$.file.filename_download''',
-                                                        ).toString())) ==
-                                                        'svg') ||
-                                                    (((String type) {
-                                                          return type
-                                                              .split('.')
-                                                              .last;
-                                                        }(getJsonField(
-                                                          widget.listItems,
-                                                          r'''$.file.filename_download''',
-                                                        ).toString())) ==
-                                                        'heic') ||
-                                                    (((String type) {
-                                                          return type
-                                                              .split('.')
-                                                              .last;
-                                                        }(getJsonField(
-                                                          widget.listItems,
-                                                          r'''$.file.filename_download''',
-                                                        ).toString())) ==
-                                                        'heif'))
-                                                  ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                    child: Image.network(
-                                                      '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(4.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  if ((((String type) {
+                                                            return type
+                                                                .split('.')
+                                                                .last;
+                                                          }(getJsonField(
+                                                            widget.listItems,
+                                                            r'''$.file.filename_download''',
+                                                          ).toString())) ==
+                                                          'pdf') ||
+                                                      (((String type) {
+                                                            return type
+                                                                .split('.')
+                                                                .last;
+                                                          }(getJsonField(
+                                                            widget.listItems,
+                                                            r'''$.file.filename_download''',
+                                                          ).toString())) ==
+                                                          'pdfa') ||
+                                                      (((String type) {
+                                                            return type
+                                                                .split('.')
+                                                                .last;
+                                                          }(getJsonField(
+                                                            widget.listItems,
+                                                            r'''$.file.filename_download''',
+                                                          ).toString())) ==
+                                                          'pdfx') ||
+                                                      (((String type) {
+                                                            return type
+                                                                .split('.')
+                                                                .last;
+                                                          }(getJsonField(
+                                                            widget.listItems,
+                                                            r'''$.file.filename_download''',
+                                                          ).toString())) ==
+                                                          'pdft') ||
+                                                      (((String type) {
+                                                            return type
+                                                                .split('.')
+                                                                .last;
+                                                          }(getJsonField(
+                                                            widget.listItems,
+                                                            r'''$.file.filename_download''',
+                                                          ).toString())) ==
+                                                          'pdfvt') ||
+                                                      (((String type) {
+                                                            return type
+                                                                .split('.')
+                                                                .last;
+                                                          }(getJsonField(
+                                                            widget.listItems,
+                                                            r'''$.file.filename_download''',
+                                                          ).toString())) ==
+                                                          'pdfua'))
+                                                    FlutterFlowPdfViewer(
+                                                      networkPath:
+                                                          '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
                                                         widget.listItems,
                                                         r'''$.file.id''',
                                                       ).toString()}?access_token=${FFAppState().accessToken}',
                                                       width: double.infinity,
-                                                      fit: BoxFit.contain,
+                                                      height: 500.0,
+                                                      horizontalScroll: false,
                                                     ),
-                                                  ),
-                                              ],
+                                                  if ((((String type) {
+                                                            return type
+                                                                .split('.')
+                                                                .last;
+                                                          }(getJsonField(
+                                                            widget.listItems,
+                                                            r'''$.file.filename_download''',
+                                                          ).toString())) ==
+                                                          'jpeg') ||
+                                                      (((String type) {
+                                                            return type
+                                                                .split('.')
+                                                                .last;
+                                                          }(getJsonField(
+                                                            widget.listItems,
+                                                            r'''$.file.filename_download''',
+                                                          ).toString())) ==
+                                                          'png') ||
+                                                      (((String type) {
+                                                            return type
+                                                                .split('.')
+                                                                .last;
+                                                          }(getJsonField(
+                                                            widget.listItems,
+                                                            r'''$.file.filename_download''',
+                                                          ).toString())) ==
+                                                          'gif') ||
+                                                      (((String type) {
+                                                            return type
+                                                                .split('.')
+                                                                .last;
+                                                          }(getJsonField(
+                                                            widget.listItems,
+                                                            r'''$.file.filename_download''',
+                                                          ).toString())) ==
+                                                          'jpg') ||
+                                                      (((String type) {
+                                                            return type
+                                                                .split('.')
+                                                                .last;
+                                                          }(getJsonField(
+                                                            widget.listItems,
+                                                            r'''$.file.filename_download''',
+                                                          ).toString())) ==
+                                                          'bmp') ||
+                                                      (((String type) {
+                                                            return type
+                                                                .split('.')
+                                                                .last;
+                                                          }(getJsonField(
+                                                            widget.listItems,
+                                                            r'''$.file.filename_download''',
+                                                          ).toString())) ==
+                                                          'tiff') ||
+                                                      (((String type) {
+                                                            return type
+                                                                .split('.')
+                                                                .last;
+                                                          }(getJsonField(
+                                                            widget.listItems,
+                                                            r'''$.file.filename_download''',
+                                                          ).toString())) ==
+                                                          'tif') ||
+                                                      (((String type) {
+                                                            return type
+                                                                .split('.')
+                                                                .last;
+                                                          }(getJsonField(
+                                                            widget.listItems,
+                                                            r'''$.file.filename_download''',
+                                                          ).toString())) ==
+                                                          'raw') ||
+                                                      (((String type) {
+                                                            return type
+                                                                .split('.')
+                                                                .last;
+                                                          }(getJsonField(
+                                                            widget.listItems,
+                                                            r'''$.file.filename_download''',
+                                                          ).toString())) ==
+                                                          'webp') ||
+                                                      (((String type) {
+                                                            return type
+                                                                .split('.')
+                                                                .last;
+                                                          }(getJsonField(
+                                                            widget.listItems,
+                                                            r'''$.file.filename_download''',
+                                                          ).toString())) ==
+                                                          'svg') ||
+                                                      (((String type) {
+                                                            return type
+                                                                .split('.')
+                                                                .last;
+                                                          }(getJsonField(
+                                                            widget.listItems,
+                                                            r'''$.file.filename_download''',
+                                                          ).toString())) ==
+                                                          'heic') ||
+                                                      (((String type) {
+                                                            return type
+                                                                .split('.')
+                                                                .last;
+                                                          }(getJsonField(
+                                                            widget.listItems,
+                                                            r'''$.file.filename_download''',
+                                                          ).toString())) ==
+                                                          'heif'))
+                                                    ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      child: Image.network(
+                                                        '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
+                                                          widget.listItems,
+                                                          r'''$.file.id''',
+                                                        ).toString()}?access_token=${FFAppState().accessToken}',
+                                                        width: double.infinity,
+                                                        fit: BoxFit.contain,
+                                                      ),
+                                                    ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -1844,8 +1849,9 @@ class _LessonDetailHomePageWidgetState
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              if (_model.status == 'inprogress')
-                                Expanded(
+                              Expanded(
+                                child: Align(
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Builder(
                                     builder: (context) => InkWell(
                                       splashColor: Colors.transparent,
@@ -1880,6 +1886,10 @@ class _LessonDetailHomePageWidgetState
                                                     widget.listItems,
                                                     r'''$.id''',
                                                   ).toString(),
+                                                  avatar: getJsonField(
+                                                    widget.listItems,
+                                                    r'''$.image_cover''',
+                                                  ).toString(),
                                                 ),
                                               ),
                                             );
@@ -1887,7 +1897,6 @@ class _LessonDetailHomePageWidgetState
                                         ).then((value) => setState(() {}));
                                       },
                                       child: Container(
-                                        width: 200.0,
                                         height: 45.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
@@ -1895,12 +1904,15 @@ class _LessonDetailHomePageWidgetState
                                           borderRadius:
                                               BorderRadius.circular(12.0),
                                         ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(12.0),
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0),
+                                        child: Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.spaceEvenly,
                                             children: [
                                               Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1940,84 +1952,91 @@ class _LessonDetailHomePageWidgetState
                                     ),
                                   ),
                                 ),
+                              ),
                               Expanded(
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed(
-                                      'DoTestList',
-                                      queryParameters: {
-                                        'lessionId': serializeParam(
-                                          getJsonField(
-                                            widget.listItems,
-                                            r'''$.id''',
-                                          ).toString(),
-                                          ParamType.String,
-                                        ),
-                                      }.withoutNulls,
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                        ),
-                                      },
-                                    );
-                                  },
-                                  child: Container(
-                                    width: 200.0,
-                                    height: 45.0,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      boxShadow: const [
-                                        BoxShadow(
-                                          color: Color(0x33000000),
-                                        )
-                                      ],
-                                      borderRadius: BorderRadius.circular(12.0),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(12.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Icon(
-                                                Icons.question_answer_outlined,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 20.0,
-                                              ),
-                                              Text(
-                                                'Bài đã thi',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ].divide(const SizedBox(width: 8.0)),
+                                child: Align(
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed(
+                                        'DoTestList',
+                                        queryParameters: {
+                                          'lessionId': serializeParam(
+                                            getJsonField(
+                                              widget.listItems,
+                                              r'''$.id''',
+                                            ).toString(),
+                                            ParamType.String,
                                           ),
-                                          Icon(
-                                            Icons.chevron_right_rounded,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 24.0,
+                                        }.withoutNulls,
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
                                           ),
+                                        },
+                                      );
+                                    },
+                                    child: Container(
+                                      height: 45.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            color: Color(0x33000000),
+                                          )
                                         ],
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                      ),
+                                      child: Align(
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Icon(
+                                                  Icons
+                                                      .question_answer_outlined,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 20.0,
+                                                ),
+                                                Text(
+                                                  'Bài đã thi',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ].divide(const SizedBox(width: 8.0)),
+                                            ),
+                                            Icon(
+                                              Icons.chevron_right_rounded,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              size: 24.0,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),

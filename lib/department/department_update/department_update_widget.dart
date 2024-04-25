@@ -8,6 +8,7 @@ import '/flutter_flow/form_field_controller.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'department_update_model.dart';
 export 'department_update_model.dart';
 
@@ -87,6 +88,8 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -115,14 +118,39 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Chỉnh sửa bộ phận',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 20.0,
-                      letterSpacing: 0.0,
-                    ),
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  await showDialog(
+                    context: context,
+                    builder: (alertDialogContext) {
+                      return AlertDialog(
+                        title: Text(getJsonField(
+                          FFAppState().staffLogin,
+                          r'''$.branch_id''',
+                        ).toString()),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(alertDialogContext),
+                            child: const Text('Ok'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Text(
+                  'Chỉnh sửa bộ phận',
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                        fontFamily: 'Outfit',
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        fontSize: 20.0,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
             ],
           ),
@@ -371,59 +399,65 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                 .asValidator(context),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 8.0, 0.0, 0.0),
-                          child: Text(
-                            'Chi nhánh',
-                            style: FlutterFlowTheme.of(context)
+                        if (FFAppState().user.role !=
+                            'a8d33527-375b-4599-ac70-6a3fcad1de39')
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 8.0, 0.0, 0.0),
+                            child: Text(
+                              'Chi nhánh',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                        if (FFAppState().user.role !=
+                            'a8d33527-375b-4599-ac70-6a3fcad1de39')
+                          FlutterFlowDropDown<String>(
+                            controller:
+                                _model.dropDownBranchIdValueController ??=
+                                    FormFieldController<String>(
+                              _model.dropDownBranchIdValue ??= getJsonField(
+                                widget.items,
+                                r'''$.branch_id.id''',
+                              ).toString(),
+                            ),
+                            options: List<String>.from(
+                                _model.branchList.map((e) => e.id).toList()),
+                            optionLabels:
+                                _model.branchList.map((e) => e.name).toList(),
+                            onChanged: (val) => setState(
+                                () => _model.dropDownBranchIdValue = val),
+                            width: 300.0,
+                            height: 56.0,
+                            textStyle: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Readex Pro',
                                   letterSpacing: 0.0,
                                 ),
+                            hintText: 'Danh sách chi nhánh',
+                            icon: Icon(
+                              Icons.keyboard_arrow_down_rounded,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 24.0,
+                            ),
+                            fillColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            elevation: 2.0,
+                            borderColor: FlutterFlowTheme.of(context).alternate,
+                            borderWidth: 2.0,
+                            borderRadius: 8.0,
+                            margin: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 4.0, 16.0, 4.0),
+                            hidesUnderline: true,
+                            isOverButton: true,
+                            isSearchable: false,
+                            isMultiSelect: false,
                           ),
-                        ),
-                        FlutterFlowDropDown<String>(
-                          controller: _model.dropDownBranchIdValueController ??=
-                              FormFieldController<String>(
-                            _model.dropDownBranchIdValue ??= getJsonField(
-                              widget.items,
-                              r'''$.branch_id.id''',
-                            ).toString(),
-                          ),
-                          options: List<String>.from(
-                              _model.branchList.map((e) => e.id).toList()),
-                          optionLabels:
-                              _model.branchList.map((e) => e.name).toList(),
-                          onChanged: (val) => setState(
-                              () => _model.dropDownBranchIdValue = val),
-                          width: 300.0,
-                          height: 56.0,
-                          textStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                          hintText: 'Danh sách chi nhánh',
-                          icon: Icon(
-                            Icons.keyboard_arrow_down_rounded,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
-                          ),
-                          fillColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          elevation: 2.0,
-                          borderColor: FlutterFlowTheme.of(context).alternate,
-                          borderWidth: 2.0,
-                          borderRadius: 8.0,
-                          margin: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 4.0, 16.0, 4.0),
-                          hidesUnderline: true,
-                          isOverButton: true,
-                          isSearchable: false,
-                          isMultiSelect: false,
-                        ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
@@ -586,47 +620,93 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if ((_model.nameTextController.text != '') &&
-                        (_model.codeTextController.text != '') &&
-                        (_model.descriptionTextController.text != '') &&
-                        (_model.dropDownBranchIdValue != null &&
-                            _model.dropDownBranchIdValue != '')) {
-                      if (_model.codeTextController.text != '1') {
-                        while (_model.loop < _model.programs.length) {
+                    if (FFAppState().user.role !=
+                        'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                      if ((_model.nameTextController.text != '') &&
+                          (_model.codeTextController.text != '') &&
+                          (_model.descriptionTextController.text != '') &&
+                          (_model.dropDownBranchIdValue != null &&
+                              _model.dropDownBranchIdValue != '')) {
+                        if (_model.checkCode != '1') {
+                          while (_model.loop < _model.programs.length) {
+                            setState(() {
+                              _model.addToProgramIds(
+                                  ProgaramsCreateDepartmentsStruct(
+                                programsId: ProgramIdCreateDepartmentsStruct(
+                                  id: _model
+                                      .programs[_model.loop].programsId.id,
+                                ),
+                              ));
+                            });
+                            setState(() {
+                              _model.loop = _model.loop + 1;
+                            });
+                          }
                           setState(() {
-                            _model.addToProgramIds(
-                                ProgaramsCreateDepartmentsStruct(
-                              programsId: ProgramIdCreateDepartmentsStruct(
-                                id: _model.programs[_model.loop].programsId.id,
-                              ),
-                            ));
+                            _model.loop = 0;
                           });
-                          setState(() {
-                            _model.loop = _model.loop + 1;
-                          });
+                          await _model.pathDepartment(context);
+                          setState(() {});
+                        } else {
+                          return;
                         }
-                        setState(() {
-                          _model.loop = 0;
-                        });
-                        await _model.pathDepartment(context);
-                        setState(() {});
                       } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Kiểm tra lại tên, mô tả, mã bộ phận, chương trình đào tạo!',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: const Duration(milliseconds: 4000),
+                            backgroundColor: FlutterFlowTheme.of(context).error,
+                          ),
+                        );
                         return;
                       }
                     } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Kiểm tra lại tên, mô tả, mã bộ phận, chương trình đào tạo!',
-                            style: TextStyle(
-                              color: FlutterFlowTheme.of(context).primaryText,
+                      if ((_model.nameTextController.text != '') &&
+                          (_model.codeTextController.text != '') &&
+                          (_model.descriptionTextController.text != '')) {
+                        if (_model.checkCode != '1') {
+                          while (_model.loop < _model.programs.length) {
+                            setState(() {
+                              _model.addToProgramIds(
+                                  ProgaramsCreateDepartmentsStruct(
+                                programsId: ProgramIdCreateDepartmentsStruct(
+                                  id: _model
+                                      .programs[_model.loop].programsId.id,
+                                ),
+                              ));
+                            });
+                            setState(() {
+                              _model.loop = _model.loop + 1;
+                            });
+                          }
+                          setState(() {
+                            _model.loop = 0;
+                          });
+                          await _model.pathDepartment(context);
+                          setState(() {});
+                        } else {
+                          return;
+                        }
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Kiểm tra lại tên, mô tả, mã bộ phận, chương trình đào tạo!',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
                             ),
+                            duration: const Duration(milliseconds: 4000),
+                            backgroundColor: FlutterFlowTheme.of(context).error,
                           ),
-                          duration: const Duration(milliseconds: 4000),
-                          backgroundColor: FlutterFlowTheme.of(context).error,
-                        ),
-                      );
-                      return;
+                        );
+                        return;
+                      }
                     }
                   },
                   text: 'Cập nhật',

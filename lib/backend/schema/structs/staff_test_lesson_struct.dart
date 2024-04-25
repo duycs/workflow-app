@@ -9,8 +9,10 @@ class StaffTestLessonStruct extends BaseStruct {
   StaffTestLessonStruct({
     String? id,
     String? name,
+    String? imageCover,
   })  : _id = id,
-        _name = name;
+        _name = name,
+        _imageCover = imageCover;
 
   // "id" field.
   String? _id;
@@ -24,10 +26,17 @@ class StaffTestLessonStruct extends BaseStruct {
   set name(String? val) => _name = val;
   bool hasName() => _name != null;
 
+  // "image_cover" field.
+  String? _imageCover;
+  String get imageCover => _imageCover ?? '';
+  set imageCover(String? val) => _imageCover = val;
+  bool hasImageCover() => _imageCover != null;
+
   static StaffTestLessonStruct fromMap(Map<String, dynamic> data) =>
       StaffTestLessonStruct(
         id: data['id'] as String?,
         name: data['name'] as String?,
+        imageCover: data['image_cover'] as String?,
       );
 
   static StaffTestLessonStruct? maybeFromMap(dynamic data) => data is Map
@@ -37,6 +46,7 @@ class StaffTestLessonStruct extends BaseStruct {
   Map<String, dynamic> toMap() => {
         'id': _id,
         'name': _name,
+        'image_cover': _imageCover,
       }.withoutNulls;
 
   @override
@@ -47,6 +57,10 @@ class StaffTestLessonStruct extends BaseStruct {
         ),
         'name': serializeParam(
           _name,
+          ParamType.String,
+        ),
+        'image_cover': serializeParam(
+          _imageCover,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -63,6 +77,11 @@ class StaffTestLessonStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        imageCover: deserializeParam(
+          data['image_cover'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -72,18 +91,21 @@ class StaffTestLessonStruct extends BaseStruct {
   bool operator ==(Object other) {
     return other is StaffTestLessonStruct &&
         id == other.id &&
-        name == other.name;
+        name == other.name &&
+        imageCover == other.imageCover;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([id, name]);
+  int get hashCode => const ListEquality().hash([id, name, imageCover]);
 }
 
 StaffTestLessonStruct createStaffTestLessonStruct({
   String? id,
   String? name,
+  String? imageCover,
 }) =>
     StaffTestLessonStruct(
       id: id,
       name: name,
+      imageCover: imageCover,
     );

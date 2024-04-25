@@ -155,6 +155,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                             });
                             await _model.getLinkOperations(context);
                             setState(() {});
+                            setState(() {});
                           },
                         ),
                         autofocus: false,
@@ -217,6 +218,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                           _model.textController.text;
                                     });
                                     await _model.getLinkOperations(context);
+                                    setState(() {});
                                     setState(() {});
                                     setState(() {});
                                   },

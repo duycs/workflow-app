@@ -220,7 +220,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                               (_model.dateStart != '') &&
                                       (_model.dateStart != ' ')
                                   ? _model.dateStart
-                                  : 'Ngày bắt đầu',
+                                  : 'Từ ngày',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
@@ -303,7 +303,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                               (_model.dateEnd != '') &&
                                       (_model.dateEnd != ' ')
                                   ? _model.dateEnd
-                                  : 'Ngày kết thúc',
+                                  : 'Đến hết ngày',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium

@@ -227,7 +227,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                               (_model.dateStart != '') &&
                                       (_model.dateStart != ' ')
                                   ? _model.dateStart
-                                  : 'Ngày bắt đầu',
+                                  : 'Từ ngày',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
@@ -310,7 +310,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                               (_model.dateEnd != '') &&
                                       (_model.dateEnd != ' ')
                                   ? _model.dateEnd
-                                  : 'Ngày kết thúc',
+                                  : 'Đến ngày',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium

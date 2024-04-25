@@ -2401,13 +2401,16 @@ class _ProfileWidgetState extends State<ProfileWidget>
                         child: FFButtonWidget(
                           onPressed: () async {
                             setState(() {
+                              _model.staffDetail = null;
+                            });
+                            setState(() {
                               FFAppState().accessToken = '';
                               FFAppState().refreshToken = '';
                               FFAppState().user = UserStruct();
                               FFAppState().expires = 0;
                             });
 
-                            context.pushNamed(
+                            context.goNamed(
                               'Login',
                               extra: <String, dynamic>{
                                 kTransitionInfoKey: const TransitionInfo(

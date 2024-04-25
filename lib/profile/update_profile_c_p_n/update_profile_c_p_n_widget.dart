@@ -54,15 +54,15 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
         TextEditingController(text: widget.data?.name);
     _model.nameFocusNode ??= FocusNode();
 
-    _model.hotlineTextController ??=
-        TextEditingController(text: widget.data?.hotline);
+    _model.hotlineTextController ??= TextEditingController(
+        text: widget.data?.hotline != 'undefined' ? widget.data?.hotline : ' ');
     _model.hotlineFocusNode ??= FocusNode();
 
     _model.textController3 ??= TextEditingController(text: 'pexnic@gmail.com');
     _model.textFieldFocusNode ??= FocusNode();
 
-    _model.addressTextController ??=
-        TextEditingController(text: widget.data?.address);
+    _model.addressTextController ??= TextEditingController(
+        text: widget.data?.address != 'undefined' ? widget.data?.address : ' ');
     _model.addressFocusNode ??= FocusNode();
 
     animationsMap.addAll({
@@ -843,7 +843,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                 'Readex Pro',
                                                             letterSpacing: 0.0,
                                                           ),
-                                                      maxLines: 2,
+                                                      maxLines: null,
                                                       validator: _model
                                                           .addressTextControllerValidator
                                                           .asValidator(context),
@@ -914,15 +914,31 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                         custom_widgets.CKEditor(
                                                       width: double.infinity,
                                                       height: 300.0,
-                                                      initialData: widget.data
-                                                                      ?.description !=
-                                                                  null &&
-                                                              widget.data
-                                                                      ?.description !=
-                                                                  ''
-                                                          ? widget
-                                                              .data!.description
-                                                          : ' ',
+                                                      initialData: () {
+                                                        if ((widget.data?.description !=
+                                                                    null &&
+                                                                widget.data
+                                                                        ?.description !=
+                                                                    '') &&
+                                                            (widget.data
+                                                                    ?.description !=
+                                                                'undefined')) {
+                                                          return widget.data!
+                                                              .description;
+                                                        } else if ((widget.data
+                                                                        ?.description !=
+                                                                    null &&
+                                                                widget.data
+                                                                        ?.description !=
+                                                                    '') &&
+                                                            (widget.data
+                                                                    ?.description ==
+                                                                'undefined')) {
+                                                          return ' ';
+                                                        } else {
+                                                          return ' ';
+                                                        }
+                                                      }(),
                                                       action: (data) async {
                                                         setState(() {
                                                           _model.description2 =
@@ -1842,7 +1858,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                       const AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Text(
-                                                    'Hello World',
+                                                    'Đang cập nhật',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium

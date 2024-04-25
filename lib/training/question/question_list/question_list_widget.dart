@@ -126,6 +126,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                           : FocusScope.of(context).unfocus(),
                       child: QuestionCreateWidget(
                         callBackList: () async {
+                          setState(() {});
                           await _model.getListQuestion(context);
                           setState(() {});
                         },

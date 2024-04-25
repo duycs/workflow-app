@@ -319,16 +319,17 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                   ),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 16.0),
                     child: Builder(
                       builder: (context) {
                         final dataList = _model.list.toList();
                         return ListView.separated(
                           padding: EdgeInsets.zero,
+                          primary: false,
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           itemCount: dataList.length,
-                          separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+                          separatorBuilder: (_, __) => const SizedBox(height: 10.0),
                           itemBuilder: (context, dataListIndex) {
                             final dataListItem = dataList[dataListIndex];
                             return Padding(
@@ -366,6 +367,14 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                       'goodScore': serializeParam(
                                         dataListItem.testId.goodScore,
                                         ParamType.int,
+                                      ),
+                                      'avatar': serializeParam(
+                                        dataListItem.lessionId.imageCover,
+                                        ParamType.String,
+                                      ),
+                                      'lessionId': serializeParam(
+                                        widget.lessionId,
+                                        ParamType.String,
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{

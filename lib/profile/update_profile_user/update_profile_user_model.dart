@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'update_profile_user_widget.dart' show UpdateProfileUserWidget;
 import 'package:flutter/material.dart';
 
@@ -22,13 +23,12 @@ class UpdateProfileUserModel extends FlutterFlowModel<UpdateProfileUserWidget> {
   TextEditingController? hotlineTextController;
   String? Function(BuildContext, String?)? hotlineTextControllerValidator;
   // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
+  FocusNode? textFieldFocusNode;
   TextEditingController? textController3;
   String? Function(BuildContext, String?)? textController3Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController4;
-  String? Function(BuildContext, String?)? textController4Validator;
+  // State field(s) for DropDown widget.
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
   // State field(s) for address widget.
   FocusNode? addressFocusNode;
   TextEditingController? addressTextController;
@@ -64,11 +64,8 @@ class UpdateProfileUserModel extends FlutterFlowModel<UpdateProfileUserWidget> {
     hotlineFocusNode?.dispose();
     hotlineTextController?.dispose();
 
-    textFieldFocusNode1?.dispose();
+    textFieldFocusNode?.dispose();
     textController3?.dispose();
-
-    textFieldFocusNode2?.dispose();
-    textController4?.dispose();
 
     addressFocusNode?.dispose();
     addressTextController?.dispose();
