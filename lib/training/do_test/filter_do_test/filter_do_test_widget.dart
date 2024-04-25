@@ -195,7 +195,10 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                           }
                           setState(() {
                             _model.dateStart = dateTimeFormat(
-                                'yyyy-MM-dd', _model.datePicked1);
+                              'yyyy-MM-dd',
+                              _model.datePicked1,
+                              locale: FFLocalizations.of(context).languageCode,
+                            );
                           });
                         },
                         child: Column(
@@ -278,7 +281,10 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                           }
                           setState(() {
                             _model.dateEnd = dateTimeFormat(
-                                'yyyy-MM-dd', _model.datePicked2);
+                              'yyyy-MM-dd',
+                              _model.datePicked2,
+                              locale: FFLocalizations.of(context).languageCode,
+                            );
                           });
                         },
                         child: Column(

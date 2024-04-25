@@ -64,11 +64,13 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
         });
         setState(() {
           _model.dob = dateTimeFormat(
-              'dd/MM/yyyy',
-              functions.stringToDateTime(getJsonField(
-                widget.staffDetail,
-                r'''$.dob''',
-              ).toString().toString()));
+            'dd/MM/yyyy',
+            functions.stringToDateTime(getJsonField(
+              widget.staffDetail,
+              r'''$.dob''',
+            ).toString().toString()),
+            locale: FFLocalizations.of(context).languageCode,
+          );
         });
       }
       _model.apiResultGetListBranch = await BranchGroup.branchListCall.call(
@@ -784,7 +786,11 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 }
                                 setState(() {
                                   _model.dob = dateTimeFormat(
-                                      'dd/MM/yyyy', _model.datePicked);
+                                    'dd/MM/yyyy',
+                                    _model.datePicked,
+                                    locale: FFLocalizations.of(context)
+                                        .languageCode,
+                                  );
                                 });
                               },
                               child: Row(

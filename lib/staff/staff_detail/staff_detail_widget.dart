@@ -404,12 +404,15 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                     Expanded(
                                       child: Text(
                                         dateTimeFormat(
-                                            'dd/MM/yyyy',
-                                            functions
-                                                .stringToDateTime(getJsonField(
-                                              widget.staffDetail,
-                                              r'''$.dob''',
-                                            ).toString())),
+                                          'dd/MM/yyyy',
+                                          functions
+                                              .stringToDateTime(getJsonField(
+                                            widget.staffDetail,
+                                            r'''$.dob''',
+                                          ).toString()),
+                                          locale: FFLocalizations.of(context)
+                                              .languageCode,
+                                        ),
                                         textAlign: TextAlign.end,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium

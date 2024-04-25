@@ -52,7 +52,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
               ).toString().toString()}\"}}}]}';
             } else if (FFAppState().user.role ==
                 '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-              return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+              return '{\"_and\":[{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
                 FFAppState().staffLogin,
                 r'''$.department_id''',
               ).toString().toString()}\"}}}]}';
@@ -932,7 +932,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                         .user
                                                         .role ==
                                                     '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                                  return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                                  return '{\"_and\":[{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
                                                     FFAppState().staffLogin,
                                                     r'''$.department_id''',
                                                   ).toString()}\"}}},{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
@@ -989,7 +989,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                         .user
                                                         .role ==
                                                     '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                                  return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                                  return '{\"_and\":[{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
                                                     FFAppState().staffLogin,
                                                     r'''$.department_id''',
                                                   ).toString()}\"}}}]}';
@@ -1124,7 +1124,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                 .user
                                                                 .role ==
                                                             '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                                          return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                                          return '{\"_and\":[{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
                                                             FFAppState()
                                                                 .staffLogin,
                                                             r'''$.department_id''',
@@ -1188,7 +1188,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                 .user
                                                                 .role ==
                                                             '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                                          return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                                          return '{\"_and\":[{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
                                                             FFAppState()
                                                                 .staffLogin,
                                                             r'''$.department_id''',

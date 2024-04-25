@@ -840,8 +840,12 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                             }
                                             setState(() {
                                               _model.dob = dateTimeFormat(
-                                                  'dd/MM/yyyy',
-                                                  _model.datePicked);
+                                                'dd/MM/yyyy',
+                                                _model.datePicked,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              );
                                             });
                                           },
                                           child: Row(
@@ -1516,8 +1520,12 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                   ? 'male'
                                   : 'female',
                               'phone': _model.phoneTextController.text,
-                              'dob':
-                                  dateTimeFormat('yyyy-MM-dd', _model.datePicked),
+                              'dob': dateTimeFormat(
+                                'yyyy-MM-dd',
+                                _model.datePicked,
+                                locale:
+                                    FFLocalizations.of(context).languageCode,
+                              ),
                               'avatar': _model.avatarId,
                               'title': () {
                                 if (_model.roleValue ==
@@ -1606,8 +1614,11 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                 ? 'male'
                                 : 'female',
                             'phone': _model.phoneTextController.text,
-                            'dob':
-                                dateTimeFormat('yyyy-MM-dd', _model.datePicked),
+                            'dob': dateTimeFormat(
+                              'yyyy-MM-dd',
+                              _model.datePicked,
+                              locale: FFLocalizations.of(context).languageCode,
+                            ),
                             'avatar': _model.avatarId,
                             'title': () {
                               if (_model.roleValue ==
@@ -1785,8 +1796,13 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                     : 'female',
                                             'phone':
                                                 _model.phoneTextController.text,
-                                            'dob':
-                                                dateTimeFormat('yyyy-MM-dd', _model.datePicked),
+                                            'dob': dateTimeFormat(
+                                              'yyyy-MM-dd',
+                                              _model.datePicked,
+                                              locale:
+                                                  FFLocalizations.of(context)
+                                                      .languageCode,
+                                            ),
                                             'avatar': _model.avatarId,
                                             'title': () {
                                               if (_model.roleValue ==
@@ -1899,8 +1915,12 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                   : 'female',
                                           'phone':
                                               _model.phoneTextController.text,
-                                          'dob':
-                                              dateTimeFormat('yyyy-MM-dd', _model.datePicked),
+                                          'dob': dateTimeFormat(
+                                            'yyyy-MM-dd',
+                                            _model.datePicked,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ),
                                           'avatar': _model.avatarId,
                                           'title': () {
                                             if (_model.roleValue ==
@@ -2007,8 +2027,12 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                           ? 'male'
                                           : 'female',
                                       'phone': _model.phoneTextController.text,
-                                      'dob':
-                                          dateTimeFormat('yyyy-MM-dd', _model.datePicked),
+                                      'dob': dateTimeFormat(
+                                        'yyyy-MM-dd',
+                                        _model.datePicked,
+                                        locale: FFLocalizations.of(context)
+                                            .languageCode,
+                                      ),
                                       'avatar': _model.avatarId,
                                       'title': () {
                                         if (_model.roleValue ==

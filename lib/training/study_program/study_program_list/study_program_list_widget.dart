@@ -979,11 +979,13 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                         ? valueOrDefault<
                                                                             String>(
                                                                             dateTimeFormat(
-                                                                                'dd-MM-yyyy',
-                                                                                functions.stringToDateTime(valueOrDefault<String>(
-                                                                                  dataListTestsViewItem.testsId.dateCreated,
-                                                                                  '0',
-                                                                                ))),
+                                                                              'dd-MM-yyyy',
+                                                                              functions.stringToDateTime(valueOrDefault<String>(
+                                                                                dataListTestsViewItem.testsId.dateCreated,
+                                                                                '0',
+                                                                              )),
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ),
                                                                             '0',
                                                                           )
                                                                         : ' ',
@@ -1240,11 +1242,13 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                           dataListLessionsViewItem.lessionsId.dateCreated != ''
                                                                               ? valueOrDefault<String>(
                                                                                   dateTimeFormat(
-                                                                                      'dd-MM-yyyy',
-                                                                                      functions.stringToDateTime(valueOrDefault<String>(
-                                                                                        dataListLessionsViewItem.lessionsId.dateCreated,
-                                                                                        '0',
-                                                                                      ))),
+                                                                                    'dd-MM-yyyy',
+                                                                                    functions.stringToDateTime(valueOrDefault<String>(
+                                                                                      dataListLessionsViewItem.lessionsId.dateCreated,
+                                                                                      '0',
+                                                                                    )),
+                                                                                    locale: FFLocalizations.of(context).languageCode,
+                                                                                  ),
                                                                                   '0',
                                                                                 )
                                                                               : ' ',

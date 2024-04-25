@@ -856,12 +856,17 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                         });
                                                       }
                                                       setState(() {
-                                                        _model.date = dateTimeFormat(
-                                                            'dd/MM/yyyy',
-                                                            functions
-                                                                .stringToDateTime(
-                                                                    _model
-                                                                        .date));
+                                                        _model.date =
+                                                            dateTimeFormat(
+                                                          'dd/MM/yyyy',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  _model.date),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        );
                                                       });
                                                     },
                                                     child: Container(
@@ -907,7 +912,11 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                                       'dd/MM/yyyy',
                                                                       functions.stringToDateTime(_model
                                                                           .datePicked
-                                                                          ?.toString()))
+                                                                          ?.toString()),
+                                                                      locale: FFLocalizations.of(
+                                                                              context)
+                                                                          .languageCode,
+                                                                    )
                                                                   : dateTimeFormat(
                                                                       'dd/MM/yyyy',
                                                                       functions
@@ -916,7 +925,11 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                                         widget
                                                                             .data,
                                                                         r'''$.dob''',
-                                                                      ).toString())),
+                                                                      ).toString()),
+                                                                      locale: FFLocalizations.of(
+                                                                              context)
+                                                                          .languageCode,
+                                                                    ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -1070,22 +1083,30 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                       'phone': _model
                                                           .hotlineTextController
                                                           .text,
-                                                      'dob': _model.datePicked !=
-                                                              null
-                                                          ? dateTimeFormat(
-                                                              'yyyy-MM-dd',
-                                                              functions.stringToDateTime(
-                                                                  _model
+                                                      'dob':
+                                                          _model.datePicked !=
+                                                                  null
+                                                              ? dateTimeFormat(
+                                                                  'yyyy-MM-dd',
+                                                                  functions.stringToDateTime(_model
                                                                       .datePicked
-                                                                      ?.toString()))
-                                                          : dateTimeFormat(
-                                                              'yyyy-MM-dd',
-                                                              functions
-                                                                  .stringToDateTime(
-                                                                      getJsonField(
-                                                                widget.data,
-                                                                r'''$.dob''',
-                                                              ).toString())),
+                                                                      ?.toString()),
+                                                                  locale: FFLocalizations.of(
+                                                                          context)
+                                                                      .languageCode,
+                                                                )
+                                                              : dateTimeFormat(
+                                                                  'yyyy-MM-dd',
+                                                                  functions
+                                                                      .stringToDateTime(
+                                                                          getJsonField(
+                                                                    widget.data,
+                                                                    r'''$.dob''',
+                                                                  ).toString()),
+                                                                  locale: FFLocalizations.of(
+                                                                          context)
+                                                                      .languageCode,
+                                                                ),
                                                     },
                                                   );
                                                   shouldSetState = true;
@@ -1185,22 +1206,30 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                     'phone': _model
                                                         .hotlineTextController
                                                         .text,
-                                                    'dob': _model.datePicked !=
-                                                            null
-                                                        ? dateTimeFormat(
-                                                            'yyyy-MM-dd',
-                                                            functions.stringToDateTime(
-                                                                _model
+                                                    'dob':
+                                                        _model.datePicked !=
+                                                                null
+                                                            ? dateTimeFormat(
+                                                                'yyyy-MM-dd',
+                                                                functions.stringToDateTime(_model
                                                                     .datePicked
-                                                                    ?.toString()))
-                                                        : dateTimeFormat(
-                                                            'yyyy-MM-dd',
-                                                            functions
-                                                                .stringToDateTime(
-                                                                    getJsonField(
-                                                              widget.data,
-                                                              r'''$.dob''',
-                                                            ).toString())),
+                                                                    ?.toString()),
+                                                                locale: FFLocalizations.of(
+                                                                        context)
+                                                                    .languageCode,
+                                                              )
+                                                            : dateTimeFormat(
+                                                                'yyyy-MM-dd',
+                                                                functions
+                                                                    .stringToDateTime(
+                                                                        getJsonField(
+                                                                  widget.data,
+                                                                  r'''$.dob''',
+                                                                ).toString()),
+                                                                locale: FFLocalizations.of(
+                                                                        context)
+                                                                    .languageCode,
+                                                              ),
                                                   },
                                                 );
                                                 shouldSetState = true;

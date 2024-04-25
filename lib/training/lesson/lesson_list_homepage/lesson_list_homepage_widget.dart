@@ -271,10 +271,20 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                               _model.status = status!;
                                               _model.dateStartList =
                                                   dateTimeFormat(
-                                                      'yyyy-MM-dd', dateStart);
+                                                'yyyy-MM-dd',
+                                                dateStart,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              );
                                               _model.dateEndList =
                                                   dateTimeFormat(
-                                                      'yyyy-MM-dd', dateEnd);
+                                                'yyyy-MM-dd',
+                                                dateEnd,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              );
                                               _model.statusLesson =
                                                   lessonStatus!;
                                               _model.lessonFavoriteStatusList =

@@ -54,10 +54,10 @@ class LessonsListUserModel extends FlutterFlowModel<LessonsListUserWidget> {
 
     apiResultLinkLessonStaff = await LessonGroup.employeeLessonListCall.call(
       accessToken: FFAppState().accessToken,
-      filter: '{\"_and\":[{}${',{\"staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
+      filter: '{\"_and\":[${'{\"staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.id''',
-      ).toString().toString()}\"}}}'}${(nameSearch != '') && (nameSearch != ' ') ? ', {\"lession_id\":{\"name\":{\"_icontains\":\"$nameSearch\"}}}' : ' '}${(dateStartSearch != '') && (dateStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_gte\":\"$dateStartSearch\"}}}' : '  '}${(dateEndStartSearch != '') && (dateEndStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_lte\":\"${(String var1) {
+      ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"done\"}}'}${(nameSearch != '') && (nameSearch != ' ') ? ', {\"lession_id\":{\"name\":{\"_icontains\":\"$nameSearch\"}}}' : ' '}${(dateStartSearch != '') && (dateStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_gte\":\"$dateStartSearch\"}}}' : '  '}${(dateEndStartSearch != '') && (dateEndStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_lte\":\"${(String var1) {
           return DateTime.parse(var1).add(const Duration(days: 1)).toString();
         }(dateEndStartSearch)}\"}}}' : ' '}]}',
     );

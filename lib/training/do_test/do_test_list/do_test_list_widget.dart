@@ -535,6 +535,153 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                         ),
                                               ),
                                             ),
+                                            Expanded(
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  if ((dataListItem
+                                                              .percentCorrect ==
+                                                          dataListItem.testId
+                                                              .goodScore) ||
+                                                      (dataListItem
+                                                              .percentCorrect >
+                                                          dataListItem.testId
+                                                              .goodScore))
+                                                    Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    16.0,
+                                                                    0.0),
+                                                        child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        100.0),
+                                                            border: Border.all(
+                                                              color: const Color(
+                                                                  0xFF38B647),
+                                                              width: 1.0,
+                                                            ),
+                                                          ),
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        6.0,
+                                                                        4.0,
+                                                                        6.0,
+                                                                        4.0),
+                                                            child: Text(
+                                                              'Đạt',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyLarge
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: const Color(
+                                                                        0xFF38B647),
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  if (dataListItem
+                                                          .percentCorrect <
+                                                      dataListItem
+                                                          .testId.goodScore)
+                                                    Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    16.0,
+                                                                    0.0),
+                                                        child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        100.0),
+                                                            border: Border.all(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 1.0,
+                                                            ),
+                                                          ),
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        6.0,
+                                                                        4.0,
+                                                                        6.0,
+                                                                        4.0),
+                                                            child: Text(
+                                                              'Không đạt',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyLarge
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .error,
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                ],
+                                              ),
+                                            ),
                                           ].divide(const SizedBox(width: 4.0)),
                                         ),
                                         Row(
@@ -653,7 +800,28 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                               ),
                                             ),
                                             Text(
-                                              '${dateTimeFormat('HH:mm', functions.stringToDateTime(dataListItem.dateStart))}-${dateTimeFormat('HH:mm', functions.stringToDateTime(dataListItem.dateEnd))}  ${dateTimeFormat('dd/MM/yyyy', functions.stringToDateTime(dataListItem.dateEnd))}',
+                                              '${dateTimeFormat(
+                                                'HH:mm',
+                                                functions.stringToDateTime(
+                                                    dataListItem.dateStart),
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              )}-${dateTimeFormat(
+                                                'HH:mm',
+                                                functions.stringToDateTime(
+                                                    dataListItem.dateEnd),
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              )}  ${dateTimeFormat(
+                                                'dd/MM/yyyy',
+                                                functions.stringToDateTime(
+                                                    dataListItem.dateEnd),
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              )}',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium

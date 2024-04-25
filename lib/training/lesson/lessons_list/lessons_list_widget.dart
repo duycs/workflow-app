@@ -375,12 +375,20 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                                                 status!;
                                                             _model.dateStart =
                                                                 dateTimeFormat(
-                                                                    'yyyy-MM-dd',
-                                                                    dateStart);
+                                                              'yyyy-MM-dd',
+                                                              dateStart,
+                                                              locale: FFLocalizations
+                                                                      .of(context)
+                                                                  .languageCode,
+                                                            );
                                                             _model.dateEnd =
                                                                 dateTimeFormat(
-                                                                    'yyyy-MM-dd',
-                                                                    dateEnd);
+                                                              'yyyy-MM-dd',
+                                                              dateEnd,
+                                                              locale: FFLocalizations
+                                                                      .of(context)
+                                                                  .languageCode,
+                                                            );
                                                             _model.programId =
                                                                 programId!;
                                                           });

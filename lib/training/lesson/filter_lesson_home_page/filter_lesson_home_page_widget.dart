@@ -244,7 +244,12 @@ class _FilterLessonHomePageWidgetState
                                     Text(
                                       _model.dateStart != null
                                           ? dateTimeFormat(
-                                              'yyyy-MM-dd', _model.dateStart)
+                                              'yyyy-MM-dd',
+                                              _model.dateStart,
+                                              locale:
+                                                  FFLocalizations.of(context)
+                                                      .languageCode,
+                                            )
                                           : ((widget.dateStart != '') &&
                                                   (widget.dateStart != '0')
                                               ? widget.dateStart
@@ -332,7 +337,12 @@ class _FilterLessonHomePageWidgetState
                                     Text(
                                       _model.dateEnd != null
                                           ? dateTimeFormat(
-                                              'yyyy-MM-dd', _model.dateEnd)
+                                              'yyyy-MM-dd',
+                                              _model.dateEnd,
+                                              locale:
+                                                  FFLocalizations.of(context)
+                                                      .languageCode,
+                                            )
                                           : ((widget.dateEnd != '') &&
                                                   (widget.dateEnd != '0')
                                               ? widget.dateEnd

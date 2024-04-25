@@ -485,7 +485,12 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                                   .operations
                                                                   .first
                                                                   .operationsId
-                                                                  .dateUpdated))
+                                                                  .dateUpdated),
+                                                      locale:
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .languageCode,
+                                                    )
                                                   : ' ',
                                               style: FlutterFlowTheme.of(
                                                       context)

@@ -82,7 +82,7 @@ class _LessonsListUserWidgetState extends State<LessonsListUserWidget> {
             },
           ),
           title: Text(
-            'Danh sách bài học',
+            'Danh sách bài đã học',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: FlutterFlowTheme.of(context).primaryText,

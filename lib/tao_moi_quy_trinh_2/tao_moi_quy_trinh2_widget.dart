@@ -31,8 +31,12 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController(text: '...');
+    _model.textController3 ??= TextEditingController();
     _model.textFieldFocusNode3 ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
+          _model.textController3?.text = '...';
+        }));
   }
 
   @override

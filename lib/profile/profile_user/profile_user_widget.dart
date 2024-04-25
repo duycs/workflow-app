@@ -516,7 +516,12 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                                               getJsonField(
                                                         _model.user,
                                                         r'''$.dob''',
-                                                      ).toString()))
+                                                      ).toString()),
+                                                      locale:
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .languageCode,
+                                                    )
                                                   : ' ',
                                               style:
                                                   FlutterFlowTheme.of(context)

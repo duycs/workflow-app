@@ -444,8 +444,13 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                   setState(() {
                                     _model.limitPublished =
                                         functions.totalLimitPublished(
-                                            dateTimeFormat('dd/MM/yyyy',
-                                                _model.datePicked2),
+                                            dateTimeFormat(
+                                              'dd/MM/yyyy',
+                                              _model.datePicked2,
+                                              locale:
+                                                  FFLocalizations.of(context)
+                                                      .languageCode,
+                                            ),
                                             functions
                                                 .cronToType(_model
                                                     .workflowSelected!.cron)
@@ -469,7 +474,13 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                           0.0, 3.0, 0.0, 0.0),
                                       child: Text(
                                         _model.datePicked2 != null
-                                            ? 'Kết thúc chạy lặp: ${dateTimeFormat('dd/MM/yyyy', _model.datePicked2)}'
+                                            ? 'Kết thúc chạy lặp: ${dateTimeFormat(
+                                                'dd/MM/yyyy',
+                                                _model.datePicked2,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              )}'
                                             : 'Chọn thời gian kết thúc chạy lặp',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium

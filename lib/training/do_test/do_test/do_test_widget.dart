@@ -1276,6 +1276,10 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                               widget.avatar,
                                               ParamType.String,
                                             ),
+                                            'lessionId': serializeParam(
+                                              widget.lessionId,
+                                              ParamType.String,
+                                            ),
                                           }.withoutNulls,
                                         );
 

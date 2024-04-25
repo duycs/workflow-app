@@ -1627,12 +1627,14 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                     alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       dateTimeFormat(
-                                          'dd/MM/yyyy',
-                                          functions
-                                              .stringToDateTime(getJsonField(
-                                            _model.listDetail,
-                                            r'''$.date_created''',
-                                          ).toString())),
+                                        'dd/MM/yyyy',
+                                        functions.stringToDateTime(getJsonField(
+                                          _model.listDetail,
+                                          r'''$.date_created''',
+                                        ).toString()),
+                                        locale: FFLocalizations.of(context)
+                                            .languageCode,
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -1981,13 +1983,18 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                     children: [
                                                       Text(
                                                         dateTimeFormat(
-                                                            'HH:mm dd/MM/yyyy',
-                                                            functions
-                                                                .stringToDateTime(
-                                                                    getJsonField(
-                                                              listItemsItem,
-                                                              r'''$.comments_id.date_created''',
-                                                            ).toString())),
+                                                          'HH:mm dd/MM/yyyy',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  getJsonField(
+                                                            listItemsItem,
+                                                            r'''$.comments_id.date_created''',
+                                                          ).toString()),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        ),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)

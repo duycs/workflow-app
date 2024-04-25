@@ -58,7 +58,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
         text: widget.data?.hotline != 'undefined' ? widget.data?.hotline : ' ');
     _model.hotlineFocusNode ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController(text: 'pexnic@gmail.com');
+    _model.textController3 ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
     _model.addressTextController ??= TextEditingController(
@@ -155,6 +155,10 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
+          _model.textController3?.text = 'pexnic@gmail.com';
+        }));
   }
 
   @override

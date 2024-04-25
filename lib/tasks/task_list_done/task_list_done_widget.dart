@@ -982,10 +982,14 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                             Expanded(
                                                               child: Text(
                                                                 dateTimeFormat(
-                                                                    'HH:mm dd/MM/yyyy',
-                                                                    functions.stringToDateTime(
-                                                                        dataListItem
-                                                                            .dateCreated)),
+                                                                  'HH:mm dd/MM/yyyy',
+                                                                  functions.stringToDateTime(
+                                                                      dataListItem
+                                                                          .dateCreated),
+                                                                  locale: FFLocalizations.of(
+                                                                          context)
+                                                                      .languageCode,
+                                                                ),
                                                                 textAlign:
                                                                     TextAlign
                                                                         .end,
@@ -1194,10 +1198,14 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                             Expanded(
                                                               child: Text(
                                                                 dateTimeFormat(
-                                                                    'HH:mm dd/MM/yyyy',
-                                                                    functions.stringToDateTime(
-                                                                        dataListItem
-                                                                            .dateStart)),
+                                                                  'HH:mm dd/MM/yyyy',
+                                                                  functions.stringToDateTime(
+                                                                      dataListItem
+                                                                          .dateStart),
+                                                                  locale: FFLocalizations.of(
+                                                                          context)
+                                                                      .languageCode,
+                                                                ),
                                                                 textAlign:
                                                                     TextAlign
                                                                         .end,
@@ -1265,10 +1273,14 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                             Expanded(
                                                               child: Text(
                                                                 dateTimeFormat(
-                                                                    'HH:mm dd/MM/yyyy',
-                                                                    functions.stringToDateTime(
-                                                                        dataListItem
-                                                                            .dateEnd)),
+                                                                  'HH:mm dd/MM/yyyy',
+                                                                  functions.stringToDateTime(
+                                                                      dataListItem
+                                                                          .dateEnd),
+                                                                  locale: FFLocalizations.of(
+                                                                          context)
+                                                                      .languageCode,
+                                                                ),
                                                                 textAlign:
                                                                     TextAlign
                                                                         .end,

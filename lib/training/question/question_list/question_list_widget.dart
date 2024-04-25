@@ -401,11 +401,16 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                                                 0.0, 0.0),
                                                     child: Text(
                                                       dateTimeFormat(
-                                                          'dd-MM-yyyy',
-                                                          functions
-                                                              .stringToDateTime(
-                                                                  detailViewItem
-                                                                      .dateCreated)),
+                                                        'dd-MM-yyyy',
+                                                        functions
+                                                            .stringToDateTime(
+                                                                detailViewItem
+                                                                    .dateCreated),
+                                                        locale:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .languageCode,
+                                                      ),
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .labelSmall

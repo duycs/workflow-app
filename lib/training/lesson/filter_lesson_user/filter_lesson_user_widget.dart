@@ -186,7 +186,11 @@ class _FilterLessonUserWidgetState extends State<FilterLessonUserWidget> {
                               }
                               setState(() {
                                 _model.dateStart = dateTimeFormat(
-                                    'yyyy-MM-dd', _model.datePicked1);
+                                  'yyyy-MM-dd',
+                                  _model.datePicked1,
+                                  locale:
+                                      FFLocalizations.of(context).languageCode,
+                                );
                               });
                             },
                             child: Column(
@@ -271,7 +275,11 @@ class _FilterLessonUserWidgetState extends State<FilterLessonUserWidget> {
                               }
                               setState(() {
                                 _model.dateEnd = dateTimeFormat(
-                                    'yyy-MM-dd', _model.datePicked2);
+                                  'yyy-MM-dd',
+                                  _model.datePicked2,
+                                  locale:
+                                      FFLocalizations.of(context).languageCode,
+                                );
                               });
                             },
                             child: Column(

@@ -451,9 +451,12 @@ class _ProfileStaffWidgetState extends State<ProfileStaffWidget> {
                                       12.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     dateTimeFormat(
-                                        'dd/MM/yyyy',
-                                        functions
-                                            .stringToDateTime(widget.ngaySinh)),
+                                      'dd/MM/yyyy',
+                                      functions
+                                          .stringToDateTime(widget.ngaySinh),
+                                      locale: FFLocalizations.of(context)
+                                          .languageCode,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodySmall
                                         .override(

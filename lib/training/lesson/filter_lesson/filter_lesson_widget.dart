@@ -194,7 +194,11 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                               Text(
                                 _model.dateStart != null
                                     ? dateTimeFormat(
-                                        'yyyy-MM-dd', _model.dateStart)
+                                        'yyyy-MM-dd',
+                                        _model.dateStart,
+                                        locale: FFLocalizations.of(context)
+                                            .languageCode,
+                                      )
                                     : (widget.dateStart != ''
                                         ? widget.dateStart
                                         : 'Từ ngày'),
@@ -276,7 +280,11 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                               Text(
                                 _model.dateEnd != null
                                     ? dateTimeFormat(
-                                        'yyyy-MM-dd', _model.dateStart)
+                                        'yyyy-MM-dd',
+                                        _model.dateStart,
+                                        locale: FFLocalizations.of(context)
+                                            .languageCode,
+                                      )
                                     : (widget.dateEnd != ''
                                         ? widget.dateEnd
                                         : 'Đến hết ngày'),

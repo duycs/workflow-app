@@ -205,7 +205,11 @@ class LessonListHomepageCopyModel
       filter:
           '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}},{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}},{\"date_created\":{\"_lte\":\"${(String var1) {
         return DateTime.parse(var1).add(const Duration(days: 1)).toString();
-      }(dateTimeFormat('yyyy-MM-dd', getCurrentTimestamp))}\"}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '}]}',
+      }(dateTimeFormat(
+        'yyyy-MM-dd',
+        getCurrentTimestamp,
+        locale: FFLocalizations.of(context).languageCode,
+      ))}\"}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '}]}',
     );
     if ((apiResultListRow2.succeeded ?? true)) {
       listLessonRow2 = EmployeeLessonListDataStruct.maybeFromMap(
@@ -246,7 +250,11 @@ class LessonListHomepageCopyModel
       filter:
           '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '},{\"_and\":[{\"lession_id\":{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}}},{\"lession_id\":{\"date_created\":{\"_lte\":\"${(String var1) {
         return DateTime.parse(var1).add(const Duration(days: 1)).toString();
-      }(dateTimeFormat('yyyy-MM-dd', getCurrentTimestamp))}\"}}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]}]}',
+      }(dateTimeFormat(
+        'yyyy-MM-dd',
+        getCurrentTimestamp,
+        locale: FFLocalizations.of(context).languageCode,
+      ))}\"}}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]}]}',
     );
     if ((apiResultListRow3.succeeded ?? true)) {
       listLessonRow3 = EmployeeLessonListDataStruct.maybeFromMap(

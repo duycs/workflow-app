@@ -462,12 +462,17 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                       (e.status ==
                                                                           'done') &&
                                                                       (dateTimeFormat(
-                                                                              'dd/MM/yyyy',
-                                                                              functions.stringToDateTime(e
-                                                                                  .dateEnd)) ==
+                                                                            'dd/MM/yyyy',
+                                                                            functions.stringToDateTime(e.dateEnd),
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          ) ==
                                                                           dateTimeFormat(
-                                                                              'dd/MM/yyyy',
-                                                                              getCurrentTimestamp)))
+                                                                            'dd/MM/yyyy',
+                                                                            getCurrentTimestamp,
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          )))
                                                                   .toList()
                                                                   .length
                                                                   .toString(),
@@ -536,10 +541,18 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                           .steps
                                                                           .length) &&
                                                                   (dateTimeFormat(
-                                                                          'dd/MM/yyyy',
-                                                                          functions
-                                                                              .stringToDateTime(itemTaskDoneItem.dateEnd)) ==
-                                                                      dateTimeFormat('dd/MM/yyyy', getCurrentTimestamp)),
+                                                                        'dd/MM/yyyy',
+                                                                        functions
+                                                                            .stringToDateTime(itemTaskDoneItem.dateEnd),
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      ) ==
+                                                                      dateTimeFormat(
+                                                                        'dd/MM/yyyy',
+                                                                        getCurrentTimestamp,
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      )),
                                                               child: InkWell(
                                                                 splashColor: Colors
                                                                     .transparent,
@@ -635,7 +648,11 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                     ),
                                                                               ),
                                                                               Text(
-                                                                                'Thời gian tạo: ${dateTimeFormat('dd/MM/yyyy', functions.stringToDateTime(itemTaskDoneItem.dateCreated))}',
+                                                                                'Thời gian tạo: ${dateTimeFormat(
+                                                                                  'dd/MM/yyyy',
+                                                                                  functions.stringToDateTime(itemTaskDoneItem.dateCreated),
+                                                                                  locale: FFLocalizations.of(context).languageCode,
+                                                                                )}',
                                                                                 style: FlutterFlowTheme.of(context).labelMedium.override(
                                                                                       fontFamily: 'Readex Pro',
                                                                                       fontSize: 13.0,
@@ -869,7 +886,11 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                     ),
                                                                               ),
                                                                               Text(
-                                                                                'Thời gian tạo: ${dateTimeFormat('dd/MM/yyyy', functions.stringToDateTime(itemPublishedListItem.dateCreated))}',
+                                                                                'Thời gian tạo: ${dateTimeFormat(
+                                                                                  'dd/MM/yyyy',
+                                                                                  functions.stringToDateTime(itemPublishedListItem.dateCreated),
+                                                                                  locale: FFLocalizations.of(context).languageCode,
+                                                                                )}',
                                                                                 style: FlutterFlowTheme.of(context).labelMedium.override(
                                                                                       fontFamily: 'Readex Pro',
                                                                                       fontSize: 13.0,
