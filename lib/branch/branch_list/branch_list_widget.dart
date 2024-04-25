@@ -390,12 +390,20 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                                           alignment:
                                               const AlignmentDirectional(-1.0, 0.0),
                                           child: Text(
-                                            branchItemItem.status,
+                                            branchItemItem.status == 'published'
+                                                ? 'Hoạt động'
+                                                : 'Không hoạt đọng',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodySmall
                                                 .override(
                                                   fontFamily: 'Readex Pro',
-                                                  color: const Color(0xFF00A907),
+                                                  color:
+                                                      branchItemItem.status ==
+                                                              'published'
+                                                          ? const Color(0xFF00A907)
+                                                          : FlutterFlowTheme.of(
+                                                                  context)
+                                                              .tertiary,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w300,
                                                   fontStyle: FontStyle.italic,
@@ -405,7 +413,7 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                                       ],
                                     ),
                                     Text(
-                                      'Nội dung:',
+                                      'Mô tả:',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(

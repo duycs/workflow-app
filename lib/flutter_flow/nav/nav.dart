@@ -90,6 +90,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'lessionId',
               ParamType.String,
             ),
+            avatar: params.getParam(
+              'avatar',
+              ParamType.String,
+            ),
+            goodScore: params.getParam(
+              'goodScore',
+              ParamType.int,
+            ),
           ),
         ),
         FFRoute(
@@ -353,6 +361,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             goodScore: params.getParam(
               'goodScore',
               ParamType.int,
+            ),
+            avatar: params.getParam(
+              'avatar',
+              ParamType.String,
+            ),
+            lessionId: params.getParam(
+              'lessionId',
+              ParamType.String,
             ),
           ),
         ),

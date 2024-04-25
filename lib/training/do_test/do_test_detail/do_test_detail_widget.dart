@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/training/do_test/long_text_do_test/long_text_do_test_widget.dart';
-import '/training/do_test/multi_select_do_test/multi_select_do_test_widget.dart';
 import '/training/do_test/select_do_test/select_do_test_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
@@ -23,6 +22,8 @@ class DoTestDetailWidget extends StatefulWidget {
     this.testDescription,
     this.percentCorect,
     required this.goodScore,
+    this.avatar,
+    this.lessionId,
   });
 
   final String? testId;
@@ -31,6 +32,8 @@ class DoTestDetailWidget extends StatefulWidget {
   final String? testDescription;
   final int? percentCorect;
   final int? goodScore;
+  final String? avatar;
+  final String? lessionId;
 
   @override
   State<DoTestDetailWidget> createState() => _DoTestDetailWidgetState();
@@ -48,9 +51,6 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.listNull = [];
-      });
       _model.getStaffAnswerListToken = await action_blocks.tokenReload(context);
       if (_model.getStaffAnswerListToken!) {
         _model.apiResultGetStaffAnswerList =
@@ -116,8 +116,8 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.asset(
-                                    'assets/images/career_center-interview-what_exactly_are_aptitude_tests.jpg',
+                                  child: Image.network(
+                                    '${FFAppConstants.ApiBaseUrl}/assets/${widget.avatar}?access_token=${FFAppState().accessToken}',
                                     width: double.infinity,
                                     height: 200.0,
                                     fit: BoxFit.cover,
@@ -139,6 +139,12 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                               onPressed: () async {
                                 context.pushNamed(
                                   'DoTestList',
+                                  queryParameters: {
+                                    'lessionId': serializeParam(
+                                      widget.lessionId,
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: const TransitionInfo(
                                       hasTransition: true,
@@ -155,17 +161,20 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 4.0, 0.0, 0.0),
-                              child: Text(
-                                '${widget.testName}',
-                                style: FlutterFlowTheme.of(context)
-                                    .headlineMedium
-                                    .override(
-                                      fontFamily: 'Outfit',
-                                      letterSpacing: 0.0,
-                                    ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 4.0, 0.0, 0.0),
+                                child: Text(
+                                  '${widget.testName}',
+                                  maxLines: 2,
+                                  style: FlutterFlowTheme.of(context)
+                                      .headlineMedium
+                                      .override(
+                                        fontFamily: 'Outfit',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
                               ),
                             ),
                             if ((widget.percentCorect != null) &&
@@ -242,7 +251,7 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     6.0, 4.0, 6.0, 4.0),
                                             child: Text(
-                                              'Trượt',
+                                              'Không đạt',
                                               textAlign: TextAlign.center,
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -434,41 +443,63 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                               launchURL(url!),
                                                     ),
                                                   ),
-                                                  if (questionListItem.answers
-                                                          .where((e) =>
-                                                              e.answersId
-                                                                  .correct ==
-                                                              1)
-                                                          .toList()
-                                                          .length ==
-                                                      questionListItem
-                                                          .questionId.answers
-                                                          .where((e) =>
-                                                              e.answersId
-                                                                  .correct ==
-                                                              1)
-                                                          .toList()
-                                                          .length)
+                                                  if ((questionListItem
+                                                                  .answerType ==
+                                                              'text') ||
+                                                          (questionListItem
+                                                                  .answerType ==
+                                                              'number')
+                                                      ? (questionListItem
+                                                              .correct ==
+                                                          1)
+                                                      : (questionListItem
+                                                              .answers
+                                                              .where((e) =>
+                                                                  e.answersId
+                                                                      .correct ==
+                                                                  1)
+                                                              .toList()
+                                                              .length ==
+                                                          questionListItem
+                                                              .questionId
+                                                              .answers
+                                                              .where((e) =>
+                                                                  e.answersId
+                                                                      .correct ==
+                                                                  1)
+                                                              .toList()
+                                                              .length))
                                                     const Icon(
                                                       Icons.check,
                                                       color: Color(0xFF38B647),
                                                       size: 24.0,
                                                     ),
-                                                  if (questionListItem.answers
-                                                          .where((e) =>
-                                                              e.answersId
-                                                                  .correct ==
-                                                              1)
-                                                          .toList()
-                                                          .length !=
-                                                      questionListItem
-                                                          .questionId.answers
-                                                          .where((e) =>
-                                                              e.answersId
-                                                                  .correct ==
-                                                              1)
-                                                          .toList()
-                                                          .length)
+                                                  if ((questionListItem
+                                                                  .answerType ==
+                                                              'text') ||
+                                                          (questionListItem
+                                                                  .answerType ==
+                                                              'number')
+                                                      ? (questionListItem
+                                                              .correct !=
+                                                          1)
+                                                      : (questionListItem
+                                                              .answers
+                                                              .where((e) =>
+                                                                  e.answersId
+                                                                      .correct ==
+                                                                  1)
+                                                              .toList()
+                                                              .length !=
+                                                          questionListItem
+                                                              .questionId
+                                                              .answers
+                                                              .where((e) =>
+                                                                  e.answersId
+                                                                      .correct ==
+                                                                  1)
+                                                              .toList()
+                                                              .length))
                                                     Icon(
                                                       Icons.close,
                                                       color:
@@ -481,43 +512,6 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                               ),
                                             ),
                                           ),
-                                          if (questionListItem.answerType ==
-                                              'checkbox')
-                                            Builder(
-                                              builder: (context) {
-                                                final listAnswer =
-                                                    questionListItem
-                                                        .questionId.answers
-                                                        .toList();
-                                                return ListView.builder(
-                                                  padding: EdgeInsets.zero,
-                                                  shrinkWrap: true,
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount: listAnswer.length,
-                                                  itemBuilder: (context,
-                                                      listAnswerIndex) {
-                                                    final listAnswerItem =
-                                                        listAnswer[
-                                                            listAnswerIndex];
-                                                    return MultiSelectDoTestWidget(
-                                                      key: Key(
-                                                          'Keym0t_${listAnswerIndex}_of_${listAnswer.length}'),
-                                                      listQuestion:
-                                                          listAnswerItem
-                                                              .answersId,
-                                                      listAnswer:
-                                                          questionListItem
-                                                                  .answers
-                                                                  .isNotEmpty
-                                                              ? questionListItem
-                                                                  .answers
-                                                              : _model.listNull,
-                                                    );
-                                                  },
-                                                );
-                                              },
-                                            ),
                                           if (questionListItem.answerType ==
                                               'radio')
                                             Builder(
@@ -781,7 +775,7 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                                           .primaryText;
                                                                     } else if (listAnswer2Item
                                                                             .answersId
-                                                                            .correct !=
+                                                                            .correct ==
                                                                         1) {
                                                                       return FlutterFlowTheme.of(
                                                                               context)

@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
 import 'department_detail_model.dart';
 export 'department_detail_model.dart';
@@ -442,7 +443,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: Text(
-                                            'Số lượng nhân sự',
+                                            'Số lượng nhân sự: ${DepartmentListStruct.maybeFromMap(widget.items)?.staffs.length.toString()}',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(

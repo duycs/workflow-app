@@ -200,9 +200,12 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                             Expanded(
                               child: Text(
                                 dateTimeFormat(
-                                    'HH:mm dd/MM/yyyy',
-                                    functions.stringToDateTime(
-                                        _model.list.first.dateCreated)),
+                                  'HH:mm dd/MM/yyyy',
+                                  functions.stringToDateTime(
+                                      _model.list.first.dateCreated),
+                                  locale:
+                                      FFLocalizations.of(context).languageCode,
+                                ),
                                 textAlign: TextAlign.end,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -681,9 +684,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                           Expanded(
                                             child: Text(
                                               dateTimeFormat(
-                                                  'HH:mm dd/MM/yyyy',
-                                                  functions.stringToDateTime(
-                                                      dataListItem.dateStart)),
+                                                'HH:mm dd/MM/yyyy',
+                                                functions.stringToDateTime(
+                                                    dataListItem.dateStart),
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
                                               textAlign: TextAlign.end,
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -731,9 +738,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                           Expanded(
                                             child: Text(
                                               dateTimeFormat(
-                                                  'HH:mm dd/MM/yyyy',
-                                                  functions.stringToDateTime(
-                                                      dataListItem.dateEnd)),
+                                                'HH:mm dd/MM/yyyy',
+                                                functions.stringToDateTime(
+                                                    dataListItem.dateEnd),
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
                                               textAlign: TextAlign.end,
                                               style: FlutterFlowTheme.of(
                                                       context)

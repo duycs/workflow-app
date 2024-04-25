@@ -151,7 +151,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                     fontFamily: 'Readex Pro',
                                     letterSpacing: 0.0,
                                   ),
-                              hintText: 'Tìm kiếm nhân sự...',
+                              hintText: 'Tìm kiếm chi nhánh...',
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context)
@@ -229,23 +229,24 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                 .asValidator(context),
                           ),
                         ),
-                        FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 10.0,
-                          borderWidth: 1.0,
-                          buttonSize: 50.0,
-                          icon: Icon(
-                            Icons.tune_rounded,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 30.0,
-                          ),
-                          onPressed: () {
-                            print('IconButton pressed ...');
-                          },
-                        ),
                       ],
                     ),
                   ),
+                  if (_model.search != '')
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 16.0),
+                      child: Text(
+                        '#Kết quả hiển thị theo bộ lọc',
+                        style:
+                            FlutterFlowTheme.of(context).labelMedium.override(
+                                  fontFamily: 'Readex Pro',
+                                  fontSize: 13.0,
+                                  letterSpacing: 0.0,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                      ),
+                    ),
                   Builder(
                     builder: (context) {
                       final listItem = _model.listBranch.toList();

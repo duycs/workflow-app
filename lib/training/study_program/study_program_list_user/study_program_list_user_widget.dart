@@ -501,10 +501,14 @@ class _StudyProgramListUserWidgetState
                                                           ),
                                                           Text(
                                                             dateTimeFormat(
-                                                                'dd-MM-yyyy',
-                                                                functions.stringToDateTime(
-                                                                    dataListTestsViewItem
-                                                                        .dateCreated)),
+                                                              'dd-MM-yyyy',
+                                                              functions.stringToDateTime(
+                                                                  dataListTestsViewItem
+                                                                      .dateCreated),
+                                                              locale: FFLocalizations
+                                                                      .of(context)
+                                                                  .languageCode,
+                                                            ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodySmall
@@ -710,11 +714,14 @@ class _StudyProgramListUserWidgetState
                                                                       ? valueOrDefault<
                                                                           String>(
                                                                           dateTimeFormat(
-                                                                              'dd-MM-yyyy',
-                                                                              functions.stringToDateTime(valueOrDefault<String>(
-                                                                                dataListLessionsViewItem.lessionsId.dateCreated,
-                                                                                '0',
-                                                                              ))),
+                                                                            'dd-MM-yyyy',
+                                                                            functions.stringToDateTime(valueOrDefault<String>(
+                                                                              dataListLessionsViewItem.lessionsId.dateCreated,
+                                                                              '0',
+                                                                            )),
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          ),
                                                                           '0',
                                                                         )
                                                                       : ' ',

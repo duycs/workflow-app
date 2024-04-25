@@ -71,7 +71,9 @@ class OperationListModel extends FlutterFlowModel<OperationListWidget> {
             '{\"_and\":[{}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
           FFAppState().staffLogin,
           r'''$.organization_id''',
-        ).toString().toString()}\"}}'}${(seachName != '') && (seachName != ' ') ? ',{\"name\":{\"_icontains\":\"$seachName\"}}' : ' '}${(searchStatus != '') && (searchStatus != ' ') ? ',{\"status\":{\"_eq\":\"$searchStatus\"}}' : ' '}${(searchAction != '') && (searchAction != ' ') ? ',{\"action_type\":{\"_eq\":\"$searchAction\"}}' : ' '}${(searchDateStart != '') && (searchDateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"$searchDateStart\"}}' : ''}${(searchDateEnd != '') && (searchDateEnd != ' ') ? ',{\"date_created\":{\"_lte\":\"$searchDateEnd\"}}' : ' '}]}',
+        ).toString().toString()}\"}}'}${(seachName != '') && (seachName != ' ') ? ',{\"name\":{\"_icontains\":\"$seachName\"}}' : ' '}${(searchStatus != '') && (searchStatus != ' ') ? ',{\"status\":{\"_eq\":\"$searchStatus\"}}' : ' '}${(searchAction != '') && (searchAction != ' ') ? ',{\"action_type\":{\"_eq\":\"$searchAction\"}}' : ' '}${(searchDateStart != '') && (searchDateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"$searchDateStart\"}}' : ''}${(searchDateEnd != '') && (searchDateEnd != ' ') ? ',{\"date_created\":{\"_lte\":\"${(String var1) {
+                return DateTime.parse(var1).add(const Duration(days: 1)).toString();
+              }(searchDateEnd)}\"}}' : ' '}]}',
       );
       if ((apiResultOperations.succeeded ?? true)) {
         operationList = OperationsListDataStruct.maybeFromMap(

@@ -700,13 +700,13 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                       children: [
                                                                         Container(
                                                                           width: functions
-                                                                              .stringToInt((int var1) {
+                                                                              .stringToInt((int var1, double var2) {
                                                                                 return var1 != 1 && var1 != 0
-                                                                                    ? (num.parse((260 / var1.round()).toStringAsFixed(0))).toString()
+                                                                                    ? (num.parse((((var2 / 2).round()) / var1.round()).toStringAsFixed(0))).toString()
                                                                                     : var1 == 0
                                                                                         ? 0.toString()
-                                                                                        : 150.toString();
-                                                                              }(listGridItem.steps.length))
+                                                                                        : (var2 / 3).round().toString();
+                                                                              }(listGridItem.steps.length, MediaQuery.sizeOf(context).width))
                                                                               .toDouble(),
                                                                           height: functions
                                                                               .stringToInt((int var1) {

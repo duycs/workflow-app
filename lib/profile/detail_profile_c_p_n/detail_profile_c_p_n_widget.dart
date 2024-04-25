@@ -546,13 +546,16 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                                           0.0),
                                                                       child:
                                                                           Text(
-                                                                        valueOrDefault<
-                                                                            String>(
-                                                                          _model
-                                                                              .data
-                                                                              ?.hotline,
-                                                                          'Loading',
-                                                                        ),
+                                                                        valueOrDefault<String>(
+                                                                                  _model.data?.hotline,
+                                                                                  'Loading',
+                                                                                ) !=
+                                                                                'undefined'
+                                                                            ? valueOrDefault<String>(
+                                                                                _model.data?.hotline,
+                                                                                'Loading',
+                                                                              )
+                                                                            : ' ',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
@@ -566,91 +569,90 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                               ].divide(const SizedBox(
                                                                   height: 4.0)),
                                                             ),
-                                                            Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          28.0,
-                                                                          0.0,
-                                                                          8.0,
-                                                                          0.0),
-                                                                  child: Text(
-                                                                    'Email',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Readex Pro',
-                                                                          fontSize:
-                                                                              12.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8.0,
-                                                                          0.0,
-                                                                          8.0,
-                                                                          0.0),
-                                                                  child:
-                                                                      Container(
-                                                                    height:
-                                                                        50.0,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: FlutterFlowTheme.of(
+                                                            if ('1' == '2')
+                                                              Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            28.0,
+                                                                            0.0,
+                                                                            8.0,
+                                                                            0.0),
+                                                                    child: Text(
+                                                                      'Email',
+                                                                      style: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .secondaryBackground,
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              24.0),
-                                                                      border:
-                                                                          Border
-                                                                              .all(
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .alternate,
-                                                                        width:
-                                                                            2.0,
-                                                                      ),
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Readex Pro',
+                                                                            fontSize:
+                                                                                12.0,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                          ),
                                                                     ),
-                                                                    alignment:
-                                                                        const AlignmentDirectional(
-                                                                            -1.0,
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            8.0,
+                                                                            0.0,
+                                                                            8.0,
                                                                             0.0),
                                                                     child:
-                                                                        Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                          20.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
+                                                                        Container(
+                                                                      height:
+                                                                          50.0,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(24.0),
+                                                                        border:
+                                                                            Border.all(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).alternate,
+                                                                          width:
+                                                                              2.0,
+                                                                        ),
+                                                                      ),
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              -1.0,
+                                                                              0.0),
                                                                       child:
-                                                                          Text(
-                                                                        'Hello World',
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Readex Pro',
-                                                                              letterSpacing: 0.0,
-                                                                            ),
+                                                                          Padding(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            20.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Text(
+                                                                          'Hello World',
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                fontFamily: 'Readex Pro',
+                                                                                letterSpacing: 0.0,
+                                                                              ),
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ),
-                                                                ),
-                                                              ].divide(const SizedBox(
-                                                                  height: 4.0)),
-                                                            ),
+                                                                ].divide(const SizedBox(
+                                                                    height:
+                                                                        4.0)),
+                                                              ),
                                                             Column(
                                                               mainAxisSize:
                                                                   MainAxisSize
@@ -722,13 +724,16 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                                           0.0),
                                                                       child:
                                                                           Text(
-                                                                        valueOrDefault<
-                                                                            String>(
-                                                                          _model
-                                                                              .data
-                                                                              ?.address,
-                                                                          'Loading',
-                                                                        ),
+                                                                        valueOrDefault<String>(
+                                                                                  _model.data?.address,
+                                                                                  'Loading',
+                                                                                ) !=
+                                                                                'undefined'
+                                                                            ? valueOrDefault<String>(
+                                                                                _model.data?.address,
+                                                                                'Loading',
+                                                                              )
+                                                                            : ' ',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
@@ -880,9 +885,12 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                                           10.0,
                                                                           10.0),
                                                                   child: Html(
-                                                                    data: _model
-                                                                        .data!
-                                                                        .description,
+                                                                    data: _model.data?.description !=
+                                                                            'undefined'
+                                                                        ? _model
+                                                                            .data!
+                                                                            .description
+                                                                        : ' ',
                                                                     onLinkTap: (url,
                                                                             _,
                                                                             __,
@@ -1337,7 +1345,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                                   const AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Text(
-                                                                'Map goes here...',
+                                                                'Đang cập nhật',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium

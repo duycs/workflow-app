@@ -60,7 +60,9 @@ class ProcedureListModel extends FlutterFlowModel<ProcedureListWidget> {
       apiResultListSearchData =
           await ProcedureTemplateGroup.workflowsListCall.call(
         accessToken: FFAppState().accessToken,
-        filter: '{\"_and\":[{},{\"template\":{\"_neq\":\"1\"}}${(searchName != null && searchName != '') && (searchName != ' ') ? ',{\"name\":{\"_icontains\":\"$searchName\"}}' : ' '}${(dateStart != null && dateStart != '') && (dateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"$dateStart\"}}' : ' '}${(dateEnd != null && dateEnd != '') && (dateEnd != ' ') ? ',{\"date_created\":{\"_lte\":\"$dateEnd\"}}' : ' '}${(staffsId != null && staffsId != '') && (staffsId != ' ') ? ',{\"steps\":{\"staffs\":{\"staffs_id\":{\"_eq\":\"$staffsId\"}}}}' : ' '}${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? ',{\"organization_id\":{\"_eq\":\"' : ' '}${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? getJsonField(
+        filter: '{\"_and\":[{},{\"template\":{\"_neq\":\"1\"}}${(searchName != null && searchName != '') && (searchName != ' ') ? ',{\"name\":{\"_icontains\":\"$searchName\"}}' : ' '}${(dateStart != null && dateStart != '') && (dateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"$dateStart\"}}' : ' '}${(dateEnd != null && dateEnd != '') && (dateEnd != ' ') ? ',{\"date_created\":{\"_lte\":\"${(String var1) {
+            return DateTime.parse(var1).add(const Duration(days: 1)).toString();
+          }(dateEnd!)}\"}}' : ' '}${(staffsId != null && staffsId != '') && (staffsId != ' ') ? ',{\"steps\":{\"staffs\":{\"staffs_id\":{\"_eq\":\"$staffsId\"}}}}' : ' '}${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? ',{\"organization_id\":{\"_eq\":\"' : ' '}${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? getJsonField(
             FFAppState().staffLogin,
             r'''$.organization_id''',
           ).toString().toString() : ' '}${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? '\"}}' : ' '}]}',

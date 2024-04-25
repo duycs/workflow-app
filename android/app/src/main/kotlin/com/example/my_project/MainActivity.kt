@@ -1,4 +1,4 @@
-package com.mycompany.workflowproject
+package com.pexnic.workflow
 
 import io.flutter.embedding.android.FlutterActivity
 

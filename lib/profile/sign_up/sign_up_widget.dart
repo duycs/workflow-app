@@ -1235,7 +1235,14 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                           Text(
                                                             _model.datePicked !=
                                                                     null
-                                                                ? dateTimeFormat('dd/MM/yyyy', _model.datePicked)
+                                                                ? dateTimeFormat(
+                                                                    'dd/MM/yyyy',
+                                                                    _model
+                                                                        .datePicked,
+                                                                    locale: FFLocalizations.of(
+                                                                            context)
+                                                                        .languageCode,
+                                                                  )
                                                                 : 'Ngày sinh',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
@@ -1396,8 +1403,14 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                     'phone': _model
                                                         .phoneTextController
                                                         .text,
-                                                    'dob':
-                                                        dateTimeFormat('yyyy-MM-dd', _model.datePicked),
+                                                    'dob': dateTimeFormat(
+                                                      'yyyy-MM-dd',
+                                                      _model.datePicked,
+                                                      locale:
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .languageCode,
+                                                    ),
                                                     'avatar':
                                                         '6f2dfeb5-4df6-4b73-93c4-109f72133a25',
                                                     'logo':

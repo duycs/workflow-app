@@ -174,6 +174,10 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
             _model.loop = 0;
           });
         }
+
+        setState(() {
+          _model.isLoad = true;
+        });
       } else {
         setState(() {});
         return;
@@ -218,499 +222,524 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
             ],
             borderRadius: BorderRadius.circular(12.0),
           ),
-          child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    primary: false,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 12.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: TextFormField(
-                                  controller: _model.textNameTextController,
-                                  focusNode: _model.textNameFocusNode,
-                                  onChanged: (_) => EasyDebounce.debounce(
-                                    '_model.textNameTextController',
-                                    const Duration(milliseconds: 2000),
-                                    () => setState(() {}),
-                                  ),
-                                  autofocus: false,
-                                  textInputAction: TextInputAction.search,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
+          child: Visibility(
+            visible: _model.isLoad == true,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 0.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SingleChildScrollView(
+                      primary: false,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 12.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: TextFormField(
+                                    controller: _model.textNameTextController,
+                                    focusNode: _model.textNameFocusNode,
+                                    onChanged: (_) => EasyDebounce.debounce(
+                                      '_model.textNameTextController',
+                                      const Duration(milliseconds: 2000),
+                                      () => setState(() {}),
+                                    ),
+                                    autofocus: false,
+                                    textInputAction: TextInputAction.search,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      hintText: 'Tên nhân viên/email...',
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          width: 1.0,
                                         ),
-                                    hintText: 'Tên nhân viên/email...',
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          width: 1.0,
                                         ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        width: 1.0,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        width: 1.0,
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 1.0,
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 1.0,
+                                      contentPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              16.0, 0.0, 0.0, 0.0),
+                                      prefixIcon: const Icon(
+                                        Icons.search_rounded,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    contentPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 0.0, 0.0, 0.0),
-                                    prefixIcon: const Icon(
-                                      Icons.search_rounded,
-                                    ),
-                                    suffixIcon: _model.textNameTextController!
-                                            .text.isNotEmpty
-                                        ? InkWell(
-                                            onTap: () async {
-                                              _model.textNameTextController
-                                                  ?.clear();
-                                              setState(() {});
-                                            },
-                                            child: const Icon(
-                                              Icons.clear,
-                                              size: 22,
-                                            ),
-                                          )
-                                        : null,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  validator: _model
-                                      .textNameTextControllerValidator
-                                      .asValidator(context),
-                                ),
-                              ),
-                              FlutterFlowIconButton(
-                                borderRadius: 20.0,
-                                borderWidth: 1.0,
-                                buttonSize: 40.0,
-                                icon: Icon(
-                                  Icons.close,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 24.0,
-                                ),
-                                onPressed: () async {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 8.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              if (_model.staffList
-                                      .where((e) => e.check == true)
-                                      .toList()
-                                      .length ==
-                                  _model.staffList.length)
-                                Switch.adaptive(
-                                  value: _model.switchValue1 ??= true,
-                                  onChanged: (newValue) async {
-                                    setState(
-                                        () => _model.switchValue1 = newValue);
-
-                                    if (!newValue) {
-                                      while (_model.loop <
-                                          _model.staffList.length) {
-                                        setState(() {
-                                          _model.updateStaffListAtIndex(
-                                            _model.loop,
-                                            (e) => e..check = false,
-                                          );
-                                        });
-                                        setState(() {
-                                          _model.loop = _model.loop + 1;
-                                        });
-                                      }
-                                      setState(() {
-                                        _model.loop = 0;
-                                      });
-                                      setState(() {
-                                        _model.switchValue1 = true;
-                                      });
-                                    }
-                                  },
-                                  activeColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  activeTrackColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  inactiveTrackColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  inactiveThumbColor:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                              if (_model.staffList
-                                      .where((e) => e.check == true)
-                                      .toList()
-                                      .length !=
-                                  _model.staffList.length)
-                                Switch.adaptive(
-                                  value: _model.switchValue2 ??= false,
-                                  onChanged: (newValue) async {
-                                    setState(
-                                        () => _model.switchValue2 = newValue);
-                                    if (newValue) {
-                                      while (_model.loop <
-                                          _model.staffList.length) {
-                                        setState(() {
-                                          _model.updateStaffListAtIndex(
-                                            _model.loop,
-                                            (e) => e..check = true,
-                                          );
-                                        });
-                                        setState(() {
-                                          _model.loop = _model.loop + 1;
-                                        });
-                                      }
-                                      setState(() {
-                                        _model.loop = 0;
-                                      });
-                                      setState(() {
-                                        _model.switchValue2 = false;
-                                      });
-                                    }
-                                  },
-                                  activeColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  activeTrackColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  inactiveTrackColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  inactiveThumbColor:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  'Chọn tất cả',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        fontSize: 14.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 16.0),
-                          child: Builder(
-                            builder: (context) {
-                              final listView = _model.staffList
-                                  .where((e) =>
-                                      e.userId.firstName.toLowerCase().contains(
-                                          _model.textNameTextController.text
-                                              .toLowerCase()) ||
-                                      e.userId.email.toLowerCase().contains(
-                                          _model.textNameTextController.text
-                                              .toLowerCase()))
-                                  .toList();
-                              return ListView.separated(
-                                padding: EdgeInsets.zero,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                itemCount: listView.length,
-                                separatorBuilder: (_, __) =>
-                                    const SizedBox(height: 16.0),
-                                itemBuilder: (context, listViewIndex) {
-                                  final listViewItem = listView[listViewIndex];
-                                  return Container(
-                                    decoration: const BoxDecoration(),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            wrapWithModel(
-                                              model: _model.checkBoxToggleModels
-                                                  .getModel(
-                                                '${listViewItem.userId.firstName}${listViewItem.check.toString()}${listViewItem.id}',
-                                                listViewIndex,
+                                      suffixIcon: _model.textNameTextController!
+                                              .text.isNotEmpty
+                                          ? InkWell(
+                                              onTap: () async {
+                                                _model.textNameTextController
+                                                    ?.clear();
+                                                setState(() {});
+                                              },
+                                              child: const Icon(
+                                                Icons.clear,
+                                                size: 22,
                                               ),
-                                              updateCallback: () =>
-                                                  setState(() {}),
-                                              updateOnChange: true,
-                                              child: CheckBoxToggleWidget(
-                                                key: Key(
-                                                  'Key31x_${'${listViewItem.userId.firstName}${listViewItem.check.toString()}${listViewItem.id}'}',
+                                            )
+                                          : null,
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    validator: _model
+                                        .textNameTextControllerValidator
+                                        .asValidator(context),
+                                  ),
+                                ),
+                                FlutterFlowIconButton(
+                                  borderRadius: 20.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 40.0,
+                                  icon: Icon(
+                                    Icons.close,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () async {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 8.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                if (_model.staffList
+                                        .where((e) => e.check == true)
+                                        .toList()
+                                        .length ==
+                                    _model.staffList.length)
+                                  Switch.adaptive(
+                                    value: _model.switchValue1 ??= true,
+                                    onChanged: (newValue) async {
+                                      setState(() =>
+                                          _model.switchValue1 = newValue);
+
+                                      if (!newValue) {
+                                        while (_model.loop <
+                                            _model.staffList.length) {
+                                          setState(() {
+                                            _model.updateStaffListAtIndex(
+                                              _model.loop,
+                                              (e) => e..check = false,
+                                            );
+                                          });
+                                          setState(() {
+                                            _model.loop = _model.loop + 1;
+                                          });
+                                        }
+                                        setState(() {
+                                          _model.loop = 0;
+                                        });
+                                        setState(() {
+                                          _model.switchValue1 = true;
+                                        });
+                                      }
+                                    },
+                                    activeColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    activeTrackColor:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    inactiveTrackColor:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    inactiveThumbColor:
+                                        FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                  ),
+                                if (_model.staffList
+                                        .where((e) => e.check == true)
+                                        .toList()
+                                        .length !=
+                                    _model.staffList.length)
+                                  Switch.adaptive(
+                                    value: _model.switchValue2 ??= false,
+                                    onChanged: (newValue) async {
+                                      setState(() =>
+                                          _model.switchValue2 = newValue);
+                                      if (newValue) {
+                                        while (_model.loop <
+                                            _model.staffList.length) {
+                                          setState(() {
+                                            _model.updateStaffListAtIndex(
+                                              _model.loop,
+                                              (e) => e..check = true,
+                                            );
+                                          });
+                                          setState(() {
+                                            _model.loop = _model.loop + 1;
+                                          });
+                                        }
+                                        setState(() {
+                                          _model.loop = 0;
+                                        });
+                                        setState(() {
+                                          _model.switchValue2 = false;
+                                        });
+                                      }
+                                    },
+                                    activeColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    activeTrackColor:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    inactiveTrackColor:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    inactiveThumbColor:
+                                        FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                  ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Chọn tất cả',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 14.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 16.0),
+                            child: Builder(
+                              builder: (context) {
+                                final listView = _model.staffList
+                                    .where((e) =>
+                                        e.userId.firstName
+                                            .toLowerCase()
+                                            .contains(_model
+                                                .textNameTextController.text
+                                                .toLowerCase()) ||
+                                        e.userId.email.toLowerCase().contains(
+                                            _model.textNameTextController.text
+                                                .toLowerCase()))
+                                    .toList();
+                                return ListView.separated(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: listView.length,
+                                  separatorBuilder: (_, __) =>
+                                      const SizedBox(height: 16.0),
+                                  itemBuilder: (context, listViewIndex) {
+                                    final listViewItem =
+                                        listView[listViewIndex];
+                                    return Container(
+                                      decoration: const BoxDecoration(),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              wrapWithModel(
+                                                model: _model
+                                                    .checkBoxToggleModels
+                                                    .getModel(
+                                                  '${listViewItem.userId.firstName}${listViewItem.check.toString()}${listViewItem.id}',
+                                                  listViewIndex,
                                                 ),
-                                                checkParam: listViewItem.check,
-                                                color: 'colorUser',
-                                                callBack: (checkCall) async {
-                                                  setState(() {});
-                                                  while (_model.loop <
-                                                      _model.staffList.length) {
-                                                    if (listViewItem.id ==
+                                                updateCallback: () =>
+                                                    setState(() {}),
+                                                updateOnChange: true,
+                                                child: CheckBoxToggleWidget(
+                                                  key: Key(
+                                                    'Key31x_${'${listViewItem.userId.firstName}${listViewItem.check.toString()}${listViewItem.id}'}',
+                                                  ),
+                                                  checkParam:
+                                                      listViewItem.check,
+                                                  color: 'colorUser',
+                                                  callBack: (checkCall) async {
+                                                    setState(() {});
+                                                    while (_model.loop <
                                                         _model
-                                                            .staffList[
-                                                                _model.loop]
-                                                            .id) {
+                                                            .staffList.length) {
+                                                      if (listViewItem.id ==
+                                                          _model
+                                                              .staffList[
+                                                                  _model.loop]
+                                                              .id) {
+                                                        setState(() {
+                                                          _model
+                                                              .updateStaffListAtIndex(
+                                                            _model.loop,
+                                                            (e) => e
+                                                              ..check =
+                                                                  checkCall,
+                                                          );
+                                                        });
+                                                      }
                                                       setState(() {
-                                                        _model
-                                                            .updateStaffListAtIndex(
-                                                          _model.loop,
-                                                          (e) => e
-                                                            ..check = checkCall,
-                                                        );
+                                                        _model.loop =
+                                                            _model.loop + 1;
                                                       });
                                                     }
                                                     setState(() {
-                                                      _model.loop =
-                                                          _model.loop + 1;
+                                                      _model.loop = 0;
                                                     });
-                                                  }
-                                                  setState(() {
-                                                    _model.loop = 0;
-                                                  });
-                                                },
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(40.0),
-                                                child: Image.network(
-                                                  '${FFAppConstants.ApiBaseUrl}/assets/${listViewItem.userId.avatar != '' ? listViewItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
-                                                  width: 32.0,
-                                                  height: 32.0,
-                                                  fit: BoxFit.cover,
+                                                  },
                                                 ),
                                               ),
-                                            ),
-                                            Expanded(
-                                              child: Padding(
+                                              Padding(
                                                 padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
-                                                        4.0, 0.0, 0.0, 0.0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      listViewItem
-                                                          .userId.firstName,
-                                                      maxLines: 2,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                          ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  4.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Text(
+                                                        0.0, 0.0, 4.0, 0.0),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          40.0),
+                                                  child: Image.network(
+                                                    '${FFAppConstants.ApiBaseUrl}/assets/${listViewItem.userId.avatar != '' ? listViewItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                    width: 32.0,
+                                                    height: 32.0,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          4.0, 0.0, 0.0, 0.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
                                                         listViewItem
-                                                            .userId.email,
+                                                            .userId.firstName,
                                                         maxLines: 2,
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodySmall
+                                                                .bodyMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Readex Pro',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
                                                                 ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    4.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          listViewItem
+                                                              .userId.email,
+                                                          maxLines: 2,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                              );
-                            },
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            ),
                           ),
-                        ),
-                        Divider(
-                          height: 1.0,
-                          thickness: 1.0,
-                          color: FlutterFlowTheme.of(context).alternate,
-                        ),
-                      ],
+                          Divider(
+                            height: 1.0,
+                            thickness: 1.0,
+                            color: FlutterFlowTheme.of(context).alternate,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            Navigator.pop(context);
-                          },
-                          text: 'Đóng',
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                            ),
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            setState(() {});
-                            while (_model.loop < _model.staffList.length) {
-                              if (_model.staffList[_model.loop].check == true) {
-                                setState(() {
-                                  _model.addToCallBackData(StaffListStruct(
-                                    id: _model.staffList[_model.loop].id,
-                                    userId: UserStruct(
-                                      firstName: _model.staffList[_model.loop]
-                                          .userId.firstName,
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 24.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                Navigator.pop(context);
+                              },
+                              text: 'Đóng',
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
                                     ),
-                                  ));
-                                });
-                              }
-                              setState(() {
-                                _model.loop = _model.loop + 1;
-                              });
-                            }
-                            setState(() {
-                              _model.loop = 0;
-                            });
-                            await widget.callback?.call(
-                              _model.callBackData,
-                            );
-                            Navigator.pop(context);
-                          },
-                          text: 'Xác nhận',
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
                                 ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
                             ),
-                            borderRadius: BorderRadius.circular(20.0),
                           ),
-                        ),
+                          Expanded(
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                setState(() {});
+                                while (_model.loop < _model.staffList.length) {
+                                  if (_model.staffList[_model.loop].check ==
+                                      true) {
+                                    setState(() {
+                                      _model.addToCallBackData(StaffListStruct(
+                                        id: _model.staffList[_model.loop].id,
+                                        userId: UserStruct(
+                                          firstName: _model
+                                              .staffList[_model.loop]
+                                              .userId
+                                              .firstName,
+                                        ),
+                                      ));
+                                    });
+                                  }
+                                  setState(() {
+                                    _model.loop = _model.loop + 1;
+                                  });
+                                }
+                                setState(() {
+                                  _model.loop = 0;
+                                });
+                                await widget.callback?.call(
+                                  _model.callBackData,
+                                );
+                                Navigator.pop(context);
+                              },
+                              text: 'Xác nhận',
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
+                          ),
+                        ].divide(const SizedBox(width: 12.0)),
                       ),
-                    ].divide(const SizedBox(width: 12.0)),
-                  ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),

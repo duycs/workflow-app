@@ -404,12 +404,15 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                     Expanded(
                                       child: Text(
                                         dateTimeFormat(
-                                            'dd/MM/yyyy',
-                                            functions
-                                                .stringToDateTime(getJsonField(
-                                              widget.staffDetail,
-                                              r'''$.dob''',
-                                            ).toString())),
+                                          'dd/MM/yyyy',
+                                          functions
+                                              .stringToDateTime(getJsonField(
+                                            widget.staffDetail,
+                                            r'''$.dob''',
+                                          ).toString()),
+                                          locale: FFLocalizations.of(context)
+                                              .languageCode,
+                                        ),
                                         textAlign: TextAlign.end,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
@@ -596,6 +599,61 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                             widget.staffDetail,
                                             r'''$.department_id.name''',
                                           ).toString(),
+                                          textAlign: TextAlign.end,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            if ((getJsonField(
+                                      widget.staffDetail,
+                                      r'''$.user_id.role''',
+                                    ).toString() !=
+                                    '82073000-1ba2-43a4-a55c-459d17c23b68') &&
+                                (getJsonField(
+                                      widget.staffDetail,
+                                      r'''$.user_id.role''',
+                                    ).toString() !=
+                                    'a8d33527-375b-4599-ac70-6a3fcad1de39'))
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 0.0, 20.0, 20.0),
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Trạng thái hoạt động:',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          getJsonField(
+                                                    widget.staffDetail,
+                                                    r'''$.status''',
+                                                  ).toString() ==
+                                                  'active'
+                                              ? 'Hoạt động'
+                                              : 'Không hoạt động',
                                           textAlign: TextAlign.end,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium

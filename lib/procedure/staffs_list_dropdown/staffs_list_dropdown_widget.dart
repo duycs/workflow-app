@@ -76,7 +76,7 @@ class _StaffsListDropdownWidgetState extends State<StaffsListDropdownWidget> {
     return FlutterFlowDropDown<String>(
       controller: _model.dropDownValueController ??=
           FormFieldController<String>(
-        _model.dropDownValue ??= '',
+        _model.dropDownValue ??= widget.value,
       ),
       options: List<String>.from(_model.staffList.map((e) => e.id).toList()),
       optionLabels: _model.staffList.map((e) => e.userId.firstName).toList(),

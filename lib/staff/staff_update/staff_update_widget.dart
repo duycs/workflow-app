@@ -64,11 +64,13 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
         });
         setState(() {
           _model.dob = dateTimeFormat(
-              'dd/MM/yyyy',
-              functions.stringToDateTime(getJsonField(
-                widget.staffDetail,
-                r'''$.dob''',
-              ).toString().toString()));
+            'dd/MM/yyyy',
+            functions.stringToDateTime(getJsonField(
+              widget.staffDetail,
+              r'''$.dob''',
+            ).toString().toString()),
+            locale: FFLocalizations.of(context).languageCode,
+          );
         });
       }
       _model.apiResultGetListBranch = await BranchGroup.branchListCall.call(
@@ -208,7 +210,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           if ((_model.uploadedLocalFile.bytes?.isEmpty ?? true))
                             Padding(
@@ -350,7 +352,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                             borderWidth: 1.0,
                             buttonSize: 40.0,
                             icon: Icon(
-                              Icons.image_outlined,
+                              Icons.camera_alt,
                               color: FlutterFlowTheme.of(context).primaryText,
                               size: 24.0,
                             ),
@@ -437,7 +439,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                         children: [
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                20.0, 16.0, 20.0, 0.0),
+                                20.0, 16.0, 20.0, 20.0),
                             child: TextFormField(
                               controller: _model.nameTextController,
                               focusNode: _model.nameFocusNode,
@@ -506,77 +508,80 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   .asValidator(context),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: TextFormField(
-                              controller: _model.emailTextController,
-                              focusNode: _model.emailFocusNode,
-                              textCapitalization: TextCapitalization.words,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                labelText: 'Email',
-                                labelStyle: FlutterFlowTheme.of(context)
-                                    .bodyLarge
+                          if ('1' == '2')
+                            Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: TextFormField(
+                                controller: _model.emailTextController,
+                                focusNode: _model.emailFocusNode,
+                                textCapitalization: TextCapitalization.words,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelText: 'Email',
+                                  labelStyle: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  hintText: 'Vd: Nuta@pexnic.com',
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w300,
+                                      ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  filled: true,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  contentPadding:
+                                      const EdgeInsetsDirectional.fromSTEB(
+                                          20.0, 24.0, 0.0, 24.0),
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .labelSmall
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
                                     ),
-                                hintText: 'Vd: Nuta@pexnic.com',
-                                hintStyle: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                filled: true,
-                                fillColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    20.0, 24.0, 0.0, 24.0),
+                                keyboardType: TextInputType.emailAddress,
+                                validator: _model.emailTextControllerValidator
+                                    .asValidator(context),
                               ),
-                              style: FlutterFlowTheme.of(context)
-                                  .labelSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                              keyboardType: TextInputType.emailAddress,
-                              validator: _model.emailTextControllerValidator
-                                  .asValidator(context),
                             ),
-                          ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 20.0),
@@ -781,7 +786,11 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 }
                                 setState(() {
                                   _model.dob = dateTimeFormat(
-                                      'dd/MM/yyyy', _model.datePicked);
+                                    'dd/MM/yyyy',
+                                    _model.datePicked,
+                                    locale: FFLocalizations.of(context)
+                                        .languageCode,
+                                  );
                                 });
                               },
                               child: Row(
@@ -861,73 +870,73 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               verticalAlignment: WrapCrossAlignment.start,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                20.0, 0.0, 20.0, 20.0),
-                            child: FlutterFlowDropDown<String>(
-                              controller: _model.roleValueController ??=
-                                  FormFieldController<String>(
-                                _model.roleValue ??= getJsonField(
-                                  widget.staffDetail,
-                                  r'''$.user_id.role''',
-                                ).toString(),
+                          if (_model.roleValue !=
+                              '82073000-1ba2-43a4-a55c-459d17c23b68')
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 0.0, 20.0, 20.0),
+                              child: FlutterFlowDropDown<String>(
+                                controller: _model.roleValueController ??=
+                                    FormFieldController<String>(
+                                  _model.roleValue ??= getJsonField(
+                                    widget.staffDetail,
+                                    r'''$.user_id.role''',
+                                  ).toString(),
+                                ),
+                                options: List<String>.from([
+                                  'a8d33527-375b-4599-ac70-6a3fcad1de39',
+                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725',
+                                  '3755a98d-f064-45cd-80e4-5084ab1dd2c4'
+                                ]),
+                                optionLabels: const [
+                                  'Quản lý chi nhánh',
+                                  'Quản lý bộ phận',
+                                  'Nhân viên'
+                                ],
+                                onChanged: (val) async {
+                                  setState(() => _model.roleValue = val);
+                                  if ((_model.roleValue ==
+                                          '3755a98d-f064-45cd-80e4-5084ab1dd2c4') ||
+                                      (_model.roleValue ==
+                                          '6a8bc644-cb2d-4a31-b11e-b86e19824725')) {
+                                    setState(() {
+                                      _model.selectRole = true;
+                                    });
+                                  }
+                                },
+                                width: double.infinity,
+                                height: 56.0,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      letterSpacing: 0.0,
+                                    ),
+                                hintText: 'Chọn chức vụ',
+                                icon: Icon(
+                                  Icons.keyboard_arrow_down_rounded,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 15.0,
+                                ),
+                                fillColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                elevation: 1.0,
+                                borderColor:
+                                    FlutterFlowTheme.of(context).alternate,
+                                borderWidth: 1.0,
+                                borderRadius: 8.0,
+                                margin: const EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 4.0, 12.0, 4.0),
+                                hidesUnderline: true,
+                                isSearchable: false,
+                                isMultiSelect: false,
                               ),
-                              options: List<String>.from([
-                                'a8d33527-375b-4599-ac70-6a3fcad1de39',
-                                '6a8bc644-cb2d-4a31-b11e-b86e19824725',
-                                '3755a98d-f064-45cd-80e4-5084ab1dd2c4'
-                              ]),
-                              optionLabels: const [
-                                'Quản lý chi nhánh',
-                                'Quản lý bộ phận',
-                                'Nhân viên'
-                              ],
-                              onChanged: (val) async {
-                                setState(() => _model.roleValue = val);
-                                if ((_model.roleValue ==
-                                        '3755a98d-f064-45cd-80e4-5084ab1dd2c4') ||
-                                    (_model.roleValue ==
-                                        '6a8bc644-cb2d-4a31-b11e-b86e19824725')) {
-                                  setState(() {
-                                    _model.selectRole = true;
-                                  });
-                                }
-                              },
-                              width: double.infinity,
-                              height: 56.0,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    letterSpacing: 0.0,
-                                  ),
-                              hintText: 'Chọn chức vụ',
-                              icon: Icon(
-                                Icons.keyboard_arrow_down_rounded,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 15.0,
-                              ),
-                              fillColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              elevation: 1.0,
-                              borderColor:
-                                  FlutterFlowTheme.of(context).alternate,
-                              borderWidth: 1.0,
-                              borderRadius: 8.0,
-                              margin: const EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 4.0, 12.0, 4.0),
-                              hidesUnderline: true,
-                              isSearchable: false,
-                              isMultiSelect: false,
                             ),
-                          ),
-                          if ((FFAppState().user.role ==
-                                  '82073000-1ba2-43a4-a55c-459d17c23b68') ||
-                              (_model.roleValue ==
-                                  'a8d33527-375b-4599-ac70-6a3fcad1de39'))
+                          if (_model.roleValue ==
+                              'a8d33527-375b-4599-ac70-6a3fcad1de39')
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 20.0),

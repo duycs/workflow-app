@@ -155,6 +155,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                             });
                             await _model.getLinkOperations(context);
                             setState(() {});
+                            setState(() {});
                           },
                         ),
                         autofocus: false,
@@ -217,6 +218,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                           _model.textController.text;
                                     });
                                     await _model.getLinkOperations(context);
+                                    setState(() {});
                                     setState(() {});
                                     setState(() {});
                                   },
@@ -679,10 +681,15 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                   Expanded(
                                                     child: Text(
                                                       dateTimeFormat(
-                                                          'dd/MM/yyyy',
-                                                          functions.stringToDateTime(
-                                                              itemOperationItem
-                                                                  .dateCreated)),
+                                                        'dd/MM/yyyy',
+                                                        functions.stringToDateTime(
+                                                            itemOperationItem
+                                                                .dateCreated),
+                                                        locale:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .languageCode,
+                                                      ),
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -1084,10 +1091,15 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                   Expanded(
                                                     child: Text(
                                                       dateTimeFormat(
-                                                          'dd/MM/yyyy',
-                                                          functions.stringToDateTime(
-                                                              itemUserCreatedItem
-                                                                  .dateCreated)),
+                                                        'dd/MM/yyyy',
+                                                        functions.stringToDateTime(
+                                                            itemUserCreatedItem
+                                                                .dateCreated),
+                                                        locale:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .languageCode,
+                                                      ),
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -1453,10 +1465,16 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                   Expanded(
                                                     child: Text(
                                                       dateTimeFormat(
-                                                          'dd/MM/yyyy',
-                                                          functions.stringToDateTime(
-                                                              itemDefaultItem
-                                                                  .dateCreated)),
+                                                        'dd/MM/yyyy',
+                                                        functions
+                                                            .stringToDateTime(
+                                                                itemDefaultItem
+                                                                    .dateCreated),
+                                                        locale:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .languageCode,
+                                                      ),
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)

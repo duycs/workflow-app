@@ -905,11 +905,16 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                     Expanded(
                                                       child: Text(
                                                         dateTimeFormat(
-                                                            'HH:mm dd/MM/yyyy',
-                                                            functions
-                                                                .stringToDateTime(
-                                                                    dataListItem
-                                                                        .dateCreated)),
+                                                          'HH:mm dd/MM/yyyy',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  dataListItem
+                                                                      .dateCreated),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        ),
                                                         textAlign:
                                                             TextAlign.end,
                                                         style: FlutterFlowTheme

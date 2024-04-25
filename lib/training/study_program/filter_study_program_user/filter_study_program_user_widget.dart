@@ -207,7 +207,10 @@ class _FilterStudyProgramUserWidgetState
                           }
                           setState(() {
                             _model.dateStart = dateTimeFormat(
-                                'yyyy-MM-dd', _model.datePicked1);
+                              'yyyy-MM-dd',
+                              _model.datePicked1,
+                              locale: FFLocalizations.of(context).languageCode,
+                            );
                           });
                         },
                         child: Column(
@@ -222,7 +225,7 @@ class _FilterStudyProgramUserWidgetState
                               (_model.dateStart != '') &&
                                       (_model.dateStart != ' ')
                                   ? _model.dateStart
-                                  : 'Ngày bắt đầu',
+                                  : 'Từ ngày',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
@@ -290,7 +293,10 @@ class _FilterStudyProgramUserWidgetState
                           }
                           setState(() {
                             _model.dateEnd = dateTimeFormat(
-                                'yyyy-MM-dd', _model.datePicked2);
+                              'yyyy-MM-dd',
+                              _model.datePicked2,
+                              locale: FFLocalizations.of(context).languageCode,
+                            );
                           });
                         },
                         child: Column(
@@ -305,7 +311,7 @@ class _FilterStudyProgramUserWidgetState
                               (_model.dateEnd != '') &&
                                       (_model.dateEnd != ' ')
                                   ? _model.dateEnd
-                                  : 'Ngày kết thúc',
+                                  : 'Đến hết ngày',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium

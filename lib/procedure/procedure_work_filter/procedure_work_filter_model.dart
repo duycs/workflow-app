@@ -1,5 +1,5 @@
-import '/components/staffs_list_dropdown_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/procedure/staffs_list_dropdown/staffs_list_dropdown_widget.dart';
 import 'procedure_work_filter_widget.dart' show ProcedureWorkFilterWidget;
 import 'package:flutter/material.dart';
 
@@ -12,6 +12,8 @@ class ProcedureWorkFilterModel
   String? dateEndFilter;
 
   String? staff;
+
+  bool isLoad = false;
 
   ///  State fields for stateful widgets in this component.
 

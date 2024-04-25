@@ -519,7 +519,10 @@ class _QuestionUpdateWidgetState extends State<QuestionUpdateWidget> {
                                         });
                                       } else if (_model.dropDownValue ==
                                           'radio') {
-                                        if ((_model.dataList!.answers.isNotEmpty) &&
+                                        if ((_model.dataList!.answers
+                                                    .where(
+                                                        (e) => e.correct == 1)
+                                                    .toList().isNotEmpty) &&
                                             (_model.checkboxValue == true)) {
                                           await showDialog(
                                             context: context,
@@ -732,58 +735,61 @@ class _QuestionUpdateWidgetState extends State<QuestionUpdateWidget> {
                                 ),
                               ].divide(const SizedBox(width: 8.0)),
                             ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 4.0, 0.0, 10.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Theme(
-                                    data: ThemeData(
-                                      checkboxTheme: CheckboxThemeData(
-                                        visualDensity: VisualDensity.compact,
-                                        materialTapTargetSize:
-                                            MaterialTapTargetSize.shrinkWrap,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(4.0),
+                            if ((_model.dropDownValue != 'text') &&
+                                (_model.dropDownValue != 'number'))
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 4.0, 0.0, 10.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Theme(
+                                      data: ThemeData(
+                                        checkboxTheme: CheckboxThemeData(
+                                          visualDensity: VisualDensity.compact,
+                                          materialTapTargetSize:
+                                              MaterialTapTargetSize.shrinkWrap,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(4.0),
+                                          ),
                                         ),
+                                        unselectedWidgetColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondaryText,
                                       ),
-                                      unselectedWidgetColor:
-                                          FlutterFlowTheme.of(context)
+                                      child: Checkbox(
+                                        value: _model.checkboxValue ??= false,
+                                        onChanged: (newValue) async {
+                                          setState(() =>
+                                              _model.checkboxValue = newValue!);
+                                        },
+                                        side: BorderSide(
+                                          width: 2,
+                                          color: FlutterFlowTheme.of(context)
                                               .secondaryText,
-                                    ),
-                                    child: Checkbox(
-                                      value: _model.checkboxValue ??= false,
-                                      onChanged: (newValue) async {
-                                        setState(() =>
-                                            _model.checkboxValue = newValue!);
-                                      },
-                                      side: BorderSide(
-                                        width: 2,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                      ),
-                                      activeColor:
-                                          FlutterFlowTheme.of(context).primary,
-                                      checkColor:
-                                          FlutterFlowTheme.of(context).info,
-                                    ),
-                                  ),
-                                  Text(
-                                    'Chọn làm đáp án đúng',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 13.0,
-                                          letterSpacing: 0.0,
-                                          fontStyle: FontStyle.italic,
                                         ),
-                                  ),
-                                ],
+                                        activeColor:
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                        checkColor:
+                                            FlutterFlowTheme.of(context).info,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Chọn làm đáp án đúng',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 13.0,
+                                            letterSpacing: 0.0,
+                                            fontStyle: FontStyle.italic,
+                                          ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 10.0),

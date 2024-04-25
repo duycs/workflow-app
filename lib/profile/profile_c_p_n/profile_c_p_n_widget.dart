@@ -1162,13 +1162,13 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                                               FlutterFlowExpandedImageView(
                                                                             image:
                                                                                 Image.network(
-                                                                              'https://source.unsplash.com/random/1280x720?profile&52',
+                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
                                                                               fit: BoxFit.contain,
                                                                             ),
                                                                             allowRotation:
                                                                                 false,
                                                                             tag:
-                                                                                'imageTag7',
+                                                                                '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
                                                                             useHeroAnimation:
                                                                                 true,
                                                                           ),
@@ -1177,7 +1177,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                                     },
                                                                     child: Hero(
                                                                       tag:
-                                                                          'imageTag7',
+                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
                                                                       transitionOnUserGestures:
                                                                           true,
                                                                       child:
@@ -1186,7 +1186,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                                             BorderRadius.circular(8.0),
                                                                         child: Image
                                                                             .network(
-                                                                          'https://source.unsplash.com/random/1280x720?profile&52',
+                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
                                                                           width:
                                                                               160.0,
                                                                           height:
@@ -1231,13 +1231,13 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                                               FlutterFlowExpandedImageView(
                                                                             image:
                                                                                 Image.network(
-                                                                              'https://source.unsplash.com/random/1280x720?profile&51',
+                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
                                                                               fit: BoxFit.contain,
                                                                             ),
                                                                             allowRotation:
                                                                                 false,
                                                                             tag:
-                                                                                'imageTag8',
+                                                                                '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
                                                                             useHeroAnimation:
                                                                                 true,
                                                                           ),
@@ -1246,7 +1246,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                                     },
                                                                     child: Hero(
                                                                       tag:
-                                                                          'imageTag8',
+                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
                                                                       transitionOnUserGestures:
                                                                           true,
                                                                       child:
@@ -1255,7 +1255,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                                             BorderRadius.circular(8.0),
                                                                         child: Image
                                                                             .network(
-                                                                          'https://source.unsplash.com/random/1280x720?profile&51',
+                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
                                                                           width:
                                                                               160.0,
                                                                           height:

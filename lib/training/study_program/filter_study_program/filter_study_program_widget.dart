@@ -203,7 +203,10 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                           }
                           setState(() {
                             _model.dateStartFilter = dateTimeFormat(
-                                'yyyy-MM-dd', _model.datePicked1);
+                              'yyyy-MM-dd',
+                              _model.datePicked1,
+                              locale: FFLocalizations.of(context).languageCode,
+                            );
                           });
                         },
                         child: Column(
@@ -219,7 +222,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                                           _model.dateStartFilter != '') &&
                                       (_model.dateStartFilter != ' ')
                                   ? _model.dateStartFilter!
-                                  : 'Ngày bắt đầu',
+                                  : 'Từ ngày',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
@@ -287,7 +290,10 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                           }
                           setState(() {
                             _model.dateEndFilter = dateTimeFormat(
-                                'yyyy-MM-dd', _model.datePicked2);
+                              'yyyy-MM-dd',
+                              _model.datePicked2,
+                              locale: FFLocalizations.of(context).languageCode,
+                            );
                           });
                         },
                         child: Column(
@@ -303,7 +309,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                                           _model.dateEndFilter != '') &&
                                       (_model.dateEndFilter != ' ')
                                   ? _model.dateEndFilter!
-                                  : 'Ngày kết thúc',
+                                  : 'Đến hết ngày',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium

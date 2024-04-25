@@ -172,7 +172,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 8.0, 0.0, 16.0),
+                                          0.0, 8.0, 0.0, 0.0),
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
@@ -1334,202 +1334,206 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                       ),
                                     ),
                                     if (_model.checkFile == '0')
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(4.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              if ((((String type) {
-                                                        return type
-                                                            .split('.')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        _model.listDetail,
-                                                        r'''$.file.filename_download''',
-                                                      ).toString())) ==
-                                                      'pdf') ||
-                                                  (((String type) {
-                                                        return type
-                                                            .split('.')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        _model.listDetail,
-                                                        r'''$.file.filename_download''',
-                                                      ).toString())) ==
-                                                      'pdfa') ||
-                                                  (((String type) {
-                                                        return type
-                                                            .split('.')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        _model.listDetail,
-                                                        r'''$.file.filename_download''',
-                                                      ).toString())) ==
-                                                      'pdfx') ||
-                                                  (((String type) {
-                                                        return type
-                                                            .split('.')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        _model.listDetail,
-                                                        r'''$.file.filename_download''',
-                                                      ).toString())) ==
-                                                      'pdft') ||
-                                                  (((String type) {
-                                                        return type
-                                                            .split('.')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        _model.listDetail,
-                                                        r'''$.file.filename_download''',
-                                                      ).toString())) ==
-                                                      'pdfvt') ||
-                                                  (((String type) {
-                                                        return type
-                                                            .split('.')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        _model.listDetail,
-                                                        r'''$.file.filename_download''',
-                                                      ).toString())) ==
-                                                      'pdfua'))
-                                                FlutterFlowPdfViewer(
-                                                  networkPath:
-                                                      '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
-                                                    _model.listDetail,
-                                                    r'''$.file.id''',
-                                                  ).toString()}?access_token=${FFAppState().accessToken}',
-                                                  width: double.infinity,
-                                                  height: 500.0,
-                                                  horizontalScroll: false,
-                                                ),
-                                              if ((((String type) {
-                                                        return type
-                                                            .split('.')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        _model.listDetail,
-                                                        r'''$.file.filename_download''',
-                                                      ).toString())) ==
-                                                      'jpeg') ||
-                                                  (((String type) {
-                                                        return type
-                                                            .split('.')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        _model.listDetail,
-                                                        r'''$.file.filename_download''',
-                                                      ).toString())) ==
-                                                      'png') ||
-                                                  (((String type) {
-                                                        return type
-                                                            .split('.')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        _model.listDetail,
-                                                        r'''$.file.filename_download''',
-                                                      ).toString())) ==
-                                                      'jpg') ||
-                                                  (((String type) {
-                                                        return type
-                                                            .split('.')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        _model.listDetail,
-                                                        r'''$.file.filename_download''',
-                                                      ).toString())) ==
-                                                      'gif') ||
-                                                  (((String type) {
-                                                        return type
-                                                            .split('.')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        _model.listDetail,
-                                                        r'''$.file.filename_download''',
-                                                      ).toString())) ==
-                                                      'bmp') ||
-                                                  (((String type) {
-                                                        return type
-                                                            .split('.')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        _model.listDetail,
-                                                        r'''$.file.filename_download''',
-                                                      ).toString())) ==
-                                                      'tiff') ||
-                                                  (((String type) {
-                                                        return type
-                                                            .split('.')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        _model.listDetail,
-                                                        r'''$.file.filename_download''',
-                                                      ).toString())) ==
-                                                      'tif') ||
-                                                  (((String type) {
-                                                        return type
-                                                            .split('.')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        _model.listDetail,
-                                                        r'''$.file.filename_download''',
-                                                      ).toString())) ==
-                                                      'raw') ||
-                                                  (((String type) {
-                                                        return type
-                                                            .split('.')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        _model.listDetail,
-                                                        r'''$.file.filename_download''',
-                                                      ).toString())) ==
-                                                      'webp') ||
-                                                  (((String type) {
-                                                        return type
-                                                            .split('.')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        _model.listDetail,
-                                                        r'''$.file.filename_download''',
-                                                      ).toString())) ==
-                                                      'svg') ||
-                                                  (((String type) {
-                                                        return type
-                                                            .split('.')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        _model.listDetail,
-                                                        r'''$.file.filename_download''',
-                                                      ).toString())) ==
-                                                      'heic') ||
-                                                  (((String type) {
-                                                        return type
-                                                            .split('.')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        _model.listDetail,
-                                                        r'''$.file.filename_download''',
-                                                      ).toString())) ==
-                                                      'heif'))
-                                                ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                  child: Image.network(
-                                                    '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 16.0, 0.0, 0.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(4.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                if ((((String type) {
+                                                          return type
+                                                              .split('.')
+                                                              .last;
+                                                        }(getJsonField(
+                                                          _model.listDetail,
+                                                          r'''$.file.filename_download''',
+                                                        ).toString())) ==
+                                                        'pdf') ||
+                                                    (((String type) {
+                                                          return type
+                                                              .split('.')
+                                                              .last;
+                                                        }(getJsonField(
+                                                          _model.listDetail,
+                                                          r'''$.file.filename_download''',
+                                                        ).toString())) ==
+                                                        'pdfa') ||
+                                                    (((String type) {
+                                                          return type
+                                                              .split('.')
+                                                              .last;
+                                                        }(getJsonField(
+                                                          _model.listDetail,
+                                                          r'''$.file.filename_download''',
+                                                        ).toString())) ==
+                                                        'pdfx') ||
+                                                    (((String type) {
+                                                          return type
+                                                              .split('.')
+                                                              .last;
+                                                        }(getJsonField(
+                                                          _model.listDetail,
+                                                          r'''$.file.filename_download''',
+                                                        ).toString())) ==
+                                                        'pdft') ||
+                                                    (((String type) {
+                                                          return type
+                                                              .split('.')
+                                                              .last;
+                                                        }(getJsonField(
+                                                          _model.listDetail,
+                                                          r'''$.file.filename_download''',
+                                                        ).toString())) ==
+                                                        'pdfvt') ||
+                                                    (((String type) {
+                                                          return type
+                                                              .split('.')
+                                                              .last;
+                                                        }(getJsonField(
+                                                          _model.listDetail,
+                                                          r'''$.file.filename_download''',
+                                                        ).toString())) ==
+                                                        'pdfua'))
+                                                  FlutterFlowPdfViewer(
+                                                    networkPath:
+                                                        '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
                                                       _model.listDetail,
                                                       r'''$.file.id''',
                                                     ).toString()}?access_token=${FFAppState().accessToken}',
                                                     width: double.infinity,
-                                                    fit: BoxFit.contain,
+                                                    height: 500.0,
+                                                    horizontalScroll: false,
                                                   ),
-                                                ),
-                                            ],
+                                                if ((((String type) {
+                                                          return type
+                                                              .split('.')
+                                                              .last;
+                                                        }(getJsonField(
+                                                          _model.listDetail,
+                                                          r'''$.file.filename_download''',
+                                                        ).toString())) ==
+                                                        'jpeg') ||
+                                                    (((String type) {
+                                                          return type
+                                                              .split('.')
+                                                              .last;
+                                                        }(getJsonField(
+                                                          _model.listDetail,
+                                                          r'''$.file.filename_download''',
+                                                        ).toString())) ==
+                                                        'png') ||
+                                                    (((String type) {
+                                                          return type
+                                                              .split('.')
+                                                              .last;
+                                                        }(getJsonField(
+                                                          _model.listDetail,
+                                                          r'''$.file.filename_download''',
+                                                        ).toString())) ==
+                                                        'jpg') ||
+                                                    (((String type) {
+                                                          return type
+                                                              .split('.')
+                                                              .last;
+                                                        }(getJsonField(
+                                                          _model.listDetail,
+                                                          r'''$.file.filename_download''',
+                                                        ).toString())) ==
+                                                        'gif') ||
+                                                    (((String type) {
+                                                          return type
+                                                              .split('.')
+                                                              .last;
+                                                        }(getJsonField(
+                                                          _model.listDetail,
+                                                          r'''$.file.filename_download''',
+                                                        ).toString())) ==
+                                                        'bmp') ||
+                                                    (((String type) {
+                                                          return type
+                                                              .split('.')
+                                                              .last;
+                                                        }(getJsonField(
+                                                          _model.listDetail,
+                                                          r'''$.file.filename_download''',
+                                                        ).toString())) ==
+                                                        'tiff') ||
+                                                    (((String type) {
+                                                          return type
+                                                              .split('.')
+                                                              .last;
+                                                        }(getJsonField(
+                                                          _model.listDetail,
+                                                          r'''$.file.filename_download''',
+                                                        ).toString())) ==
+                                                        'tif') ||
+                                                    (((String type) {
+                                                          return type
+                                                              .split('.')
+                                                              .last;
+                                                        }(getJsonField(
+                                                          _model.listDetail,
+                                                          r'''$.file.filename_download''',
+                                                        ).toString())) ==
+                                                        'raw') ||
+                                                    (((String type) {
+                                                          return type
+                                                              .split('.')
+                                                              .last;
+                                                        }(getJsonField(
+                                                          _model.listDetail,
+                                                          r'''$.file.filename_download''',
+                                                        ).toString())) ==
+                                                        'webp') ||
+                                                    (((String type) {
+                                                          return type
+                                                              .split('.')
+                                                              .last;
+                                                        }(getJsonField(
+                                                          _model.listDetail,
+                                                          r'''$.file.filename_download''',
+                                                        ).toString())) ==
+                                                        'svg') ||
+                                                    (((String type) {
+                                                          return type
+                                                              .split('.')
+                                                              .last;
+                                                        }(getJsonField(
+                                                          _model.listDetail,
+                                                          r'''$.file.filename_download''',
+                                                        ).toString())) ==
+                                                        'heic') ||
+                                                    (((String type) {
+                                                          return type
+                                                              .split('.')
+                                                              .last;
+                                                        }(getJsonField(
+                                                          _model.listDetail,
+                                                          r'''$.file.filename_download''',
+                                                        ).toString())) ==
+                                                        'heif'))
+                                                  ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: Image.network(
+                                                      '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
+                                                        _model.listDetail,
+                                                        r'''$.file.id''',
+                                                      ).toString()}?access_token=${FFAppState().accessToken}',
+                                                      width: double.infinity,
+                                                      fit: BoxFit.contain,
+                                                    ),
+                                                  ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -1546,6 +1550,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Row(
                               mainAxisSize: MainAxisSize.max,
@@ -1587,6 +1592,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
                                       _model.list.length.toString(),
@@ -1612,25 +1618,31 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                             ),
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 4.0, 12.0, 0.0),
+                                  12.0, 0.0, 12.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  Text(
-                                    dateTimeFormat(
+                                  Align(
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Text(
+                                      dateTimeFormat(
                                         'dd/MM/yyyy',
                                         functions.stringToDateTime(getJsonField(
                                           _model.listDetail,
                                           r'''$.date_created''',
-                                        ).toString())),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 13.0,
-                                          letterSpacing: 0.0,
-                                        ),
+                                        ).toString()),
+                                        locale: FFLocalizations.of(context)
+                                            .languageCode,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
                                   ),
                                 ].divide(const SizedBox(width: 4.0)),
                               ),
@@ -1971,13 +1983,18 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                     children: [
                                                       Text(
                                                         dateTimeFormat(
-                                                            'HH:mm dd/MM/yyyy',
-                                                            functions
-                                                                .stringToDateTime(
-                                                                    getJsonField(
-                                                              listItemsItem,
-                                                              r'''$.comments_id.date_created''',
-                                                            ).toString())),
+                                                          'HH:mm dd/MM/yyyy',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  getJsonField(
+                                                            listItemsItem,
+                                                            r'''$.comments_id.date_created''',
+                                                          ).toString()),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        ),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)

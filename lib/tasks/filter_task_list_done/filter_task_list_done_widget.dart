@@ -274,7 +274,11 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                                 }
                                 setState(() {
                                   _model.dateStart = dateTimeFormat(
-                                      'yyyy-MM-dd', _model.datePicked1);
+                                    'yyyy-MM-dd',
+                                    _model.datePicked1,
+                                    locale: FFLocalizations.of(context)
+                                        .languageCode,
+                                  );
                                 });
                               },
                               child: Column(
@@ -291,7 +295,10 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                                         ? dateTimeFormat(
                                             'dd/MM/yyyy',
                                             functions.stringToDateTime(
-                                                _model.dateStart))
+                                                _model.dateStart),
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          )
                                         : 'Từ ngày',
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
@@ -363,7 +370,11 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                                 }
                                 setState(() {
                                   _model.dateEnd = dateTimeFormat(
-                                      'yyyy-MM-dd', _model.datePicked2);
+                                    'yyyy-MM-dd',
+                                    _model.datePicked2,
+                                    locale: FFLocalizations.of(context)
+                                        .languageCode,
+                                  );
                                 });
                               },
                               child: Column(
@@ -380,7 +391,10 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                                         ? dateTimeFormat(
                                             'dd/MM/yyyy',
                                             functions.stringToDateTime(
-                                                _model.dateEnd))
+                                                _model.dateEnd),
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          )
                                         : 'Đến ngày',
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)

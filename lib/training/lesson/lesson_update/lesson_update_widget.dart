@@ -9,6 +9,7 @@ import '/flutter_flow/upload_data.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'lesson_update_model.dart';
 export 'lesson_update_model.dart';
@@ -251,8 +252,11 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                           style:
                               FlutterFlowTheme.of(context).bodyLarge.override(
                                     fontFamily: 'Readex Pro',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
+                          maxLength: 50,
+                          maxLengthEnforcement: MaxLengthEnforcement.enforced,
                           validator: _model.descriptionTextControllerValidator
                               .asValidator(context),
                         ),

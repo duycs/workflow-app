@@ -273,7 +273,11 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                                 }
                                 setState(() {
                                   _model.dateStart = dateTimeFormat(
-                                      'yyyy-MM-dd', _model.datePicked1);
+                                    'yyyy-MM-dd',
+                                    _model.datePicked1,
+                                    locale: FFLocalizations.of(context)
+                                        .languageCode,
+                                  );
                                 });
                               },
                               child: Column(
@@ -290,7 +294,10 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                                         ? dateTimeFormat(
                                             'dd/MM/yyyy',
                                             functions.stringToDateTime(
-                                                _model.dateStart))
+                                                _model.dateStart),
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          )
                                         : 'Từ ngày',
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
@@ -362,7 +369,11 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                                 }
                                 setState(() {
                                   _model.dateEnd = dateTimeFormat(
-                                      'yyyy-MM-dd', _model.datePicked2);
+                                    'yyyy-MM-dd',
+                                    _model.datePicked2,
+                                    locale: FFLocalizations.of(context)
+                                        .languageCode,
+                                  );
                                 });
                               },
                               child: Column(
@@ -379,7 +390,10 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                                         ? dateTimeFormat(
                                             'dd/MM/yyyy',
                                             functions.stringToDateTime(
-                                                _model.dateEnd))
+                                                _model.dateEnd),
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          )
                                         : 'Đến ngày',
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
@@ -490,7 +504,18 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                                 ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
                                   FFAppState().staffLogin,
                                   r'''$.organization_id''',
-                                ).toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"1\"}}${_model.dateStart != '' ? ',{\"date_created\":{\"_gte\":\"${dateTimeFormat('yyyy-MM-dd', functions.stringToDateTime(_model.dateStart))}\"}}' : ' '}${_model.dateEnd != '' ? ',{\"date_created\":{\"_lte\":\"${dateTimeFormat('yyyy-MM-dd', functions.stringToDateTime(_model.dateEnd))}\"}}' : ' '}${_model.typeValue != ' ' ? ',{\"action_type\":{\"_eq\":\"${() {
+                                ).toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"1\"}}${_model.dateStart != '' ? ',{\"date_created\":{\"_gte\":\"${dateTimeFormat(
+                                    'yyyy-MM-dd',
+                                    functions
+                                        .stringToDateTime(_model.dateStart),
+                                    locale: FFLocalizations.of(context)
+                                        .languageCode,
+                                  )}\"}}' : ' '}${_model.dateEnd != '' ? ',{\"date_created\":{\"_lte\":\"${dateTimeFormat(
+                                    'yyyy-MM-dd',
+                                    functions.stringToDateTime(_model.dateEnd),
+                                    locale: FFLocalizations.of(context)
+                                        .languageCode,
+                                  )}\"}}' : ' '}${_model.typeValue != ' ' ? ',{\"action_type\":{\"_eq\":\"${() {
                                     if (_model.typeValue == 'Submit Text') {
                                       return 'submit_text';
                                     } else if (_model.typeValue ==

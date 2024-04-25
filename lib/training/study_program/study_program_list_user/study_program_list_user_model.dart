@@ -69,8 +69,9 @@ class StudyProgramListUserModel
     apiResultStudyProgramList =
         await StudyProgramGroup.studyProgramOneCall.call(
       accessToken: FFAppState().accessToken,
-      filter:
-          '{\"_and\":[{}${(nameSearch != '') && (nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"$nameSearch\"}}' : '  '}${(lessonNameSeach != '') && (lessonNameSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"$lessonNameSeach\"}}}}' : '  '}${(dateStartSeach != '') && (dateStartSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"$dateStartSeach\"}}}}' : ' '}${(dateEndSeach != '') && (dateEndSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"$dateEndSeach\"}}}}' : ' '}${',{\"departments\":{\"departments_id\":{\"id\":{\"_eq\":\"${getJsonField(
+      filter: '{\"_and\":[{}${(nameSearch != '') && (nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"$nameSearch\"}}' : '  '}${(lessonNameSeach != '') && (lessonNameSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"$lessonNameSeach\"}}}}' : '  '}${(dateStartSeach != '') && (dateStartSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"$dateStartSeach\"}}}}' : ' '}${(dateEndSeach != '') && (dateEndSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"${(String date) {
+          return DateTime.parse(date).add(const Duration(days: 1)).toString();
+        }(dateEndSeach)}\"}}}}' : ' '}${',{\"departments\":{\"departments_id\":{\"id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.department_id''',
       ).toString().toString()}\"}}}}'}]}',

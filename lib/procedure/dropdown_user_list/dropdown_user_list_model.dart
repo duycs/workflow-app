@@ -41,6 +41,8 @@ class DropdownUserListModel extends FlutterFlowModel<DropdownUserListWidget> {
 
   int loop2 = 0;
 
+  bool isLoad = false;
+
   ///  State fields for stateful widgets in this component.
 
   // Stores action output result for [Action Block - tokenReload] action in DropdownUserList widget.

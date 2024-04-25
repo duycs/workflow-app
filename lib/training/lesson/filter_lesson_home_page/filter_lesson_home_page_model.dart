@@ -67,7 +67,10 @@ class FilterLessonHomePageModel
       ).toString().toString()}\"}}${widget.checkPrograms != 'programs' ? ' ,{\"departments\":{\"departments_id\":{\"_eq\":\"' : ' '}${widget.checkPrograms != 'programs' ? getJsonField(
           FFAppState().staffDepartment,
           r'''$.id''',
-        ).toString().toString() : ' '}${widget.checkPrograms != 'programs' ? '\"}}}' : ' '}]}',
+        ).toString().toString() : ' '}${widget.checkPrograms != 'programs' ? '\"}}}' : ' '}${widget.checkPrograms == 'programs' ? ',{\"departments\":{\"departments_id\":{\"_neq\":\"' : ' '}${widget.checkPrograms == 'programs' ? getJsonField(
+          FFAppState().staffDepartment,
+          r'''$.id''',
+        ).toString().toString() : ' '}${widget.checkPrograms == 'programs' ? '\"}}}' : ' '}]}',
     );
     if ((apiResultList.succeeded ?? true)) {
       programList = StudyProgramListDataStruct.maybeFromMap(

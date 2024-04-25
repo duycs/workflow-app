@@ -145,6 +145,7 @@ class _ProcedurePublishedListWidgetState
                                     await _model
                                         .getProcedurePublishedList(context);
                                     setState(() {});
+                                    setState(() {});
                                   },
                                 ),
                                 autofocus: false,
@@ -214,6 +215,7 @@ class _ProcedurePublishedListWidgetState
                                             await _model
                                                 .getProcedurePublishedList(
                                                     context);
+                                            setState(() {});
                                             setState(() {});
                                             setState(() {});
                                           },
@@ -556,7 +558,11 @@ class _ProcedurePublishedListWidgetState
                                                                                 ),
                                                                           ),
                                                                           Text(
-                                                                            'T.gian tạo: ${dateTimeFormat('dd/MM/yyyy', functions.stringToDateTime(itemPublishedListItem.dateCreated))}',
+                                                                            'T.gian tạo: ${dateTimeFormat(
+                                                                              'dd/MM/yyyy',
+                                                                              functions.stringToDateTime(itemPublishedListItem.dateCreated),
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            )}',
                                                                             style: FlutterFlowTheme.of(context).labelMedium.override(
                                                                                   fontFamily: 'Readex Pro',
                                                                                   fontSize: 13.0,

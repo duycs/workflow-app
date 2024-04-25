@@ -1184,11 +1184,16 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                     ),
                                                     Text(
                                                       dateTimeFormat(
-                                                          'HH:mm dd/MM/yyyy',
-                                                          functions
-                                                              .stringToDateTime(
-                                                                  dataListItem
-                                                                      .dateCreated)),
+                                                        'HH:mm dd/MM/yyyy',
+                                                        functions
+                                                            .stringToDateTime(
+                                                                dataListItem
+                                                                    .dateCreated),
+                                                        locale:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .languageCode,
+                                                      ),
                                                       textAlign: TextAlign.end,
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -1402,7 +1407,17 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      dateTimeFormat('HH:mm dd/MM/yyyy', functions.stringToDateTime(dataListItem.dateStart)),
+                                                      dateTimeFormat(
+                                                        'HH:mm dd/MM/yyyy',
+                                                        functions
+                                                            .stringToDateTime(
+                                                                dataListItem
+                                                                    .dateStart),
+                                                        locale:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .languageCode,
+                                                      ),
                                                       textAlign: TextAlign.end,
                                                       style: FlutterFlowTheme
                                                               .of(context)

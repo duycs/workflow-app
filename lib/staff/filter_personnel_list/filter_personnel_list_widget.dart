@@ -191,6 +191,10 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                             _model.clearFilterToken =
                                 await action_blocks.tokenReload(context);
                             if (_model.clearFilterToken!) {
+                              setState(() {
+                                _model.statusValueController?.reset();
+                              });
+                              setState(() {});
                               _model.apiResultClearFilter =
                                   await StaffGroup.getStaffListCall.call(
                                 accessToken: FFAppState().accessToken,
@@ -206,9 +210,6 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                           .data
                                           .toList()
                                           .cast<StaffListStruct>();
-                                });
-                                setState(() {
-                                  _model.statusValueController?.reset();
                                 });
                                 await widget.callback?.call(
                                   _model.list,
@@ -268,6 +269,28 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                       (_model.statusValue ==
                                           'Không hoạt động')) {
                                     return '{\"status\":{\"_neq\":\"active\"}}';
+                                  } else {
+                                    return ' ';
+                                  }
+                                }()}${() {
+                                  if (FFAppState().user.role ==
+                                      '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                                    return ',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                      FFAppState().staffLogin,
+                                      r'''$.organization_id''',
+                                    ).toString()}\"}}}';
+                                  } else if (FFAppState().user.role ==
+                                      'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                    return ',{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                      FFAppState().staffLogin,
+                                      r'''$.branch_id''',
+                                    ).toString()}\"}}}';
+                                  } else if (FFAppState().user.role ==
+                                      '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                    return ',{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                      FFAppState().staffLogin,
+                                      r'''$.department_id''',
+                                    ).toString()}\"}}}';
                                   } else {
                                     return ' ';
                                   }

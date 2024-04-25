@@ -187,7 +187,12 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
       accessToken: FFAppState().accessToken,
       name: nameTextController.text,
       code: codeTextController.text,
-      branchId: dropDownBranchIdValue,
+      branchId: FFAppState().user.role == 'a8d33527-375b-4599-ac70-6a3fcad1de39'
+          ? getJsonField(
+              FFAppState().staffLogin,
+              r'''$.branch_id''',
+            ).toString().toString()
+          : dropDownBranchIdValue,
       description: descriptionTextController.text,
       departmentId: getJsonField(
         widget.items,

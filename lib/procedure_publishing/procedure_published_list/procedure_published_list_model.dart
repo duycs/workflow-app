@@ -88,7 +88,9 @@ class ProcedurePublishedListModel
               r'''$.id''',
             ).toString().toString()}\"}}}}}';
           }
-        }()}${(searchName != '') && (searchName != ' ') ? ',{\"name\":{\"_icontains\":\"$searchName\"}}' : ' '}${(dateStart != '') && (dateStart != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_gte\":\"$dateStart\"}}}}' : ' '}${(dateEnd != '') && (dateEnd != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_lte\":\"$dateEnd\"}}}}' : ' '}${(searchUserCreated != '') && (searchUserCreated != ' ') ? ',{\"steps\":{\"tasks\":{\"user_created\":{\"first_name\":{\"_icontains\":\"$searchUserCreated\"}}}}}' : ' '}]}',
+        }()}${(searchName != '') && (searchName != ' ') ? ',{\"name\":{\"_icontains\":\"$searchName\"}}' : ' '}${(dateStart != '') && (dateStart != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_gte\":\"$dateStart\"}}}}' : ' '}${(dateEnd != '') && (dateEnd != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_lte\":\"${(String var1) {
+            return DateTime.parse(var1).add(const Duration(days: 1)).toString();
+          }(dateEnd)}\"}}}}' : ' '}${(searchUserCreated != '') && (searchUserCreated != ' ') ? ',{\"steps\":{\"tasks\":{\"user_created\":{\"first_name\":{\"_icontains\":\"$searchUserCreated\"}}}}}' : ' '}]}',
       );
       if ((apiResultProcedurePublishedList2.succeeded ?? true)) {
         dataList = ProcedurePublishedListDataStruct.maybeFromMap(

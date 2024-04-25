@@ -38,6 +38,10 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _expires = prefs.getInt('ff_expires') ?? _expires;
     });
+    _safeInit(() {
+      _dataTimeStartToken =
+          prefs.getInt('ff_dataTimeStartToken') ?? _dataTimeStartToken;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -143,6 +147,7 @@ class FFAppState extends ChangeNotifier {
   int get dataTimeStartToken => _dataTimeStartToken;
   set dataTimeStartToken(int value) {
     _dataTimeStartToken = value;
+    prefs.setInt('ff_dataTimeStartToken', value);
   }
 }
 

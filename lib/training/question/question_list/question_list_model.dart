@@ -64,7 +64,7 @@ class QuestionListModel extends FlutterFlowModel<QuestionListWidget> {
       );
       if ((apiResultQuestionListSearch.succeeded ?? true)) {
         dataList = (getJsonField(
-          (apiResultQuestionList?.jsonBody ?? ''),
+          (apiResultQuestionListSearch.jsonBody ?? ''),
           r'''$.data''',
           true,
         )!

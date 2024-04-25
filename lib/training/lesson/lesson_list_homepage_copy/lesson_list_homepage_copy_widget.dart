@@ -1576,12 +1576,22 @@ class _LessonListHomepageCopyWidgetState
                                                       _model.status = status!;
                                                       _model.dateStartList =
                                                           dateTimeFormat(
-                                                              'yyyy-MM-dd',
-                                                              dateStart);
+                                                        'yyyy-MM-dd',
+                                                        dateStart,
+                                                        locale:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .languageCode,
+                                                      );
                                                       _model.dateEndList =
                                                           dateTimeFormat(
-                                                              'yyyy-MM-dd',
-                                                              dateEnd);
+                                                        'yyyy-MM-dd',
+                                                        dateEnd,
+                                                        locale:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .languageCode,
+                                                      );
                                                       _model.lessonFavoriteStatusList =
                                                           lessonFavoriteStatus!;
                                                       _model.programsAllId =

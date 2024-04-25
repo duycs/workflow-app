@@ -365,7 +365,11 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                   _model.updateStepsEditStruct(
                                     (e) => e
                                       ..timeOperate = dateTimeFormat(
-                                          'Hm', _model.datePicked),
+                                        'Hm',
+                                        _model.datePicked,
+                                        locale: FFLocalizations.of(context)
+                                            .languageCode,
+                                      ),
                                   );
                                 });
                               },
@@ -394,7 +398,13 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                           },
                                         ),
                                         Text(
-                                          'Bắt đầu: ${(_model.datePicked != null) && (_model.stepsEdit?.timeOperate != null && _model.stepsEdit?.timeOperate != '') ? dateTimeFormat('Hm', _model.datePicked) : ' '}',
+                                          'Bắt đầu: ${(_model.datePicked != null) && (_model.stepsEdit?.timeOperate != null && _model.stepsEdit?.timeOperate != '') ? dateTimeFormat(
+                                              'Hm',
+                                              _model.datePicked,
+                                              locale:
+                                                  FFLocalizations.of(context)
+                                                      .languageCode,
+                                            ) : ' '}',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
