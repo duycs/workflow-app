@@ -12,10 +12,8 @@ import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'lesson_detail_home_page_model.dart';
 export 'lesson_detail_home_page_model.dart';
@@ -26,7 +24,7 @@ class LessonDetailHomePageWidget extends StatefulWidget {
     required this.listItems,
     required this.status,
     String? id,
-  }) : this.id = id ?? '';
+  }) : id = id ?? '';
 
   final dynamic listItems;
   final String? status;
@@ -114,25 +112,25 @@ class _LessonDetailHomePageWidgetState
                 ),
               ),
               if ((_model.status == 'draft') &&
-                  (widget.id != null && widget.id != ''))
+                  (widget.id != ''))
                 FFButtonWidget(
                   onPressed: () async {
                     var confirmDialogResponse = await showDialog<bool>(
                           context: context,
                           builder: (alertDialogContext) {
                             return AlertDialog(
-                              title: Text('Xác nhận'),
-                              content: Text('Ghim bài đang học'),
+                              title: const Text('Xác nhận'),
+                              content: const Text('Ghim bài đang học'),
                               actions: [
                                 TextButton(
                                   onPressed: () =>
                                       Navigator.pop(alertDialogContext, false),
-                                  child: Text('Đóng'),
+                                  child: const Text('Đóng'),
                                 ),
                                 TextButton(
                                   onPressed: () =>
                                       Navigator.pop(alertDialogContext, true),
-                                  child: Text('Xác nhận'),
+                                  child: const Text('Xác nhận'),
                                 ),
                               ],
                             );
@@ -157,7 +155,7 @@ class _LessonDetailHomePageWidgetState
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
                             ),
-                            duration: Duration(milliseconds: 4000),
+                            duration: const Duration(milliseconds: 4000),
                             backgroundColor:
                                 FlutterFlowTheme.of(context).secondary,
                           ),
@@ -179,7 +177,7 @@ class _LessonDetailHomePageWidgetState
                                       FlutterFlowTheme.of(context).primaryText,
                                 ),
                               ),
-                              duration: Duration(milliseconds: 4000),
+                              duration: const Duration(milliseconds: 4000),
                               backgroundColor:
                                   FlutterFlowTheme.of(context).error,
                             ),
@@ -193,9 +191,9 @@ class _LessonDetailHomePageWidgetState
                   text: 'Bắt đầu học',
                   options: FFButtonOptions(
                     height: 32.0,
-                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).secondary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Readex Pro',
@@ -204,7 +202,7 @@ class _LessonDetailHomePageWidgetState
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.normal,
                         ),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),
@@ -213,7 +211,7 @@ class _LessonDetailHomePageWidgetState
                 ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -223,7 +221,7 @@ class _LessonDetailHomePageWidgetState
           children: [
             Expanded(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                 child: SingleChildScrollView(
                   primary: false,
                   child: Column(
@@ -231,9 +229,9 @@ class _LessonDetailHomePageWidgetState
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Align(
-                        alignment: AlignmentDirectional(-1.0, 0.0),
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 12.0, 0.0, 0.0),
                           child: Text(
                             getJsonField(
@@ -252,7 +250,7 @@ class _LessonDetailHomePageWidgetState
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             12.0, 12.0, 12.0, 0.0),
                         child: Container(
                           width: double.infinity,
@@ -286,17 +284,17 @@ class _LessonDetailHomePageWidgetState
                                   lazyLoad: false,
                                 ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 12.0),
                                 child: Container(
-                                  decoration: BoxDecoration(),
+                                  decoration: const BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.stretch,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 8.0, 0.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
@@ -307,7 +305,7 @@ class _LessonDetailHomePageWidgetState
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.all(6.0),
+                                            padding: const EdgeInsets.all(6.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -490,7 +488,7 @@ class _LessonDetailHomePageWidgetState
                                                                           'heif'))))
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           2.0,
                                                                           0.0,
@@ -536,7 +534,7 @@ class _LessonDetailHomePageWidgetState
                                                               '0')
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           2.0,
                                                                           0.0,
@@ -1099,7 +1097,7 @@ class _LessonDetailHomePageWidgetState
                                                           Expanded(
                                                             child: Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -1337,14 +1335,14 @@ class _LessonDetailHomePageWidgetState
                                                     options: FFButtonOptions(
                                                       height: 25.0,
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   8.0,
                                                                   0.0,
                                                                   8.0,
                                                                   0.0),
                                                       iconPadding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1379,7 +1377,7 @@ class _LessonDetailHomePageWidgetState
                                                               .accent1,
                                                     ),
                                                   ),
-                                              ].divide(SizedBox(width: 5.0)),
+                                              ].divide(const SizedBox(width: 5.0)),
                                             ),
                                           ),
                                         ),
@@ -1387,7 +1385,7 @@ class _LessonDetailHomePageWidgetState
                                       if (_model.checkFile == '0')
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 16.0, 0.0, 0.0),
                                           child: Container(
                                             decoration: BoxDecoration(
@@ -1400,7 +1398,7 @@ class _LessonDetailHomePageWidgetState
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsets.all(4.0),
+                                              padding: const EdgeInsets.all(4.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -1598,14 +1596,14 @@ class _LessonDetailHomePageWidgetState
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(height: 8.0)),
+                            ].divide(const SizedBox(height: 8.0)),
                           ),
                         ),
                       ),
                       if ((widget.status != null && widget.status != '') &&
                           (_model.status != 'draft'))
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 0.0, 4.0),
                           child: RichText(
                             textScaler: MediaQuery.of(context).textScaler,
@@ -1622,7 +1620,7 @@ class _LessonDetailHomePageWidgetState
                                       ),
                                 ),
                                 TextSpan(
-                                  text: '${() {
+                                  text: () {
                                     if (_model.status == 'draft') {
                                       return 'Chưa học';
                                     } else if (_model.status == 'inprogress') {
@@ -1632,7 +1630,7 @@ class _LessonDetailHomePageWidgetState
                                     } else {
                                       return ' ';
                                     }
-                                  }()}',
+                                  }(),
                                   style: TextStyle(
                                     color: () {
                                       if (_model.status == 'draft') {
@@ -1646,7 +1644,7 @@ class _LessonDetailHomePageWidgetState
                                         return FlutterFlowTheme.of(context)
                                             .secondary;
                                       } else {
-                                        return Color(0x00000000);
+                                        return const Color(0x00000000);
                                       }
                                     }(),
                                     fontWeight: FontWeight.normal,
@@ -1665,7 +1663,7 @@ class _LessonDetailHomePageWidgetState
                           ),
                         ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             12.0, 4.0, 12.0, 4.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1696,10 +1694,10 @@ class _LessonDetailHomePageWidgetState
                                                 .stringToInt(getJsonField(
                                               _model.listStaffIdHeart
                                                   .where((e) =>
-                                                      '${getJsonField(
+                                                      getJsonField(
                                                         e,
                                                         r'''$.reacts_id.staff_id''',
-                                                      ).toString()}' ==
+                                                      ).toString() ==
                                                       FFAppState().staffid)
                                                   .toList()
                                                   .first,
@@ -1775,9 +1773,9 @@ class _LessonDetailHomePageWidgetState
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 2.0)),
+                                  ].divide(const SizedBox(width: 2.0)),
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                             Row(
                               mainAxisSize: MainAxisSize.max,
@@ -1811,16 +1809,16 @@ class _LessonDetailHomePageWidgetState
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 2.0)),
+                                  ].divide(const SizedBox(width: 2.0)),
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                             Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Align(
-                                  alignment: AlignmentDirectional(1.0, 0.0),
+                                  alignment: const AlignmentDirectional(1.0, 0.0),
                                   child: Text(
                                     dateTimeFormat(
                                       'dd/MM/yyyy',
@@ -1840,15 +1838,15 @@ class _LessonDetailHomePageWidgetState
                                         ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
-                          ].divide(SizedBox(width: 24.0)),
+                          ].divide(const SizedBox(width: 24.0)),
                         ),
                       ),
-                      if ((_model.testId != null && _model.testId != '') &&
+                      if ((_model.testId != '') &&
                           (_model.status != 'draft'))
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 16.0, 12.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1856,7 +1854,7 @@ class _LessonDetailHomePageWidgetState
                             children: [
                               Expanded(
                                 child: Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Builder(
                                     builder: (context) => InkWell(
                                       splashColor: Colors.transparent,
@@ -1873,7 +1871,7 @@ class _LessonDetailHomePageWidgetState
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  AlignmentDirectional(0.0, 0.0)
+                                                  const AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
@@ -1910,10 +1908,10 @@ class _LessonDetailHomePageWidgetState
                                               BorderRadius.circular(12.0),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Align(
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
@@ -1941,7 +1939,7 @@ class _LessonDetailHomePageWidgetState
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
-                                                ].divide(SizedBox(width: 8.0)),
+                                                ].divide(const SizedBox(width: 8.0)),
                                               ),
                                               Icon(
                                                 Icons.chevron_right_rounded,
@@ -1960,7 +1958,7 @@ class _LessonDetailHomePageWidgetState
                               ),
                               Expanded(
                                 child: Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
@@ -1979,7 +1977,7 @@ class _LessonDetailHomePageWidgetState
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -1993,7 +1991,7 @@ class _LessonDetailHomePageWidgetState
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBackground,
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                             color: Color(0x33000000),
                                           )
@@ -2003,7 +2001,7 @@ class _LessonDetailHomePageWidgetState
                                       ),
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -2031,7 +2029,7 @@ class _LessonDetailHomePageWidgetState
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
-                                              ].divide(SizedBox(width: 8.0)),
+                                              ].divide(const SizedBox(width: 8.0)),
                                             ),
                                             Icon(
                                               Icons.chevron_right_rounded,
@@ -2047,11 +2045,11 @@ class _LessonDetailHomePageWidgetState
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 24.0)),
+                            ].divide(const SizedBox(width: 24.0)),
                           ),
                         ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             12.0, 16.0, 0.0, 0.0),
                         child: Text(
                           'Nội dung bài học',
@@ -2065,14 +2063,14 @@ class _LessonDetailHomePageWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     12.0, 5.0, 12.0, 0.0),
                                 child: custom_widgets.HtmlToDoc(
                                   width: double.infinity,
@@ -2085,7 +2083,7 @@ class _LessonDetailHomePageWidgetState
                               ),
                               if ('2' == '1')
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 12.0, 16.0, 12.0),
                                   child: Container(
                                     width: double.infinity,
@@ -2099,7 +2097,7 @@ class _LessonDetailHomePageWidgetState
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 4.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -2112,9 +2110,9 @@ class _LessonDetailHomePageWidgetState
                                           ),
                                           Expanded(
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 0.0, 8.0, 0.0),
-                                              child: Container(
+                                              child: SizedBox(
                                                 width: double.infinity,
                                                 child: TextFormField(
                                                   controller:
@@ -2171,7 +2169,7 @@ class _LessonDetailHomePageWidgetState
                                                 .secondaryText,
                                             size: 24.0,
                                           ),
-                                        ].divide(SizedBox(width: 8.0)),
+                                        ].divide(const SizedBox(width: 8.0)),
                                       ),
                                     ),
                                   ),
@@ -2182,7 +2180,7 @@ class _LessonDetailHomePageWidgetState
                                 children: [
                                   if ('1' == '2')
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 16.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -2217,7 +2215,7 @@ class _LessonDetailHomePageWidgetState
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 16.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -2272,15 +2270,15 @@ class _LessonDetailHomePageWidgetState
                                         letterSpacing: 0.0,
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 2.0)),
+                              ].divide(const SizedBox(width: 2.0)),
                             ),
                           ],
                         ),
                       ),
                       Container(
-                        decoration: BoxDecoration(),
+                        decoration: const BoxDecoration(),
                         child: Visibility(
-                          visible: _model.list.length > 0,
+                          visible: _model.list.isNotEmpty,
                           child: Builder(
                             builder: (context) {
                               final listItems = _model.list.toList();
@@ -2291,12 +2289,12 @@ class _LessonDetailHomePageWidgetState
                                 scrollDirection: Axis.vertical,
                                 itemCount: listItems.length,
                                 separatorBuilder: (_, __) =>
-                                    SizedBox(height: 5.0),
+                                    const SizedBox(height: 5.0),
                                 itemBuilder: (context, listItemsIndex) {
                                   final listItemsItem =
                                       listItems[listItemsIndex];
                                   return Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 12.0, 12.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -2308,7 +2306,7 @@ class _LessonDetailHomePageWidgetState
                                         Container(
                                           width: 40.0,
                                           height: 40.0,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             shape: BoxShape.rectangle,
                                           ),
                                           child: ClipRRect(
@@ -2340,7 +2338,7 @@ class _LessonDetailHomePageWidgetState
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         12.0, 0.0, 0.0, 2.0),
                                                 child: Container(
@@ -2355,7 +2353,7 @@ class _LessonDetailHomePageWidgetState
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(12.0, 8.0,
                                                                 12.0, 8.0),
                                                     child: Column(
@@ -2387,10 +2385,10 @@ class _LessonDetailHomePageWidgetState
                                                                         0.0,
                                                                   ),
                                                             ),
-                                                            if ('${getJsonField(
+                                                            if (getJsonField(
                                                                   listItemsItem,
                                                                   r'''$.comments_id.staff_id.id''',
-                                                                ).toString()}' ==
+                                                                ).toString() ==
                                                                 FFAppState()
                                                                     .staffid)
                                                               Builder(
@@ -2416,12 +2414,12 @@ class _LessonDetailHomePageWidgetState
                                                                           false,
                                                                       avoidOverflow:
                                                                           true,
-                                                                      targetAnchor: AlignmentDirectional(
+                                                                      targetAnchor: const AlignmentDirectional(
                                                                               0.0,
                                                                               0.0)
                                                                           .resolve(
                                                                               Directionality.of(context)),
-                                                                      followerAnchor: AlignmentDirectional(
+                                                                      followerAnchor: const AlignmentDirectional(
                                                                               0.0,
                                                                               0.0)
                                                                           .resolve(
@@ -2437,7 +2435,7 @@ class _LessonDetailHomePageWidgetState
                                                                                 ? FocusScope.of(context).requestFocus(_model.unfocusNode)
                                                                                 : FocusScope.of(context).unfocus(),
                                                                             child:
-                                                                                Container(
+                                                                                SizedBox(
                                                                               height: 100.0,
                                                                               width: 200.0,
                                                                               child: MenuDeleteWidget(
@@ -2472,7 +2470,7 @@ class _LessonDetailHomePageWidgetState
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       4.0,
@@ -2502,7 +2500,7 @@ class _LessonDetailHomePageWidgetState
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 0.0, 0.0, 0.0),
                                                 child: Row(
@@ -2539,7 +2537,7 @@ class _LessonDetailHomePageWidgetState
                                                                     0.0,
                                                               ),
                                                         ),
-                                                      ].divide(SizedBox(
+                                                      ].divide(const SizedBox(
                                                           width: 16.0)),
                                                     ),
                                                     Row(
@@ -2558,17 +2556,17 @@ class _LessonDetailHomePageWidgetState
                                                                     0.0,
                                                               ),
                                                         ),
-                                                        Icon(
+                                                        const Icon(
                                                           Icons.favorite,
                                                           color:
                                                               Color(0xFFFF0202),
                                                           size: 20.0,
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 2.0)),
+                                                          const SizedBox(width: 2.0)),
                                                     ),
                                                   ].divide(
-                                                      SizedBox(width: 10.0)),
+                                                      const SizedBox(width: 10.0)),
                                                 ),
                                               ),
                                             ],
@@ -2589,7 +2587,7 @@ class _LessonDetailHomePageWidgetState
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -2606,7 +2604,7 @@ class _LessonDetailHomePageWidgetState
                   Flexible(
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
@@ -2618,7 +2616,7 @@ class _LessonDetailHomePageWidgetState
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
                                 child: TextFormField(
                                   controller: _model.commentsTextController,
@@ -2658,7 +2656,7 @@ class _LessonDetailHomePageWidgetState
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 4.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -2682,7 +2680,7 @@ class _LessonDetailHomePageWidgetState
                                 ),
                               ),
                             ),
-                          ].divide(SizedBox(width: 6.0)),
+                          ].divide(const SizedBox(width: 6.0)),
                         ),
                       ),
                     ),

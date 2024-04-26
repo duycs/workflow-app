@@ -4,8 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'wait_action_type_to_do_list_model.dart';
 export 'wait_action_type_to_do_list_model.dart';
 
@@ -48,7 +46,7 @@ class _WaitActionTypeToDoListWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
       child: FlutterFlowCheckboxGroup(
         options: widget.listData!.map((e) => e.operationsId.content).toList(),
         onChanged: ('1' == '1')

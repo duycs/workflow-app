@@ -1,19 +1,10 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/department/filter_status_department/filter_status_department_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'department_list_widget.dart' show DepartmentListWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
   ///  Local state fields for this page.
@@ -100,11 +91,11 @@ class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
         } else {
           return ' ';
         }
-      }()}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? '\"}}' : ' '}${(status != null && status != '') && (status != 'noData') ? ',{\"status\":{\"_eq\":\"' : ' '}${(status != null && status != '') && (status != 'noData') ? status : ' '}${(status != null && status != '') && (status != 'noData') ? '\"}}' : ' '}${(branchId != null && branchId != '') && (branchId != 'noData') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"' : ' '}${(branchId != null && branchId != '') && (branchId != 'noData') ? branchId : ' '}${(branchId != null && branchId != '') && (branchId != 'noData') ? '\"}}}' : ' '}]}',
+      }()}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}' : ' '}${(status != '') && (status != 'noData') ? ',{\"status\":{\"_eq\":\"' : ' '}${(status != '') && (status != 'noData') ? status : ' '}${(status != '') && (status != 'noData') ? '\"}}' : ' '}${(branchId != '') && (branchId != 'noData') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"' : ' '}${(branchId != '') && (branchId != 'noData') ? branchId : ' '}${(branchId != '') && (branchId != 'noData') ? '\"}}}' : ' '}]}',
     );
-    if ((apiResultList?.succeeded ?? true)) {
+    if ((apiResultList.succeeded ?? true)) {
       list = DepartmentListDataStruct.maybeFromMap(
-              (apiResultList?.jsonBody ?? ''))!
+              (apiResultList.jsonBody ?? ''))!
           .data
           .toList()
           .cast<DepartmentListStruct>();
@@ -112,7 +103,7 @@ class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
     } else {
       checkRefreshTokenBlocktt = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultList?.jsonBody ?? ''),
+        jsonErrors: (apiResultList.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlocktt!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -123,7 +114,7 @@ class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );

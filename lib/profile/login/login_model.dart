@@ -2,12 +2,8 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/backend/schema/structs/index.dart';
 import 'login_widget.dart' show LoginWidget;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class LoginModel extends FlutterFlowModel<LoginWidget> {
   ///  Local state fields for this page.
@@ -70,9 +66,9 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
     apiResultUserMe = await UserGroup.userMeCall.call(
       accessToken: FFAppState().accessToken,
     );
-    if ((apiResultUserMe?.succeeded ?? true)) {
+    if ((apiResultUserMe.succeeded ?? true)) {
       FFAppState().user = UserResourceDataStruct.maybeFromMap(
-              (apiResultUserMe?.jsonBody ?? ''))!
+              (apiResultUserMe.jsonBody ?? ''))!
           .data;
       return;
     } else {
@@ -84,8 +80,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
     ApiCallResponse? apiResultLogin;
     ApiCallResponse? apiResultGetStaffId;
 
-    if (emailAddressTextController.text == null ||
-        emailAddressTextController.text == '') {
+    if (emailAddressTextController.text == '') {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -94,13 +89,12 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
               color: FlutterFlowTheme.of(context).primaryText,
             ),
           ),
-          duration: Duration(milliseconds: 4000),
+          duration: const Duration(milliseconds: 4000),
           backgroundColor: FlutterFlowTheme.of(context).error,
         ),
       );
       return;
-    } else if (passwordTextController.text == null ||
-        passwordTextController.text == '') {
+    } else if (passwordTextController.text == '') {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -109,7 +103,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
               color: FlutterFlowTheme.of(context).primaryText,
             ),
           ),
-          duration: Duration(milliseconds: 4000),
+          duration: const Duration(milliseconds: 4000),
           backgroundColor: FlutterFlowTheme.of(context).error,
         ),
       );
@@ -119,9 +113,9 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
         email: emailAddressTextController.text,
         password: passwordTextController.text,
       );
-      if ((apiResultLogin?.succeeded ?? true)) {
+      if ((apiResultLogin.succeeded ?? true)) {
         loginData = LoginResourceDataStruct.maybeFromMap(
-            (apiResultLogin?.jsonBody ?? ''));
+            (apiResultLogin.jsonBody ?? ''));
         FFAppState().accessToken = loginData!.data.accessToken;
         FFAppState().refreshToken = loginData!.data.refreshToken;
         FFAppState().expires = loginData!.data.expires;
@@ -133,32 +127,32 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
           accessToken: FFAppState().accessToken,
           userId: FFAppState().user.id,
         );
-        if ((apiResultGetStaffId?.succeeded ?? true)) {
+        if ((apiResultGetStaffId.succeeded ?? true)) {
           FFAppState().staffid = getJsonField(
-            (apiResultGetStaffId?.jsonBody ?? ''),
+            (apiResultGetStaffId.jsonBody ?? ''),
             r'''$.staff.id''',
           ).toString().toString();
           FFAppState().staffLogin = getJsonField(
-            (apiResultGetStaffId?.jsonBody ?? ''),
+            (apiResultGetStaffId.jsonBody ?? ''),
             r'''$.staff''',
           );
           FFAppState().staffDepartment = getJsonField(
-            (apiResultGetStaffId?.jsonBody ?? ''),
+            (apiResultGetStaffId.jsonBody ?? ''),
             r'''$.department''',
           );
           FFAppState().staffBranch = getJsonField(
-            (apiResultGetStaffId?.jsonBody ?? ''),
+            (apiResultGetStaffId.jsonBody ?? ''),
             r'''$.branch''',
           );
           FFAppState().staffOrganization = getJsonField(
-            (apiResultGetStaffId?.jsonBody ?? ''),
+            (apiResultGetStaffId.jsonBody ?? ''),
             r'''$.organization''',
           );
 
           context.pushNamed(
             'TaskList',
             extra: <String, dynamic>{
-              kTransitionInfoKey: TransitionInfo(
+              kTransitionInfoKey: const TransitionInfo(
                 hasTransition: true,
                 transitionType: PageTransitionType.fade,
                 duration: Duration(milliseconds: 0),
@@ -179,7 +173,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );

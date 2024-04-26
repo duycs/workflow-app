@@ -4,8 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'check_box_test_model.dart';
 export 'check_box_test_model.dart';
 
@@ -59,7 +57,7 @@ class _CheckBoxTestWidgetState extends State<CheckBoxTestWidget> {
             fontFamily: 'Readex Pro',
             letterSpacing: 0.0,
           ),
-      itemPadding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+      itemPadding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
       checkboxBorderRadius: BorderRadius.circular(4.0),
       initialized: _model.checkboxGroupValues != null,
     );

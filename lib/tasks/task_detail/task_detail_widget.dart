@@ -11,15 +11,12 @@ import '/tasks/detail_action_type_image/detail_action_type_image_widget.dart';
 import '/tasks/detail_action_type_to_do_list/detail_action_type_to_do_list_widget.dart';
 import '/tasks/detail_action_type_upload_file/detail_action_type_upload_file_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'task_detail_model.dart';
@@ -123,12 +120,12 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 2.0,
         ),
         body: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -141,7 +138,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -162,9 +159,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                             ),
                             Expanded(
                               child: Text(
-                                _model.list.first.createdUserId.firstName !=
-                                            null &&
-                                        _model.list.first.createdUserId
+                                _model.list.first.createdUserId
                                                 .firstName !=
                                             ''
                                     ? _model.list.first.createdUserId.firstName
@@ -179,12 +174,12 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                     ),
                               ),
                             ),
-                          ].divide(SizedBox(width: 8.0)),
+                          ].divide(const SizedBox(width: 8.0)),
                         ),
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -221,18 +216,18 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                     ),
                               ),
                             ),
-                          ].divide(SizedBox(width: 8.0)),
+                          ].divide(const SizedBox(width: 8.0)),
                         ),
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 16.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 16.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 2.0, 4.0, 0.0),
                               child: Icon(
                                 Icons.settings_sharp,
@@ -242,7 +237,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                             ),
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 2.0, 0.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -273,7 +268,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                             fontStyle: FontStyle.italic,
                                           ),
                                     ),
-                                  ].divide(SizedBox(height: 2.0)),
+                                  ].divide(const SizedBox(height: 2.0)),
                                 ),
                               ),
                             ),
@@ -296,7 +291,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                   FlutterFlowTheme.of(context).alternate,
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 22.0, 0.0, 0.0),
                               child: Text(
                                 '${_model.list.where((e) => e.status == 'done').toList().length.toString()}/${_model.list.length.toString()}',
@@ -309,7 +304,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                     ),
                               ),
                             ),
-                          ].divide(SizedBox(width: 4.0)),
+                          ].divide(const SizedBox(width: 4.0)),
                         ),
                       ),
                     ],
@@ -324,7 +319,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount: dataList.length,
-                        separatorBuilder: (_, __) => SizedBox(height: 24.0),
+                        separatorBuilder: (_, __) => const SizedBox(height: 24.0),
                         itemBuilder: (context, dataListIndex) {
                           final dataListItem = dataList[dataListIndex];
                           return Container(
@@ -335,13 +330,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                               borderRadius: BorderRadius.circular(18.0),
                             ),
                             child: Padding(
-                              padding: EdgeInsets.all(16.0),
+                              padding: const EdgeInsets.all(16.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -378,7 +373,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                         ),
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Container(
                                             height: 30.0,
                                             decoration: BoxDecoration(
@@ -406,9 +401,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                   BorderRadius.circular(40.0),
                                             ),
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 4.0, 8.0, 4.0),
                                               child: Text(
                                                 () {
@@ -463,11 +458,10 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                             ),
                                           ),
                                         ),
-                                      ].divide(SizedBox(width: 4.0)),
+                                      ].divide(const SizedBox(width: 4.0)),
                                     ),
                                   ),
-                                  if (dataListItem.description != null &&
-                                      dataListItem.description != '')
+                                  if (dataListItem.description != '')
                                     Container(
                                       decoration: BoxDecoration(
                                         borderRadius:
@@ -499,7 +493,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                           ),
                                           Expanded(
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 4.0, 4.0, 4.0),
                                               child: Text(
                                                 dataListItem.description,
@@ -514,15 +508,12 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                               ),
                                             ),
                                           ),
-                                        ].divide(SizedBox(width: 4.0)),
+                                        ].divide(const SizedBox(width: 4.0)),
                                       ),
                                     ),
                                   if ((dataListItem.actionType !=
                                           'to_do_list') &&
                                       (dataListItem.operations.first
-                                                  .operationsId.content !=
-                                              null &&
-                                          dataListItem.operations.first
                                                   .operationsId.content !=
                                               ''))
                                     Container(
@@ -556,7 +547,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                           ),
                                           Expanded(
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 4.0, 4.0, 4.0),
                                               child: Text(
                                                 dataListItem.operations.first
@@ -572,13 +563,12 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                               ),
                                             ),
                                           ),
-                                        ].divide(SizedBox(width: 4.0)),
+                                        ].divide(const SizedBox(width: 4.0)),
                                       ),
                                     ),
-                                  if (dataListItem.timeOperate != null &&
-                                      dataListItem.timeOperate != '')
+                                  if (dataListItem.timeOperate != '')
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 4.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -587,7 +577,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 2.0, 0.0, 0.0),
                                             child: Icon(
                                               Icons.av_timer,
@@ -620,12 +610,12 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                   ),
                                             ),
                                           ),
-                                        ].divide(SizedBox(width: 10.0)),
+                                        ].divide(const SizedBox(width: 10.0)),
                                       ),
                                     ),
                                   if (dataListItem.estimateInSecond != 0)
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 4.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -634,7 +624,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 2.0, 0.0, 0.0),
                                             child: Icon(
                                               Icons.av_timer,
@@ -668,13 +658,12 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                   ),
                                             ),
                                           ),
-                                        ].divide(SizedBox(width: 10.0)),
+                                        ].divide(const SizedBox(width: 10.0)),
                                       ),
                                     ),
-                                  if (dataListItem.dateStart != null &&
-                                      dataListItem.dateStart != '')
+                                  if (dataListItem.dateStart != '')
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 4.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -683,7 +672,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 2.0, 0.0, 0.0),
                                             child: Icon(
                                               Icons.date_range_sharp,
@@ -723,13 +712,12 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                   ),
                                             ),
                                           ),
-                                        ].divide(SizedBox(width: 10.0)),
+                                        ].divide(const SizedBox(width: 10.0)),
                                       ),
                                     ),
-                                  if (dataListItem.dateEnd != null &&
-                                      dataListItem.dateEnd != '')
+                                  if (dataListItem.dateEnd != '')
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 4.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -738,7 +726,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 2.0, 0.0, 0.0),
                                             child: Icon(
                                               Icons.av_timer,
@@ -778,12 +766,12 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                   ),
                                             ),
                                           ),
-                                        ].divide(SizedBox(width: 8.0)),
+                                        ].divide(const SizedBox(width: 8.0)),
                                       ),
                                     ),
                                   if (dataListItem.status == 'done')
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 8.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -792,13 +780,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     6.0, 0.0, 2.0, 0.0),
                                             child: Container(
                                               width: 30.0,
                                               height: 30.0,
                                               clipBehavior: Clip.antiAlias,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                 shape: BoxShape.circle,
                                               ),
                                               child: Image.network(
@@ -809,7 +797,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                           ),
                                           Expanded(
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(4.0, 0.0, 0.0, 0.0),
                                               child: Text(
                                                 dataListItem.submitStaffId
@@ -826,7 +814,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                               ),
                                             ),
                                           ),
-                                        ].divide(SizedBox(width: 4.0)),
+                                        ].divide(const SizedBox(width: 4.0)),
                                       ),
                                     ),
                                   if ('1' == '2')
@@ -858,7 +846,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                 ),
                                           ),
                                         ),
-                                      ].divide(SizedBox(width: 4.0)),
+                                      ].divide(const SizedBox(width: 4.0)),
                                     ),
                                   SingleChildScrollView(
                                     primary: false,
@@ -935,7 +923,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                     .primaryText,
                                                               ),
                                                             ),
-                                                            duration: Duration(
+                                                            duration: const Duration(
                                                                 milliseconds:
                                                                     4000),
                                                             backgroundColor:
@@ -957,7 +945,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                     .primaryText,
                                                               ),
                                                             ),
-                                                            duration: Duration(
+                                                            duration: const Duration(
                                                                 milliseconds:
                                                                     4000),
                                                             backgroundColor:
@@ -980,7 +968,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                         if (dataListItem.actionType == 'image')
                                           Container(
                                             width: 100.0,
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                             child: DetailActionTypeImageWidget(
                                               key: Key(
                                                   'Key9hl_${dataListIndex}_of_${dataList.length}'),
@@ -991,7 +979,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                             'approve')
                                           Container(
                                             width: 100.0,
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                             child: Visibility(
                                               visible:
                                                   dataListItem.status != 'done',
@@ -1033,7 +1021,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                   .primaryText,
                                                             ),
                                                           ),
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               milliseconds:
                                                                   4000),
                                                           backgroundColor:
@@ -1055,7 +1043,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                   .primaryText,
                                                             ),
                                                           ),
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               milliseconds:
                                                                   4000),
                                                           backgroundColor:
@@ -1080,7 +1068,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                             'submit_text')
                                           Container(
                                             width: 100.0,
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
@@ -1105,8 +1093,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                     children: [
                                                       Container(
                                                         decoration:
-                                                            BoxDecoration(),
-                                                        child: Container(
+                                                            const BoxDecoration(),
+                                                        child: SizedBox(
                                                           width:
                                                               double.infinity,
                                                           height: 300.0,
@@ -1147,20 +1135,20 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                     builder:
                                                                         (alertDialogContext) {
                                                                       return AlertDialog(
-                                                                        title: Text(
+                                                                        title: const Text(
                                                                             'Bạn chắc chắn?'),
                                                                         actions: [
                                                                           TextButton(
                                                                             onPressed: () =>
                                                                                 Navigator.pop(alertDialogContext, false),
                                                                             child:
-                                                                                Text('Thoát'),
+                                                                                const Text('Thoát'),
                                                                           ),
                                                                           TextButton(
                                                                             onPressed: () =>
                                                                                 Navigator.pop(alertDialogContext, true),
                                                                             child:
-                                                                                Text('Xác nhận'),
+                                                                                const Text('Xác nhận'),
                                                                           ),
                                                                         ],
                                                                       );
@@ -1212,7 +1200,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                             .primaryText,
                                                                       ),
                                                                     ),
-                                                                    duration: Duration(
+                                                                    duration: const Duration(
                                                                         milliseconds:
                                                                             4000),
                                                                     backgroundColor:
@@ -1234,7 +1222,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                             .primaryText,
                                                                       ),
                                                                     ),
-                                                                    duration: Duration(
+                                                                    duration: const Duration(
                                                                         milliseconds:
                                                                             4000),
                                                                     backgroundColor:
@@ -1256,7 +1244,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                           setState(() {});
                                                         },
                                                         text: 'Lưu',
-                                                        icon: Icon(
+                                                        icon: const Icon(
                                                           Icons.download,
                                                           size: 15.0,
                                                         ),
@@ -1264,14 +1252,14 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                             FFButtonOptions(
                                                           height: 40.0,
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       24.0,
                                                                       0.0,
                                                                       24.0,
                                                                       0.0),
                                                           iconPadding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -1298,7 +1286,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                   ),
                                                           elevation: 3.0,
                                                           borderSide:
-                                                              BorderSide(
+                                                              const BorderSide(
                                                             color: Colors
                                                                 .transparent,
                                                             width: 1.0,
@@ -1310,7 +1298,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                         ),
                                                       ),
                                                     ].divide(
-                                                        SizedBox(height: 8.0)),
+                                                        const SizedBox(height: 8.0)),
                                                   ),
                                               ],
                                             ),
@@ -1319,7 +1307,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                             'upload_file')
                                           Container(
                                             width: 100.0,
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
@@ -1327,9 +1315,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                         .operations
                                                         .first
                                                         .operationsId
-                                                        .files
-                                                        .length >
-                                                    0)
+                                                        .files.isNotEmpty)
                                                   Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -1342,12 +1328,10 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                   .operations
                                                                   .first
                                                                   .operationsId
-                                                                  .files
-                                                                  .length >
-                                                              0)
+                                                                  .files.isNotEmpty)
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           8.0,
@@ -1363,11 +1347,11 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                 children: [
                                                                   if (functions
                                                                           .checkFileLast(
-                                                                              '${(String tail) {
+                                                                              (String tail) {
                                                                         return tail
                                                                             .split('.')
                                                                             .last;
-                                                                      }(dataListItem.operations.first.operationsId.files.first.directusFilesId.filenameDownload)}') ==
+                                                                      }(dataListItem.operations.first.operationsId.files.first.directusFilesId.filenameDownload)) ==
                                                                       'exc')
                                                                     Container(
                                                                       width:
@@ -1377,7 +1361,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                       clipBehavior:
                                                                           Clip.antiAlias,
                                                                       decoration:
-                                                                          BoxDecoration(
+                                                                          const BoxDecoration(
                                                                         shape: BoxShape
                                                                             .circle,
                                                                       ),
@@ -1390,11 +1374,11 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                     ),
                                                                   if (functions
                                                                           .checkFileLast(
-                                                                              '${(String tail) {
+                                                                              (String tail) {
                                                                         return tail
                                                                             .split('.')
                                                                             .last;
-                                                                      }(dataListItem.operations.first.operationsId.files.first.directusFilesId.filenameDownload)}') ==
+                                                                      }(dataListItem.operations.first.operationsId.files.first.directusFilesId.filenameDownload)) ==
                                                                       'word')
                                                                     Container(
                                                                       width:
@@ -1404,7 +1388,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                       clipBehavior:
                                                                           Clip.antiAlias,
                                                                       decoration:
-                                                                          BoxDecoration(
+                                                                          const BoxDecoration(
                                                                         shape: BoxShape
                                                                             .circle,
                                                                       ),
@@ -1417,11 +1401,11 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                     ),
                                                                   if (functions
                                                                           .checkFileLast(
-                                                                              '${(String tail) {
+                                                                              (String tail) {
                                                                         return tail
                                                                             .split('.')
                                                                             .last;
-                                                                      }(dataListItem.operations.first.operationsId.files.first.directusFilesId.filenameDownload)}') ==
+                                                                      }(dataListItem.operations.first.operationsId.files.first.directusFilesId.filenameDownload)) ==
                                                                       'pptx')
                                                                     Container(
                                                                       width:
@@ -1431,7 +1415,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                       clipBehavior:
                                                                           Clip.antiAlias,
                                                                       decoration:
-                                                                          BoxDecoration(
+                                                                          const BoxDecoration(
                                                                         shape: BoxShape
                                                                             .circle,
                                                                       ),
@@ -1444,11 +1428,11 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                     ),
                                                                   if (functions
                                                                           .checkFileLast(
-                                                                              '${(String tail) {
+                                                                              (String tail) {
                                                                         return tail
                                                                             .split('.')
                                                                             .last;
-                                                                      }(dataListItem.operations.first.operationsId.files.first.directusFilesId.filenameDownload)}') ==
+                                                                      }(dataListItem.operations.first.operationsId.files.first.directusFilesId.filenameDownload)) ==
                                                                       'pdf')
                                                                     Container(
                                                                       width:
@@ -1458,7 +1442,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                       clipBehavior:
                                                                           Clip.antiAlias,
                                                                       decoration:
-                                                                          BoxDecoration(
+                                                                          const BoxDecoration(
                                                                         shape: BoxShape
                                                                             .circle,
                                                                       ),
@@ -1490,28 +1474,26 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                           ),
                                                                     ),
                                                                   ),
-                                                                ].divide(SizedBox(
+                                                                ].divide(const SizedBox(
                                                                     width:
                                                                         8.0)),
                                                               ),
                                                             ),
-                                                        ].divide(SizedBox(
+                                                        ].divide(const SizedBox(
                                                             height: 8.0)),
                                                       ),
                                                       if ((functions.checkFileLast(
-                                                                  '${(String tail) {
+                                                                  (String tail) {
                                                                 return tail
                                                                     .split('.')
                                                                     .last;
-                                                              }(dataListItem.operations.first.operationsId.files.first.directusFilesId.filenameDownload)}') ==
+                                                              }(dataListItem.operations.first.operationsId.files.first.directusFilesId.filenameDownload)) ==
                                                               'pdf') &&
                                                           (dataListItem
                                                                   .operations
                                                                   .first
                                                                   .operationsId
-                                                                  .files
-                                                                  .length >
-                                                              0))
+                                                                  .files.isNotEmpty))
                                                         FlutterFlowPdfViewer(
                                                           networkPath:
                                                               '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
@@ -1520,19 +1502,17 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                               false,
                                                         ),
                                                       if ((functions.checkFileLast(
-                                                                  '${(String tail) {
+                                                                  (String tail) {
                                                                 return tail
                                                                     .split('.')
                                                                     .last;
-                                                              }(dataListItem.operations.first.operationsId.files.first.directusFilesId.filenameDownload)}') ==
+                                                              }(dataListItem.operations.first.operationsId.files.first.directusFilesId.filenameDownload)) ==
                                                               'img') &&
                                                           (dataListItem
                                                                   .operations
                                                                   .first
                                                                   .operationsId
-                                                                  .files
-                                                                  .length >
-                                                              0))
+                                                                  .files.isNotEmpty))
                                                         InkWell(
                                                           splashColor: Colors
                                                               .transparent,
@@ -1590,7 +1570,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                           ),
                                                         ),
                                                     ].divide(
-                                                        SizedBox(height: 8.0)),
+                                                        const SizedBox(height: 8.0)),
                                                   ),
                                                 Row(
                                                   mainAxisSize:
@@ -1669,7 +1649,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                             .primaryText,
                                                                       ),
                                                                     ),
-                                                                    duration: Duration(
+                                                                    duration: const Duration(
                                                                         milliseconds:
                                                                             4000),
                                                                     backgroundColor:
@@ -1691,7 +1671,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                             .primaryText,
                                                                       ),
                                                                     ),
-                                                                    duration: Duration(
+                                                                    duration: const Duration(
                                                                         milliseconds:
                                                                             4000),
                                                                     backgroundColor:
@@ -1720,9 +1700,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                 .operations
                                                                 .first
                                                                 .operationsId
-                                                                .files
-                                                                .length >
-                                                            0))
+                                                                .files.isNotEmpty))
                                                       Expanded(
                                                         child: FFButtonWidget(
                                                           onPressed: () async {
@@ -1753,7 +1731,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                             setState(() {});
                                                           },
                                                           text: 'Tải tài liệu',
-                                                          icon: Icon(
+                                                          icon: const Icon(
                                                             Icons
                                                                 .download_rounded,
                                                             size: 20.0,
@@ -1762,14 +1740,14 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                               FFButtonOptions(
                                                             height: 40.0,
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
                                                                         0.0,
                                                                         0.0),
                                                             iconPadding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1804,15 +1782,15 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                         ),
                                                       ),
                                                   ].divide(
-                                                      SizedBox(width: 8.0)),
+                                                      const SizedBox(width: 8.0)),
                                                 ),
                                               ],
                                             ),
                                           ),
-                                      ].divide(SizedBox(height: 8.0)),
+                                      ].divide(const SizedBox(height: 8.0)),
                                     ),
                                   ),
-                                ].divide(SizedBox(height: 4.0)),
+                                ].divide(const SizedBox(height: 4.0)),
                               ),
                             ),
                           );

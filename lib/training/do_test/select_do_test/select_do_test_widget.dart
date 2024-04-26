@@ -5,8 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'select_do_test_model.dart';
 export 'select_do_test_model.dart';
 
@@ -66,11 +64,11 @@ class _SelectDoTestWidgetState extends State<SelectDoTestWidget> {
             color: valueOrDefault<Color>(
               () {
                 if ((widget.listQuestion?.id ==
-                        widget.listAnswer?.answersId?.id) &&
+                        widget.listAnswer?.answersId.id) &&
                     (widget.listQuestion?.correct == 1)) {
                   return FlutterFlowTheme.of(context).primary;
                 } else if ((widget.listQuestion?.id ==
-                        widget.listAnswer?.answersId?.id) &&
+                        widget.listAnswer?.answersId.id) &&
                     (widget.listQuestion?.correct != 1)) {
                   return FlutterFlowTheme.of(context).error;
                 } else if (widget.listQuestion?.correct == 1) {
@@ -88,11 +86,11 @@ class _SelectDoTestWidgetState extends State<SelectDoTestWidget> {
             color: valueOrDefault<Color>(
               () {
                 if ((widget.listQuestion?.id ==
-                        widget.listAnswer?.answersId?.id) &&
+                        widget.listAnswer?.answersId.id) &&
                     (widget.listQuestion?.correct == 1)) {
                   return FlutterFlowTheme.of(context).primary;
                 } else if ((widget.listQuestion?.id ==
-                        widget.listAnswer?.answersId?.id) &&
+                        widget.listAnswer?.answersId.id) &&
                     (widget.listQuestion?.correct != 1)) {
                   return FlutterFlowTheme.of(context).error;
                 } else {

@@ -1,23 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/upload_data.dart';
-import '/training/test/checkbox_groups_test_add/checkbox_groups_test_add_widget.dart';
-import '/training/test/question_create_test/question_create_test_widget.dart';
 import '/training/test/question_test/question_test_widget.dart';
-import '/training/test/radio_group_tests_add/radio_group_tests_add_widget.dart';
-import '/training/test/test_long_text_add/test_long_text_add_widget.dart';
-import '/training/test/test_number_add/test_number_add_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'test_update_widget.dart' show TestUpdateWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class TestUpdateModel extends FlutterFlowModel<TestUpdateWidget> {
   ///  Local state fields for this page.
@@ -162,14 +150,14 @@ class TestUpdateModel extends FlutterFlowModel<TestUpdateWidget> {
       testsId: widget.id,
       accessToken: FFAppState().accessToken,
     );
-    if ((apiResultGetLinkTest?.succeeded ?? true)) {
+    if ((apiResultGetLinkTest.succeeded ?? true)) {
       questionId =
-          TestOneDataStruct.maybeFromMap((apiResultGetLinkTest?.jsonBody ?? ''))
+          TestOneDataStruct.maybeFromMap((apiResultGetLinkTest.jsonBody ?? ''))
               ?.data;
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultGetLinkTest?.jsonBody ?? ''),
+        jsonErrors: (apiResultGetLinkTest.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -180,7 +168,7 @@ class TestUpdateModel extends FlutterFlowModel<TestUpdateWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );

@@ -9,7 +9,6 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'lesson_detail_model.dart';
 export 'lesson_detail_model.dart';
@@ -94,7 +93,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                   fontWeight: FontWeight.normal,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -104,7 +103,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
           children: [
             Expanded(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                 child: SingleChildScrollView(
                   primary: false,
                   child: Column(
@@ -112,9 +111,9 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Align(
-                        alignment: AlignmentDirectional(-1.0, 0.0),
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 12.0, 0.0, 0.0),
                           child: Text(
                             getJsonField(
@@ -133,7 +132,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(12.0),
+                        padding: const EdgeInsets.all(12.0),
                         child: Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
@@ -166,13 +165,13 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                   lazyLoad: false,
                                 ),
                               Container(
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 8.0, 0.0, 0.0),
                                       child: Container(
                                         width: double.infinity,
@@ -183,7 +182,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                               BorderRadius.circular(8.0),
                                         ),
                                         child: Padding(
-                                          padding: EdgeInsets.all(6.0),
+                                          padding: const EdgeInsets.all(6.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment:
@@ -418,7 +417,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                                         'heif'))))
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         2.0,
                                                                         0.0,
@@ -463,7 +462,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                             '0')
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         2.0,
                                                                         0.0,
@@ -1059,7 +1058,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                         Expanded(
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         5.0,
                                                                         0.0,
@@ -1296,11 +1295,11 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                   options: FFButtonOptions(
                                                     height: 25.0,
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 8.0, 0.0),
                                                     iconPadding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -1329,14 +1328,14 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                             .accent1,
                                                   ),
                                                 ),
-                                            ].divide(SizedBox(width: 5.0)),
+                                            ].divide(const SizedBox(width: 5.0)),
                                           ),
                                         ),
                                       ),
                                     ),
                                     if (_model.checkFile == '0')
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 16.0, 0.0, 0.0),
                                         child: Container(
                                           decoration: BoxDecoration(
@@ -1344,7 +1343,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.all(4.0),
+                                            padding: const EdgeInsets.all(4.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
@@ -1546,7 +1545,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             12.0, 4.0, 12.0, 4.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1577,9 +1576,9 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 2.0)),
+                                  ].divide(const SizedBox(width: 2.0)),
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                             Row(
                               mainAxisSize: MainAxisSize.max,
@@ -1613,19 +1612,19 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 2.0)),
+                                  ].divide(const SizedBox(width: 2.0)),
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   12.0, 0.0, 12.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       dateTimeFormat(
                                         'dd/MM/yyyy',
@@ -1645,14 +1644,14 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                           ),
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 4.0)),
+                                ].divide(const SizedBox(width: 4.0)),
                               ),
                             ),
-                          ].divide(SizedBox(width: 24.0)),
+                          ].divide(const SizedBox(width: 24.0)),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             12.0, 16.0, 12.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1682,7 +1681,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: TransitionInfo(
+                                        kTransitionInfoKey: const TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -1697,7 +1696,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBackground,
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           blurRadius: 3.0,
                                           color: Color(0x33000000),
@@ -1710,7 +1709,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(12.0),
+                                      padding: const EdgeInsets.all(12.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -1737,7 +1736,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ].divide(SizedBox(width: 8.0)),
+                                            ].divide(const SizedBox(width: 8.0)),
                                           ),
                                           Icon(
                                             Icons.chevron_right_rounded,
@@ -1751,11 +1750,11 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                   ),
                                 ),
                               ),
-                          ].divide(SizedBox(width: 24.0)),
+                          ].divide(const SizedBox(width: 24.0)),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             12.0, 16.0, 0.0, 0.0),
                         child: Text(
                           'Nội dung bài học',
@@ -1768,7 +1767,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             12.0, 5.0, 12.0, 0.0),
                         child: custom_widgets.HtmlToDoc(
                           width: double.infinity,
@@ -1780,7 +1779,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 16.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1835,13 +1834,13 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 2.0)),
+                              ].divide(const SizedBox(width: 2.0)),
                             ),
                           ],
                         ),
                       ),
                       Container(
-                        decoration: BoxDecoration(),
+                        decoration: const BoxDecoration(),
                         child: Builder(
                           builder: (context) {
                             final listItems = _model.list.toList();
@@ -1852,11 +1851,11 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                               scrollDirection: Axis.vertical,
                               itemCount: listItems.length,
                               separatorBuilder: (_, __) =>
-                                  SizedBox(height: 8.0),
+                                  const SizedBox(height: 8.0),
                               itemBuilder: (context, listItemsIndex) {
                                 final listItemsItem = listItems[listItemsIndex];
                                 return Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 12.0, 12.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -1892,7 +1891,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 2.0),
                                               child: Container(
@@ -1906,7 +1905,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                           12.0),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           12.0, 8.0, 12.0, 8.0),
                                                   child: Column(
@@ -1942,7 +1941,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     4.0,
@@ -1971,7 +1970,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 0.0, 0.0, 0.0),
                                               child: Row(
@@ -2010,7 +2009,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                                 ),
                                                       ),
                                                     ].divide(
-                                                        SizedBox(width: 16.0)),
+                                                        const SizedBox(width: 16.0)),
                                                   ),
                                                   Row(
                                                     mainAxisSize:
@@ -2029,16 +2028,16 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                                       0.0,
                                                                 ),
                                                       ),
-                                                      Icon(
+                                                      const Icon(
                                                         Icons.favorite,
                                                         color:
                                                             Color(0xFFFF0202),
                                                         size: 20.0,
                                                       ),
                                                     ].divide(
-                                                        SizedBox(width: 2.0)),
+                                                        const SizedBox(width: 2.0)),
                                                   ),
-                                                ].divide(SizedBox(width: 10.0)),
+                                                ].divide(const SizedBox(width: 10.0)),
                                               ),
                                             ),
                                           ],
@@ -2058,7 +2057,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: FFButtonWidget(
                 onPressed: () async {
                   context.pushNamed(
@@ -2070,7 +2069,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                       ),
                     }.withoutNulls,
                     extra: <String, dynamic>{
-                      kTransitionInfoKey: TransitionInfo(
+                      kTransitionInfoKey: const TransitionInfo(
                         hasTransition: true,
                         transitionType: PageTransitionType.fade,
                         duration: Duration(milliseconds: 0),
@@ -2079,15 +2078,15 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                   );
                 },
                 text: 'Chỉnh sửa',
-                icon: Icon(
+                icon: const Icon(
                   Icons.edit,
                   size: 15.0,
                 ),
                 options: FFButtonOptions(
                   height: 40.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                   iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Readex Pro',
@@ -2095,7 +2094,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                         letterSpacing: 0.0,
                       ),
                   elevation: 3.0,
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.transparent,
                     width: 1.0,
                   ),

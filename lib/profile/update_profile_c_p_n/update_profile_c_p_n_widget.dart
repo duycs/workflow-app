@@ -14,8 +14,6 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'update_profile_c_p_n_model.dart';
 export 'update_profile_c_p_n_model.dart';
@@ -83,15 +81,15 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 500.0.ms,
-            begin: Offset(1.7, 1.7),
-            end: Offset(1.0, 1.0),
+            begin: const Offset(1.7, 1.7),
+            end: const Offset(1.0, 1.0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 500.0.ms,
-            begin: Offset(0.0, 200.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 200.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -110,15 +108,15 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 500.0.ms,
-            begin: Offset(1.7, 1.7),
-            end: Offset(1.0, 1.0),
+            begin: const Offset(1.7, 1.7),
+            end: const Offset(1.0, 1.0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 500.0.ms,
-            begin: Offset(0.0, 200.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 200.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -137,22 +135,22 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
             curve: Curves.easeInOut,
             delay: 200.0.ms,
             duration: 500.0.ms,
-            begin: Offset(0.698, 0),
-            end: Offset(0, 0),
+            begin: const Offset(0.698, 0),
+            end: const Offset(0, 0),
           ),
           ScaleEffect(
             curve: Curves.easeInOut,
             delay: 200.0.ms,
             duration: 500.0.ms,
-            begin: Offset(0.7, 0.7),
-            end: Offset(1.0, 1.0),
+            begin: const Offset(0.7, 0.7),
+            end: const Offset(1.0, 1.0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 200.0.ms,
             duration: 500.0.ms,
-            begin: Offset(0.0, 30.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 30.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -207,7 +205,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -216,15 +214,14 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
             mainAxisSize: MainAxisSize.max,
             children: [
               if (_model.checkTrue)
-                Container(
+                SizedBox(
                   width: double.infinity,
                   child: Stack(
-                    alignment: AlignmentDirectional(0.0, -1.0),
+                    alignment: const AlignmentDirectional(0.0, -1.0),
                     children: [
-                      if (_model.uploadedLocalFile3 == null ||
-                          (_model.uploadedLocalFile3.bytes?.isEmpty ?? true))
+                      if ((_model.uploadedLocalFile3.bytes?.isEmpty ?? true))
                         ClipRRect(
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(16.0),
                             bottomRight: Radius.circular(16.0),
                             topLeft: Radius.circular(0.0),
@@ -238,8 +235,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                           ),
                         ).animateOnPageLoad(
                             animationsMap['imageOnPageLoadAnimation1']!),
-                      if (_model.uploadedLocalFile4 != null &&
-                          (_model.uploadedLocalFile4.bytes?.isNotEmpty ??
+                      if ((_model.uploadedLocalFile4.bytes?.isNotEmpty ??
                               false))
                         InkWell(
                           splashColor: Colors.transparent,
@@ -270,7 +266,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                 '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.avatar}?access_token=${FFAppState().accessToken}',
                             transitionOnUserGestures: true,
                             child: ClipRRect(
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(16.0),
                                 bottomRight: Radius.circular(16.0),
                                 topLeft: Radius.circular(0.0),
@@ -288,12 +284,12 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                         ).animateOnPageLoad(
                             animationsMap['imageOnPageLoadAnimation2']!),
                       Align(
-                        alignment: AlignmentDirectional(0.0, 1.0),
+                        alignment: const AlignmentDirectional(0.0, 1.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 370.0, 0.0, 0.0),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                               bottomLeft: Radius.circular(0.0),
                               bottomRight: Radius.circular(0.0),
                               topLeft: Radius.circular(16.0),
@@ -307,7 +303,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context).accent4,
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                     bottomLeft: Radius.circular(0.0),
                                     bottomRight: Radius.circular(0.0),
                                     topLeft: Radius.circular(16.0),
@@ -318,16 +314,16 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsets.all(12.0),
+                                      padding: const EdgeInsets.all(12.0),
                                       child: Container(
                                         width: double.infinity,
-                                        constraints: BoxConstraints(
+                                        constraints: const BoxConstraints(
                                           maxWidth: 800.0,
                                         ),
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
-                                          boxShadow: [
+                                          boxShadow: const [
                                             BoxShadow(
                                               blurRadius: 3.0,
                                               color: Color(0x33000000),
@@ -341,14 +337,14 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                               BorderRadius.circular(12.0),
                                         ),
                                         child: Padding(
-                                          padding: EdgeInsets.all(12.0),
+                                          padding: const EdgeInsets.all(12.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 16.0),
                                                 child: Container(
@@ -362,7 +358,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsets.all(8.0),
+                                                        const EdgeInsets.all(8.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -387,7 +383,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 8.0)),
+                                                          const SizedBox(width: 8.0)),
                                                     ),
                                                   ),
                                                 ),
@@ -397,7 +393,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 8.0, 0.0),
                                                     child: TextFormField(
@@ -488,7 +484,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                       40.0),
                                                         ),
                                                         contentPadding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     20.0,
                                                                     0.0,
@@ -510,7 +506,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 8.0, 0.0),
                                                     child: TextFormField(
@@ -600,7 +596,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                       40.0),
                                                         ),
                                                         contentPadding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     20.0,
                                                                     0.0,
@@ -625,7 +621,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                   if ('1' == '2')
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   8.0,
                                                                   0.0,
@@ -718,7 +714,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                         40.0),
                                                           ),
                                                           contentPadding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       20.0,
                                                                       0.0,
@@ -746,7 +742,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                     ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 8.0, 0.0),
                                                     child: TextFormField(
@@ -836,7 +832,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                       40.0),
                                                         ),
                                                         contentPadding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     20.0,
                                                                     0.0,
@@ -858,7 +854,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                     ),
                                                   ),
                                                 ].divide(
-                                                    SizedBox(height: 20.0)),
+                                                    const SizedBox(height: 20.0)),
                                               ),
                                               Divider(
                                                 height: 16.0,
@@ -868,7 +864,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                         .alternate,
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 16.0),
                                                 child: Container(
@@ -882,7 +878,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsets.all(8.0),
+                                                        const EdgeInsets.all(8.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -907,7 +903,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 8.0)),
+                                                          const SizedBox(width: 8.0)),
                                                     ),
                                                   ),
                                                 ),
@@ -915,7 +911,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                               Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: double.infinity,
                                                     height: 300.0,
                                                     child:
@@ -956,7 +952,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                     ),
                                                   ),
                                                 ].divide(
-                                                    SizedBox(height: 20.0)),
+                                                    const SizedBox(height: 20.0)),
                                               ),
                                               Divider(
                                                 height: 16.0,
@@ -966,7 +962,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                         .alternate,
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 16.0),
                                                 child: Container(
@@ -980,7 +976,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsets.all(8.0),
+                                                        const EdgeInsets.all(8.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -1005,15 +1001,15 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 8.0)),
+                                                          const SizedBox(width: 8.0)),
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                               Container(
-                                                decoration: BoxDecoration(),
+                                                decoration: const BoxDecoration(),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(8.0),
+                                                  padding: const EdgeInsets.all(8.0),
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -1021,9 +1017,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      if (_model.uploadedLocalFile1 ==
-                                                              null ||
-                                                          (_model
+                                                      if ((_model
                                                                   .uploadedLocalFile1
                                                                   .bytes
                                                                   ?.isEmpty ??
@@ -1102,7 +1096,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                         .max,
                                                                 children: [
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1168,7 +1162,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             4.0,
@@ -1233,17 +1227,15 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                       ),
                                                                     ),
                                                                   ),
-                                                                ].divide(SizedBox(
+                                                                ].divide(const SizedBox(
                                                                     height:
                                                                         8.0)),
                                                               ),
                                                             ),
-                                                          ].divide(SizedBox(
+                                                          ].divide(const SizedBox(
                                                               width: 8.0)),
                                                         ),
-                                                      if (_model.uploadedLocalFile1 !=
-                                                              null &&
-                                                          (_model
+                                                      if ((_model
                                                                   .uploadedLocalFile1
                                                                   .bytes
                                                                   ?.isNotEmpty ??
@@ -1326,7 +1318,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                         .max,
                                                                 children: [
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1393,7 +1385,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             4.0,
@@ -1459,12 +1451,12 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                       ),
                                                                     ),
                                                                   ),
-                                                                ].divide(SizedBox(
+                                                                ].divide(const SizedBox(
                                                                     height:
                                                                         8.0)),
                                                               ),
                                                             ),
-                                                          ].divide(SizedBox(
+                                                          ].divide(const SizedBox(
                                                               width: 8.0)),
                                                         ),
                                                       FFButtonWidget(
@@ -1530,14 +1522,14 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                             FFButtonOptions(
                                                           height: 40.0,
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       24.0,
                                                                       0.0,
                                                                       24.0,
                                                                       0.0),
                                                           iconPadding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -1564,7 +1556,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                   ),
                                                           elevation: 3.0,
                                                           borderSide:
-                                                              BorderSide(
+                                                              const BorderSide(
                                                             color: Colors
                                                                 .transparent,
                                                             width: 1.0,
@@ -1576,7 +1568,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                         ),
                                                       ),
                                                     ].divide(
-                                                        SizedBox(height: 16.0)),
+                                                        const SizedBox(height: 16.0)),
                                                   ),
                                                 ),
                                               ),
@@ -1588,7 +1580,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                         .alternate,
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 16.0),
                                                 child: Container(
@@ -1602,7 +1594,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsets.all(8.0),
+                                                        const EdgeInsets.all(8.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -1627,13 +1619,13 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 8.0)),
+                                                          const SizedBox(width: 8.0)),
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 1.0),
                                                 child: Container(
@@ -1645,7 +1637,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsets.all(8.0),
+                                                        const EdgeInsets.all(8.0),
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -1660,9 +1652,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                           mainAxisSize:
                                                               MainAxisSize.max,
                                                           children: [
-                                                            if (_model.uploadedLocalFile2 ==
-                                                                    null ||
-                                                                (_model
+                                                            if ((_model
                                                                         .uploadedLocalFile2
                                                                         .bytes
                                                                         ?.isEmpty ??
@@ -1686,16 +1676,14 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                       false,
                                                                 ),
                                                               ),
-                                                          ].divide(SizedBox(
+                                                          ].divide(const SizedBox(
                                                               width: 8.0)),
                                                         ),
                                                         Row(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
                                                           children: [
-                                                            if (_model.uploadedLocalFile2 !=
-                                                                    null &&
-                                                                (_model
+                                                            if ((_model
                                                                         .uploadedLocalFile2
                                                                         .bytes
                                                                         ?.isNotEmpty ??
@@ -1715,7 +1703,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                           0.0,
                                                                     ),
                                                               ),
-                                                          ].divide(SizedBox(
+                                                          ].divide(const SizedBox(
                                                               width: 8.0)),
                                                         ),
                                                         FFButtonWidget(
@@ -1774,14 +1762,14 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                               FFButtonOptions(
                                                             height: 40.0,
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         24.0,
                                                                         0.0,
                                                                         24.0,
                                                                         0.0),
                                                             iconPadding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1808,7 +1796,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                     ),
                                                             elevation: 3.0,
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                               color: Colors
                                                                   .transparent,
                                                               width: 1.0,
@@ -1819,7 +1807,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                                         8.0),
                                                           ),
                                                         ),
-                                                      ].divide(SizedBox(
+                                                      ].divide(const SizedBox(
                                                           height: 16.0)),
                                                     ),
                                                   ),
@@ -1850,7 +1838,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                         ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 8.0, 0.0, 0.0),
                                                 child: Container(
@@ -1871,7 +1859,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                     ),
                                                   ),
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Text(
                                                     'Đang cập nhật',
@@ -1886,19 +1874,17 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(SizedBox(height: 4.0)),
+                                            ].divide(const SizedBox(height: 4.0)),
                                           ),
                                         ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 20.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          if (_model.uploadedLocalFile1 !=
-                                                  null &&
-                                              (_model.uploadedLocalFile1.bytes
+                                          if ((_model.uploadedLocalFile1.bytes
                                                       ?.isNotEmpty ??
                                                   false)) {
                                             _model.uploadImageToken =
@@ -1929,9 +1915,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                               setState(() {});
                                             }
                                           }
-                                          if (_model.uploadedLocalFile2 !=
-                                                  null &&
-                                              (_model.uploadedLocalFile2.bytes
+                                          if ((_model.uploadedLocalFile2.bytes
                                                       ?.isNotEmpty ??
                                                   false)) {
                                             _model.uploadVideoToken =
@@ -1962,9 +1946,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                               setState(() {});
                                             }
                                           }
-                                          if (_model.uploadedLocalFile3 !=
-                                                  null &&
-                                              (_model.uploadedLocalFile3.bytes
+                                          if ((_model.uploadedLocalFile3.bytes
                                                       ?.isNotEmpty ??
                                                   false)) {
                                             _model.uploadLogoToken =
@@ -1995,9 +1977,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                               setState(() {});
                                             }
                                           }
-                                          if (_model.uploadedLocalFile4 !=
-                                                  null &&
-                                              (_model.uploadedLocalFile4.bytes
+                                          if ((_model.uploadedLocalFile4.bytes
                                                       ?.isNotEmpty ??
                                                   false)) {
                                             _model.uploadAvatarToken =
@@ -2049,25 +2029,20 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                     .nameTextController.text,
                                                 'hotline': _model
                                                     .hotlineTextController.text,
-                                                'avatar': _model.avatarId !=
-                                                            null &&
-                                                        _model.avatarId != ''
+                                                'avatar': _model.avatarId != ''
                                                     ? _model.avatarId
                                                     : widget.data?.avatar,
-                                                'logo': _model.logoId != null &&
-                                                        _model.logoId != ''
+                                                'logo': _model.logoId != ''
                                                     ? _model.logoId
                                                     : widget.data?.logo,
                                                 'address': _model
                                                     .addressTextController.text,
                                                 'image':
-                                                    _model.imageId != null &&
-                                                            _model.imageId != ''
+                                                    _model.imageId != ''
                                                         ? _model.imageId
                                                         : widget.data?.image,
                                                 'video':
-                                                    _model.videoId != null &&
-                                                            _model.videoId != ''
+                                                    _model.videoId != ''
                                                         ? _model.videoId
                                                         : widget.data?.video,
                                                 'description':
@@ -2090,7 +2065,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                               .primaryText,
                                                     ),
                                                   ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 4000),
                                                   backgroundColor:
                                                       FlutterFlowTheme.of(
@@ -2103,7 +2078,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                 'DetailProfileCPN',
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      TransitionInfo(
+                                                      const TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType.fade,
@@ -2123,10 +2098,10 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 0.0, 24.0, 0.0),
                                           iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -2139,7 +2114,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                     letterSpacing: 0.0,
                                                   ),
                                           elevation: 3.0,
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -2157,23 +2132,22 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Container(
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: Stack(
-                            alignment: AlignmentDirectional(1.0, 1.0),
+                            alignment: const AlignmentDirectional(1.0, 1.0),
                             children: [
-                              if (_model.uploadedLocalFile3 == null ||
-                                  (_model.uploadedLocalFile3.bytes?.isEmpty ??
+                              if ((_model.uploadedLocalFile3.bytes?.isEmpty ??
                                       true))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 16.0, 0.0, 0.0),
                                   child: Container(
                                     width: 120.0,
                                     height: 120.0,
                                     clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
                                     ),
                                     child: Image.network(
@@ -2182,12 +2156,11 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                     ),
                                   ),
                                 ),
-                              if (_model.uploadedLocalFile3 != null &&
-                                  (_model.uploadedLocalFile3.bytes
+                              if ((_model.uploadedLocalFile3.bytes
                                           ?.isNotEmpty ??
                                       false))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 16.0, 0.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -2219,7 +2192,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                         width: 120.0,
                                         height: 120.0,
                                         clipBehavior: Clip.antiAlias,
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
                                         child: Image.memory(
@@ -2293,9 +2266,9 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(1.0, -1.0),
+                        alignment: const AlignmentDirectional(1.0, -1.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 330.0, 0.0, 0.0),
                           child: FlutterFlowIconButton(
                             borderColor:
@@ -2352,7 +2325,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                     ],
                   ),
                 ),
-            ].addToEnd(SizedBox(height: 38.0)),
+            ].addToEnd(const SizedBox(height: 38.0)),
           ),
         ),
       ),

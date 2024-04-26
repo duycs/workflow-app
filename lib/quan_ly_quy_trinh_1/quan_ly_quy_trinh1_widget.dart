@@ -1,14 +1,8 @@
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'quan_ly_quy_trinh1_model.dart';
 export 'quan_ly_quy_trinh1_model.dart';
 
@@ -85,7 +79,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -113,13 +107,13 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                   ),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 12.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -130,7 +124,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                 size: 32.0,
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'check.io',
@@ -156,7 +150,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 12.0, 0.0, 0.0),
                                 child: Text(
                                   'Platform Navigation',
@@ -169,10 +163,10 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: Duration(milliseconds: 200),
+                                  duration: const Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -183,7 +177,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -196,7 +190,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Dashboard',
@@ -214,10 +208,10 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: Duration(milliseconds: 200),
+                                  duration: const Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -228,7 +222,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -241,7 +235,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Chats',
@@ -259,10 +253,10 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: Duration(milliseconds: 200),
+                                  duration: const Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -273,7 +267,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -286,7 +280,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Projects',
@@ -304,10 +298,10 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: Duration(milliseconds: 200),
+                                  duration: const Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -317,7 +311,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -331,7 +325,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Recent Orders',
@@ -356,9 +350,9 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                           ),
                                           child: Align(
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 4.0, 8.0, 4.0),
                                               child: Text(
                                                 '12',
@@ -383,7 +377,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Settings',
@@ -396,10 +390,10 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: Duration(milliseconds: 200),
+                                  duration: const Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -410,7 +404,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -423,7 +417,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Billing',
@@ -441,10 +435,10 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: Duration(milliseconds: 200),
+                                  duration: const Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -455,7 +449,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -468,7 +462,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Explore',
@@ -485,13 +479,13 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(height: 12.0)),
+                            ].divide(const SizedBox(height: 12.0)),
                           ),
                         ),
                         Align(
-                          alignment: AlignmentDirectional(0.0, -1.0),
+                          alignment: const AlignmentDirectional(0.0, -1.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 16.0),
                             child: Container(
                               width: 250.0,
@@ -506,7 +500,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                 ),
                               ),
                               child: Padding(
-                                padding: EdgeInsets.all(4.0),
+                                padding: const EdgeInsets.all(4.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -569,7 +563,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                 size: 16.0,
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         4.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -658,7 +652,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                 size: 16.0,
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         4.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -701,7 +695,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                           color: FlutterFlowTheme.of(context).alternate,
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 12.0, 16.0, 12.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -718,14 +712,14 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.all(2.0),
+                                  padding: const EdgeInsets.all(2.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: CachedNetworkImage(
                                       fadeInDuration:
-                                          Duration(milliseconds: 500),
+                                          const Duration(milliseconds: 500),
                                       fadeOutDuration:
-                                          Duration(milliseconds: 500),
+                                          const Duration(milliseconds: 500),
                                       imageUrl:
                                           'https://images.unsplash.com/photo-1624561172888-ac93c696e10c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHVzZXJzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
                                       width: 44.0,
@@ -737,7 +731,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -770,7 +764,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -791,20 +785,20 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                 ),
               Expanded(
                 child: Align(
-                  alignment: AlignmentDirectional(0.0, -1.0),
+                  alignment: const AlignmentDirectional(0.0, -1.0),
                   child: Container(
                     width: double.infinity,
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       maxWidth: 1170.0,
                     ),
-                    decoration: BoxDecoration(),
+                    decoration: const BoxDecoration(),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 16.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -812,7 +806,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       24.0, 20.0, 0.0, 0.0),
                                   child: Text(
                                     'Danh sách quy trình',
@@ -843,7 +837,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 4.0, 0.0, 0.0),
                             child: Text(
                               'Kết quả hiển thị theo bộ lọc.',
@@ -857,11 +851,11 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 12.0, 16.0, 0.0),
                             child: Container(
                               width: double.infinity,
-                              constraints: BoxConstraints(
+                              constraints: const BoxConstraints(
                                 maxWidth: double.infinity,
                               ),
                               decoration: BoxDecoration(
@@ -874,7 +868,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                 ),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 12.0, 16.0, 12.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -963,7 +957,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                             ),
                           ),
                           ListView(
-                            padding: EdgeInsets.fromLTRB(
+                            padding: const EdgeInsets.fromLTRB(
                               0,
                               12.0,
                               0,
@@ -974,17 +968,17 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                             scrollDirection: Axis.vertical,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: Container(
                                   width: double.infinity,
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                     maxWidth: 570.0,
                                   ),
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    boxShadow: [
+                                    boxShadow: const [
                                       BoxShadow(
                                         blurRadius: 4.0,
                                         color: Color(0x33000000),
@@ -1002,14 +996,14 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 12.0, 16.0, 12.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1019,7 +1013,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                               Expanded(
                                                 flex: 4,
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 12.0, 0.0),
                                                   child: Column(
@@ -1047,7 +1041,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     4.0,
@@ -1105,11 +1099,11 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                         ),
                                                         child: Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         7.0,
                                                                         0.0,
@@ -1165,11 +1159,11 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                         ),
                                                         child: Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         8.0,
                                                                         0.0,
@@ -1250,7 +1244,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                     ))
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     4.0,
@@ -1276,11 +1270,11 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                           ),
                                                           child: Align(
                                                             alignment:
-                                                                AlignmentDirectional(
+                                                                const AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           8.0,
                                                                           0.0,
@@ -1316,7 +1310,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1340,7 +1334,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                     width: 0.3,
                                                   ),
                                                 ),
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -1397,7 +1391,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                          const SizedBox(width: 4.0)),
                                                     ),
                                                     Text(
                                                       'Sớm hạn 25%',
@@ -1435,7 +1429,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                       BorderRadius.circular(
                                                           20.0),
                                                 ),
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -1493,7 +1487,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                          const SizedBox(width: 4.0)),
                                                     ),
                                                     Text(
                                                       'Đúng hạn 50%',
@@ -1531,7 +1525,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                       BorderRadius.circular(
                                                           20.0),
                                                 ),
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -1588,7 +1582,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                          const SizedBox(width: 4.0)),
                                                     ),
                                                     Text(
                                                       'Quá hạn 25%',
@@ -1615,23 +1609,23 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                             ],
                                           ),
                                         ),
-                                      ].divide(SizedBox(height: 8.0)),
+                                      ].divide(const SizedBox(height: 8.0)),
                                     ),
                                   ),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: Container(
                                   width: double.infinity,
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                     maxWidth: 570.0,
                                   ),
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    boxShadow: [
+                                    boxShadow: const [
                                       BoxShadow(
                                         blurRadius: 4.0,
                                         color: Color(0x33000000),
@@ -1649,14 +1643,14 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 12.0, 16.0, 12.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1666,7 +1660,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                               Expanded(
                                                 flex: 4,
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 12.0, 0.0),
                                                   child: Column(
@@ -1694,7 +1688,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     4.0,
@@ -1752,11 +1746,11 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                         ),
                                                         child: Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         7.0,
                                                                         0.0,
@@ -1812,11 +1806,11 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                         ),
                                                         child: Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         8.0,
                                                                         0.0,
@@ -1869,7 +1863,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                     ))
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     4.0,
@@ -1895,11 +1889,11 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                           ),
                                                           child: Align(
                                                             alignment:
-                                                                AlignmentDirectional(
+                                                                const AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           8.0,
                                                                           0.0,
@@ -1935,7 +1929,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1959,7 +1953,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                     width: 0.3,
                                                   ),
                                                 ),
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -2016,7 +2010,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                          const SizedBox(width: 4.0)),
                                                     ),
                                                     Text(
                                                       'Sớm hạn 25%',
@@ -2054,7 +2048,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                       BorderRadius.circular(
                                                           20.0),
                                                 ),
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -2112,7 +2106,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                          const SizedBox(width: 4.0)),
                                                     ),
                                                     Text(
                                                       'Đúng hạn 50%',
@@ -2150,7 +2144,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                       BorderRadius.circular(
                                                           20.0),
                                                 ),
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -2207,7 +2201,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                          const SizedBox(width: 4.0)),
                                                     ),
                                                     Text(
                                                       'Quá hạn 25%',
@@ -2234,23 +2228,23 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                             ],
                                           ),
                                         ),
-                                      ].divide(SizedBox(height: 8.0)),
+                                      ].divide(const SizedBox(height: 8.0)),
                                     ),
                                   ),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: Container(
                                   width: double.infinity,
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                     maxWidth: 570.0,
                                   ),
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    boxShadow: [
+                                    boxShadow: const [
                                       BoxShadow(
                                         blurRadius: 4.0,
                                         color: Color(0x33000000),
@@ -2268,14 +2262,14 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 12.0, 16.0, 12.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -2285,7 +2279,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                               Expanded(
                                                 flex: 4,
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 12.0, 0.0),
                                                   child: Column(
@@ -2321,12 +2315,12 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                                 .secondaryText,
                                                             size: 20.0,
                                                           ),
-                                                        ].divide(SizedBox(
+                                                        ].divide(const SizedBox(
                                                             width: 4.0)),
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     4.0,
@@ -2384,11 +2378,11 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                         ),
                                                         child: Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         7.0,
                                                                         0.0,
@@ -2444,11 +2438,11 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                         ),
                                                         child: Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         8.0,
                                                                         0.0,
@@ -2501,7 +2495,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                     ))
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     4.0,
@@ -2527,11 +2521,11 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                           ),
                                                           child: Align(
                                                             alignment:
-                                                                AlignmentDirectional(
+                                                                const AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           8.0,
                                                                           0.0,
@@ -2567,7 +2561,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -2591,7 +2585,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                     width: 0.3,
                                                   ),
                                                 ),
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -2648,7 +2642,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                          const SizedBox(width: 4.0)),
                                                     ),
                                                     Text(
                                                       'Sớm hạn 25%',
@@ -2686,7 +2680,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                       BorderRadius.circular(
                                                           20.0),
                                                 ),
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -2744,7 +2738,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                          const SizedBox(width: 4.0)),
                                                     ),
                                                     Text(
                                                       'Đúng hạn 50%',
@@ -2782,7 +2776,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                       BorderRadius.circular(
                                                           20.0),
                                                 ),
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -2839,7 +2833,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                          const SizedBox(width: 4.0)),
                                                     ),
                                                     Text(
                                                       'Quá hạn 25%',
@@ -2866,23 +2860,23 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                             ],
                                           ),
                                         ),
-                                      ].divide(SizedBox(height: 8.0)),
+                                      ].divide(const SizedBox(height: 8.0)),
                                     ),
                                   ),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: Container(
                                   width: double.infinity,
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                     maxWidth: 570.0,
                                   ),
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    boxShadow: [
+                                    boxShadow: const [
                                       BoxShadow(
                                         blurRadius: 4.0,
                                         color: Color(0x33000000),
@@ -2900,14 +2894,14 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 12.0, 16.0, 12.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -2917,7 +2911,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                               Expanded(
                                                 flex: 4,
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 12.0, 0.0),
                                                   child: Column(
@@ -2945,7 +2939,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     4.0,
@@ -3003,11 +2997,11 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                         ),
                                                         child: Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         7.0,
                                                                         0.0,
@@ -3063,11 +3057,11 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                         ),
                                                         child: Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         8.0,
                                                                         0.0,
@@ -3120,7 +3114,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                     ))
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     4.0,
@@ -3146,11 +3140,11 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                           ),
                                                           child: Align(
                                                             alignment:
-                                                                AlignmentDirectional(
+                                                                const AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           8.0,
                                                                           0.0,
@@ -3186,7 +3180,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -3210,7 +3204,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                     width: 0.3,
                                                   ),
                                                 ),
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -3267,7 +3261,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                          const SizedBox(width: 4.0)),
                                                     ),
                                                     Text(
                                                       'Sớm hạn 25%',
@@ -3305,7 +3299,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                       BorderRadius.circular(
                                                           20.0),
                                                 ),
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -3363,7 +3357,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                          const SizedBox(width: 4.0)),
                                                     ),
                                                     Text(
                                                       'Đúng hạn 50%',
@@ -3401,7 +3395,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                       BorderRadius.circular(
                                                           20.0),
                                                 ),
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -3458,7 +3452,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                          const SizedBox(width: 4.0)),
                                                     ),
                                                     Text(
                                                       'Quá hạn 25%',
@@ -3485,23 +3479,23 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                             ],
                                           ),
                                         ),
-                                      ].divide(SizedBox(height: 8.0)),
+                                      ].divide(const SizedBox(height: 8.0)),
                                     ),
                                   ),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: Container(
                                   width: double.infinity,
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                     maxWidth: 570.0,
                                   ),
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    boxShadow: [
+                                    boxShadow: const [
                                       BoxShadow(
                                         blurRadius: 4.0,
                                         color: Color(0x33000000),
@@ -3519,14 +3513,14 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 18.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 12.0, 16.0, 12.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -3536,7 +3530,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                               Expanded(
                                                 flex: 4,
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 12.0, 0.0),
                                                   child: Column(
@@ -3572,12 +3566,12 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                                 .secondaryText,
                                                             size: 20.0,
                                                           ),
-                                                        ].divide(SizedBox(
+                                                        ].divide(const SizedBox(
                                                             width: 4.0)),
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     4.0,
@@ -3635,11 +3629,11 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                         ),
                                                         child: Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         7.0,
                                                                         0.0,
@@ -3695,11 +3689,11 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                         ),
                                                         child: Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         8.0,
                                                                         0.0,
@@ -3752,7 +3746,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                     ))
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     4.0,
@@ -3778,11 +3772,11 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                           ),
                                                           child: Align(
                                                             alignment:
-                                                                AlignmentDirectional(
+                                                                const AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           8.0,
                                                                           0.0,
@@ -3818,7 +3812,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -3842,7 +3836,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                     width: 0.3,
                                                   ),
                                                 ),
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -3899,7 +3893,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                          const SizedBox(width: 4.0)),
                                                     ),
                                                     Text(
                                                       'Sớm hạn 25%',
@@ -3937,7 +3931,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                       BorderRadius.circular(
                                                           20.0),
                                                 ),
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -3995,7 +3989,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                          const SizedBox(width: 4.0)),
                                                     ),
                                                     Text(
                                                       'Đúng hạn 50%',
@@ -4033,7 +4027,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                       BorderRadius.circular(
                                                           20.0),
                                                 ),
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -4090,7 +4084,7 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                          const SizedBox(width: 4.0)),
                                                     ),
                                                     Text(
                                                       'Quá hạn 25%',
@@ -4117,12 +4111,12 @@ class _QuanLyQuyTrinh1WidgetState extends State<QuanLyQuyTrinh1Widget>
                                             ],
                                           ),
                                         ),
-                                      ].divide(SizedBox(height: 8.0)),
+                                      ].divide(const SizedBox(height: 8.0)),
                                     ),
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(height: 12.0)),
+                            ].divide(const SizedBox(height: 12.0)),
                           ),
                         ],
                       ),

@@ -1,14 +1,11 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/lesson/filter_lesson/filter_lesson_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'lessons_list_model.dart';
 export 'lessons_list_model.dart';
@@ -63,7 +60,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
             context.pushNamed(
               'LessonCreate',
               extra: <String, dynamic>{
-                kTransitionInfoKey: TransitionInfo(
+                kTransitionInfoKey: const TransitionInfo(
                   hasTransition: true,
                   transitionType: PageTransitionType.fade,
                   duration: Duration(milliseconds: 0),
@@ -96,7 +93,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
               context.pushNamed(
                 'StudyProgramList',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: TransitionInfo(
+                  kTransitionInfoKey: const TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -114,14 +111,14 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
             child: SingleChildScrollView(
               primary: false,
               child: Column(
@@ -130,20 +127,20 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 2.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 2.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                          child: Container(
+                          child: SizedBox(
                             width: double.infinity,
                             child: TextFormField(
                               controller: _model.nameSearchTextController,
                               focusNode: _model.nameSearchFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.nameSearchTextController',
-                                Duration(milliseconds: 500),
+                                const Duration(milliseconds: 500),
                                 () async {
                                   await _model.getLessons(context);
                                   setState(() {});
@@ -198,9 +195,9 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context)
                                     .primaryBackground,
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 0.0, 0.0),
-                                prefixIcon: Icon(
+                                prefixIcon: const Icon(
                                   Icons.search,
                                 ),
                                 suffixIcon: _model.nameSearchTextController!
@@ -254,7 +251,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                     elevation: 0,
                                     insetPadding: EdgeInsets.zero,
                                     backgroundColor: Colors.transparent,
-                                    alignment: AlignmentDirectional(0.0, 0.0)
+                                    alignment: const AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
                                     child: GestureDetector(
                                       onTap: () => _model
@@ -300,14 +297,13 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                       ],
                     ),
                   ),
-                  if ((_model.nameSearchTextController.text != null &&
-                          _model.nameSearchTextController.text != '') ||
-                      (_model.status != null && _model.status != '') ||
-                      (_model.dateStart != null && _model.dateStart != '') ||
-                      (_model.dateEnd != null && _model.dateEnd != ''))
+                  if ((_model.nameSearchTextController.text != '') ||
+                      (_model.status != '') ||
+                      (_model.dateStart != '') ||
+                      (_model.dateEnd != ''))
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 5.0, 16.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 5.0, 16.0, 0.0),
                       child: Text(
                         '#Kết quả tìm kiếm theo bộ lọc',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -321,7 +317,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                     ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 44.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 44.0),
                     child: Builder(
                       builder: (context) {
                         final listItems = _model.list.toList();
@@ -331,11 +327,11 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           itemCount: listItems.length,
-                          separatorBuilder: (_, __) => SizedBox(height: 12.0),
+                          separatorBuilder: (_, __) => const SizedBox(height: 12.0),
                           itemBuilder: (context, listItemsIndex) {
                             final listItemsItem = listItems[listItemsIndex];
                             return Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -352,7 +348,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: TransitionInfo(
+                                      kTransitionInfoKey: const TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -373,14 +369,14 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.all(3.0),
+                                          padding: const EdgeInsets.all(3.0),
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(10.0),
@@ -389,14 +385,14 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                               width: 100.0,
                                               height: 100.0,
                                               fit: BoxFit.cover,
-                                              alignment: Alignment(0.0, 0.0),
+                                              alignment: const Alignment(0.0, 0.0),
                                             ),
                                           ),
                                         ),
                                         Expanded(
                                           child: Container(
                                             height: 100.0,
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               crossAxisAlignment:
@@ -486,16 +482,16 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                                               ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 2.0)),
+                                                          const SizedBox(width: 2.0)),
                                                     ),
                                                   ].divide(
-                                                      SizedBox(width: 4.0)),
+                                                      const SizedBox(width: 4.0)),
                                                 ),
-                                              ].divide(SizedBox(height: 6.0)),
+                                              ].divide(const SizedBox(height: 6.0)),
                                             ),
                                           ),
                                         ),
-                                      ].divide(SizedBox(width: 8.0)),
+                                      ].divide(const SizedBox(width: 8.0)),
                                     ),
                                   ),
                                 ),
@@ -506,10 +502,10 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                       },
                     ),
                   ),
-                  if ((_model.list.length <= 0) && (_model.checkAPI == '1'))
+                  if ((_model.list.isEmpty) && (_model.checkAPI == '1'))
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -521,7 +517,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                             size: 55.0,
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Text(
                               'Chưa có dữ liệu',
@@ -536,7 +532,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 3.0, 0.0, 0.0),
                             child: Text(
                               'Hiện tại bạn chưa có dữ liệu nào!',

@@ -8,7 +8,6 @@ import '/flutter_flow/form_field_controller.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'department_create_model.dart';
 export 'department_create_model.dart';
@@ -109,7 +108,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                         actions: [
                           TextButton(
                             onPressed: () => Navigator.pop(alertDialogContext),
-                            child: Text('Ok'),
+                            child: const Text('Ok'),
                           ),
                         ],
                       );
@@ -128,7 +127,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
               ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -139,7 +138,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: SingleChildScrollView(
                     primary: false,
                     child: Column(
@@ -147,7 +146,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: TextFormField(
                             controller: _model.nameTextController,
@@ -211,21 +210,19 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: TextFormField(
                             controller: _model.codeTextController,
                             focusNode: _model.codeFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.codeTextController',
-                              Duration(milliseconds: 2000),
+                              const Duration(milliseconds: 2000),
                               () async {
                                 if (widget.checkCode!
                                         .where((e) =>
                                             e == _model.codeTextController.text)
-                                        .toList()
-                                        .length >
-                                    0) {
+                                        .toList().isNotEmpty) {
                                   setState(() {
                                     _model.checkCode = '1';
                                   });
@@ -312,7 +309,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                                 ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: TextFormField(
                             controller: _model.descriptionTextController,
@@ -378,7 +375,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                         if (FFAppState().user.role !=
                             'a8d33527-375b-4599-ac70-6a3fcad1de39')
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: Text(
                               'Chi nhánh',
@@ -393,7 +390,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                         if (FFAppState().user.role !=
                             'a8d33527-375b-4599-ac70-6a3fcad1de39')
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 3.0, 0.0, 0.0),
                             child: FlutterFlowDropDown<String>(
                               controller:
@@ -429,7 +426,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                                   FlutterFlowTheme.of(context).alternate,
                               borderWidth: 1.0,
                               borderRadius: 8.0,
-                              margin: EdgeInsetsDirectional.fromSTEB(
+                              margin: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 4.0, 16.0, 4.0),
                               hidesUnderline: true,
                               isOverButton: true,
@@ -438,7 +435,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Text(
                             'Chương trình đào tạo',
@@ -451,7 +448,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 3.0, 0.0, 0.0),
                           child: FlutterFlowDropDown<String>(
                             controller: _model.programsIdValueController ??=
@@ -498,7 +495,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                             borderColor: FlutterFlowTheme.of(context).alternate,
                             borderWidth: 1.0,
                             borderRadius: 8.0,
-                            margin: EdgeInsetsDirectional.fromSTEB(
+                            margin: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 4.0, 16.0, 4.0),
                             hidesUnderline: true,
                             isOverButton: true,
@@ -507,7 +504,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 3.0, 0.0, 0.0),
                           child: Builder(
                             builder: (context) {
@@ -518,7 +515,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                                 scrollDirection: Axis.vertical,
                                 itemCount: listItems.length,
                                 separatorBuilder: (_, __) =>
-                                    SizedBox(height: 4.0),
+                                    const SizedBox(height: 4.0),
                                 itemBuilder: (context, listItemsIndex) {
                                   final listItemsItem =
                                       listItems[listItemsIndex];
@@ -530,7 +527,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.all(8.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -580,7 +577,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                                               });
                                             },
                                           ),
-                                        ].divide(SizedBox(width: 8.0)),
+                                        ].divide(const SizedBox(width: 8.0)),
                                       ),
                                     ),
                                   );
@@ -589,23 +586,20 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                             },
                           ),
                         ),
-                      ].divide(SizedBox(height: 6.0)),
+                      ].divide(const SizedBox(height: 6.0)),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     if (FFAppState().user.role !=
                         'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                      if ((_model.nameTextController.text != null &&
-                              _model.nameTextController.text != '') &&
-                          (_model.codeTextController.text != null &&
-                              _model.codeTextController.text != '') &&
-                          (_model.descriptionTextController.text != null &&
-                              _model.descriptionTextController.text != '') &&
+                      if ((_model.nameTextController.text != '') &&
+                          (_model.codeTextController.text != '') &&
+                          (_model.descriptionTextController.text != '') &&
                           (_model.dropDownBranchIdValue != null &&
                               _model.dropDownBranchIdValue != '')) {
                         if (_model.checkCode != '1') {
@@ -638,19 +632,16 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
                             ),
-                            duration: Duration(milliseconds: 4000),
+                            duration: const Duration(milliseconds: 4000),
                             backgroundColor: FlutterFlowTheme.of(context).error,
                           ),
                         );
                         return;
                       }
                     } else {
-                      if ((_model.nameTextController.text != null &&
-                              _model.nameTextController.text != '') &&
-                          (_model.codeTextController.text != null &&
-                              _model.codeTextController.text != '') &&
-                          (_model.descriptionTextController.text != null &&
-                              _model.descriptionTextController.text != '')) {
+                      if ((_model.nameTextController.text != '') &&
+                          (_model.codeTextController.text != '') &&
+                          (_model.descriptionTextController.text != '')) {
                         if (_model.checkCode != '1') {
                           while (_model.loop < _model.programs.length) {
                             setState(() {
@@ -681,7 +672,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
                             ),
-                            duration: Duration(milliseconds: 4000),
+                            duration: const Duration(milliseconds: 4000),
                             backgroundColor: FlutterFlowTheme.of(context).error,
                           ),
                         );
@@ -694,17 +685,17 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                     width: 270.0,
                     height: 50.0,
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: Color(0xFF33BA45),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: const Color(0xFF33BA45),
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Readex Pro',
                           color: Colors.white,
                           letterSpacing: 0.0,
                         ),
                     elevation: 3.0,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),

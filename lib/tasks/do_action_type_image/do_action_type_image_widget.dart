@@ -6,8 +6,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'do_action_type_image_model.dart';
 export 'do_action_type_image_model.dart';
@@ -54,7 +52,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(4.0),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -64,12 +62,11 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
               borderRadius: BorderRadius.circular(8.0),
             ),
             child: Padding(
-              padding: EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(4.0),
               child: Stack(
-                alignment: AlignmentDirectional(0.0, 0.0),
+                alignment: const AlignmentDirectional(0.0, 0.0),
                 children: [
-                  if ((_model.uploadedLocalFile != null &&
-                          (_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                  if (((_model.uploadedLocalFile.bytes?.isNotEmpty ??
                               false)) &&
                       (widget.image != null && widget.image != ''))
                     InkWell(
@@ -113,8 +110,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                   if ((widget.image != null && widget.image != '') &&
                       (widget.image !=
                           '6f2dfeb5-4df6-4b73-93c4-109f72133a25') &&
-                      (_model.uploadedLocalFile == null ||
-                          (_model.uploadedLocalFile.bytes?.isEmpty ?? true)))
+                      ((_model.uploadedLocalFile.bytes?.isEmpty ?? true)))
                     InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -221,9 +217,9 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                       width: 150.0,
                       height: 40.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).alternate,
                       textStyle: FlutterFlowTheme.of(context)
                           .titleSmall
@@ -235,7 +231,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                             fontWeight: FontWeight.normal,
                           ),
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),

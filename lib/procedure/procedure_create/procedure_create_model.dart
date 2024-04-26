@@ -1,28 +1,10 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_checkbox_group.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/procedure/check_box_toggle/check_box_toggle_widget.dart';
-import '/procedure/dropdown_departments_list/dropdown_departments_list_widget.dart';
-import '/procedure/dropdown_user_list/dropdown_user_list_widget.dart';
-import '/procedure/procedure_step_create/procedure_step_create_widget.dart';
-import '/procedure/procedure_step_menu/procedure_step_menu_widget.dart';
-import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/custom_code/actions/index.dart' as actions;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'procedure_create_widget.dart' show ProcedureCreateWidget;
-import 'package:aligned_dialog/aligned_dialog.dart';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class ProcedureCreateModel extends FlutterFlowModel<ProcedureCreateWidget> {
   ///  Local state fields for this page.
@@ -270,8 +252,8 @@ class ProcedureCreateModel extends FlutterFlowModel<ProcedureCreateWidget> {
     BuildContext context, {
     required StepsStruct? item,
   }) async {
-    if (('${item?.dateStart}' != null && '${item?.dateStart}' != '') &&
-        ('${item?.dateEnd}' == null || '${item?.dateEnd}' == '')) {
+    if (('${item?.dateStart}' != '') &&
+        ('${item?.dateEnd}' == '')) {
       addToStepsList(WorkflowsStepCreateStruct(
         name: item?.name,
         description: item?.description,
@@ -283,8 +265,8 @@ class ProcedureCreateModel extends FlutterFlowModel<ProcedureCreateWidget> {
         status: 'published',
         staffsAlias: item?.staffsAlias,
       ));
-    } else if (('${item?.dateStart}' == null || '${item?.dateStart}' == '') &&
-        ('${item?.dateEnd}' != null && '${item?.dateEnd}' != '')) {
+    } else if (('${item?.dateStart}' == '') &&
+        ('${item?.dateEnd}' != '')) {
       addToStepsList(WorkflowsStepCreateStruct(
         name: item?.name,
         description: item?.description,
@@ -296,8 +278,8 @@ class ProcedureCreateModel extends FlutterFlowModel<ProcedureCreateWidget> {
         status: 'published',
         staffsAlias: item?.staffsAlias,
       ));
-    } else if (('${item?.dateStart}' != null && '${item?.dateStart}' != '') &&
-        ('${item?.dateEnd}' != null && '${item?.dateEnd}' != '')) {
+    } else if (('${item?.dateStart}' != '') &&
+        ('${item?.dateEnd}' != '')) {
       addToStepsList(WorkflowsStepCreateStruct(
         name: item?.name,
         description: item?.description,
@@ -341,7 +323,7 @@ class ProcedureCreateModel extends FlutterFlowModel<ProcedureCreateWidget> {
         status: 'published',
         staffsAlias: item?.staffsAlias,
         estimateInSecond:
-            item?.estimateInSecond != null ? item?.estimateInSecond : 0,
+            item?.estimateInSecond ?? 0,
         timeOperate: item?.timeOperate != null && item?.timeOperate != ''
             ? item?.timeOperate
             : '',
@@ -358,9 +340,9 @@ class ProcedureCreateModel extends FlutterFlowModel<ProcedureCreateWidget> {
     while (loop < item!.length) {
       addToStaffList(StaffsStepStruct(
         staffsId: StaffIdStruct(
-          id: (item?[loop])?.id,
+          id: (item[loop]).id,
           userId: UserIdStruct(
-            firstName: (item?[loop])?.userId?.firstName,
+            firstName: (item[loop]).userId.firstName,
           ),
         ),
       ));

@@ -1,19 +1,10 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/backend/schema/structs/index.dart';
 import 'procedure_published_list_copy2_widget.dart'
     show ProcedurePublishedListCopy2Widget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:percent_indicator/percent_indicator.dart';
-import 'package:provider/provider.dart';
 
 class ProcedurePublishedListCopy2Model
     extends FlutterFlowModel<ProcedurePublishedListCopy2Widget> {
@@ -62,9 +53,9 @@ class ProcedurePublishedListCopy2Model
         await ProcedurePublishedGroup.procedurePublishedListCall.call(
       accessToken: FFAppState().accessToken,
     );
-    if ((apiResultProcedurePublishedList2?.succeeded ?? true)) {
+    if ((apiResultProcedurePublishedList2.succeeded ?? true)) {
       dataList = ProcedurePublishedListDataStruct.maybeFromMap(
-              (apiResultProcedurePublishedList2?.jsonBody ?? ''))!
+              (apiResultProcedurePublishedList2.jsonBody ?? ''))!
           .data
           .toList()
           .cast<ProcedurePublishedListStruct>();

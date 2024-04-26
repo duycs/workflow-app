@@ -2,13 +2,9 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:provider/provider.dart';
 import 'chi_tiet_tien_do_cong_viec_model.dart';
 export 'chi_tiet_tien_do_cong_viec_model.dart';
 
@@ -48,8 +44,8 @@ class _ChiTietTienDoCongViecWidgetState
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 40.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 40.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -67,8 +63,8 @@ class _ChiTietTienDoCongViecWidgetState
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 50.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 50.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -86,8 +82,8 @@ class _ChiTietTienDoCongViecWidgetState
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 30.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 30.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -105,8 +101,8 @@ class _ChiTietTienDoCongViecWidgetState
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 60.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 60.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -124,8 +120,8 @@ class _ChiTietTienDoCongViecWidgetState
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 60.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 60.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -180,7 +176,7 @@ class _ChiTietTienDoCongViecWidgetState
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -193,7 +189,7 @@ class _ChiTietTienDoCongViecWidgetState
               children: [
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -234,7 +230,7 @@ class _ChiTietTienDoCongViecWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -246,9 +242,9 @@ class _ChiTietTienDoCongViecWidgetState
                                     .primaryBackground,
                                 borderRadius: BorderRadius.circular(32.0),
                               ),
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -268,7 +264,7 @@ class _ChiTietTienDoCongViecWidgetState
                                           .secondaryText,
                                       size: 20.0,
                                     ),
-                                  ].divide(SizedBox(width: 4.0)),
+                                  ].divide(const SizedBox(width: 4.0)),
                                 ),
                               ),
                             ),
@@ -282,9 +278,9 @@ class _ChiTietTienDoCongViecWidgetState
                                   width: 2.0,
                                 ),
                               ),
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
                                 child: Text(
                                   'Sale',
@@ -319,7 +315,7 @@ class _ChiTietTienDoCongViecWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Text(
                           'Không có mô tả',
                           style:
@@ -330,7 +326,7 @@ class _ChiTietTienDoCongViecWidgetState
                         ).animateOnPageLoad(
                             animationsMap['textOnPageLoadAnimation2']!),
                       ),
-                      Divider(
+                      const Divider(
                         height: 24.0,
                         thickness: 1.0,
                         color: Color(0xFFE0E3E7),
@@ -423,12 +419,12 @@ class _ChiTietTienDoCongViecWidgetState
                           ),
                         ],
                       ),
-                    ].divide(SizedBox(height: 4.0)),
+                    ].divide(const SizedBox(height: 4.0)),
                   ),
                 ),
                 Flexible(
                   child: Padding(
-                    padding: EdgeInsets.all(24.0),
+                    padding: const EdgeInsets.all(24.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -470,7 +466,7 @@ class _ChiTietTienDoCongViecWidgetState
                                 ),
                               ],
                             ),
-                          ].divide(SizedBox(width: 24.0)),
+                          ].divide(const SizedBox(width: 24.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -542,7 +538,7 @@ class _ChiTietTienDoCongViecWidgetState
                                 ),
                               ],
                             ),
-                          ].divide(SizedBox(width: 24.0)),
+                          ].divide(const SizedBox(width: 24.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -614,7 +610,7 @@ class _ChiTietTienDoCongViecWidgetState
                                 ),
                               ],
                             ),
-                          ].divide(SizedBox(width: 24.0)),
+                          ].divide(const SizedBox(width: 24.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -653,7 +649,7 @@ class _ChiTietTienDoCongViecWidgetState
                                 ),
                               ],
                             ),
-                          ].divide(SizedBox(width: 24.0)),
+                          ].divide(const SizedBox(width: 24.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -699,7 +695,7 @@ class _ChiTietTienDoCongViecWidgetState
                                   width: 60.0,
                                   height: 60.0,
                                   decoration: BoxDecoration(
-                                    color: Color(0x7857636C),
+                                    color: const Color(0x7857636C),
                                     borderRadius: BorderRadius.circular(90.0),
                                   ),
                                 ),
@@ -724,7 +720,7 @@ class _ChiTietTienDoCongViecWidgetState
                                   width: 60.0,
                                   height: 60.0,
                                   decoration: BoxDecoration(
-                                    color: Color(0x7857636C),
+                                    color: const Color(0x7857636C),
                                     borderRadius: BorderRadius.circular(90.0),
                                   ),
                                 ),
@@ -742,7 +738,7 @@ class _ChiTietTienDoCongViecWidgetState
                                 ),
                               ],
                             ),
-                          ].divide(SizedBox(width: 24.0)),
+                          ].divide(const SizedBox(width: 24.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -755,7 +751,7 @@ class _ChiTietTienDoCongViecWidgetState
                                   width: 60.0,
                                   height: 60.0,
                                   decoration: BoxDecoration(
-                                    color: Color(0x7857636C),
+                                    color: const Color(0x7857636C),
                                     borderRadius: BorderRadius.circular(90.0),
                                   ),
                                 ),
@@ -773,9 +769,9 @@ class _ChiTietTienDoCongViecWidgetState
                                 ),
                               ],
                             ),
-                          ].divide(SizedBox(width: 24.0)),
+                          ].divide(const SizedBox(width: 24.0)),
                         ),
-                      ].divide(SizedBox(height: 24.0)),
+                      ].divide(const SizedBox(height: 24.0)),
                     ),
                   ),
                 ),

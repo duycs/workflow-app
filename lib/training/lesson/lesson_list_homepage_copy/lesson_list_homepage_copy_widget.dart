@@ -1,14 +1,11 @@
-import '/backend/schema/structs/index.dart';
 import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/lesson/filter_lesson_home_page/filter_lesson_home_page_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'lesson_list_homepage_copy_model.dart';
 export 'lesson_list_homepage_copy_model.dart';
@@ -34,7 +31,7 @@ class _LessonListHomepageCopyWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (FFAppState().staffid != null && FFAppState().staffid != '') {
+      if (FFAppState().staffid != '') {
         await _model.getListLessonRow(context);
         setState(() {});
         await _model.getListLessonRow2(context);
@@ -80,7 +77,7 @@ class _LessonListHomepageCopyWidgetState
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -97,15 +94,15 @@ class _LessonListHomepageCopyWidgetState
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
-                      child: Container(
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                      child: SizedBox(
                         width: double.infinity,
                         child: TextFormField(
                           controller: _model.nameSearchTextController,
                           focusNode: _model.nameSearchFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.nameSearchTextController',
-                            Duration(milliseconds: 500),
+                            const Duration(milliseconds: 500),
                             () async {
                               await _model.getListLessonRow(context);
                               setState(() {});
@@ -168,9 +165,9 @@ class _LessonListHomepageCopyWidgetState
                             filled: true,
                             fillColor:
                                 FlutterFlowTheme.of(context).primaryBackground,
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 0.0, 0.0),
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.search,
                               size: 24.0,
                             ),
@@ -213,11 +210,10 @@ class _LessonListHomepageCopyWidgetState
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        if ((FFAppState().staffid != null &&
-                                FFAppState().staffid != '') &&
-                            (_model.listLessonRow.length > 0))
+                        if ((FFAppState().staffid != '') &&
+                            (_model.listLessonRow.isNotEmpty))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 12.0, 5.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -263,7 +259,7 @@ class _LessonListHomepageCopyWidgetState
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: TransitionInfo(
+                                        kTransitionInfoKey: const TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -300,13 +296,11 @@ class _LessonListHomepageCopyWidgetState
                               ],
                             ),
                           ),
-                        if ((_model.nameSearchTextController.text != null &&
-                                _model.nameSearchTextController.text != '') &&
-                            ((FFAppState().staffid != null &&
-                                    FFAppState().staffid != '') &&
-                                (_model.listLessonRow.length > 0)))
+                        if ((_model.nameSearchTextController.text != '') &&
+                            ((FFAppState().staffid != '') &&
+                                (_model.listLessonRow.isNotEmpty)))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 2.0, 16.0, 0.0),
                             child: Text(
                               '#Kết quả tìm kiếm theo bộ lọc',
@@ -323,29 +317,27 @@ class _LessonListHomepageCopyWidgetState
                                   ),
                             ),
                           ),
-                        if ((FFAppState().staffid != null &&
-                                FFAppState().staffid != '') &&
-                            (_model.listLessonRow.length > 0))
+                        if ((FFAppState().staffid != '') &&
+                            (_model.listLessonRow.isNotEmpty))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 4.0),
                             child: Container(
                               width: double.infinity,
                               height: 130.0,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: Visibility(
-                                visible: (FFAppState().staffid != null &&
-                                        FFAppState().staffid != '') &&
-                                    (_model.listLessonRow.length > 0),
+                                visible: (FFAppState().staffid != '') &&
+                                    (_model.listLessonRow.isNotEmpty),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 12.0),
                                   child: Builder(
                                     builder: (context) {
                                       final listRow =
                                           _model.listLessonRow.toList();
                                       return ListView.separated(
-                                        padding: EdgeInsets.fromLTRB(
+                                        padding: const EdgeInsets.fromLTRB(
                                           16.0,
                                           0,
                                           0,
@@ -355,7 +347,7 @@ class _LessonListHomepageCopyWidgetState
                                         scrollDirection: Axis.horizontal,
                                         itemCount: listRow.length,
                                         separatorBuilder: (_, __) =>
-                                            SizedBox(width: 12.0),
+                                            const SizedBox(width: 12.0),
                                         itemBuilder: (context, listRowIndex) {
                                           final listRowItem =
                                               listRow[listRowIndex];
@@ -384,7 +376,7 @@ class _LessonListHomepageCopyWidgetState
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      TransitionInfo(
+                                                      const TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType.fade,
@@ -410,7 +402,7 @@ class _LessonListHomepageCopyWidgetState
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsets.all(6.0),
+                                                padding: const EdgeInsets.all(6.0),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -434,7 +426,7 @@ class _LessonListHomepageCopyWidgetState
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   4.0,
@@ -472,11 +464,10 @@ class _LessonListHomepageCopyWidgetState
                               ),
                             ),
                           ),
-                        if ((FFAppState().staffid != null &&
-                                FFAppState().staffid != '') &&
-                            (_model.listLessonRow2.length > 0))
+                        if ((FFAppState().staffid != '') &&
+                            (_model.listLessonRow2.isNotEmpty))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 12.0, 5.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -522,7 +513,7 @@ class _LessonListHomepageCopyWidgetState
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: TransitionInfo(
+                                        kTransitionInfoKey: const TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -559,13 +550,11 @@ class _LessonListHomepageCopyWidgetState
                               ],
                             ),
                           ),
-                        if ((_model.nameSearchTextController.text != null &&
-                                _model.nameSearchTextController.text != '') &&
-                            ((FFAppState().staffid != null &&
-                                    FFAppState().staffid != '') &&
-                                (_model.listLessonRow2.length > 0)))
+                        if ((_model.nameSearchTextController.text != '') &&
+                            ((FFAppState().staffid != '') &&
+                                (_model.listLessonRow2.isNotEmpty)))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 2.0, 16.0, 0.0),
                             child: Text(
                               '#Kết quả tìm kiếm theo bộ lọc',
@@ -582,29 +571,27 @@ class _LessonListHomepageCopyWidgetState
                                   ),
                             ),
                           ),
-                        if ((FFAppState().staffid != null &&
-                                FFAppState().staffid != '') &&
-                            (_model.listLessonRow2.length > 0))
+                        if ((FFAppState().staffid != '') &&
+                            (_model.listLessonRow2.isNotEmpty))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 4.0),
                             child: Container(
                               width: double.infinity,
                               height: 130.0,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: Visibility(
-                                visible: (FFAppState().staffid != null &&
-                                        FFAppState().staffid != '') &&
-                                    (_model.listLessonRow2.length > 0),
+                                visible: (FFAppState().staffid != '') &&
+                                    (_model.listLessonRow2.isNotEmpty),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 12.0),
                                   child: Builder(
                                     builder: (context) {
                                       final listRow2 =
                                           _model.listLessonRow2.toList();
                                       return ListView.separated(
-                                        padding: EdgeInsets.fromLTRB(
+                                        padding: const EdgeInsets.fromLTRB(
                                           16.0,
                                           0,
                                           0,
@@ -614,7 +601,7 @@ class _LessonListHomepageCopyWidgetState
                                         scrollDirection: Axis.horizontal,
                                         itemCount: listRow2.length,
                                         separatorBuilder: (_, __) =>
-                                            SizedBox(width: 12.0),
+                                            const SizedBox(width: 12.0),
                                         itemBuilder: (context, listRow2Index) {
                                           final listRow2Item =
                                               listRow2[listRow2Index];
@@ -643,7 +630,7 @@ class _LessonListHomepageCopyWidgetState
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      TransitionInfo(
+                                                      const TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType.fade,
@@ -669,7 +656,7 @@ class _LessonListHomepageCopyWidgetState
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsets.all(6.0),
+                                                padding: const EdgeInsets.all(6.0),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -693,7 +680,7 @@ class _LessonListHomepageCopyWidgetState
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   4.0,
@@ -732,7 +719,7 @@ class _LessonListHomepageCopyWidgetState
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 12.0, 16.0, 0.0),
                           child: Text(
                             'Bài học khác',
@@ -748,7 +735,7 @@ class _LessonListHomepageCopyWidgetState
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -781,7 +768,7 @@ class _LessonListHomepageCopyWidgetState
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: TransitionInfo(
+                                        kTransitionInfoKey: const TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -793,11 +780,11 @@ class _LessonListHomepageCopyWidgetState
                                   child: Container(
                                     height: 36.0,
                                     decoration: BoxDecoration(
-                                      color: Color(0x2A4B39EF),
+                                      color: const Color(0x2A4B39EF),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           32.0, 0.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -812,7 +799,7 @@ class _LessonListHomepageCopyWidgetState
                                           ),
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Text(
                                               'Đang học',
                                               style: FlutterFlowTheme.of(
@@ -828,7 +815,7 @@ class _LessonListHomepageCopyWidgetState
                                                   ),
                                             ),
                                           ),
-                                        ].divide(SizedBox(width: 8.0)),
+                                        ].divide(const SizedBox(width: 8.0)),
                                       ),
                                     ),
                                   ),
@@ -862,7 +849,7 @@ class _LessonListHomepageCopyWidgetState
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: TransitionInfo(
+                                        kTransitionInfoKey: const TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -874,11 +861,11 @@ class _LessonListHomepageCopyWidgetState
                                   child: Container(
                                     height: 36.0,
                                     decoration: BoxDecoration(
-                                      color: Color(0x2A4B39EF),
+                                      color: const Color(0x2A4B39EF),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           32.0, 0.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -893,7 +880,7 @@ class _LessonListHomepageCopyWidgetState
                                           ),
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Text(
                                               'Hoàn thành',
                                               style: FlutterFlowTheme.of(
@@ -910,17 +897,17 @@ class _LessonListHomepageCopyWidgetState
                                                   ),
                                             ),
                                           ),
-                                        ].divide(SizedBox(width: 8.0)),
+                                        ].divide(const SizedBox(width: 8.0)),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 12.0)),
+                            ].divide(const SizedBox(width: 12.0)),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -953,7 +940,7 @@ class _LessonListHomepageCopyWidgetState
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: TransitionInfo(
+                                        kTransitionInfoKey: const TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -965,11 +952,11 @@ class _LessonListHomepageCopyWidgetState
                                   child: Container(
                                     height: 36.0,
                                     decoration: BoxDecoration(
-                                      color: Color(0x2A4B39EF),
+                                      color: const Color(0x2A4B39EF),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           32.0, 0.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -984,7 +971,7 @@ class _LessonListHomepageCopyWidgetState
                                           ),
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Text(
                                               'Yêu thích',
                                               style: FlutterFlowTheme.of(
@@ -1000,7 +987,7 @@ class _LessonListHomepageCopyWidgetState
                                                   ),
                                             ),
                                           ),
-                                        ].divide(SizedBox(width: 8.0)),
+                                        ].divide(const SizedBox(width: 8.0)),
                                       ),
                                     ),
                                   ),
@@ -1034,7 +1021,7 @@ class _LessonListHomepageCopyWidgetState
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: TransitionInfo(
+                                        kTransitionInfoKey: const TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -1046,11 +1033,11 @@ class _LessonListHomepageCopyWidgetState
                                   child: Container(
                                     height: 36.0,
                                     decoration: BoxDecoration(
-                                      color: Color(0x2A4B39EF),
+                                      color: const Color(0x2A4B39EF),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           32.0, 0.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -1059,7 +1046,7 @@ class _LessonListHomepageCopyWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 2.0),
                                             child: Icon(
                                               Icons.style_sharp,
@@ -1071,7 +1058,7 @@ class _LessonListHomepageCopyWidgetState
                                           ),
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Text(
                                               'Bắt buộc',
                                               style: FlutterFlowTheme.of(
@@ -1087,20 +1074,19 @@ class _LessonListHomepageCopyWidgetState
                                                   ),
                                             ),
                                           ),
-                                        ].divide(SizedBox(width: 8.0)),
+                                        ].divide(const SizedBox(width: 8.0)),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 12.0)),
+                            ].divide(const SizedBox(width: 12.0)),
                           ),
                         ),
-                        if ((FFAppState().staffid != null &&
-                                FFAppState().staffid != '') &&
-                            (_model.listLessonRow3.length > 0))
+                        if ((FFAppState().staffid != '') &&
+                            (_model.listLessonRow3.isNotEmpty))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 24.0, 5.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -1146,7 +1132,7 @@ class _LessonListHomepageCopyWidgetState
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: TransitionInfo(
+                                        kTransitionInfoKey: const TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -1183,13 +1169,11 @@ class _LessonListHomepageCopyWidgetState
                               ],
                             ),
                           ),
-                        if ((_model.nameSearchTextController.text != null &&
-                                _model.nameSearchTextController.text != '') &&
-                            ((FFAppState().staffid != null &&
-                                    FFAppState().staffid != '') &&
-                                (_model.listLessonRow3.length > 0)))
+                        if ((_model.nameSearchTextController.text != '') &&
+                            ((FFAppState().staffid != '') &&
+                                (_model.listLessonRow3.isNotEmpty)))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 2.0, 16.0, 0.0),
                             child: Text(
                               '#Kết quả tìm kiếm theo bộ lọc',
@@ -1206,26 +1190,24 @@ class _LessonListHomepageCopyWidgetState
                                   ),
                             ),
                           ),
-                        if ((FFAppState().staffid != null &&
-                                FFAppState().staffid != '') &&
-                            (_model.listLessonRow3.length > 0))
+                        if ((FFAppState().staffid != '') &&
+                            (_model.listLessonRow3.isNotEmpty))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 4.0),
                             child: Container(
                               width: double.infinity,
                               height: 130.0,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: Visibility(
-                                visible: (FFAppState().staffid != null &&
-                                        FFAppState().staffid != '') &&
-                                    (_model.listLessonRow3.length > 0),
+                                visible: (FFAppState().staffid != '') &&
+                                    (_model.listLessonRow3.isNotEmpty),
                                 child: Builder(
                                   builder: (context) {
                                     final listRow3 =
                                         _model.listLessonRow3.toList();
                                     return ListView.separated(
-                                      padding: EdgeInsets.fromLTRB(
+                                      padding: const EdgeInsets.fromLTRB(
                                         16.0,
                                         0,
                                         0,
@@ -1235,7 +1217,7 @@ class _LessonListHomepageCopyWidgetState
                                       scrollDirection: Axis.horizontal,
                                       itemCount: listRow3.length,
                                       separatorBuilder: (_, __) =>
-                                          SizedBox(width: 12.0),
+                                          const SizedBox(width: 12.0),
                                       itemBuilder: (context, listRow3Index) {
                                         final listRow3Item =
                                             listRow3[listRow3Index];
@@ -1264,7 +1246,7 @@ class _LessonListHomepageCopyWidgetState
                                               }.withoutNulls,
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
-                                                    TransitionInfo(
+                                                    const TransitionInfo(
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType.fade,
@@ -1290,7 +1272,7 @@ class _LessonListHomepageCopyWidgetState
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsets.all(6.0),
+                                              padding: const EdgeInsets.all(6.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
@@ -1311,7 +1293,7 @@ class _LessonListHomepageCopyWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -1345,7 +1327,7 @@ class _LessonListHomepageCopyWidgetState
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 24.0, 16.0, 0.0),
                           child: Text(
                             'Hãy thử khám phá',
@@ -1361,7 +1343,7 @@ class _LessonListHomepageCopyWidgetState
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1370,7 +1352,7 @@ class _LessonListHomepageCopyWidgetState
                                 child: Container(
                                   width: 100.0,
                                   decoration: BoxDecoration(
-                                    color: Color(0x2539D2C0),
+                                    color: const Color(0x2539D2C0),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Row(
@@ -1411,7 +1393,7 @@ class _LessonListHomepageCopyWidgetState
                                 child: Container(
                                   width: 100.0,
                                   decoration: BoxDecoration(
-                                    color: Color(0x2539D2C0),
+                                    color: const Color(0x2539D2C0),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Row(
@@ -1448,11 +1430,11 @@ class _LessonListHomepageCopyWidgetState
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 12.0)),
+                            ].divide(const SizedBox(width: 12.0)),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 22.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1473,19 +1455,14 @@ class _LessonListHomepageCopyWidgetState
                                           fontWeight: FontWeight.w500,
                                         ),
                                   ),
-                                  if ((_model.nameSearchTextController.text !=
-                                              null &&
-                                          _model.nameSearchTextController
+                                  if ((_model.nameSearchTextController
                                                   .text !=
                                               '') ||
-                                      ((_model.status != null &&
-                                              _model.status != '') &&
+                                      ((_model.status != '') &&
                                           (_model.status != 'noData')) ||
-                                      ((_model.dateEndList != null &&
-                                              _model.dateEndList != '') &&
+                                      ((_model.dateEndList != '') &&
                                           (_model.dateEndList != 'noData')) ||
-                                      ((_model.dateStartList != null &&
-                                              _model.dateStartList != '') &&
+                                      ((_model.dateStartList != '') &&
                                           (_model.dateStartList != 'noData')))
                                     Text(
                                       '#Kết quả tìm kiếm theo bộ lọc',
@@ -1500,10 +1477,10 @@ class _LessonListHomepageCopyWidgetState
                                             fontStyle: FontStyle.italic,
                                           ),
                                     ),
-                                ].divide(SizedBox(height: 4.0)),
+                                ].divide(const SizedBox(height: 4.0)),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: Builder(
                                   builder: (context) => FlutterFlowIconButton(
                                     borderColor: Colors.transparent,
@@ -1524,7 +1501,7 @@ class _LessonListHomepageCopyWidgetState
                                             elevation: 0,
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
-                                            alignment: AlignmentDirectional(
+                                            alignment: const AlignmentDirectional(
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
@@ -1594,10 +1571,9 @@ class _LessonListHomepageCopyWidgetState
                             ],
                           ),
                         ),
-                        if (FFAppState().staffid != null &&
-                            FFAppState().staffid != '')
+                        if (FFAppState().staffid != '')
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 4.0, 16.0, 16.0),
                             child: Builder(
                               builder: (context) {
@@ -1609,7 +1585,7 @@ class _LessonListHomepageCopyWidgetState
                                   scrollDirection: Axis.vertical,
                                   itemCount: list.length,
                                   separatorBuilder: (_, __) =>
-                                      SizedBox(height: 8.0),
+                                      const SizedBox(height: 8.0),
                                   itemBuilder: (context, listIndex) {
                                     final listItem = list[listIndex];
                                     return InkWell(
@@ -1635,7 +1611,7 @@ class _LessonListHomepageCopyWidgetState
                                             ),
                                           }.withoutNulls,
                                           extra: <String, dynamic>{
-                                            kTransitionInfoKey: TransitionInfo(
+                                            kTransitionInfoKey: const TransitionInfo(
                                               hasTransition: true,
                                               transitionType:
                                                   PageTransitionType.fade,
@@ -1660,7 +1636,7 @@ class _LessonListHomepageCopyWidgetState
                                           ),
                                         ),
                                         child: Padding(
-                                          padding: EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
@@ -1675,7 +1651,7 @@ class _LessonListHomepageCopyWidgetState
                                                   height: 100.0,
                                                   fit: BoxFit.cover,
                                                   alignment:
-                                                      Alignment(0.0, 0.0),
+                                                      const Alignment(0.0, 0.0),
                                                 ),
                                               ),
                                               Expanded(
@@ -1719,7 +1695,7 @@ class _LessonListHomepageCopyWidgetState
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         4.0,
@@ -1770,12 +1746,12 @@ class _LessonListHomepageCopyWidgetState
                                                           ),
                                                         ),
                                                       ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                          const SizedBox(width: 4.0)),
                                                     ),
                                                   ],
                                                 ),
                                               ),
-                                            ].divide(SizedBox(width: 8.0)),
+                                            ].divide(const SizedBox(width: 8.0)),
                                           ),
                                         ),
                                       ),
@@ -1792,11 +1768,11 @@ class _LessonListHomepageCopyWidgetState
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
               child: wrapWithModel(
                 model: _model.navBarModel,
                 updateCallback: () => setState(() {}),
-                child: NavBarWidget(
+                child: const NavBarWidget(
                   selectedPageIndex: 6,
                 ),
               ),

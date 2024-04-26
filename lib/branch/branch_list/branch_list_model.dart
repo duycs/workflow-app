@@ -1,18 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/branch/branch_create/branch_create_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'branch_list_widget.dart' show BranchListWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class BranchListModel extends FlutterFlowModel<BranchListWidget> {
   ///  Local state fields for this page.
@@ -66,14 +57,14 @@ class BranchListModel extends FlutterFlowModel<BranchListWidget> {
       apiResultListBranch = await BranchGroup.branchListCall.call(
         accessToken: FFAppState().accessToken,
         filter:
-            '{\"_and\":[{}${(filter != null && filter != '') && (filter != ' ') ? ',{\"name\":{\"_icontains\":\"${filter}\"}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+            '{\"_and\":[{}${(filter != '') && (filter != ' ') ? ',{\"name\":{\"_icontains\":\"$filter\"}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
           FFAppState().staffLogin,
           r'''$.organization_id''',
         ).toString().toString()}\"}}}'}]}',
       );
-      if ((apiResultListBranch?.succeeded ?? true)) {
+      if ((apiResultListBranch.succeeded ?? true)) {
         listBranch = BranchListDataStruct.maybeFromMap(
-                (apiResultListBranch?.jsonBody ?? ''))!
+                (apiResultListBranch.jsonBody ?? ''))!
             .data
             .toList()
             .cast<BranchListStruct>();

@@ -10,7 +10,6 @@ import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'study_program_edit_model.dart';
 export 'study_program_edit_model.dart';
@@ -76,11 +75,11 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxHeight: 650.0,
           ),
           decoration: BoxDecoration(
@@ -97,7 +96,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 28.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 28.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -127,7 +126,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                             context.pushNamed(
                               'StudyProgramList',
                               extra: <String, dynamic>{
-                                kTransitionInfoKey: TransitionInfo(
+                                kTransitionInfoKey: const TransitionInfo(
                                   hasTransition: true,
                                   transitionType: PageTransitionType.fade,
                                   duration: Duration(milliseconds: 0),
@@ -140,7 +139,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: SingleChildScrollView(
                       primary: false,
                       child: Column(
@@ -148,14 +147,14 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: TextFormField(
                               controller: _model.programNameTextController,
                               focusNode: _model.programNameFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.programNameTextController',
-                                Duration(milliseconds: 2000),
+                                const Duration(milliseconds: 2000),
                                 () async {
                                   setState(() {
                                     _model.updateRequestDataStruct(
@@ -226,7 +225,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: TextFormField(
                               controller:
@@ -234,7 +233,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                               focusNode: _model.programDescriptionFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.programDescriptionTextController',
-                                Duration(milliseconds: 2000),
+                                const Duration(milliseconds: 2000),
                                 () async {
                                   setState(() {
                                     _model.updateRequestDataStruct(
@@ -310,8 +309,8 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                             updateCallback: () => setState(() {}),
                             updateOnChange: true,
                             child: TestsDropdownWidget(
-                              value: widget.dataDetail!.tests.length > 0
-                                  ? widget.dataDetail?.tests?.first?.testsId?.id
+                              value: widget.dataDetail!.tests.isNotEmpty
+                                  ? widget.dataDetail?.tests.first.testsId.id
                                   : ' ',
                               testCallBack: (testId) async {
                                 setState(() {
@@ -354,12 +353,12 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                                     context: context,
                                     builder: (alertDialogContext) {
                                       return AlertDialog(
-                                        title: Text('Bài học đã có!'),
+                                        title: const Text('Bài học đã có!'),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
                                                 alertDialogContext),
-                                            child: Text('Ok'),
+                                            child: const Text('Ok'),
                                           ),
                                         ],
                                       );
@@ -382,11 +381,11 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                                   fontWeight: FontWeight.normal,
                                 ),
                           ),
-                          if (_model.requestData!.lessions.length > 0)
+                          if (_model.requestData!.lessions.isNotEmpty)
                             Builder(
                               builder: (context) {
                                 final listView =
-                                    _model.requestData?.lessions?.toList() ??
+                                    _model.requestData?.lessions.toList() ??
                                         [];
                                 return ListView.builder(
                                   padding: EdgeInsets.zero,
@@ -397,7 +396,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                                     final listViewItem =
                                         listView[listViewIndex];
                                     return Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 5.0),
                                       child: Container(
                                         width: 100.0,
@@ -414,7 +413,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 10.0, 0.0),
                                                   child: Text(
@@ -479,23 +478,23 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                                 );
                               },
                             ),
-                        ].divide(SizedBox(height: 16.0)),
+                        ].divide(const SizedBox(height: 16.0)),
                       ),
                     ),
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 24.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 24.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        var _shouldSetState = false;
+                        var shouldSetState = false;
                         if (_model.formKey.currentState == null ||
                             !_model.formKey.currentState!.validate()) {
                           return;
                         }
                         _model.tokenStudyProgramEdit =
                             await action_blocks.tokenReload(context);
-                        _shouldSetState = true;
+                        shouldSetState = true;
                         if (_model.tokenStudyProgramEdit!) {
                           setState(() {});
                           _model.apiResultuus = await StudyProgramGroup
@@ -505,7 +504,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                             id: widget.dataDetail?.id,
                             requestDataJson: _model.requestData?.toMap(),
                           );
-                          _shouldSetState = true;
+                          shouldSetState = true;
                           if ((_model.apiResultuus?.succeeded ?? true)) {
                             Navigator.pop(context);
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -517,7 +516,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                                         .primaryText,
                                   ),
                                 ),
-                                duration: Duration(milliseconds: 4000),
+                                duration: const Duration(milliseconds: 4000),
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).secondary,
                               ),
@@ -533,7 +532,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                                         .primaryText,
                                   ),
                                 ),
-                                duration: Duration(milliseconds: 4000),
+                                duration: const Duration(milliseconds: 4000),
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).error,
                               ),
@@ -547,7 +546,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                             accessToken: FFAppState().accessToken,
                             programId: widget.dataDetail?.id,
                           );
-                          _shouldSetState = true;
+                          shouldSetState = true;
                           if ((_model.apiResultSynchronizedStaffLesson
                                   ?.succeeded ??
                               true)) {
@@ -562,7 +561,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                                         .primaryText,
                                   ),
                                 ),
-                                duration: Duration(milliseconds: 4000),
+                                duration: const Duration(milliseconds: 4000),
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).error,
                               ),
@@ -570,20 +569,20 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                           }
                         } else {
                           setState(() {});
-                          if (_shouldSetState) setState(() {});
+                          if (shouldSetState) setState(() {});
                           return;
                         }
 
-                        if (_shouldSetState) setState(() {});
+                        if (shouldSetState) setState(() {});
                       },
                       text: 'Lưu',
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -592,7 +591,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           width: 1.0,
                         ),
                         borderRadius: BorderRadius.circular(8.0),
