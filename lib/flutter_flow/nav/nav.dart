@@ -356,7 +356,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             percentCorect: params.getParam(
               'percentCorect',
-              ParamType.int,
+              ParamType.String,
             ),
             goodScore: params.getParam(
               'goodScore',
@@ -424,14 +424,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             itemData: params.getParam(
               'itemData',
               ParamType.DataStruct,
-              false,
-              WorkflowsStepCreateStruct.fromSerializableMap,
+              isList: false,
+              structBuilder: WorkflowsStepCreateStruct.fromSerializableMap,
             ),
             stepListPar: params.getParam<WorkflowsStepCreateStruct>(
               'stepListPar',
               ParamType.DataStruct,
-              true,
-              WorkflowsStepCreateStruct.fromSerializableMap,
+              isList: true,
+              structBuilder: WorkflowsStepCreateStruct.fromSerializableMap,
             ),
             check: params.getParam(
               'check',
@@ -487,7 +487,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             questions: params.getParam<dynamic>(
               'questions',
               ParamType.JSON,
-              true,
+              isList: true,
             ),
             godScore: params.getParam(
               'godScore',
@@ -526,7 +526,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             checkCode: params.getParam<String>(
               'checkCode',
               ParamType.String,
-              true,
+              isList: true,
             ),
           ),
         ),
@@ -537,7 +537,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             checkCode: params.getParam<String>(
               'checkCode',
               ParamType.String,
-              true,
+              isList: true,
             ),
           ),
         ),
@@ -569,7 +569,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             codeListitem: params.getParam<String>(
               'codeListitem',
               ParamType.String,
-              true,
+              isList: true,
             ),
             status: params.getParam(
               'status',
@@ -589,7 +589,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             checkCode: params.getParam<String>(
               'checkCode',
               ParamType.String,
-              true,
+              isList: true,
             ),
             items: params.getParam(
               'items',
@@ -634,8 +634,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             data: params.getParam(
               'data',
               ParamType.DataStruct,
-              false,
-              OrganizationListStruct.fromSerializableMap,
+              isList: false,
+              structBuilder: OrganizationListStruct.fromSerializableMap,
             ),
           ),
         ),
@@ -803,7 +803,7 @@ class FFParameters {
   // present is the special extra parameter reserved for the transition info.
   bool get isEmpty =>
       state.allParams.isEmpty ||
-      (state.extraMap.length == 1 &&
+      (state.allParams.length == 1 &&
           state.extraMap.containsKey(kTransitionInfoKey));
   bool isAsyncParam(MapEntry<String, dynamic> param) =>
       asyncParams.containsKey(param.key) && param.value is String;
@@ -824,10 +824,10 @@ class FFParameters {
 
   dynamic getParam<T>(
     String paramName,
-    ParamType type, [
+    ParamType type, {
     bool isList = false,
     StructBuilder<T>? structBuilder,
-  ]) {
+  }) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
     }

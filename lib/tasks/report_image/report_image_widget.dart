@@ -75,11 +75,10 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
           ),
           title: Text(
             'Báo cáo ảnh',
-            style: FlutterFlowTheme.of(context).titleLarge.override(
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   fontSize: 20.0,
                   letterSpacing: 0.0,
-                  fontWeight: FontWeight.normal,
                 ),
           ),
           actions: const [],

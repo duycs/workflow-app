@@ -116,7 +116,7 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                   Text(
                                     'Tạo mới chi nhánh',
                                     style: FlutterFlowTheme.of(context)
-                                        .titleLarge
+                                        .headlineMedium
                                         .override(
                                           fontFamily: 'Outfit',
                                           fontSize: 20.0,

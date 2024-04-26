@@ -88,7 +88,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 22.0,
+                  fontSize: 20.0,
                   letterSpacing: 0.0,
                 ),
           ),
@@ -125,9 +125,9 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                   type: PageTransitionType.fade,
                                   child: FlutterFlowExpandedImageView(
                                     image: Image.asset(
-                                      'assets/images/ab2f86f664c11bcf601c50cd80c396b4.jpg',
+                                      'assets/images/career_center-interview-what_exactly_are_aptitude_tests.jpg',
                                       fit: BoxFit.contain,
-                                      alignment: const Alignment(0.0, 1.0),
+                                      alignment: const Alignment(0.0, 0.0),
                                     ),
                                     allowRotation: false,
                                     tag: 'imageTag',
@@ -142,11 +142,11 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
                                 child: Image.asset(
-                                  'assets/images/ab2f86f664c11bcf601c50cd80c396b4.jpg',
+                                  'assets/images/career_center-interview-what_exactly_are_aptitude_tests.jpg',
                                   width: double.infinity,
-                                  height: 150.0,
+                                  height: 200.0,
                                   fit: BoxFit.cover,
-                                  alignment: const Alignment(0.0, 1.0),
+                                  alignment: const Alignment(0.0, 0.0),
                                 ),
                               ),
                             ),

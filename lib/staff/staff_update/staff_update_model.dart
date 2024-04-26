@@ -44,8 +44,12 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
+  // Stores action output result for [Action Block - tokenReload] action in StaffUpdate widget.
+  bool? listDeparmentToken;
   // Stores action output result for [Backend Call - API (GetDepartmentList)] action in StaffUpdate widget.
   ApiCallResponse? apiResultListDeparment;
+  // Stores action output result for [Action Block - tokenReload] action in StaffUpdate widget.
+  bool? getListBranchToken;
   // Stores action output result for [Backend Call - API (BranchList)] action in StaffUpdate widget.
   ApiCallResponse? apiResultGetListBranch;
   bool isDataUploading = false;
@@ -125,6 +129,8 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
   // State field(s) for branch widget.
   String? branchValue;
   FormFieldController<String>? branchValueController;
+  // Stores action output result for [Action Block - tokenReload] action in branch widget.
+  bool? listDeparment2Token;
   // Stores action output result for [Backend Call - API (GetDepartmentList)] action in branch widget.
   ApiCallResponse? apiResultListDeparment2;
   // State field(s) for department widget.

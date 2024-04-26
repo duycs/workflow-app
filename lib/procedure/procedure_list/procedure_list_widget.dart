@@ -38,10 +38,11 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
         _model.apiResultListData =
             await ProcedureTemplateGroup.workflowsListCall.call(
           accessToken: FFAppState().accessToken,
-          filter: '{\"_and\":[{\"template\":{\"_neq\":\"1\"}}${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? ',{\"organization_id\":{\"_eq\":\"' : ' '}${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? getJsonField(
-              FFAppState().staffLogin,
-              r'''$.organization_id''',
-            ).toString().toString() : ' '}${FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68' ? '\"}}' : ' '}]}',
+          filter:
+              '{\"_and\":[{\"template\":{\"_neq\":\"1\"}},{\"organization_id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.organization_id''',
+          ).toString().toString()}\"}}]}',
         );
         if ((_model.apiResultListData?.succeeded ?? true)) {
           setState(() {
@@ -447,6 +448,8 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                                         fontFamily:
                                                             'Readex Pro',
                                                         letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
                                                       ),
                                                 ),
                                               ),
@@ -502,187 +505,66 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                             ].divide(const SizedBox(width: 4.0)),
                                           ),
                                         ),
-                                        if ('1' == '2')
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 4.0),
+                                          child: Text(
+                                            listViewItem.userCreated
+                                                            .firstName !=
+                                                        ''
+                                                ? listViewItem
+                                                    .userCreated.firstName
+                                                : ' ',
+                                            style: FlutterFlowTheme.of(context)
+                                                .labelMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                          ),
+                                        ),
+                                        RichText(
+                                          textScaler:
+                                              MediaQuery.of(context).textScaler,
+                                          text: TextSpan(
                                             children: [
-                                              Flexible(
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 4.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    'Người tạo:',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                        ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Flexible(
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 4.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    listViewItem
-                                                                    .userCreated
-                                                                    .firstName !=
-                                                                ''
-                                                        ? listViewItem
-                                                            .userCreated
-                                                            .firstName
-                                                        : ' ',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                        ),
-                                                  ),
-                                                ),
-                                              ),
-                                              if (('1' == '2') &&
-                                                  responsiveVisibility(
-                                                    context: context,
-                                                    desktop: false,
-                                                  ))
-                                                Container(
-                                                  height: 32.0,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .accent1,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12.0),
-                                                    border: Border.all(
+                                              TextSpan(
+                                                text: listViewItem
+                                                            .steps.isNotEmpty
+                                                    ? listViewItem.steps.length.toString()
+                                                    : '0',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .primary,
-                                                      width: 1.0,
+                                                      fontSize: 16.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.w500,
                                                     ),
-                                                  ),
-                                                  child: Align(
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8.0,
-                                                                  0.0,
-                                                                  8.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        'Sale',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
+                                              ),
+                                              const TextSpan(
+                                                text: ' Bước',
+                                                style: TextStyle(),
+                                              )
                                             ],
-                                          ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              listViewItem.steps.isNotEmpty
-                                                  ? listViewItem.steps.length
-                                                      .toString()
-                                                  : '0',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                'bước',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Flexible(
-                                              child: Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 4.0, 0.0, 0.0),
-                                                child: Text(
-                                                  listViewItem
-                                                                  .userCreated
-                                                                  .firstName !=
-                                                              ''
-                                                      ? listViewItem
-                                                          .userCreated.firstName
-                                                      : ' ',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .labelMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w300,
-                                                      ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  letterSpacing: 0.0,
                                                 ),
-                                              ),
-                                            ),
-                                          ].divide(const SizedBox(width: 4.0)),
+                                          ),
                                         ),
                                       ],
                                     ),

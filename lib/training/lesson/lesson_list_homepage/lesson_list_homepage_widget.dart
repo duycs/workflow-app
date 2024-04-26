@@ -5,6 +5,7 @@ import '/training/lesson/filter_lesson_home_page/filter_lesson_home_page_widget.
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'lesson_list_homepage_model.dart';
 export 'lesson_list_homepage_model.dart';
@@ -106,6 +107,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
               primary: false,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Padding(
@@ -132,6 +134,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                               autofocus: false,
                               textCapitalization: TextCapitalization.none,
                               textInputAction: TextInputAction.search,
+                              readOnly: true,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelStyle: FlutterFlowTheme.of(context)
@@ -489,116 +492,51 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                       },
                     ),
                   ),
-                  if ('1' == '2')
-                    Container(
-                      width: double.infinity,
-                      height: 300.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(0.0),
-                      ),
-                      child: Visibility(
-                        visible: '1' == '1',
-                        child: Builder(
-                          builder: (context) {
-                            final listRow = _model.listLesson.toList();
-                            return GridView.builder(
-                              padding: EdgeInsets.zero,
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                crossAxisSpacing: 10.0,
-                                mainAxisSpacing: 15.0,
-                                childAspectRatio: 1.0,
-                              ),
-                              primary: false,
-                              scrollDirection: Axis.vertical,
-                              itemCount: listRow.length,
-                              itemBuilder: (context, listRowIndex) {
-                                final listRowItem = listRow[listRowIndex];
-                                return InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed(
-                                      'LessonDetail_HomePage',
-                                      queryParameters: {
-                                        'listItems': serializeParam(
-                                          listRowItem.lessionId.toMap(),
-                                          ParamType.JSON,
-                                        ),
-                                        'status': serializeParam(
-                                          listRowItem.status,
-                                          ParamType.String,
-                                        ),
-                                        'id': serializeParam(
-                                          listRowItem.id,
-                                          ParamType.String,
-                                        ),
-                                      }.withoutNulls,
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                        ),
-                                      },
-                                    );
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      borderRadius: BorderRadius.circular(12.0),
-                                      border: Border.all(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        width: 1.0,
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Expanded(
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: Image.network(
-                                                '${FFAppConstants.ApiBaseUrl}/assets/${listRowItem.lessionId.imageCover}?access_token=${FFAppState().accessToken}',
-                                                width: double.infinity,
-                                                height: 100.0,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                          Text(
-                                            listRowItem.lessionId.name,
-                                            maxLines: 2,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyLarge
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  fontSize: 13.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.normal,
-                                                ),
-                                          ),
-                                        ].divide(const SizedBox(height: 4.0)),
-                                      ),
-                                    ),
+                  if ((_model.listLesson.isEmpty) &&
+                      (_model.checkAPI == '1'))
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 0.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.database,
+                            color: FlutterFlowTheme.of(context).alternate,
+                            size: 55.0,
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 15.0, 0.0, 0.0),
+                            child: Text(
+                              'Chưa có dữ liệu',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 18.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
                                   ),
-                                );
-                              },
-                            );
-                          },
-                        ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 3.0, 0.0, 0.0),
+                            child: Text(
+                              'Hiện tại bạn chưa có dữ liệu nào!',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                 ].divide(const SizedBox(height: 8.0)),

@@ -97,6 +97,9 @@ class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
     if (val.length < 2) {
       return 'Tên không hợp lệ';
     }
+    if (val.length > 50) {
+      return 'Tên qua dài';
+    }
 
     return null;
   }
@@ -127,6 +130,9 @@ class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
       return 'Vui lòng nhập số điện thoại';
     }
 
+    if (val.length > 10) {
+      return 'Số điện thoại không hợp lệ';
+    }
     if (!RegExp('(03|05|07|08|09)+([0-9]{8})\\b').hasMatch(val)) {
       return 'Số điện thoại không hợp lệ';
     }
@@ -145,6 +151,9 @@ class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
     if (val.length < 12) {
       return 'CCCD không hợp lệ';
     }
+    if (val.length > 12) {
+      return 'CCCD không hợp lệ!';
+    }
 
     return null;
   }
@@ -158,6 +167,8 @@ class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
   // State field(s) for branch widget.
   String? branchValue;
   FormFieldController<String>? branchValueController;
+  // Stores action output result for [Action Block - tokenReload] action in branch widget.
+  bool? listDeparment2Token;
   // Stores action output result for [Backend Call - API (GetDepartmentList)] action in branch widget.
   ApiCallResponse? apiResultListDeparment2;
   // State field(s) for department widget.

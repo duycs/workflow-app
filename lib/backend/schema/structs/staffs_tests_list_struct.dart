@@ -19,8 +19,8 @@ class StaffsTestsListStruct extends BaseStruct {
     String? dateCreated,
     int? durationMinutes,
     String? description,
-    int? percentCorrect,
     StaffTestLessonStruct? lessionId,
+    String? percentCorrect,
   })  : _id = id,
         _status = status,
         _score = score,
@@ -34,8 +34,8 @@ class StaffsTestsListStruct extends BaseStruct {
         _dateCreated = dateCreated,
         _durationMinutes = durationMinutes,
         _description = description,
-        _percentCorrect = percentCorrect,
-        _lessionId = lessionId;
+        _lessionId = lessionId,
+        _percentCorrect = percentCorrect;
 
   // "id" field.
   String? _id;
@@ -124,14 +124,6 @@ class StaffsTestsListStruct extends BaseStruct {
   set description(String? val) => _description = val;
   bool hasDescription() => _description != null;
 
-  // "percent_correct" field.
-  int? _percentCorrect;
-  int get percentCorrect => _percentCorrect ?? 0;
-  set percentCorrect(int? val) => _percentCorrect = val;
-  void incrementPercentCorrect(int amount) =>
-      _percentCorrect = percentCorrect + amount;
-  bool hasPercentCorrect() => _percentCorrect != null;
-
   // "lession_id" field.
   StaffTestLessonStruct? _lessionId;
   StaffTestLessonStruct get lessionId => _lessionId ?? StaffTestLessonStruct();
@@ -139,6 +131,12 @@ class StaffsTestsListStruct extends BaseStruct {
   void updateLessionId(Function(StaffTestLessonStruct) updateFn) =>
       updateFn(_lessionId ??= StaffTestLessonStruct());
   bool hasLessionId() => _lessionId != null;
+
+  // "percent_correct" field.
+  String? _percentCorrect;
+  String get percentCorrect => _percentCorrect ?? '';
+  set percentCorrect(String? val) => _percentCorrect = val;
+  bool hasPercentCorrect() => _percentCorrect != null;
 
   static StaffsTestsListStruct fromMap(Map<String, dynamic> data) =>
       StaffsTestsListStruct(
@@ -155,8 +153,8 @@ class StaffsTestsListStruct extends BaseStruct {
         dateCreated: data['date_created'] as String?,
         durationMinutes: castToType<int>(data['duration_minutes']),
         description: data['description'] as String?,
-        percentCorrect: castToType<int>(data['percent_correct']),
         lessionId: StaffTestLessonStruct.maybeFromMap(data['lession_id']),
+        percentCorrect: data['percent_correct'] as String?,
       );
 
   static StaffsTestsListStruct? maybeFromMap(dynamic data) => data is Map
@@ -177,8 +175,8 @@ class StaffsTestsListStruct extends BaseStruct {
         'date_created': _dateCreated,
         'duration_minutes': _durationMinutes,
         'description': _description,
-        'percent_correct': _percentCorrect,
         'lession_id': _lessionId?.toMap(),
+        'percent_correct': _percentCorrect,
       }.withoutNulls;
 
   @override
@@ -235,13 +233,13 @@ class StaffsTestsListStruct extends BaseStruct {
           _description,
           ParamType.String,
         ),
-        'percent_correct': serializeParam(
-          _percentCorrect,
-          ParamType.int,
-        ),
         'lession_id': serializeParam(
           _lessionId,
           ParamType.DataStruct,
+        ),
+        'percent_correct': serializeParam(
+          _percentCorrect,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -313,16 +311,16 @@ class StaffsTestsListStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        percentCorrect: deserializeParam(
-          data['percent_correct'],
-          ParamType.int,
-          false,
-        ),
         lessionId: deserializeStructParam(
           data['lession_id'],
           ParamType.DataStruct,
           false,
           structBuilder: StaffTestLessonStruct.fromSerializableMap,
+        ),
+        percentCorrect: deserializeParam(
+          data['percent_correct'],
+          ParamType.String,
+          false,
         ),
       );
 
@@ -345,8 +343,8 @@ class StaffsTestsListStruct extends BaseStruct {
         dateCreated == other.dateCreated &&
         durationMinutes == other.durationMinutes &&
         description == other.description &&
-        percentCorrect == other.percentCorrect &&
-        lessionId == other.lessionId;
+        lessionId == other.lessionId &&
+        percentCorrect == other.percentCorrect;
   }
 
   @override
@@ -364,8 +362,8 @@ class StaffsTestsListStruct extends BaseStruct {
         dateCreated,
         durationMinutes,
         description,
-        percentCorrect,
-        lessionId
+        lessionId,
+        percentCorrect
       ]);
 }
 
@@ -383,8 +381,8 @@ StaffsTestsListStruct createStaffsTestsListStruct({
   String? dateCreated,
   int? durationMinutes,
   String? description,
-  int? percentCorrect,
   StaffTestLessonStruct? lessionId,
+  String? percentCorrect,
 }) =>
     StaffsTestsListStruct(
       id: id,
@@ -400,6 +398,6 @@ StaffsTestsListStruct createStaffsTestsListStruct({
       dateCreated: dateCreated,
       durationMinutes: durationMinutes,
       description: description,
-      percentCorrect: percentCorrect,
       lessionId: lessionId ?? StaffTestLessonStruct(),
+      percentCorrect: percentCorrect,
     );

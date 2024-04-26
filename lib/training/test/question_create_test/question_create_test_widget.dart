@@ -226,12 +226,16 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                     0.0, 0.0, 0.0, 28.0),
                                 child: FlutterFlowDropDown<String>(
                                   controller: _model.dropDownValueController ??=
-                                      FormFieldController<String>(null),
-                                  options: const [
-                                    'radio',
-                                    'checkbox',
-                                    'text',
-                                    'number'
+                                      FormFieldController<String>(
+                                    _model.dropDownValue ??= '',
+                                  ),
+                                  options: List<String>.from(
+                                      ['radio', 'checkbox', 'text', 'number']),
+                                  optionLabels: const [
+                                    'Trắc nghiệm 1 đáp án',
+                                    'Trắc nghiệm 1 hoặc nhiều đáp án',
+                                    'Trả lời văn bản ngắn',
+                                    'Trả lời số'
                                   ],
                                   onChanged: (val) async {
                                     setState(() => _model.dropDownValue = val);

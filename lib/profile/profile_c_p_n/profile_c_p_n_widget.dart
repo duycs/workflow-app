@@ -220,6 +220,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                     Text(
                                                       _model.organizationDetail!
                                                           .name,
+                                                      maxLines: 3,
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .headlineMedium
@@ -236,52 +237,53 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: [
-                                                        RichText(
-                                                          textScaler:
-                                                              MediaQuery.of(
-                                                                      context)
-                                                                  .textScaler,
-                                                          text: TextSpan(
-                                                            children: [
-                                                              const TextSpan(
-                                                                text: '',
-                                                                style:
-                                                                    TextStyle(),
-                                                              ),
-                                                              const TextSpan(
-                                                                text: ' || ',
-                                                                style:
-                                                                    TextStyle(),
-                                                              ),
-                                                              TextSpan(
-                                                                text: (_model.organizationDetail?.hotline !=
-                                                                                null &&
-                                                                            _model.organizationDetail?.hotline !=
-                                                                                '') &&
-                                                                        (_model.organizationDetail?.hotline !=
-                                                                            'undefined') &&
-                                                                        (_model.organizationDetail?.hotline !=
-                                                                            'null')
-                                                                    ? _model
-                                                                        .organizationDetail!
-                                                                        .hotline
-                                                                    : 'Chưa có Hotline',
-                                                                style:
-                                                                    const TextStyle(),
-                                                              )
-                                                            ],
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                        Expanded(
+                                                          child: RichText(
+                                                            textScaler:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .textScaler,
+                                                            text: TextSpan(
+                                                              children: [
+                                                                const TextSpan(
+                                                                  text: '',
+                                                                  style:
+                                                                      TextStyle(),
                                                                 ),
+                                                                const TextSpan(
+                                                                  text: ' || ',
+                                                                  style:
+                                                                      TextStyle(),
+                                                                ),
+                                                                TextSpan(
+                                                                  text: (_model.organizationDetail?.hotline != null &&
+                                                                              _model.organizationDetail?.hotline !=
+                                                                                  '') &&
+                                                                          (_model.organizationDetail?.hotline !=
+                                                                              'undefined') &&
+                                                                          (_model.organizationDetail?.hotline !=
+                                                                              'null')
+                                                                      ? _model
+                                                                          .organizationDetail!
+                                                                          .hotline
+                                                                      : 'Chưa có Hotline',
+                                                                  style:
+                                                                      const TextStyle(),
+                                                                )
+                                                              ],
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                            ),
                                                           ),
                                                         ),
                                                         Container(
@@ -651,7 +653,6 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                                   1.0),
                                                       child: Container(
                                                         width: double.infinity,
-                                                        height: 60.0,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme
@@ -714,62 +715,64 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                                   ),
                                                                 ),
                                                               ),
-                                                              Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Text(
-                                                                    _model
-                                                                        .organizationDetail!
-                                                                        .staffs
-                                                                        .where((e) =>
-                                                                            e.userId.role ==
-                                                                            '82073000-1ba2-43a4-a55c-459d17c23b68')
-                                                                        .toList()
-                                                                        .first
-                                                                        .userId
-                                                                        .firstName,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyLarge
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Readex Pro',
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
-                                                                  ),
-                                                                  Text(
-                                                                    _model
-                                                                        .organizationDetail!
-                                                                        .staffs
-                                                                        .where((e) =>
-                                                                            e.userId.role ==
-                                                                            '82073000-1ba2-43a4-a55c-459d17c23b68')
-                                                                        .toList()
-                                                                        .first
-                                                                        .userId
-                                                                        .email,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .labelMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Readex Pro',
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
-                                                                  ),
-                                                                ].divide(const SizedBox(
-                                                                    height:
-                                                                        4.0)),
+                                                              Expanded(
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Text(
+                                                                      _model
+                                                                          .organizationDetail!
+                                                                          .staffs
+                                                                          .where((e) =>
+                                                                              e.userId.role ==
+                                                                              '82073000-1ba2-43a4-a55c-459d17c23b68')
+                                                                          .toList()
+                                                                          .first
+                                                                          .userId
+                                                                          .firstName,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyLarge
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Readex Pro',
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                          ),
+                                                                    ),
+                                                                    Text(
+                                                                      _model
+                                                                          .organizationDetail!
+                                                                          .staffs
+                                                                          .where((e) =>
+                                                                              e.userId.role ==
+                                                                              '82073000-1ba2-43a4-a55c-459d17c23b68')
+                                                                          .toList()
+                                                                          .first
+                                                                          .userId
+                                                                          .email,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Readex Pro',
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                          ),
+                                                                    ),
+                                                                  ].divide(const SizedBox(
+                                                                      height:
+                                                                          4.0)),
+                                                                ),
                                                               ),
                                                             ].divide(const SizedBox(
                                                                 width: 12.0)),

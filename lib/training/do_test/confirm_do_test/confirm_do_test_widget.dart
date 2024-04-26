@@ -167,17 +167,18 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                     .override(
                                       fontFamily: 'Readex Pro',
                                       color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
+                                          .primaryText,
                                       fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
                               ),
                               Text(
-                                '${_model.list?.durationMinutes.toString()}',
+                                '${_model.list?.durationMinutes.toString()} phút',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
                                       fontFamily: 'Readex Pro',
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -201,7 +202,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                     .override(
                                       fontFamily: 'Readex Pro',
                                       color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
+                                          .primaryText,
                                       fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -209,12 +210,12 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                             ].divide(const SizedBox(width: 4.0)),
                           ),
                           Text(
-                            '${_model.list?.description}',
+                            '    ${_model.list?.description}',
                             maxLines: 10,
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Readex Pro',
-                                      fontSize: 13.0,
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
                           ),
@@ -232,7 +233,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                 onPressed: () async {
                                   Navigator.pop(context);
                                 },
-                                text: 'Thoát',
+                                text: 'Đóng',
                                 options: FFButtonOptions(
                                   height: 40.0,
                                   padding: const EdgeInsetsDirectional.fromSTEB(

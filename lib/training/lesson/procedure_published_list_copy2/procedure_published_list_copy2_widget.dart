@@ -229,8 +229,8 @@ class _ProcedurePublishedListCopy2WidgetState
                       '#Kết quả hiển thị theo bộ lọc',
                       style: FlutterFlowTheme.of(context).labelMedium.override(
                             fontFamily: 'Readex Pro',
-                            color: FlutterFlowTheme.of(context).error,
-                            fontSize: 10.0,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            fontSize: 12.0,
                             letterSpacing: 0.0,
                             fontStyle: FontStyle.italic,
                           ),

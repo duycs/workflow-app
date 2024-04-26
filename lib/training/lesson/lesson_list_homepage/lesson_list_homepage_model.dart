@@ -36,6 +36,8 @@ class LessonListHomepageModel
 
   String programsId = '';
 
+  String checkAPI = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -83,6 +85,7 @@ class LessonListHomepageModel
           .data
           .toList()
           .cast<EmployeeLessonListStruct>();
+      checkAPI = '1';
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,

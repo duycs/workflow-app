@@ -95,7 +95,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                                 Text(
                                   'Chi tiết câu hỏi',
                                   style: FlutterFlowTheme.of(context)
-                                      .titleLarge
+                                      .headlineMedium
                                       .override(
                                         fontFamily: 'Outfit',
                                         fontSize: 20.0,
@@ -171,14 +171,27 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                               child: FlutterFlowDropDown<String>(
                                 controller: _model.dropDownValueController ??=
                                     FormFieldController<String>(
-                                  _model.dropDownValue ??=
-                                      widget.itemOne?.answerType,
+                                  _model.dropDownValue ??= () {
+                                    if (widget.itemOne?.answerType == 'radio') {
+                                      return '0';
+                                    } else if (widget.itemOne?.answerType ==
+                                        'checkbox') {
+                                      return '1';
+                                    } else if (widget.itemOne?.answerType ==
+                                        'text') {
+                                      return '2';
+                                    } else {
+                                      return '3';
+                                    }
+                                  }(),
                                 ),
-                                options: const [
-                                  'radio',
-                                  'checkbox',
-                                  'text',
-                                  'number'
+                                options:
+                                    List<String>.from(['0', '1', '2', '3']),
+                                optionLabels: const [
+                                  'Trắc nghiệm 1 đáp án',
+                                  'Trắc nghiệm 1 hoặc nhiều đáp án',
+                                  'Trả lời văn bản ngắn',
+                                  'Trả lời số'
                                 ],
                                 onChanged: (val) =>
                                     setState(() => _model.dropDownValue = val),

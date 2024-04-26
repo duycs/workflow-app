@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/training/question/filter_question/filter_question_widget.dart';
 import '/training/question/question_create/question_create_widget.dart';
 import '/training/question/question_menu/question_menu_widget.dart';
 import '/actions/actions.dart' as action_blocks;
@@ -206,6 +207,10 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                             '_model.questionNameTextController',
                             const Duration(milliseconds: 500),
                             () async {
+                              setState(() {
+                                _model.nameSearch =
+                                    _model.questionNameTextController.text;
+                              });
                               await _model.getListQuestion(context);
                               setState(() {});
                               setState(() {});
@@ -263,6 +268,10 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                     onTap: () async {
                                       _model.questionNameTextController
                                           ?.clear();
+                                      setState(() {
+                                        _model.nameSearch = _model
+                                            .questionNameTextController.text;
+                                      });
                                       await _model.getListQuestion(context);
                                       setState(() {});
                                       setState(() {});
@@ -287,9 +296,75 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                         ),
                       ),
                     ),
+                    Builder(
+                      builder: (context) => Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                        child: FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 10.0,
+                          borderWidth: 1.0,
+                          buttonSize: 50.0,
+                          icon: Icon(
+                            Icons.tune_rounded,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 30.0,
+                          ),
+                          onPressed: () async {
+                            await showDialog(
+                              context: context,
+                              builder: (dialogContext) {
+                                return Dialog(
+                                  elevation: 0,
+                                  insetPadding: EdgeInsets.zero,
+                                  backgroundColor: Colors.transparent,
+                                  alignment: const AlignmentDirectional(0.0, 0.0)
+                                      .resolve(Directionality.of(context)),
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: FilterQuestionWidget(
+                                      name: _model.nameSearch,
+                                      status: _model.status,
+                                      callBack:
+                                          (statusFilter, nameFilter) async {
+                                        setState(() {
+                                          _model.nameSearch = nameFilter!;
+                                          _model.status = statusFilter!;
+                                        });
+                                        setState(() {
+                                          _model.questionNameTextController
+                                              ?.clear();
+                                        });
+                                        setState(() {
+                                          _model.questionNameTextController
+                                              ?.text = ((nameFilter != null &&
+                                                      nameFilter != '') &&
+                                                  (nameFilter != ' ')
+                                              ? nameFilter
+                                              : '');
+                                        });
+                                        await _model.getListQuestion(context);
+                                        setState(() {});
+                                      },
+                                    ),
+                                  ),
+                                );
+                              },
+                            ).then((value) => setState(() {}));
+                          },
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-                if (_model.questionNameTextController.text != '')
+                if (((_model.questionNameTextController.text != '') &&
+                        (_model.questionNameTextController.text != ' ')) ||
+                    ((_model.status != '') &&
+                        (_model.status != ' ')))
                   Text(
                     '#Kết quả hiển thị theo bộ lọc',
                     style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -368,7 +443,23 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                                   .fromSTEB(
                                                       12.0, 8.0, 0.0, 0.0),
                                               child: Text(
-                                                '# ${detailViewItem.answerType}',
+                                                '# ${() {
+                                                  if (detailViewItem
+                                                          .answerType ==
+                                                      'radio') {
+                                                    return 'Trắc nghiệm 1 đáp án';
+                                                  } else if (detailViewItem
+                                                          .answerType ==
+                                                      'checkbox') {
+                                                    return 'Trắc nghiệm 1 hoặc nhiều đáp án';
+                                                  } else if (detailViewItem
+                                                          .answerType ==
+                                                      'text') {
+                                                    return 'Trả lời văn bản ngắn';
+                                                  } else {
+                                                    return 'Trả lời số';
+                                                  }
+                                                }()}',
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyMedium
@@ -432,20 +523,23 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                                               'published'
                                                           ? 'Hoạt động'
                                                           : 'Không hoạt động',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: detailViewItem.status ==
+                                                                    'published'
+                                                                ? FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primary,
-                                                                fontSize: 13.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
+                                                                    .primary
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                            fontSize: 13.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                     ),
                                                   ),
                                                 ],

@@ -10,17 +10,14 @@ export 'filter_lesson_user_model.dart';
 class FilterLessonUserWidget extends StatefulWidget {
   const FilterLessonUserWidget({
     super.key,
-    this.name,
     this.dateStart,
     this.dateEnd,
     this.callBack,
   });
 
-  final String? name;
   final String? dateStart;
   final String? dateEnd;
-  final Future Function(String? name, String? dateStart, String? dateEnd)?
-      callBack;
+  final Future Function(String? dateStart, String? dateEnd)? callBack;
 
   @override
   State<FilterLessonUserWidget> createState() => _FilterLessonUserWidgetState();
@@ -47,12 +44,6 @@ class _FilterLessonUserWidgetState extends State<FilterLessonUserWidget> {
         _model.dateEnd = widget.dateEnd!;
       });
     });
-
-    _model.textController ??= TextEditingController(
-        text: (widget.name != null && widget.name != '') && (widget.name != ' ')
-            ? widget.name
-            : ' ');
-    _model.textFieldFocusNode ??= FocusNode();
   }
 
   @override
@@ -311,70 +302,6 @@ class _FilterLessonUserWidgetState extends State<FilterLessonUserWidget> {
                       ),
                     ),
                   ),
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: BorderRadius.circular(8.0),
-                      border: Border.all(
-                        color: FlutterFlowTheme.of(context).alternate,
-                        width: 1.0,
-                      ),
-                    ),
-                    child: TextFormField(
-                      controller: _model.textController,
-                      focusNode: _model.textFieldFocusNode,
-                      autofocus: false,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelText: 'Tên bài học',
-                        labelStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                        hintStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Color(0x00000000),
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Color(0x00000000),
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
-                            letterSpacing: 0.0,
-                          ),
-                      validator:
-                          _model.textControllerValidator.asValidator(context),
-                    ),
-                  ),
                   Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
@@ -386,21 +313,12 @@ class _FilterLessonUserWidgetState extends State<FilterLessonUserWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               setState(() {
-                                _model.textController?.text =
-                                    (widget.name != null &&
-                                                widget.name != '') &&
-                                            (widget.name != ' ')
-                                        ? widget.name!
-                                        : ' ';
-                              });
-                              setState(() {
                                 _model.dateStart = '';
                                 _model.dateEnd = '';
                               });
                               await widget.callBack?.call(
-                                ' ',
-                                ' ',
-                                ' ',
+                                '',
+                                '',
                               );
                               Navigator.pop(context);
                             },
@@ -434,7 +352,6 @@ class _FilterLessonUserWidgetState extends State<FilterLessonUserWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               await widget.callBack?.call(
-                                _model.textController.text,
                                 _model.dateStart,
                                 _model.dateEnd,
                               );

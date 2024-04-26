@@ -5,6 +5,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'filter_status_department_model.dart';
 export 'filter_status_department_model.dart';
 
@@ -13,10 +15,12 @@ class FilterStatusDepartmentWidget extends StatefulWidget {
     super.key,
     required this.callBack,
     this.status,
-  });
+    String? branchId,
+  }) : branchId = branchId ?? '';
 
-  final Future Function(String? status)? callBack;
+  final Future Function(String? status, String? branchId)? callBack;
   final String? status;
+  final String branchId;
 
   @override
   State<FilterStatusDepartmentWidget> createState() =>
@@ -37,6 +41,16 @@ class _FilterStatusDepartmentWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => FilterStatusDepartmentModel());
+
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68') {
+        await _model.getLinkBranchList(context);
+        setState(() {});
+      } else {
+        return;
+      }
+    });
   }
 
   @override
@@ -48,6 +62,8 @@ class _FilterStatusDepartmentWidgetState
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(
@@ -100,49 +116,92 @@ class _FilterStatusDepartmentWidgetState
                     ),
                   ],
                 ),
-                FlutterFlowDropDown<String>(
-                  controller: _model.dropDownStatusValueController ??=
-                      FormFieldController<String>(
-                    _model.dropDownStatusValue ??=
-                        widget.status != null && widget.status != ''
-                            ? () {
-                                if ('${widget.status}' == 'published') {
-                                  return '2';
-                                } else if ('${widget.status}' == 'draft') {
-                                  return '1';
-                                } else {
-                                  return null;
-                                }
-                              }()
-                            : null,
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                  child: FlutterFlowDropDown<String>(
+                    controller: _model.dropDownStatusValueController ??=
+                        FormFieldController<String>(
+                      _model.dropDownStatusValue ??=
+                          widget.status != null && widget.status != ''
+                              ? () {
+                                  if ('${widget.status}' == 'published') {
+                                    return '2';
+                                  } else if ('${widget.status}' == 'draft') {
+                                    return '1';
+                                  } else {
+                                    return null;
+                                  }
+                                }()
+                              : null,
+                    ),
+                    options: List<String>.from(['1', '2']),
+                    optionLabels: const ['Không hoạt động', 'Hoạt động'],
+                    onChanged: (val) =>
+                        setState(() => _model.dropDownStatusValue = val),
+                    width: double.infinity,
+                    height: 50.0,
+                    textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                    hintText: 'Trạng thái',
+                    icon: Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      size: 24.0,
+                    ),
+                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                    elevation: 2.0,
+                    borderColor: FlutterFlowTheme.of(context).alternate,
+                    borderWidth: 2.0,
+                    borderRadius: 8.0,
+                    margin:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                    hidesUnderline: true,
+                    isOverButton: true,
+                    isSearchable: false,
+                    isMultiSelect: false,
                   ),
-                  options: List<String>.from(['1', '2']),
-                  optionLabels: const ['Không hoạt động', 'Hoạt động'],
-                  onChanged: (val) =>
-                      setState(() => _model.dropDownStatusValue = val),
-                  width: double.infinity,
-                  height: 50.0,
-                  textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
-                      ),
-                  hintText: 'Trạng thái',
-                  icon: Icon(
-                    Icons.keyboard_arrow_down_rounded,
-                    color: FlutterFlowTheme.of(context).secondaryText,
-                    size: 24.0,
-                  ),
-                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                  elevation: 2.0,
-                  borderColor: FlutterFlowTheme.of(context).alternate,
-                  borderWidth: 2.0,
-                  borderRadius: 8.0,
-                  margin: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
-                  hidesUnderline: true,
-                  isOverButton: true,
-                  isSearchable: false,
-                  isMultiSelect: false,
                 ),
+                if (FFAppState().user.role ==
+                    '82073000-1ba2-43a4-a55c-459d17c23b68')
+                  FlutterFlowDropDown<String>(
+                    controller: _model.branchIdValueController ??=
+                        FormFieldController<String>(
+                      _model.branchIdValue ??=
+                          widget.branchId != ''
+                              ? widget.branchId
+                              : null,
+                    ),
+                    options: List<String>.from(
+                        _model.branchList.map((e) => e.id).toList()),
+                    optionLabels: _model.branchList.map((e) => e.name).toList(),
+                    onChanged: (val) =>
+                        setState(() => _model.branchIdValue = val),
+                    width: double.infinity,
+                    height: 50.0,
+                    textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                    hintText: 'Chi nhánh',
+                    icon: Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      size: 24.0,
+                    ),
+                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                    elevation: 2.0,
+                    borderColor: FlutterFlowTheme.of(context).alternate,
+                    borderWidth: 2.0,
+                    borderRadius: 8.0,
+                    margin:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                    hidesUnderline: true,
+                    isOverButton: true,
+                    isSearchable: false,
+                    isMultiSelect: false,
+                  ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
@@ -156,6 +215,7 @@ class _FilterStatusDepartmentWidgetState
                               _model.status = '';
                             });
                             await widget.callBack?.call(
+                              '',
                               '',
                             );
                             Navigator.pop(context);
@@ -196,9 +256,13 @@ class _FilterStatusDepartmentWidgetState
                                 } else if (_model.dropDownStatusValue == '2') {
                                   return 'published';
                                 } else {
-                                  return null;
+                                  return 'noData';
                                 }
                               }(),
+                              _model.branchIdValue != null &&
+                                      _model.branchIdValue != ''
+                                  ? _model.branchIdValue
+                                  : 'noData',
                             );
                             Navigator.pop(context);
                           },

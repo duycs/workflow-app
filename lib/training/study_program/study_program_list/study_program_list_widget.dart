@@ -559,7 +559,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                     (_model.checkShow ==
                                                         dataListViewItem.id)
                                                 ? FlutterFlowTheme.of(context)
-                                                    .primaryBackground
+                                                    .alternate
                                                 : FlutterFlowTheme.of(context)
                                                     .secondaryBackground,
                                             boxShadow: const [
@@ -860,8 +860,8 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                         dataListTestsViewIndex];
                                                 return Padding(
                                                   padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(12.0, 0.0, 12.0,
-                                                          12.0),
+                                                      .fromSTEB(
+                                                          12.0, 0.0, 12.0, 6.0),
                                                   child: InkWell(
                                                     splashColor:
                                                         Colors.transparent,
@@ -1124,8 +1124,8 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                         dataListLessionsViewIndex];
                                                 return Padding(
                                                   padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(12.0, 0.0, 12.0,
-                                                          12.0),
+                                                      .fromSTEB(
+                                                          12.0, 0.0, 12.0, 6.0),
                                                   child: InkWell(
                                                     splashColor:
                                                         Colors.transparent,

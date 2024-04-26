@@ -104,13 +104,13 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                         Text(
                           'Chỉnh sửa chương trình',
                           maxLines: 2,
-                          style:
-                              FlutterFlowTheme.of(context).titleLarge.override(
-                                    fontFamily: 'Outfit',
-                                    fontSize: 20.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                  ),
+                          style: FlutterFlowTheme.of(context)
+                              .headlineMedium
+                              .override(
+                                fontFamily: 'Outfit',
+                                fontSize: 20.0,
+                                letterSpacing: 0.0,
+                              ),
                         ),
                         FlutterFlowIconButton(
                           borderColor: Colors.transparent,

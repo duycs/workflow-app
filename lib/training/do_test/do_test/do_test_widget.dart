@@ -227,26 +227,8 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                               },
                                               onEnded: () async {
                                                 var shouldSetState = false;
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      'Hết thời gian làm bài!',
-                                                      style: TextStyle(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                      ),
-                                                    ),
-                                                    duration: const Duration(
-                                                        milliseconds: 4000),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondary,
-                                                  ),
-                                                );
+                                                _model.timerController
+                                                    .onStopTimer();
                                                 while (_model.loopQuestion <
                                                     _model.list!.questions
                                                         .length) {
@@ -520,8 +502,9 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                             ?.jsonBody ??
                                                                         ''),
                                                                     r'''$.percent_correct''',
-                                                                  ),
-                                                                  ParamType.int,
+                                                                  ).toString(),
+                                                                  ParamType
+                                                                      .String,
                                                                 ),
                                                                 'goodScore':
                                                                     serializeParam(
@@ -535,7 +518,28 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                   ParamType
                                                                       .String,
                                                                 ),
+                                                                'lessionId':
+                                                                    serializeParam(
+                                                                  widget
+                                                                      .lessionId,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
                                                               }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                kTransitionInfoKey:
+                                                                    const TransitionInfo(
+                                                                  hasTransition:
+                                                                      true,
+                                                                  transitionType:
+                                                                      PageTransitionType
+                                                                          .fade,
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          0),
+                                                                ),
+                                                              },
                                                             );
 
                                                             if (shouldSetState) {
@@ -728,7 +732,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                             .fromSTEB(8.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
-                                                      'Chọn 1 đáp án đúng:',
+                                                      '(Chọn 1 đáp án đúng)',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
@@ -754,7 +758,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                             .fromSTEB(8.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
-                                                      'Chọn 1 hoặc nhiều đáp án đúng:',
+                                                      '(Chọn 1 hoặc nhiều đáp án đúng)',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
@@ -1221,23 +1225,23 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                       if ((_model.apiResultCaculatorScores
                                               ?.succeeded ??
                                           true)) {
-                                        await showDialog(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              title: const Text('Thông báo'),
-                                              content: const Text(
-                                                  'Nộp bài thi thành công!'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: const Text('Ok'),
-                                                ),
-                                              ],
-                                            );
-                                          },
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Nộp bài thi thành công!',
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                              ),
+                                            ),
+                                            duration:
+                                                const Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondary,
+                                          ),
                                         );
 
                                         context.pushNamed(
@@ -1265,8 +1269,8 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                         ?.jsonBody ??
                                                     ''),
                                                 r'''$.percent_correct''',
-                                              ),
-                                              ParamType.int,
+                                              ).toString(),
+                                              ParamType.String,
                                             ),
                                             'goodScore': serializeParam(
                                               widget.goodScore,

@@ -1,6 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/branch/branch_update/branch_update_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -450,6 +449,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                                                     0.0),
                                                         child: Text(
                                                           itemDepartmentNameItem,
+                                                          maxLines: 3,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -600,28 +600,8 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
                 child: FFButtonWidget(
-                  onPressed: () async {
-                    await showModalBottomSheet(
-                      isScrollControlled: true,
-                      backgroundColor: Colors.transparent,
-                      enableDrag: false,
-                      context: context,
-                      builder: (context) {
-                        return Padding(
-                          padding: MediaQuery.viewInsetsOf(context),
-                          child: BranchUpdateWidget(
-                            id: widget.id,
-                            name: widget.name,
-                            code: widget.code,
-                            description: widget.description,
-                            codeList: widget.codeListitem,
-                            callBackList: () async {
-                              setState(() {});
-                            },
-                          ),
-                        );
-                      },
-                    ).then((value) => safeSetState(() {}));
+                  onPressed: () {
+                    print('Button pressed ...');
                   },
                   text: 'Chỉnh sửa',
                   options: FFButtonOptions(

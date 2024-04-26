@@ -182,12 +182,11 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                   Text(
                                     'Chọn lĩnh vực',
                                     style: FlutterFlowTheme.of(context)
-                                        .titleLarge
+                                        .headlineMedium
                                         .override(
                                           fontFamily: 'Outfit',
                                           fontSize: 20.0,
                                           letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
                                         ),
                                   ),
                                   FlutterFlowIconButton(

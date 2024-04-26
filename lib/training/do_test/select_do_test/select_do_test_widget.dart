@@ -57,56 +57,53 @@ class _SelectDoTestWidgetState extends State<SelectDoTestWidget> {
       options: _model.detail.map((e) => e.content).toList().toList(),
       onChanged: ('1' == '1') ? null : (val) => setState(() {}),
       controller: _model.radioButtonValueController ??=
-          FormFieldController<String>(() {
-        if ((widget.listQuestion?.id == widget.listAnswer?.answersId.id) &&
-            (widget.listQuestion?.correct == 1)) {
-          return widget.listQuestion!.content;
-        } else if ((widget.listQuestion?.id ==
-                widget.listAnswer?.answersId.id) &&
-            (widget.listQuestion?.correct != 1)) {
-          return widget.listQuestion!.content;
-        } else if (widget.listQuestion?.correct == 1) {
-          return widget.listQuestion!.content;
-        } else {
-          return ' ';
-        }
-      }()),
+          FormFieldController<String>(widget.listAnswer!.answersId.content),
       optionHeight: 32.0,
       textStyle: FlutterFlowTheme.of(context).labelMedium.override(
             fontFamily: 'Readex Pro',
+            color: valueOrDefault<Color>(
+              () {
+                if ((widget.listQuestion?.id ==
+                        widget.listAnswer?.answersId.id) &&
+                    (widget.listQuestion?.correct == 1)) {
+                  return FlutterFlowTheme.of(context).primary;
+                } else if ((widget.listQuestion?.id ==
+                        widget.listAnswer?.answersId.id) &&
+                    (widget.listQuestion?.correct != 1)) {
+                  return FlutterFlowTheme.of(context).error;
+                } else if (widget.listQuestion?.correct == 1) {
+                  return FlutterFlowTheme.of(context).primary;
+                } else {
+                  return FlutterFlowTheme.of(context).secondaryText;
+                }
+              }(),
+              FlutterFlowTheme.of(context).noColor,
+            ),
             letterSpacing: 0.0,
           ),
       selectedTextStyle: FlutterFlowTheme.of(context).bodyMedium.override(
             fontFamily: 'Readex Pro',
-            color: () {
-              if ((widget.listQuestion?.id ==
-                      widget.listAnswer?.answersId.id) &&
-                  (widget.listQuestion?.correct == 1)) {
-                return FlutterFlowTheme.of(context).primary;
-              } else if ((widget.listQuestion?.id ==
-                      widget.listAnswer?.answersId.id) &&
-                  (widget.listQuestion?.correct != 1)) {
-                return FlutterFlowTheme.of(context).error;
-              } else {
-                return FlutterFlowTheme.of(context).primary;
-              }
-            }(),
+            color: valueOrDefault<Color>(
+              () {
+                if ((widget.listQuestion?.id ==
+                        widget.listAnswer?.answersId.id) &&
+                    (widget.listQuestion?.correct == 1)) {
+                  return FlutterFlowTheme.of(context).primary;
+                } else if ((widget.listQuestion?.id ==
+                        widget.listAnswer?.answersId.id) &&
+                    (widget.listQuestion?.correct != 1)) {
+                  return FlutterFlowTheme.of(context).error;
+                } else {
+                  return FlutterFlowTheme.of(context).secondaryText;
+                }
+              }(),
+              FlutterFlowTheme.of(context).noColor,
+            ),
             letterSpacing: 0.0,
           ),
       buttonPosition: RadioButtonPosition.left,
       direction: Axis.vertical,
-      radioButtonColor: () {
-        if ((widget.listQuestion?.id == widget.listAnswer?.answersId.id) &&
-            (widget.listQuestion?.correct == 1)) {
-          return FlutterFlowTheme.of(context).secondary;
-        } else if ((widget.listQuestion?.id ==
-                widget.listAnswer?.answersId.id) &&
-            (widget.listQuestion?.correct != 1)) {
-          return FlutterFlowTheme.of(context).error;
-        } else {
-          return FlutterFlowTheme.of(context).accent1;
-        }
-      }(),
+      radioButtonColor: FlutterFlowTheme.of(context).primary,
       inactiveRadioButtonColor: FlutterFlowTheme.of(context).secondaryText,
       toggleable: false,
       horizontalAlignment: WrapAlignment.start,

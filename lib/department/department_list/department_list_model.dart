@@ -29,6 +29,10 @@ class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
   void updateDataParamAtIndex(int index, Function(String) updateFn) =>
       dataParam[index] = updateFn(dataParam[index]);
 
+  String checkAPI = '';
+
+  String branchId = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -48,10 +52,7 @@ class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
   }
 
   /// Action blocks.
-  Future getDepartmentList(
-    BuildContext context, {
-    String? status,
-  }) async {
+  Future getDepartmentList(BuildContext context) async {
     ApiCallResponse? apiResultList;
     bool? checkRefreshTokenBlocktt;
 
@@ -90,7 +91,7 @@ class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
         } else {
           return ' ';
         }
-      }()}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}' : ' '}${status != null && status != '' ? ',{\"status\":{\"_eq\":\"' : ' '}${status != null && status != '' ? status : ' '}${status != null && status != '' ? '\"}}' : ' '}]}',
+      }()}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}' : ' '}${(status != '') && (status != 'noData') ? ',{\"status\":{\"_eq\":\"' : ' '}${(status != '') && (status != 'noData') ? status : ' '}${(status != '') && (status != 'noData') ? '\"}}' : ' '}${(branchId != '') && (branchId != 'noData') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"' : ' '}${(branchId != '') && (branchId != 'noData') ? branchId : ' '}${(branchId != '') && (branchId != 'noData') ? '\"}}}' : ' '}]}',
     );
     if ((apiResultList.succeeded ?? true)) {
       list = DepartmentListDataStruct.maybeFromMap(
@@ -98,6 +99,7 @@ class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
           .data
           .toList()
           .cast<DepartmentListStruct>();
+      checkAPI = '1';
     } else {
       checkRefreshTokenBlocktt = await action_blocks.checkRefreshToken(
         context,

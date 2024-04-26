@@ -108,13 +108,13 @@ class CKEditorState extends State<CKEditor> {
           hint: "Nhập văn bản",
           shouldEnsureVisible: true,
           autoAdjustHeight: false,
-          adjustHeightForKeyboard: true,
+          adjustHeightForKeyboard: false,
           spellCheck: true,
           // initialText: initialData,
           initialText: widget.initialData,
           // ... other options will come here, add a comma after each
         ),
-        otherOptions: OtherOptions(height: widget.height! - 70),
+        otherOptions: OtherOptions(height: widget.height! - 40),
         callbacks: Callbacks(onChangeContent: (String? currentHtml) {
           if (widget.action != null) {
             widget.action!((currentHtml ?? "") as String);

@@ -184,7 +184,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
           children: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 child: SingleChildScrollView(
                   primary: false,
                   child: Column(
@@ -590,11 +590,11 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                      CrossAxisAlignment
+                                                          .stretch,
                                                   children: [
                                                     Text(
                                                       dataListItem.name,
-                                                      maxLines: 2,
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium

@@ -13,7 +13,6 @@ export 'branch_update_model.dart';
 class BranchUpdateWidget extends StatefulWidget {
   const BranchUpdateWidget({
     super.key,
-    this.callBackList,
     this.id,
     this.name,
     this.code,
@@ -21,7 +20,6 @@ class BranchUpdateWidget extends StatefulWidget {
     this.codeList,
   });
 
-  final Future Function()? callBackList;
   final String? id;
   final String? name;
   final String? code;
@@ -127,7 +125,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                   Text(
                                     'Chỉnh sửa chi nhánh',
                                     style: FlutterFlowTheme.of(context)
-                                        .titleLarge
+                                        .headlineMedium
                                         .override(
                                           fontFamily: 'Outfit',
                                           fontSize: 20.0,
@@ -552,8 +550,20 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                                       .secondary,
                                             ),
                                           );
-                                          await widget.callBackList?.call();
-                                          Navigator.pop(context);
+
+                                          context.pushNamed(
+                                            'BranchList',
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  const TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType.fade,
+                                                duration:
+                                                    Duration(milliseconds: 0),
+                                              ),
+                                            },
+                                          );
                                         } else {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(

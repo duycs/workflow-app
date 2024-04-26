@@ -109,7 +109,7 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
                           style:
                               FlutterFlowTheme.of(context).bodyLarge.override(
                                     fontFamily: 'Readex Pro',
-                                    fontSize: 22.0,
+                                    fontSize: 18.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),

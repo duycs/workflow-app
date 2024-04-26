@@ -21,6 +21,10 @@ class QuestionListModel extends FlutterFlowModel<QuestionListWidget> {
 
   bool isLoad = false;
 
+  String nameSearch = ' ';
+
+  String status = ' ';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -52,15 +56,11 @@ class QuestionListModel extends FlutterFlowModel<QuestionListWidget> {
     if (tokenReloadGetlistQuestion!) {
       apiResultQuestionListSearch = await QuestionGroup.questionListCall.call(
         accessToken: FFAppState().accessToken,
-        filter: questionNameTextController.text != ''
-            ? '{\"_and\":[{\"content\":{\"_icontains\":\"${questionNameTextController.text}\"}}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
-                FFAppState().staffLogin,
-                r'''$.organization_id''',
-              ).toString().toString()}\"}}'}]}'
-            : '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
-                FFAppState().staffLogin,
-                r'''$.organization_id''',
-              ).toString().toString()}\"}}]}',
+        filter:
+            '{\"_and\":[{}${(nameSearch != '') && (nameSearch != ' ') ? ',{\"content\":{\"_icontains\":\"$nameSearch\"}}' : ' '}${(status != '') && (status != ' ') ? ',{\"status\":{\"_eq\":\"$status\"}}' : ' '}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
+          FFAppState().staffLogin,
+          r'''$.organization_id''',
+        ).toString().toString()}\"}}'}]}',
       );
       if ((apiResultQuestionListSearch.succeeded ?? true)) {
         dataList = (getJsonField(

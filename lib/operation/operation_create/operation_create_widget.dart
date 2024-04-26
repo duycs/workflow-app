@@ -115,12 +115,11 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                   Text(
                                     'Tạo mới hành động',
                                     style: FlutterFlowTheme.of(context)
-                                        .titleLarge
+                                        .headlineMedium
                                         .override(
                                           fontFamily: 'Outfit',
                                           fontSize: 20.0,
                                           letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
                                         ),
                                   ),
                                   FlutterFlowIconButton(

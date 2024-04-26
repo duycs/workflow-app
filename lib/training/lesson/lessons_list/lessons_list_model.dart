@@ -26,6 +26,8 @@ class LessonsListModel extends FlutterFlowModel<LessonsListWidget> {
 
   String programId = '';
 
+  String checkAPI = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -64,6 +66,7 @@ class LessonsListModel extends FlutterFlowModel<LessonsListWidget> {
               .data
               .toList()
               .cast<LessonsStruct>();
+      checkAPI = '1';
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,

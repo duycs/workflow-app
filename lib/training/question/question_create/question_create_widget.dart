@@ -117,7 +117,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                   Text(
                                     'Tạo mới câu hỏi',
                                     style: FlutterFlowTheme.of(context)
-                                        .titleLarge
+                                        .headlineMedium
                                         .override(
                                           fontFamily: 'Outfit',
                                           fontSize: 20.0,
@@ -172,7 +172,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   hintStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
+                                      .bodyMedium
                                       .override(
                                         fontFamily: 'Readex Pro',
                                         letterSpacing: 0.0,
@@ -212,6 +212,8 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
                                       letterSpacing: 0.0,
                                     ),
                                 maxLines: 3,
@@ -226,19 +228,35 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                     0.0, 0.0, 0.0, 28.0),
                                 child: FlutterFlowDropDown<String>(
                                   controller: _model.dropDownValueController ??=
-                                      FormFieldController<String>(null),
-                                  options: const [
-                                    'radio',
-                                    'checkbox',
-                                    'text',
-                                    'number'
+                                      FormFieldController<String>(
+                                    _model.dropDownValue ??= '',
+                                  ),
+                                  options:
+                                      List<String>.from(['0', '1', '2', '3']),
+                                  optionLabels: const [
+                                    'Trắc nghiệm 1 đáp án',
+                                    'Trắc nghiệm 1 hoặc nhiều đáp án',
+                                    'Trả lời văn bản ngắn',
+                                    'Trả lời số'
                                   ],
                                   onChanged: (val) async {
                                     setState(() => _model.dropDownValue = val);
                                     setState(() {
                                       _model.updateRequestDataStruct(
                                         (e) => e
-                                          ..answerType = _model.dropDownValue
+                                          ..answerType = () {
+                                            if (_model.dropDownValue == '0') {
+                                              return 'radio';
+                                            } else if (_model.dropDownValue ==
+                                                '1') {
+                                              return 'checkbox';
+                                            } else if (_model.dropDownValue ==
+                                                '2') {
+                                              return 'text';
+                                            } else {
+                                              return 'number';
+                                            }
+                                          }()
                                           ..answers = [],
                                       );
                                     });
@@ -250,7 +268,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                   },
                                   height: 52.0,
                                   textStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
+                                      .bodyMedium
                                       .override(
                                         fontFamily: 'Readex Pro',
                                         letterSpacing: 0.0,
@@ -281,7 +299,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                             Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                if (_model.dropDownValue != 'number')
+                                if (_model.dropDownValue != '3')
                                   Expanded(
                                     child: TextFormField(
                                       controller:
@@ -356,7 +374,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                           .asValidator(context),
                                     ),
                                   ),
-                                if (_model.dropDownValue == 'number')
+                                if (_model.dropDownValue == '3')
                                   Expanded(
                                     child: TextFormField(
                                       controller:
@@ -446,7 +464,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                   onPressed: () async {
                                     if (_model.textAnswerTextController.text !=
                                             '') {
-                                      if (_model.dropDownValue == 'checkbox') {
+                                      if (_model.dropDownValue == '1') {
                                         setState(() {
                                           _model.updateRequestDataStruct(
                                             (e) => e
@@ -475,8 +493,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                         setState(() {
                                           _model.checkboxValue = false;
                                         });
-                                      } else if (_model.dropDownValue ==
-                                          'radio') {
+                                      } else if (_model.dropDownValue == '0') {
                                         if ((_model.requestData!.answers
                                                     .where(
                                                         (e) => e.correct == 1)
@@ -487,7 +504,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
                                                 title: const Text(
-                                                    'Kiểu radio chỉ có 1 đáp án đúng!'),
+                                                    'Kiểu trắc nghiệm này chỉ có 1 đáp án đúng!'),
                                                 actions: [
                                                   TextButton(
                                                     onPressed: () =>
@@ -530,8 +547,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                             _model.checkboxValue = false;
                                           });
                                         }
-                                      } else if (_model.dropDownValue ==
-                                          'text') {
+                                      } else if (_model.dropDownValue == '2') {
                                         setState(() {});
                                         if (_model.requestData!.answers.isNotEmpty) {
                                           await showDialog(
@@ -539,7 +555,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
                                                 title: const Text(
-                                                    'Kiểu text chỉ được 1 đáp án!'),
+                                                    'Kiểu văn bản chỉ được 1 đáp án!'),
                                                 actions: [
                                                   TextButton(
                                                     onPressed: () =>
@@ -608,7 +624,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
                                                 title: const Text(
-                                                    'Kiểu number chỉ được 1 đáp án!'),
+                                                    'Kiểu số chỉ được 1 đáp án!'),
                                                 actions: [
                                                   TextButton(
                                                     onPressed: () =>
@@ -693,8 +709,8 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                 ),
                               ].divide(const SizedBox(width: 8.0)),
                             ),
-                            if ((_model.dropDownValue != 'text') &&
-                                (_model.dropDownValue != 'number'))
+                            if ((_model.dropDownValue != '2') &&
+                                (_model.dropDownValue != '3'))
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 4.0, 0.0, 0.0),

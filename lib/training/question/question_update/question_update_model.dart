@@ -14,6 +14,8 @@ class QuestionUpdateModel extends FlutterFlowModel<QuestionUpdateWidget> {
 
   int? loop = 0;
 
+  bool isLoad = false;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
@@ -30,6 +32,9 @@ class QuestionUpdateModel extends FlutterFlowModel<QuestionUpdateWidget> {
     return null;
   }
 
+  // State field(s) for DropDownStatus widget.
+  String? dropDownStatusValue;
+  FormFieldController<String>? dropDownStatusValueController;
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;

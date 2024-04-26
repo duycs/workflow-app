@@ -953,11 +953,11 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                                 'approve'
                                               ]),
                                               optionLabels: const [
-                                                'submit_text',
-                                                'image',
-                                                'upload_file',
-                                                'to_do_list',
-                                                'approve'
+                                                'Nhập văn bản',
+                                                'Chụp ảnh',
+                                                'Upload file',
+                                                'Checklist công việc',
+                                                'Phê duyệt'
                                               ],
                                               onChanged: (val) async {
                                                 setState(() => _model

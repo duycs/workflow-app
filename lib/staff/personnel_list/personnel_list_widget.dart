@@ -1965,7 +1965,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                               ),
                                                         ),
                                                         Text(
-                                                          'To do',
+                                                          'Đang làm',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -2005,7 +2005,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                               ),
                                                         ),
                                                         Text(
-                                                          'Done',
+                                                          'Hoàn thành',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -2045,7 +2045,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                               ),
                                                         ),
                                                         Text(
-                                                          'Wait',
+                                                          'Đang chờ',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium

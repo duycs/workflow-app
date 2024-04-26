@@ -319,7 +319,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount: dataList.length,
-                        separatorBuilder: (_, __) => const SizedBox(height: 16.0),
+                        separatorBuilder: (_, __) => const SizedBox(height: 24.0),
                         itemBuilder: (context, dataListIndex) {
                           final dataListItem = dataList[dataListIndex];
                           return Container(
@@ -342,6 +342,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           'B${dataListItem.number.toString()}:',
@@ -472,7 +474,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           FlutterFlowIconButton(
                                             borderRadius: 20.0,
@@ -490,16 +492,20 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                             },
                                           ),
                                           Expanded(
-                                            child: Text(
-                                              dataListItem.description,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 4.0, 4.0, 4.0),
+                                              child: Text(
+                                                dataListItem.description,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
                                             ),
                                           ),
                                         ].divide(const SizedBox(width: 4.0)),
@@ -522,7 +528,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           FlutterFlowIconButton(
                                             borderRadius: 20.0,
@@ -540,17 +546,21 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                             },
                                           ),
                                           Expanded(
-                                            child: Text(
-                                              dataListItem.operations.first
-                                                  .operationsId.content,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 4.0, 4.0, 4.0),
+                                              child: Text(
+                                                dataListItem.operations.first
+                                                    .operationsId.content,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
                                             ),
                                           ),
                                         ].divide(const SizedBox(width: 4.0)),
@@ -839,6 +849,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                       ].divide(const SizedBox(width: 4.0)),
                                     ),
                                   SingleChildScrollView(
+                                    primary: false,
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -859,109 +870,100 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                           ),
                                         if (dataListItem.actionType ==
                                             'to_do_list')
-                                          Container(
-                                            width: 100.0,
-                                            height: 100.0,
-                                            decoration: const BoxDecoration(),
-                                            child: Builder(
-                                              builder: (context) {
-                                                final checkboxList =
-                                                    dataListItem.operations
-                                                        .toList();
-                                                return ListView.builder(
-                                                  padding: EdgeInsets.zero,
-                                                  primary: false,
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount:
-                                                      checkboxList.length,
-                                                  itemBuilder: (context,
-                                                      checkboxListIndex) {
-                                                    final checkboxListItem =
-                                                        checkboxList[
-                                                            checkboxListIndex];
-                                                    return DetailActionTypeToDoListWidget(
-                                                      key: Key(
-                                                          'Key60t_${checkboxListIndex}_of_${checkboxList.length}'),
-                                                      listData:
-                                                          checkboxListItem,
-                                                      data: dataListItem,
-                                                      callback: (operationId,
-                                                          status) async {
-                                                        _model.apiResultCheckList =
-                                                            await TaskGroup
-                                                                .updateOperationCall
-                                                                .call(
-                                                          accessToken:
-                                                              FFAppState()
-                                                                  .accessToken,
-                                                          requestDataJson: <String,
-                                                              dynamic>{
-                                                            'status': status,
-                                                          },
-                                                          operationId:
-                                                              operationId,
+                                          Builder(
+                                            builder: (context) {
+                                              final checkboxList = dataListItem
+                                                  .operations
+                                                  .toList();
+                                              return ListView.builder(
+                                                padding: EdgeInsets.zero,
+                                                primary: false,
+                                                shrinkWrap: true,
+                                                scrollDirection: Axis.vertical,
+                                                itemCount: checkboxList.length,
+                                                itemBuilder: (context,
+                                                    checkboxListIndex) {
+                                                  final checkboxListItem =
+                                                      checkboxList[
+                                                          checkboxListIndex];
+                                                  return DetailActionTypeToDoListWidget(
+                                                    key: Key(
+                                                        'Key60t_${checkboxListIndex}_of_${checkboxList.length}'),
+                                                    listData: checkboxListItem,
+                                                    data: dataListItem,
+                                                    callback: (operationId,
+                                                        status) async {
+                                                      _model.apiResultCheckList =
+                                                          await TaskGroup
+                                                              .updateOperationCall
+                                                              .call(
+                                                        accessToken:
+                                                            FFAppState()
+                                                                .accessToken,
+                                                        requestDataJson: <String,
+                                                            dynamic>{
+                                                          'status': status,
+                                                        },
+                                                        operationId:
+                                                            operationId,
+                                                      );
+                                                      if ((_model
+                                                              .apiResultCheckList
+                                                              ?.succeeded ??
+                                                          true)) {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              'Xác nhận thành công!',
+                                                              style: TextStyle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                              ),
+                                                            ),
+                                                            duration: const Duration(
+                                                                milliseconds:
+                                                                    4000),
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary,
+                                                          ),
                                                         );
-                                                        if ((_model
-                                                                .apiResultCheckList
-                                                                ?.succeeded ??
-                                                            true)) {
-                                                          ScaffoldMessenger.of(
-                                                                  context)
-                                                              .showSnackBar(
-                                                            SnackBar(
-                                                              content: Text(
-                                                                'Xác nhận thành công!',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                ),
+                                                      } else {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              'Xác nhận thất bại!',
+                                                              style: TextStyle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
                                                               ),
-                                                              duration: const Duration(
-                                                                  milliseconds:
-                                                                      4000),
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary,
                                                             ),
-                                                          );
-                                                        } else {
-                                                          ScaffoldMessenger.of(
-                                                                  context)
-                                                              .showSnackBar(
-                                                            SnackBar(
-                                                              content: Text(
-                                                                'Xác nhận thất bại!',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                ),
-                                                              ),
-                                                              duration: const Duration(
-                                                                  milliseconds:
-                                                                      4000),
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .error,
-                                                            ),
-                                                          );
-                                                        }
+                                                            duration: const Duration(
+                                                                milliseconds:
+                                                                    4000),
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                          ),
+                                                        );
+                                                      }
 
-                                                        setState(() {});
+                                                      setState(() {});
 
-                                                        setState(() {});
-                                                      },
-                                                    );
-                                                  },
-                                                );
-                                              },
-                                            ),
+                                                      setState(() {});
+                                                    },
+                                                  );
+                                                },
+                                              );
+                                            },
                                           ),
                                         if (dataListItem.actionType == 'image')
                                           Container(

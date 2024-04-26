@@ -68,16 +68,13 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
             context.pop();
           },
         ),
-        title: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
-          child: Text(
-            'Đổi mật khẩu',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
-                  fontSize: 20.0,
-                  letterSpacing: 0.0,
-                ),
-          ),
+        title: Text(
+          'Đổi mật khẩu',
+          style: FlutterFlowTheme.of(context).headlineMedium.override(
+                fontFamily: 'Outfit',
+                fontSize: 20.0,
+                letterSpacing: 0.0,
+              ),
         ),
         actions: const [],
         centerTitle: false,

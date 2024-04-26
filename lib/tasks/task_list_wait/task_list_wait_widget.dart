@@ -143,7 +143,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
           children: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                 child: SingleChildScrollView(
                   primary: false,
                   child: Column(
@@ -630,7 +630,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                    CrossAxisAlignment.stretch,
                                                 children: [
                                                   Padding(
                                                     padding:

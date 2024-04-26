@@ -188,16 +188,38 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
+                            setState(() {
+                              _model.statusValueController?.reset();
+                            });
                             _model.clearFilterToken =
                                 await action_blocks.tokenReload(context);
                             if (_model.clearFilterToken!) {
-                              setState(() {
-                                _model.statusValueController?.reset();
-                              });
-                              setState(() {});
                               _model.apiResultClearFilter =
                                   await StaffGroup.getStaffListCall.call(
                                 accessToken: FFAppState().accessToken,
+                                filter: '{\"_and\":[${() {
+                                  if (FFAppState().user.role ==
+                                      '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                                    return '{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                      FFAppState().staffLogin,
+                                      r'''$.organization_id''',
+                                    ).toString()}\"}}}';
+                                  } else if (FFAppState().user.role ==
+                                      'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                    return '{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                      FFAppState().staffLogin,
+                                      r'''$.branch_id''',
+                                    ).toString()}\"}}}';
+                                  } else if (FFAppState().user.role ==
+                                      '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                    return '{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                      FFAppState().staffLogin,
+                                      r'''$.department_id''',
+                                    ).toString()}\"}}}';
+                                  } else {
+                                    return ' ';
+                                  }
+                                }()}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}]}',
                               );
                               if ((_model.apiResultClearFilter?.succeeded ??
                                   true)) {
@@ -213,7 +235,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                 });
                                 await widget.callback?.call(
                                   _model.list,
-                                  _model.statusValue,
+                                  '',
                                 );
                                 Navigator.pop(context);
                               }
@@ -259,7 +281,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                   await StaffGroup.getStaffListCall.call(
                                 accessToken: FFAppState().accessToken,
                                 filter:
-                                    '{\"_and\":[${widget.filterSearch != null && widget.filterSearch != '' ? '{\"user_id\":{\"first_name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}${() {
+                                    '{\"_and\":[${widget.filterSearch != null && widget.filterSearch != '' ? '{\"user_id\":{\"first_name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}${(_model.statusValue != null && _model.statusValue != '') && (widget.filterSearch != null && widget.filterSearch != '') ? ',' : ' '}${() {
                                   if ((_model.statusValue != null &&
                                           _model.statusValue != '') &&
                                       (_model.statusValue == 'Hoạt động')) {

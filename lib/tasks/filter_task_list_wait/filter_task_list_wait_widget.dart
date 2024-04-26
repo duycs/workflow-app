@@ -140,11 +140,11 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                       ),
                       FlutterFlowChoiceChips(
                         options: const [
-                          ChipData('Submit Text'),
-                          ChipData('Image'),
-                          ChipData('Upload File'),
-                          ChipData('Check List'),
-                          ChipData('Approve')
+                          ChipData('submit_text'),
+                          ChipData('image'),
+                          ChipData('upload_file'),
+                          ChipData('to_do_list'),
+                          ChipData('approve')
                         ],
                         onChanged: (val) =>
                             setState(() => _model.typeValue = val?.firstOrNull),

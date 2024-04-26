@@ -144,7 +144,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
           children: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                 child: SingleChildScrollView(
                   primary: false,
                   child: Column(
@@ -658,7 +658,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                       .max,
                                                               crossAxisAlignment:
                                                                   CrossAxisAlignment
-                                                                      .start,
+                                                                      .stretch,
                                                               children: [
                                                                 Padding(
                                                                   padding: const EdgeInsetsDirectional

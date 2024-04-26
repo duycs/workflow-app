@@ -990,6 +990,68 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                               });
                                             }
 
+                                            if ((FFAppState().user.role ==
+                                                    'a8d33527-375b-4599-ac70-6a3fcad1de39') &&
+                                                (_model.roleValue ==
+                                                    'a8d33527-375b-4599-ac70-6a3fcad1de39')) {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'Tài khoản không có quyền tạo role này!',
+                                                    style: TextStyle(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                                  ),
+                                                  duration: const Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .error,
+                                                ),
+                                              );
+                                              setState(() {
+                                                _model.roleValueController
+                                                    ?.reset();
+                                              });
+                                            }
+                                            if (((FFAppState().user.role ==
+                                                        '6a8bc644-cb2d-4a31-b11e-b86e19824725') &&
+                                                    (_model.roleValue ==
+                                                        'a8d33527-375b-4599-ac70-6a3fcad1de39')) ||
+                                                ((FFAppState().user.role ==
+                                                        '6a8bc644-cb2d-4a31-b11e-b86e19824725') &&
+                                                    (_model.roleValue ==
+                                                        '6a8bc644-cb2d-4a31-b11e-b86e19824725'))) {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'Tài khoản không có quyền tạo role này!',
+                                                    style: TextStyle(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                                  ),
+                                                  duration: const Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .error,
+                                                ),
+                                              );
+                                              setState(() {
+                                                _model.roleValueController
+                                                    ?.reset();
+                                              });
+                                            }
                                             setState(() {});
                                           },
                                           width: double.infinity,
@@ -1091,31 +1153,36 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                     .toList()
                                                     .first;
                                               });
-                                              _model.apiResultListDeparment2 =
-                                                  await DepartmentGroup
-                                                      .getDepartmentListCall
-                                                      .call(
-                                                accessToken:
-                                                    FFAppState().accessToken,
-                                                filter:
-                                                    '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branchValue}\"}}}]}',
-                                              );
-                                              if ((_model
-                                                      .apiResultListDeparment2
-                                                      ?.succeeded ??
-                                                  true)) {
-                                                setState(() {
-                                                  _model.listDepartment =
-                                                      DepartmentListDataStruct
-                                                              .maybeFromMap((_model
-                                                                      .apiResultListDeparment2
-                                                                      ?.jsonBody ??
-                                                                  ''))!
-                                                          .data
-                                                          .toList()
-                                                          .cast<
-                                                              DepartmentListStruct>();
-                                                });
+                                              _model.listDeparment2Token =
+                                                  await action_blocks
+                                                      .tokenReload(context);
+                                              if (_model.listDeparment2Token!) {
+                                                _model.apiResultListDeparment2 =
+                                                    await DepartmentGroup
+                                                        .getDepartmentListCall
+                                                        .call(
+                                                  accessToken:
+                                                      FFAppState().accessToken,
+                                                  filter:
+                                                      '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branchValue}\"}}}]}',
+                                                );
+                                                if ((_model
+                                                        .apiResultListDeparment2
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  setState(() {
+                                                    _model.listDepartment =
+                                                        DepartmentListDataStruct
+                                                                .maybeFromMap((_model
+                                                                        .apiResultListDeparment2
+                                                                        ?.jsonBody ??
+                                                                    ''))!
+                                                            .data
+                                                            .toList()
+                                                            .cast<
+                                                                DepartmentListStruct>();
+                                                  });
+                                                }
                                               }
 
                                               setState(() {});
@@ -1724,13 +1791,21 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                         if (_model.branchValue == null) {
                           return;
                         }
-                        if (_model.listEmail
-                            .map((e) => e.email)
-                            .toList()
-                            .contains(_model.emailTextController.text)) {
-                          setState(() {
-                            _model.checkEmail = 'true';
-                          });
+                        if (_model.checkEmail == '1') {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Email đã tồn tại',
+                                style: TextStyle(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                ),
+                              ),
+                              duration: const Duration(milliseconds: 4000),
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).error,
+                            ),
+                          );
                           if (shouldSetState) setState(() {});
                           return;
                         } else {

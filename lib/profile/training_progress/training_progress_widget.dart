@@ -180,11 +180,12 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
             'Báo cáo đào tạo',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
+                  fontSize: 20.0,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: const [],
-          centerTitle: true,
+          centerTitle: false,
           elevation: 2.0,
         ),
         body: SafeArea(
