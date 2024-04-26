@@ -85,6 +85,9 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
     if (val.length < 2) {
       return 'Tên không hợp lệ';
     }
+    if (val.length > 50) {
+      return 'Tên không hợp lệ!';
+    }
 
     return null;
   }
@@ -115,6 +118,12 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
       return 'Vui lòng nhập số điện thoại';
     }
 
+    if (val.length < 10) {
+      return 'Số điện thoại không hợp lệ';
+    }
+    if (val.length > 10) {
+      return 'Số điện thoại không hợp lệ';
+    }
     if (!RegExp('(03|05|07|08|09)+([0-9]{8})\\b').hasMatch(val)) {
       return 'Số điện thoại không hợp lệ';
     }
@@ -131,6 +140,9 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
     }
 
     if (val.length < 12) {
+      return 'CCCD không hợp lệ';
+    }
+    if (val.length > 12) {
       return 'CCCD không hợp lệ';
     }
 

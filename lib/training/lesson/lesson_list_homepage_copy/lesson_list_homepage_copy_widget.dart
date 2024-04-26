@@ -82,7 +82,7 @@ class _LessonListHomepageCopyWidgetState
           ),
           actions: [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: Column(
           mainAxisSize: MainAxisSize.max,

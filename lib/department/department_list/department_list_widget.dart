@@ -114,36 +114,14 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
               );
             },
           ),
-          title: InkWell(
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () async {
-              await showDialog(
-                context: context,
-                builder: (alertDialogContext) {
-                  return AlertDialog(
-                    title: Text(_model.branchId),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(alertDialogContext),
-                        child: Text('Ok'),
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
-            child: Text(
-              'Danh sách bộ phận',
-              style: FlutterFlowTheme.of(context).headlineMedium.override(
-                    fontFamily: 'Outfit',
-                    color: FlutterFlowTheme.of(context).primaryText,
-                    fontSize: 20.0,
-                    letterSpacing: 0.0,
-                  ),
-            ),
+          title: Text(
+            'Danh sách bộ phận',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Outfit',
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  fontSize: 20.0,
+                  letterSpacing: 0.0,
+                ),
           ),
           actions: [],
           centerTitle: false,

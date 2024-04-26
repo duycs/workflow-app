@@ -11,7 +11,6 @@ import '/tasks/do_action_type_image/do_action_type_image_widget.dart';
 import '/tasks/do_action_type_to_do_list/do_action_type_to_do_list_widget.dart';
 import '/tasks/do_action_type_upload_file/do_action_type_upload_file_widget.dart';
 import '/tasks/filter_task_list/filter_task_list_widget.dart';
-import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -19,7 +18,6 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -37,8 +35,6 @@ class _TaskListWidgetState extends State<TaskListWidget> {
   late TaskListModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  late StreamSubscription<bool> _keyboardVisibilitySubscription;
-  bool _isKeyboardVisible = false;
 
   @override
   void initState() {
@@ -103,15 +99,6 @@ class _TaskListWidgetState extends State<TaskListWidget> {
       }
     });
 
-    if (!isWeb) {
-      _keyboardVisibilitySubscription =
-          KeyboardVisibilityController().onChange.listen((bool visible) {
-        setState(() {
-          _isKeyboardVisible = visible;
-        });
-      });
-    }
-
     _model.textFieldNameTextController ??= TextEditingController();
     _model.textFieldNameFocusNode ??= FocusNode();
   }
@@ -120,9 +107,6 @@ class _TaskListWidgetState extends State<TaskListWidget> {
   void dispose() {
     _model.dispose();
 
-    if (!isWeb) {
-      _keyboardVisibilitySubscription.cancel();
-    }
     super.dispose();
   }
 
@@ -137,44 +121,39 @@ class _TaskListWidgetState extends State<TaskListWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        floatingActionButton: Visibility(
-          visible: !(isWeb
-              ? MediaQuery.viewInsetsOf(context).bottom > 0
-              : _isKeyboardVisible),
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 70.0),
-            child: FloatingActionButton(
-              onPressed: () async {
-                await showModalBottomSheet(
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
-                  enableDrag: false,
-                  context: context,
-                  builder: (context) {
-                    return GestureDetector(
-                      onTap: () => _model.unfocusNode.canRequestFocus
-                          ? FocusScope.of(context)
-                              .requestFocus(_model.unfocusNode)
-                          : FocusScope.of(context).unfocus(),
-                      child: Padding(
-                        padding: MediaQuery.viewInsetsOf(context),
-                        child: ProcedurePushlishedWidget(
-                          callback: () async {
-                            await _model.getTaskToDo(context);
-                          },
-                        ),
+        floatingActionButton: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 70.0),
+          child: FloatingActionButton(
+            onPressed: () async {
+              await showModalBottomSheet(
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                enableDrag: false,
+                context: context,
+                builder: (context) {
+                  return GestureDetector(
+                    onTap: () => _model.unfocusNode.canRequestFocus
+                        ? FocusScope.of(context)
+                            .requestFocus(_model.unfocusNode)
+                        : FocusScope.of(context).unfocus(),
+                    child: Padding(
+                      padding: MediaQuery.viewInsetsOf(context),
+                      child: ProcedurePushlishedWidget(
+                        callback: () async {
+                          await _model.getTaskToDo(context);
+                        },
                       ),
-                    );
-                  },
-                ).then((value) => safeSetState(() {}));
-              },
-              backgroundColor: FlutterFlowTheme.of(context).primary,
-              elevation: 1.0,
-              child: Icon(
-                Icons.add,
-                color: FlutterFlowTheme.of(context).info,
-                size: 24.0,
-              ),
+                    ),
+                  );
+                },
+              ).then((value) => safeSetState(() {}));
+            },
+            backgroundColor: FlutterFlowTheme.of(context).primary,
+            elevation: 1.0,
+            child: Icon(
+              Icons.add,
+              color: FlutterFlowTheme.of(context).info,
+              size: 24.0,
             ),
           ),
         ),
@@ -655,282 +634,6 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                     ),
                                                   ],
                                                 ),
-                                              ),
-                                            ),
-                                            FFButtonWidget(
-                                              onPressed: () async {
-                                                var _shouldSetState = false;
-                                                var confirmDialogResponse =
-                                                    await showDialog<bool>(
-                                                          context: context,
-                                                          builder:
-                                                              (alertDialogContext) {
-                                                            return AlertDialog(
-                                                              content: Text(
-                                                                  'Bạn chắc chắn?'),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          false),
-                                                                  child: Text(
-                                                                      'Thoát'),
-                                                                ),
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          true),
-                                                                  child: Text(
-                                                                      'Xác nhận'),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          },
-                                                        ) ??
-                                                        false;
-                                                if (confirmDialogResponse) {
-                                                  _model.confirmOperationCopy2Token =
-                                                      await action_blocks
-                                                          .tokenReload(context);
-                                                  _shouldSetState = true;
-                                                  if (_model
-                                                      .confirmOperationCopy2Token!) {
-                                                    _model.apiResultConfirmOperationCopy2 =
-                                                        await TaskGroup
-                                                            .confirmOperationCall
-                                                            .call(
-                                                      accessToken: FFAppState()
-                                                          .accessToken,
-                                                      staffId:
-                                                          FFAppState().staffid,
-                                                      taskId: dataListItem.id,
-                                                      submitType: dataListItem
-                                                                  .actionType ==
-                                                              'approve'
-                                                          ? 'approve'
-                                                          : 'submit',
-                                                    );
-                                                    _shouldSetState = true;
-                                                    if ((_model
-                                                            .apiResultConfirmOperationCopy2
-                                                            ?.succeeded ??
-                                                        true)) {
-                                                      ScaffoldMessenger.of(
-                                                              context)
-                                                          .showSnackBar(
-                                                        SnackBar(
-                                                          content: Text(
-                                                            'Submit thành công',
-                                                            style: TextStyle(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryText,
-                                                            ),
-                                                          ),
-                                                          duration: Duration(
-                                                              milliseconds:
-                                                                  4000),
-                                                          backgroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .secondary,
-                                                        ),
-                                                      );
-                                                    } else {
-                                                      ScaffoldMessenger.of(
-                                                              context)
-                                                          .showSnackBar(
-                                                        SnackBar(
-                                                          content: Text(
-                                                            'Submit thất bại',
-                                                            style: TextStyle(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryText,
-                                                            ),
-                                                          ),
-                                                          duration: Duration(
-                                                              milliseconds:
-                                                                  4000),
-                                                          backgroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .error,
-                                                        ),
-                                                      );
-                                                    }
-
-                                                    _model.getWorkflowCopyToken =
-                                                        await action_blocks
-                                                            .tokenReload(
-                                                                context);
-                                                    _shouldSetState = true;
-                                                    if (_model
-                                                        .getWorkflowCopyToken!) {
-                                                      _model.apiResultGetWorkflowCopy =
-                                                          await ProcedureTemplateGroup
-                                                              .workflowsOneCall
-                                                              .call(
-                                                        accessToken:
-                                                            FFAppState()
-                                                                .accessToken,
-                                                        id: dataListItem
-                                                            .workflowId.id,
-                                                      );
-                                                      _shouldSetState = true;
-                                                      if ((_model
-                                                              .apiResultGetWorkflowCopy
-                                                              ?.succeeded ??
-                                                          true)) {
-                                                        setState(() {
-                                                          _model.stepList =
-                                                              OneWorkFlowDataStruct
-                                                                      .maybeFromMap(
-                                                                          (_model.apiResultGetWorkflowCopy?.jsonBody ??
-                                                                              ''))
-                                                                  ?.data;
-                                                        });
-                                                      }
-                                                      if (_model.stepList!.steps
-                                                              .length >
-                                                          dataListItem.number) {
-                                                        while (_model.loop <
-                                                            _model.stepList!
-                                                                .steps.length) {
-                                                          if (dataListItem
-                                                                  .number ==
-                                                              (_model
-                                                                      .stepList!
-                                                                      .steps[_model
-                                                                          .loop]
-                                                                      .number -
-                                                                  1)) {
-                                                            _model.apiResultqt8CopyToken =
-                                                                await action_blocks
-                                                                    .tokenReload(
-                                                                        context);
-                                                            _shouldSetState =
-                                                                true;
-                                                            if (_model
-                                                                .apiResultqt8CopyToken!) {
-                                                              _model.apiResultqt8Copy =
-                                                                  await TaskGroup
-                                                                      .receiveTaskCall
-                                                                      .call(
-                                                                accessToken:
-                                                                    FFAppState()
-                                                                        .accessToken,
-                                                                workflowId:
-                                                                    dataListItem
-                                                                        .workflowId
-                                                                        .id,
-                                                                staffId: (_model
-                                                                            .stepList
-                                                                            ?.steps?[
-                                                                        _model
-                                                                            .loop])
-                                                                    ?.staffs
-                                                                    ?.first
-                                                                    ?.staffsId
-                                                                    ?.id,
-                                                              );
-                                                              _shouldSetState =
-                                                                  true;
-                                                              if (!(_model
-                                                                      .apiResultqt8Copy
-                                                                      ?.succeeded ??
-                                                                  true)) {
-                                                                ScaffoldMessenger.of(
-                                                                        context)
-                                                                    .showSnackBar(
-                                                                  SnackBar(
-                                                                    content:
-                                                                        Text(
-                                                                      'Nhận thất bại',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                      ),
-                                                                    ),
-                                                                    duration: Duration(
-                                                                        milliseconds:
-                                                                            4000),
-                                                                    backgroundColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .secondary,
-                                                                  ),
-                                                                );
-                                                              }
-                                                            } else {
-                                                              setState(() {});
-                                                              if (_shouldSetState)
-                                                                setState(() {});
-                                                              return;
-                                                            }
-                                                          }
-                                                          setState(() {
-                                                            _model.loop =
-                                                                _model.loop + 1;
-                                                          });
-                                                        }
-                                                        setState(() {
-                                                          _model.loop = 0;
-                                                        });
-                                                      }
-                                                      await _model
-                                                          .getTaskToDo(context);
-                                                    } else {
-                                                      setState(() {});
-                                                    }
-                                                  } else {
-                                                    setState(() {});
-                                                    if (_shouldSetState)
-                                                      setState(() {});
-                                                    return;
-                                                  }
-                                                } else {
-                                                  if (_shouldSetState)
-                                                    setState(() {});
-                                                  return;
-                                                }
-
-                                                if (_shouldSetState)
-                                                  setState(() {});
-                                              },
-                                              text: 'Lưu',
-                                              options: FFButtonOptions(
-                                                height: 30.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        6.0, 0.0, 6.0, 0.0),
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: Colors.white,
-                                                          fontSize: 12.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
                                               ),
                                             ),
                                             FFButtonWidget(

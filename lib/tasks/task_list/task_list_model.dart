@@ -11,7 +11,6 @@ import '/tasks/do_action_type_image/do_action_type_image_widget.dart';
 import '/tasks/do_action_type_to_do_list/do_action_type_to_do_list_widget.dart';
 import '/tasks/do_action_type_upload_file/do_action_type_upload_file_widget.dart';
 import '/tasks/filter_task_list/filter_task_list_widget.dart';
-import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -20,7 +19,6 @@ import 'task_list_widget.dart' show TaskListWidget;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -92,18 +90,6 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
   FocusNode? textFieldNameFocusNode;
   TextEditingController? textFieldNameTextController;
   String? Function(BuildContext, String?)? textFieldNameTextControllerValidator;
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? confirmOperationCopy2Token;
-  // Stores action output result for [Backend Call - API (ConfirmOperation)] action in Button widget.
-  ApiCallResponse? apiResultConfirmOperationCopy2;
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? getWorkflowCopyToken;
-  // Stores action output result for [Backend Call - API (workflowsOne)] action in Button widget.
-  ApiCallResponse? apiResultGetWorkflowCopy;
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? apiResultqt8CopyToken;
-  // Stores action output result for [Backend Call - API (ReceiveTask)] action in Button widget.
-  ApiCallResponse? apiResultqt8Copy;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? confirmOperationCopy2Token;
   // Stores action output result for [Backend Call - API (ConfirmOperation)] action in Button widget.
