@@ -1,10 +1,14 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'test_list_model.dart';
 export 'test_list_model.dart';
 
@@ -56,7 +60,7 @@ class _TestListWidgetState extends State<TestListWidget> {
             context.pushNamed(
               'TestCreate',
               extra: <String, dynamic>{
-                kTransitionInfoKey: const TransitionInfo(
+                kTransitionInfoKey: TransitionInfo(
                   hasTransition: true,
                   transitionType: PageTransitionType.fade,
                   duration: Duration(milliseconds: 0),
@@ -89,7 +93,7 @@ class _TestListWidgetState extends State<TestListWidget> {
               context.pushNamed(
                 'StudyProgramList',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
+                  kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -113,7 +117,7 @@ class _TestListWidgetState extends State<TestListWidget> {
               ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -141,13 +145,13 @@ class _TestListWidgetState extends State<TestListWidget> {
                   ),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 12.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -158,7 +162,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                 size: 32.0,
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'check.io',
@@ -184,7 +188,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 12.0, 0.0, 0.0),
                                 child: Text(
                                   'Platform Navigation',
@@ -197,10 +201,10 @@ class _TestListWidgetState extends State<TestListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -211,7 +215,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -224,7 +228,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Dashboard',
@@ -242,10 +246,10 @@ class _TestListWidgetState extends State<TestListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -256,7 +260,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -269,7 +273,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Chats',
@@ -287,10 +291,10 @@ class _TestListWidgetState extends State<TestListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -301,7 +305,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -314,7 +318,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Projects',
@@ -332,7 +336,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Settings',
@@ -345,10 +349,10 @@ class _TestListWidgetState extends State<TestListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -358,7 +362,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -372,7 +376,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Notifications',
@@ -397,9 +401,9 @@ class _TestListWidgetState extends State<TestListWidget> {
                                           ),
                                           child: Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 4.0, 8.0, 4.0),
                                               child: Text(
                                                 '12',
@@ -424,10 +428,10 @@ class _TestListWidgetState extends State<TestListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -438,7 +442,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -451,7 +455,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Billing',
@@ -469,10 +473,10 @@ class _TestListWidgetState extends State<TestListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -483,7 +487,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -496,7 +500,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Explore',
@@ -513,13 +517,13 @@ class _TestListWidgetState extends State<TestListWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 12.0)),
+                            ].divide(SizedBox(height: 12.0)),
                           ),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(0.0, -1.0),
+                          alignment: AlignmentDirectional(0.0, -1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 16.0),
                             child: Container(
                               width: 250.0,
@@ -534,7 +538,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(4.0),
+                                padding: EdgeInsets.all(4.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -597,7 +601,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                                 size: 16.0,
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         4.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -686,7 +690,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                                 size: 16.0,
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         4.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -729,7 +733,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                           color: FlutterFlowTheme.of(context).alternate,
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 12.0, 16.0, 12.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -746,14 +750,14 @@ class _TestListWidgetState extends State<TestListWidget> {
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(2.0),
+                                  padding: EdgeInsets.all(2.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: CachedNetworkImage(
                                       fadeInDuration:
-                                          const Duration(milliseconds: 500),
+                                          Duration(milliseconds: 500),
                                       fadeOutDuration:
-                                          const Duration(milliseconds: 500),
+                                          Duration(milliseconds: 500),
                                       imageUrl:
                                           'https://images.unsplash.com/photo-1624561172888-ac93c696e10c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHVzZXJzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
                                       width: 44.0,
@@ -765,7 +769,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -798,7 +802,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -819,18 +823,18 @@ class _TestListWidgetState extends State<TestListWidget> {
                 ),
               Expanded(
                 child: Align(
-                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  alignment: AlignmentDirectional(0.0, -1.0),
                   child: Container(
                     width: double.infinity,
-                    constraints: const BoxConstraints(
+                    constraints: BoxConstraints(
                       maxWidth: 970.0,
                     ),
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 16.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -842,9 +846,10 @@ class _TestListWidgetState extends State<TestListWidget> {
                                   focusNode: _model.textFieldFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.textController',
-                                    const Duration(milliseconds: 500),
+                                    Duration(milliseconds: 500),
                                     () async {
-                                      if (_model.textController.text != '') {
+                                      if (_model.textController.text != null &&
+                                          _model.textController.text != '') {
                                         setState(() {
                                           _model.filter =
                                               _model.textController.text;
@@ -915,9 +920,9 @@ class _TestListWidgetState extends State<TestListWidget> {
                                     fillColor: FlutterFlowTheme.of(context)
                                         .primaryBackground,
                                     contentPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
+                                        EdgeInsetsDirectional.fromSTEB(
                                             20.0, 0.0, 0.0, 0.0),
-                                    prefixIcon: const Icon(
+                                    prefixIcon: Icon(
                                       Icons.search_sharp,
                                       size: 24.0,
                                     ),
@@ -927,6 +932,8 @@ class _TestListWidgetState extends State<TestListWidget> {
                                             onTap: () async {
                                               _model.textController?.clear();
                                               if (_model.textController.text !=
+                                                      null &&
+                                                  _model.textController.text !=
                                                       '') {
                                                 setState(() {
                                                   _model.filter = _model
@@ -970,12 +977,12 @@ class _TestListWidgetState extends State<TestListWidget> {
                                       .asValidator(context),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 8.0)),
+                            ].divide(SizedBox(width: 8.0)),
                           ),
                         ),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 12.0, 0.0, 0.0),
                             child: Builder(
                               builder: (context) {
@@ -987,12 +994,12 @@ class _TestListWidgetState extends State<TestListWidget> {
                                   scrollDirection: Axis.vertical,
                                   itemCount: listItemTest.length,
                                   separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 8.0),
+                                      SizedBox(height: 8.0),
                                   itemBuilder: (context, listItemTestIndex) {
                                     final listItemTestItem =
                                         listItemTest[listItemTestIndex];
                                     return Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 18.0, 16.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -1027,7 +1034,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                             }.withoutNulls,
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
-                                                  const TransitionInfo(
+                                                  TransitionInfo(
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType.fade,
@@ -1048,7 +1055,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .alternate,
-                                                offset: const Offset(
+                                                offset: Offset(
                                                   0.0,
                                                   1.0,
                                                 ),
@@ -1059,7 +1066,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     4.0, 12.0, 8.0, 12.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1075,7 +1082,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       12.0,
                                                                       0.0,
@@ -1107,7 +1114,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1129,7 +1136,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                                                       ),
                                                                 ),
                                                               ),
-                                                            ].divide(const SizedBox(
+                                                            ].divide(SizedBox(
                                                                 height: 4.0)),
                                                           ),
                                                         ),
@@ -1193,7 +1200,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                                                 ),
                                                                 child: Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           -1.0,
                                                                           0.0),
                                                                   child: Text(
@@ -1208,7 +1215,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                                                           fontFamily:
                                                                               'Readex Pro',
                                                                           color: listItemTestItem.status == 'published'
-                                                                              ? const Color(0xFF00A907)
+                                                                              ? Color(0xFF00A907)
                                                                               : FlutterFlowTheme.of(context).tertiary,
                                                                           letterSpacing:
                                                                               0.0,
@@ -1235,7 +1242,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                                     flex: 2,
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1265,7 +1272,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                                                     flex: 3,
                                                     child: Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               -1.0, 0.0),
                                                       child: Text(
                                                         'Head of Design',

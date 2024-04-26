@@ -6,10 +6,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/procedure_step_detail/procedure_step_detail_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'process_template_detail_model.dart';
 export 'process_template_detail_model.dart';
@@ -129,34 +131,34 @@ class _ProcessTemplateDetailWidgetState
           ),
           actions: [
             Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                 child: Container(
                   width: 100.0,
                   height: 100.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       var confirmDialogResponse = await showDialog<bool>(
                             context: context,
                             builder: (alertDialogContext) {
                               return AlertDialog(
-                                content: const Text(
+                                content: Text(
                                     'Bạn có chắc chắn thêm vào quy trình!'),
                                 actions: [
                                   TextButton(
                                     onPressed: () => Navigator.pop(
                                         alertDialogContext, false),
-                                    child: const Text('Không'),
+                                    child: Text('Không'),
                                   ),
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.pop(alertDialogContext, true),
-                                    child: const Text('Có'),
+                                    child: Text('Có'),
                                   ),
                                 ],
                               );
@@ -173,7 +175,7 @@ class _ProcessTemplateDetailWidgetState
                           context.pushNamed(
                             'ProcessTemplateList',
                             extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
+                              kTransitionInfoKey: TransitionInfo(
                                 hasTransition: true,
                                 transitionType: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
@@ -190,7 +192,7 @@ class _ProcessTemplateDetailWidgetState
                                       FlutterFlowTheme.of(context).primaryText,
                                 ),
                               ),
-                              duration: const Duration(milliseconds: 4000),
+                              duration: Duration(milliseconds: 4000),
                               backgroundColor:
                                   FlutterFlowTheme.of(context).secondary,
                             ),
@@ -205,7 +207,7 @@ class _ProcessTemplateDetailWidgetState
                                       FlutterFlowTheme.of(context).primaryText,
                                 ),
                               ),
-                              duration: const Duration(milliseconds: 4000),
+                              duration: Duration(milliseconds: 4000),
                               backgroundColor:
                                   FlutterFlowTheme.of(context).error,
                             ),
@@ -216,16 +218,16 @@ class _ProcessTemplateDetailWidgetState
                       setState(() {});
                     },
                     text: 'Thêm',
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.add,
                       size: 15.0,
                     ),
                     options: FFButtonOptions(
                       height: 36.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -234,7 +236,7 @@ class _ProcessTemplateDetailWidgetState
                                 letterSpacing: 0.0,
                               ),
                       elevation: 3.0,
-                      borderSide: const BorderSide(
+                      borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
@@ -253,7 +255,7 @@ class _ProcessTemplateDetailWidgetState
           child: Visibility(
             visible: _model.isLoad == true,
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16.0),
               child: SingleChildScrollView(
                 primary: false,
                 child: Column(
@@ -262,7 +264,7 @@ class _ProcessTemplateDetailWidgetState
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                       child: Container(
                         width: double.infinity,
                         height: 50.0,
@@ -275,7 +277,7 @@ class _ProcessTemplateDetailWidgetState
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               10.0, 5.0, 10.0, 5.0),
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
@@ -284,7 +286,7 @@ class _ProcessTemplateDetailWidgetState
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 20.0, 0.0),
                                   child: FaIcon(
                                     FontAwesomeIcons.projectDiagram,
@@ -313,7 +315,7 @@ class _ProcessTemplateDetailWidgetState
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                       child: Text(
                         'Sơ đồ quy trình',
                         style: FlutterFlowTheme.of(context)
@@ -348,7 +350,7 @@ class _ProcessTemplateDetailWidgetState
                           itemBuilder: (context, listViewIndex) {
                             final listViewItem = listView[listViewIndex];
                             return Container(
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -425,12 +427,12 @@ class _ProcessTemplateDetailWidgetState
                                               ),
                                             ),
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsets.all(8.0),
+                                                  padding: EdgeInsets.all(8.0),
                                                   child: Text(
                                                     '${(listViewIndex + 1).toString()}.',
                                                     maxLines: 2,
@@ -447,11 +449,13 @@ class _ProcessTemplateDetailWidgetState
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 8.0,
                                                                 0.0, 8.0),
                                                     child: Text(
-                                                      listViewItem
+                                                      listViewItem.name !=
+                                                                  null &&
+                                                              listViewItem
                                                                       .name !=
                                                                   ''
                                                           ? listViewItem.name

@@ -1,6 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'wait_action_type_submit_text_model.dart';
 export 'wait_action_type_submit_text_model.dart';
 
@@ -46,7 +48,7 @@ class _WaitActionTypeSubmitTextWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
       child: TextFormField(
         controller: _model.textController,
         focusNode: _model.textFieldFocusNode,
@@ -91,7 +93,7 @@ class _WaitActionTypeSubmitTextWidgetState
             ),
             borderRadius: BorderRadius.circular(8.0),
           ),
-          contentPadding: const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 16.0),
+          contentPadding: EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 16.0),
         ),
         style: FlutterFlowTheme.of(context).bodyMedium.override(
               fontFamily: 'Readex Pro',

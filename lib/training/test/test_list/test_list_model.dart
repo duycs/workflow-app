@@ -1,9 +1,18 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import 'test_list_widget.dart' show TestListWidget;
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class TestListModel extends FlutterFlowModel<TestListWidget> {
   ///  Local state fields for this page.
@@ -47,14 +56,14 @@ class TestListModel extends FlutterFlowModel<TestListWidget> {
       apiResultTestList = await TestGroup.testListCall.call(
         accessToken: FFAppState().accessToken,
         filter:
-            '{\"_and\":[{}${(filter != '') && (filter != ' ') ? ',{\"name\":{\"_icontains\":\"$filter\"}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+            '{\"_and\":[{}${(filter != null && filter != '') && (filter != ' ') ? ',{\"name\":{\"_icontains\":\"${filter}\"}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
           FFAppState().staffLogin,
           r'''$.organization_id''',
         ).toString().toString()}\"}}}'}]}',
       );
-      if ((apiResultTestList.succeeded ?? true)) {
+      if ((apiResultTestList?.succeeded ?? true)) {
         listTest = TestListDataStruct.maybeFromMap(
-                (apiResultTestList.jsonBody ?? ''))!
+                (apiResultTestList?.jsonBody ?? ''))!
             .data
             .toList()
             .cast<TestListStruct>();

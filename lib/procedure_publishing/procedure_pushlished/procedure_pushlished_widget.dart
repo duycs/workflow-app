@@ -6,9 +6,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'procedure_pushlished_model.dart';
 export 'procedure_pushlished_model.dart';
@@ -88,16 +91,16 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Container(
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxHeight: 750.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
                 blurRadius: 3.0,
                 color: Color(0x33000000),
@@ -114,14 +117,14 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: EdgeInsets.all(16.0),
                     child: SingleChildScrollView(
                       primary: false,
                       child: Column(
@@ -129,7 +132,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 24.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -165,7 +168,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: FlutterFlowDropDown<String>(
                               controller: _model.dropDownValueController ??=
@@ -242,7 +245,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                   FlutterFlowTheme.of(context).alternate,
                               borderWidth: 1.0,
                               borderRadius: 8.0,
-                              margin: const EdgeInsetsDirectional.fromSTEB(
+                              margin: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 4.0, 16.0, 4.0),
                               hidesUnderline: true,
                               isOverButton: true,
@@ -253,7 +256,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                           if (_model.workflowSelected?.cron != null &&
                               _model.workflowSelected?.cron != '')
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 5.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -261,7 +264,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  final datePicked1Date = await showDatePicker(
+                                  final _datePicked1Date = await showDatePicker(
                                     context: context,
                                     initialDate: getCurrentTimestamp,
                                     firstDate: getCurrentTimestamp,
@@ -303,12 +306,12 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                     },
                                   );
 
-                                  if (datePicked1Date != null) {
+                                  if (_datePicked1Date != null) {
                                     safeSetState(() {
                                       _model.datePicked1 = DateTime(
-                                        datePicked1Date.year,
-                                        datePicked1Date.month,
-                                        datePicked1Date.day,
+                                        _datePicked1Date.year,
+                                        _datePicked1Date.month,
+                                        _datePicked1Date.day,
                                       );
                                     });
                                   }
@@ -324,17 +327,17 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                       size: 24.0,
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 3.0, 0.0, 0.0),
                                       child: Text(
                                         'Thiết lập: ${_model.workflowSelected?.cron != null && _model.workflowSelected?.cron != '' ? () {
-                                            if (functions.checkTypeCron(_model.workflowSelected!.cron) ==
+                                            if ('${functions.checkTypeCron(_model.workflowSelected!.cron)}' ==
                                                 '3') {
                                               return 'trong tháng';
-                                            } else if (functions.checkTypeCron(_model.workflowSelected!.cron) ==
+                                            } else if ('${functions.checkTypeCron(_model.workflowSelected!.cron)}' ==
                                                 '2') {
                                               return 'trong tuần';
-                                            } else if (functions.checkTypeCron(_model.workflowSelected!.cron) ==
+                                            } else if ('${functions.checkTypeCron(_model.workflowSelected!.cron)}' ==
                                                 '1') {
                                               return 'hàng ngày';
                                             } else {
@@ -353,12 +356,12 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                             ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 4.0)),
+                                  ].divide(SizedBox(width: 4.0)),
                                 ),
                               ),
                             ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 26.0, 0.0, 0.0, 10.0),
                             child: Text(
                               _model.workflowSelected?.cron != null &&
@@ -382,7 +385,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                           if (_model.workflowSelected?.cron != null &&
                               _model.workflowSelected?.cron != '')
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 16.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -390,7 +393,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  final datePicked2Date = await showDatePicker(
+                                  final _datePicked2Date = await showDatePicker(
                                     context: context,
                                     initialDate: getCurrentTimestamp,
                                     firstDate: getCurrentTimestamp,
@@ -432,12 +435,12 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                     },
                                   );
 
-                                  if (datePicked2Date != null) {
+                                  if (_datePicked2Date != null) {
                                     safeSetState(() {
                                       _model.datePicked2 = DateTime(
-                                        datePicked2Date.year,
-                                        datePicked2Date.month,
-                                        datePicked2Date.day,
+                                        _datePicked2Date.year,
+                                        _datePicked2Date.month,
+                                        _datePicked2Date.day,
                                       );
                                     });
                                   }
@@ -470,7 +473,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                       size: 24.0,
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 3.0, 0.0, 0.0),
                                       child: Text(
                                         _model.datePicked2 != null
@@ -494,13 +497,13 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                             ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 4.0)),
+                                  ].divide(SizedBox(width: 4.0)),
                                 ),
                               ),
                             ),
                           if (_model.workflowSelected != null)
                             Padding(
-                              padding: const EdgeInsets.all(16.0),
+                              padding: EdgeInsets.all(16.0),
                               child: SingleChildScrollView(
                                 primary: false,
                                 child: Column(
@@ -508,7 +511,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 8.0),
                                       child: Text(
                                         'Sơ đồ quy trình',
@@ -554,7 +557,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                             final itemStepsItem =
                                                 itemSteps[itemStepsIndex];
                                             return Container(
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.min,
                                                 mainAxisAlignment:
@@ -604,7 +607,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                                             ),
                                                           ),
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Row(
                                                             mainAxisSize:
@@ -613,7 +616,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsets
+                                                                    EdgeInsets
                                                                         .all(
                                                                             8.0),
                                                                 child: Text(
@@ -634,7 +637,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                                               ),
                                                               Expanded(
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           8.0,
@@ -709,14 +712,14 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 12.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
@@ -725,9 +728,9 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                             text: 'Hủy',
                             options: FFButtonOptions(
                               height: 44.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -753,7 +756,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            var shouldSetState = false;
+                            var _shouldSetState = false;
                             _model.apiResultUpdateLimit =
                                 await ProcedurePublishedGroup
                                     .procedureTemplateUpdateLimitPublishedCall
@@ -762,7 +765,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                               accessToken: FFAppState().accessToken,
                               limitPublished: _model.limitPublished,
                             );
-                            shouldSetState = true;
+                            _shouldSetState = true;
                             if ((_model.apiResultUpdateLimit?.succeeded ??
                                 true)) {
                               _model.apiResultProcedurepublished =
@@ -772,7 +775,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                 accessToken: FFAppState().accessToken,
                                 workflowId: _model.workflowSelected?.id,
                               );
-                              shouldSetState = true;
+                              _shouldSetState = true;
                               if ((_model
                                       .apiResultProcedurepublished?.succeeded ??
                                   true)) {
@@ -785,7 +788,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                     staffId: _model.staffIdStepOne[_model.loop]
                                         .staffsId.id,
                                   );
-                                  shouldSetState = true;
+                                  _shouldSetState = true;
                                   if (!(_model.apiResultReciveTask?.succeeded ??
                                       true)) {
                                     ScaffoldMessenger.of(context).showSnackBar(
@@ -797,7 +800,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                                 .primaryText,
                                           ),
                                         ),
-                                        duration: const Duration(milliseconds: 4000),
+                                        duration: Duration(milliseconds: 4000),
                                         backgroundColor:
                                             FlutterFlowTheme.of(context).error,
                                       ),
@@ -816,7 +819,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                             .primaryText,
                                       ),
                                     ),
-                                    duration: const Duration(milliseconds: 4000),
+                                    duration: Duration(milliseconds: 4000),
                                     backgroundColor:
                                         FlutterFlowTheme.of(context).secondary,
                                   ),
@@ -833,25 +836,25 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                             .primaryText,
                                       ),
                                     ),
-                                    duration: const Duration(milliseconds: 4000),
+                                    duration: Duration(milliseconds: 4000),
                                     backgroundColor:
                                         FlutterFlowTheme.of(context).error,
                                   ),
                                 );
                               }
                             } else {
-                              if (shouldSetState) setState(() {});
+                              if (_shouldSetState) setState(() {});
                               return;
                             }
 
-                            if (shouldSetState) setState(() {});
+                            if (_shouldSetState) setState(() {});
                           },
                           text: 'Xác nhận',
                           options: FFButtonOptions(
                             height: 44.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -861,7 +864,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                   color: Colors.white,
                                   letterSpacing: 0.0,
                                 ),
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),

@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -7,6 +8,8 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'study_program_list_user_model.dart';
 export 'study_program_list_user_model.dart';
 
@@ -87,19 +90,19 @@ class _StudyProgramListUserWidgetState
               ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
         body: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 24.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 24.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 8.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 8.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -109,7 +112,7 @@ class _StudyProgramListUserWidgetState
                           focusNode: _model.textFieldNameSearchFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textFieldNameSearchTextController',
-                            const Duration(milliseconds: 500),
+                            Duration(milliseconds: 500),
                             () async {
                               setState(() {
                                 _model.nameSearch = _model
@@ -171,9 +174,9 @@ class _StudyProgramListUserWidgetState
                             filled: true,
                             fillColor:
                                 FlutterFlowTheme.of(context).primaryBackground,
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 0.0, 0.0),
-                            prefixIcon: const Icon(
+                            prefixIcon: Icon(
                               Icons.search_sharp,
                             ),
                             suffixIcon: _model
@@ -219,7 +222,7 @@ class _StudyProgramListUserWidgetState
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                         child: FlutterFlowIconButton(
                           borderColor: Colors.transparent,
                           borderRadius: 10.0,
@@ -292,17 +295,17 @@ class _StudyProgramListUserWidgetState
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount: dataListView.length,
-                        separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                        separatorBuilder: (_, __) => SizedBox(height: 10.0),
                         itemBuilder: (context, dataListViewIndex) {
                           final dataListViewItem =
                               dataListView[dataListViewIndex];
                           return Container(
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 12.0, 12.0),
                                   child: Container(
                                     decoration: BoxDecoration(
@@ -314,7 +317,7 @@ class _StudyProgramListUserWidgetState
                                               .primaryBackground
                                           : FlutterFlowTheme.of(context)
                                               .secondaryBackground,
-                                      boxShadow: const [
+                                      boxShadow: [
                                         BoxShadow(
                                           blurRadius: 4.0,
                                           color: Color(0x33000000),
@@ -327,7 +330,7 @@ class _StudyProgramListUserWidgetState
                                       borderRadius: BorderRadius.circular(5.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           5.0, 12.0, 5.0, 12.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -335,7 +338,7 @@ class _StudyProgramListUserWidgetState
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            '#${(dataListViewIndex + 1).toString()}: ${dataListViewItem.name != '' ? dataListViewItem.name : ' '}  (${'${valueOrDefault<String>(
+                                            '#${(dataListViewIndex + 1).toString()}: ${dataListViewItem.name != null && dataListViewItem.name != '' ? dataListViewItem.name : ' '}  (${'${valueOrDefault<String>(
                                               dataListViewItem.lessions.length
                                                   .toString(),
                                               '0',
@@ -427,7 +430,7 @@ class _StudyProgramListUserWidgetState
                                                         .primaryText,
                                                     size: 14.0,
                                                   ),
-                                              ].divide(const SizedBox(width: 8.0)),
+                                              ].divide(SizedBox(width: 8.0)),
                                             ),
                                           ),
                                         ],
@@ -453,7 +456,7 @@ class _StudyProgramListUserWidgetState
                                                   dataListTestsViewIndex];
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 12.0, 12.0),
                                             child: Container(
                                               decoration: BoxDecoration(
@@ -464,7 +467,7 @@ class _StudyProgramListUserWidgetState
                                                     BorderRadius.circular(8.0),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(6.0),
+                                                padding: EdgeInsets.all(6.0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -527,7 +530,7 @@ class _StudyProgramListUserWidgetState
                                                                           .w300,
                                                                 ),
                                                           ),
-                                                        ].divide(const SizedBox(
+                                                        ].divide(SizedBox(
                                                             height: 4.0)),
                                                       ),
                                                     ),
@@ -540,14 +543,14 @@ class _StudyProgramListUserWidgetState
                                                       options: FFButtonOptions(
                                                         height: 30.0,
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     12.0,
                                                                     0.0,
                                                                     12.0,
                                                                     0.0),
                                                         iconPadding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -570,7 +573,7 @@ class _StudyProgramListUserWidgetState
                                                                       0.0,
                                                                 ),
                                                         elevation: 3.0,
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color: Colors
                                                               .transparent,
                                                           width: 1.0,
@@ -601,7 +604,7 @@ class _StudyProgramListUserWidgetState
                                                       },
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 8.0)),
+                                                      SizedBox(width: 8.0)),
                                                 ),
                                               ),
                                             ),
@@ -627,7 +630,7 @@ class _StudyProgramListUserWidgetState
                                                   dataListLessionsViewIndex];
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 12.0, 12.0),
                                             child: Container(
                                               decoration: BoxDecoration(
@@ -638,7 +641,7 @@ class _StudyProgramListUserWidgetState
                                                     BorderRadius.circular(8.0),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(6.0),
+                                                padding: EdgeInsets.all(6.0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -660,7 +663,7 @@ class _StudyProgramListUserWidgetState
                                                             BorderRadius
                                                                 .circular(8.0),
                                                         child: Image.network(
-                                                          '${FFAppConstants.ApiBaseUrl}/assets/${dataListLessionsViewItem.lessionsId.imageCover != '' ? dataListLessionsViewItem.lessionsId.imageCover : ' '}',
+                                                          '${FFAppConstants.ApiBaseUrl}/assets/${dataListLessionsViewItem.lessionsId.imageCover != null && dataListLessionsViewItem.lessionsId.imageCover != '' ? dataListLessionsViewItem.lessionsId.imageCover : ' '}',
                                                           width: 300.0,
                                                           height: 200.0,
                                                           fit: BoxFit.cover,
@@ -686,6 +689,8 @@ class _StudyProgramListUserWidgetState
                                                               children: [
                                                                 Text(
                                                                   dataListLessionsViewItem.lessionsId.name !=
+                                                                              null &&
+                                                                          dataListLessionsViewItem.lessionsId.name !=
                                                                               ''
                                                                       ? dataListLessionsViewItem
                                                                           .lessionsId
@@ -710,6 +715,8 @@ class _StudyProgramListUserWidgetState
                                                                 ),
                                                                 Text(
                                                                   dataListLessionsViewItem.lessionsId.dateCreated !=
+                                                                              null &&
+                                                                          dataListLessionsViewItem.lessionsId.dateCreated !=
                                                                               ''
                                                                       ? valueOrDefault<
                                                                           String>(
@@ -756,14 +763,14 @@ class _StudyProgramListUserWidgetState
                                                               options:
                                                                   FFButtonOptions(
                                                                 height: 30.0,
-                                                                padding: const EdgeInsetsDirectional
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         12.0,
                                                                         0.0,
                                                                         12.0,
                                                                         0.0),
                                                                 iconPadding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -785,7 +792,7 @@ class _StudyProgramListUserWidgetState
                                                                     ),
                                                                 elevation: 3.0,
                                                                 borderSide:
-                                                                    const BorderSide(
+                                                                    BorderSide(
                                                                   color: Colors
                                                                       .transparent,
                                                                   width: 1.0,
@@ -819,7 +826,7 @@ class _StudyProgramListUserWidgetState
                                                       },
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 8.0)),
+                                                      SizedBox(width: 8.0)),
                                                 ),
                                               ),
                                             ),

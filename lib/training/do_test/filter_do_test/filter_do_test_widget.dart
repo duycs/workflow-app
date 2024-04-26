@@ -5,8 +5,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'filter_do_test_model.dart';
 export 'filter_do_test_model.dart';
@@ -65,11 +68,11 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(16.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -82,7 +85,7 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -117,7 +120,7 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -147,7 +150,7 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          final datePicked1Date = await showDatePicker(
+                          final _datePicked1Date = await showDatePicker(
                             context: context,
                             initialDate: getCurrentTimestamp,
                             firstDate: DateTime(1900),
@@ -184,12 +187,12 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                             },
                           );
 
-                          if (datePicked1Date != null) {
+                          if (_datePicked1Date != null) {
                             safeSetState(() {
                               _model.datePicked1 = DateTime(
-                                datePicked1Date.year,
-                                datePicked1Date.month,
-                                datePicked1Date.day,
+                                _datePicked1Date.year,
+                                _datePicked1Date.month,
+                                _datePicked1Date.day,
                               );
                             });
                           }
@@ -210,7 +213,8 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                               size: 24.0,
                             ),
                             Text(
-                              (_model.dateStart != '') &&
+                              (_model.dateStart != null &&
+                                          _model.dateStart != '') &&
                                       (_model.dateStart != ' ')
                                   ? _model.dateStart
                                   : 'Ngày bắt đầu',
@@ -233,7 +237,7 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          final datePicked2Date = await showDatePicker(
+                          final _datePicked2Date = await showDatePicker(
                             context: context,
                             initialDate: getCurrentTimestamp,
                             firstDate: DateTime(1900),
@@ -270,12 +274,12 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                             },
                           );
 
-                          if (datePicked2Date != null) {
+                          if (_datePicked2Date != null) {
                             safeSetState(() {
                               _model.datePicked2 = DateTime(
-                                datePicked2Date.year,
-                                datePicked2Date.month,
-                                datePicked2Date.day,
+                                _datePicked2Date.year,
+                                _datePicked2Date.month,
+                                _datePicked2Date.day,
                               );
                             });
                           }
@@ -296,7 +300,8 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                               size: 24.0,
                             ),
                             Text(
-                              (_model.dateEnd != '') &&
+                              (_model.dateEnd != null &&
+                                          _model.dateEnd != '') &&
                                       (_model.dateEnd != ' ')
                                   ? _model.dateEnd
                                   : 'Ngày kết thúc',
@@ -312,10 +317,10 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                         ),
                       ),
                     ),
-                  ].divide(const SizedBox(width: 8.0)),
+                  ].divide(SizedBox(width: 8.0)),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -359,9 +364,9 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -392,7 +397,7 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                                   await DoTestGroup.staffsTestsListCall.call(
                                 accessToken: FFAppState().accessToken,
                                 filter:
-                                    '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"test_id\":{\"name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}${_model.dateStart != '' ? ',{\"date_start\":{\"_gte\":\"${_model.dateStart}\"}}' : ' '}${_model.dateEnd != '' ? ',{\"date_start\":{\"_lte\":\"${_model.dateEnd}\"}}' : ' '}]}',
+                                    '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"test_id\":{\"name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}${_model.dateStart != null && _model.dateStart != '' ? ',{\"date_start\":{\"_gte\":\"${_model.dateStart}\"}}' : ' '}${_model.dateEnd != null && _model.dateEnd != '' ? ',{\"date_start\":{\"_lte\":\"${_model.dateEnd}\"}}' : ' '}]}',
                               );
                               if ((_model.apiResultFilterListStaffTest
                                       ?.succeeded ??
@@ -425,11 +430,11 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                           text: 'Xác nhận',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0xFF33BA45),
+                            color: Color(0xFF33BA45),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -438,7 +443,7 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -446,10 +451,10 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                           ),
                         ),
                       ),
-                    ].divide(const SizedBox(width: 16.0)),
+                    ].divide(SizedBox(width: 16.0)),
                   ),
                 ),
-              ].divide(const SizedBox(height: 8.0)),
+              ].divide(SizedBox(height: 8.0)),
             ),
           ),
         ),

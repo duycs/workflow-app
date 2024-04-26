@@ -1,7 +1,10 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'nhap1_model.dart';
 export 'nhap1_model.dart';
 
@@ -65,14 +68,14 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -90,7 +93,7 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                             borderRadius: BorderRadius.circular(90.0),
                           ),
                           child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Text(
                               '1',
                               style: FlutterFlowTheme.of(context)
@@ -136,11 +139,11 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                                 fontStyle: FontStyle.italic,
                               ),
                         ),
-                      ].divide(const SizedBox(width: 4.0)),
+                      ].divide(SizedBox(width: 4.0)),
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,7 +157,7 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                           ),
                           Flexible(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 16.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -197,33 +200,33 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                                           borderRadius:
                                               BorderRadius.circular(20.0),
                                           border: Border.all(
-                                            color: const Color(0xFFFF0000),
+                                            color: Color(0xFFFF0000),
                                             width: 0.5,
                                           ),
                                         ),
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             'Quá hạn 50%',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Readex Pro',
-                                                  color: const Color(0xFFFF0000),
+                                                  color: Color(0xFFFF0000),
                                                   fontSize: 13.0,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 8.0)),
+                                    ].divide(SizedBox(width: 8.0)),
                                   ),
-                                ].divide(const SizedBox(height: 8.0)),
+                                ].divide(SizedBox(height: 8.0)),
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 8.0)),
+                        ].divide(SizedBox(width: 8.0)),
                       ),
                     ),
                   ],
@@ -242,7 +245,7 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                             borderRadius: BorderRadius.circular(90.0),
                           ),
                           child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Text(
                               '2',
                               style: FlutterFlowTheme.of(context)
@@ -270,11 +273,11 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                                 ),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 4.0)),
+                      ].divide(SizedBox(width: 4.0)),
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -288,7 +291,7 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                           ),
                           Flexible(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 16.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -331,33 +334,33 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                                           borderRadius:
                                               BorderRadius.circular(20.0),
                                           border: Border.all(
-                                            color: const Color(0xFFFF0000),
+                                            color: Color(0xFFFF0000),
                                             width: 0.5,
                                           ),
                                         ),
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             'Quá hạn 50%',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Readex Pro',
-                                                  color: const Color(0xFFFF0000),
+                                                  color: Color(0xFFFF0000),
                                                   fontSize: 13.0,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 8.0)),
+                                    ].divide(SizedBox(width: 8.0)),
                                   ),
-                                ].divide(const SizedBox(height: 8.0)),
+                                ].divide(SizedBox(height: 8.0)),
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 8.0)),
+                        ].divide(SizedBox(width: 8.0)),
                       ),
                     ),
                   ],
@@ -376,7 +379,7 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                             borderRadius: BorderRadius.circular(90.0),
                           ),
                           child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Text(
                               '3',
                               style: FlutterFlowTheme.of(context)
@@ -404,11 +407,11 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                                 ),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 4.0)),
+                      ].divide(SizedBox(width: 4.0)),
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -422,7 +425,7 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                           ),
                           Flexible(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 16.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -465,33 +468,33 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                                           borderRadius:
                                               BorderRadius.circular(20.0),
                                           border: Border.all(
-                                            color: const Color(0xFFFF0000),
+                                            color: Color(0xFFFF0000),
                                             width: 0.5,
                                           ),
                                         ),
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             'Quá hạn 50%',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Readex Pro',
-                                                  color: const Color(0xFFFF0000),
+                                                  color: Color(0xFFFF0000),
                                                   fontSize: 13.0,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 8.0)),
+                                    ].divide(SizedBox(width: 8.0)),
                                   ),
-                                ].divide(const SizedBox(height: 8.0)),
+                                ].divide(SizedBox(height: 8.0)),
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 8.0)),
+                        ].divide(SizedBox(width: 8.0)),
                       ),
                     ),
                   ],
@@ -510,7 +513,7 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                             borderRadius: BorderRadius.circular(90.0),
                           ),
                           child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Text(
                               '4',
                               style: FlutterFlowTheme.of(context)
@@ -538,11 +541,11 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                                 ),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 4.0)),
+                      ].divide(SizedBox(width: 4.0)),
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -556,7 +559,7 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                           ),
                           Flexible(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 16.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -599,33 +602,33 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                                           borderRadius:
                                               BorderRadius.circular(20.0),
                                           border: Border.all(
-                                            color: const Color(0xFFFF0000),
+                                            color: Color(0xFFFF0000),
                                             width: 0.5,
                                           ),
                                         ),
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             'Quá hạn 50%',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Readex Pro',
-                                                  color: const Color(0xFFFF0000),
+                                                  color: Color(0xFFFF0000),
                                                   fontSize: 13.0,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 8.0)),
+                                    ].divide(SizedBox(width: 8.0)),
                                   ),
-                                ].divide(const SizedBox(height: 8.0)),
+                                ].divide(SizedBox(height: 8.0)),
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 8.0)),
+                        ].divide(SizedBox(width: 8.0)),
                       ),
                     ),
                   ],
@@ -644,7 +647,7 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                             borderRadius: BorderRadius.circular(90.0),
                           ),
                           child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Text(
                               '5',
                               style: FlutterFlowTheme.of(context)
@@ -672,11 +675,11 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                                 ),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 4.0)),
+                      ].divide(SizedBox(width: 4.0)),
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -690,7 +693,7 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                           ),
                           Flexible(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 16.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -733,33 +736,33 @@ class _Nhap1WidgetState extends State<Nhap1Widget> {
                                           borderRadius:
                                               BorderRadius.circular(20.0),
                                           border: Border.all(
-                                            color: const Color(0xFFFF0000),
+                                            color: Color(0xFFFF0000),
                                             width: 0.5,
                                           ),
                                         ),
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             'Quá hạn 50%',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Readex Pro',
-                                                  color: const Color(0xFFFF0000),
+                                                  color: Color(0xFFFF0000),
                                                   fontSize: 13.0,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 8.0)),
+                                    ].divide(SizedBox(width: 8.0)),
                                   ),
-                                ].divide(const SizedBox(height: 8.0)),
+                                ].divide(SizedBox(height: 8.0)),
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 8.0)),
+                        ].divide(SizedBox(width: 8.0)),
                       ),
                     ),
                   ],

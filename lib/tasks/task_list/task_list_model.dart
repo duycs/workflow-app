@@ -1,11 +1,29 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/nav_bar_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/procedure_publishing/procedure_pushlished/procedure_pushlished_widget.dart';
+import '/tasks/do_action_type_approve/do_action_type_approve_widget.dart';
+import '/tasks/do_action_type_image/do_action_type_image_widget.dart';
+import '/tasks/do_action_type_to_do_list/do_action_type_to_do_list_widget.dart';
 import '/tasks/do_action_type_upload_file/do_action_type_upload_file_widget.dart';
+import '/tasks/filter_task_list/filter_task_list_widget.dart';
+import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'task_list_widget.dart' show TaskListWidget;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class TaskListModel extends FlutterFlowModel<TaskListWidget> {
   ///  Local state fields for this page.
@@ -86,6 +104,18 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
   bool? apiResultqt8CopyToken;
   // Stores action output result for [Backend Call - API (ReceiveTask)] action in Button widget.
   ApiCallResponse? apiResultqt8Copy;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? confirmOperationCopy2Token;
+  // Stores action output result for [Backend Call - API (ConfirmOperation)] action in Button widget.
+  ApiCallResponse? apiResultConfirmOperationCopy2;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? getWorkflowCopyToken;
+  // Stores action output result for [Backend Call - API (workflowsOne)] action in Button widget.
+  ApiCallResponse? apiResultGetWorkflowCopy;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? apiResultqt8CopyToken;
+  // Stores action output result for [Backend Call - API (ReceiveTask)] action in Button widget.
+  ApiCallResponse? apiResultqt8Copy;
   // Models for do_action_type_upload_file dynamic component.
   late FlutterFlowDynamicModels<DoActionTypeUploadFileModel>
       doActionTypeUploadFileModels;
@@ -136,9 +166,9 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
         accessToken: FFAppState().accessToken,
         filter: filter,
       );
-      if ((apiResultGetTaskList.succeeded ?? true)) {
+      if ((apiResultGetTaskList?.succeeded ?? true)) {
         list = TaskListDataStruct.maybeFromMap(
-                (apiResultGetTaskList.jsonBody ?? ''))!
+                (apiResultGetTaskList?.jsonBody ?? ''))!
             .data
             .toList()
             .cast<TaskListStruct>();

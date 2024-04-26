@@ -1,11 +1,15 @@
+import '/backend/schema/structs/index.dart';
 import '/department/filter_status_department/filter_status_department_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'department_list_model.dart';
 export 'department_list_model.dart';
 
@@ -68,7 +72,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                 ),
               }.withoutNulls,
               extra: <String, dynamic>{
-                kTransitionInfoKey: const TransitionInfo(
+                kTransitionInfoKey: TransitionInfo(
                   hasTransition: true,
                   transitionType: PageTransitionType.fade,
                   duration: Duration(milliseconds: 0),
@@ -101,7 +105,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
               context.pushNamed(
                 'Profile',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
+                  kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -124,7 +128,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                     actions: [
                       TextButton(
                         onPressed: () => Navigator.pop(alertDialogContext),
-                        child: const Text('Ok'),
+                        child: Text('Ok'),
                       ),
                     ],
                   );
@@ -141,14 +145,14 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                   ),
             ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
             child: SingleChildScrollView(
               primary: false,
               child: Column(
@@ -157,20 +161,20 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 10.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 10.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                          child: SizedBox(
+                          child: Container(
                             width: double.infinity,
                             child: TextFormField(
                               controller: _model.nameSearchTextController,
                               focusNode: _model.nameSearchFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.nameSearchTextController',
-                                const Duration(milliseconds: 500),
+                                Duration(milliseconds: 500),
                                 () async {
                                   await _model.getDepartmentList(context);
                                   setState(() {});
@@ -225,9 +229,9 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context)
                                     .primaryBackground,
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 0.0, 0.0),
-                                prefixIcon: const Icon(
+                                prefixIcon: Icon(
                                   Icons.search,
                                   size: 24.0,
                                 ),
@@ -242,7 +246,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                           setState(() {});
                                           setState(() {});
                                         },
-                                        child: const Icon(
+                                        child: Icon(
                                           Icons.clear,
                                           size: 18.0,
                                         ),
@@ -281,7 +285,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                     elevation: 0,
                                     insetPadding: EdgeInsets.zero,
                                     backgroundColor: Colors.transparent,
-                                    alignment: const AlignmentDirectional(0.0, 0.0)
+                                    alignment: AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
                                     child: GestureDetector(
                                       onTap: () => _model
@@ -311,11 +315,12 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                       ],
                     ),
                   ),
-                  if ((_model.nameSearchTextController.text != '') ||
-                      (_model.status != ''))
+                  if ((_model.nameSearchTextController.text != null &&
+                          _model.nameSearchTextController.text != '') ||
+                      (_model.status != null && _model.status != ''))
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 8.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 8.0),
                       child: Text(
                         '#Kết quả tìm kiếm theo bộ lọc',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -329,7 +334,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                     ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 16.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 16.0),
                     child: Builder(
                       builder: (context) {
                         final listItems = _model.list.toList();
@@ -339,11 +344,11 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           itemCount: listItems.length,
-                          separatorBuilder: (_, __) => const SizedBox(height: 12.0),
+                          separatorBuilder: (_, __) => SizedBox(height: 12.0),
                           itemBuilder: (context, listItemsIndex) {
                             final listItemsItem = listItems[listItemsIndex];
                             return Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -365,7 +370,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -384,7 +389,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding: EdgeInsets.all(10.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -407,7 +412,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Text(
                                                 'Mã bộ phận: ',
@@ -423,7 +428,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Text(
                                                 listItemsItem.code,
@@ -446,7 +451,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 4.0, 0.0, 0.0),
                                               child: Text(
                                                 'Tổng số lượng nhân sự:',
@@ -462,7 +467,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 4.0, 0.0, 0.0),
                                               child: Text(
                                                 listItemsItem.staffs.length
@@ -486,7 +491,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 4.0, 0.0, 0.0),
                                               child: Text(
                                                 'Trạng thái: ',
@@ -502,10 +507,10 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 4.0, 0.0, 0.0),
                                               child: Text(
-                                                listItemsItem.status ==
+                                                '${listItemsItem.status}' ==
                                                         'published'
                                                     ? 'Hoạt động'
                                                     : 'Không hoạt động',
@@ -533,10 +538,10 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                       },
                     ),
                   ),
-                  if ((_model.list.isEmpty) && (_model.checkAPI == '1'))
+                  if ((_model.list.length <= 0) && (_model.checkAPI == '1'))
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -548,7 +553,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                             size: 55.0,
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Text(
                               'Chưa có dữ liệu',
@@ -563,7 +568,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 3.0, 0.0, 0.0),
                             child: Text(
                               'Hiện tại bạn chưa có dữ liệu nào!',

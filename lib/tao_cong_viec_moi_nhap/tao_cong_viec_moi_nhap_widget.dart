@@ -1,7 +1,10 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'tao_cong_viec_moi_nhap_model.dart';
 export 'tao_cong_viec_moi_nhap_model.dart';
 
@@ -85,7 +88,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                   lineHeight: 1.2,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -93,7 +96,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
           top: true,
           child: Container(
             height: double.infinity,
-            decoration: const BoxDecoration(),
+            decoration: BoxDecoration(),
             child: SingleChildScrollView(
               primary: false,
               child: Column(
@@ -102,7 +105,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                   Container(
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
-                      boxShadow: const [
+                      boxShadow: [
                         BoxShadow(
                           blurRadius: 4.0,
                           color: Color(0x2D101213),
@@ -119,24 +122,24 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 12.0, 16.0, 12.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              SizedBox(
+                              Container(
                                 width: 150.0,
                                 child: Stack(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   children: [
                                     Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Container(
                                         width: 40.0,
                                         height: 40.0,
                                         clipBehavior: Clip.antiAlias,
-                                        decoration: const BoxDecoration(
+                                        decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
                                         child: Image.network(
@@ -147,7 +150,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                     ),
                                     Align(
                                       alignment:
-                                          const AlignmentDirectional(-0.27, 0.0),
+                                          AlignmentDirectional(-0.27, 0.0),
                                       child: Container(
                                         width: 40.0,
                                         height: 40.0,
@@ -170,7 +173,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 8.0, 0.0),
                                   child: Text(
                                     'Xem thông tin người thực hiện',
@@ -209,7 +212,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -226,7 +229,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 0.0),
                                         child: TextFormField(
                                           controller: _model.textController1,
@@ -280,7 +283,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                     size: 20.0,
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         4.0, 0.0, 4.0, 0.0),
                                     child: Text(
                                       'Công khai',
@@ -298,7 +301,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -310,7 +313,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.textController2,
@@ -356,7 +359,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -368,7 +371,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.textController3,
@@ -415,7 +418,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -427,7 +430,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.textController4,
@@ -473,7 +476,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -485,7 +488,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.textController5,
@@ -531,7 +534,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -543,7 +546,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.textController6,
@@ -592,7 +595,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                     child: ListView(
                       padding: EdgeInsets.zero,
                       shrinkWrap: true,
@@ -605,7 +608,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                 .secondaryBackground,
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: EdgeInsets.all(16.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -636,7 +639,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                           FlutterFlowTheme.of(context).primary,
                                       size: 30.0,
                                     ),
-                                  ].divide(const SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 8.0)),
                                 ),
                               ],
                             ),
@@ -649,7 +652,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                 .secondaryBackground,
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: EdgeInsets.all(16.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -675,7 +678,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                             ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 8.0)),
                                 ),
                               ],
                             ),
@@ -688,7 +691,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                 .secondaryBackground,
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: EdgeInsets.all(16.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -714,13 +717,13 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                             ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 8.0)),
                                 ),
                               ],
                             ),
                           ),
                         ),
-                      ].divide(const SizedBox(height: 8.0)),
+                      ].divide(SizedBox(height: 8.0)),
                     ),
                   ),
                 ],

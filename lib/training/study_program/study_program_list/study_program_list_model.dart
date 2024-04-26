@@ -1,10 +1,21 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/training/study_program/filter_study_program/filter_study_program_widget.dart';
+import '/training/study_program/study_program_create/study_program_create_widget.dart';
+import '/training/study_program/study_program_edit/study_program_edit_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'study_program_list_widget.dart' show StudyProgramListWidget;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class StudyProgramListModel extends FlutterFlowModel<StudyProgramListWidget> {
   ///  Local state fields for this page.
@@ -69,21 +80,21 @@ class StudyProgramListModel extends FlutterFlowModel<StudyProgramListWidget> {
       apiResultStudyProgramListSearch =
           await StudyProgramGroup.studyProgramListCall.call(
         accessToken: FFAppState().accessToken,
-        filter: '{\"_and\":[{}${(nameSearch != null && nameSearch != '') && (nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"$nameSearch\"}}' : ' '}${(lessionsNameSearch != null && lessionsNameSearch != '') && (lessionsNameSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"$lessionsNameSearch\"}}}}' : ' '}${(dateStartSearch != null && dateStartSearch != '') && (dateStartSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"$dateStartSearch\"}}}}' : ' '}${(dateEndSearch != null && dateEndSearch != '') && (dateEndSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"${(String var1) {
-            return DateTime.parse(var1).add(const Duration(days: 1)).toString();
+        filter: '{\"_and\":[{}${(nameSearch != null && nameSearch != '') && (nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${nameSearch}\"}}' : ' '}${(lessionsNameSearch != null && lessionsNameSearch != '') && (lessionsNameSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"${lessionsNameSearch}\"}}}}' : ' '}${(dateStartSearch != null && dateStartSearch != '') && (dateStartSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"${dateStartSearch}\"}}}}' : ' '}${(dateEndSearch != null && dateEndSearch != '') && (dateEndSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"${(String var1) {
+            return DateTime.parse(var1).add(Duration(days: 1)).toString();
           }(dateEndSearch!)}\"}}}}' : ' '}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
           FFAppState().staffLogin,
           r'''$.organization_id''',
         ).toString().toString()}\"}}'}]}',
       );
-      if ((apiResultStudyProgramListSearch.succeeded ?? true)) {
+      if ((apiResultStudyProgramListSearch?.succeeded ?? true)) {
         dataList = StudyProgramListDataStruct.maybeFromMap(
-                (apiResultStudyProgramListSearch.jsonBody ?? ''))!
+                (apiResultStudyProgramListSearch?.jsonBody ?? ''))!
             .data
             .toList()
             .cast<StudyProgramListStruct>();
         meta = StudyProgramListDataStruct.maybeFromMap(
-                (apiResultStudyProgramListSearch.jsonBody ?? ''))
+                (apiResultStudyProgramListSearch?.jsonBody ?? ''))
             ?.meta;
         checkShow = null;
       } else {
@@ -95,7 +106,7 @@ class StudyProgramListModel extends FlutterFlowModel<StudyProgramListWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );

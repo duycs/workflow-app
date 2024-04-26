@@ -8,10 +8,12 @@ import '/training/study_program/filter_study_program/filter_study_program_widget
 import '/training/study_program/study_program_create/study_program_create_widget.dart';
 import '/training/study_program/study_program_edit/study_program_edit_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'study_program_list_model.dart';
 export 'study_program_list_model.dart';
@@ -67,7 +69,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                   color: FlutterFlowTheme.of(context).primaryText,
                 ),
               ),
-              duration: const Duration(milliseconds: 4000),
+              duration: Duration(milliseconds: 4000),
               backgroundColor: FlutterFlowTheme.of(context).error,
             ),
           );
@@ -114,7 +116,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                     elevation: 0,
                     insetPadding: EdgeInsets.zero,
                     backgroundColor: Colors.transparent,
-                    alignment: const AlignmentDirectional(0.0, 1.0)
+                    alignment: AlignmentDirectional(0.0, 1.0)
                         .resolve(Directionality.of(context)),
                     child: GestureDetector(
                       onTap: () => _model.unfocusNode.canRequestFocus
@@ -168,7 +170,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
               context.pushNamed(
                 'Profile',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
+                  kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -192,22 +194,22 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
               ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
         body: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(12.0, 24.0, 12.0, 12.0),
+                        EdgeInsetsDirectional.fromSTEB(12.0, 24.0, 12.0, 12.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -225,7 +227,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                   context.pushNamed(
                                     'LessonsList',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -241,7 +243,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                         FlutterFlowTheme.of(context).secondary,
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'Danh sách bài học',
                                     style: FlutterFlowTheme.of(context)
@@ -266,7 +268,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                   context.pushNamed(
                                     'TestList',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -281,7 +283,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                     color: FlutterFlowTheme.of(context).error,
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'Danh sách bài thi',
                                     style: FlutterFlowTheme.of(context)
@@ -296,7 +298,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                 ),
                               ),
                             ),
-                          ].divide(const SizedBox(width: 16.0)),
+                          ].divide(SizedBox(width: 16.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -308,7 +310,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                 focusNode: _model.textFieldNameSearchFocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.textFieldNameSearchTextController',
-                                  const Duration(milliseconds: 500),
+                                  Duration(milliseconds: 500),
                                   () async {
                                     setState(() {
                                       _model.nameSearch = _model
@@ -372,9 +374,9 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                   fillColor: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
                                   contentPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
+                                      EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 0.0, 0.0),
-                                  prefixIcon: const Icon(
+                                  prefixIcon: Icon(
                                     Icons.search_sharp,
                                   ),
                                   suffixIcon: _model
@@ -424,7 +426,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                             ),
                             Builder(
                               builder: (context) => Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 0.0, 0.0, 0.0),
                                 child: FlutterFlowIconButton(
                                   borderColor: Colors.transparent,
@@ -445,7 +447,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                           elevation: 0,
                                           insetPadding: EdgeInsets.zero,
                                           backgroundColor: Colors.transparent,
-                                          alignment: const AlignmentDirectional(
+                                          alignment: AlignmentDirectional(
                                                   0.0, 0.0)
                                               .resolve(
                                                   Directionality.of(context)),
@@ -500,7 +502,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                             ),
                           ],
                         ),
-                      ].divide(const SizedBox(height: 16.0)),
+                      ].divide(SizedBox(height: 16.0)),
                     ),
                   ),
                 ),
@@ -511,9 +513,9 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                       if ('${(_model.nameSearch != null && _model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.lessionsNameSearch != null && _model.lessionsNameSearch != '') && (_model.lessionsNameSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"${_model.lessionsNameSearch}\"}}}}' : ' '}${(_model.dateStartSearch != null && _model.dateStartSearch != '') && (_model.dateStartSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"${_model.dateStartSearch}\"}}}}' : ' '}${(_model.dateEndSearch != null && _model.dateEndSearch != '') && (_model.dateEndSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"${_model.dateEndSearch}\"}}}}' : ' '}' !=
                           '    ')
                         Align(
-                          alignment: const AlignmentDirectional(-1.0, 0.0),
+                          alignment: AlignmentDirectional(-1.0, 0.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 12.0, 0.0, 12.0, 0.0),
                             child: Text(
                               '#Kết quả hiển thị theo bộ lọc',
@@ -539,17 +541,17 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                               scrollDirection: Axis.vertical,
                               itemCount: dataListView.length,
                               separatorBuilder: (_, __) =>
-                                  const SizedBox(height: 10.0),
+                                  SizedBox(height: 10.0),
                               itemBuilder: (context, dataListViewIndex) {
                                 final dataListViewItem =
                                     dataListView[dataListViewIndex];
                                 return Container(
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             12.0, 0.0, 12.0, 12.0),
                                         child: Container(
                                           decoration: BoxDecoration(
@@ -562,7 +564,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                     .alternate
                                                 : FlutterFlowTheme.of(context)
                                                     .secondaryBackground,
-                                            boxShadow: const [
+                                            boxShadow: [
                                               BoxShadow(
                                                 blurRadius: 2.0,
                                                 color: Color(0x33000000),
@@ -577,7 +579,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     5.0, 12.0, 5.0, 12.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -668,11 +670,11 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                   flex: 2,
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Container(
                                                       decoration:
-                                                          const BoxDecoration(),
+                                                          BoxDecoration(),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -682,14 +684,14 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
                                                                         0.0,
                                                                         5.0),
                                                             child: Text(
-                                                              '#${(dataListViewIndex + 1).toString()} : ${dataListViewItem.name != '' ? dataListViewItem.name : ' '}',
+                                                              '#${(dataListViewIndex + 1).toString()} : ${dataListViewItem.name != null && dataListViewItem.name != '' ? dataListViewItem.name : ' '}',
                                                               maxLines: 2,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
@@ -743,7 +745,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                   flex: 1,
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             1.0, 0.0),
                                                     child: InkWell(
                                                       splashColor:
@@ -830,7 +832,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                   .primaryText,
                                                               size: 14.0,
                                                             ),
-                                                        ].divide(const SizedBox(
+                                                        ].divide(SizedBox(
                                                             width: 8.0)),
                                                       ),
                                                     ),
@@ -859,7 +861,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                     dataListTestsView[
                                                         dataListTestsViewIndex];
                                                 return Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           12.0, 0.0, 12.0, 6.0),
                                                   child: InkWell(
@@ -905,7 +907,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              const TransitionInfo(
+                                                              TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -928,7 +930,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(6.0),
+                                                            EdgeInsets.all(6.0),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
@@ -945,6 +947,8 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                 children: [
                                                                   Text(
                                                                     dataListTestsViewItem.testsId.name !=
+                                                                                null &&
+                                                                            dataListTestsViewItem.testsId.name !=
                                                                                 ''
                                                                         ? dataListTestsViewItem
                                                                             .testsId
@@ -975,6 +979,8 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                   ),
                                                                   Text(
                                                                     dataListTestsViewItem.testsId.dateCreated !=
+                                                                                null &&
+                                                                            dataListTestsViewItem.testsId.dateCreated !=
                                                                                 ''
                                                                         ? valueOrDefault<
                                                                             String>(
@@ -1005,7 +1011,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                               FontWeight.w300,
                                                                         ),
                                                                   ),
-                                                                ].divide(const SizedBox(
+                                                                ].divide(SizedBox(
                                                                     height:
                                                                         4.0)),
                                                               ),
@@ -1022,13 +1028,13 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                 options:
                                                                     FFButtonOptions(
                                                                   height: 30.0,
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           12.0,
                                                                           0.0,
                                                                           12.0,
                                                                           0.0),
-                                                                  iconPadding: const EdgeInsetsDirectional
+                                                                  iconPadding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1055,7 +1061,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                   elevation:
                                                                       3.0,
                                                                   borderSide:
-                                                                      const BorderSide(
+                                                                      BorderSide(
                                                                     color: Colors
                                                                         .transparent,
                                                                     width: 1.0,
@@ -1093,7 +1099,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                 },
                                                               ),
                                                             ),
-                                                          ].divide(const SizedBox(
+                                                          ].divide(SizedBox(
                                                               width: 8.0)),
                                                         ),
                                                       ),
@@ -1123,7 +1129,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                     dataListLessionsView[
                                                         dataListLessionsViewIndex];
                                                 return Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           12.0, 0.0, 12.0, 6.0),
                                                   child: InkWell(
@@ -1159,7 +1165,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(6.0),
+                                                            EdgeInsets.all(6.0),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.min,
@@ -1187,7 +1193,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                               8.0),
                                                                   child: Image
                                                                       .network(
-                                                                    '${FFAppConstants.ApiBaseUrl}/assets/${dataListLessionsViewItem.lessionsId.imageCover != '' ? dataListLessionsViewItem.lessionsId.imageCover : ' '}?access_token=${FFAppState().accessToken}',
+                                                                    '${FFAppConstants.ApiBaseUrl}/assets/${dataListLessionsViewItem.lessionsId.imageCover != null && dataListLessionsViewItem.lessionsId.imageCover != '' ? dataListLessionsViewItem.lessionsId.imageCover : ' '}?access_token=${FFAppState().accessToken}',
                                                                     width:
                                                                         300.0,
                                                                     height:
@@ -1220,7 +1226,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                               .start,
                                                                       children: [
                                                                         Text(
-                                                                          dataListLessionsViewItem.lessionsId.name != ''
+                                                                          dataListLessionsViewItem.lessionsId.name != null && dataListLessionsViewItem.lessionsId.name != ''
                                                                               ? dataListLessionsViewItem.lessionsId.name
                                                                               : ' '.maybeHandleOverflow(
                                                                                   maxChars: 25,
@@ -1239,7 +1245,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                               ),
                                                                         ),
                                                                         Text(
-                                                                          dataListLessionsViewItem.lessionsId.dateCreated != ''
+                                                                          dataListLessionsViewItem.lessionsId.dateCreated != null && dataListLessionsViewItem.lessionsId.dateCreated != ''
                                                                               ? valueOrDefault<String>(
                                                                                   dateTimeFormat(
                                                                                     'dd-MM-yyyy',
@@ -1282,12 +1288,12 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                           FFButtonOptions(
                                                                         height:
                                                                             30.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             12.0,
                                                                             0.0,
                                                                             12.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -1306,7 +1312,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -1344,7 +1350,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                 },
                                                               ),
                                                             ),
-                                                          ].divide(const SizedBox(
+                                                          ].divide(SizedBox(
                                                               width: 8.0)),
                                                         ),
                                                       ),
@@ -1362,7 +1368,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                             );
                           },
                         ),
-                    ].divide(const SizedBox(height: 12.0)),
+                    ].divide(SizedBox(height: 12.0)),
                   ),
                 ),
               ],

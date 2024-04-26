@@ -1,9 +1,13 @@
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
 import 'home09_dashboard_model.dart';
 export 'home09_dashboard_model.dart';
 
@@ -43,8 +47,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 20.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 20.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -63,8 +67,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(100.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(100.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -83,8 +87,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
         ],
       ),
@@ -103,8 +107,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 180.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(20.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(20.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -123,8 +127,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 200.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(40.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(40.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -143,8 +147,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(120.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(120.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -163,8 +167,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
         ],
       ),
@@ -183,8 +187,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 220.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(20.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(20.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -203,8 +207,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 240.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(40.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(40.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -223,8 +227,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 600.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 30.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 30.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -243,8 +247,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 800.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 50.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 50.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -263,8 +267,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 1200.0.ms,
             duration: 400.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
         ],
       ),
@@ -283,8 +287,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 1200.0.ms,
             duration: 400.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
         ],
       ),
@@ -303,8 +307,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 1400.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 30.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 30.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -323,8 +327,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 1600.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 30.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 30.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -343,8 +347,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 1600.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 50.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 50.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -363,8 +367,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 1600.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 70.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 70.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -383,8 +387,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 200.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(40.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(40.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -403,8 +407,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 180.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(20.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(20.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -423,8 +427,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
         ],
       ),
@@ -443,8 +447,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 1600.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 90.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 90.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -463,8 +467,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 200.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(40.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(40.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -483,8 +487,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 180.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(20.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(20.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -503,8 +507,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
         ],
       ),
@@ -523,8 +527,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 10.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 10.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -564,7 +568,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                   letterSpacing: 0.0,
                 ),
           ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation13']!),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 0.0,
         ),
@@ -575,7 +579,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                Container(
                   height: 160.0,
                   child: Stack(
                     children: [
@@ -586,7 +590,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                           color: FlutterFlowTheme.of(context).primary,
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 0.0, 0.0),
                           child: Text(
                             'Below is a summary of your teams activity.',
@@ -595,7 +599,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                 .titleSmall
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  color: const Color(0xB3FFFFFF),
+                                  color: Color(0xB3FFFFFF),
                                   letterSpacing: 0.0,
                                 ),
                           ).animateOnPageLoad(
@@ -604,7 +608,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                         child: ListView(
                           padding: EdgeInsets.zero,
                           primary: false,
@@ -612,14 +616,14 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                           scrollDirection: Axis.horizontal,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 0.0, 12.0),
                               child: Container(
                                 height: 120.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  boxShadow: const [
+                                  boxShadow: [
                                     BoxShadow(
                                       blurRadius: 4.0,
                                       color: Color(0x1F000000),
@@ -637,7 +641,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 12.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -651,7 +655,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                           shape: BoxShape.circle,
                                         ),
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Card(
                                           clipBehavior:
                                               Clip.antiAliasWithSaveLayer,
@@ -661,7 +665,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                             borderRadius:
                                                 BorderRadius.circular(40.0),
                                           ),
-                                          child: const Padding(
+                                          child: Padding(
                                             padding: EdgeInsets.all(12.0),
                                             child: Icon(
                                               Icons.group_outlined,
@@ -673,7 +677,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                       ).animateOnPageLoad(animationsMap[
                                           'containerOnPageLoadAnimation2']!),
                                       Padding(
-                                        padding: const EdgeInsets.all(12.0),
+                                        padding: EdgeInsets.all(12.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -694,7 +698,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                             ).animateOnPageLoad(animationsMap[
                                                 'textOnPageLoadAnimation2']!),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Text(
                                                 '24',
@@ -718,14 +722,14 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                   'containerOnPageLoadAnimation1']!),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 12.0),
                               child: Container(
                                 height: 120.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  boxShadow: const [
+                                  boxShadow: [
                                     BoxShadow(
                                       blurRadius: 4.0,
                                       color: Color(0x1F000000),
@@ -743,7 +747,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 12.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -757,7 +761,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                           shape: BoxShape.circle,
                                         ),
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Card(
                                           clipBehavior:
                                               Clip.antiAliasWithSaveLayer,
@@ -767,7 +771,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                             borderRadius:
                                                 BorderRadius.circular(40.0),
                                           ),
-                                          child: const Padding(
+                                          child: Padding(
                                             padding: EdgeInsets.all(12.0),
                                             child: Icon(
                                               Icons.contacts,
@@ -779,7 +783,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                       ).animateOnPageLoad(animationsMap[
                                           'containerOnPageLoadAnimation4']!),
                                       Padding(
-                                        padding: const EdgeInsets.all(12.0),
+                                        padding: EdgeInsets.all(12.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -800,7 +804,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                             ).animateOnPageLoad(animationsMap[
                                                 'textOnPageLoadAnimation4']!),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Text(
                                                 '3,200',
@@ -830,7 +834,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
                   child: Text(
                     'Projects',
                     textAlign: TextAlign.start,
@@ -843,12 +847,12 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                 ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primary,
-                      boxShadow: const [
+                      boxShadow: [
                         BoxShadow(
                           blurRadius: 4.0,
                           color: Color(0x1F000000),
@@ -861,21 +865,21 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(12.0),
+                      padding: EdgeInsets.all(12.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 12.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Stack(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   children: [
                                     CircularPercentIndicator(
                                       percent: 0.7,
@@ -884,7 +888,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                       animation: true,
                                       animateFromLastPercent: true,
                                       progressColor: Colors.white,
-                                      backgroundColor: const Color(0x4CFFFFFF),
+                                      backgroundColor: Color(0x4CFFFFFF),
                                     ).animateOnPageLoad(animationsMap[
                                         'progressBarOnPageLoadAnimation1']!),
                                     CircularPercentIndicator(
@@ -894,7 +898,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                       animation: true,
                                       animateFromLastPercent: true,
                                       progressColor: Colors.white,
-                                      backgroundColor: const Color(0x4CFFFFFF),
+                                      backgroundColor: Color(0x4CFFFFFF),
                                     ).animateOnPageLoad(animationsMap[
                                         'progressBarOnPageLoadAnimation2']!),
                                   ],
@@ -902,14 +906,14 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                               ],
                             ),
                           ),
-                          const Divider(
+                          Divider(
                             height: 24.0,
                             thickness: 1.0,
                             color: Color(0xFF6AA3B8),
                           ).animateOnPageLoad(
                               animationsMap['dividerOnPageLoadAnimation']!),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                             child: Text(
                               'UI Design Team',
@@ -930,7 +934,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                 .titleSmall
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  color: const Color(0x9AFFFFFF),
+                                  color: Color(0x9AFFFFFF),
                                   letterSpacing: 0.0,
                                 ),
                           ).animateOnPageLoad(
@@ -943,12 +947,12 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                 ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
-                      boxShadow: const [
+                      boxShadow: [
                         BoxShadow(
                           blurRadius: 4.0,
                           color: Color(0x1F000000),
@@ -966,20 +970,20 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                     ),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 12.0, 8.0, 16.0, 4.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       4.0, 12.0, 12.0, 12.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -998,7 +1002,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                       ).animateOnPageLoad(animationsMap[
                                           'textOnPageLoadAnimation9']!),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 4.0, 0.0, 0.0),
                                         child: Text(
                                           'Below is an a summary of activity.',
@@ -1022,15 +1026,15 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                         .primaryBackground,
                                     shape: BoxShape.circle,
                                   ),
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Card(
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    color: const Color(0xFFE0E3E7),
+                                    color: Color(0xFFE0E3E7),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(40.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(12.0),
+                                      padding: EdgeInsets.all(12.0),
                                       child: Icon(
                                         Icons.folder_open_outlined,
                                         color: FlutterFlowTheme.of(context)
@@ -1045,7 +1049,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: LinearPercentIndicator(
                               percent: 0.5,
@@ -1057,7 +1061,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                   FlutterFlowTheme.of(context).primary,
                               backgroundColor: FlutterFlowTheme.of(context)
                                   .primaryBackground,
-                              barRadius: const Radius.circular(24.0),
+                              barRadius: Radius.circular(24.0),
                               padding: EdgeInsets.zero,
                             ),
                           ),
@@ -1069,12 +1073,12 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                 ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 16.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 16.0),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
-                      boxShadow: const [
+                      boxShadow: [
                         BoxShadow(
                           blurRadius: 4.0,
                           color: Color(0x1F000000),
@@ -1092,20 +1096,20 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                     ),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 12.0, 8.0, 16.0, 4.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       4.0, 12.0, 12.0, 12.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -1124,7 +1128,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                       ).animateOnPageLoad(animationsMap[
                                           'textOnPageLoadAnimation11']!),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 4.0, 0.0, 0.0),
                                         child: Text(
                                           'Below is an a summary of activity.',
@@ -1148,15 +1152,15 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                         .primaryBackground,
                                     shape: BoxShape.circle,
                                   ),
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Card(
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    color: const Color(0xFFE0E3E7),
+                                    color: Color(0xFFE0E3E7),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(40.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(12.0),
+                                      padding: EdgeInsets.all(12.0),
                                       child: Icon(
                                         Icons.desktop_windows_sharp,
                                         color: FlutterFlowTheme.of(context)
@@ -1171,7 +1175,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: LinearPercentIndicator(
                               percent: 0.5,
@@ -1183,7 +1187,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                   FlutterFlowTheme.of(context).primary,
                               backgroundColor: FlutterFlowTheme.of(context)
                                   .primaryBackground,
-                              barRadius: const Radius.circular(24.0),
+                              barRadius: Radius.circular(24.0),
                               padding: EdgeInsets.zero,
                             ),
                           ),

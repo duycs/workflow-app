@@ -1,8 +1,28 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_pdf_viewer.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/tasks/detail_action_type_approve/detail_action_type_approve_widget.dart';
+import '/tasks/detail_action_type_image/detail_action_type_image_widget.dart';
+import '/tasks/detail_action_type_to_do_list/detail_action_type_to_do_list_widget.dart';
+import '/tasks/detail_action_type_upload_file/detail_action_type_upload_file_widget.dart';
+import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
+import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'task_detail_widget.dart' show TaskDetailWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
 
 class TaskDetailModel extends FlutterFlowModel<TaskDetailWidget> {
   ///  Local state fields for this page.

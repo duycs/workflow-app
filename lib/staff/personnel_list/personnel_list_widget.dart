@@ -4,12 +4,18 @@ import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/staff/filter_personnel_list/filter_personnel_list_widget.dart';
+import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'personnel_list_model.dart';
 export 'personnel_list_model.dart';
@@ -25,6 +31,8 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
   late PersonnelListModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  late StreamSubscription<bool> _keyboardVisibilitySubscription;
+  bool _isKeyboardVisible = false;
 
   @override
   void initState() {
@@ -75,6 +83,15 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
       }
     });
 
+    if (!isWeb) {
+      _keyboardVisibilitySubscription =
+          KeyboardVisibilityController().onChange.listen((bool visible) {
+        setState(() {
+          _isKeyboardVisible = visible;
+        });
+      });
+    }
+
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
   }
@@ -83,6 +100,9 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
   void dispose() {
     _model.dispose();
 
+    if (!isWeb) {
+      _keyboardVisibilitySubscription.cancel();
+    }
     super.dispose();
   }
 
@@ -97,25 +117,30 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            context.pushNamed(
-              'StaffCreate',
-              extra: <String, dynamic>{
-                kTransitionInfoKey: const TransitionInfo(
-                  hasTransition: true,
-                  transitionType: PageTransitionType.fade,
-                  duration: Duration(milliseconds: 0),
-                ),
-              },
-            );
-          },
-          backgroundColor: FlutterFlowTheme.of(context).primary,
-          elevation: 8.0,
-          child: Icon(
-            Icons.add,
-            color: FlutterFlowTheme.of(context).info,
-            size: 24.0,
+        floatingActionButton: Visibility(
+          visible: !(isWeb
+              ? MediaQuery.viewInsetsOf(context).bottom > 0
+              : _isKeyboardVisible),
+          child: FloatingActionButton(
+            onPressed: () async {
+              context.pushNamed(
+                'StaffCreate',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 0),
+                  ),
+                },
+              );
+            },
+            backgroundColor: FlutterFlowTheme.of(context).primary,
+            elevation: 8.0,
+            child: Icon(
+              Icons.add,
+              color: FlutterFlowTheme.of(context).info,
+              size: 24.0,
+            ),
           ),
         ),
         appBar: AppBar(
@@ -135,7 +160,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
               context.pushNamed(
                 'Profile',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
+                  kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -159,7 +184,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
               ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -187,13 +212,13 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                   ),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 12.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -204,7 +229,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                 size: 32.0,
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'check.io',
@@ -230,7 +255,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 12.0, 0.0, 0.0),
                                 child: Text(
                                   'Platform Navigation',
@@ -243,10 +268,10 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -257,7 +282,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -270,7 +295,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Dashboard',
@@ -288,10 +313,10 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -302,7 +327,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -315,7 +340,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Chats',
@@ -333,10 +358,10 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -347,7 +372,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -360,7 +385,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Projects',
@@ -378,7 +403,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Settings',
@@ -391,10 +416,10 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -404,7 +429,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -418,7 +443,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Notifications',
@@ -443,9 +468,9 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                           ),
                                           child: Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 4.0, 8.0, 4.0),
                                               child: Text(
                                                 '12',
@@ -470,10 +495,10 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -484,7 +509,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -497,7 +522,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Billing',
@@ -515,10 +540,10 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -529,7 +554,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -542,7 +567,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Explore',
@@ -559,13 +584,13 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 12.0)),
+                            ].divide(SizedBox(height: 12.0)),
                           ),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(0.0, -1.0),
+                          alignment: AlignmentDirectional(0.0, -1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 16.0),
                             child: Container(
                               width: 250.0,
@@ -580,7 +605,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(4.0),
+                                padding: EdgeInsets.all(4.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -643,7 +668,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                 size: 16.0,
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         4.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -732,7 +757,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                 size: 16.0,
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         4.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -775,7 +800,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                           color: FlutterFlowTheme.of(context).alternate,
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 12.0, 16.0, 12.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -792,14 +817,14 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(2.0),
+                                  padding: EdgeInsets.all(2.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: CachedNetworkImage(
                                       fadeInDuration:
-                                          const Duration(milliseconds: 500),
+                                          Duration(milliseconds: 500),
                                       fadeOutDuration:
-                                          const Duration(milliseconds: 500),
+                                          Duration(milliseconds: 500),
                                       imageUrl:
                                           'https://images.unsplash.com/photo-1624561172888-ac93c696e10c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHVzZXJzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
                                       width: 44.0,
@@ -811,7 +836,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -844,7 +869,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -865,13 +890,13 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                 ),
               Expanded(
                 child: Align(
-                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  alignment: AlignmentDirectional(0.0, -1.0),
                   child: Container(
                     width: double.infinity,
-                    constraints: const BoxConstraints(
+                    constraints: BoxConstraints(
                       maxWidth: 970.0,
                     ),
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: SingleChildScrollView(
                       primary: false,
                       child: Column(
@@ -886,23 +911,25 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                             Container(
                               width: double.infinity,
                               height: 24.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                             ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 8.0, 0.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.textController,
                                     focusNode: _model.textFieldFocusNode,
                                     onChanged: (_) => EasyDebounce.debounce(
                                       '_model.textController',
-                                      const Duration(milliseconds: 500),
+                                      Duration(milliseconds: 500),
                                       () async {
-                                        if (_model.textController.text != '') {
+                                        if (_model.textController.text !=
+                                                null &&
+                                            _model.textController.text != '') {
                                           _model.filterToken =
                                               await action_blocks
                                                   .tokenReload(context);
@@ -1077,9 +1104,9 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                       fillColor: FlutterFlowTheme.of(context)
                                           .primaryBackground,
                                       contentPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               20.0, 0.0, 0.0, 0.0),
-                                      prefixIcon: const Icon(
+                                      prefixIcon: Icon(
                                         Icons.search,
                                         size: 24.0,
                                       ),
@@ -1089,6 +1116,9 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                               onTap: () async {
                                                 _model.textController?.clear();
                                                 if (_model.textController
+                                                            .text !=
+                                                        null &&
+                                                    _model.textController
                                                             .text !=
                                                         '') {
                                                   _model.filterToken =
@@ -1248,7 +1278,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                               ),
                               Builder(
                                 builder: (context) => Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 8.0, 16.0, 0.0),
                                   child: FlutterFlowIconButton(
                                     borderColor: Colors.transparent,
@@ -1269,7 +1299,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                             elevation: 0,
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
@@ -1307,10 +1337,12 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                               ),
                             ],
                           ),
-                          if ((_model.textController.text != '') ||
-                              (_model.statusFilter != ''))
+                          if ((_model.textController.text != null &&
+                                  _model.textController.text != '') ||
+                              (_model.statusFilter != null &&
+                                  _model.statusFilter != ''))
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 16.0, 0.0, 0.0),
                               child: Text(
                                 '# Kết quả tìm kiếm theo bộ lọc',
@@ -1326,7 +1358,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                             builder: (context) {
                               final dataList = _model.list.toList();
                               return ListView.separated(
-                                padding: const EdgeInsets.fromLTRB(
+                                padding: EdgeInsets.fromLTRB(
                                   0,
                                   0,
                                   0,
@@ -1336,7 +1368,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                 scrollDirection: Axis.vertical,
                                 itemCount: dataList.length,
                                 separatorBuilder: (_, __) =>
-                                    const SizedBox(height: 12.0),
+                                    SizedBox(height: 12.0),
                                 itemBuilder: (context, dataListIndex) {
                                   final dataListItem = dataList[dataListIndex];
                                   return InkWell(
@@ -1354,7 +1386,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
+                                          kTransitionInfoKey: TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -1373,7 +1405,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                             blurRadius: 0.0,
                                             color: FlutterFlowTheme.of(context)
                                                 .alternate,
-                                            offset: const Offset(
+                                            offset: Offset(
                                               0.0,
                                               1.0,
                                             ),
@@ -1385,7 +1417,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 8.0, 16.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1410,7 +1442,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(2.0),
+                                                        EdgeInsets.all(2.0),
                                                     child: InkWell(
                                                       splashColor:
                                                           Colors.transparent,
@@ -1431,14 +1463,14 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                 FlutterFlowExpandedImageView(
                                                               image:
                                                                   Image.network(
-                                                                'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                                'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
                                                                 fit: BoxFit
                                                                     .contain,
                                                               ),
                                                               allowRotation:
                                                                   false,
                                                               tag:
-                                                                  'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                                  'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
                                                               useHeroAnimation:
                                                                   true,
                                                             ),
@@ -1447,7 +1479,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                       },
                                                       child: Hero(
                                                         tag:
-                                                            'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                            'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
                                                         transitionOnUserGestures:
                                                             true,
                                                         child: ClipRRect(
@@ -1456,7 +1488,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                   .circular(
                                                                       8.0),
                                                           child: Image.network(
-                                                            'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                            'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
                                                             width: 120.0,
                                                             height: 120.0,
                                                             fit: BoxFit.cover,
@@ -1478,7 +1510,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       12.0,
                                                                       0.0,
@@ -1511,7 +1543,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1534,7 +1566,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                       ),
                                                                 ),
                                                               ),
-                                                            ].divide(const SizedBox(
+                                                            ].divide(SizedBox(
                                                                 height: 4.0)),
                                                           ),
                                                         ),
@@ -1573,12 +1605,12 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                 ),
                                                                 child: Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             4.0,
@@ -1611,7 +1643,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                 ),
                                                                 child: Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           -1.0,
                                                                           0.0),
                                                                   child: Text(
@@ -1653,7 +1685,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                     flex: 2,
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1683,7 +1715,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                     flex: 3,
                                                     child: Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               -1.0, 0.0),
                                                       child: Text(
                                                         'Head of Design',
@@ -1706,7 +1738,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                           if (dataListItem.userId.role !=
                                               '82073000-1ba2-43a4-a55c-459d17c23b68')
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       60.0, 8.0, 16.0, 8.0),
                                               child: Row(
@@ -1740,7 +1772,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                         Container(
                                                           width: 50.0,
                                                           decoration:
-                                                              const BoxDecoration(),
+                                                              BoxDecoration(),
                                                         ),
                                                         Text(
                                                           '${dataListItem.staffLessions.where((e) => e.status == 'done').toList().length.toString()}/${dataListItem.staffLessions.length.toString()}',
@@ -1785,7 +1817,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                         Container(
                                                           width: 50.0,
                                                           decoration:
-                                                              const BoxDecoration(),
+                                                              BoxDecoration(),
                                                         ),
                                                         Text(
                                                           '${dataListItem.staffTests.where((e) => e.status == 'published').toList().length.toString()}/${dataListItem.staffTests.length.toString()}',
@@ -1833,7 +1865,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                         Container(
                                                           width: 50.0,
                                                           decoration:
-                                                              const BoxDecoration(),
+                                                              BoxDecoration(),
                                                           child: Row(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -1912,13 +1944,13 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                       ],
                                                     ),
                                                   ),
-                                                ].divide(const SizedBox(width: 16.0)),
+                                                ].divide(SizedBox(width: 16.0)),
                                               ),
                                             ),
                                           if (dataListItem.userId.role !=
                                               '82073000-1ba2-43a4-a55c-459d17c23b68')
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       60.0, 0.0, 16.0, 16.0),
                                               child: Row(
@@ -2063,7 +2095,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                       ],
                                                     ),
                                                   ),
-                                                ].divide(const SizedBox(width: 12.0)),
+                                                ].divide(SizedBox(width: 12.0)),
                                               ),
                                             ),
                                         ],

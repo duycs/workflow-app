@@ -1,6 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'long_text_do_test_model.dart';
 export 'long_text_do_test_model.dart';
 
@@ -105,7 +107,7 @@ class _LongTextDoTestWidgetState extends State<LongTextDoTestWidget> {
         ),
         if (widget.corect == 0)
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
             child: Text(
               'Đáp án đúng: ${widget.questionAnswer}',
               style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -116,7 +118,7 @@ class _LongTextDoTestWidgetState extends State<LongTextDoTestWidget> {
                   ),
             ),
           ),
-      ].divide(const SizedBox(height: 8.0)),
+      ].divide(SizedBox(height: 8.0)),
     );
   }
 }

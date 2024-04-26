@@ -2,11 +2,14 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/do_test/filter_do_test/filter_do_test_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'do_test_list_model.dart';
 export 'do_test_list_model.dart';
@@ -84,7 +87,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                 context.pushNamed(
                   'LessonList_HomepageCopy',
                   extra: <String, dynamic>{
-                    kTransitionInfoKey: const TransitionInfo(
+                    kTransitionInfoKey: TransitionInfo(
                       hasTransition: true,
                       transitionType: PageTransitionType.fade,
                       duration: Duration(milliseconds: 0),
@@ -95,7 +98,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                 context.pushNamed(
                   'Profile',
                   extra: <String, dynamic>{
-                    kTransitionInfoKey: const TransitionInfo(
+                    kTransitionInfoKey: TransitionInfo(
                       hasTransition: true,
                       transitionType: PageTransitionType.fade,
                       duration: Duration(milliseconds: 0),
@@ -114,7 +117,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -129,7 +132,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                 if (widget.lessionId == null || widget.lessionId == '')
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -140,9 +143,10 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                             focusNode: _model.textFieldFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.textController',
-                              const Duration(milliseconds: 500),
+                              Duration(milliseconds: 500),
                               () async {
-                                if (_model.textController.text != '') {
+                                if (_model.textController.text != null &&
+                                    _model.textController.text != '') {
                                   setState(() {
                                     _model.filter =
                                         '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}},{\"test_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
@@ -207,9 +211,9 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
                                   .primaryBackground,
-                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                              contentPadding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 0.0, 0.0),
-                              prefixIcon: const Icon(
+                              prefixIcon: Icon(
                                 Icons.search_sharp,
                                 size: 24.0,
                               ),
@@ -217,7 +221,9 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                   ? InkWell(
                                       onTap: () async {
                                         _model.textController?.clear();
-                                        if (_model.textController.text != '') {
+                                        if (_model.textController.text !=
+                                                null &&
+                                            _model.textController.text != '') {
                                           setState(() {
                                             _model.filter =
                                                 '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}},{\"test_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
@@ -276,7 +282,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                     elevation: 0,
                                     insetPadding: EdgeInsets.zero,
                                     backgroundColor: Colors.transparent,
-                                    alignment: const AlignmentDirectional(0.0, 0.0)
+                                    alignment: AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
                                     child: GestureDetector(
                                       onTap: () => _model
@@ -314,7 +320,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                     ),
                   ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 16.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 16.0),
                   child: Builder(
                     builder: (context) {
                       final dataList = _model.list.toList();
@@ -324,11 +330,11 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount: dataList.length,
-                        separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                        separatorBuilder: (_, __) => SizedBox(height: 10.0),
                         itemBuilder: (context, dataListIndex) {
                           final dataListItem = dataList[dataListIndex];
                           return Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -373,7 +379,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                     ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -389,7 +395,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 8.0, 8.0, 10.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -429,7 +435,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 4.0, 8.0, 4.0),
                                               child: RichText(
                                                 textScaler:
@@ -510,7 +516,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                               ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 8.0)),
+                                        ].divide(SizedBox(width: 8.0)),
                                       ),
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -530,12 +536,12 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                       ),
                                             ),
                                           ),
-                                          if ((((dataListItem.testId.goodScore).compareTo(double.parse(dataListItem.percentCorrect))).toString() ==
+                                          if (('${((dataListItem.testId.goodScore).compareTo(double.parse(dataListItem.percentCorrect))).toString()}' ==
                                                   '0') ||
-                                              (((dataListItem.testId.goodScore).compareTo(double.parse(dataListItem.percentCorrect))).toString() ==
+                                              ('${((dataListItem.testId.goodScore).compareTo(double.parse(dataListItem.percentCorrect))).toString()}' ==
                                                   '-1'))
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Container(
                                                 decoration: BoxDecoration(
@@ -543,14 +549,14 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                       BorderRadius.circular(
                                                           100.0),
                                                   border: Border.all(
-                                                    color: const Color(0xFF38B647),
+                                                    color: Color(0xFF38B647),
                                                     width: 1.0,
                                                   ),
                                                 ),
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           6.0, 2.0, 6.0, 2.0),
                                                   child: Text(
@@ -563,7 +569,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                           fontFamily:
                                                               'Readex Pro',
                                                           color:
-                                                              const Color(0xFF38B647),
+                                                              Color(0xFF38B647),
                                                           fontSize: 14.0,
                                                           letterSpacing: 0.0,
                                                         ),
@@ -571,10 +577,10 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                 ),
                                               ),
                                             ),
-                                          if (((dataListItem.testId.goodScore).compareTo(double.parse(dataListItem.percentCorrect))).toString() ==
+                                          if ('${((dataListItem.testId.goodScore).compareTo(double.parse(dataListItem.percentCorrect))).toString()}' ==
                                               '1')
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Container(
                                                 decoration: BoxDecoration(
@@ -588,10 +594,10 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                     width: 1.0,
                                                   ),
                                                 ),
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           6.0, 2.0, 6.0, 2.0),
                                                   child: Text(
@@ -613,7 +619,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                 ),
                                               ),
                                             ),
-                                        ].divide(const SizedBox(width: 4.0)),
+                                        ].divide(SizedBox(width: 4.0)),
                                       ),
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -668,7 +674,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                             FontWeight.normal,
                                                       ),
                                                 ),
-                                                const TextSpan(
+                                                TextSpan(
                                                   text: '/',
                                                   style: TextStyle(),
                                                 ),
@@ -695,7 +701,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                       ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 4.0)),
+                                        ].divide(SizedBox(width: 4.0)),
                                       ),
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -757,9 +763,9 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
-                                        ].divide(const SizedBox(width: 4.0)),
+                                        ].divide(SizedBox(width: 4.0)),
                                       ),
-                                    ].divide(const SizedBox(height: 4.0)),
+                                    ].divide(SizedBox(height: 4.0)),
                                   ),
                                 ),
                               ),

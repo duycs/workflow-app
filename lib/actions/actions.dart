@@ -1,10 +1,13 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/api_requests/api_manager.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Future postLesson(BuildContext context) async {
   ApiCallResponse? apiResulth51;
@@ -20,22 +23,22 @@ Future<bool?> checkRefreshToken(
 }) async {
   ApiCallResponse? apiResultRefreshToken;
 
-  if (ErorrsStruct.maybeFromMap(jsonErrors)?.errors.first.extensions.code ==
+  if (ErorrsStruct.maybeFromMap(jsonErrors)?.errors?.first?.extensions?.code ==
       FFAppConstants.TokenExpired) {
     apiResultRefreshToken = await AuthenGroup.refreshTokenCall.call(
       refreshToken: FFAppState().refreshToken,
     );
-    if ((apiResultRefreshToken.succeeded ?? true)) {
+    if ((apiResultRefreshToken?.succeeded ?? true)) {
       FFAppState().accessToken = LoginResponseDataStruct.maybeFromMap(
-              (apiResultRefreshToken.jsonBody ?? ''))!
+              (apiResultRefreshToken?.jsonBody ?? ''))!
           .data
           .accessToken;
       FFAppState().refreshToken = LoginResponseDataStruct.maybeFromMap(
-              (apiResultRefreshToken.jsonBody ?? ''))!
+              (apiResultRefreshToken?.jsonBody ?? ''))!
           .data
           .refreshToken;
       FFAppState().expires = LoginResponseDataStruct.maybeFromMap(
-              (apiResultRefreshToken.jsonBody ?? ''))!
+              (apiResultRefreshToken?.jsonBody ?? ''))!
           .data
           .expires;
     } else {
@@ -44,7 +47,7 @@ Future<bool?> checkRefreshToken(
       context.pushNamed(
         'Login',
         extra: <String, dynamic>{
-          kTransitionInfoKey: const TransitionInfo(
+          kTransitionInfoKey: TransitionInfo(
             hasTransition: true,
             transitionType: PageTransitionType.fade,
             duration: Duration(milliseconds: 0),
@@ -76,7 +79,7 @@ Future<bool?> tokenReload(BuildContext context) async {
   apiResultRefreshTokenCheck = await AuthenGroup.refreshTokenCall.call(
     refreshToken: FFAppState().refreshToken,
   );
-  if ((apiResultRefreshTokenCheck.succeeded ?? true)) {
+  if ((apiResultRefreshTokenCheck?.succeeded ?? true)) {
     FFAppState().update(() {
       FFAppState().accessToken = LoginResourceDataStruct.maybeFromMap(
               (apiResultRefreshTokenCheck?.jsonBody ?? ''))!
@@ -103,7 +106,7 @@ Future<bool?> tokenReload(BuildContext context) async {
     context.pushNamed(
       'Login',
       extra: <String, dynamic>{
-        kTransitionInfoKey: const TransitionInfo(
+        kTransitionInfoKey: TransitionInfo(
           hasTransition: true,
           transitionType: PageTransitionType.fade,
           duration: Duration(milliseconds: 0),
@@ -113,11 +116,11 @@ Future<bool?> tokenReload(BuildContext context) async {
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text(
+        content: Text(
           'Phiên đăng nhập hết hạn!',
           style: TextStyle(),
         ),
-        duration: const Duration(milliseconds: 4000),
+        duration: Duration(milliseconds: 4000),
         backgroundColor: FlutterFlowTheme.of(context).error,
       ),
     );

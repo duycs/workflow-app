@@ -5,13 +5,16 @@ import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/process_template/domains_search/domains_search_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'process_template_list_model.dart';
 export 'process_template_list_model.dart';
@@ -62,7 +65,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                   color: FlutterFlowTheme.of(context).primaryText,
                 ),
               ),
-              duration: const Duration(milliseconds: 4000),
+              duration: Duration(milliseconds: 4000),
               backgroundColor: FlutterFlowTheme.of(context).error,
             ),
           );
@@ -168,7 +171,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
             context.pushNamed(
               'Profile',
               extra: <String, dynamic>{
-                kTransitionInfoKey: const TransitionInfo(
+                kTransitionInfoKey: TransitionInfo(
                   hasTransition: true,
                   transitionType: PageTransitionType.fade,
                   duration: Duration(milliseconds: 0),
@@ -227,7 +230,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
             ),
           ],
         ),
-        actions: const [],
+        actions: [],
         centerTitle: false,
         elevation: 2.0,
       ),
@@ -240,7 +243,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 4.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 4.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -251,7 +254,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                         focusNode: _model.textNameFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.textNameTextController',
-                          const Duration(milliseconds: 500),
+                          Duration(milliseconds: 500),
                           () async {
                             await _model.callSearchList(context);
                             setState(() {});
@@ -273,7 +276,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
                             ),
@@ -303,9 +306,9 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                           filled: true,
                           fillColor:
                               FlutterFlowTheme.of(context).primaryBackground,
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 0.0, 0.0),
-                          prefixIcon: const Icon(
+                          prefixIcon: Icon(
                             Icons.search,
                           ),
                           suffixIcon:
@@ -342,7 +345,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
               if ('1' == '3')
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 12.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 12.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -382,7 +385,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                           borderColor: FlutterFlowTheme.of(context).alternate,
                           borderWidth: 2.0,
                           borderRadius: 8.0,
-                          margin: const EdgeInsetsDirectional.fromSTEB(
+                          margin: EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
                           hidesUnderline: true,
                           isOverButton: true,
@@ -400,7 +403,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 12.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 12.0),
                       child: FlutterFlowChoiceChips(
                         options: _model.categoriesList
                             .map((e) => e.name)
@@ -477,13 +480,13 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                       ),
                     ),
                   ]
-                      .addToStart(const SizedBox(width: 16.0))
-                      .addToEnd(const SizedBox(width: 16.0)),
+                      .addToStart(SizedBox(width: 16.0))
+                      .addToEnd(SizedBox(width: 16.0)),
                 ),
               ),
               if ('1' == '23')
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 12.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 12.0),
                   child: Text(
                     '#Kết quả hiển thị theo bộ lọc',
                     textAlign: TextAlign.start,
@@ -495,7 +498,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                   ),
                 ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 child: Container(
                   width: double.infinity,
                   height: MediaQuery.sizeOf(context).height * 1.0,
@@ -535,7 +538,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
+                                  kTransitionInfoKey: TransitionInfo(
                                     hasTransition: true,
                                     transitionType: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 0),
@@ -549,7 +552,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                boxShadow: const [
+                                boxShadow: [
                                   BoxShadow(
                                     blurRadius: 4.0,
                                     color: Color(0x33000000),
@@ -571,7 +574,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                 children: [
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
+                                      padding: EdgeInsets.all(5.0),
                                       child: Container(
                                         width: double.infinity,
                                         height: double.infinity,
@@ -581,12 +584,12 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                         ),
                                         child: Visibility(
                                           visible:
-                                              listGridItem.steps.isNotEmpty,
+                                              listGridItem.steps.length > 0,
                                           child: Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(5.0, 0.0, 5.0, 0.0),
                                               child: SingleChildScrollView(
                                                 child: Column(
@@ -598,23 +601,23 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                     Container(
                                                       width: functions
                                                           .stringToInt(
-                                                              (int var1) {
+                                                              '${(int var1) {
                                                             return var1 != 0
                                                                 ? (25 / var1)
                                                                     .round()
                                                                     .toString()
                                                                 : 0.toString();
-                                                          }(listGridItem.steps.length))
+                                                          }(listGridItem.steps.length)}')
                                                           .toDouble(),
                                                       height: functions
                                                           .stringToInt(
-                                                              (int var1) {
+                                                              '${(int var1) {
                                                             return var1 != 0
                                                                 ? (25 / var1)
                                                                     .round()
                                                                     .toString()
                                                                 : 0.toString();
-                                                          }(listGridItem.steps.length))
+                                                          }(listGridItem.steps.length)}')
                                                           .toDouble(),
                                                       decoration: BoxDecoration(
                                                         color: FlutterFlowTheme
@@ -649,7 +652,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                     listStepIndex];
                                                             return Container(
                                                               decoration:
-                                                                  const BoxDecoration(),
+                                                                  BoxDecoration(),
                                                               child: Column(
                                                                 mainAxisSize:
                                                                     MainAxisSize
@@ -673,9 +676,9 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                         width:
                                                                             1.0,
                                                                         height: functions
-                                                                            .stringToInt((int var1) {
+                                                                            .stringToInt('${(int var1) {
                                                                               return var1 != 0 ? (num.parse((30 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                            }(listGridItem.steps.length))
+                                                                            }(listGridItem.steps.length)}')
                                                                             .toDouble(),
                                                                         decoration:
                                                                             BoxDecoration(
@@ -687,7 +690,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                   ),
                                                                   Align(
                                                                     alignment:
-                                                                        const AlignmentDirectional(
+                                                                        AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                     child: Row(
@@ -700,21 +703,21 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                       children: [
                                                                         Container(
                                                                           width: functions
-                                                                              .stringToInt((int var1, double var2) {
+                                                                              .stringToInt('${(int var1, double var2) {
                                                                                 return var1 != 1 && var1 != 0
                                                                                     ? (num.parse((((var2 / 2).round()) / var1.round()).toStringAsFixed(0))).toString()
                                                                                     : var1 == 0
                                                                                         ? 0.toString()
                                                                                         : (var2 / 3).round().toString();
-                                                                              }(listGridItem.steps.length, MediaQuery.sizeOf(context).width))
+                                                                              }(listGridItem.steps.length, MediaQuery.sizeOf(context).width)}')
                                                                               .toDouble(),
                                                                           height: functions
-                                                                              .stringToInt((int var1) {
+                                                                              .stringToInt('${(int var1) {
                                                                                 return var1 != 0 ? (num.parse((40 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                              }(listGridItem.steps.length))
+                                                                              }(listGridItem.steps.length)}')
                                                                               .toDouble(),
                                                                           constraints:
-                                                                              const BoxConstraints(
+                                                                              BoxConstraints(
                                                                             maxWidth:
                                                                                 double.infinity,
                                                                             maxHeight:
@@ -733,7 +736,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                               color: FlutterFlowTheme.of(context).primaryText,
                                                                             ),
                                                                           ),
-                                                                          alignment: const AlignmentDirectional(
+                                                                          alignment: AlignmentDirectional(
                                                                               0.0,
                                                                               0.0),
                                                                           child:
@@ -744,9 +747,9 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                               Padding(
                                                                                 padding: EdgeInsets.all(valueOrDefault<double>(
                                                                                   functions
-                                                                                      .stringToInt((int var1) {
+                                                                                      .stringToInt('${(int var1) {
                                                                                         return var1 != 0 ? (num.parse((8 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                                      }(listGridItem.steps.length))
+                                                                                      }(listGridItem.steps.length)}')
                                                                                       .toDouble(),
                                                                                   0.0,
                                                                                 )),
@@ -756,9 +759,9 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: 'Readex Pro',
                                                                                         fontSize: functions
-                                                                                            .stringToInt((int var1) {
+                                                                                            .stringToInt('${(int var1) {
                                                                                               return var1 != 0 ? (num.parse((14 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                                            }(listGridItem.steps.length))
+                                                                                            }(listGridItem.steps.length)}')
                                                                                             .toDouble(),
                                                                                         letterSpacing: 0.0,
                                                                                       ),
@@ -768,9 +771,9 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                                 child: Padding(
                                                                                   padding: EdgeInsets.all(valueOrDefault<double>(
                                                                                     functions
-                                                                                        .stringToInt((int var1) {
+                                                                                        .stringToInt('${(int var1) {
                                                                                           return var1 != 0 ? (num.parse((8 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                                        }(listGridItem.steps.length))
+                                                                                        }(listGridItem.steps.length)}')
                                                                                         .toDouble(),
                                                                                     0.0,
                                                                                   )),
@@ -780,9 +783,9 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                           fontFamily: 'Readex Pro',
                                                                                           fontSize: functions
-                                                                                              .stringToInt((int var1) {
+                                                                                              .stringToInt('${(int var1) {
                                                                                                 return var1 != 0 ? (num.parse((14 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                                              }(listGridItem.steps.length))
+                                                                                              }(listGridItem.steps.length)}')
                                                                                               .toDouble(),
                                                                                           letterSpacing: 0.0,
                                                                                         ),
@@ -813,13 +816,13 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                           width: 1.0,
                                                           height: functions
                                                               .stringToInt(
-                                                                  (int var1) {
+                                                                  '${(int var1) {
                                                                 return var1 != 0
                                                                     ? (30 / var1)
                                                                         .round()
                                                                         .toString()
                                                                     : 0.toString();
-                                                              }(listGridItem.steps.length))
+                                                              }(listGridItem.steps.length)}')
                                                               .toDouble(),
                                                           decoration:
                                                               BoxDecoration(
@@ -833,23 +836,23 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                     Container(
                                                       width: functions
                                                           .stringToInt(
-                                                              (int var1) {
+                                                              '${(int var1) {
                                                             return var1 != 0
                                                                 ? (25 / var1)
                                                                     .round()
                                                                     .toString()
                                                                 : 0.toString();
-                                                          }(listGridItem.steps.length))
+                                                          }(listGridItem.steps.length)}')
                                                           .toDouble(),
                                                       height: functions
                                                           .stringToInt(
-                                                              (int var1) {
+                                                              '${(int var1) {
                                                             return var1 != 0
                                                                 ? (25 / var1)
                                                                     .round()
                                                                     .toString()
                                                                 : 0.toString();
-                                                          }(listGridItem.steps.length))
+                                                          }(listGridItem.steps.length)}')
                                                           .toDouble(),
                                                       decoration: BoxDecoration(
                                                         color:
@@ -880,7 +883,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                         .secondaryText,
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 0.0, 4.0),
                                     child: Text(
                                       listGridItem.name.maybeHandleOverflow(

@@ -5,6 +5,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'tasks_model.dart';
 export 'tasks_model.dart';
 
@@ -76,7 +78,7 @@ class _TasksWidgetState extends State<TasksWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Align(
-                alignment: const AlignmentDirectional(0.0, 0.0),
+                alignment: AlignmentDirectional(0.0, 0.0),
                 child: Text(
                   'Hôm nay 01/12/2023',
                   style: FlutterFlowTheme.of(context).headlineSmall.override(
@@ -92,7 +94,7 @@ class _TasksWidgetState extends State<TasksWidget> {
               ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -106,7 +108,7 @@ class _TasksWidgetState extends State<TasksWidget> {
               children: [
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -158,7 +160,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                               ),
                               borderRadius: BorderRadius.circular(8.0),
                             ),
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 0.0, 0.0),
                             suffixIcon: Icon(
                               Icons.search_rounded,
@@ -189,13 +191,13 @@ class _TasksWidgetState extends State<TasksWidget> {
                           print('IconButton pressed ...');
                         },
                       ),
-                    ].divide(const SizedBox(width: 8.0)),
+                    ].divide(SizedBox(width: 8.0)),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 0.0, 8.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 0.0, 8.0),
                   child: FlutterFlowChoiceChips(
-                    options: const [
+                    options: [
                       ChipData('Tất cả (20)'),
                       ChipData('Chưa thực hiện (3)'),
                       ChipData('Đang thực hiện (10)'),
@@ -248,7 +250,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 0.0),
                   child: ListView(
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
@@ -261,7 +263,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 12.0, 0.0, 8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -274,7 +276,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                       borderRadius: BorderRadius.circular(4.0),
                                     ),
                                   ),
-                                  unselectedWidgetColor: const Color(0xFFE0E3E7),
+                                  unselectedWidgetColor: Color(0xFFE0E3E7),
                                 ),
                                 child: Checkbox(
                                   value: _model.checkboxValue1 ??= false,
@@ -282,7 +284,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                     setState(() =>
                                         _model.checkboxValue1 = newValue!);
                                   },
-                                  side: const BorderSide(
+                                  side: BorderSide(
                                     width: 2,
                                     color: Color(0xFFE0E3E7),
                                   ),
@@ -306,7 +308,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 8.0, 0.0, 0.0),
                                           child: Text(
                                             'Chuẩn bị đồ uống',
@@ -349,7 +351,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 8.0, 0.0, 0.0),
                                           child: Text(
                                             '11:00 - 12:00',
@@ -363,7 +365,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 8.0, 0.0, 0.0),
                                           child: Text(
                                             '29/11/2023',
@@ -383,7 +385,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 8.0),
                                           child: Container(
                                             height: 28.0,
@@ -392,9 +394,9 @@ class _TasksWidgetState extends State<TasksWidget> {
                                                   BorderRadius.circular(8.0),
                                             ),
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 12.0, 0.0),
                                               child: Text(
@@ -419,7 +421,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                       ],
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 8.0),
                                       child: TextFormField(
                                         controller: _model.textController2,
@@ -484,7 +486,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           contentPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -512,10 +514,10 @@ class _TasksWidgetState extends State<TasksWidget> {
                                             text: 'Upload File',
                                             options: FFButtonOptions(
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -528,7 +530,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                                             'Readex Pro',
                                                         letterSpacing: 0.0,
                                                       ),
-                                              borderSide: const BorderSide(
+                                              borderSide: BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -545,10 +547,10 @@ class _TasksWidgetState extends State<TasksWidget> {
                                             text: 'Ảnh/Video',
                                             options: FFButtonOptions(
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -561,7 +563,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                                             'Readex Pro',
                                                         letterSpacing: 0.0,
                                                       ),
-                                              borderSide: const BorderSide(
+                                              borderSide: BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -570,9 +572,9 @@ class _TasksWidgetState extends State<TasksWidget> {
                                             ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 16.0)),
+                                      ].divide(SizedBox(width: 16.0)),
                                     ),
-                                  ].divide(const SizedBox(height: 4.0)),
+                                  ].divide(SizedBox(height: 4.0)),
                                 ),
                               ),
                             ],
@@ -586,7 +588,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 12.0, 0.0, 8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -599,7 +601,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                       borderRadius: BorderRadius.circular(4.0),
                                     ),
                                   ),
-                                  unselectedWidgetColor: const Color(0xFFE0E3E7),
+                                  unselectedWidgetColor: Color(0xFFE0E3E7),
                                 ),
                                 child: Checkbox(
                                   value: _model.checkboxValue2 ??= false,
@@ -607,7 +609,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                     setState(() =>
                                         _model.checkboxValue2 = newValue!);
                                   },
-                                  side: const BorderSide(
+                                  side: BorderSide(
                                     width: 2,
                                     color: Color(0xFFE0E3E7),
                                   ),
@@ -631,7 +633,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 8.0, 0.0, 0.0),
                                           child: Text(
                                             'Chuẩn bị đồ ăn',
@@ -674,7 +676,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 8.0, 0.0, 0.0),
                                           child: Text(
                                             '11:00 - 12:00',
@@ -688,7 +690,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 8.0, 0.0, 0.0),
                                           child: Text(
                                             '29/11/2023',
@@ -708,7 +710,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 8.0),
                                           child: Container(
                                             height: 28.0,
@@ -717,9 +719,9 @@ class _TasksWidgetState extends State<TasksWidget> {
                                                   BorderRadius.circular(8.0),
                                             ),
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 12.0, 0.0),
                                               child: Text(
@@ -744,7 +746,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                       ],
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 8.0),
                                       child: TextFormField(
                                         controller: _model.textController3,
@@ -809,7 +811,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           contentPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -837,10 +839,10 @@ class _TasksWidgetState extends State<TasksWidget> {
                                             text: 'Upload File',
                                             options: FFButtonOptions(
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -853,7 +855,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                                             'Readex Pro',
                                                         letterSpacing: 0.0,
                                                       ),
-                                              borderSide: const BorderSide(
+                                              borderSide: BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -870,10 +872,10 @@ class _TasksWidgetState extends State<TasksWidget> {
                                             text: 'Ảnh/Video',
                                             options: FFButtonOptions(
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -886,7 +888,7 @@ class _TasksWidgetState extends State<TasksWidget> {
                                                             'Readex Pro',
                                                         letterSpacing: 0.0,
                                                       ),
-                                              borderSide: const BorderSide(
+                                              borderSide: BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -895,16 +897,16 @@ class _TasksWidgetState extends State<TasksWidget> {
                                             ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 16.0)),
+                                      ].divide(SizedBox(width: 16.0)),
                                     ),
-                                  ].divide(const SizedBox(height: 4.0)),
+                                  ].divide(SizedBox(height: 4.0)),
                                 ),
                               ),
                             ],
                           ),
                         ),
                       ),
-                    ].divide(const SizedBox(height: 24.0)),
+                    ].divide(SizedBox(height: 24.0)),
                   ),
                 ),
               ],

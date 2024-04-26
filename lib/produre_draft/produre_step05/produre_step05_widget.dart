@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/procedure_setting/procedure_setting_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'produre_step05_model.dart';
 export 'produre_step05_model.dart';
 
@@ -77,14 +79,14 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
               text: 'Lưu',
               options: FFButtonOptions(
                 height: 40.0,
-                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).primary,
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Readex Pro',
                       letterSpacing: 0.0,
                     ),
-                borderSide: const BorderSide(
+                borderSide: BorderSide(
                   color: Colors.transparent,
                 ),
                 borderRadius: BorderRadius.circular(8.0),
@@ -92,7 +94,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
             ),
           ],
         ),
-        actions: const [],
+        actions: [],
         centerTitle: false,
         elevation: 0.0,
       ),
@@ -119,13 +121,13 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                             color: FlutterFlowTheme.of(context).primary,
                           ),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 24.0, 16.0, 24.0),
                             child: Container(
                               width: MediaQuery.sizeOf(context).width * 0.9,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).accent4,
-                                boxShadow: const [
+                                boxShadow: [
                                   BoxShadow(
                                     blurRadius: 8.0,
                                     color: Color(0x36000000),
@@ -138,7 +140,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(12.0),
+                                padding: EdgeInsets.all(12.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -162,7 +164,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                                   padding:
                                                       MediaQuery.viewInsetsOf(
                                                           context),
-                                                  child: SizedBox(
+                                                  child: Container(
                                                     height: 900.0,
                                                     child:
                                                         ProcedureSettingWidget(
@@ -184,7 +186,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                                   BorderRadius.circular(8.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(8.0),
+                                              padding: EdgeInsets.all(8.0),
                                               child: Icon(
                                                 Icons.settings,
                                                 color:
@@ -198,7 +200,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 0.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -206,10 +208,10 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Container(
-                                                  decoration: const BoxDecoration(),
+                                                  decoration: BoxDecoration(),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 8.0, 0.0),
                                                     child: TextFormField(
@@ -409,7 +411,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -427,7 +429,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -473,7 +475,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  borderRadius: const BorderRadius.only(
+                                  borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(4.0),
                                     bottomRight: Radius.circular(4.0),
                                     topLeft: Radius.circular(4.0),
@@ -485,7 +487,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                   ),
                                 ),
                                 child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'B1',
                                     textAlign: TextAlign.center,
@@ -577,7 +579,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
-                                          borderRadius: const BorderRadius.only(
+                                          borderRadius: BorderRadius.only(
                                             bottomLeft: Radius.circular(4.0),
                                             bottomRight: Radius.circular(4.0),
                                             topLeft: Radius.circular(4.0),
@@ -590,7 +592,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                         ),
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             'B2',
                                             textAlign: TextAlign.center,
@@ -644,7 +646,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
-                                          borderRadius: const BorderRadius.only(
+                                          borderRadius: BorderRadius.only(
                                             bottomLeft: Radius.circular(4.0),
                                             bottomRight: Radius.circular(4.0),
                                             topLeft: Radius.circular(4.0),
@@ -657,7 +659,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                         ),
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             'B3',
                                             textAlign: TextAlign.center,
@@ -711,7 +713,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
-                                          borderRadius: const BorderRadius.only(
+                                          borderRadius: BorderRadius.only(
                                             bottomLeft: Radius.circular(4.0),
                                             bottomRight: Radius.circular(4.0),
                                             topLeft: Radius.circular(4.0),
@@ -724,7 +726,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                         ),
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             'B4',
                                             textAlign: TextAlign.center,
@@ -754,7 +756,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                       ),
                                     ],
                                   ),
-                                ].divide(const SizedBox(width: 40.0)),
+                                ].divide(SizedBox(width: 40.0)),
                               ),
                               Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -812,7 +814,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  borderRadius: const BorderRadius.only(
+                                  borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(4.0),
                                     bottomRight: Radius.circular(4.0),
                                     topLeft: Radius.circular(4.0),
@@ -824,7 +826,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                   ),
                                 ),
                                 child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'B5',
                                     textAlign: TextAlign.center,
@@ -853,7 +855,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                             ],
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: Stack(
                               children: [
@@ -862,7 +864,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    borderRadius: const BorderRadius.only(
+                                    borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(4.0),
                                       bottomRight: Radius.circular(4.0),
                                       topLeft: Radius.circular(4.0),
@@ -998,7 +1000,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                                               .of(context)
                                                           .secondaryBackground,
                                                       borderRadius:
-                                                          const BorderRadius.only(
+                                                          BorderRadius.only(
                                                         bottomLeft:
                                                             Radius.circular(
                                                                 4.0),
@@ -1021,7 +1023,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                                     ),
                                                     child: Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Text(
                                                         'B6.1',
@@ -1102,7 +1104,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                                               .of(context)
                                                           .secondaryBackground,
                                                       borderRadius:
-                                                          const BorderRadius.only(
+                                                          BorderRadius.only(
                                                         bottomLeft:
                                                             Radius.circular(
                                                                 4.0),
@@ -1125,7 +1127,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                                     ),
                                                     child: Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Text(
                                                         'B6.2',
@@ -1206,7 +1208,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                                               .of(context)
                                                           .secondaryBackground,
                                                       borderRadius:
-                                                          const BorderRadius.only(
+                                                          BorderRadius.only(
                                                         bottomLeft:
                                                             Radius.circular(
                                                                 4.0),
@@ -1229,7 +1231,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                                     ),
                                                     child: Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Text(
                                                         'B6.3',
@@ -1283,7 +1285,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                                   ),
                                                 ],
                                               ),
-                                            ].divide(const SizedBox(width: 40.0)),
+                                            ].divide(SizedBox(width: 40.0)),
                                           ),
                                           Row(
                                             mainAxisSize: MainAxisSize.min,
@@ -1311,7 +1313,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           4.0, 4.0, 0.0, 0.0),
                                       child: Container(
                                         width: 60.0,
@@ -1319,7 +1321,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
-                                          borderRadius: const BorderRadius.only(
+                                          borderRadius: BorderRadius.only(
                                             bottomLeft: Radius.circular(4.0),
                                             bottomRight: Radius.circular(4.0),
                                             topLeft: Radius.circular(4.0),
@@ -1332,7 +1334,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                         ),
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             'B6',
                                             textAlign: TextAlign.center,
@@ -1348,14 +1350,14 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                     ),
                                     Align(
                                       alignment:
-                                          const AlignmentDirectional(1.0, -1.0),
+                                          AlignmentDirectional(1.0, -1.0),
                                       child: Container(
                                         width: 40.0,
                                         height: 40.0,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(1.0, -1.0),
+                                              AlignmentDirectional(1.0, -1.0),
                                           child: Icon(
                                             Icons.clear_outlined,
                                             color: FlutterFlowTheme.of(context)
@@ -1397,7 +1399,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  borderRadius: const BorderRadius.only(
+                                  borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(4.0),
                                     bottomRight: Radius.circular(4.0),
                                     topLeft: Radius.circular(4.0),
@@ -1409,7 +1411,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                   ),
                                 ),
                                 child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'B7',
                                     textAlign: TextAlign.center,
@@ -1501,7 +1503,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
-                                          borderRadius: const BorderRadius.only(
+                                          borderRadius: BorderRadius.only(
                                             bottomLeft: Radius.circular(4.0),
                                             bottomRight: Radius.circular(4.0),
                                             topLeft: Radius.circular(4.0),
@@ -1514,7 +1516,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                         ),
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             'B8',
                                             textAlign: TextAlign.center,
@@ -1568,7 +1570,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
-                                          borderRadius: const BorderRadius.only(
+                                          borderRadius: BorderRadius.only(
                                             bottomLeft: Radius.circular(4.0),
                                             bottomRight: Radius.circular(4.0),
                                             topLeft: Radius.circular(4.0),
@@ -1581,7 +1583,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                         ),
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             'B9',
                                             textAlign: TextAlign.center,
@@ -1619,7 +1621,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
-                                              borderRadius: const BorderRadius.only(
+                                              borderRadius: BorderRadius.only(
                                                 bottomLeft:
                                                     Radius.circular(4.0),
                                                 bottomRight:
@@ -1634,7 +1636,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                               ),
                                             ),
                                             child: Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Text(
                                                 'B10',
@@ -1668,7 +1670,7 @@ class _ProdureStep05WidgetState extends State<ProdureStep05Widget> {
                                       ),
                                     ],
                                   ),
-                                ].divide(const SizedBox(width: 40.0)),
+                                ].divide(SizedBox(width: 40.0)),
                               ),
                             ],
                           ),

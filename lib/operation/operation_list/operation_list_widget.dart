@@ -1,13 +1,18 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/operation/filter_operation/filter_operation_widget.dart';
 import '/operation/operation_create/operation_create_widget.dart';
 import '/operation/operation_detail/operation_detail_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'operation_list_model.dart';
 export 'operation_list_model.dart';
 
@@ -110,7 +115,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
               context.pushNamed(
                 'Profile',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
+                  kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -128,7 +133,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -138,7 +143,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -148,7 +153,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                         focusNode: _model.textFieldFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.textController',
-                          const Duration(milliseconds: 2000),
+                          Duration(milliseconds: 2000),
                           () async {
                             setState(() {
                               _model.seachName = _model.textController.text;
@@ -174,7 +179,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
                             ),
@@ -204,9 +209,9 @@ class _OperationListWidgetState extends State<OperationListWidget>
                           filled: true,
                           fillColor:
                               FlutterFlowTheme.of(context).primaryBackground,
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 0.0, 0.0),
-                          prefixIcon: const Icon(
+                          prefixIcon: Icon(
                             Icons.search,
                           ),
                           suffixIcon: _model.textController!.text.isNotEmpty
@@ -296,11 +301,11 @@ class _OperationListWidgetState extends State<OperationListWidget>
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: Column(
                     children: [
                       Align(
-                        alignment: const Alignment(-1.0, 0),
+                        alignment: Alignment(-1.0, 0),
                         child: TabBar(
                           isScrollable: true,
                           labelColor: FlutterFlowTheme.of(context).primary,
@@ -313,10 +318,10 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
-                          unselectedLabelStyle: const TextStyle(),
+                          unselectedLabelStyle: TextStyle(),
                           indicatorColor: FlutterFlowTheme.of(context).primary,
-                          padding: const EdgeInsets.all(4.0),
-                          tabs: const [
+                          padding: EdgeInsets.all(4.0),
+                          tabs: [
                             Tab(
                               text: 'Tất cả',
                             ),
@@ -346,7 +351,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                   scrollDirection: Axis.vertical,
                                   itemCount: itemOperation.length,
                                   separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 8.0),
+                                      SizedBox(height: 8.0),
                                   itemBuilder: (context, itemOperationIndex) {
                                     final itemOperationItem =
                                         itemOperation[itemOperationIndex];
@@ -392,7 +397,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                         ),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 8.0, 8.0, 8.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -405,7 +410,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                   Expanded(
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -444,7 +449,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                   itemOperationItem
                                                                       .name,
                                                               style:
-                                                                  const TextStyle(),
+                                                                  TextStyle(),
                                                             )
                                                           ],
                                                           style: FlutterFlowTheme
@@ -466,6 +471,9 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                   ),
                                                   if ((itemOperationItem
                                                                   .executeId !=
+                                                              null &&
+                                                          itemOperationItem
+                                                                  .executeId !=
                                                               '') &&
                                                       (itemOperationItem
                                                               .executeId !=
@@ -481,7 +489,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                 ],
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 4.0),
                                                 child: RichText(
@@ -538,7 +546,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 4.0),
                                                 child: Text(
@@ -563,7 +571,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 4.0),
                                                 child: RichText(
@@ -670,7 +678,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                       ),
                                                 ),
                                               ),
-                                              const Divider(
+                                              Divider(
                                                 height: 12.0,
                                                 thickness: 1.0,
                                                 color: Color(0x5657636C),
@@ -723,11 +731,11 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                               20.0),
                                                     ),
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   8.0,
                                                                   0.0,
@@ -776,6 +784,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                               builder: (context) {
                                 final itemUserCreated = _model.operationList
                                     .where((e) =>
+                                        e.executeId == null ||
                                         e.executeId == '')
                                     .toList();
                                 return ListView.separated(
@@ -783,7 +792,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                   scrollDirection: Axis.vertical,
                                   itemCount: itemUserCreated.length,
                                   separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 8.0),
+                                      SizedBox(height: 8.0),
                                   itemBuilder: (context, itemUserCreatedIndex) {
                                     final itemUserCreatedItem =
                                         itemUserCreated[itemUserCreatedIndex];
@@ -829,7 +838,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                         ),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 8.0, 8.0, 8.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -837,7 +846,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                 CrossAxisAlignment.stretch,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 8.0),
                                                 child: RichText(
@@ -872,7 +881,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                         text:
                                                             itemUserCreatedItem
                                                                 .name,
-                                                        style: const TextStyle(),
+                                                        style: TextStyle(),
                                                       )
                                                     ],
                                                     style: FlutterFlowTheme.of(
@@ -890,7 +899,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 4.0),
                                                 child: RichText(
@@ -947,7 +956,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 4.0),
                                                 child: Text(
@@ -972,7 +981,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 4.0),
                                                 child: RichText(
@@ -1080,7 +1089,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                       ),
                                                 ),
                                               ),
-                                              const Divider(
+                                              Divider(
                                                 height: 12.0,
                                                 thickness: 1.0,
                                                 color: Color(0x5657636C),
@@ -1133,11 +1142,11 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                               20.0),
                                                     ),
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   8.0,
                                                                   0.0,
@@ -1186,7 +1195,8 @@ class _OperationListWidgetState extends State<OperationListWidget>
                               builder: (context) {
                                 final itemDefault = _model.operationList
                                     .where((e) =>
-                                        (e.executeId != '') &&
+                                        (e.executeId != null &&
+                                            e.executeId != '') &&
                                         (e.executeId != 'null'))
                                     .toList();
                                 return ListView.separated(
@@ -1194,7 +1204,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                   scrollDirection: Axis.vertical,
                                   itemCount: itemDefault.length,
                                   separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 8.0),
+                                      SizedBox(height: 8.0),
                                   itemBuilder: (context, itemDefaultIndex) {
                                     final itemDefaultItem =
                                         itemDefault[itemDefaultIndex];
@@ -1240,7 +1250,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                         ),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 8.0, 8.0, 8.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -1253,7 +1263,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                   Expanded(
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1292,7 +1302,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                   itemDefaultItem
                                                                       .name,
                                                               style:
-                                                                  const TextStyle(),
+                                                                  TextStyle(),
                                                             )
                                                           ],
                                                           style: FlutterFlowTheme
@@ -1322,7 +1332,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                 ],
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 4.0),
                                                 child: Text(
@@ -1347,7 +1357,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 4.0),
                                                 child: RichText(
@@ -1454,7 +1464,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                       ),
                                                 ),
                                               ),
-                                              const Divider(
+                                              Divider(
                                                 height: 12.0,
                                                 thickness: 1.0,
                                                 color: Color(0x5657636C),
@@ -1508,11 +1518,11 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                               20.0),
                                                     ),
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   8.0,
                                                                   0.0,

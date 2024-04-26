@@ -12,11 +12,13 @@ import '/tasks/wait_action_type_submit_text/wait_action_type_submit_text_widget.
 import '/tasks/wait_action_type_to_do_list/wait_action_type_to_do_list_widget.dart';
 import '/tasks/wait_action_type_upload_file/wait_action_type_upload_file_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'task_list_wait_model.dart';
 export 'task_list_wait_model.dart';
@@ -77,15 +79,15 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                   (_model.apiResultGetTask?.jsonBody ?? ''))!
               .data
               .where((e) =>
-                  (e.status == 'todo') &&
-                  (e.current.toString() == '1'))
+                  ('${e.status}' == 'todo') &&
+                  ('${e.current.toString()}' == '1'))
               .toList()
               .toList()
               .cast<TaskListStruct>();
           _model.taskDone = TaskListDataStruct.maybeFromMap(
                   (_model.apiResultGetTask?.jsonBody ?? ''))!
               .data
-              .where((e) => e.status == 'done')
+              .where((e) => '${e.status}' == 'done')
               .toList()
               .toList()
               .cast<TaskListStruct>();
@@ -134,7 +136,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
               ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -143,7 +145,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
           children: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                 child: SingleChildScrollView(
                   primary: false,
                   child: Column(
@@ -152,7 +154,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -162,9 +164,10 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                 focusNode: _model.textFieldFocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.textController',
-                                  const Duration(milliseconds: 500),
+                                  Duration(milliseconds: 500),
                                   () async {
-                                    if (_model.textController.text != '') {
+                                    if (_model.textController.text != null &&
+                                        _model.textController.text != '') {
                                       _model.getTaWaitFilterToken =
                                           await action_blocks
                                               .tokenReload(context);
@@ -292,9 +295,9 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                   fillColor: FlutterFlowTheme.of(context)
                                       .primaryBackground,
                                   contentPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
+                                      EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 0.0, 0.0),
-                                  prefixIcon: const Icon(
+                                  prefixIcon: Icon(
                                     Icons.search,
                                     size: 24.0,
                                   ),
@@ -304,6 +307,8 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                           onTap: () async {
                                             _model.textController?.clear();
                                             if (_model.textController.text !=
+                                                    null &&
+                                                _model.textController.text !=
                                                     '') {
                                               _model.getTaWaitFilterToken =
                                                   await action_blocks
@@ -431,7 +436,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: GestureDetector(
@@ -477,7 +482,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -491,9 +496,9 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                               options: FFButtonOptions(
                                 width: 115.0,
                                 height: 30.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -514,7 +519,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                 context.pushNamed(
                                   'TaskList',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -527,8 +532,8 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                               options: FFButtonOptions(
                                 width: 115.0,
                                 height: 30.0,
-                                padding: const EdgeInsets.all(0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsets.all(0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context)
                                     .primaryBackground,
@@ -542,7 +547,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.normal,
                                     ),
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -554,7 +559,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                 context.pushNamed(
                                   'TaskListDone',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -567,8 +572,8 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                               options: FFButtonOptions(
                                 width: 115.0,
                                 height: 30.0,
-                                padding: const EdgeInsets.all(0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsets.all(0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context)
                                     .primaryBackground,
@@ -582,14 +587,14 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.normal,
                                     ),
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                             ),
-                          ].divide(const SizedBox(width: 6.0)),
+                          ].divide(SizedBox(width: 6.0)),
                         ),
                       ),
                       Builder(
@@ -601,7 +606,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemCount: dataList.length,
-                            separatorBuilder: (_, __) => const SizedBox(height: 16.0),
+                            separatorBuilder: (_, __) => SizedBox(height: 16.0),
                             itemBuilder: (context, dataListIndex) {
                               final dataListItem = dataList[dataListIndex];
                               return Container(
@@ -611,7 +616,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       4.0, 8.0, 4.0, 16.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -619,7 +624,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             12.0, 0.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -634,7 +639,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(4.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -654,7 +659,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(4.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -714,7 +719,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                       if (_model.isShow != dataListItem.id)
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 6.0, 0.0, 6.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -751,9 +756,12 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                           children: [
                                             if (dataListItem.createdUserId
                                                         .firstName !=
+                                                    null &&
+                                                dataListItem.createdUserId
+                                                        .firstName !=
                                                     '')
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         8.0, 0.0, 8.0, 6.0),
                                                 child: Row(
@@ -807,49 +815,32 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 8.0)),
+                                                      SizedBox(width: 8.0)),
                                                 ),
                                               ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      8.0, 0.0, 8.0, 6.0),
-                                              child: Row(
-                                                mainAxisSize:
-                                                    MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Icon(
-                                                    Icons
-                                                        .confirmation_num_outlined,
-                                                    color:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondaryText,
-                                                    size: 20.0,
-                                                  ),
-                                                  Text(
-                                                    'Chạy lần thứ:',
-                                                    style: FlutterFlowTheme
-                                                            .of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          fontSize: 13.0,
-                                                          letterSpacing: 0.0,
-                                                          fontStyle: FontStyle
-                                                              .italic,
-                                                        ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Text(
-                                                      dataListItem
-                                                          .publishedCount
-                                                          .toString(),
-                                                      textAlign:
-                                                          TextAlign.end,
+                                            if (dataListItem.publishedCount !=
+                                                null)
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        8.0, 0.0, 8.0, 6.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Icon(
+                                                      Icons
+                                                          .confirmation_num_outlined,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      size: 20.0,
+                                                    ),
+                                                    Text(
+                                                      'Chạy lần thứ:',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
@@ -857,21 +848,42 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                             fontFamily:
                                                                 'Readex Pro',
                                                             fontSize: 13.0,
-                                                            letterSpacing:
-                                                                0.0,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w500,
+                                                            letterSpacing: 0.0,
+                                                            fontStyle: FontStyle
+                                                                .italic,
                                                           ),
                                                     ),
-                                                  ),
-                                                ].divide(
-                                                    const SizedBox(width: 8.0)),
+                                                    Expanded(
+                                                      child: Text(
+                                                        dataListItem
+                                                            .publishedCount
+                                                            .toString(),
+                                                        textAlign:
+                                                            TextAlign.end,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Readex Pro',
+                                                              fontSize: 13.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
+                                                      ),
+                                                    ),
+                                                  ].divide(
+                                                      SizedBox(width: 8.0)),
+                                                ),
                                               ),
-                                            ),
-                                            if (dataListItem.dateCreated != '')
+                                            if (dataListItem.dateCreated !=
+                                                    null &&
+                                                dataListItem.dateCreated != '')
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         8.0, 0.0, 8.0, 6.0),
                                                 child: Row(
@@ -933,12 +945,14 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 8.0)),
+                                                      SizedBox(width: 8.0)),
                                                 ),
                                               ),
-                                            if (dataListItem.timeOperate != '')
+                                            if (dataListItem.timeOperate !=
+                                                    null &&
+                                                dataListItem.timeOperate != '')
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         8.0, 0.0, 8.0, 6.0),
                                                 child: Row(
@@ -991,13 +1005,13 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 8.0)),
+                                                      SizedBox(width: 8.0)),
                                                 ),
                                               ),
                                             if (dataListItem.estimateInSecond !=
                                                 0)
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         8.0, 0.0, 8.0, 6.0),
                                                 child: Row(
@@ -1030,7 +1044,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                     ),
                                                     Expanded(
                                                       child: Text(
-                                                        dataListItem.estimateInSecond.toString(),
+                                                        '${dataListItem.estimateInSecond.toString()}',
                                                         textAlign:
                                                             TextAlign.end,
                                                         style: FlutterFlowTheme
@@ -1049,11 +1063,11 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 8.0)),
+                                                      SizedBox(width: 8.0)),
                                                 ),
                                               ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 0.0, 0.0, 6.0),
                                               child: InkWell(
                                                 splashColor: Colors.transparent,
@@ -1092,7 +1106,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                           'to_do_list')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 6.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1123,13 +1137,13 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                         ),
                                                   ),
                                                 ),
-                                            ].divide(const SizedBox(width: 8.0)),
+                                            ].divide(SizedBox(width: 8.0)),
                                           ),
                                         ),
                                       if (dataListItem.status == 'done')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 6.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1157,14 +1171,14 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                               FontStyle.italic,
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 8.0)),
+                                            ].divide(SizedBox(width: 8.0)),
                                           ),
                                         ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 16.0, 0.0, 0.0),
                                         child: Container(
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Visibility(
                                             visible: dataListItem.actionType ==
                                                 'to_do_list',
@@ -1177,7 +1191,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                         ),
                                       ),
                                       Container(
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Visibility(
                                           visible: dataListItem.actionType ==
                                               'approved',
@@ -1189,7 +1203,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                       ),
                                       Container(
                                         width: double.infinity,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Visibility(
                                           visible: dataListItem.actionType ==
                                               'image',
@@ -1201,7 +1215,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                       ),
                                       Container(
                                         width: double.infinity,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Visibility(
                                           visible: dataListItem.actionType ==
                                               'upload_file',
@@ -1212,7 +1226,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                         ),
                                       ),
                                       Container(
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Visibility(
                                           visible: dataListItem.actionType ==
                                               'submit_text',
@@ -1236,11 +1250,11 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
               child: wrapWithModel(
                 model: _model.navBarModel,
                 updateCallback: () => setState(() {}),
-                child: const NavBarWidget(
+                child: NavBarWidget(
                   selectedPageIndex: 1,
                 ),
               ),
