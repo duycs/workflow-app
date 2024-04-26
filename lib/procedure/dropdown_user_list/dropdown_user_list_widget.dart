@@ -264,7 +264,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                   ),
                                           hintText: 'Tên nhân viên/email...',
@@ -272,7 +272,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: OutlineInputBorder(
@@ -343,7 +343,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
@@ -471,7 +471,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
@@ -612,7 +612,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -637,7 +637,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                                                   .bodySmall
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .primary,
@@ -695,7 +695,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
                                   fontSize: 14.0,
@@ -748,7 +748,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: Colors.white,
                                   fontSize: 14.0,
                                   letterSpacing: 0.0,

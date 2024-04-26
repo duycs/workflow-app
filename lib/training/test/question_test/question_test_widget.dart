@@ -95,15 +95,15 @@ class _QuestionTestWidgetState extends State<QuestionTestWidget> {
       width: double.infinity,
       height: 50.0,
       searchHintTextStyle: FlutterFlowTheme.of(context).labelMedium.override(
-            fontFamily: 'Readex Pro',
+            fontFamily: 'Nunito Sans',
             letterSpacing: 0.0,
           ),
       searchTextStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-            fontFamily: 'Readex Pro',
+            fontFamily: 'Nunito Sans',
             letterSpacing: 0.0,
           ),
       textStyle: FlutterFlowTheme.of(context).labelMedium.override(
-            fontFamily: 'Readex Pro',
+            fontFamily: 'Nunito Sans',
             fontSize: 13.0,
             letterSpacing: 0.0,
           ),

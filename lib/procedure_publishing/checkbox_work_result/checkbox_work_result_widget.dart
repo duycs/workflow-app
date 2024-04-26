@@ -73,7 +73,7 @@ class _CheckboxWorkResultWidgetState extends State<CheckboxWorkResultWidget> {
         Text(
           widget.listData!.operationsId.content,
           style: FlutterFlowTheme.of(context).bodyMedium.override(
-                fontFamily: 'Readex Pro',
+                fontFamily: 'Nunito Sans',
                 letterSpacing: 0.0,
               ),
         ),

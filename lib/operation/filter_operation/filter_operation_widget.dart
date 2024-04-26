@@ -113,7 +113,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                     Text(
                       'Bộ lọc',
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily: 'Readex Pro',
+                            fontFamily: 'Nunito Sans',
                             letterSpacing: 0.0,
                           ),
                     ),
@@ -144,7 +144,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                           'Khoảng thời gian xuất bản :',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -180,7 +180,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                                 headerTextStyle: FlutterFlowTheme.of(context)
                                     .headlineLarge
                                     .override(
-                                      fontFamily: 'Outfit',
+                                      fontFamily: 'Nunito Sans',
                                       fontSize: 32.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
@@ -235,7 +235,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -266,7 +266,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                                 headerTextStyle: FlutterFlowTheme.of(context)
                                     .headlineLarge
                                     .override(
-                                      fontFamily: 'Outfit',
+                                      fontFamily: 'Nunito Sans',
                                       fontSize: 32.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
@@ -321,7 +321,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -342,12 +342,12 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                       labelText: 'Tên hành động',
                       labelStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 letterSpacing: 0.0,
                               ),
                       hintStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 letterSpacing: 0.0,
                               ),
                       enabledBorder: OutlineInputBorder(
@@ -380,7 +380,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                       ),
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,
                         ),
                     validator: _model.nameTextController1Validator
@@ -398,12 +398,12 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                       labelText: 'Người tạo',
                       labelStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 letterSpacing: 0.0,
                               ),
                       hintStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 letterSpacing: 0.0,
                               ),
                       enabledBorder: OutlineInputBorder(
@@ -436,7 +436,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                       ),
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,
                         ),
                     validator: _model.nameTextController2Validator
@@ -459,7 +459,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                     width: double.infinity,
                     height: 56.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,
                         ),
                     hintText: 'Trạng thái',
@@ -503,7 +503,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                     width: double.infinity,
                     height: 56.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,
                         ),
                     hintText: 'Kiểu hành động',
@@ -559,7 +559,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   letterSpacing: 0.0,
@@ -601,7 +601,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: Colors.white,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,

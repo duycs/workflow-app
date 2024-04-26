@@ -151,7 +151,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
               Text(
                 'Quản lý nhân sự',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
+                      fontFamily: 'Nunito Sans',
                       color: FlutterFlowTheme.of(context).primaryText,
                       fontSize: 20.0,
                       letterSpacing: 0.0,
@@ -211,7 +211,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .headlineMedium
                                       .override(
-                                        fontFamily: 'Outfit',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -237,7 +237,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -277,7 +277,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -322,7 +322,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -367,7 +367,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -385,7 +385,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -427,7 +427,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -453,7 +453,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                         context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -504,7 +504,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -549,7 +549,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -654,7 +654,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             color: Theme.of(context)
                                                                         .brightness ==
                                                                     Brightness
@@ -743,7 +743,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             color: Theme.of(context)
                                                                         .brightness ==
                                                                     Brightness
@@ -823,7 +823,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -832,7 +832,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -1027,14 +1027,14 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintText: 'Tìm kiếm...',
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: OutlineInputBorder(
@@ -1236,7 +1236,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     cursorColor:
@@ -1317,7 +1317,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -1504,7 +1504,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                     .bodyLarge
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -1526,7 +1526,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                       .labelSmall
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .primary,
                                                                         letterSpacing:
@@ -1592,7 +1592,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                           .bodySmall
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Readex Pro',
+                                                                                'Nunito Sans',
                                                                             letterSpacing:
                                                                                 0.0,
                                                                           ),
@@ -1624,7 +1624,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                         .bodySmall
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           color: dataListItem.status == 'active'
                                                                               ? FlutterFlowTheme.of(context).success
                                                                               : FlutterFlowTheme.of(context).error,
@@ -1667,7 +1667,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -1693,7 +1693,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -1721,7 +1721,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .secondaryText,
@@ -1749,7 +1749,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -1765,7 +1765,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -1794,7 +1794,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -1810,7 +1810,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -1846,7 +1846,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                     .bodyMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .secondaryText,
@@ -1863,7 +1863,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                     .bodyMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .secondaryText,
@@ -1880,7 +1880,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                     .bodyMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .secondaryText,
@@ -1900,7 +1900,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -1932,7 +1932,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .secondaryText,
@@ -1955,7 +1955,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -1971,7 +1971,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -1995,7 +1995,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -2011,7 +2011,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -2035,7 +2035,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -2051,7 +2051,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,

@@ -117,7 +117,7 @@ class _ChitietbuocnangcaoChayWidgetState
             'Chi tiết bước',
             textAlign: TextAlign.start,
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: Colors.white,
                   letterSpacing: 0.0,
                   lineHeight: 1.2,
@@ -159,7 +159,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -298,7 +298,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodySmall
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -353,13 +353,13 @@ class _ChitietbuocnangcaoChayWidgetState
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -370,7 +370,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController1Validator
@@ -412,13 +412,13 @@ class _ChitietbuocnangcaoChayWidgetState
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -429,7 +429,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController2Validator
@@ -470,13 +470,13 @@ class _ChitietbuocnangcaoChayWidgetState
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -487,7 +487,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController3Validator
@@ -528,13 +528,13 @@ class _ChitietbuocnangcaoChayWidgetState
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -545,7 +545,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController4Validator
@@ -586,13 +586,13 @@ class _ChitietbuocnangcaoChayWidgetState
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -603,7 +603,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController5Validator
@@ -650,14 +650,14 @@ class _ChitietbuocnangcaoChayWidgetState
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       letterSpacing: 0.0,
                                                     ),
                                             hintStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       letterSpacing: 0.0,
                                                     ),
                                             enabledBorder: InputBorder.none,
@@ -669,7 +669,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                               ),
                                           validator: _model
@@ -698,7 +698,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -736,7 +736,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                           lineHeight: 1.5,
                                         ),
@@ -746,7 +746,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                           fontStyle: FontStyle.italic,
                                         ),
@@ -781,7 +781,7 @@ class _ChitietbuocnangcaoChayWidgetState
                             labelStyle: FlutterFlowTheme.of(context)
                                 .titleMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                             unselectedLabelStyle: const TextStyle(),
@@ -865,7 +865,8 @@ class _ChitietbuocnangcaoChayWidgetState
                                                             context)
                                                         .titleLarge
                                                         .override(
-                                                          fontFamily: 'Outfit',
+                                                          fontFamily:
+                                                              'Nunito Sans',
                                                           fontSize: 20.0,
                                                           letterSpacing: 0.0,
                                                         ),
@@ -951,7 +952,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                       .bodyLarge
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -960,7 +961,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                       .labelMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -982,7 +983,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                     .bodyLarge
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -1075,7 +1076,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                       .bodyLarge
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -1084,7 +1085,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                       .labelMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -1106,7 +1107,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                     .bodyLarge
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -1138,7 +1139,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                           .labelMedium
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Readex Pro',
+                                                                                'Nunito Sans',
                                                                             letterSpacing:
                                                                                 0.0,
                                                                           ),
@@ -1150,7 +1151,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                           .labelMedium
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Readex Pro',
+                                                                                'Nunito Sans',
                                                                             letterSpacing:
                                                                                 0.0,
                                                                           ),
@@ -1316,7 +1317,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                       .bodyLarge
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -1325,7 +1326,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                       .labelMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -1347,7 +1348,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                     .bodyLarge
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -1486,7 +1487,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                       .labelLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -1529,7 +1530,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                       .labelLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -1580,7 +1581,8 @@ class _ChitietbuocnangcaoChayWidgetState
                                                             context)
                                                         .titleLarge
                                                         .override(
-                                                          fontFamily: 'Outfit',
+                                                          fontFamily:
+                                                              'Nunito Sans',
                                                           fontSize: 20.0,
                                                           letterSpacing: 0.0,
                                                         ),
@@ -1687,7 +1689,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                     .bodyLarge
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -1696,7 +1698,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -1718,7 +1720,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                   .bodyLarge
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
@@ -1835,7 +1837,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                     .bodyLarge
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -1844,7 +1846,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -1866,7 +1868,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                   .bodyLarge
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
@@ -1898,7 +1900,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                         .labelMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -1910,7 +1912,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                         .labelMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -2074,7 +2076,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                     .bodyLarge
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -2083,7 +2085,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -2105,7 +2107,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                   .bodyLarge
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
@@ -2160,7 +2162,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                                       .bodySmall
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -2266,7 +2268,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                       .labelLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -2309,7 +2311,7 @@ class _ChitietbuocnangcaoChayWidgetState
                                                       .labelLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                       ),

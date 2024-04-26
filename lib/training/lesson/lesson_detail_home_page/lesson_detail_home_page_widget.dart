@@ -104,7 +104,7 @@ class _LessonDetailHomePageWidgetState
                 child: Text(
                   'Nội dung bài học',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Nunito Sans',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 20.0,
                         letterSpacing: 0.0,
@@ -196,7 +196,7 @@ class _LessonDetailHomePageWidgetState
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).secondary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Nunito Sans',
                           color: Colors.white,
                           fontSize: 13.0,
                           letterSpacing: 0.0,
@@ -241,7 +241,7 @@ class _LessonDetailHomePageWidgetState
                             style: FlutterFlowTheme.of(context)
                                 .headlineSmall
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Nunito Sans',
                                   fontSize: 20.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
@@ -344,7 +344,7 @@ class _LessonDetailHomePageWidgetState
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -518,7 +518,7 @@ class _LessonDetailHomePageWidgetState
                                                                       .bodyMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         fontSize:
                                                                             13.0,
                                                                         letterSpacing:
@@ -564,7 +564,7 @@ class _LessonDetailHomePageWidgetState
                                                                       .bodyMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         fontSize:
                                                                             13.0,
                                                                         letterSpacing:
@@ -1278,7 +1278,7 @@ class _LessonDetailHomePageWidgetState
                                                                       .bodyMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .primary,
                                                                         fontSize:
@@ -1357,7 +1357,7 @@ class _LessonDetailHomePageWidgetState
                                                               .titleSmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -1614,7 +1614,7 @@ class _LessonDetailHomePageWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         fontSize: 14.0,
                                         letterSpacing: 0.0,
                                       ),
@@ -1655,7 +1655,7 @@ class _LessonDetailHomePageWidgetState
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
@@ -1760,7 +1760,7 @@ class _LessonDetailHomePageWidgetState
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -1769,7 +1769,7 @@ class _LessonDetailHomePageWidgetState
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -1796,7 +1796,7 @@ class _LessonDetailHomePageWidgetState
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -1805,7 +1805,7 @@ class _LessonDetailHomePageWidgetState
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -1832,7 +1832,7 @@ class _LessonDetailHomePageWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           fontSize: 14.0,
                                           letterSpacing: 0.0,
                                         ),
@@ -1935,7 +1935,7 @@ class _LessonDetailHomePageWidgetState
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -2025,7 +2025,7 @@ class _LessonDetailHomePageWidgetState
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -2055,7 +2055,7 @@ class _LessonDetailHomePageWidgetState
                           'Nội dung bài học',
                           style:
                               FlutterFlowTheme.of(context).bodyLarge.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -2127,7 +2127,7 @@ class _LessonDetailHomePageWidgetState
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                     hintText: 'Ghi chú',
@@ -2136,7 +2136,7 @@ class _LessonDetailHomePageWidgetState
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                     enabledBorder:
@@ -2153,7 +2153,7 @@ class _LessonDetailHomePageWidgetState
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                   validator: _model
@@ -2195,7 +2195,7 @@ class _LessonDetailHomePageWidgetState
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryText,
@@ -2226,7 +2226,7 @@ class _LessonDetailHomePageWidgetState
                               style: FlutterFlowTheme.of(context)
                                   .bodyLarge
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -2239,7 +2239,7 @@ class _LessonDetailHomePageWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -2248,7 +2248,7 @@ class _LessonDetailHomePageWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -2257,7 +2257,7 @@ class _LessonDetailHomePageWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -2266,7 +2266,7 @@ class _LessonDetailHomePageWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -2380,7 +2380,7 @@ class _LessonDetailHomePageWidgetState
                                                                   .bodyMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
@@ -2486,7 +2486,7 @@ class _LessonDetailHomePageWidgetState
                                                                 .labelMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   fontSize:
                                                                       13.0,
                                                                   letterSpacing:
@@ -2532,7 +2532,7 @@ class _LessonDetailHomePageWidgetState
                                                               .labelSmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -2551,7 +2551,7 @@ class _LessonDetailHomePageWidgetState
                                                               .labelSmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -2628,14 +2628,14 @@ class _LessonDetailHomePageWidgetState
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     hintText: 'Viết bình luận...',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     enabledBorder: InputBorder.none,
@@ -2646,7 +2646,7 @@ class _LessonDetailHomePageWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                   validator: _model

@@ -121,7 +121,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .headlineMedium
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Nunito Sans',
                                           fontSize: 20.0,
                                           letterSpacing: 0.0,
                                         ),
@@ -153,7 +153,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       letterSpacing: 0.0,
@@ -162,7 +162,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       fontSize: 13.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -204,7 +204,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               validator: _model.textController1Validator
@@ -220,7 +220,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       letterSpacing: 0.0,
@@ -229,7 +229,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       fontSize: 13.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -267,7 +267,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               validator: _model.textController2Validator
@@ -283,7 +283,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       letterSpacing: 0.0,
@@ -292,7 +292,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       fontSize: 13.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -331,7 +331,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               maxLines: 3,
@@ -356,7 +356,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               hintText: 'Kiểu hành động',
@@ -383,7 +383,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                               labelTextStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -397,7 +397,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -452,7 +452,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       letterSpacing: 0.0,
@@ -587,7 +587,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),

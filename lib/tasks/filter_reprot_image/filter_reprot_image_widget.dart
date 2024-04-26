@@ -106,7 +106,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                     Text(
                       'Bộ lọc',
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily: 'Readex Pro',
+                            fontFamily: 'Nunito Sans',
                             letterSpacing: 0.0,
                           ),
                     ),
@@ -137,7 +137,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                           'Khoảng thời gian tạo :',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -173,7 +173,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                                 headerTextStyle: FlutterFlowTheme.of(context)
                                     .headlineLarge
                                     .override(
-                                      fontFamily: 'Outfit',
+                                      fontFamily: 'Nunito Sans',
                                       fontSize: 32.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
@@ -228,7 +228,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -259,7 +259,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                                 headerTextStyle: FlutterFlowTheme.of(context)
                                     .headlineLarge
                                     .override(
-                                      fontFamily: 'Outfit',
+                                      fontFamily: 'Nunito Sans',
                                       fontSize: 32.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
@@ -314,7 +314,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -335,12 +335,12 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                       labelText: 'Nhập tên nhân sự',
                       labelStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 letterSpacing: 0.0,
                               ),
                       hintStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 letterSpacing: 0.0,
                               ),
                       enabledBorder: OutlineInputBorder(
@@ -373,7 +373,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                       ),
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,
                         ),
                     validator: _model.nameStaffTextControllerValidator
@@ -391,12 +391,12 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                       labelText: 'Nhập tên quy trình',
                       labelStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 letterSpacing: 0.0,
                               ),
                       hintStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 letterSpacing: 0.0,
                               ),
                       enabledBorder: OutlineInputBorder(
@@ -429,7 +429,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                       ),
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,
                         ),
                     validator: _model.tenquytrinhTextControllerValidator
@@ -469,7 +469,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   letterSpacing: 0.0,
@@ -505,7 +505,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: Colors.white,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,

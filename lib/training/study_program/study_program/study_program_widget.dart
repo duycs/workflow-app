@@ -93,7 +93,7 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelLarge
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               alignLabelWithHint: false,
@@ -101,7 +101,7 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               enabledBorder: OutlineInputBorder(
@@ -136,7 +136,7 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                             validator: _model.programNameTextControllerValidator
@@ -170,7 +170,7 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelLarge
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               alignLabelWithHint: false,
@@ -178,7 +178,7 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               enabledBorder: OutlineInputBorder(
@@ -213,7 +213,7 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                             validator: _model
@@ -241,7 +241,7 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                           'Danh sách bài học :',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
@@ -279,7 +279,7 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -294,7 +294,7 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
@@ -328,7 +328,7 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 letterSpacing: 0.0,
                               ),

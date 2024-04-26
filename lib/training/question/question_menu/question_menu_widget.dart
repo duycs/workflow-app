@@ -137,7 +137,7 @@ class _QuestionMenuWidgetState extends State<QuestionMenuWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -213,7 +213,7 @@ class _QuestionMenuWidgetState extends State<QuestionMenuWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),

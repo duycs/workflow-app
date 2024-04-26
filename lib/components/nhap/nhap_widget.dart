@@ -74,7 +74,7 @@ class _NhapWidgetState extends State<NhapWidget> {
                       child: Text(
                         'Chọn bước kế tiếp',
                         style: FlutterFlowTheme.of(context).titleLarge.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                       ),
@@ -93,7 +93,7 @@ class _NhapWidgetState extends State<NhapWidget> {
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: Colors.white,
                                   letterSpacing: 0.0,
                                 ),
@@ -119,12 +119,12 @@ class _NhapWidgetState extends State<NhapWidget> {
                     labelText: 'Tìm kiếm bước',
                     labelStyle:
                         FlutterFlowTheme.of(context).labelMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                     hintStyle:
                         FlutterFlowTheme.of(context).labelMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                     enabledBorder: UnderlineInputBorder(
@@ -162,7 +162,7 @@ class _NhapWidgetState extends State<NhapWidget> {
                     ),
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
+                        fontFamily: 'Nunito Sans',
                         letterSpacing: 0.0,
                       ),
                   validator:
@@ -200,7 +200,7 @@ class _NhapWidgetState extends State<NhapWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodySmall
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
                                             letterSpacing: 0.0,
@@ -213,7 +213,7 @@ class _NhapWidgetState extends State<NhapWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -286,7 +286,7 @@ class _NhapWidgetState extends State<NhapWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodySmall
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
                                             letterSpacing: 0.0,
@@ -299,7 +299,7 @@ class _NhapWidgetState extends State<NhapWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -350,7 +350,7 @@ class _NhapWidgetState extends State<NhapWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodySmall
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
                                             letterSpacing: 0.0,
@@ -363,7 +363,7 @@ class _NhapWidgetState extends State<NhapWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -436,7 +436,7 @@ class _NhapWidgetState extends State<NhapWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodySmall
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
                                             letterSpacing: 0.0,
@@ -449,7 +449,7 @@ class _NhapWidgetState extends State<NhapWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -522,7 +522,7 @@ class _NhapWidgetState extends State<NhapWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodySmall
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
                                             letterSpacing: 0.0,
@@ -535,7 +535,7 @@ class _NhapWidgetState extends State<NhapWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),

@@ -127,7 +127,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .headlineMedium
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Nunito Sans',
                                           fontSize: 20.0,
                                           letterSpacing: 0.0,
                                         ),
@@ -154,7 +154,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -171,14 +171,14 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                   hintText: 'Nhập tên chi nhánh...',
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: OutlineInputBorder(
@@ -215,7 +215,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 validator: _model
@@ -228,7 +228,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -265,14 +265,14 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 hintText: 'Nhập mã chi nhánh...',
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: OutlineInputBorder(
@@ -312,7 +312,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               validator: _model
@@ -328,7 +328,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         color:
                                             FlutterFlowTheme.of(context).error,
                                         fontSize: 12.0,
@@ -343,7 +343,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -361,14 +361,14 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                   hintText: 'Nhập nội dung...',
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: OutlineInputBorder(
@@ -405,7 +405,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 maxLines: 3,
@@ -446,7 +446,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       letterSpacing: 0.0,
@@ -607,7 +607,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),

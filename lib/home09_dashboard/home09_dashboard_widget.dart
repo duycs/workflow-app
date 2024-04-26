@@ -559,7 +559,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
           title: Text(
             'Dashboard',
             style: FlutterFlowTheme.of(context).displaySmall.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: Colors.white,
                   letterSpacing: 0.0,
                 ),
@@ -594,7 +594,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                             style: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: const Color(0xB3FFFFFF),
                                   letterSpacing: 0.0,
                                 ),
@@ -688,7 +688,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ).animateOnPageLoad(animationsMap[
@@ -702,7 +702,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                                     FlutterFlowTheme.of(context)
                                                         .displaySmall
                                                         .override(
-                                                          fontFamily: 'Outfit',
+                                                          fontFamily:
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                               ).animateOnPageLoad(animationsMap[
@@ -794,7 +795,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ).animateOnPageLoad(animationsMap[
@@ -808,7 +809,8 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                                     FlutterFlowTheme.of(context)
                                                         .displaySmall
                                                         .override(
-                                                          fontFamily: 'Outfit',
+                                                          fontFamily:
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                               ).animateOnPageLoad(animationsMap[
@@ -835,7 +837,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                     'Projects',
                     textAlign: TextAlign.start,
                     style: FlutterFlowTheme.of(context).titleLarge.override(
-                          fontFamily: 'Outfit',
+                          fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,
                         ),
                   ).animateOnPageLoad(
@@ -916,7 +918,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                               style: FlutterFlowTheme.of(context)
                                   .headlineMedium
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Nunito Sans',
                                     color: Colors.white,
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
@@ -929,7 +931,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                             style: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: const Color(0x9AFFFFFF),
                                   letterSpacing: 0.0,
                                 ),
@@ -992,7 +994,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                         style: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .override(
-                                              fontFamily: 'Outfit',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ).animateOnPageLoad(animationsMap[
@@ -1005,7 +1007,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                           style: FlutterFlowTheme.of(context)
                                               .labelMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                               ),
                                         ).animateOnPageLoad(animationsMap[
@@ -1118,7 +1120,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                         style: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .override(
-                                              fontFamily: 'Outfit',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ).animateOnPageLoad(animationsMap[
@@ -1131,7 +1133,7 @@ class _Home09DashboardWidgetState extends State<Home09DashboardWidget>
                                           style: FlutterFlowTheme.of(context)
                                               .labelMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                               ),
                                         ).animateOnPageLoad(animationsMap[

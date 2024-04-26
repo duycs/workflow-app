@@ -296,7 +296,7 @@ class _DropdownDepartmentsListWidgetState
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                   ),
                                           hintText: 'Tên bộ phận ...',
@@ -304,7 +304,7 @@ class _DropdownDepartmentsListWidgetState
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: OutlineInputBorder(
@@ -375,7 +375,7 @@ class _DropdownDepartmentsListWidgetState
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
@@ -503,7 +503,7 @@ class _DropdownDepartmentsListWidgetState
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
@@ -622,7 +622,7 @@ class _DropdownDepartmentsListWidgetState
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -680,7 +680,7 @@ class _DropdownDepartmentsListWidgetState
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
                                   fontSize: 14.0,
@@ -768,7 +768,7 @@ class _DropdownDepartmentsListWidgetState
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: Colors.white,
                                   fontSize: 14.0,
                                   letterSpacing: 0.0,

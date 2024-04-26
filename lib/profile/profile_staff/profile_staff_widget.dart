@@ -102,7 +102,7 @@ class _ProfileStaffWidgetState extends State<ProfileStaffWidget> {
                       child: Text(
                         'Thông tin nhân viên',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               fontSize: 18.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.normal,
@@ -192,7 +192,7 @@ class _ProfileStaffWidgetState extends State<ProfileStaffWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .headlineSmall
                                     .override(
-                                      fontFamily: 'Outfit',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                               ),

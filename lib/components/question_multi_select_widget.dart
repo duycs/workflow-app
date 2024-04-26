@@ -49,7 +49,7 @@ class _QuestionMultiSelectWidgetState extends State<QuestionMultiSelectWidget> {
       checkColor: Colors.white,
       checkboxBorderColor: FlutterFlowTheme.of(context).secondaryText,
       textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-            fontFamily: 'Readex Pro',
+            fontFamily: 'Nunito Sans',
             letterSpacing: 0.0,
           ),
       itemPadding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),

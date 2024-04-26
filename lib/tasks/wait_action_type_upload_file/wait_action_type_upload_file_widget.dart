@@ -66,7 +66,7 @@ class _WaitActionTypeUploadFileWidgetState
               iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
               color: FlutterFlowTheme.of(context).alternate,
               textStyle: FlutterFlowTheme.of(context).labelLarge.override(
-                    fontFamily: 'Readex Pro',
+                    fontFamily: 'Nunito Sans',
                     fontSize: 14.0,
                     letterSpacing: 0.0,
                   ),

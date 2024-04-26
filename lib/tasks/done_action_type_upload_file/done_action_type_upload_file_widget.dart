@@ -55,7 +55,7 @@ class _DoneActionTypeUploadFileWidgetState
           Text(
             '${FFAppConstants.ApiBaseUrl}/assets/${widget.file}?access_token=${FFAppState().accessToken}',
             style: FlutterFlowTheme.of(context).bodyMedium.override(
-                  fontFamily: 'Readex Pro',
+                  fontFamily: 'Nunito Sans',
                   letterSpacing: 0.0,
                 ),
           ),

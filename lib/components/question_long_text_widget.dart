@@ -48,11 +48,11 @@ class _QuestionLongTextWidgetState extends State<QuestionLongTextWidget> {
         decoration: InputDecoration(
           labelText: 'Nhập text',
           labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                fontFamily: 'Readex Pro',
+                fontFamily: 'Nunito Sans',
                 letterSpacing: 0.0,
               ),
           hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                fontFamily: 'Readex Pro',
+                fontFamily: 'Nunito Sans',
                 letterSpacing: 0.0,
               ),
           enabledBorder: UnderlineInputBorder(
@@ -85,7 +85,7 @@ class _QuestionLongTextWidgetState extends State<QuestionLongTextWidget> {
           ),
         ),
         style: FlutterFlowTheme.of(context).bodyMedium.override(
-              fontFamily: 'Readex Pro',
+              fontFamily: 'Nunito Sans',
               letterSpacing: 0.0,
             ),
         maxLines: 3,

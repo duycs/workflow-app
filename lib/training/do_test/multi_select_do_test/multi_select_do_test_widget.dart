@@ -113,7 +113,7 @@ class _MultiSelectDoTestWidgetState extends State<MultiSelectDoTestWidget> {
               'Loading',
             ),
             style: FlutterFlowTheme.of(context).bodyMedium.override(
-                  fontFamily: 'Readex Pro',
+                  fontFamily: 'Nunito Sans',
                   color: () {
                     if ((widget.listQuestion?.correct == 1) &&
                         (widget.listAnswer!

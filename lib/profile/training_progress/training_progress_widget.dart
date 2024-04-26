@@ -179,7 +179,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
           title: Text(
             'Báo cáo đào tạo',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   fontSize: 20.0,
                   letterSpacing: 0.0,
                 ),
@@ -228,7 +228,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                             style: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                           ),
@@ -271,15 +271,14 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                             children: [
                                               Text(
                                                 '4',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .displaySmall
-                                                        .override(
-                                                          fontFamily: 'Outfit',
-                                                          color:
-                                                              const Color(0xA54B39EF),
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .displaySmall
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      color: const Color(0xA54B39EF),
+                                                      letterSpacing: 0.0,
+                                                    ),
                                               ),
                                               Padding(
                                                 padding: const EdgeInsetsDirectional
@@ -292,7 +291,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -310,7 +309,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                       .labelSmall
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -348,16 +347,17 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                             children: [
                                               Text(
                                                 '3',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .displaySmall
-                                                        .override(
-                                                          fontFamily: 'Outfit',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .displaySmall
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
                                                               .tertiary,
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                      letterSpacing: 0.0,
+                                                    ),
                                               ),
                                               Padding(
                                                 padding: const EdgeInsetsDirectional
@@ -370,7 +370,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -388,7 +388,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                       .labelSmall
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -426,16 +426,17 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                             children: [
                                               Text(
                                                 '3',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .displaySmall
-                                                        .override(
-                                                          fontFamily: 'Outfit',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .displaySmall
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
                                                               .secondary,
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                      letterSpacing: 0.0,
+                                                    ),
                                               ),
                                               Padding(
                                                 padding: const EdgeInsetsDirectional
@@ -448,7 +449,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -466,7 +467,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                       .labelSmall
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -517,7 +518,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                               style: FlutterFlowTheme.of(context)
                                   .bodyLarge
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -527,7 +528,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                             style: FlutterFlowTheme.of(context)
                                 .headlineLarge
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                           ),
@@ -539,7 +540,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                               style: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -583,7 +584,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                               style: FlutterFlowTheme.of(context)
                                   .headlineSmall
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -593,7 +594,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                             style: FlutterFlowTheme.of(context)
                                 .headlineLarge
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                           ),
@@ -605,7 +606,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                               style: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -657,7 +658,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .headlineSmall
                                           .override(
-                                            fontFamily: 'Outfit',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -669,7 +670,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                         style: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -755,7 +756,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -767,7 +768,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -779,7 +780,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryText,
@@ -814,7 +815,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                         .bodySmall
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -846,7 +847,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -867,7 +868,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primary,
@@ -955,7 +956,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -967,7 +968,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -979,7 +980,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryText,
@@ -1014,7 +1015,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                         .bodySmall
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -1046,7 +1047,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -1067,7 +1068,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primary,
@@ -1130,7 +1131,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                               style: FlutterFlowTheme.of(context)
                                   .headlineSmall
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -1143,7 +1144,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                               style: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -1188,7 +1189,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -1230,7 +1231,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -1272,7 +1273,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -1351,7 +1352,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                   titleTextStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -1360,7 +1361,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                   titleTextStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),

@@ -98,7 +98,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                           style: FlutterFlowTheme.of(context)
                               .headlineMedium
                               .override(
-                                fontFamily: 'Outfit',
+                                fontFamily: 'Nunito Sans',
                                 fontSize: 20.0,
                                 letterSpacing: 0.0,
                               ),
@@ -154,7 +154,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelLarge
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 alignLabelWithHint: false,
@@ -162,7 +162,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: OutlineInputBorder(
@@ -198,7 +198,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               validator: _model
@@ -234,7 +234,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelLarge
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 alignLabelWithHint: false,
@@ -242,7 +242,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: OutlineInputBorder(
@@ -278,7 +278,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               validator: _model
@@ -353,7 +353,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   fontSize: 16.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
@@ -400,7 +400,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -417,7 +417,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -538,7 +538,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: FlutterFlowTheme.of(context).alternate,
                                   letterSpacing: 0.0,
                                 ),

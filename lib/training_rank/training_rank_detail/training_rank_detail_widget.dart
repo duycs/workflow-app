@@ -109,7 +109,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
         title: Text(
           'Chi tiết cấp bậc đào tạo',
           style: FlutterFlowTheme.of(context).headlineMedium.override(
-                fontFamily: 'Outfit',
+                fontFamily: 'Nunito Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
                 fontSize: 22.0,
                 letterSpacing: 0.0,
@@ -191,7 +191,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .labelLarge
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -206,7 +206,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                       child: Text(
                         'Tên cấp bậc đào tạo:',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                       ),
@@ -220,7 +220,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                           '\" \"',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               color: FlutterFlowTheme.of(context).secondaryText,
                               letterSpacing: 0.0,
                             ),
@@ -232,7 +232,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                       child: Text(
                         'Mô tả:',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                       ),
@@ -246,7 +246,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                           '\" \"',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               color: FlutterFlowTheme.of(context).secondaryText,
                               letterSpacing: 0.0,
                             ),
@@ -258,7 +258,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                       child: Text(
                         'Phòng ban:',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                       ),
@@ -272,7 +272,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                           '\" \"',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               color: FlutterFlowTheme.of(context).secondaryText,
                               letterSpacing: 0.0,
                             ),
@@ -319,7 +319,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -366,7 +366,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .labelLarge
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -395,7 +395,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         fontSize: 18.0,
                                         letterSpacing: 0.0,
                                       ),
@@ -403,7 +403,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w300,
                                       ),
@@ -444,7 +444,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: const Color(0xFFDBE2E7),
                                       letterSpacing: 0.0,
                                     ),
@@ -490,7 +490,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         fontSize: 18.0,
                                         letterSpacing: 0.0,
                                       ),
@@ -498,7 +498,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w300,
                                       ),
@@ -539,7 +539,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: const Color(0xFFDBE2E7),
                                       letterSpacing: 0.0,
                                     ),
@@ -585,7 +585,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         fontSize: 18.0,
                                         letterSpacing: 0.0,
                                       ),
@@ -593,7 +593,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w300,
                                       ),
@@ -634,7 +634,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: const Color(0xFFDBE2E7),
                                       letterSpacing: 0.0,
                                     ),
@@ -682,7 +682,7 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle:
                         FlutterFlowTheme.of(context).titleMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               color: Colors.white,
                               letterSpacing: 0.0,
                             ),

@@ -82,7 +82,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
           title: Text(
             'Chi tiết kết quả ',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
                   fontSize: 20.0,
                   letterSpacing: 0.0,
@@ -116,7 +116,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                           ),
@@ -131,7 +131,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
@@ -164,7 +164,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
                                           letterSpacing: 0.0,
@@ -176,7 +176,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryText,
                                           fontSize: 13.0,
@@ -233,7 +233,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 fontSize: 16.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
@@ -246,7 +246,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   fontSize: 16.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
@@ -289,7 +289,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                         context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -342,7 +342,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -587,7 +587,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -695,7 +695,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                               .labelMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),

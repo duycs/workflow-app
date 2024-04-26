@@ -61,7 +61,7 @@ class _WaitActionTypeImageWidgetState extends State<WaitActionTypeImageWidget> {
               iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
               color: FlutterFlowTheme.of(context).alternate,
               textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                    fontFamily: 'Readex Pro',
+                    fontFamily: 'Nunito Sans',
                     color: FlutterFlowTheme.of(context).secondaryText,
                     fontSize: 14.0,
                     letterSpacing: 0.0,

@@ -97,7 +97,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .headlineMedium
                                       .override(
-                                        fontFamily: 'Outfit',
+                                        fontFamily: 'Nunito Sans',
                                         fontSize: 20.0,
                                         letterSpacing: 0.0,
                                       ),
@@ -129,7 +129,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -144,7 +144,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -158,7 +158,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -199,7 +199,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                                 textStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 hintText: 'Vui lòng chọn kiểu câu hỏi!',
@@ -235,7 +235,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -277,7 +277,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                                                         context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       color: dataListViewItem
                                                                   .answersId
                                                                   .correct ==

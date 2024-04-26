@@ -183,7 +183,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         fontSize: 18.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.normal,
@@ -235,7 +235,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                                 textStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 hintText: 'Vui lòng chọn lĩnh vực',
@@ -282,7 +282,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               hintText: 'Vui lòng chọn bộ phận',
@@ -335,7 +335,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
                                     fontSize: 14.0,
@@ -421,7 +421,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     color: Colors.white,
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,

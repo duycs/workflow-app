@@ -184,7 +184,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .headlineMedium
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Nunito Sans',
                                           fontSize: 20.0,
                                           letterSpacing: 0.0,
                                         ),
@@ -229,7 +229,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                   ),
                                           hintText: 'Tìm kiếm lĩnh vực...',
@@ -237,7 +237,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: OutlineInputBorder(
@@ -308,7 +308,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
@@ -422,7 +422,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
@@ -547,7 +547,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -601,7 +601,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
                                         letterSpacing: 0.0,
@@ -652,7 +652,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: Colors.white,
                                       letterSpacing: 0.0,
                                     ),

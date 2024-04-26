@@ -79,7 +79,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
             'Tạo công việc',
             textAlign: TextAlign.start,
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
                   letterSpacing: 0.0,
                   lineHeight: 1.2,
@@ -178,7 +178,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodySmall
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -239,14 +239,14 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       letterSpacing: 0.0,
                                                     ),
                                             hintStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       letterSpacing: 0.0,
                                                     ),
                                             enabledBorder: InputBorder.none,
@@ -258,7 +258,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                               ),
                                           validator: _model
@@ -287,7 +287,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -322,13 +322,13 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -339,7 +339,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController2Validator
@@ -381,13 +381,13 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -398,7 +398,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController3Validator
@@ -439,13 +439,13 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -456,7 +456,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController4Validator
@@ -497,13 +497,13 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -514,7 +514,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController5Validator
@@ -555,13 +555,13 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -572,7 +572,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController6Validator
@@ -624,7 +624,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .override(
-                                              fontFamily: 'Outfit',
+                                              fontFamily: 'Nunito Sans',
                                               fontSize: 20.0,
                                               letterSpacing: 0.0,
                                             ),
@@ -669,7 +669,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .labelLarge
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               fontSize: 18.0,
                                               letterSpacing: 0.0,
                                             ),
@@ -708,7 +708,7 @@ class _TaoCongViecMoiNhapWidgetState extends State<TaoCongViecMoiNhapWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .labelLarge
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               fontSize: 18.0,
                                               letterSpacing: 0.0,
                                             ),

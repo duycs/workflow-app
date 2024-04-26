@@ -170,7 +170,7 @@ class _ChiTietTienDoCongViecWidgetState
           title: Text(
             'Chi tiết tiến độ công việc',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
@@ -198,7 +198,7 @@ class _ChiTietTienDoCongViecWidgetState
                         'Đơn hàng: DH00031',
                         style:
                             FlutterFlowTheme.of(context).headlineSmall.override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                       ).animateOnPageLoad(
@@ -212,7 +212,7 @@ class _ChiTietTienDoCongViecWidgetState
                             style: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                           ),
@@ -221,7 +221,7 @@ class _ChiTietTienDoCongViecWidgetState
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -254,7 +254,7 @@ class _ChiTietTienDoCongViecWidgetState
                                       style: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -287,7 +287,7 @@ class _ChiTietTienDoCongViecWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
                                         letterSpacing: 0.0,
@@ -307,7 +307,7 @@ class _ChiTietTienDoCongViecWidgetState
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                           ),
@@ -320,7 +320,7 @@ class _ChiTietTienDoCongViecWidgetState
                           'Không có mô tả',
                           style:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                         ).animateOnPageLoad(
@@ -341,7 +341,7 @@ class _ChiTietTienDoCongViecWidgetState
                             style: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                           ),
@@ -352,7 +352,7 @@ class _ChiTietTienDoCongViecWidgetState
                               style: FlutterFlowTheme.of(context)
                                   .displaySmall
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
                                     fontSize: 20.0,
@@ -373,7 +373,7 @@ class _ChiTietTienDoCongViecWidgetState
                             style: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                           ),
@@ -383,7 +383,7 @@ class _ChiTietTienDoCongViecWidgetState
                               style: FlutterFlowTheme.of(context)
                                   .displaySmall
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context).primary,
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
@@ -413,7 +413,7 @@ class _ChiTietTienDoCongViecWidgetState
                             '7/10',
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                           ),
@@ -456,7 +456,7 @@ class _ChiTietTienDoCongViecWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
                                         fontSize: 12.0,
@@ -495,7 +495,7 @@ class _ChiTietTienDoCongViecWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
                                         fontSize: 12.0,
@@ -528,7 +528,7 @@ class _ChiTietTienDoCongViecWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
                                         fontSize: 12.0,
@@ -567,7 +567,7 @@ class _ChiTietTienDoCongViecWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
                                         fontSize: 12.0,
@@ -600,7 +600,7 @@ class _ChiTietTienDoCongViecWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
                                         fontSize: 12.0,
@@ -639,7 +639,7 @@ class _ChiTietTienDoCongViecWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
                                         fontSize: 12.0,
@@ -678,7 +678,7 @@ class _ChiTietTienDoCongViecWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
                                         fontSize: 12.0,
@@ -704,7 +704,7 @@ class _ChiTietTienDoCongViecWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryText,
                                         fontSize: 12.0,
@@ -729,7 +729,7 @@ class _ChiTietTienDoCongViecWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryText,
                                         fontSize: 12.0,
@@ -760,7 +760,7 @@ class _ChiTietTienDoCongViecWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryText,
                                         fontSize: 12.0,

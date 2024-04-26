@@ -61,7 +61,7 @@ class _WaitActionTypeApproveWidgetState
               iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
               color: FlutterFlowTheme.of(context).secondaryBackground,
               textStyle: FlutterFlowTheme.of(context).labelLarge.override(
-                    fontFamily: 'Readex Pro',
+                    fontFamily: 'Nunito Sans',
                     color: FlutterFlowTheme.of(context).secondaryText,
                     fontSize: 14.0,
                     letterSpacing: 0.0,

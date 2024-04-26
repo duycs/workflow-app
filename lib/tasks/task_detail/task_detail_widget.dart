@@ -114,7 +114,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
           title: Text(
             'Chi tiết công việc',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
                   fontSize: 20.0,
                   letterSpacing: 0.0,
@@ -153,7 +153,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -168,7 +168,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -193,7 +193,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -210,7 +210,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -249,7 +249,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
                                             letterSpacing: 0.0,
@@ -260,7 +260,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             fontSize: 13.0,
@@ -298,7 +298,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -351,7 +351,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 fontSize: 14.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
@@ -364,7 +364,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   fontSize: 14.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
@@ -428,7 +428,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           color: () {
                                                             if (dataListItem
                                                                     .status ==
@@ -502,7 +502,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -557,7 +557,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -592,7 +592,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -604,7 +604,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w500,
                                                   ),
@@ -639,7 +639,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -652,7 +652,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w500,
                                                   ),
@@ -687,7 +687,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -706,7 +706,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w500,
                                                   ),
@@ -741,7 +741,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -760,7 +760,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w500,
                                                   ),
@@ -808,7 +808,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -828,7 +828,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .labelMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
@@ -841,7 +841,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -862,7 +862,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   fontSize: 14.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
@@ -1274,7 +1274,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                   .titleSmall
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .secondaryText,
@@ -1468,7 +1468,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                           .bodyMedium
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Readex Pro',
+                                                                                'Nunito Sans',
                                                                             letterSpacing:
                                                                                 0.0,
                                                                           ),
@@ -1701,84 +1701,82 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                 .first
                                                                 .operationsId
                                                                 .files.isNotEmpty))
-                                                      Expanded(
-                                                        child: FFButtonWidget(
-                                                          onPressed: () async {
-                                                            _model.downloadToken =
-                                                                await action_blocks
-                                                                    .tokenReload(
-                                                                        context);
-                                                            if (_model
-                                                                .downloadToken!) {
-                                                              await actions
-                                                                  .downloadFile(
-                                                                '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                dataListItem
-                                                                    .name,
-                                                                dataListItem
-                                                                    .operations
-                                                                    .first
-                                                                    .operationsId
-                                                                    .files
-                                                                    .first
-                                                                    .directusFilesId
-                                                                    .filenameDownload,
-                                                              );
-                                                            } else {
-                                                              setState(() {});
-                                                            }
-
+                                                      FFButtonWidget(
+                                                        onPressed: () async {
+                                                          _model.downloadToken =
+                                                              await action_blocks
+                                                                  .tokenReload(
+                                                                      context);
+                                                          if (_model
+                                                              .downloadToken!) {
+                                                            await actions
+                                                                .downloadFile(
+                                                              '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                              dataListItem.name,
+                                                              dataListItem
+                                                                  .operations
+                                                                  .first
+                                                                  .operationsId
+                                                                  .files
+                                                                  .first
+                                                                  .directusFilesId
+                                                                  .filenameDownload,
+                                                            );
+                                                          } else {
                                                             setState(() {});
-                                                          },
-                                                          text: 'Tải tài liệu',
-                                                          icon: const Icon(
-                                                            Icons
-                                                                .download_rounded,
-                                                            size: 20.0,
-                                                          ),
-                                                          options:
-                                                              FFButtonOptions(
-                                                            height: 40.0,
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
+                                                          }
+
+                                                          setState(() {});
+                                                        },
+                                                        text: 'Tải tài liệu',
+                                                        icon: const Icon(
+                                                          Icons
+                                                              .download_rounded,
+                                                          size: 20.0,
+                                                        ),
+                                                        options:
+                                                            FFButtonOptions(
+                                                          width: 140.0,
+                                                          height: 40.0,
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          iconPadding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .alternate,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelLarge
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    fontSize:
+                                                                        13.0,
+                                                                    letterSpacing:
                                                                         0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            iconPadding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
+                                                                  ),
+                                                          borderSide:
+                                                              BorderSide(
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .alternate,
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelLarge
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      fontSize:
-                                                                          13.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .alternate,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
                                                           ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
                                                         ),
                                                       ),
                                                   ].divide(

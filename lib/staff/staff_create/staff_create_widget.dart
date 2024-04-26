@@ -185,7 +185,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
         title: Text(
           'Tạo mới nhân viên',
           style: FlutterFlowTheme.of(context).headlineMedium.override(
-                fontFamily: 'Outfit',
+                fontFamily: 'Nunito Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
                 fontSize: 20.0,
                 letterSpacing: 0.0,
@@ -348,7 +348,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                   style: FlutterFlowTheme.of(context)
                                       .labelLarge
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -381,7 +381,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .bodyLarge
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             fontSize: 14.0,
                                             letterSpacing: 0.0,
                                           ),
@@ -389,7 +389,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w300,
                                           ),
@@ -439,7 +439,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .labelSmall
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
@@ -493,7 +493,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                 FlutterFlowTheme.of(context)
                                                     .bodyLarge
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       fontSize: 14.0,
                                                       letterSpacing: 0.0,
                                                     ),
@@ -502,7 +502,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w300,
@@ -559,7 +559,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                           style: FlutterFlowTheme.of(context)
                                               .labelSmall
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.normal,
                                               ),
@@ -580,7 +580,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .error,
@@ -607,7 +607,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .bodyLarge
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             fontSize: 14.0,
                                             letterSpacing: 0.0,
                                           ),
@@ -615,7 +615,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w300,
                                           ),
@@ -665,7 +665,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .labelSmall
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
@@ -689,7 +689,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .bodyLarge
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             fontSize: 14.0,
                                             letterSpacing: 0.0,
                                           ),
@@ -697,7 +697,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w300,
                                           ),
@@ -747,7 +747,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .labelSmall
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
@@ -798,7 +798,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                           .headlineLarge
                                                           .override(
                                                             fontFamily:
-                                                                'Outfit',
+                                                                'Nunito Sans',
                                                             fontSize: 32.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
@@ -867,7 +867,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -885,7 +885,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .error,
@@ -905,7 +905,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           fontSize: 12.0,
                                           letterSpacing: 0.0,
                                         ),
@@ -924,14 +924,14 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                     textStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     selectedTextStyle:
                                         FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                     buttonPosition: RadioButtonPosition.left,
@@ -1060,7 +1060,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                   context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryText,
@@ -1100,7 +1100,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .error,
@@ -1194,14 +1194,14 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       letterSpacing: 0.0,
                                                     ),
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -1245,7 +1245,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .error,
@@ -1303,14 +1303,14 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       letterSpacing: 0.0,
                                                     ),
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -1354,7 +1354,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .error,
@@ -1380,7 +1380,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                           fontStyle: FontStyle.italic,
                                         ),
@@ -1390,7 +1390,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -1402,7 +1402,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -1422,7 +1422,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -1463,7 +1463,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                   style: FlutterFlowTheme.of(context)
                                       .labelLarge
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -1516,7 +1516,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -2192,7 +2192,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleMedium.override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: Colors.white,
                                   letterSpacing: 0.0,
                                 ),

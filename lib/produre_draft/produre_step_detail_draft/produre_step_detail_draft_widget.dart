@@ -114,7 +114,7 @@ class _ProdureStepDetailDraftWidgetState
             'Chi tiết bước',
             textAlign: TextAlign.start,
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: Colors.white,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
@@ -165,7 +165,7 @@ class _ProdureStepDetailDraftWidgetState
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
                                             letterSpacing: 0.0,
@@ -173,7 +173,7 @@ class _ProdureStepDetailDraftWidgetState
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
                                             letterSpacing: 0.0,
@@ -218,7 +218,7 @@ class _ProdureStepDetailDraftWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                           letterSpacing: 0.0,
@@ -345,7 +345,7 @@ class _ProdureStepDetailDraftWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodySmall
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -400,13 +400,13 @@ class _ProdureStepDetailDraftWidgetState
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -417,7 +417,7 @@ class _ProdureStepDetailDraftWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController2Validator
@@ -458,13 +458,13 @@ class _ProdureStepDetailDraftWidgetState
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -475,7 +475,7 @@ class _ProdureStepDetailDraftWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController3Validator
@@ -516,13 +516,13 @@ class _ProdureStepDetailDraftWidgetState
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -533,7 +533,7 @@ class _ProdureStepDetailDraftWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController4Validator
@@ -574,13 +574,13 @@ class _ProdureStepDetailDraftWidgetState
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -591,7 +591,7 @@ class _ProdureStepDetailDraftWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController5Validator
@@ -635,7 +635,7 @@ class _ProdureStepDetailDraftWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                           lineHeight: 1.5,
                                         ),
@@ -645,7 +645,7 @@ class _ProdureStepDetailDraftWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                           fontStyle: FontStyle.italic,
                                         ),
@@ -680,7 +680,7 @@ class _ProdureStepDetailDraftWidgetState
                             labelStyle: FlutterFlowTheme.of(context)
                                 .titleMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                             unselectedLabelStyle: const TextStyle(),
@@ -764,7 +764,8 @@ class _ProdureStepDetailDraftWidgetState
                                                             context)
                                                         .titleLarge
                                                         .override(
-                                                          fontFamily: 'Outfit',
+                                                          fontFamily:
+                                                              'Nunito Sans',
                                                           fontSize: 20.0,
                                                           letterSpacing: 0.0,
                                                         ),
@@ -850,7 +851,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                       .bodyLarge
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -859,7 +860,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                       .labelMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -881,7 +882,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                     .bodyLarge
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -974,7 +975,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                       .bodyLarge
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -983,7 +984,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                       .labelMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -1005,7 +1006,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                     .bodyLarge
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -1037,7 +1038,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                           .labelMedium
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Readex Pro',
+                                                                                'Nunito Sans',
                                                                             letterSpacing:
                                                                                 0.0,
                                                                           ),
@@ -1049,7 +1050,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                           .labelMedium
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Readex Pro',
+                                                                                'Nunito Sans',
                                                                             letterSpacing:
                                                                                 0.0,
                                                                           ),
@@ -1215,7 +1216,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                       .bodyLarge
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -1224,7 +1225,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                       .labelMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -1246,7 +1247,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                     .bodyLarge
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -1385,7 +1386,7 @@ class _ProdureStepDetailDraftWidgetState
                                                       .labelLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -1428,7 +1429,7 @@ class _ProdureStepDetailDraftWidgetState
                                                       .labelLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -1479,7 +1480,8 @@ class _ProdureStepDetailDraftWidgetState
                                                             context)
                                                         .titleLarge
                                                         .override(
-                                                          fontFamily: 'Outfit',
+                                                          fontFamily:
+                                                              'Nunito Sans',
                                                           fontSize: 20.0,
                                                           letterSpacing: 0.0,
                                                         ),
@@ -1586,7 +1588,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                     .bodyLarge
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -1595,7 +1597,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -1617,7 +1619,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                   .bodyLarge
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
@@ -1734,7 +1736,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                     .bodyLarge
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -1743,7 +1745,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -1765,7 +1767,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                   .bodyLarge
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
@@ -1797,7 +1799,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                         .labelMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -1809,7 +1811,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                         .labelMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -1973,7 +1975,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                     .bodyLarge
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -1982,7 +1984,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -2004,7 +2006,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                   .bodyLarge
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
@@ -2059,7 +2061,7 @@ class _ProdureStepDetailDraftWidgetState
                                                                       .bodySmall
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -2165,7 +2167,7 @@ class _ProdureStepDetailDraftWidgetState
                                                       .labelLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -2208,7 +2210,7 @@ class _ProdureStepDetailDraftWidgetState
                                                       .labelLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                       ),

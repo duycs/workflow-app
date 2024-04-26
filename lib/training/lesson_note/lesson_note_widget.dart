@@ -94,7 +94,7 @@ class _LessonNoteWidgetState extends State<LessonNoteWidget>
           title: Text(
             'Chi tiết ghi chép',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
@@ -143,7 +143,7 @@ class _LessonNoteWidgetState extends State<LessonNoteWidget>
                                         style: FlutterFlowTheme.of(context)
                                             .headlineMedium
                                             .override(
-                                              fontFamily: 'Outfit',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -209,7 +209,7 @@ class _LessonNoteWidgetState extends State<LessonNoteWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .headlineMedium
                                     .override(
-                                      fontFamily: 'Outfit',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -222,7 +222,7 @@ class _LessonNoteWidgetState extends State<LessonNoteWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .bodySmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -316,7 +316,7 @@ class _LessonNoteWidgetState extends State<LessonNoteWidget>
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -340,7 +340,7 @@ class _LessonNoteWidgetState extends State<LessonNoteWidget>
                                                                   .bodySmall
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),

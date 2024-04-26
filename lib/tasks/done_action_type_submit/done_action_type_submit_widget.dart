@@ -55,12 +55,12 @@ class _DoneActionTypeSubmitWidgetState
         obscureText: false,
         decoration: InputDecoration(
           labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                fontFamily: 'Readex Pro',
+                fontFamily: 'Nunito Sans',
                 letterSpacing: 0.0,
               ),
           hintText: 'Nhập nội dung...',
           hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                fontFamily: 'Readex Pro',
+                fontFamily: 'Nunito Sans',
                 letterSpacing: 0.0,
               ),
           enabledBorder: OutlineInputBorder(
@@ -94,7 +94,7 @@ class _DoneActionTypeSubmitWidgetState
           contentPadding: const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 16.0),
         ),
         style: FlutterFlowTheme.of(context).bodyMedium.override(
-              fontFamily: 'Readex Pro',
+              fontFamily: 'Nunito Sans',
               letterSpacing: 0.0,
             ),
         maxLines: 4,

@@ -66,7 +66,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
         title: Text(
           'Thông tin bộ phận',
           style: FlutterFlowTheme.of(context).headlineMedium.override(
-                fontFamily: 'Outfit',
+                fontFamily: 'Nunito Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
                 fontSize: 20.0,
                 letterSpacing: 0.0,
@@ -127,7 +127,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -158,7 +158,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -200,7 +200,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -231,7 +231,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -273,7 +273,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -304,7 +304,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -346,7 +346,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -377,7 +377,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -419,7 +419,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -447,7 +447,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -499,7 +499,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -562,7 +562,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                   .bodyMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
@@ -577,7 +577,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                   .bodyMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
@@ -625,7 +625,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -664,14 +664,14 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                         textStyle: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                         selectedTextStyle:
                                             FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                         buttonPosition:
@@ -740,7 +740,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle:
                         FlutterFlowTheme.of(context).titleMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               color: Colors.white,
                               fontSize: 16.0,
                               letterSpacing: 0.0,

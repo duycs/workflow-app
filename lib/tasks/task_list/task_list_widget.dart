@@ -165,7 +165,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                 child: Text(
                   'Công việc hôm nay',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Nunito Sans',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 20.0,
                         letterSpacing: 0.0,
@@ -246,14 +246,14 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                   hintText: 'Tìm kiếm...',
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: OutlineInputBorder(
@@ -351,7 +351,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 cursorColor:
@@ -461,7 +461,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
                                       fontSize: 11.0,
@@ -487,7 +487,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: Colors.white,
                                       fontSize: 11.0,
                                       letterSpacing: 0.0,
@@ -526,7 +526,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
                                       fontSize: 11.0,
@@ -608,7 +608,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                             .bodyMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               fontSize: 14.0,
                                                               letterSpacing:
                                                                   0.0,
@@ -626,7 +626,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -792,7 +792,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                         .titleSmall
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryText,
@@ -1084,7 +1084,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                       .titleSmall
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         color: Colors.white,
                                                         fontSize: 12.0,
                                                         letterSpacing: 0.0,
@@ -1167,7 +1167,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primary,
@@ -1223,7 +1223,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             fontSize: 13.0,
                                                             letterSpacing: 0.0,
                                                             fontStyle: FontStyle
@@ -1242,7 +1242,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                             .bodyMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               fontSize: 13.0,
                                                               letterSpacing:
                                                                   0.0,
@@ -1295,7 +1295,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             fontSize: 13.0,
                                                             letterSpacing:
                                                                 0.0,
@@ -1315,7 +1315,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -1361,7 +1361,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                             .bodyMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               fontSize: 13.0,
                                                               letterSpacing:
                                                                   0.0,
@@ -1389,7 +1389,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             fontSize: 13.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
@@ -1436,7 +1436,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                             .bodyMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               fontSize: 13.0,
                                                               letterSpacing:
                                                                   0.0,
@@ -1454,7 +1454,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                           .labelMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .primaryText,
@@ -1504,7 +1504,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                             .bodyMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               fontSize: 13.0,
                                                               letterSpacing:
                                                                   0.0,
@@ -1529,7 +1529,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                 .labelMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primaryText,
@@ -1585,7 +1585,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                             .bodyMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               fontSize: 13.0,
                                                               letterSpacing:
                                                                   0.0,
@@ -1613,7 +1613,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                           .labelMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .primaryText,
@@ -1647,7 +1647,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -1692,7 +1692,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -1731,7 +1731,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                       ),

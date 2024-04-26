@@ -103,7 +103,7 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                     Text(
                       'Bộ lọc',
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily: 'Readex Pro',
+                            fontFamily: 'Nunito Sans',
                             letterSpacing: 0.0,
                           ),
                     ),
@@ -134,17 +134,17 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                       Text(
                         'Kiểu công việc:',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                       ),
                       FlutterFlowChoiceChips(
                         options: const [
-                          ChipData('submit_text'),
-                          ChipData('image'),
-                          ChipData('upload_load'),
-                          ChipData('to_do_list'),
-                          ChipData('approve')
+                          ChipData('Nhập văn bản'),
+                          ChipData('Chụp ảnh'),
+                          ChipData('Upload File'),
+                          ChipData('Check List Công việc'),
+                          ChipData('Phê duyệt')
                         ],
                         onChanged: (val) =>
                             setState(() => _model.typeValue = val?.firstOrNull),
@@ -154,7 +154,7 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                           textStyle: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 letterSpacing: 0.0,
                               ),
@@ -169,7 +169,7 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                           textStyle: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
                                 letterSpacing: 0.0,
@@ -208,7 +208,7 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                       Text(
                         'Ngày xuất bản:',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                       ),
@@ -240,7 +240,7 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                                           FlutterFlowTheme.of(context)
                                               .headlineLarge
                                               .override(
-                                                fontFamily: 'Outfit',
+                                                fontFamily: 'Nunito Sans',
                                                 fontSize: 32.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w600,
@@ -304,7 +304,7 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -336,7 +336,7 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                                           FlutterFlowTheme.of(context)
                                               .headlineLarge
                                               .override(
-                                                fontFamily: 'Outfit',
+                                                fontFamily: 'Nunito Sans',
                                                 fontSize: 32.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w600,
@@ -400,7 +400,7 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -477,7 +477,7 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   letterSpacing: 0.0,
@@ -508,19 +508,20 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                                   FFAppState().staffLogin,
                                   r'''$.organization_id''',
                                 ).toString()}\"}}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"name\":{\"_icontains\":\"${widget.filterSearch}\"}}' : ' '}${_model.dateStart != '' ? ',{\"date_created\":{\"_gte\":\"${_model.dateStart}\"}}' : ' '}${_model.dateEnd != '' ? ',{\"date_created\":{\"_lte\":\"${_model.dateEnd}\"}}' : ' '}${_model.typeValue != null && _model.typeValue != '' ? ',{\"action_type\":{\"_eq\":\"${() {
-                                        if (_model.typeValue == 'Submit Text') {
+                                        if (_model.typeValue ==
+                                            'Nhập văn bản') {
                                           return 'submit_text';
                                         } else if (_model.typeValue ==
                                             'Upload File') {
                                           return 'upload_file';
                                         } else if (_model.typeValue ==
-                                            'Image') {
+                                            'Chụp ảnh') {
                                           return 'image';
                                         } else if (_model.typeValue ==
-                                            'Check List') {
+                                            'Check List Công việc') {
                                           return 'to_do_list';
                                         } else if (_model.typeValue ==
-                                            'Approve') {
+                                            'Phê duyệt') {
                                           return 'approve';
                                         } else {
                                           return ' ';
@@ -557,7 +558,7 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: Colors.white,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,

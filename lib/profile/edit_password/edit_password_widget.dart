@@ -71,7 +71,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
         title: Text(
           'Đổi mật khẩu',
           style: FlutterFlowTheme.of(context).headlineMedium.override(
-                fontFamily: 'Outfit',
+                fontFamily: 'Nunito Sans',
                 fontSize: 20.0,
                 letterSpacing: 0.0,
               ),
@@ -108,12 +108,12 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                           labelText: 'Nhập mật khẩu hiện tại',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
@@ -165,7 +165,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                         validator: _model.passwordTextControllerValidator
@@ -185,12 +185,12 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                           labelText: 'Nhập mật khẩu mới',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
@@ -242,7 +242,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                         validator: _model.newPasswordTextControllerValidator
@@ -278,12 +278,12 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                           labelText: 'Nhập lại mật khẩu mới',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
@@ -335,7 +335,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                         validator: _model.confirmPassTextControllerValidator
@@ -350,7 +350,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                           'Mật khẩu không trùng khớp',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context).error,
                                     fontSize: 12.0,
                                     letterSpacing: 0.0,
@@ -495,7 +495,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                       const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Readex Pro',
+                        fontFamily: 'Nunito Sans',
                         color: Colors.white,
                         letterSpacing: 0.0,
                       ),

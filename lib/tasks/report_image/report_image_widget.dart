@@ -76,7 +76,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
           title: Text(
             'Báo cáo ảnh',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   fontSize: 20.0,
                   letterSpacing: 0.0,
                 ),
@@ -117,13 +117,13 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                         decoration: InputDecoration(
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           hintText: 'Tìm kiếm...',
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
@@ -186,7 +186,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                               : null,
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                         cursorColor: FlutterFlowTheme.of(context).primary,
@@ -363,7 +363,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w500,
                                                   ),
@@ -378,7 +378,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   fontSize: 13.0,
                                                   letterSpacing: 0.0,
                                                 ),
@@ -399,7 +399,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primary,
@@ -495,7 +495,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                       context)
                                                   .labelSmall
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .secondaryText,

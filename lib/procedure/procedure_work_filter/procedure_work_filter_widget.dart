@@ -108,7 +108,7 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
                           'Bộ lọc',
                           style:
                               FlutterFlowTheme.of(context).bodyLarge.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     fontSize: 18.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
@@ -133,7 +133,7 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
                     Text(
                       'Thời gian tạo quy trình',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
+                            fontFamily: 'Nunito Sans',
                             letterSpacing: 0.0,
                           ),
                     ),
@@ -165,7 +165,7 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
                                         FlutterFlowTheme.of(context)
                                             .headlineLarge
                                             .override(
-                                              fontFamily: 'Outfit',
+                                              fontFamily: 'Nunito Sans',
                                               fontSize: 32.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w600,
@@ -225,7 +225,7 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -257,7 +257,7 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
                                         FlutterFlowTheme.of(context)
                                             .headlineLarge
                                             .override(
-                                              fontFamily: 'Outfit',
+                                              fontFamily: 'Nunito Sans',
                                               fontSize: 32.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w600,
@@ -317,7 +317,7 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -343,7 +343,7 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -384,12 +384,12 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
                           labelText: 'Tên chương trình',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
@@ -422,7 +422,7 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                         validator: _model.nameTextControllerValidator
@@ -462,7 +462,7 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       letterSpacing: 0.0,
@@ -497,7 +497,7 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: Colors.white,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.normal,

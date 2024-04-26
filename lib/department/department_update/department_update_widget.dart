@@ -145,7 +145,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                 child: Text(
                   'Chỉnh sửa bộ phận',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Nunito Sans',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 20.0,
                         letterSpacing: 0.0,
@@ -186,7 +186,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelLarge
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               alignLabelWithHint: false,
@@ -194,7 +194,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               enabledBorder: OutlineInputBorder(
@@ -229,7 +229,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                             validator: _model.nameTextControllerValidator
@@ -268,7 +268,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelLarge
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               alignLabelWithHint: false,
@@ -276,7 +276,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               enabledBorder: OutlineInputBorder(
@@ -315,7 +315,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                             validator: _model.codeTextControllerValidator
@@ -328,7 +328,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: FlutterFlowTheme.of(context).error,
                                   fontSize: 12.0,
                                   letterSpacing: 0.0,
@@ -349,7 +349,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelLarge
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               alignLabelWithHint: false,
@@ -357,7 +357,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               enabledBorder: OutlineInputBorder(
@@ -392,7 +392,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                             validator: _model.descriptionTextControllerValidator
@@ -409,7 +409,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -436,7 +436,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                             hintText: 'Danh sách chi nhánh',
@@ -466,7 +466,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                           ),
@@ -506,7 +506,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                           height: 56.0,
                           textStyle:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           hintText: 'Danh sách chương trình đào tạo',
@@ -566,7 +566,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -578,7 +578,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -719,7 +719,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: const Color(0xFF33BA45),
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Nunito Sans',
                           color: Colors.white,
                           letterSpacing: 0.0,
                         ),

@@ -81,7 +81,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
               Text(
                 'Quản lý nhân sự',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
+                      fontFamily: 'Nunito Sans',
                       color: FlutterFlowTheme.of(context).primaryText,
                       fontSize: 22.0,
                       letterSpacing: 0.0,
@@ -155,7 +155,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .headlineMedium
                                       .override(
-                                        fontFamily: 'Outfit',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -181,7 +181,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -221,7 +221,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -266,7 +266,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -311,7 +311,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -329,7 +329,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -371,7 +371,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -397,7 +397,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                         context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -448,7 +448,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -493,7 +493,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -598,7 +598,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             color: Theme.of(context)
                                                                         .brightness ==
                                                                     Brightness
@@ -687,7 +687,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             color: Theme.of(context)
                                                                         .brightness ==
                                                                     Brightness
@@ -767,7 +767,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -776,7 +776,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -840,7 +840,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -858,13 +858,13 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: OutlineInputBorder(
@@ -907,7 +907,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               cursorColor: FlutterFlowTheme.of(context).primary,
@@ -938,7 +938,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                       textStyle: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .info,
                                             letterSpacing: 0.0,
@@ -959,7 +959,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                       textStyle: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             letterSpacing: 0.0,
@@ -1080,7 +1080,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -1100,7 +1100,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                                 .labelSmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
@@ -1127,7 +1127,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                               .bodySmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryText,
@@ -1187,7 +1187,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                                 .bodySmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -1213,7 +1213,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                               .bodySmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: const Color(
                                                                     0xFF00A907),
                                                                 letterSpacing:
@@ -1252,7 +1252,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -1275,7 +1275,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -1363,7 +1363,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -1383,7 +1383,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                                 .labelSmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
@@ -1410,7 +1410,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                               .bodySmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryText,
@@ -1470,7 +1470,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                                 .bodySmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -1496,7 +1496,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                               .bodySmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: const Color(
                                                                     0xFF00A907),
                                                                 letterSpacing:
@@ -1535,7 +1535,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -1558,7 +1558,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -1646,7 +1646,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -1666,7 +1666,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                                 .labelSmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
@@ -1693,7 +1693,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                               .bodySmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryText,
@@ -1753,7 +1753,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                                 .bodySmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -1779,7 +1779,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                               .bodySmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: const Color(
                                                                     0xFF00A907),
                                                                 letterSpacing:
@@ -1818,7 +1818,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -1841,7 +1841,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -1929,7 +1929,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -1949,7 +1949,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                                 .labelSmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
@@ -1976,7 +1976,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                               .bodySmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryText,
@@ -2036,7 +2036,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                                 .bodySmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -2062,7 +2062,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                               .bodySmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: const Color(
                                                                     0xFF00A907),
                                                                 letterSpacing:
@@ -2101,7 +2101,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -2124,7 +2124,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -2212,7 +2212,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -2232,7 +2232,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                                 .labelSmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
@@ -2259,7 +2259,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                               .bodySmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryText,
@@ -2319,7 +2319,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                                 .bodySmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -2345,7 +2345,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                               .bodySmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: const Color(
                                                                     0xFFFF0000),
                                                                 letterSpacing:
@@ -2384,7 +2384,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -2407,7 +2407,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -2495,7 +2495,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -2515,7 +2515,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                                 .labelSmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
@@ -2542,7 +2542,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                               .bodySmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryText,
@@ -2602,7 +2602,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                                 .bodySmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -2628,7 +2628,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                               .bodySmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: const Color(
                                                                     0xFF00A907),
                                                                 letterSpacing:
@@ -2667,7 +2667,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -2690,7 +2690,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),

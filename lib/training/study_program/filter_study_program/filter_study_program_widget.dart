@@ -104,7 +104,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                     Text(
                       'Bộ lọc',
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily: 'Readex Pro',
+                            fontFamily: 'Nunito Sans',
                             letterSpacing: 0.0,
                           ),
                     ),
@@ -135,7 +135,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                           'Khoảng thời tạo bài học :',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -171,7 +171,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                                 headerTextStyle: FlutterFlowTheme.of(context)
                                     .headlineLarge
                                     .override(
-                                      fontFamily: 'Outfit',
+                                      fontFamily: 'Nunito Sans',
                                       fontSize: 32.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
@@ -227,7 +227,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -258,7 +258,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                                 headerTextStyle: FlutterFlowTheme.of(context)
                                     .headlineLarge
                                     .override(
-                                      fontFamily: 'Outfit',
+                                      fontFamily: 'Nunito Sans',
                                       fontSize: 32.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
@@ -314,7 +314,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -335,12 +335,12 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                       labelText: 'Nhập tên bài học',
                       labelStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 letterSpacing: 0.0,
                               ),
                       hintStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 letterSpacing: 0.0,
                               ),
                       enabledBorder: OutlineInputBorder(
@@ -373,7 +373,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                       ),
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,
                         ),
                     validator: _model.lessionsTextControllerValidator
@@ -391,12 +391,12 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                       labelText: 'Nhập tên chương trình',
                       labelStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 letterSpacing: 0.0,
                               ),
                       hintStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 letterSpacing: 0.0,
                               ),
                       enabledBorder: OutlineInputBorder(
@@ -429,7 +429,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                       ),
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,
                         ),
                     validator:
@@ -469,7 +469,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   letterSpacing: 0.0,
@@ -505,7 +505,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: Colors.white,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,

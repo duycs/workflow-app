@@ -175,7 +175,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
           title: Text(
             'Bộ câu hỏi bài thi',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
                   fontSize: 20.0,
                   letterSpacing: 0.0,
@@ -223,7 +223,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                             labelStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                             enabledBorder: OutlineInputBorder(
@@ -287,7 +287,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           maxLines: null,
@@ -368,7 +368,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                   Text(
                     '#Kết quả hiển thị theo bộ lọc',
                     style: FlutterFlowTheme.of(context).labelMedium.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Nunito Sans',
                           fontSize: 13.0,
                           letterSpacing: 0.0,
                           fontStyle: FontStyle.italic,
@@ -409,7 +409,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -433,7 +433,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -464,7 +464,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                                         context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -507,7 +507,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                                           .labelSmall
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             fontSize: 13.0,
                                                             letterSpacing: 0.0,
                                                           ),
@@ -528,7 +528,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             color: detailViewItem.status ==
                                                                     'published'
                                                                 ? FlutterFlowTheme.of(

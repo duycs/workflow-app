@@ -95,7 +95,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                     Text(
                       'Bộ lọc',
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily: 'Readex Pro',
+                            fontFamily: 'Nunito Sans',
                             letterSpacing: 0.0,
                           ),
                     ),
@@ -148,7 +148,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                                   headerTextStyle: FlutterFlowTheme.of(context)
                                       .headlineLarge
                                       .override(
-                                        fontFamily: 'Outfit',
+                                        fontFamily: 'Nunito Sans',
                                         fontSize: 32.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
@@ -205,7 +205,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -234,7 +234,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                                   headerTextStyle: FlutterFlowTheme.of(context)
                                       .headlineLarge
                                       .override(
-                                        fontFamily: 'Outfit',
+                                        fontFamily: 'Nunito Sans',
                                         fontSize: 32.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
@@ -291,7 +291,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -327,7 +327,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                     width: double.infinity,
                     height: 50.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,
                         ),
                     hintText: 'Trạng thái hoạt động',
@@ -365,7 +365,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                   width: double.infinity,
                   height: 50.0,
                   textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
+                        fontFamily: 'Nunito Sans',
                         letterSpacing: 0.0,
                       ),
                   hintText: 'Chương trình đào tạo',
@@ -419,7 +419,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   letterSpacing: 0.0,
@@ -481,7 +481,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: Colors.white,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,

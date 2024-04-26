@@ -107,7 +107,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                     Text(
                       'Thông tin bài thi',
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily: 'Readex Pro',
+                            fontFamily: 'Nunito Sans',
                             letterSpacing: 0.0,
                           ),
                     ),
@@ -144,7 +144,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyLarge
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
@@ -165,7 +165,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       fontSize: 14.0,
@@ -177,7 +177,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -200,7 +200,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       fontSize: 14.0,
@@ -214,7 +214,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                             maxLines: 10,
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -245,7 +245,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
                                         letterSpacing: 0.0,
@@ -303,7 +303,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         color: Colors.white,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.normal,

@@ -60,11 +60,11 @@ class _LongTextDoTestWidgetState extends State<LongTextDoTestWidget> {
           obscureText: false,
           decoration: InputDecoration(
             labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                  fontFamily: 'Readex Pro',
+                  fontFamily: 'Nunito Sans',
                   letterSpacing: 0.0,
                 ),
             hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                  fontFamily: 'Readex Pro',
+                  fontFamily: 'Nunito Sans',
                   letterSpacing: 0.0,
                 ),
             enabledBorder: OutlineInputBorder(
@@ -97,7 +97,7 @@ class _LongTextDoTestWidgetState extends State<LongTextDoTestWidget> {
             ),
           ),
           style: FlutterFlowTheme.of(context).bodyMedium.override(
-                fontFamily: 'Readex Pro',
+                fontFamily: 'Nunito Sans',
                 letterSpacing: 0.0,
               ),
           maxLines: 3,
@@ -109,7 +109,7 @@ class _LongTextDoTestWidgetState extends State<LongTextDoTestWidget> {
             child: Text(
               'Đáp án đúng: ${widget.questionAnswer}',
               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Readex Pro',
+                    fontFamily: 'Nunito Sans',
                     color: FlutterFlowTheme.of(context).error,
                     letterSpacing: 0.0,
                     fontStyle: FontStyle.italic,

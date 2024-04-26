@@ -55,12 +55,12 @@ class _TestLongTextAddWidgetState extends State<TestLongTextAddWidget> {
       obscureText: false,
       decoration: InputDecoration(
         labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-              fontFamily: 'Readex Pro',
+              fontFamily: 'Nunito Sans',
               color: FlutterFlowTheme.of(context).primaryText,
               letterSpacing: 0.0,
             ),
         hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-              fontFamily: 'Readex Pro',
+              fontFamily: 'Nunito Sans',
               letterSpacing: 0.0,
             ),
         enabledBorder: UnderlineInputBorder(
@@ -94,7 +94,7 @@ class _TestLongTextAddWidgetState extends State<TestLongTextAddWidget> {
         contentPadding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
       ),
       style: FlutterFlowTheme.of(context).bodyMedium.override(
-            fontFamily: 'Readex Pro',
+            fontFamily: 'Nunito Sans',
             letterSpacing: 0.0,
           ),
       validator: _model.textControllerValidator.asValidator(context),

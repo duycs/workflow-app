@@ -79,7 +79,7 @@ class _StudyProgramListUserWidgetState
               Text(
                 'Chương trình đào tạo',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
+                      fontFamily: 'Nunito Sans',
                       color: FlutterFlowTheme.of(context).primaryText,
                       fontSize: 20.0,
                       letterSpacing: 0.0,
@@ -130,13 +130,13 @@ class _StudyProgramListUserWidgetState
                             labelStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                             hintStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                             enabledBorder: OutlineInputBorder(
@@ -207,7 +207,7 @@ class _StudyProgramListUserWidgetState
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
@@ -349,7 +349,7 @@ class _StudyProgramListUserWidgetState
                                             style: FlutterFlowTheme.of(context)
                                                 .titleSmall
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryText,
@@ -395,7 +395,7 @@ class _StudyProgramListUserWidgetState
                                                       .bodySmall
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -486,7 +486,7 @@ class _StudyProgramListUserWidgetState
                                                                 .titleSmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primaryText,
@@ -514,7 +514,7 @@ class _StudyProgramListUserWidgetState
                                                                 .bodySmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primaryText,
@@ -563,7 +563,7 @@ class _StudyProgramListUserWidgetState
                                                                 .titleSmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: Colors
                                                                       .white,
                                                                   letterSpacing:
@@ -697,7 +697,7 @@ class _StudyProgramListUserWidgetState
                                                                       .titleSmall
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .primaryText,
                                                                         fontSize:
@@ -731,7 +731,7 @@ class _StudyProgramListUserWidgetState
                                                                       .bodySmall
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .primaryText,
                                                                         fontSize:
@@ -777,7 +777,7 @@ class _StudyProgramListUserWidgetState
                                                                     .titleSmall
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       color: Colors
                                                                           .white,
                                                                       letterSpacing:

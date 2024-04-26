@@ -190,7 +190,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
         title: Text(
           'Chỉnh sửa thông tin',
           style: FlutterFlowTheme.of(context).headlineMedium.override(
-                fontFamily: 'Outfit',
+                fontFamily: 'Nunito Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
                 fontSize: 20.0,
                 letterSpacing: 0.0,
@@ -427,7 +427,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .labelLarge
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -456,7 +456,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -464,7 +464,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w300,
                                     ),
@@ -506,7 +506,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               style: FlutterFlowTheme.of(context)
                                   .labelSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
@@ -527,7 +527,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         fontSize: 14.0,
                                         letterSpacing: 0.0,
                                       ),
@@ -535,7 +535,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w300,
                                       ),
@@ -579,7 +579,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .labelSmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.normal,
                                     ),
@@ -601,7 +601,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -609,7 +609,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w300,
                                     ),
@@ -651,7 +651,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               style: FlutterFlowTheme.of(context)
                                   .labelSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
@@ -673,7 +673,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -681,7 +681,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w300,
                                     ),
@@ -723,7 +723,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               style: FlutterFlowTheme.of(context)
                                   .labelSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
@@ -758,7 +758,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                           FlutterFlowTheme.of(context)
                                               .headlineLarge
                                               .override(
-                                                fontFamily: 'Outfit',
+                                                fontFamily: 'Nunito Sans',
                                                 fontSize: 32.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w600,
@@ -816,7 +816,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -832,7 +832,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               style: FlutterFlowTheme.of(context)
                                   .bodyLarge
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     fontSize: 12.0,
                                     letterSpacing: 0.0,
                                   ),
@@ -856,13 +856,13 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               textStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               selectedTextStyle: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               buttonPosition: RadioButtonPosition.left,
@@ -969,7 +969,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 textStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
                                       letterSpacing: 0.0,
@@ -1018,28 +1018,6 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     .toList(),
                                 onChanged: (val) async {
                                   setState(() => _model.branchValue = val);
-                                  var confirmDialogResponse = await showDialog<
-                                          bool>(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: Text(_model.branchValue!),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, false),
-                                                child: const Text('Cancel'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, true),
-                                                child: const Text('Confirm'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ) ??
-                                      false;
                                   _model.listDeparment2Token =
                                       await action_blocks.tokenReload(context);
                                   if (_model.listDeparment2Token!) {
@@ -1074,17 +1052,19 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 },
                                 width: double.infinity,
                                 height: 56.0,
-                                searchHintTextStyle: const TextStyle(),
+                                searchHintTextStyle: const TextStyle(
+                                  height: 20.0,
+                                ),
                                 searchTextStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
                                       letterSpacing: 0.0,
@@ -1146,13 +1126,13 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 searchTextStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
                                       letterSpacing: 0.0,
@@ -1205,7 +1185,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .labelLarge
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -1262,7 +1242,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -1565,7 +1545,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle:
                         FlutterFlowTheme.of(context).titleMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               color: Colors.white,
                               letterSpacing: 0.0,
                             ),

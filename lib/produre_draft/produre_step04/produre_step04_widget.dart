@@ -66,7 +66,7 @@ class _ProdureStep04WidgetState extends State<ProdureStep04Widget> {
             Text(
               'Tạo mới quy trình',
               style: FlutterFlowTheme.of(context).titleSmall.override(
-                    fontFamily: 'Readex Pro',
+                    fontFamily: 'Nunito Sans',
                     letterSpacing: 0.0,
                   ),
             ),
@@ -81,7 +81,7 @@ class _ProdureStep04WidgetState extends State<ProdureStep04Widget> {
                 iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).primary,
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Readex Pro',
+                      fontFamily: 'Nunito Sans',
                       letterSpacing: 0.0,
                     ),
                 borderSide: const BorderSide(
@@ -229,7 +229,7 @@ class _ProdureStep04WidgetState extends State<ProdureStep04Widget> {
                                                                 .labelLarge
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -239,7 +239,7 @@ class _ProdureStep04WidgetState extends State<ProdureStep04Widget> {
                                                                 .labelMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -305,7 +305,7 @@ class _ProdureStep04WidgetState extends State<ProdureStep04Widget> {
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                       validator: _model
@@ -336,7 +336,7 @@ class _ProdureStep04WidgetState extends State<ProdureStep04Widget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                               enabledBorder: OutlineInputBorder(
@@ -388,7 +388,7 @@ class _ProdureStep04WidgetState extends State<ProdureStep04Widget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                             validator: _model
@@ -418,7 +418,7 @@ class _ProdureStep04WidgetState extends State<ProdureStep04Widget> {
                           style: FlutterFlowTheme.of(context)
                               .headlineMedium
                               .override(
-                                fontFamily: 'Outfit',
+                                fontFamily: 'Nunito Sans',
                                 letterSpacing: 0.0,
                               ),
                         ),
@@ -492,7 +492,7 @@ class _ProdureStep04WidgetState extends State<ProdureStep04Widget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -597,7 +597,7 @@ class _ProdureStep04WidgetState extends State<ProdureStep04Widget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -655,7 +655,7 @@ class _ProdureStep04WidgetState extends State<ProdureStep04Widget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -713,7 +713,7 @@ class _ProdureStep04WidgetState extends State<ProdureStep04Widget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -790,7 +790,7 @@ class _ProdureStep04WidgetState extends State<ProdureStep04Widget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -828,7 +828,7 @@ class _ProdureStep04WidgetState extends State<ProdureStep04Widget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -866,7 +866,7 @@ class _ProdureStep04WidgetState extends State<ProdureStep04Widget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -904,7 +904,7 @@ class _ProdureStep04WidgetState extends State<ProdureStep04Widget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -931,7 +931,7 @@ class _ProdureStep04WidgetState extends State<ProdureStep04Widget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -957,7 +957,7 @@ class _ProdureStep04WidgetState extends State<ProdureStep04Widget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),

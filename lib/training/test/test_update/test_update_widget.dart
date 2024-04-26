@@ -118,7 +118,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
               Text(
                 'Chỉnh sửa bài test',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
+                      fontFamily: 'Nunito Sans',
                       color: FlutterFlowTheme.of(context).primaryText,
                       fontSize: 20.0,
                       letterSpacing: 0.0,
@@ -221,7 +221,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryText,
                                         fontSize: 13.0,
@@ -252,7 +252,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelLarge
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 alignLabelWithHint: false,
@@ -260,7 +260,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: OutlineInputBorder(
@@ -296,7 +296,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               validator: _model.textController1Validator
@@ -316,7 +316,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelLarge
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 alignLabelWithHint: false,
@@ -324,7 +324,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: OutlineInputBorder(
@@ -360,7 +360,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               keyboardType: TextInputType.number,
@@ -380,14 +380,14 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 hintText: ' ',
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelLarge
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: OutlineInputBorder(
@@ -423,7 +423,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyLarge
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               maxLines: 5,
@@ -442,7 +442,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -460,13 +460,13 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: UnderlineInputBorder(
@@ -509,7 +509,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     keyboardType: TextInputType.number,
@@ -524,7 +524,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -602,7 +602,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -616,7 +616,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -819,7 +819,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
                                   fontSize: 13.0,
@@ -974,7 +974,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: Colors.white,
                                   letterSpacing: 0.0,
                                 ),

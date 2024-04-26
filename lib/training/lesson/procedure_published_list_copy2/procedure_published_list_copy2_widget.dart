@@ -91,7 +91,7 @@ class _ProcedurePublishedListCopy2WidgetState
           title: Text(
             'D/sách User thực hiện các công việc',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
                   fontSize: 20.0,
                   letterSpacing: 0.0,
@@ -131,14 +131,14 @@ class _ProcedurePublishedListCopy2WidgetState
                             labelStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                             hintText: 'Tìm kiếm...',
                             hintStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                             enabledBorder: OutlineInputBorder(
@@ -195,7 +195,7 @@ class _ProcedurePublishedListCopy2WidgetState
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           cursorColor: FlutterFlowTheme.of(context).primary,
@@ -228,7 +228,7 @@ class _ProcedurePublishedListCopy2WidgetState
                     child: Text(
                       '#Kết quả hiển thị theo bộ lọc',
                       style: FlutterFlowTheme.of(context).labelMedium.override(
-                            fontFamily: 'Readex Pro',
+                            fontFamily: 'Nunito Sans',
                             color: FlutterFlowTheme.of(context).secondaryText,
                             fontSize: 12.0,
                             letterSpacing: 0.0,
@@ -317,7 +317,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           fontSize: 14.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -331,7 +331,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryText,
@@ -347,7 +347,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                                         context)
                                                     .bodyLarge
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -422,7 +422,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                                                 .bodyLarge
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -434,7 +434,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                                             .labelMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               fontSize: 13.0,
                                                               letterSpacing:
                                                                   0.0,
@@ -455,7 +455,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                                               .labelSmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -483,7 +483,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                                             .bodySmall
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               fontSize: 13.0,
                                                               letterSpacing:
                                                                   0.0,
@@ -496,7 +496,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                                             .bodyMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               color: const Color(
                                                                   0xFFFF0000),
                                                               fontSize: 13.0,
@@ -553,7 +553,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   fontSize:
                                                                       13.0,
                                                                   letterSpacing:

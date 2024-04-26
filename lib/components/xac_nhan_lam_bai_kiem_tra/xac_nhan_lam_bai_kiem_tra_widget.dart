@@ -114,7 +114,7 @@ class _XacNhanLamBaiKiemTraWidgetState
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -139,7 +139,7 @@ class _XacNhanLamBaiKiemTraWidgetState
                                           style: FlutterFlowTheme.of(context)
                                               .labelSmall
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
@@ -152,7 +152,7 @@ class _XacNhanLamBaiKiemTraWidgetState
                                           style: FlutterFlowTheme.of(context)
                                               .labelSmall
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
@@ -199,7 +199,7 @@ class _XacNhanLamBaiKiemTraWidgetState
                       Text(
                         'Tiêu đề bài test',
                         style: FlutterFlowTheme.of(context).titleLarge.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                       ),
@@ -210,7 +210,7 @@ class _XacNhanLamBaiKiemTraWidgetState
                           'Nội dung bài test: ...',
                           style:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                         ),
@@ -239,7 +239,7 @@ class _XacNhanLamBaiKiemTraWidgetState
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 color: Colors.white,
                                 letterSpacing: 0.0,
                               ),

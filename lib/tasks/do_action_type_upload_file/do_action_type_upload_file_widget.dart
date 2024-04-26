@@ -163,7 +163,7 @@ class _DoActionTypeUploadFileWidgetState
                         'Tải tệp',
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
+                            fontFamily: 'Nunito Sans',
                             color: FlutterFlowTheme.of(context).primary,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.w500,
@@ -300,7 +300,7 @@ class _DoActionTypeUploadFileWidgetState
                       const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).alternate,
                   textStyle: FlutterFlowTheme.of(context).labelLarge.override(
-                        fontFamily: 'Readex Pro',
+                        fontFamily: 'Nunito Sans',
                         fontSize: 13.0,
                         letterSpacing: 0.0,
                       ),
@@ -343,7 +343,7 @@ class _DoActionTypeUploadFileWidgetState
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).alternate,
                     textStyle: FlutterFlowTheme.of(context).labelLarge.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Nunito Sans',
                           fontSize: 13.0,
                           letterSpacing: 0.0,
                         ),

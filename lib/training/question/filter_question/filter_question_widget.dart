@@ -101,7 +101,7 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                       Text(
                         'Bộ lọc',
                         style: FlutterFlowTheme.of(context).bodyLarge.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                       ),
@@ -142,7 +142,7 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                         height: 56.0,
                         textStyle:
                             FlutterFlowTheme.of(context).bodyMedium.override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                         hintText: 'Trạng thái',
@@ -186,12 +186,12 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                         labelText: 'Tên câu hỏi',
                         labelStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                         hintStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                         enabledBorder: OutlineInputBorder(
@@ -224,7 +224,7 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                         ),
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
+                            fontFamily: 'Nunito Sans',
                             letterSpacing: 0.0,
                           ),
                       validator: _model.nameTextControllerValidator
@@ -262,7 +262,7 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
                                     letterSpacing: 0.0,
@@ -302,7 +302,7 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,

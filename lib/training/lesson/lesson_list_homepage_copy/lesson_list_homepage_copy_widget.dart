@@ -71,7 +71,7 @@ class _LessonListHomepageCopyWidgetState
           title: Text(
             'Tài liệu đào tạo',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
                   fontSize: 20.0,
                   letterSpacing: 0.0,
@@ -122,7 +122,7 @@ class _LessonListHomepageCopyWidgetState
                             labelStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   fontSize: 18.0,
                                   letterSpacing: 0.0,
                                 ),
@@ -130,7 +130,7 @@ class _LessonListHomepageCopyWidgetState
                             hintStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                             enabledBorder: OutlineInputBorder(
@@ -197,7 +197,7 @@ class _LessonListHomepageCopyWidgetState
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           cursorColor: FlutterFlowTheme.of(context).primary,
@@ -224,7 +224,7 @@ class _LessonListHomepageCopyWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                           letterSpacing: 0.0,
@@ -276,7 +276,7 @@ class _LessonListHomepageCopyWidgetState
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
@@ -308,7 +308,7 @@ class _LessonListHomepageCopyWidgetState
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
                                     fontSize: 10.0,
@@ -441,7 +441,7 @@ class _LessonListHomepageCopyWidgetState
                                                             .bodyLarge
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               fontSize: 13.0,
                                                               letterSpacing:
                                                                   0.0,
@@ -478,7 +478,7 @@ class _LessonListHomepageCopyWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                           letterSpacing: 0.0,
@@ -530,7 +530,7 @@ class _LessonListHomepageCopyWidgetState
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
@@ -562,7 +562,7 @@ class _LessonListHomepageCopyWidgetState
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
                                     fontSize: 10.0,
@@ -695,7 +695,7 @@ class _LessonListHomepageCopyWidgetState
                                                             .bodyLarge
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               fontSize: 13.0,
                                                               letterSpacing:
                                                                   0.0,
@@ -726,7 +726,7 @@ class _LessonListHomepageCopyWidgetState
                             style: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   letterSpacing: 0.0,
@@ -806,7 +806,7 @@ class _LessonListHomepageCopyWidgetState
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primary,
@@ -887,7 +887,7 @@ class _LessonListHomepageCopyWidgetState
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primary,
@@ -978,7 +978,7 @@ class _LessonListHomepageCopyWidgetState
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primary,
@@ -1065,7 +1065,7 @@ class _LessonListHomepageCopyWidgetState
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primary,
@@ -1097,7 +1097,7 @@ class _LessonListHomepageCopyWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                           letterSpacing: 0.0,
@@ -1149,7 +1149,7 @@ class _LessonListHomepageCopyWidgetState
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
@@ -1181,7 +1181,7 @@ class _LessonListHomepageCopyWidgetState
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
                                     fontSize: 10.0,
@@ -1305,7 +1305,7 @@ class _LessonListHomepageCopyWidgetState
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             fontSize: 13.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
@@ -1334,7 +1334,7 @@ class _LessonListHomepageCopyWidgetState
                             style: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   letterSpacing: 0.0,
@@ -1377,7 +1377,7 @@ class _LessonListHomepageCopyWidgetState
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -1418,7 +1418,7 @@ class _LessonListHomepageCopyWidgetState
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -1450,7 +1450,7 @@ class _LessonListHomepageCopyWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -1469,7 +1469,7 @@ class _LessonListHomepageCopyWidgetState
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             fontSize: 10.0,
@@ -1683,7 +1683,7 @@ class _LessonListHomepageCopyWidgetState
                                                                 .bodyLarge
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   fontSize:
                                                                       15.0,
                                                                   letterSpacing:
@@ -1710,7 +1710,7 @@ class _LessonListHomepageCopyWidgetState
                                                                   .bodySmall
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
@@ -1739,7 +1739,7 @@ class _LessonListHomepageCopyWidgetState
                                                                 .bodySmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),

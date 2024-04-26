@@ -103,7 +103,7 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                     Text(
                       'Bộ lọc',
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily: 'Readex Pro',
+                            fontFamily: 'Nunito Sans',
                             letterSpacing: 0.0,
                           ),
                     ),
@@ -134,17 +134,17 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                       Text(
                         'Kiểu công việc:',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                       ),
                       FlutterFlowChoiceChips(
                         options: const [
-                          ChipData('submit_text'),
-                          ChipData('image'),
-                          ChipData('upload_file'),
-                          ChipData('to_do_list'),
-                          ChipData('approve')
+                          ChipData('Nhập văn bản'),
+                          ChipData('Chụp ảnh'),
+                          ChipData('Upload File'),
+                          ChipData('Check List Công việc'),
+                          ChipData('Phê duyệt')
                         ],
                         onChanged: (val) =>
                             setState(() => _model.typeValue = val?.firstOrNull),
@@ -154,7 +154,7 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                           textStyle: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 letterSpacing: 0.0,
                               ),
@@ -169,7 +169,7 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                           textStyle: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
                                 letterSpacing: 0.0,
@@ -208,7 +208,7 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                       Text(
                         'Ngày xuất bản',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                       ),
@@ -240,7 +240,7 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                                           FlutterFlowTheme.of(context)
                                               .headlineLarge
                                               .override(
-                                                fontFamily: 'Outfit',
+                                                fontFamily: 'Nunito Sans',
                                                 fontSize: 32.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w600,
@@ -304,7 +304,7 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -336,7 +336,7 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                                           FlutterFlowTheme.of(context)
                                               .headlineLarge
                                               .override(
-                                                fontFamily: 'Outfit',
+                                                fontFamily: 'Nunito Sans',
                                                 fontSize: 32.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w600,
@@ -400,7 +400,7 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -476,7 +476,7 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   letterSpacing: 0.0,
@@ -517,17 +517,18 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                                     locale: FFLocalizations.of(context)
                                         .languageCode,
                                   )}\"}}' : ' '}${_model.typeValue != null && _model.typeValue != '' ? ',{\"action_type\":{\"_eq\":\"${() {
-                                    if (_model.typeValue == 'Submit Text') {
+                                    if (_model.typeValue == 'Nhập văn bản') {
                                       return 'submit_text';
                                     } else if (_model.typeValue ==
                                         'Upload File') {
                                       return 'upload_file';
-                                    } else if (_model.typeValue == 'Image') {
+                                    } else if (_model.typeValue == 'Chụp ảnh') {
                                       return 'image';
                                     } else if (_model.typeValue ==
-                                        'Check List') {
+                                        'Check List Công việc') {
                                       return 'to_do_list';
-                                    } else if (_model.typeValue == 'Approve') {
+                                    } else if (_model.typeValue ==
+                                        'Phê duyệt') {
                                       return 'approve';
                                     } else {
                                       return ' ';
@@ -563,7 +564,7 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: Colors.white,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,

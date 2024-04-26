@@ -224,7 +224,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                       textStyle: FlutterFlowTheme.of(context)
                           .titleSmall
                           .override(
-                            fontFamily: 'Readex Pro',
+                            fontFamily: 'Nunito Sans',
                             color: FlutterFlowTheme.of(context).secondaryText,
                             fontSize: 14.0,
                             letterSpacing: 0.0,

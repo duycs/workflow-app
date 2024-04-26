@@ -89,7 +89,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
           title: Text(
             'Danh sách bài học',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
                   fontSize: 20.0,
                   letterSpacing: 0.0,
@@ -140,7 +140,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       fontSize: 18.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -148,7 +148,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: OutlineInputBorder(
@@ -211,7 +211,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               cursorColor: FlutterFlowTheme.of(context).primary,
@@ -320,7 +320,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                     Text(
                       '#Kết quả tìm kiếm theo bộ lọc',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
+                            fontFamily: 'Nunito Sans',
                             color: FlutterFlowTheme.of(context).secondaryText,
                             fontSize: 12.0,
                             letterSpacing: 0.0,
@@ -425,7 +425,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           fontSize: 15.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -446,7 +446,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                                           .bodySmall
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -472,7 +472,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                                         .bodySmall
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -514,7 +514,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     fontSize: 18.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
@@ -529,7 +529,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,

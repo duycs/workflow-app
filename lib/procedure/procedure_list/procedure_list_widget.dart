@@ -149,7 +149,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
             'Quản lý quy trình',
             textAlign: TextAlign.start,
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
                   fontSize: 20.0,
                   letterSpacing: 0.0,
@@ -197,14 +197,14 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                             labelStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                             hintText: 'Tìm kiếm...',
                             hintStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                             enabledBorder: OutlineInputBorder(
@@ -268,7 +268,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           cursorColor: FlutterFlowTheme.of(context).primary,
@@ -361,7 +361,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                       '#Kết quả hiển thị theo bộ lọc',
                       textAlign: TextAlign.start,
                       style: FlutterFlowTheme.of(context).labelMedium.override(
-                            fontFamily: 'Readex Pro',
+                            fontFamily: 'Nunito Sans',
                             fontSize: 13.0,
                             letterSpacing: 0.0,
                           ),
@@ -446,7 +446,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                                       .bodyLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -519,7 +519,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryText,
@@ -542,7 +542,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                                         context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -561,7 +561,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),

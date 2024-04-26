@@ -141,7 +141,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -225,7 +225,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               hintText: 'Chọn quy trình',
@@ -279,7 +279,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                             FlutterFlowTheme.of(context)
                                                 .headlineLarge
                                                 .override(
-                                                  fontFamily: 'Outfit',
+                                                  fontFamily: 'Nunito Sans',
                                                   fontSize: 32.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w600,
@@ -344,7 +344,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
@@ -373,7 +373,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context).primary,
                                     letterSpacing: 0.0,
                                   ),
@@ -408,7 +408,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                             FlutterFlowTheme.of(context)
                                                 .headlineLarge
                                                 .override(
-                                                  fontFamily: 'Outfit',
+                                                  fontFamily: 'Nunito Sans',
                                                   fontSize: 32.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w600,
@@ -485,7 +485,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
@@ -515,7 +515,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
@@ -626,7 +626,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                                                       .bodyMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -649,7 +649,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                                                         .bodyMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -734,7 +734,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
                                     letterSpacing: 0.0,
@@ -857,7 +857,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: Colors.white,
                                   letterSpacing: 0.0,
                                 ),

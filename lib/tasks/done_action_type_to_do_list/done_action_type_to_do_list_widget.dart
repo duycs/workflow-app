@@ -60,21 +60,23 @@ class _DoneActionTypeToDoListWidgetState
           child: Checkbox(
             value: _model.checkboxValue ??=
                 widget.listData?.operationsId.status == 'done',
-            onChanged: (newValue) async {
-              setState(() => _model.checkboxValue = newValue!);
-            },
+            onChanged: ('1' == '1')
+                ? null
+                : (newValue) async {
+                    setState(() => _model.checkboxValue = newValue!);
+                  },
             side: BorderSide(
               width: 2,
               color: FlutterFlowTheme.of(context).secondaryText,
             ),
             activeColor: FlutterFlowTheme.of(context).primary,
-            checkColor: FlutterFlowTheme.of(context).info,
+            checkColor: ('1' == '1') ? null : FlutterFlowTheme.of(context).info,
           ),
         ),
         Text(
           widget.listData!.operationsId.content,
           style: FlutterFlowTheme.of(context).bodyMedium.override(
-                fontFamily: 'Readex Pro',
+                fontFamily: 'Nunito Sans',
                 letterSpacing: 0.0,
               ),
         ),

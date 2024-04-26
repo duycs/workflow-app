@@ -113,7 +113,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                     child: Text(
                       'Workflow',
                       style: FlutterFlowTheme.of(context).displaySmall.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Nunito Sans',
                             letterSpacing: 0.0,
                           ),
                     ),
@@ -195,7 +195,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .headlineMedium
                                                 .override(
-                                                  fontFamily: 'Outfit',
+                                                  fontFamily: 'Nunito Sans',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primary,
@@ -212,7 +212,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .headlineMedium
                                           .override(
-                                            fontFamily: 'Outfit',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -225,7 +225,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                         style: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -242,7 +242,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -277,7 +277,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primary,
@@ -338,7 +338,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                                   .labelLarge
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
@@ -412,7 +412,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                                 .bodyLarge
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -453,7 +453,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                         .labelLarge
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                     enabledBorder:
@@ -542,7 +542,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                       .bodyLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                   validator: _model
@@ -607,7 +607,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                                 .labelLarge
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -702,7 +702,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                       validator: _model
@@ -719,7 +719,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .error,
@@ -751,7 +751,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                         .labelLarge
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                     enabledBorder:
@@ -818,7 +818,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                       .bodyLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                   validator: _model
@@ -847,7 +847,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                         .labelLarge
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                     enabledBorder:
@@ -914,7 +914,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                       .bodyLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                   validator: _model
@@ -943,7 +943,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                         .labelLarge
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                     enabledBorder:
@@ -1010,7 +1010,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                       .bodyLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                   keyboardType:
@@ -1042,7 +1042,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                         .labelLarge
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                     enabledBorder:
@@ -1109,7 +1109,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                       .bodyLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                   keyboardType:
@@ -1172,7 +1172,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                                       .headlineLarge
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Outfit',
+                                                                            'Nunito Sans',
                                                                         fontSize:
                                                                             32.0,
                                                                         letterSpacing:
@@ -1249,7 +1249,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .secondaryText,
@@ -1273,7 +1273,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .error,
@@ -1303,7 +1303,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                         ),
@@ -1312,7 +1312,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                         ),
@@ -1560,7 +1560,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                 FlutterFlowTheme.of(context)
                                                     .titleSmall
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       color: Colors.white,
                                                       letterSpacing: 0.0,
                                                     ),

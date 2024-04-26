@@ -81,7 +81,7 @@ class _CheckboxGroupsTestWidgetState extends State<CheckboxGroupsTestWidget> {
               child: Text(
                 widget.parameter1!.answersId.content,
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Readex Pro',
+                      fontFamily: 'Nunito Sans',
                       letterSpacing: 0.0,
                     ),
               ),

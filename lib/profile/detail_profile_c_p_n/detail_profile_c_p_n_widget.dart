@@ -178,7 +178,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                 child: Text(
                   'Thông tin doanh nghiệp',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Nunito Sans',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 20.0,
                         letterSpacing: 0.0,
@@ -365,7 +365,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                                         .labelLarge
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -406,7 +406,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                                         .bodyMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           fontSize:
                                                                               12.0,
                                                                           letterSpacing:
@@ -465,7 +465,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
-                                                                              fontFamily: 'Readex Pro',
+                                                                              fontFamily: 'Nunito Sans',
                                                                               letterSpacing: 0.0,
                                                                             ),
                                                                       ),
@@ -497,7 +497,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                                         .bodyMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           fontSize:
                                                                               12.0,
                                                                           letterSpacing:
@@ -559,7 +559,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
-                                                                              fontFamily: 'Readex Pro',
+                                                                              fontFamily: 'Nunito Sans',
                                                                               letterSpacing: 0.0,
                                                                             ),
                                                                       ),
@@ -592,7 +592,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                                           .bodyMedium
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Readex Pro',
+                                                                                'Nunito Sans',
                                                                             fontSize:
                                                                                 12.0,
                                                                             letterSpacing:
@@ -642,7 +642,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(
-                                                                                fontFamily: 'Readex Pro',
+                                                                                fontFamily: 'Nunito Sans',
                                                                                 letterSpacing: 0.0,
                                                                               ),
                                                                         ),
@@ -675,7 +675,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                                         .bodyMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           fontSize:
                                                                               12.0,
                                                                           letterSpacing:
@@ -737,7 +737,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
-                                                                              fontFamily: 'Readex Pro',
+                                                                              fontFamily: 'Nunito Sans',
                                                                               letterSpacing: 0.0,
                                                                             ),
                                                                       ),
@@ -800,7 +800,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                                         .labelLarge
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -834,7 +834,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                                     .bodyMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       fontSize:
                                                                           12.0,
                                                                       letterSpacing:
@@ -954,7 +954,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                                         .labelLarge
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -1197,7 +1197,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                                         .labelLarge
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -1290,7 +1290,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                               .labelMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -1307,7 +1307,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -1351,7 +1351,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                                                                     .bodyMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -1468,7 +1468,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget>
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Nunito Sans',
                           color: Colors.white,
                           letterSpacing: 0.0,
                         ),

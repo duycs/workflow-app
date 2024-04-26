@@ -146,7 +146,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
           title: Text(
             'Cập nhật thông tin',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
                   fontSize: 20.0,
                   letterSpacing: 0.0,
@@ -262,7 +262,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                               .labelLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -297,7 +297,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                                 .labelMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -307,7 +307,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                                 .labelMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -380,7 +380,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                       maxLength: 50,
@@ -410,7 +410,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                                 .labelMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -420,7 +420,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                                 .labelMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -493,7 +493,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                       keyboardType:
@@ -529,7 +529,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                                   .labelMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
@@ -539,7 +539,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                                   .labelMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
@@ -613,7 +613,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -660,7 +660,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -719,7 +719,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                                 .labelMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -729,7 +729,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                                 .labelMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -802,7 +802,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                       keyboardType:
@@ -855,7 +855,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                                       .headlineLarge
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Outfit',
+                                                                            'Nunito Sans',
                                                                         fontSize:
                                                                             32.0,
                                                                         letterSpacing:
@@ -983,7 +983,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                                                     .bodyMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -1375,7 +1375,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget>
                                               FlutterFlowTheme.of(context)
                                                   .titleSmall
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     color: Colors.white,
                                                     letterSpacing: 0.0,
                                                   ),

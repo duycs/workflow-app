@@ -94,7 +94,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                   'Chi tiết bước',
                   textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Nunito Sans',
                         color: Colors.white,
                         letterSpacing: 0.0,
                         lineHeight: 1.2,
@@ -142,7 +142,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -276,7 +276,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodySmall
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -332,13 +332,13 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -349,7 +349,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController1Validator
@@ -391,13 +391,13 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -408,7 +408,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController2Validator
@@ -449,13 +449,13 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -466,7 +466,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController3Validator
@@ -507,13 +507,13 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -524,7 +524,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController4Validator
@@ -565,13 +565,13 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: InputBorder.none,
@@ -582,7 +582,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textController5Validator
@@ -629,14 +629,14 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       letterSpacing: 0.0,
                                                     ),
                                             hintStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       letterSpacing: 0.0,
                                                     ),
                                             enabledBorder: InputBorder.none,
@@ -648,7 +648,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                               ),
                                           validator: _model
@@ -677,7 +677,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -718,7 +718,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .titleLarge
                                       .override(
-                                        fontFamily: 'Outfit',
+                                        fontFamily: 'Nunito Sans',
                                         fontSize: 20.0,
                                         letterSpacing: 0.0,
                                       ),
@@ -805,7 +805,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                 hintStyle:
@@ -813,7 +813,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                 enabledBorder: InputBorder.none,
@@ -827,7 +827,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                                       .bodyLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                               validator: _model
@@ -916,7 +916,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                 hintStyle:
@@ -924,7 +924,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                 enabledBorder: InputBorder.none,
@@ -938,7 +938,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                                       .bodyLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                               validator: _model
@@ -960,7 +960,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -971,7 +971,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -1130,7 +1130,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                   hintStyle:
@@ -1139,7 +1139,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                                           .labelMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                   enabledBorder:
@@ -1155,7 +1155,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                 validator: _model
@@ -1196,7 +1196,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                                                         .bodySmall
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                     elevation: 3.0,

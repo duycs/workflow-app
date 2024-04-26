@@ -143,7 +143,7 @@ class _DoActionTypeToDoListWidgetState
         Text(
           widget.listdata!.operationsId.content,
           style: FlutterFlowTheme.of(context).bodyMedium.override(
-                fontFamily: 'Readex Pro',
+                fontFamily: 'Nunito Sans',
                 letterSpacing: 0.0,
               ),
         ),

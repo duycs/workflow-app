@@ -108,7 +108,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
           title: Text(
             'Danh sách bài thi',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
                   fontSize: 20.0,
                   letterSpacing: 0.0,
@@ -166,13 +166,13 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               enabledBorder: OutlineInputBorder(
@@ -249,7 +249,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
                             cursorColor: FlutterFlowTheme.of(context).primary,
@@ -408,7 +408,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     fontSize: 14.0,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w500,
@@ -449,7 +449,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primary,
@@ -496,7 +496,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -524,7 +524,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -561,7 +561,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           color:
                                                               const Color(0xFF38B647),
                                                           fontSize: 14.0,
@@ -602,7 +602,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .error,
@@ -635,7 +635,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryText,
@@ -658,7 +658,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -688,7 +688,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -717,7 +717,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryText,
@@ -752,7 +752,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                 ),

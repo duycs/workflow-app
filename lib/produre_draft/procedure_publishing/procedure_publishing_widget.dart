@@ -118,7 +118,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
           title: Text(
             'Tạo công việc theo quy trình',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
@@ -139,7 +139,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                   unselectedLabelColor:
                       FlutterFlowTheme.of(context).primaryText,
                   labelStyle: FlutterFlowTheme.of(context).bodyLarge.override(
-                        fontFamily: 'Readex Pro',
+                        fontFamily: 'Nunito Sans',
                         letterSpacing: 0.0,
                       ),
                   unselectedLabelStyle: const TextStyle(),
@@ -187,7 +187,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -232,21 +232,21 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                               FlutterFlowTheme.of(context)
                                                   .labelSmall
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                   ),
                                           searchTextStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                   ),
                                           textStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                   ),
                                           searchHintText: 'Tìm kiếm...',
@@ -302,7 +302,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                   ),
                                           hintText: 'Chọn chế độ lặp',
@@ -349,7 +349,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -369,7 +369,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -402,7 +402,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -426,7 +426,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                       .labelSmall
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         fontSize: 13.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -436,7 +436,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                               enabledBorder:
@@ -486,7 +486,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                             keyboardType: TextInputType.number,
@@ -514,7 +514,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                       .labelSmall
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         fontSize: 13.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -524,7 +524,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                               enabledBorder:
@@ -574,7 +574,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                             keyboardType: TextInputType.number,
@@ -602,7 +602,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                       .labelSmall
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         fontSize: 13.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -612,7 +612,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                               enabledBorder:
@@ -662,7 +662,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                             keyboardType: TextInputType.number,
@@ -691,7 +691,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
@@ -713,7 +713,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                       .labelSmall
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                               hintStyle:
@@ -721,7 +721,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                               enabledBorder:
@@ -771,7 +771,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                             validator: _model
@@ -799,7 +799,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
@@ -821,7 +821,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                       .labelSmall
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                               hintStyle:
@@ -829,7 +829,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                               enabledBorder:
@@ -879,7 +879,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                             validator: _model
@@ -906,7 +906,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
@@ -1019,7 +1019,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       letterSpacing: 0.0,
@@ -1104,7 +1104,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -1127,7 +1127,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -1271,7 +1271,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -1294,7 +1294,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -1438,7 +1438,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -1461,7 +1461,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),

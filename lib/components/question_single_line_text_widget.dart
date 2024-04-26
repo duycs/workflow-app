@@ -50,11 +50,11 @@ class _QuestionSingleLineTextWidgetState
         decoration: InputDecoration(
           labelText: 'Nhập text',
           labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                fontFamily: 'Readex Pro',
+                fontFamily: 'Nunito Sans',
                 letterSpacing: 0.0,
               ),
           hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                fontFamily: 'Readex Pro',
+                fontFamily: 'Nunito Sans',
                 letterSpacing: 0.0,
               ),
           enabledBorder: UnderlineInputBorder(
@@ -87,7 +87,7 @@ class _QuestionSingleLineTextWidgetState
           ),
         ),
         style: FlutterFlowTheme.of(context).bodyMedium.override(
-              fontFamily: 'Readex Pro',
+              fontFamily: 'Nunito Sans',
               letterSpacing: 0.0,
             ),
         validator: _model.textControllerValidator.asValidator(context),

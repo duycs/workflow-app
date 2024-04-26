@@ -48,7 +48,7 @@ class _QuestionAttachmentsWidgetState extends State<QuestionAttachmentsWidget> {
         iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
         color: FlutterFlowTheme.of(context).primary,
         textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-              fontFamily: 'Readex Pro',
+              fontFamily: 'Nunito Sans',
               color: Colors.white,
               letterSpacing: 0.0,
             ),

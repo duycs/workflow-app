@@ -58,11 +58,11 @@ class _TestNumberWidgetState extends State<TestNumberWidget> {
         obscureText: false,
         decoration: InputDecoration(
           labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                fontFamily: 'Readex Pro',
+                fontFamily: 'Nunito Sans',
                 letterSpacing: 0.0,
               ),
           hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                fontFamily: 'Readex Pro',
+                fontFamily: 'Nunito Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
                 letterSpacing: 0.0,
               ),
@@ -72,7 +72,7 @@ class _TestNumberWidgetState extends State<TestNumberWidget> {
           focusedErrorBorder: InputBorder.none,
         ),
         style: FlutterFlowTheme.of(context).bodyMedium.override(
-              fontFamily: 'Readex Pro',
+              fontFamily: 'Nunito Sans',
               letterSpacing: 0.0,
             ),
         keyboardType: TextInputType.number,

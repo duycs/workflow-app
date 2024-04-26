@@ -60,7 +60,7 @@ class _SelectDoTestWidgetState extends State<SelectDoTestWidget> {
           FormFieldController<String>(widget.listAnswer!.answersId.content),
       optionHeight: 32.0,
       textStyle: FlutterFlowTheme.of(context).labelMedium.override(
-            fontFamily: 'Readex Pro',
+            fontFamily: 'Nunito Sans',
             color: valueOrDefault<Color>(
               () {
                 if ((widget.listQuestion?.id ==
@@ -82,7 +82,7 @@ class _SelectDoTestWidgetState extends State<SelectDoTestWidget> {
             letterSpacing: 0.0,
           ),
       selectedTextStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-            fontFamily: 'Readex Pro',
+            fontFamily: 'Nunito Sans',
             color: valueOrDefault<Color>(
               () {
                 if ((widget.listQuestion?.id ==

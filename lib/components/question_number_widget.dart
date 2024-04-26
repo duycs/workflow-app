@@ -48,11 +48,11 @@ class _QuestionNumberWidgetState extends State<QuestionNumberWidget> {
         decoration: InputDecoration(
           labelText: 'Nhập số',
           labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                fontFamily: 'Readex Pro',
+                fontFamily: 'Nunito Sans',
                 letterSpacing: 0.0,
               ),
           hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                fontFamily: 'Readex Pro',
+                fontFamily: 'Nunito Sans',
                 letterSpacing: 0.0,
               ),
           enabledBorder: UnderlineInputBorder(
@@ -85,7 +85,7 @@ class _QuestionNumberWidgetState extends State<QuestionNumberWidget> {
           ),
         ),
         style: FlutterFlowTheme.of(context).bodyMedium.override(
-              fontFamily: 'Readex Pro',
+              fontFamily: 'Nunito Sans',
               letterSpacing: 0.0,
             ),
         keyboardType: TextInputType.number,

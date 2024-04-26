@@ -74,7 +74,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
             Text(
               'Chi tiết quy trình',
               style: FlutterFlowTheme.of(context).titleSmall.override(
-                    fontFamily: 'Readex Pro',
+                    fontFamily: 'Nunito Sans',
                     letterSpacing: 0.0,
                   ),
             ),
@@ -89,7 +89,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                 iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).primary,
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Readex Pro',
+                      fontFamily: 'Nunito Sans',
                       letterSpacing: 0.0,
                     ),
                 borderSide: const BorderSide(
@@ -209,7 +209,8 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                                     FlutterFlowTheme.of(context)
                                                         .titleLarge
                                                         .override(
-                                                          fontFamily: 'Outfit',
+                                                          fontFamily:
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -243,7 +244,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -270,7 +271,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                       'Các bước quy trình',
                       style:
                           FlutterFlowTheme.of(context).headlineMedium.override(
-                                fontFamily: 'Outfit',
+                                fontFamily: 'Nunito Sans',
                                 letterSpacing: 0.0,
                               ),
                     ),
@@ -320,7 +321,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodySmall
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
                                             letterSpacing: 0.0,
@@ -342,14 +343,14 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                   ),
                                           hintStyle:
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: InputBorder.none,
@@ -360,7 +361,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
@@ -468,7 +469,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                                         .bodySmall
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryBackground,
@@ -483,7 +484,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -513,7 +514,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                                         .bodySmall
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryBackground,
@@ -528,7 +529,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -587,7 +588,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodySmall
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
                                             letterSpacing: 0.0,
@@ -609,14 +610,14 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                   ),
                                           hintStyle:
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: InputBorder.none,
@@ -627,7 +628,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
@@ -689,7 +690,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -745,7 +746,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodySmall
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
                                             letterSpacing: 0.0,
@@ -766,14 +767,14 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                   ),
                                           hintStyle:
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: InputBorder.none,
@@ -784,7 +785,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
@@ -846,7 +847,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -888,7 +889,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: Colors.white,
                                   fontSize: 14.0,
                                   letterSpacing: 0.0,
@@ -920,7 +921,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: Colors.white,
                                   fontSize: 14.0,
                                   letterSpacing: 0.0,

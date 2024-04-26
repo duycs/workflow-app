@@ -78,7 +78,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                       child: Text(
                         'Chỉnh sửa',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                       ),

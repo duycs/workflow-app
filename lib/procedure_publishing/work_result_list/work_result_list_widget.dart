@@ -66,7 +66,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                 child: Text(
                   'Kết quả công việc',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Nunito Sans',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 20.0,
                         letterSpacing: 0.0,
@@ -144,14 +144,14 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 hintText: 'Tìm kiếm...',
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: OutlineInputBorder(
@@ -219,7 +219,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               cursorColor: FlutterFlowTheme.of(context).primary,
@@ -291,7 +291,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                           '#Kết quả hiển thị theo bộ lọc',
                           style:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     fontSize: 13.0,
                                     letterSpacing: 0.0,
                                     fontStyle: FontStyle.italic,
@@ -362,7 +362,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                 .bodyLarge
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -392,7 +392,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                 .bodyLarge
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .secondary,
@@ -433,7 +433,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primaryText,
@@ -486,7 +486,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -639,7 +639,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                               child: Text(
                                                                                 'Lần chạy thứ: ${itemTaskDoneItem.publishedCount.toString()}',
                                                                                 style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                      fontFamily: 'Readex Pro',
+                                                                                      fontFamily: 'Nunito Sans',
                                                                                       fontSize: 14.0,
                                                                                       letterSpacing: 0.0,
                                                                                     ),
@@ -653,7 +653,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                   locale: FFLocalizations.of(context).languageCode,
                                                                                 )}',
                                                                                 style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                      fontFamily: 'Readex Pro',
+                                                                                      fontFamily: 'Nunito Sans',
                                                                                       fontSize: 13.0,
                                                                                       letterSpacing: 0.0,
                                                                                     ),
@@ -665,7 +665,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                 child: Text(
                                                                                   'Người tạo: ${itemTaskDoneItem.userCreated.firstName}',
                                                                                   style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                        fontFamily: 'Readex Pro',
+                                                                                        fontFamily: 'Nunito Sans',
                                                                                         color: FlutterFlowTheme.of(context).secondaryText,
                                                                                         fontSize: 13.0,
                                                                                         letterSpacing: 0.0,
@@ -705,7 +705,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                 Text(
                                                                                   '${itemsItem.steps.where((e) => e.tasks.where((e) => (e.publishedCount == itemTaskDoneItem.publishedCount) && (e.status == 'done')).toList().isNotEmpty).toList().length.toString()}/${itemsItem.steps.length.toString()}',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Readex Pro',
+                                                                                        fontFamily: 'Nunito Sans',
                                                                                         fontSize: 13.0,
                                                                                         letterSpacing: 0.0,
                                                                                         fontWeight: FontWeight.bold,
@@ -881,7 +881,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                             Text(
                                                                               'Lần chạy thứ: ${itemPublishedListItem.publishedCount.toString()}',
                                                                               style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                    fontFamily: 'Readex Pro',
+                                                                                    fontFamily: 'Nunito Sans',
                                                                                     fontSize: 14.0,
                                                                                     letterSpacing: 0.0,
                                                                                   ),
@@ -893,7 +893,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                 locale: FFLocalizations.of(context).languageCode,
                                                                               )}',
                                                                               style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                    fontFamily: 'Readex Pro',
+                                                                                    fontFamily: 'Nunito Sans',
                                                                                     fontSize: 13.0,
                                                                                     letterSpacing: 0.0,
                                                                                   ),
@@ -903,7 +903,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                               child: Text(
                                                                                 'Người tạo: ${itemPublishedListItem.userCreated.firstName}',
                                                                                 style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                      fontFamily: 'Readex Pro',
+                                                                                      fontFamily: 'Nunito Sans',
                                                                                       color: FlutterFlowTheme.of(context).secondaryText,
                                                                                       fontSize: 13.0,
                                                                                       letterSpacing: 0.0,
@@ -942,7 +942,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                 Text(
                                                                                   '${itemsItem.steps.where((e) => e.tasks.where((e) => (e.publishedCount == itemPublishedListItem.publishedCount) && (e.status == 'done')).toList().isNotEmpty).toList().length.toString()}/${itemsItem.steps.length.toString()}',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Readex Pro',
+                                                                                        fontFamily: 'Nunito Sans',
                                                                                         fontSize: 13.0,
                                                                                         letterSpacing: 0.0,
                                                                                         fontWeight: FontWeight.bold,

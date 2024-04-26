@@ -94,7 +94,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
           title: Text(
             'Profile',
             style: FlutterFlowTheme.of(context).bodyLarge.override(
-                  fontFamily: 'Readex Pro',
+                  fontFamily: 'Nunito Sans',
                   fontSize: 20.0,
                   letterSpacing: 0.0,
                 ),
@@ -240,7 +240,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .headlineSmall
                                                 .override(
-                                                  fontFamily: 'Outfit',
+                                                  fontFamily: 'Nunito Sans',
                                                   fontSize: 20.0,
                                                   letterSpacing: 0.0,
                                                 ),
@@ -259,7 +259,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -297,7 +297,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -343,7 +343,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -356,7 +356,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -405,7 +405,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -418,7 +418,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -464,7 +464,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -477,7 +477,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -532,7 +532,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -550,7 +550,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -601,7 +601,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -619,7 +619,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -670,7 +670,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -683,7 +683,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -729,7 +729,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -778,7 +778,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 color: Colors.white,
                                 letterSpacing: 0.0,
                               ),

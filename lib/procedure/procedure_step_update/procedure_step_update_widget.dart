@@ -250,14 +250,14 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 hintText: 'Nhập tên bước...',
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: InputBorder.none,
@@ -273,7 +273,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -302,14 +302,14 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 hintText: 'Nhập mô tả...',
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: InputBorder.none,
@@ -347,7 +347,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               maxLines: 2,
@@ -390,7 +390,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                             FlutterFlowTheme.of(context)
                                                 .headlineLarge
                                                 .override(
-                                                  fontFamily: 'Outfit',
+                                                  fontFamily: 'Nunito Sans',
                                                   fontSize: 32.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w600,
@@ -462,7 +462,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -507,7 +507,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -566,14 +566,14 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       letterSpacing: 0.0,
                                                     ),
                                             hintStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       letterSpacing: 0.0,
                                                     ),
                                             enabledBorder: OutlineInputBorder(
@@ -621,7 +621,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                               ),
                                           keyboardType: TextInputType.number,
@@ -676,14 +676,14 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       letterSpacing: 0.0,
                                                     ),
                                             hintStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       letterSpacing: 0.0,
                                                     ),
                                             enabledBorder: OutlineInputBorder(
@@ -731,7 +731,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                               ),
                                           keyboardType: TextInputType.number,
@@ -786,14 +786,14 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       letterSpacing: 0.0,
                                                     ),
                                             hintStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       letterSpacing: 0.0,
                                                     ),
                                             enabledBorder: OutlineInputBorder(
@@ -841,7 +841,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                               ),
                                           keyboardType: TextInputType.number,
@@ -862,7 +862,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -905,7 +905,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -922,7 +922,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -1025,7 +1025,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                 hintText: 'Kiểu hành động',
@@ -1167,7 +1167,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                       .titleSmall
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         color: Colors.white,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -1303,7 +1303,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                       .titleSmall
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         color: Colors.white,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -1335,7 +1335,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                   ),
                                           hintText: 'Nhập công việc...',
@@ -1343,7 +1343,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Nunito Sans',
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: UnderlineInputBorder(
@@ -1411,7 +1411,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                         maxLines: 2,
@@ -1505,7 +1505,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -1566,7 +1566,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -1592,7 +1592,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -1711,7 +1711,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -1773,7 +1773,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -1796,7 +1796,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -1862,7 +1862,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       letterSpacing: 0.0,
@@ -2238,7 +2238,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),

@@ -72,7 +72,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
           title: Text(
             'Quản lý quy trình',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
@@ -130,7 +130,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                   style: FlutterFlowTheme.of(context)
                                       .headlineMedium
                                       .override(
-                                        fontFamily: 'Outfit',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -156,7 +156,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -196,7 +196,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -241,7 +241,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -286,7 +286,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -333,7 +333,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -359,7 +359,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                         context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -383,7 +383,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -423,7 +423,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -468,7 +468,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -573,7 +573,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             color: Theme.of(context)
                                                                         .brightness ==
                                                                     Brightness
@@ -662,7 +662,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             color: Theme.of(context)
                                                                         .brightness ==
                                                                     Brightness
@@ -742,7 +742,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -751,7 +751,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                         style: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -812,7 +812,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                     style: FlutterFlowTheme.of(context)
                                         .headlineMedium
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -844,7 +844,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                               style: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -881,7 +881,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                         style: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryText,
@@ -904,7 +904,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                           style: FlutterFlowTheme.of(context)
                                               .labelMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryText,
@@ -927,7 +927,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Nunito Sans',
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryText,
@@ -945,7 +945,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                         style: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -1012,7 +1012,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                       .bodyLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -1027,7 +1027,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -1084,7 +1084,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                                 .labelMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -1143,7 +1143,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
@@ -1181,7 +1181,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                                 .bodyLarge
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -1202,7 +1202,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                                 .bodyLarge
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -1258,7 +1258,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primary,
@@ -1324,7 +1324,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                       .bodyLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -1339,7 +1339,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -1396,7 +1396,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                                 .labelMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -1455,7 +1455,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
@@ -1484,7 +1484,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -1535,7 +1535,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .tertiary,
@@ -1605,7 +1605,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -1631,7 +1631,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -1688,7 +1688,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                                 .labelMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -1747,7 +1747,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
@@ -1776,7 +1776,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -1827,7 +1827,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primary,
@@ -1893,7 +1893,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                       .bodyLarge
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -1908,7 +1908,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -1965,7 +1965,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                                 .labelMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -2024,7 +2024,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
@@ -2053,7 +2053,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -2104,7 +2104,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primary,
@@ -2174,7 +2174,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -2200,7 +2200,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -2257,7 +2257,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                                 .labelMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -2316,7 +2316,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
@@ -2345,7 +2345,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -2396,7 +2396,7 @@ class _QuanLyQuyTrinh2WidgetState extends State<QuanLyQuyTrinh2Widget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondary,

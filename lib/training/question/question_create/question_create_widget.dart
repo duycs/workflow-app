@@ -119,7 +119,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .headlineMedium
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Nunito Sans',
                                           fontSize: 20.0,
                                           letterSpacing: 0.0,
                                         ),
@@ -168,13 +168,13 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: OutlineInputBorder(
@@ -211,7 +211,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       letterSpacing: 0.0,
@@ -270,7 +270,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                   hintText: 'Vui lòng chọn kiểu câu hỏi!',
@@ -312,7 +312,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
                                             ),
@@ -320,7 +320,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                         hintStyle: FlutterFlowTheme.of(context)
                                             .labelSmall
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                         enabledBorder: OutlineInputBorder(
@@ -365,7 +365,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       maxLines: 2,
@@ -397,7 +397,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
                                             ),
@@ -405,7 +405,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                         hintStyle: FlutterFlowTheme.of(context)
                                             .labelSmall
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                         enabledBorder: OutlineInputBorder(
@@ -450,7 +450,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                       maxLines: 2,
@@ -695,7 +695,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Nunito Sans',
                                           color: Colors.white,
                                           letterSpacing: 0.0,
                                         ),
@@ -755,7 +755,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             fontSize: 13.0,
                                             letterSpacing: 0.0,
                                             fontStyle: FontStyle.italic,
@@ -772,7 +772,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -811,7 +811,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                                         context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       color: listViewItem
                                                                   .correct ==
                                                               1
@@ -889,7 +889,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       letterSpacing: 0.0,
@@ -1010,7 +1010,7 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),

@@ -117,7 +117,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .headlineMedium
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Nunito Sans',
                                           fontSize: 20.0,
                                           letterSpacing: 0.0,
                                         ),
@@ -149,7 +149,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       letterSpacing: 0.0,
@@ -158,7 +158,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       fontSize: 13.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -200,7 +200,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               validator: _model.textController1Validator
@@ -216,7 +216,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       letterSpacing: 0.0,
@@ -225,7 +225,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       fontSize: 13.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -263,7 +263,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               maxLines: 2,
@@ -280,7 +280,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       letterSpacing: 0.0,
@@ -289,7 +289,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       fontSize: 13.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -328,7 +328,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               maxLines: 3,
@@ -354,7 +354,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                   hintText: 'Kiểu hành động',
@@ -382,7 +382,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                   labelTextStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -396,7 +396,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .titleMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .error,
                                             fontSize: 11.0,
@@ -417,7 +417,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -471,7 +471,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       letterSpacing: 0.0,
@@ -622,7 +622,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),

@@ -81,7 +81,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
               Text(
                 'Cấp bậc đào tạo',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
+                      fontFamily: 'Nunito Sans',
                       color: FlutterFlowTheme.of(context).primaryText,
                       fontSize: 22.0,
                       letterSpacing: 0.0,
@@ -155,7 +155,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .headlineMedium
                                       .override(
-                                        fontFamily: 'Outfit',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -181,7 +181,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -221,7 +221,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -266,7 +266,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -311,7 +311,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -329,7 +329,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -371,7 +371,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -397,7 +397,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                         context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -448,7 +448,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -493,7 +493,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -598,7 +598,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             color: Theme.of(context)
                                                                         .brightness ==
                                                                     Brightness
@@ -687,7 +687,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             color: Theme.of(context)
                                                                         .brightness ==
                                                                     Brightness
@@ -767,7 +767,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -776,7 +776,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -840,7 +840,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -858,13 +858,13 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: OutlineInputBorder(
@@ -907,7 +907,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                               cursorColor: FlutterFlowTheme.of(context).primary,
@@ -938,7 +938,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                       textStyle: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .info,
                                             letterSpacing: 0.0,
@@ -959,7 +959,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                       textStyle: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             letterSpacing: 0.0,
@@ -1080,7 +1080,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                               .bodyLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -1100,7 +1100,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                                 .labelSmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .secondaryText,
@@ -1165,7 +1165,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                                         .bodySmall
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -1183,7 +1183,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                                         .bodySmall
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -1214,7 +1214,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                                   .bodySmall
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     color: const Color(
                                                                         0xFF00A907),
                                                                     letterSpacing:
@@ -1253,7 +1253,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -1276,7 +1276,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -1357,7 +1357,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -1377,7 +1377,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                                 .labelSmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .secondaryText,
@@ -1433,7 +1433,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                                 .bodySmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -1459,7 +1459,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                               .bodySmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: const Color(
                                                                     0xFF00A907),
                                                                 letterSpacing:
@@ -1498,7 +1498,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -1521,7 +1521,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -1600,7 +1600,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -1620,7 +1620,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                                 .labelSmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .secondaryText,
@@ -1676,7 +1676,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                                 .bodySmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -1702,7 +1702,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                               .bodySmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: const Color(
                                                                     0xFF00A907),
                                                                 letterSpacing:
@@ -1741,7 +1741,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -1764,7 +1764,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -1843,7 +1843,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -1863,7 +1863,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                                 .labelSmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .secondaryText,
@@ -1919,7 +1919,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                                 .bodySmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -1945,7 +1945,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                               .bodySmall
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: const Color(
                                                                     0xFFFF0000),
                                                                 letterSpacing:
@@ -1984,7 +1984,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -2007,7 +2007,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),

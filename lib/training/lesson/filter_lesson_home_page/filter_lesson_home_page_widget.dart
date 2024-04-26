@@ -118,7 +118,7 @@ class _FilterLessonHomePageWidgetState
                     Text(
                       'Bộ lọc',
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily: 'Readex Pro',
+                            fontFamily: 'Nunito Sans',
                             letterSpacing: 0.0,
                           ),
                     ),
@@ -195,7 +195,7 @@ class _FilterLessonHomePageWidgetState
                                             FlutterFlowTheme.of(context)
                                                 .headlineLarge
                                                 .override(
-                                                  fontFamily: 'Outfit',
+                                                  fontFamily: 'Nunito Sans',
                                                   fontSize: 32.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w600,
@@ -257,7 +257,7 @@ class _FilterLessonHomePageWidgetState
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -288,7 +288,7 @@ class _FilterLessonHomePageWidgetState
                                             FlutterFlowTheme.of(context)
                                                 .headlineLarge
                                                 .override(
-                                                  fontFamily: 'Outfit',
+                                                  fontFamily: 'Nunito Sans',
                                                   fontSize: 32.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w600,
@@ -350,7 +350,7 @@ class _FilterLessonHomePageWidgetState
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -388,7 +388,7 @@ class _FilterLessonHomePageWidgetState
                     width: double.infinity,
                     height: 50.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,
                         ),
                     hintText: 'Trạng thái hoạt động bài học',
@@ -442,7 +442,7 @@ class _FilterLessonHomePageWidgetState
                           width: 300.0,
                           textStyle:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           hintText: 'Bài học',
@@ -488,7 +488,7 @@ class _FilterLessonHomePageWidgetState
                         setState(() => _model.programsValue = val),
                     width: 300.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,
                         ),
                     hintText: 'Chương trình đào tạo',
@@ -547,7 +547,7 @@ class _FilterLessonHomePageWidgetState
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   letterSpacing: 0.0,
@@ -613,7 +613,7 @@ class _FilterLessonHomePageWidgetState
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Nunito Sans',
                                   color: Colors.white,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,

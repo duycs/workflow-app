@@ -122,7 +122,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
           title: Text(
             'Danh sách hành động',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
                   fontSize: 20.0,
                   letterSpacing: 0.0,
@@ -164,13 +164,13 @@ class _OperationListWidgetState extends State<OperationListWidget>
                         decoration: InputDecoration(
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           hintText: 'Tìm kiếm...',
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
@@ -232,7 +232,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                               : null,
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                         cursorColor: FlutterFlowTheme.of(context).primary,
@@ -308,7 +308,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                               FlutterFlowTheme.of(context).secondaryText,
                           labelStyle:
                               FlutterFlowTheme.of(context).titleMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
@@ -426,7 +426,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                   .bodyMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .primary,
@@ -452,7 +452,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 fontSize: 14.0,
                                                                 letterSpacing:
                                                                     0.0,
@@ -497,7 +497,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                             .labelMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               fontSize: 13.0,
                                                               letterSpacing:
                                                                   0.0,
@@ -528,7 +528,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                           fontStyle:
@@ -548,7 +548,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -579,7 +579,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                             .labelMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               fontSize: 13.0,
                                                               letterSpacing:
                                                                   0.0,
@@ -610,7 +610,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                           fontStyle:
@@ -632,7 +632,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                           .labelMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             fontSize: 13.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
@@ -662,7 +662,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         fontSize: 13.0,
                                                         letterSpacing: 0.0,
                                                         fontStyle:
@@ -696,7 +696,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -744,7 +744,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                             .bodyMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               color: itemOperationItem
                                                                           .status ==
                                                                       'draft'
@@ -855,7 +855,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
@@ -880,7 +880,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           fontSize: 14.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -906,7 +906,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                             .labelMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               fontSize: 13.0,
                                                               letterSpacing:
                                                                   0.0,
@@ -937,7 +937,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                           fontStyle:
@@ -957,7 +957,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -988,7 +988,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                             .labelMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               fontSize: 13.0,
                                                               letterSpacing:
                                                                   0.0,
@@ -1020,7 +1020,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                           fontStyle:
@@ -1042,7 +1042,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                           .labelMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             fontSize: 13.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
@@ -1072,7 +1072,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         fontSize: 13.0,
                                                         letterSpacing: 0.0,
                                                         fontStyle:
@@ -1106,7 +1106,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -1154,7 +1154,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                             .bodyMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               color: itemUserCreatedItem
                                                                           .status ==
                                                                       'done'
@@ -1274,7 +1274,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                   .bodyMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .primary,
@@ -1300,7 +1300,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 fontSize: 14.0,
                                                                 letterSpacing:
                                                                     0.0,
@@ -1332,7 +1332,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -1363,7 +1363,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                             .labelMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               fontSize: 13.0,
                                                               letterSpacing:
                                                                   0.0,
@@ -1394,7 +1394,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                           fontStyle:
@@ -1416,7 +1416,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                           .labelMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Nunito Sans',
                                                             fontSize: 13.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
@@ -1446,7 +1446,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         fontSize: 13.0,
                                                         letterSpacing: 0.0,
                                                         fontStyle:
@@ -1481,7 +1481,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -1529,7 +1529,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                             .bodyMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Nunito Sans',
                                                               color: itemDefaultItem
                                                                           .status ==
                                                                       'done'

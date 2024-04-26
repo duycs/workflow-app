@@ -65,7 +65,7 @@ class _MultiSelecListQuestionWidgetState
             checkColor: FlutterFlowTheme.of(context).info,
             checkboxBorderColor: FlutterFlowTheme.of(context).secondaryText,
             textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                  fontFamily: 'Readex Pro',
+                  fontFamily: 'Nunito Sans',
                   letterSpacing: 0.0,
                 ),
             checkboxBorderRadius: BorderRadius.circular(4.0),

@@ -236,7 +236,8 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .headlineSmall
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily:
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -250,7 +251,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -281,7 +282,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                         context)
                                                     .titleSmall
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Nunito Sans',
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -322,7 +323,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                         .titleSmall
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           color: Colors.white,
                                                           letterSpacing: 0.0,
                                                         ),
@@ -360,7 +361,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                       .titleMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                       ),
                                               unselectedLabelStyle: const TextStyle(),
@@ -434,7 +435,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                         .bodySmall
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           color:
                                                                               FlutterFlowTheme.of(context).primary,
                                                                           letterSpacing:
@@ -455,7 +456,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                           .headlineSmall
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Outfit',
+                                                                                'Nunito Sans',
                                                                             letterSpacing:
                                                                                 0.0,
                                                                           ),
@@ -468,7 +469,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                         .labelMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -533,7 +534,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                         .bodySmall
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           color:
                                                                               FlutterFlowTheme.of(context).primary,
                                                                           letterSpacing:
@@ -554,7 +555,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                           .headlineSmall
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Outfit',
+                                                                                'Nunito Sans',
                                                                             letterSpacing:
                                                                                 0.0,
                                                                           ),
@@ -567,7 +568,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                         .labelMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -632,7 +633,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                         .bodySmall
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           color:
                                                                               FlutterFlowTheme.of(context).primary,
                                                                           letterSpacing:
@@ -653,7 +654,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                           .headlineSmall
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Outfit',
+                                                                                'Nunito Sans',
                                                                             letterSpacing:
                                                                                 0.0,
                                                                           ),
@@ -666,7 +667,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                         .labelMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -731,7 +732,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                         .bodySmall
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           color:
                                                                               FlutterFlowTheme.of(context).primary,
                                                                           letterSpacing:
@@ -752,7 +753,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                           .headlineSmall
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Outfit',
+                                                                                'Nunito Sans',
                                                                             letterSpacing:
                                                                                 0.0,
                                                                           ),
@@ -765,7 +766,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                         .labelMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -830,7 +831,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                         .bodySmall
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -849,7 +850,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                           .headlineSmall
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Outfit',
+                                                                                'Nunito Sans',
                                                                             letterSpacing:
                                                                                 0.0,
                                                                           ),
@@ -862,7 +863,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                         .bodySmall
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -941,7 +942,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                         .bodySmall
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           color:
                                                                               FlutterFlowTheme.of(context).primary,
                                                                           letterSpacing:
@@ -962,7 +963,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                           .headlineSmall
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Outfit',
+                                                                                'Nunito Sans',
                                                                             letterSpacing:
                                                                                 0.0,
                                                                           ),
@@ -975,7 +976,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                         .headlineMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Outfit',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -1040,7 +1041,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                         .bodySmall
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           color:
                                                                               FlutterFlowTheme.of(context).primary,
                                                                           letterSpacing:
@@ -1061,7 +1062,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                           .headlineSmall
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Outfit',
+                                                                                'Nunito Sans',
                                                                             letterSpacing:
                                                                                 0.0,
                                                                           ),
@@ -1074,7 +1075,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                         .headlineMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Outfit',
+                                                                              'Nunito Sans',
                                                                           color:
                                                                               FlutterFlowTheme.of(context).primaryText,
                                                                           letterSpacing:
@@ -1211,7 +1212,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyLarge
                                                                               .override(
-                                                                                fontFamily: 'Readex Pro',
+                                                                                fontFamily: 'Nunito Sans',
                                                                                 letterSpacing: 0.0,
                                                                               ),
                                                                         ),
@@ -1225,7 +1226,7 @@ class _BlogsWidgetState extends State<BlogsWidget>
                                                                               Text(
                                                                             'albert@companyname.com',
                                                                             style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                  fontFamily: 'Readex Pro',
+                                                                                  fontFamily: 'Nunito Sans',
                                                                                   letterSpacing: 0.0,
                                                                                 ),
                                                                           ),

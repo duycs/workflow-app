@@ -68,12 +68,12 @@ class _RadioGroupTestsAddWidgetState extends State<RadioGroupTestsAddWidget> {
                         : ' '),
             optionHeight: 32.0,
             textStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                  fontFamily: 'Readex Pro',
+                  fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
                   letterSpacing: 0.0,
                 ),
             selectedTextStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                  fontFamily: 'Readex Pro',
+                  fontFamily: 'Nunito Sans',
                   letterSpacing: 0.0,
                 ),
             buttonPosition: RadioButtonPosition.left,

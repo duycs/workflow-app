@@ -185,7 +185,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                 'Thư viện quy trình mẫu',
                 textAlign: TextAlign.start,
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
+                      fontFamily: 'Nunito Sans',
                       color: FlutterFlowTheme.of(context).primaryText,
                       fontSize: 20.0,
                       letterSpacing: 0.0,
@@ -263,13 +263,13 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                         decoration: InputDecoration(
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           hintText: 'Tìm kiếm...',
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
@@ -328,7 +328,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                   : null,
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
                             ),
                         cursorColor: FlutterFlowTheme.of(context).primary,
@@ -367,7 +367,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                           height: 56.0,
                           textStyle:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
                           hintText: 'Chọn lĩnh vực ...',
@@ -434,7 +434,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                               FlutterFlowTheme.of(context).secondary,
                           textStyle:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context).info,
                                     letterSpacing: 0.0,
                                   ),
@@ -451,7 +451,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                           textStyle: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Nunito Sans',
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
                                 letterSpacing: 0.0,
@@ -488,7 +488,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                     '#Kết quả hiển thị theo bộ lọc',
                     textAlign: TextAlign.start,
                     style: FlutterFlowTheme.of(context).labelMedium.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Nunito Sans',
                           fontSize: 13.0,
                           letterSpacing: 0.0,
                         ),
@@ -754,7 +754,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                                   '${(listStepIndex + 1).toString()}.',
                                                                                   maxLines: 2,
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Readex Pro',
+                                                                                        fontFamily: 'Nunito Sans',
                                                                                         fontSize: functions
                                                                                             .stringToInt((int var1) {
                                                                                               return var1 != 0 ? (num.parse((14 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
@@ -778,7 +778,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                                     'Tên bước',
                                                                                     maxLines: 2,
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                          fontFamily: 'Readex Pro',
+                                                                                          fontFamily: 'Nunito Sans',
                                                                                           fontSize: functions
                                                                                               .stringToInt((int var1) {
                                                                                                 return var1 != 0 ? (num.parse((14 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
@@ -892,7 +892,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             fontSize: 13.0,

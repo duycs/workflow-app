@@ -443,7 +443,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
           title: Text(
             'Chỉnh sửa quy trình',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
                   fontSize: 20.0,
                   letterSpacing: 0.0,
@@ -1057,7 +1057,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                   iconPadding: const EdgeInsets.all(0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Readex Pro',
+                        fontFamily: 'Nunito Sans',
                         color: Colors.white,
                         letterSpacing: 0.0,
                       ),
@@ -1088,7 +1088,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                         FlutterFlowTheme.of(context).secondaryText,
                     labelStyle:
                         FlutterFlowTheme.of(context).titleMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Nunito Sans',
                               fontSize: 14.0,
                               letterSpacing: 0.0,
                             ),
@@ -1210,7 +1210,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                       .labelLarge
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         fontSize:
                                                                             14.0,
                                                                         letterSpacing:
@@ -1223,7 +1223,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                       .labelMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -1245,7 +1245,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                     .bodyLarge
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Nunito Sans',
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -1302,7 +1302,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                   .bodyMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Nunito Sans',
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .secondaryText,
@@ -1379,7 +1379,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -1549,7 +1549,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Nunito Sans',
                                                           letterSpacing: 0.0,
                                                         ),
                                                 hintText: 'Khởi chạy',
@@ -1609,7 +1609,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                         fontStyle:
                                                             FontStyle.italic,
@@ -1759,7 +1759,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                       .titleSmall
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .primaryText,
                                                                         fontSize:
@@ -1818,7 +1818,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                         fontStyle:
                                                             FontStyle.italic,
@@ -1972,7 +1972,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                       .titleSmall
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .primaryText,
                                                                         fontSize:
@@ -2067,7 +2067,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                       .titleLarge
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Outfit',
+                                                                            'Nunito Sans',
                                                                         fontSize:
                                                                             18.0,
                                                                         letterSpacing:
@@ -2100,7 +2100,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                       .bodyMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:
@@ -2269,7 +2269,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                         .bodyMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -2357,7 +2357,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                           .labelMedium
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Readex Pro',
+                                                                                'Nunito Sans',
                                                                             fontSize:
                                                                                 13.0,
                                                                             letterSpacing:
@@ -2427,7 +2427,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                             color:
                                                                                 FlutterFlowTheme.of(context).primaryBackground,
                                                                             textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                                                                                  fontFamily: 'Readex Pro',
+                                                                                  fontFamily: 'Nunito Sans',
                                                                                   color: FlutterFlowTheme.of(context).primaryText,
                                                                                   fontSize: 14.0,
                                                                                   letterSpacing: 0.0,
@@ -2471,7 +2471,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                             color:
                                                                                 FlutterFlowTheme.of(context).primaryBackground,
                                                                             textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                                                                                  fontFamily: 'Readex Pro',
+                                                                                  fontFamily: 'Nunito Sans',
                                                                                   color: FlutterFlowTheme.of(context).primaryText,
                                                                                   fontSize: 14.0,
                                                                                   letterSpacing: 0.0,
@@ -2524,7 +2524,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                         .bodyMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                           fontWeight:
@@ -2535,7 +2535,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                         .labelMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -2574,7 +2574,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                       .labelMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         fontSize:
                                                                             13.0,
                                                                         letterSpacing:
@@ -2669,7 +2669,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                         textStyle: FlutterFlowTheme.of(context)
                                                                             .titleSmall
                                                                             .override(
-                                                                              fontFamily: 'Readex Pro',
+                                                                              fontFamily: 'Nunito Sans',
                                                                               color: FlutterFlowTheme.of(context).primaryText,
                                                                               fontSize: 14.0,
                                                                               letterSpacing: 0.0,
@@ -2757,7 +2757,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                         textStyle: FlutterFlowTheme.of(context)
                                                                             .titleSmall
                                                                             .override(
-                                                                              fontFamily: 'Readex Pro',
+                                                                              fontFamily: 'Nunito Sans',
                                                                               color: FlutterFlowTheme.of(context).primaryText,
                                                                               fontSize: 14.0,
                                                                               letterSpacing: 0.0,
@@ -2854,7 +2854,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                                 Text(
                                                                                   listOneItem.title,
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Readex Pro',
+                                                                                        fontFamily: 'Nunito Sans',
                                                                                         fontSize: 13.0,
                                                                                         letterSpacing: 0.0,
                                                                                         fontWeight: FontWeight.w500,
@@ -2949,7 +2949,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                                 Text(
                                                                                   listTwoItem.title,
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Readex Pro',
+                                                                                        fontFamily: 'Nunito Sans',
                                                                                         fontSize: 13.0,
                                                                                         letterSpacing: 0.0,
                                                                                         fontWeight: FontWeight.w500,
@@ -3044,7 +3044,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                                 Text(
                                                                                   listThreeItem.title,
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Readex Pro',
+                                                                                        fontFamily: 'Nunito Sans',
                                                                                         fontSize: 13.0,
                                                                                         letterSpacing: 0.0,
                                                                                         fontWeight: FontWeight.w500,
@@ -3137,7 +3137,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                                 Text(
                                                                                   listFourItem.title,
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Readex Pro',
+                                                                                        fontFamily: 'Nunito Sans',
                                                                                         fontSize: 13.0,
                                                                                         letterSpacing: 0.0,
                                                                                         fontWeight: FontWeight.w500,
@@ -3230,7 +3230,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                                 Text(
                                                                                   listFiveItem.title,
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Readex Pro',
+                                                                                        fontFamily: 'Nunito Sans',
                                                                                         fontSize: 13.0,
                                                                                         letterSpacing: 0.0,
                                                                                         fontWeight: FontWeight.w500,
@@ -3318,7 +3318,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                               Text(
                                                                                 listSixItem.title,
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Readex Pro',
+                                                                                      fontFamily: 'Nunito Sans',
                                                                                       fontSize: 13.0,
                                                                                       letterSpacing: 0.0,
                                                                                       fontWeight: FontWeight.w500,
@@ -3421,7 +3421,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
-                                                                              fontFamily: 'Readex Pro',
+                                                                              fontFamily: 'Nunito Sans',
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.w500,
                                                                               fontStyle: FontStyle.italic,
@@ -3474,13 +3474,13 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                             labelText:
                                                                                 'Giờ',
                                                                             labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                  fontFamily: 'Readex Pro',
+                                                                                  fontFamily: 'Nunito Sans',
                                                                                   letterSpacing: 0.0,
                                                                                 ),
                                                                             hintText:
                                                                                 ' ',
                                                                             hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                  fontFamily: 'Readex Pro',
+                                                                                  fontFamily: 'Nunito Sans',
                                                                                   letterSpacing: 0.0,
                                                                                 ),
                                                                             enabledBorder:
@@ -3524,7 +3524,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(
-                                                                                fontFamily: 'Readex Pro',
+                                                                                fontFamily: 'Nunito Sans',
                                                                                 letterSpacing: 0.0,
                                                                               ),
                                                                           keyboardType:
@@ -3562,13 +3562,13 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                             labelText:
                                                                                 'Phút',
                                                                             labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                  fontFamily: 'Readex Pro',
+                                                                                  fontFamily: 'Nunito Sans',
                                                                                   letterSpacing: 0.0,
                                                                                 ),
                                                                             hintText:
                                                                                 ' ',
                                                                             hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                  fontFamily: 'Readex Pro',
+                                                                                  fontFamily: 'Nunito Sans',
                                                                                   letterSpacing: 0.0,
                                                                                 ),
                                                                             enabledBorder:
@@ -3612,7 +3612,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(
-                                                                                fontFamily: 'Readex Pro',
+                                                                                fontFamily: 'Nunito Sans',
                                                                                 letterSpacing: 0.0,
                                                                               ),
                                                                           keyboardType:
@@ -3633,7 +3633,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                               Text(
                                                                             '(${_model.dataUpdate?.remindInSecond != null ? _model.dataUpdate?.remindInSecond.toString() : '0'} phút)',
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                  fontFamily: 'Readex Pro',
+                                                                                  fontFamily: 'Nunito Sans',
                                                                                   letterSpacing: 0.0,
                                                                                 ),
                                                                           ),
@@ -3745,7 +3745,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                       .bodyMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:
@@ -3803,7 +3803,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Nunito Sans',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryText,
@@ -3897,7 +3897,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                       .titleSmall
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Nunito Sans',
                                                         color: Colors.white,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -4013,7 +4013,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                       .bodyMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Nunito Sans',
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -4039,7 +4039,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                         .bodyMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
