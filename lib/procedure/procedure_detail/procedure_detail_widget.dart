@@ -698,18 +698,23 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                           Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 5.0),
+                                                    0.0, 12.0, 0.0, 5.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
                                               children: [
-                                                Icon(
-                                                  Icons.event_repeat,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 24.0,
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          4.0, 0.0, 0.0, 0.0),
+                                                  child: Icon(
+                                                    Icons.event_repeat,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    size: 24.0,
+                                                  ),
                                                 ),
                                                 Padding(
                                                   padding: const EdgeInsetsDirectional
@@ -738,7 +743,7 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                                               'Nunito Sans',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .secondaryText,
+                                                              .primaryText,
                                                           fontSize: 14.0,
                                                           letterSpacing: 0.0,
                                                         ),
@@ -753,7 +758,7 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                             child: Padding(
                                               padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
-                                                      26.0, 0.0, 0.0, 10.0),
+                                                      30.0, 0.0, 0.0, 10.0),
                                               child: Text(
                                                 _model.data?.cron != null &&
                                                         _model.data?.cron != ''
