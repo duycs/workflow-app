@@ -535,8 +535,14 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                 await widget.callback?.call(
                                   _model.list,
                                   _model.statusValue,
-                                  _model.departmentValue,
-                                  _model.branchValue,
+                                  valueOrDefault<String>(
+                                    _model.departmentValue,
+                                    '1',
+                                  ),
+                                  valueOrDefault<String>(
+                                    _model.branchValue,
+                                    '1',
+                                  ),
                                 );
                                 Navigator.pop(context);
                               } else {

@@ -71,7 +71,16 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.pushNamed(
+                'WorkResultList',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 0),
+                  ),
+                },
+              );
             },
           ),
           title: Row(
@@ -373,7 +382,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                       ParamType.int,
                                     ),
                                     'paramBack': serializeParam(
-                                      '',
+                                      '7',
                                       ParamType.String,
                                     ),
                                   }.withoutNulls,

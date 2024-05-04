@@ -1877,7 +1877,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                           errorBuilder:
                                               (context, error, stackTrace) =>
                                                   Image.asset(
-                                            'assets/images/error_image.png',
+                                            'assets/images/error_image.jpg',
                                             width: 40.0,
                                             height: 40.0,
                                             fit: BoxFit.cover,

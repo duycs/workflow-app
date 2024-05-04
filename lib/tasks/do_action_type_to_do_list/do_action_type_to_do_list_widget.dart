@@ -71,16 +71,17 @@ class _DoActionTypeToDoListWidgetState
                       builder: (alertDialogContext) {
                         return AlertDialog(
                           title: const Text('Bạn chắc không?'),
+                          content: const Text('Xác nhận đã thực hiện!'),
                           actions: [
                             TextButton(
                               onPressed: () =>
                                   Navigator.pop(alertDialogContext, false),
-                              child: const Text('Không'),
+                              child: const Text('Đóng'),
                             ),
                             TextButton(
                               onPressed: () =>
                                   Navigator.pop(alertDialogContext, true),
-                              child: const Text('Có'),
+                              child: const Text('Xác nhận'),
                             ),
                           ],
                         );
@@ -103,17 +104,17 @@ class _DoActionTypeToDoListWidgetState
                       context: context,
                       builder: (alertDialogContext) {
                         return AlertDialog(
-                          title: const Text('Bạn chắc không?'),
+                          content: const Text('Xác nhận chưa thực hiện!'),
                           actions: [
                             TextButton(
                               onPressed: () =>
                                   Navigator.pop(alertDialogContext, false),
-                              child: const Text('Không'),
+                              child: const Text('Đóng'),
                             ),
                             TextButton(
                               onPressed: () =>
                                   Navigator.pop(alertDialogContext, true),
-                              child: const Text('Có'),
+                              child: const Text('Xác nhận'),
                             ),
                           ],
                         );

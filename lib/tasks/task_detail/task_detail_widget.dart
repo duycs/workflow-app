@@ -165,6 +165,17 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                     ),
                   },
                 );
+              } else if (widget.paramBack == '7') {
+                context.pushNamed(
+                  'ReportImage',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: const TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 0),
+                    ),
+                  },
+                );
               } else {
                 return;
               }
