@@ -33,6 +33,8 @@ class ListBranchProfileModel extends FlutterFlowModel<ListBranchProfileWidget> {
 
   String search = '';
 
+  bool checkData = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

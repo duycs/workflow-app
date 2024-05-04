@@ -78,6 +78,8 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
   // State field(s) for programs_id widget.
   String? programsIdValue;
   FormFieldController<String>? programsIdValueController;
+  // State field(s) for RadioButtonStatus widget.
+  FormFieldController<String>? radioButtonStatusValueController;
 
   @override
   void initState(BuildContext context) {}
@@ -199,6 +201,7 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
         r'''$.id''',
       ).toString().toString(),
       programsIdJson: programIds.map((e) => e.toMap()).toList(),
+      status: radioButtonStatusValue == 'Hoạt động' ? 'published' : 'draft',
     );
     if ((apiResultPathDepartment.succeeded ?? true)) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -247,4 +250,7 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
       }
     }
   }
+
+  /// Additional helper methods.
+  String? get radioButtonStatusValue => radioButtonStatusValueController?.value;
 }

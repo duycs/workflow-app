@@ -704,6 +704,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'publishedCount',
               ParamType.int,
             ),
+            paramBack: params.getParam(
+              'paramBack',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -751,9 +755,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const OperationListWidget(),
         ),
         FFRoute(
-          name: 'LessonList_HomepageCopy',
-          path: '/lessonListHomepageCopy',
-          builder: (context, params) => const LessonListHomepageCopyWidget(),
+          name: 'LessonLists_Homepage',
+          path: '/lessonListsHomepage',
+          builder: (context, params) => const LessonListsHomepageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

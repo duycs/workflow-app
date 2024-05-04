@@ -341,15 +341,21 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                             FlutterFlowDropDown<String>(
                               controller: _model.dropDownValueController ??=
                                   FormFieldController<String>(
-                                _model.dropDownValue ??=
-                                    widget.operationUpdate?.actionType,
+                                _model.dropDownValue ??= '',
                               ),
-                              options: const [
+                              options: List<String>.from([
                                 'submit_text',
                                 'image',
                                 'upload_file',
                                 'to_do_list',
                                 'approve'
+                              ]),
+                              optionLabels: const [
+                                'Nhập văn bản',
+                                'Chụp ảnh',
+                                'Upload file',
+                                'Checklist công việc',
+                                'Phê duyệt'
                               ],
                               onChanged: (val) =>
                                   setState(() => _model.dropDownValue = val),

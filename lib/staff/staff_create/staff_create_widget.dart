@@ -96,6 +96,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                     .data
                     .toList()
                     .cast<UserStruct>();
+                _model.checkDob = false;
               });
             }
           } else {
@@ -469,11 +470,12 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                             const Duration(milliseconds: 2000),
                                             () async {
                                               if (_model.listEmail
-                                                  .map((e) => e.email)
-                                                  .toList()
-                                                  .contains(_model
-                                                      .emailTextController
-                                                      .text)) {
+                                                      .where((e) =>
+                                                          _model
+                                                              .emailTextController
+                                                              .text ==
+                                                          e.email)
+                                                      .toList().isNotEmpty) {
                                                 setState(() {
                                                   _model.checkEmail = '1';
                                                 });
@@ -574,7 +576,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 0.0, 0.0, 0.0),
+                                                  40.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Email đã tồn tại!',
                                             style: FlutterFlowTheme.of(context)
@@ -584,8 +586,9 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .error,
-                                                  fontSize: 10.0,
+                                                  fontSize: 12.0,
                                                   letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
                                                   fontStyle: FontStyle.italic,
                                                 ),
                                           ),
@@ -879,7 +882,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 0.0, 0.0, 0.0),
+                                                  40.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Vui lòng nhập ngày sinh',
                                             style: FlutterFlowTheme.of(context)
@@ -889,8 +892,9 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .error,
-                                                  fontSize: 10.0,
+                                                  fontSize: 12.0,
                                                   letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
                                                 ),
                                           ),
                                         ),
@@ -1094,7 +1098,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 0.0, 0.0, 0.0),
+                                                  40.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Vui lòng chọn chức vụ',
                                             style: FlutterFlowTheme.of(context)
@@ -1104,8 +1108,9 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .error,
-                                                  fontSize: 10.0,
+                                                  fontSize: 12.0,
                                                   letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
                                                 ),
                                           ),
                                         ),

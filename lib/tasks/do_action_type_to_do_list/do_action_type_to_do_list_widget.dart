@@ -140,12 +140,15 @@ class _DoActionTypeToDoListWidgetState
             checkColor: FlutterFlowTheme.of(context).info,
           ),
         ),
-        Text(
-          widget.listdata!.operationsId.content,
-          style: FlutterFlowTheme.of(context).bodyMedium.override(
-                fontFamily: 'Nunito Sans',
-                letterSpacing: 0.0,
-              ),
+        Expanded(
+          child: Text(
+            widget.listdata!.operationsId.content,
+            maxLines: 5,
+            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  fontFamily: 'Nunito Sans',
+                  letterSpacing: 0.0,
+                ),
+          ),
         ),
       ].divide(const SizedBox(width: 8.0)),
     );

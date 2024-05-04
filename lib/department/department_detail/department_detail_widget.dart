@@ -137,7 +137,6 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                           12.0, 8.0, 12.0, 12.0),
                                       child: Container(
                                         width: double.infinity,
-                                        height: 50.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
@@ -147,9 +146,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                         alignment:
                                             const AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 0.0, 8.0, 0.0),
+                                          padding: const EdgeInsets.all(12.0),
                                           child: Text(
                                             getJsonField(
                                               widget.items,
@@ -210,7 +207,6 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                           12.0, 8.0, 12.0, 12.0),
                                       child: Container(
                                         width: double.infinity,
-                                        height: 50.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
@@ -220,9 +216,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                         alignment:
                                             const AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 0.0, 8.0, 0.0),
+                                          padding: const EdgeInsets.all(12.0),
                                           child: Text(
                                             getJsonField(
                                               widget.items,
@@ -283,7 +277,6 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                           12.0, 8.0, 12.0, 12.0),
                                       child: Container(
                                         width: double.infinity,
-                                        height: 50.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
@@ -293,9 +286,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                         alignment:
                                             const AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 0.0, 8.0, 0.0),
+                                          padding: const EdgeInsets.all(12.0),
                                           child: Text(
                                             getJsonField(
                                               widget.items,
@@ -356,7 +347,6 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                           12.0, 8.0, 12.0, 12.0),
                                       child: Container(
                                         width: double.infinity,
-                                        height: 50.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
@@ -366,9 +356,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                         alignment:
                                             const AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 0.0, 8.0, 0.0),
+                                          padding: const EdgeInsets.all(12.0),
                                           child: Text(
                                             getJsonField(
                                               widget.items,
@@ -429,7 +417,6 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                           12.0, 8.0, 12.0, 12.0),
                                       child: Container(
                                         width: double.infinity,
-                                        height: 50.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
@@ -439,11 +426,9 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                         alignment:
                                             const AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 0.0, 8.0, 0.0),
+                                          padding: const EdgeInsets.all(12.0),
                                           child: Text(
-                                            'Số lượng nhân sự: ${DepartmentListStruct.maybeFromMap(widget.items)?.staffs.length.toString()}',
+                                            '${DepartmentListStruct.maybeFromMap(widget.items)?.staffs.length.toString()}',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -649,7 +634,9 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                           'Hoạt động',
                                           'Không hoạt động'
                                         ].toList(),
-                                        onChanged: (val) => setState(() {}),
+                                        onChanged: ('1' == '1')
+                                            ? null
+                                            : (val) => setState(() {}),
                                         controller: _model
                                                 .radioButtonValueController ??=
                                             FormFieldController<String>(

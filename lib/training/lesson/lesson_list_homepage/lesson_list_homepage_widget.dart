@@ -510,7 +510,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Text(
-                              'Chưa có dữ liệu',
+                              'Không có dữ liệu !',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -518,21 +518,6 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                     fontSize: 18.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
-                                  ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 3.0, 0.0, 0.0),
-                            child: Text(
-                              'Hiện tại bạn chưa có dữ liệu nào!',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
                                   ),
                             ),
                           ),

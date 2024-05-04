@@ -174,11 +174,7 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                       onChanged: (_) => EasyDebounce.debounce(
                         '_model.nameTextController',
                         const Duration(milliseconds: 2000),
-                        () async {
-                          setState(() {
-                            _model.nameSearch = _model.nameTextController.text;
-                          });
-                        },
+                        () => setState(() {}),
                       ),
                       autofocus: false,
                       obscureText: false,
@@ -284,9 +280,8 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                                         _model.statusSearch != ''
                                     ? _model.statusSearch
                                     : '',
-                                _model.nameSearch != null &&
-                                        _model.nameSearch != ''
-                                    ? _model.nameSearch
+                                _model.nameTextController.text != ''
+                                    ? _model.nameTextController.text
                                     : '',
                               );
                               Navigator.pop(context);

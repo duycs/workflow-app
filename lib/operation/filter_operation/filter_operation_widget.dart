@@ -316,7 +316,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                               (_model.dateEnd != '') &&
                                       (_model.dateEnd != ' ')
                                   ? _model.dateEnd
-                                  : 'Đến ngày',
+                                  : 'Đến hết ngày',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
@@ -486,17 +486,21 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                   child: FlutterFlowDropDown<String>(
                     controller: _model.actionValueController ??=
                         FormFieldController<String>(
-                      _model.actionValue ??=
-                          widget.userCreate != ''
-                              ? widget.userCreate
-                              : '',
+                      _model.actionValue ??= '',
                     ),
-                    options: const [
+                    options: List<String>.from([
                       'submit_text',
                       'image',
                       'upload_file',
                       'to_do_list',
                       'approve'
+                    ]),
+                    optionLabels: const [
+                      'Nhập văn bản',
+                      'Chụp ảnh',
+                      'Upload file',
+                      'Checklist công việc',
+                      'Phê duyệt'
                     ],
                     onChanged: (val) =>
                         setState(() => _model.actionValue = val),

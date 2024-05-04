@@ -353,6 +353,35 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               var shouldSetState = false;
+                              setState(() {});
+                              if ((_model.dropDownDomainValue != null &&
+                                      _model.dropDownDomainValue != '') &&
+                                  (_model.dropDownCategoryValue != null &&
+                                      _model.dropDownCategoryValue != '') &&
+                                  (_model.dropDownDomainValue != ' ') &&
+                                  (_model.dropDownCategoryValue != ' ')) {
+                                setState(() {});
+                              } else {
+                                await showDialog(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      content: const Text(
+                                          'Vui lòng chọn lĩnh vực và bộ phận!'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: const Text('Ok'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                                if (shouldSetState) setState(() {});
+                                return;
+                              }
+
                               _model.apiResult16g = await ProcedureTemplateGroup
                                   .workflowMarketCall
                                   .call(

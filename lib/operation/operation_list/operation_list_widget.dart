@@ -8,6 +8,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'operation_list_model.dart';
 export 'operation_list_model.dart';
 
@@ -33,6 +34,9 @@ class _OperationListWidgetState extends State<OperationListWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await _model.getLinkOperations(context);
       setState(() {});
+      setState(() {
+        _model.isLoad = true;
+      });
     });
 
     _model.textController ??= TextEditingController();
@@ -136,6 +140,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
@@ -283,6 +288,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                       _model.searchDateEnd = dateEnd!;
                                     });
                                     await _model.getLinkOperations(context);
+                                    setState(() {});
                                   },
                                 ),
                               ),
@@ -294,6 +300,24 @@ class _OperationListWidgetState extends State<OperationListWidget>
                   ],
                 ),
               ),
+              if ((_model.seachName != '') ||
+                  (_model.seachUserCreate != '') ||
+                  (_model.searchAction != '') ||
+                  (_model.searchDateStart != '') ||
+                  (_model.searchDateEnd != '') ||
+                  (_model.searchStatus != ''))
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 0.0, 0.0),
+                  child: Text(
+                    '#Kết quả hiển thị theo bộ lọc',
+                    style: FlutterFlowTheme.of(context).labelMedium.override(
+                          fontFamily: 'Nunito Sans',
+                          fontSize: 13.0,
+                          letterSpacing: 0.0,
+                          fontStyle: FontStyle.italic,
+                        ),
+                  ),
+                ),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
@@ -337,80 +361,168 @@ class _OperationListWidgetState extends State<OperationListWidget>
                         child: TabBarView(
                           controller: _model.tabBarController,
                           children: [
-                            Builder(
-                              builder: (context) {
-                                final itemOperation =
-                                    _model.operationList.toList();
-                                return ListView.separated(
-                                  padding: EdgeInsets.zero,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: itemOperation.length,
-                                  separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 8.0),
-                                  itemBuilder: (context, itemOperationIndex) {
-                                    final itemOperationItem =
-                                        itemOperation[itemOperationIndex];
-                                    return InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        await showModalBottomSheet(
-                                          isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          enableDrag: false,
-                                          context: context,
-                                          builder: (context) {
-                                            return GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
-                                                      .unfocus(),
-                                              child: Padding(
-                                                padding:
-                                                    MediaQuery.viewInsetsOf(
-                                                        context),
-                                                child: OperationDetailWidget(
-                                                  operationDetail:
-                                                      itemOperationItem,
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        ).then((value) => safeSetState(() {}));
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 8.0, 8.0, 8.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.stretch,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Expanded(
+                            Stack(
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              children: [
+                                if (_model.isLoad == true)
+                                  Builder(
+                                    builder: (context) {
+                                      final itemOperation =
+                                          _model.operationList.toList();
+                                      return ListView.separated(
+                                        padding: EdgeInsets.zero,
+                                        scrollDirection: Axis.vertical,
+                                        itemCount: itemOperation.length,
+                                        separatorBuilder: (_, __) =>
+                                            const SizedBox(height: 8.0),
+                                        itemBuilder:
+                                            (context, itemOperationIndex) {
+                                          final itemOperationItem =
+                                              itemOperation[itemOperationIndex];
+                                          return InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              await showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                enableDrag: false,
+                                                context: context,
+                                                builder: (context) {
+                                                  return GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
                                                     child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child:
+                                                          OperationDetailWidget(
+                                                        operationDetail:
+                                                            itemOperationItem,
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              ).then((value) =>
+                                                  safeSetState(() {}));
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        8.0, 8.0, 8.0, 8.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment
+                                                          .stretch,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        8.0),
+                                                            child: RichText(
+                                                              textScaler:
+                                                                  MediaQuery.of(
+                                                                          context)
+                                                                      .textScaler,
+                                                              text: TextSpan(
+                                                                children: [
+                                                                  TextSpan(
+                                                                    text:
+                                                                        '#${(itemOperationIndex + 1).toString()} ',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Nunito Sans',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primary,
+                                                                          fontSize:
+                                                                              14.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                        ),
+                                                                  ),
+                                                                  TextSpan(
+                                                                    text: itemOperationItem
+                                                                        .name,
+                                                                    style:
+                                                                        const TextStyle(),
+                                                                  )
+                                                                ],
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        if ((itemOperationItem
+                                                                        .executeId !=
+                                                                    '') &&
+                                                            (itemOperationItem
+                                                                    .executeId !=
+                                                                'null'))
+                                                          Icon(
+                                                            Icons
+                                                                .settings_outlined,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            size: 24.0,
+                                                          ),
+                                                      ],
+                                                    ),
+                                                    Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
                                                                   0.0,
-                                                                  8.0),
+                                                                  4.0),
                                                       child: RichText(
                                                         textScaler:
                                                             MediaQuery.of(
@@ -420,438 +532,465 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                           children: [
                                                             TextSpan(
                                                               text:
-                                                                  '#${(itemOperationIndex + 1).toString()} ',
+                                                                  'Người tạo:  ',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    fontSize:
+                                                                        13.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                    fontStyle:
+                                                                        FontStyle
+                                                                            .italic,
+                                                                  ),
+                                                            ),
+                                                            TextSpan(
+                                                              text: itemOperationItem
+                                                                  .operationsId
+                                                                  .name,
+                                                              style: TextStyle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w300,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic,
+                                                              ),
+                                                            )
+                                                          ],
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  4.0),
+                                                      child: Text(
+                                                        'Nội dung: ${itemOperationItem.content}',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  4.0),
+                                                      child: RichText(
+                                                        textScaler:
+                                                            MediaQuery.of(
+                                                                    context)
+                                                                .textScaler,
+                                                        text: TextSpan(
+                                                          children: [
+                                                            TextSpan(
+                                                              text: 'Mô tả:  ',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    fontSize:
+                                                                        13.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                    fontStyle:
+                                                                        FontStyle
+                                                                            .italic,
+                                                                  ),
+                                                            ),
+                                                            TextSpan(
+                                                              text: itemOperationItem
+                                                                  .description,
+                                                              style: TextStyle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w300,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic,
+                                                              ),
+                                                            )
+                                                          ],
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    RichText(
+                                                      textScaler:
+                                                          MediaQuery.of(context)
+                                                              .textScaler,
+                                                      text: TextSpan(
+                                                        children: [
+                                                          TextSpan(
+                                                            text:
+                                                                'Kiểu hành động: ',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                ),
+                                                          ),
+                                                          TextSpan(
+                                                            text: () {
+                                                              if (itemOperationItem
+                                                                      .actionType ==
+                                                                  'submit_text') {
+                                                                return 'Nhập văn bản';
+                                                              } else if (itemOperationItem
+                                                                      .actionType ==
+                                                                  'image') {
+                                                                return 'Chụp ảnh';
+                                                              } else if (itemOperationItem
+                                                                      .actionType ==
+                                                                  'upload_file') {
+                                                                return 'Upload file';
+                                                              } else if (itemOperationItem
+                                                                      .actionType ==
+                                                                  'to_do_list') {
+                                                                return 'Ckecklist công việc';
+                                                              } else {
+                                                                return 'Phê duyệt';
+                                                              }
+                                                            }(),
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontStyle:
+                                                                  FontStyle
+                                                                      .italic,
+                                                            ),
+                                                          )
+                                                        ],
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .labelMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Nunito Sans',
+                                                              fontSize: 13.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontStyle:
+                                                                  FontStyle
+                                                                      .italic,
+                                                            ),
+                                                      ),
+                                                    ),
+                                                    const Divider(
+                                                      height: 12.0,
+                                                      thickness: 1.0,
+                                                      color: Color(0x5657636C),
+                                                    ),
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Text(
+                                                            dateTimeFormat(
+                                                              'dd/MM/yyyy',
+                                                              functions.stringToDateTime(
+                                                                  itemOperationItem
+                                                                      .dateCreated),
+                                                              locale: FFLocalizations
+                                                                      .of(context)
+                                                                  .languageCode,
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                        Container(
+                                                          height: 30.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: itemOperationItem
+                                                                        .status ==
+                                                                    'draft'
+                                                                ? FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent3
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent2,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20.0),
+                                                          ),
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        8.0,
+                                                                        0.0,
+                                                                        8.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              itemOperationItem
+                                                                          .status ==
+                                                                      'draft'
+                                                                  ? 'Không hoạt động'
+                                                                  : 'Hoạt động ',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
                                                                   .override(
                                                                     fontFamily:
                                                                         'Nunito Sans',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primary,
+                                                                    color: itemOperationItem.status ==
+                                                                            'draft'
+                                                                        ? FlutterFlowTheme.of(context)
+                                                                            .tertiary
+                                                                        : FlutterFlowTheme.of(context)
+                                                                            .secondary,
                                                                     fontSize:
-                                                                        14.0,
+                                                                        13.0,
                                                                     letterSpacing:
                                                                         0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
                                                                   ),
                                                             ),
-                                                            TextSpan(
-                                                              text:
-                                                                  itemOperationItem
-                                                                      .name,
-                                                              style:
-                                                                  const TextStyle(),
-                                                            )
-                                                          ],
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  if ((itemOperationItem
-                                                                  .executeId !=
-                                                              '') &&
-                                                      (itemOperationItem
-                                                              .executeId !=
-                                                          'null'))
-                                                    Icon(
-                                                      Icons.settings_outlined,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      size: 24.0,
-                                                    ),
-                                                ],
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 4.0),
-                                                child: RichText(
-                                                  textScaler:
-                                                      MediaQuery.of(context)
-                                                          .textScaler,
-                                                  text: TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                        text: 'Người tạo:  ',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Nunito Sans',
-                                                              fontSize: 13.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                              fontStyle:
-                                                                  FontStyle
-                                                                      .italic,
-                                                            ),
-                                                      ),
-                                                      TextSpan(
-                                                        text: itemOperationItem
-                                                            .operationsId.name,
-                                                        style: TextStyle(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                        ),
-                                                      )
-                                                    ],
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 13.0,
-                                                          letterSpacing: 0.0,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                        ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 4.0),
-                                                child: Text(
-                                                  itemOperationItem.content,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        fontSize: 14.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        fontStyle:
-                                                            FontStyle.italic,
-                                                      ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 4.0),
-                                                child: RichText(
-                                                  textScaler:
-                                                      MediaQuery.of(context)
-                                                          .textScaler,
-                                                  text: TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                        text: 'Mô tả:  ',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Nunito Sans',
-                                                              fontSize: 13.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                              fontStyle:
-                                                                  FontStyle
-                                                                      .italic,
-                                                            ),
-                                                      ),
-                                                      TextSpan(
-                                                        text: itemOperationItem
-                                                            .description,
-                                                        style: TextStyle(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                        ),
-                                                      )
-                                                    ],
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 13.0,
-                                                          letterSpacing: 0.0,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                        ),
-                                                  ),
-                                                ),
-                                              ),
-                                              RichText(
-                                                textScaler:
-                                                    MediaQuery.of(context)
-                                                        .textScaler,
-                                                text: TextSpan(
-                                                  children: [
-                                                    TextSpan(
-                                                      text: 'Kiểu hành động: ',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .labelMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Nunito Sans',
-                                                            fontSize: 13.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                            fontStyle: FontStyle
-                                                                .italic,
                                                           ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                    TextSpan(
-                                                      text: itemOperationItem
-                                                          .actionType,
-                                                      style: TextStyle(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontStyle:
-                                                            FontStyle.italic,
-                                                      ),
-                                                    )
                                                   ],
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .labelMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        fontSize: 13.0,
-                                                        letterSpacing: 0.0,
-                                                        fontStyle:
-                                                            FontStyle.italic,
-                                                      ),
                                                 ),
                                               ),
-                                              const Divider(
-                                                height: 12.0,
-                                                thickness: 1.0,
-                                                color: Color(0x5657636C),
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Expanded(
-                                                    child: Text(
-                                                      dateTimeFormat(
-                                                        'dd/MM/yyyy',
-                                                        functions.stringToDateTime(
-                                                            itemOperationItem
-                                                                .dateCreated),
-                                                        locale:
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .languageCode,
-                                                      ),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontSize: 13.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    height: 30.0,
-                                                    decoration: BoxDecoration(
-                                                      color: itemOperationItem
-                                                                  .status ==
-                                                              'draft'
-                                                          ? FlutterFlowTheme.of(
-                                                                  context)
-                                                              .accent3
-                                                          : FlutterFlowTheme.of(
-                                                                  context)
-                                                              .accent2,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.0),
-                                                    ),
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8.0,
-                                                                  0.0,
-                                                                  8.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        itemOperationItem
-                                                                    .status ==
-                                                                'draft'
-                                                            ? 'Không hoạt động'
-                                                            : 'Hoạt động ',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Nunito Sans',
-                                                              color: itemOperationItem
-                                                                          .status ==
-                                                                      'draft'
-                                                                  ? FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .tertiary
-                                                                  : FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary,
-                                                              fontSize: 13.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                            ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                            ),
-                            Builder(
-                              builder: (context) {
-                                final itemUserCreated = _model.operationList
-                                    .where((e) =>
-                                        e.executeId == '')
-                                    .toList();
-                                return ListView.separated(
-                                  padding: EdgeInsets.zero,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: itemUserCreated.length,
-                                  separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 8.0),
-                                  itemBuilder: (context, itemUserCreatedIndex) {
-                                    final itemUserCreatedItem =
-                                        itemUserCreated[itemUserCreatedIndex];
-                                    return InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        await showModalBottomSheet(
-                                          isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          enableDrag: false,
-                                          context: context,
-                                          builder: (context) {
-                                            return GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
-                                                      .unfocus(),
-                                              child: Padding(
-                                                padding:
-                                                    MediaQuery.viewInsetsOf(
-                                                        context),
-                                                child: OperationDetailWidget(
-                                                  operationDetail:
-                                                      itemUserCreatedItem,
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        ).then((value) => safeSetState(() {}));
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
+                                if ((_model.operationList.isEmpty) &&
+                                    (_model.isLoad == true))
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 1.0, 0.0, 0.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        FaIcon(
+                                          FontAwesomeIcons.database,
                                           color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                                              .alternate,
+                                          size: 55.0,
                                         ),
-                                        child: Padding(
+                                        Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 8.0, 8.0, 8.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.stretch,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 8.0),
-                                                child: RichText(
-                                                  textScaler:
-                                                      MediaQuery.of(context)
-                                                          .textScaler,
-                                                  text: TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                        text:
-                                                            '#${(itemUserCreatedIndex + 1).toString()} ',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
+                                                  0.0, 15.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Không có dữ liệu !',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  fontSize: 18.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                              ],
+                            ),
+                            Stack(
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              children: [
+                                Builder(
+                                  builder: (context) {
+                                    final itemUserCreated = _model.operationList
+                                        .where((e) =>
+                                            e.executeId == '')
+                                        .toList();
+                                    return ListView.separated(
+                                      padding: EdgeInsets.zero,
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: itemUserCreated.length,
+                                      separatorBuilder: (_, __) =>
+                                          const SizedBox(height: 8.0),
+                                      itemBuilder:
+                                          (context, itemUserCreatedIndex) {
+                                        final itemUserCreatedItem =
+                                            itemUserCreated[
+                                                itemUserCreatedIndex];
+                                        return InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            await showModalBottomSheet(
+                                              isScrollControlled: true,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              enableDrag: false,
+                                              context: context,
+                                              builder: (context) {
+                                                return GestureDetector(
+                                                  onTap: () => _model
+                                                          .unfocusNode
+                                                          .canRequestFocus
+                                                      ? FocusScope.of(context)
+                                                          .requestFocus(_model
+                                                              .unfocusNode)
+                                                      : FocusScope.of(context)
+                                                          .unfocus(),
+                                                  child: Padding(
+                                                    padding:
+                                                        MediaQuery.viewInsetsOf(
+                                                            context),
+                                                    child:
+                                                        OperationDetailWidget(
+                                                      operationDetail:
+                                                          itemUserCreatedItem,
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ).then(
+                                                (value) => safeSetState(() {}));
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(8.0, 8.0, 8.0, 8.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.stretch,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 8.0),
+                                                    child: RichText(
+                                                      textScaler:
+                                                          MediaQuery.of(context)
+                                                              .textScaler,
+                                                      text: TextSpan(
+                                                        children: [
+                                                          TextSpan(
+                                                            text:
+                                                                '#${(itemUserCreatedIndex + 1).toString()} ',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
@@ -867,40 +1006,78 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                       FontWeight
                                                                           .w500,
                                                                 ),
+                                                          ),
+                                                          TextSpan(
+                                                            text:
+                                                                itemUserCreatedItem
+                                                                    .name,
+                                                            style: const TextStyle(),
+                                                          )
+                                                        ],
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Nunito Sans',
+                                                              fontSize: 14.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
                                                       ),
-                                                      TextSpan(
-                                                        text:
-                                                            itemUserCreatedItem
-                                                                .name,
-                                                        style: const TextStyle(),
-                                                      )
-                                                    ],
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 14.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
+                                                    ),
                                                   ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 4.0),
-                                                child: RichText(
-                                                  textScaler:
-                                                      MediaQuery.of(context)
-                                                          .textScaler,
-                                                  text: TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                        text: 'Người tạo:  ',
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 4.0),
+                                                    child: RichText(
+                                                      textScaler:
+                                                          MediaQuery.of(context)
+                                                              .textScaler,
+                                                      text: TextSpan(
+                                                        children: [
+                                                          TextSpan(
+                                                            text:
+                                                                'Người tạo:  ',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                ),
+                                                          ),
+                                                          TextSpan(
+                                                            text:
+                                                                'Áp dụng cho hành động có kiểu Approve. Cần đặc biệt chỉ định Trưởng bộ phận phê duyệt.',
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryText,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w300,
+                                                              fontStyle:
+                                                                  FontStyle
+                                                                      .italic,
+                                                            ),
+                                                          )
+                                                        ],
                                                         style: FlutterFlowTheme
                                                                 .of(context)
                                                             .labelMedium
@@ -910,140 +1087,30 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                               fontSize: 13.0,
                                                               letterSpacing:
                                                                   0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
                                                               fontStyle:
                                                                   FontStyle
                                                                       .italic,
                                                             ),
                                                       ),
-                                                      TextSpan(
-                                                        text:
-                                                            'Áp dụng cho hành động có kiểu Approve. Cần đặc biệt chỉ định Trưởng bộ phận phê duyệt.',
-                                                        style: TextStyle(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                        ),
-                                                      )
-                                                    ],
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 13.0,
-                                                          letterSpacing: 0.0,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                        ),
+                                                    ),
                                                   ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 4.0),
-                                                child: Text(
-                                                  itemUserCreatedItem.content,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        fontSize: 14.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        fontStyle:
-                                                            FontStyle.italic,
-                                                      ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 4.0),
-                                                child: RichText(
-                                                  textScaler:
-                                                      MediaQuery.of(context)
-                                                          .textScaler,
-                                                  text: TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                        text: 'Mô tả:  ',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Nunito Sans',
-                                                              fontSize: 13.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                              fontStyle:
-                                                                  FontStyle
-                                                                      .italic,
-                                                            ),
-                                                      ),
-                                                      TextSpan(
-                                                        text:
-                                                            itemUserCreatedItem
-                                                                .description,
-                                                        style: TextStyle(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                        ),
-                                                      )
-                                                    ],
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 13.0,
-                                                          letterSpacing: 0.0,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                        ),
-                                                  ),
-                                                ),
-                                              ),
-                                              RichText(
-                                                textScaler:
-                                                    MediaQuery.of(context)
-                                                        .textScaler,
-                                                text: TextSpan(
-                                                  children: [
-                                                    TextSpan(
-                                                      text: 'Kiểu hành động: ',
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 4.0),
+                                                    child: Text(
+                                                      'Nội dung: ${itemUserCreatedItem.content}',
                                                       style: FlutterFlowTheme
                                                               .of(context)
-                                                          .labelMedium
+                                                          .bodyMedium
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
-                                                            fontSize: 13.0,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            fontSize: 14.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight
@@ -1052,57 +1119,147 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                 .italic,
                                                           ),
                                                     ),
-                                                    TextSpan(
-                                                      text: itemUserCreatedItem
-                                                          .actionType,
-                                                      style: TextStyle(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 4.0),
+                                                    child: RichText(
+                                                      textScaler:
+                                                          MediaQuery.of(context)
+                                                              .textScaler,
+                                                      text: TextSpan(
+                                                        children: [
+                                                          TextSpan(
+                                                            text: 'Mô tả:  ',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                ),
+                                                          ),
+                                                          TextSpan(
+                                                            text:
+                                                                itemUserCreatedItem
+                                                                    .description,
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryText,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w300,
+                                                              fontStyle:
+                                                                  FontStyle
+                                                                      .italic,
+                                                            ),
+                                                          )
+                                                        ],
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .labelMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Nunito Sans',
+                                                              fontSize: 13.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontStyle:
+                                                                  FontStyle
+                                                                      .italic,
+                                                            ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  RichText(
+                                                    textScaler:
+                                                        MediaQuery.of(context)
+                                                            .textScaler,
+                                                    text: TextSpan(
+                                                      children: [
+                                                        TextSpan(
+                                                          text:
+                                                              'Kiểu hành động: ',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic,
+                                                              ),
+                                                        ),
+                                                        TextSpan(
+                                                          text:
+                                                              itemUserCreatedItem
+                                                                  .actionType,
+                                                          style: TextStyle(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
                                                                 .primary,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontStyle:
-                                                            FontStyle.italic,
-                                                      ),
-                                                    )
-                                                  ],
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .labelMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        fontSize: 13.0,
-                                                        letterSpacing: 0.0,
-                                                        fontStyle:
-                                                            FontStyle.italic,
-                                                      ),
-                                                ),
-                                              ),
-                                              const Divider(
-                                                height: 12.0,
-                                                thickness: 1.0,
-                                                color: Color(0x5657636C),
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Expanded(
-                                                    child: Text(
-                                                      dateTimeFormat(
-                                                        'dd/MM/yyyy',
-                                                        functions.stringToDateTime(
-                                                            itemUserCreatedItem
-                                                                .dateCreated),
-                                                        locale:
-                                                            FFLocalizations.of(
-                                                                    context)
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                          ),
+                                                        )
+                                                      ],
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .labelMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            fontSize: 13.0,
+                                                            letterSpacing: 0.0,
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                  const Divider(
+                                                    height: 12.0,
+                                                    thickness: 1.0,
+                                                    color: Color(0x5657636C),
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          dateTimeFormat(
+                                                            'dd/MM/yyyy',
+                                                            functions.stringToDateTime(
+                                                                itemUserCreatedItem
+                                                                    .dateCreated),
+                                                            locale: FFLocalizations
+                                                                    .of(context)
                                                                 .languageCode,
-                                                      ),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
@@ -1114,170 +1271,245 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    height: 30.0,
-                                                    decoration: BoxDecoration(
-                                                      color: itemUserCreatedItem
-                                                                  .status ==
-                                                              'done'
-                                                          ? FlutterFlowTheme.of(
-                                                                  context)
-                                                              .accent2
-                                                          : FlutterFlowTheme.of(
-                                                                  context)
-                                                              .accent3,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.0),
-                                                    ),
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8.0,
-                                                                  0.0,
-                                                                  8.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        itemUserCreatedItem
-                                                                    .status ==
-                                                                'done'
-                                                            ? 'Hoạt động'
-                                                            : 'Không hoạt động',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Nunito Sans',
-                                                              color: itemUserCreatedItem
-                                                                          .status ==
-                                                                      'done'
-                                                                  ? FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary
-                                                                  : FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .tertiary,
-                                                              fontSize: 13.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                            ),
+                                                        ),
                                                       ),
-                                                    ),
+                                                      Container(
+                                                        height: 30.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: itemUserCreatedItem
+                                                                      .status ==
+                                                                  'done'
+                                                              ? FlutterFlowTheme
+                                                                      .of(
+                                                                          context)
+                                                                  .accent2
+                                                              : FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .accent3,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20.0),
+                                                        ),
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      0.0,
+                                                                      8.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            itemUserCreatedItem
+                                                                        .status ==
+                                                                    'done'
+                                                                ? 'Hoạt động'
+                                                                : 'Không hoạt động',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: itemUserCreatedItem
+                                                                              .status ==
+                                                                          'done'
+                                                                      ? FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondary
+                                                                      : FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .tertiary,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ],
                                               ),
-                                            ],
+                                            ),
                                           ),
-                                        ),
-                                      ),
+                                        );
+                                      },
                                     );
                                   },
-                                );
-                              },
-                            ),
-                            Builder(
-                              builder: (context) {
-                                final itemDefault = _model.operationList
-                                    .where((e) =>
-                                        (e.executeId != '') &&
-                                        (e.executeId != 'null'))
-                                    .toList();
-                                return ListView.separated(
-                                  padding: EdgeInsets.zero,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: itemDefault.length,
-                                  separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 8.0),
-                                  itemBuilder: (context, itemDefaultIndex) {
-                                    final itemDefaultItem =
-                                        itemDefault[itemDefaultIndex];
-                                    return InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        await showModalBottomSheet(
-                                          isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          enableDrag: false,
-                                          context: context,
-                                          builder: (context) {
-                                            return GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
-                                                      .unfocus(),
-                                              child: Padding(
-                                                padding:
-                                                    MediaQuery.viewInsetsOf(
-                                                        context),
-                                                child: OperationDetailWidget(
-                                                  operationDetail:
-                                                      itemDefaultItem,
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        ).then((value) => safeSetState(() {}));
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
+                                ),
+                                if ((_model.operationList
+                                            .where((e) =>
+                                                e.executeId == '')
+                                            .toList().isEmpty) &&
+                                    (_model.isLoad == true))
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 1.0, 0.0, 0.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        FaIcon(
+                                          FontAwesomeIcons.database,
                                           color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                                              .alternate,
+                                          size: 55.0,
                                         ),
-                                        child: Padding(
+                                        Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 8.0, 8.0, 8.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.stretch,
-                                            children: [
-                                              Row(
+                                                  0.0, 15.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Không có dữ liệu !',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  fontSize: 18.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                              ],
+                            ),
+                            Stack(
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              children: [
+                                Builder(
+                                  builder: (context) {
+                                    final itemDefault = _model.operationList
+                                        .where((e) =>
+                                            (e.executeId != '') &&
+                                            (e.executeId != 'null'))
+                                        .toList();
+                                    return ListView.separated(
+                                      padding: EdgeInsets.zero,
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: itemDefault.length,
+                                      separatorBuilder: (_, __) =>
+                                          const SizedBox(height: 8.0),
+                                      itemBuilder: (context, itemDefaultIndex) {
+                                        final itemDefaultItem =
+                                            itemDefault[itemDefaultIndex];
+                                        return InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            await showModalBottomSheet(
+                                              isScrollControlled: true,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              enableDrag: false,
+                                              context: context,
+                                              builder: (context) {
+                                                return GestureDetector(
+                                                  onTap: () => _model
+                                                          .unfocusNode
+                                                          .canRequestFocus
+                                                      ? FocusScope.of(context)
+                                                          .requestFocus(_model
+                                                              .unfocusNode)
+                                                      : FocusScope.of(context)
+                                                          .unfocus(),
+                                                  child: Padding(
+                                                    padding:
+                                                        MediaQuery.viewInsetsOf(
+                                                            context),
+                                                    child:
+                                                        OperationDetailWidget(
+                                                      operationDetail:
+                                                          itemDefaultItem,
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ).then(
+                                                (value) => safeSetState(() {}));
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(8.0, 8.0, 8.0, 8.0),
+                                              child: Column(
                                                 mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.stretch,
                                                 children: [
-                                                  Expanded(
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  8.0),
-                                                      child: RichText(
-                                                        textScaler:
-                                                            MediaQuery.of(
-                                                                    context)
-                                                                .textScaler,
-                                                        text: TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                              text:
-                                                                  '#${(itemDefaultIndex + 1).toString()} ',
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      8.0),
+                                                          child: RichText(
+                                                            textScaler:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .textScaler,
+                                                            text: TextSpan(
+                                                              children: [
+                                                                TextSpan(
+                                                                  text:
+                                                                      '#${(itemDefaultIndex + 1).toString()} ',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                        fontSize:
+                                                                            14.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      ),
+                                                                ),
+                                                                TextSpan(
+                                                                  text:
+                                                                      itemDefaultItem
+                                                                          .name,
+                                                                  style:
+                                                                      const TextStyle(),
+                                                                )
+                                                              ],
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
                                                                   .override(
                                                                     fontFamily:
                                                                         'Nunito Sans',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primary,
                                                                     fontSize:
                                                                         14.0,
                                                                     letterSpacing:
@@ -1287,77 +1519,92 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                             .w500,
                                                                   ),
                                                             ),
-                                                            TextSpan(
-                                                              text:
-                                                                  itemDefaultItem
-                                                                      .name,
-                                                              style:
-                                                                  const TextStyle(),
-                                                            )
-                                                          ],
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ),
-                                                  Icon(
-                                                    Icons.settings_outlined,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    size: 24.0,
-                                                  ),
-                                                ],
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 4.0),
-                                                child: Text(
-                                                  itemDefaultItem.content,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
+                                                      Icon(
+                                                        Icons.settings_outlined,
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .secondaryText,
-                                                        fontSize: 14.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        fontStyle:
-                                                            FontStyle.italic,
+                                                        size: 24.0,
                                                       ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 4.0),
-                                                child: RichText(
-                                                  textScaler:
-                                                      MediaQuery.of(context)
-                                                          .textScaler,
-                                                  text: TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                        text: 'Mô tả:  ',
+                                                    ],
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 4.0),
+                                                    child: Text(
+                                                      'Nội dung: ${itemDefaultItem.content}',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            fontSize: 14.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 4.0),
+                                                    child: RichText(
+                                                      textScaler:
+                                                          MediaQuery.of(context)
+                                                              .textScaler,
+                                                      text: TextSpan(
+                                                        children: [
+                                                          TextSpan(
+                                                            text: 'Mô tả:  ',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                ),
+                                                          ),
+                                                          TextSpan(
+                                                            text: itemDefaultItem
+                                                                .description,
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryText,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w300,
+                                                              fontStyle:
+                                                                  FontStyle
+                                                                      .italic,
+                                                            ),
+                                                          )
+                                                        ],
                                                         style: FlutterFlowTheme
                                                                 .of(context)
                                                             .labelMedium
@@ -1367,50 +1614,53 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                               fontSize: 13.0,
                                                               letterSpacing:
                                                                   0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
                                                               fontStyle:
                                                                   FontStyle
                                                                       .italic,
                                                             ),
                                                       ),
-                                                      TextSpan(
-                                                        text: itemDefaultItem
-                                                            .description,
-                                                        style: TextStyle(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                        ),
-                                                      )
-                                                    ],
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 13.0,
-                                                          letterSpacing: 0.0,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                        ),
+                                                    ),
                                                   ),
-                                                ),
-                                              ),
-                                              RichText(
-                                                textScaler:
-                                                    MediaQuery.of(context)
-                                                        .textScaler,
-                                                text: TextSpan(
-                                                  children: [
-                                                    TextSpan(
-                                                      text: 'Kiểu hành động: ',
+                                                  RichText(
+                                                    textScaler:
+                                                        MediaQuery.of(context)
+                                                            .textScaler,
+                                                    text: TextSpan(
+                                                      children: [
+                                                        TextSpan(
+                                                          text:
+                                                              'Kiểu hành động: ',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic,
+                                                              ),
+                                                        ),
+                                                        TextSpan(
+                                                          text: itemDefaultItem
+                                                              .actionType,
+                                                          style: TextStyle(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                          ),
+                                                        )
+                                                      ],
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .labelMedium
@@ -1419,65 +1669,33 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                 'Nunito Sans',
                                                             fontSize: 13.0,
                                                             letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
                                                             fontStyle: FontStyle
                                                                 .italic,
                                                           ),
                                                     ),
-                                                    TextSpan(
-                                                      text: itemDefaultItem
-                                                          .actionType,
-                                                      style: TextStyle(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontStyle:
-                                                            FontStyle.italic,
-                                                      ),
-                                                    )
-                                                  ],
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .labelMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        fontSize: 13.0,
-                                                        letterSpacing: 0.0,
-                                                        fontStyle:
-                                                            FontStyle.italic,
-                                                      ),
-                                                ),
-                                              ),
-                                              const Divider(
-                                                height: 12.0,
-                                                thickness: 1.0,
-                                                color: Color(0x5657636C),
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Expanded(
-                                                    child: Text(
-                                                      dateTimeFormat(
-                                                        'dd/MM/yyyy',
-                                                        functions
-                                                            .stringToDateTime(
+                                                  ),
+                                                  const Divider(
+                                                    height: 12.0,
+                                                    thickness: 1.0,
+                                                    color: Color(0x5657636C),
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          dateTimeFormat(
+                                                            'dd/MM/yyyy',
+                                                            functions.stringToDateTime(
                                                                 itemDefaultItem
                                                                     .dateCreated),
-                                                        locale:
-                                                            FFLocalizations.of(
-                                                                    context)
+                                                            locale: FFLocalizations
+                                                                    .of(context)
                                                                 .languageCode,
-                                                      ),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
@@ -1489,73 +1707,114 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    height: 30.0,
-                                                    decoration: BoxDecoration(
-                                                      color: itemDefaultItem
-                                                                  .status ==
-                                                              'done'
-                                                          ? FlutterFlowTheme.of(
-                                                                  context)
-                                                              .accent2
-                                                          : FlutterFlowTheme.of(
-                                                                  context)
-                                                              .accent3,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.0),
-                                                    ),
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8.0,
-                                                                  0.0,
-                                                                  8.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        itemDefaultItem
-                                                                    .status ==
-                                                                'done'
-                                                            ? 'Hoạt động'
-                                                            : 'Không hoạt động',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Nunito Sans',
-                                                              color: itemDefaultItem
-                                                                          .status ==
-                                                                      'done'
-                                                                  ? FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary
-                                                                  : FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .tertiary,
-                                                              fontSize: 13.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                            ),
+                                                        ),
                                                       ),
-                                                    ),
+                                                      Container(
+                                                        height: 30.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: itemDefaultItem
+                                                                      .status ==
+                                                                  'done'
+                                                              ? FlutterFlowTheme
+                                                                      .of(
+                                                                          context)
+                                                                  .accent2
+                                                              : FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .accent3,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20.0),
+                                                        ),
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      0.0,
+                                                                      8.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            itemDefaultItem
+                                                                        .status ==
+                                                                    'done'
+                                                                ? 'Hoạt động'
+                                                                : 'Không hoạt động',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: itemDefaultItem
+                                                                              .status ==
+                                                                          'done'
+                                                                      ? FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondary
+                                                                      : FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .tertiary,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ],
                                               ),
-                                            ],
+                                            ),
                                           ),
-                                        ),
-                                      ),
+                                        );
+                                      },
                                     );
                                   },
-                                );
-                              },
+                                ),
+                                if ((_model.operationList
+                                            .where((e) =>
+                                                (e.executeId != '') &&
+                                                (e.executeId != 'null'))
+                                            .toList().isEmpty) &&
+                                    (_model.isLoad == true))
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      FaIcon(
+                                        FontAwesomeIcons.database,
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        size: 55.0,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 15.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Không có dữ liệu !',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                              ],
                             ),
                           ],
                         ),

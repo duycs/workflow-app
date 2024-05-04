@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/branch/branch_update/branch_update_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -90,7 +91,16 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
             size: 30.0,
           ),
           onPressed: () async {
-            context.pop();
+            context.pushNamed(
+              'BranchList',
+              extra: <String, dynamic>{
+                kTransitionInfoKey: const TransitionInfo(
+                  hasTransition: true,
+                  transitionType: PageTransitionType.fade,
+                  duration: Duration(milliseconds: 0),
+                ),
+              },
+            );
           },
         ),
         title: Text(
@@ -167,7 +177,6 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                           12.0, 8.0, 12.0, 12.0),
                                       child: Container(
                                         width: double.infinity,
-                                        height: 50.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
@@ -179,7 +188,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 0.0, 8.0, 0.0),
+                                                  8.0, 16.0, 8.0, 16.0),
                                           child: Text(
                                             widget.name!,
                                             style: FlutterFlowTheme.of(context)
@@ -237,7 +246,6 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                           12.0, 8.0, 12.0, 12.0),
                                       child: Container(
                                         width: double.infinity,
-                                        height: 50.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
@@ -249,7 +257,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 0.0, 8.0, 0.0),
+                                                  8.0, 16.0, 8.0, 16.0),
                                           child: Text(
                                             widget.code!,
                                             style: FlutterFlowTheme.of(context)
@@ -307,7 +315,6 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                           12.0, 8.0, 12.0, 12.0),
                                       child: Container(
                                         width: double.infinity,
-                                        height: 80.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
@@ -319,7 +326,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 16.0, 8.0, 0.0),
+                                                  8.0, 16.0, 8.0, 16.0),
                                           child: Text(
                                             widget.description!,
                                             maxLines: 2,
@@ -439,26 +446,28 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                                                       0.0,
                                                                 ),
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    8.0,
-                                                                    0.0,
-                                                                    8.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          itemDepartmentNameItem,
-                                                          maxLines: 3,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      0.0,
+                                                                      8.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            itemDepartmentNameItem,
+                                                            maxLines: 3,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
                                                         ),
                                                       ),
                                                     ],
@@ -546,7 +555,9 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                           'Hoạt động',
                                           'Không hoạt động'
                                         ].toList(),
-                                        onChanged: (val) => setState(() {}),
+                                        onChanged: ('1' == '1')
+                                            ? null
+                                            : (val) => setState(() {}),
                                         controller: _model
                                                 .radioButtonValueController ??=
                                             FormFieldController<String>(
@@ -600,8 +611,26 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
                 child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    await showModalBottomSheet(
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      enableDrag: false,
+                      context: context,
+                      builder: (context) {
+                        return Padding(
+                          padding: MediaQuery.viewInsetsOf(context),
+                          child: BranchUpdateWidget(
+                            id: widget.id,
+                            name: widget.name,
+                            code: widget.code,
+                            description: widget.code,
+                            codeList: widget.codeListitem,
+                            status: widget.status,
+                          ),
+                        );
+                      },
+                    ).then((value) => safeSetState(() {}));
                   },
                   text: 'Chỉnh sửa',
                   options: FFButtonOptions(

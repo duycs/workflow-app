@@ -63,6 +63,18 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
 
   String? isShow = '';
 
+  List<dynamic> submitTextJson = [];
+  void addToSubmitTextJson(dynamic item) => submitTextJson.add(item);
+  void removeFromSubmitTextJson(dynamic item) => submitTextJson.remove(item);
+  void removeAtIndexFromSubmitTextJson(int index) =>
+      submitTextJson.removeAt(index);
+  void insertAtIndexInSubmitTextJson(int index, dynamic item) =>
+      submitTextJson.insert(index, item);
+  void updateSubmitTextJsonAtIndex(int index, Function(dynamic) updateFn) =>
+      submitTextJson[index] = updateFn(submitTextJson[index]);
+
+  bool isShows = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -74,10 +86,10 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
   FocusNode? textFieldNameFocusNode;
   TextEditingController? textFieldNameTextController;
   String? Function(BuildContext, String?)? textFieldNameTextControllerValidator;
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? updateoperation2Token;
-  // Stores action output result for [Backend Call - API (UpdateOperation)] action in Button widget.
-  ApiCallResponse? apiResultUpdateoperation2;
+  // Stores action output result for [Action Block - tokenReload] action in Icon widget.
+  bool? updateoperation22Token;
+  // Stores action output result for [Backend Call - API (UpdateOperation)] action in Icon widget.
+  ApiCallResponse? apiResultUpdateoperation22;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? confirmOperationCopy2Token;
   // Stores action output result for [Backend Call - API (ConfirmOperation)] action in Button widget.

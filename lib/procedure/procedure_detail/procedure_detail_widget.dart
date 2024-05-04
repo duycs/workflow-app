@@ -428,18 +428,23 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                             Container(
                                               width: double.infinity,
                                               decoration: const BoxDecoration(),
-                                              child: Text(
-                                                '# Danh sách nhân viên khởi chạy',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                        ),
+                                              child: Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        12.0, 0.0, 0.0, 0.0),
+                                                child: Text(
+                                                  '# Danh sách nhân viên khởi chạy',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                        fontStyle:
+                                                            FontStyle.italic,
+                                                      ),
+                                                ),
                                               ),
                                             ),
                                           if (_model.data!.staffs.isNotEmpty)
@@ -563,18 +568,23 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                             Container(
                                               width: double.infinity,
                                               decoration: const BoxDecoration(),
-                                              child: Text(
-                                                '# Danh sách bộ phận khởi chạy',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                        ),
+                                              child: Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        12.0, 0.0, 0.0, 0.0),
+                                                child: Text(
+                                                  '# Danh sách bộ phận khởi chạy',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                        fontStyle:
+                                                            FontStyle.italic,
+                                                      ),
+                                                ),
                                               ),
                                             ),
                                           if (_model.data!.departments.isNotEmpty)

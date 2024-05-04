@@ -84,7 +84,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
             },
           ),
           title: Text(
-            'Nội dung bài test',
+            'Nội dung bài thi',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,

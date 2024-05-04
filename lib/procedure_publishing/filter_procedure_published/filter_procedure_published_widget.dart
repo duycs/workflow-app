@@ -138,7 +138,7 @@ class _FilterProcedurePublishedWidgetState
                       children: [
                         Expanded(
                           child: Text(
-                            'Khoảng thời gian xuất bản :',
+                            'Khoảng thời gian tạo:',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(

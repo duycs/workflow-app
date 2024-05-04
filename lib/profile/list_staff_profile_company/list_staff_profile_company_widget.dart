@@ -209,7 +209,7 @@ class _ListStaffProfileCompanyWidgetState
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
-                              hintText: 'Tìm kiếm nhân sự...',
+                              hintText: 'Tìm kiếm...',
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context)

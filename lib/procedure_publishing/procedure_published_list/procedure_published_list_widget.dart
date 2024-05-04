@@ -10,6 +10,7 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'procedure_published_list_model.dart';
 export 'procedure_published_list_model.dart';
@@ -465,6 +466,12 @@ class _ProcedurePublishedListWidgetState
                                                                       .publishedCount,
                                                                   ParamType.int,
                                                                 ),
+                                                                'paramBack':
+                                                                    serializeParam(
+                                                                  '4',
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
                                                               }.withoutNulls,
                                                               extra: <String,
                                                                   dynamic>{
@@ -670,6 +677,42 @@ class _ProcedurePublishedListWidgetState
                               },
                             );
                           },
+                        ),
+                      ),
+                    if ((_model.dataList.isEmpty) &&
+                        (_model.checkData == '1'))
+                      Align(
+                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 150.0, 0.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              FaIcon(
+                                FontAwesomeIcons.database,
+                                color: FlutterFlowTheme.of(context).alternate,
+                                size: 55.0,
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 15.0, 0.0, 0.0),
+                                child: Text(
+                                  'Không có dữ liệu !',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        fontSize: 18.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                   ],

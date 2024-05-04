@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'branch_update_widget.dart' show BranchUpdateWidget;
 import 'package:flutter/material.dart';
 
@@ -51,6 +52,8 @@ class BranchUpdateModel extends FlutterFlowModel<BranchUpdateWidget> {
     return null;
   }
 
+  // State field(s) for RadioButton widget.
+  FormFieldController<String>? radioButtonValueController;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? refreshTokenBranchUpdate;
   // Stores action output result for [Backend Call - API (BranchUpdate)] action in Button widget.
@@ -75,4 +78,7 @@ class BranchUpdateModel extends FlutterFlowModel<BranchUpdateWidget> {
     descriptionBranchFocusNode?.dispose();
     descriptionBranchTextController?.dispose();
   }
+
+  /// Additional helper methods.
+  String? get radioButtonValue => radioButtonValueController?.value;
 }

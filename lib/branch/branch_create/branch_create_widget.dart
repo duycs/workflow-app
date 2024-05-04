@@ -547,7 +547,20 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                             ),
                                           );
                                           await widget.callBackList?.call();
-                                          Navigator.pop(context);
+
+                                          context.pushNamed(
+                                            'BranchList',
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  const TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType.fade,
+                                                duration:
+                                                    Duration(milliseconds: 0),
+                                              ),
+                                            },
+                                          );
                                         } else {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(

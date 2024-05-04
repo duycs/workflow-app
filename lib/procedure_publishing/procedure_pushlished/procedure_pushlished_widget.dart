@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -754,92 +755,109 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                         child: FFButtonWidget(
                           onPressed: () async {
                             var shouldSetState = false;
-                            _model.apiResultUpdateLimit =
-                                await ProcedurePublishedGroup
-                                    .procedureTemplateUpdateLimitPublishedCall
-                                    .call(
-                              id: _model.workflowSelected?.id,
-                              accessToken: FFAppState().accessToken,
-                              limitPublished: _model.limitPublished,
-                            );
+                            _model.reloadTokenProcedrue1 =
+                                await action_blocks.tokenReload(context);
                             shouldSetState = true;
-                            if ((_model.apiResultUpdateLimit?.succeeded ??
-                                true)) {
-                              _model.apiResultProcedurepublished =
+                            if (_model.reloadTokenProcedrue1!) {
+                              _model.apiResultUpdateLimit =
                                   await ProcedurePublishedGroup
-                                      .procedurePublishedCall
+                                      .procedureTemplateUpdateLimitPublishedCall
                                       .call(
+                                id: _model.workflowSelected?.id,
                                 accessToken: FFAppState().accessToken,
-                                workflowId: _model.workflowSelected?.id,
+                                limitPublished: _model.limitPublished,
                               );
                               shouldSetState = true;
-                              if ((_model
-                                      .apiResultProcedurepublished?.succeeded ??
+                              if ((_model.apiResultUpdateLimit?.succeeded ??
                                   true)) {
-                                while (_model.loop <
-                                    _model.staffIdStepOne.length) {
-                                  _model.apiResultReciveTask =
-                                      await TaskGroup.receiveTaskCall.call(
-                                    accessToken: FFAppState().accessToken,
-                                    workflowId: _model.workflowSelected?.id,
-                                    staffId: _model.staffIdStepOne[_model.loop]
-                                        .staffsId.id,
-                                  );
-                                  shouldSetState = true;
-                                  if (!(_model.apiResultReciveTask?.succeeded ??
-                                      true)) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Lỗi nhận task!',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                        ),
-                                        duration: const Duration(milliseconds: 4000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context).error,
-                                      ),
+                                _model.apiResultProcedurepublished =
+                                    await ProcedurePublishedGroup
+                                        .procedurePublishedCall
+                                        .call(
+                                  accessToken: FFAppState().accessToken,
+                                  workflowId: _model.workflowSelected?.id,
+                                );
+                                shouldSetState = true;
+                                if ((_model.apiResultProcedurepublished
+                                        ?.succeeded ??
+                                    true)) {
+                                  while (_model.loop <
+                                      _model.staffIdStepOne.length) {
+                                    _model.apiResultReciveTask =
+                                        await TaskGroup.receiveTaskCall.call(
+                                      accessToken: FFAppState().accessToken,
+                                      workflowId: _model.workflowSelected?.id,
+                                      staffId: _model
+                                          .staffIdStepOne[_model.loop]
+                                          .staffsId
+                                          .id,
                                     );
+                                    shouldSetState = true;
+                                    if (!(_model
+                                            .apiResultReciveTask?.succeeded ??
+                                        true)) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Lỗi nhận task!',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              const Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .error,
+                                        ),
+                                      );
+                                    }
+                                    setState(() {
+                                      _model.loop = _model.loop + 1;
+                                    });
                                   }
-                                  setState(() {
-                                    _model.loop = _model.loop + 1;
-                                  });
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Tạo công việc thành công!',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
+                                    ),
+                                  );
+                                  await widget.callback?.call();
+                                  Navigator.pop(context);
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Lỗi tạo công việc!',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context).error,
+                                    ),
+                                  );
                                 }
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Tạo công việc thành công!',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).secondary,
-                                  ),
-                                );
-                                await widget.callback?.call();
-                                Navigator.pop(context);
                               } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Lỗi tạo công việc!',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).error,
-                                  ),
-                                );
+                                if (shouldSetState) setState(() {});
+                                return;
                               }
                             } else {
+                              setState(() {});
                               if (shouldSetState) setState(() {});
                               return;
                             }

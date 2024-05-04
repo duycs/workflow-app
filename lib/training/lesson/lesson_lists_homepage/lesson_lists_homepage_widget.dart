@@ -7,27 +7,26 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
-import 'lesson_list_homepage_copy_model.dart';
-export 'lesson_list_homepage_copy_model.dart';
+import 'lesson_lists_homepage_model.dart';
+export 'lesson_lists_homepage_model.dart';
 
-class LessonListHomepageCopyWidget extends StatefulWidget {
-  const LessonListHomepageCopyWidget({super.key});
+class LessonListsHomepageWidget extends StatefulWidget {
+  const LessonListsHomepageWidget({super.key});
 
   @override
-  State<LessonListHomepageCopyWidget> createState() =>
-      _LessonListHomepageCopyWidgetState();
+  State<LessonListsHomepageWidget> createState() =>
+      _LessonListsHomepageWidgetState();
 }
 
-class _LessonListHomepageCopyWidgetState
-    extends State<LessonListHomepageCopyWidget> {
-  late LessonListHomepageCopyModel _model;
+class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
+  late LessonListsHomepageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => LessonListHomepageCopyModel());
+    _model = createModel(context, () => LessonListsHomepageModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {

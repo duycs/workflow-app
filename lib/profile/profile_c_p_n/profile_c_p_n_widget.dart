@@ -604,21 +604,6 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                                   BorderRadius
                                                                       .circular(
                                                                           12.0),
-                                                              hoverColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .accent1,
-                                                              hoverBorderSide:
-                                                                  BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                                width: 2.0,
-                                                              ),
-                                                              hoverTextColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
                                                             ),
                                                           ),
                                                         ],

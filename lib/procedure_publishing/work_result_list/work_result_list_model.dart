@@ -28,6 +28,23 @@ class WorkResultListModel extends FlutterFlowModel<WorkResultListWidget> {
 
   String userCreated = '';
 
+  int loop = 0;
+
+  int loop2 = 0;
+
+  int loop3 = 0;
+
+  String checkdata = '';
+
+  List<int> checkRemove = [];
+  void addToCheckRemove(int item) => checkRemove.add(item);
+  void removeFromCheckRemove(int item) => checkRemove.remove(item);
+  void removeAtIndexFromCheckRemove(int index) => checkRemove.removeAt(index);
+  void insertAtIndexInCheckRemove(int index, int item) =>
+      checkRemove.insert(index, item);
+  void updateCheckRemoveAtIndex(int index, Function(int) updateFn) =>
+      checkRemove[index] = updateFn(checkRemove[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -97,6 +114,7 @@ class WorkResultListModel extends FlutterFlowModel<WorkResultListWidget> {
             .data
             .toList()
             .cast<ProcedurePublishedListStruct>();
+        checkdata = '1';
       }
     } else {
       FFAppState().update(() {});

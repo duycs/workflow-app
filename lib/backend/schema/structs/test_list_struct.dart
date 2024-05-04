@@ -14,6 +14,7 @@ class TestListStruct extends BaseStruct {
     List<TestQuestionsStruct>? questions,
     String? organizationId,
     int? goodScore,
+    String? percentCorrect,
   })  : _id = id,
         _status = status,
         _name = name,
@@ -21,7 +22,8 @@ class TestListStruct extends BaseStruct {
         _durationMinutes = durationMinutes,
         _questions = questions,
         _organizationId = organizationId,
-        _goodScore = goodScore;
+        _goodScore = goodScore,
+        _percentCorrect = percentCorrect;
 
   // "id" field.
   String? _id;
@@ -76,6 +78,12 @@ class TestListStruct extends BaseStruct {
   void incrementGoodScore(int amount) => _goodScore = goodScore + amount;
   bool hasGoodScore() => _goodScore != null;
 
+  // "percent_correct" field.
+  String? _percentCorrect;
+  String get percentCorrect => _percentCorrect ?? '';
+  set percentCorrect(String? val) => _percentCorrect = val;
+  bool hasPercentCorrect() => _percentCorrect != null;
+
   static TestListStruct fromMap(Map<String, dynamic> data) => TestListStruct(
         id: data['id'] as String?,
         status: data['status'] as String?,
@@ -88,6 +96,7 @@ class TestListStruct extends BaseStruct {
         ),
         organizationId: data['organization_id'] as String?,
         goodScore: castToType<int>(data['good_score']),
+        percentCorrect: data['percent_correct'] as String?,
       );
 
   static TestListStruct? maybeFromMap(dynamic data) =>
@@ -102,6 +111,7 @@ class TestListStruct extends BaseStruct {
         'questions': _questions?.map((e) => e.toMap()).toList(),
         'organization_id': _organizationId,
         'good_score': _goodScore,
+        'percent_correct': _percentCorrect,
       }.withoutNulls;
 
   @override
@@ -138,6 +148,10 @@ class TestListStruct extends BaseStruct {
         'good_score': serializeParam(
           _goodScore,
           ParamType.int,
+        ),
+        'percent_correct': serializeParam(
+          _percentCorrect,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -184,6 +198,11 @@ class TestListStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
+        percentCorrect: deserializeParam(
+          data['percent_correct'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -200,7 +219,8 @@ class TestListStruct extends BaseStruct {
         durationMinutes == other.durationMinutes &&
         listEquality.equals(questions, other.questions) &&
         organizationId == other.organizationId &&
-        goodScore == other.goodScore;
+        goodScore == other.goodScore &&
+        percentCorrect == other.percentCorrect;
   }
 
   @override
@@ -212,7 +232,8 @@ class TestListStruct extends BaseStruct {
         durationMinutes,
         questions,
         organizationId,
-        goodScore
+        goodScore,
+        percentCorrect
       ]);
 }
 
@@ -224,6 +245,7 @@ TestListStruct createTestListStruct({
   int? durationMinutes,
   String? organizationId,
   int? goodScore,
+  String? percentCorrect,
 }) =>
     TestListStruct(
       id: id,
@@ -233,4 +255,5 @@ TestListStruct createTestListStruct({
       durationMinutes: durationMinutes,
       organizationId: organizationId,
       goodScore: goodScore,
+      percentCorrect: percentCorrect,
     );

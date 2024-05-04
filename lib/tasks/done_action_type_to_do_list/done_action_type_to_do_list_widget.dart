@@ -73,12 +73,14 @@ class _DoneActionTypeToDoListWidgetState
             checkColor: ('1' == '1') ? null : FlutterFlowTheme.of(context).info,
           ),
         ),
-        Text(
-          widget.listData!.operationsId.content,
-          style: FlutterFlowTheme.of(context).bodyMedium.override(
-                fontFamily: 'Nunito Sans',
-                letterSpacing: 0.0,
-              ),
+        Expanded(
+          child: Text(
+            widget.listData!.operationsId.content,
+            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  fontFamily: 'Nunito Sans',
+                  letterSpacing: 0.0,
+                ),
+          ),
         ),
       ],
     );

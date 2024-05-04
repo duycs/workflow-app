@@ -9,6 +9,7 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'work_result_list_model.dart';
 export 'work_result_list_model.dart';
@@ -110,7 +111,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                 primary: false,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
                       padding:
@@ -255,7 +256,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                       padding: MediaQuery.viewInsetsOf(context),
                                       child: FilterWorkResultWidget(
                                         name: _model.nameSearch,
-                                        dateStart: _model.dateEnd,
+                                        dateStart: _model.dateStart,
                                         dateEnd: _model.dateEnd,
                                         userCreated: _model.userCreated,
                                         callBack: (name, dateStart, dateEnd,
@@ -284,19 +285,29 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                         (_model.dateStart != '') ||
                         (_model.dateEnd != '') ||
                         (_model.userCreated != ''))
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 10.0, 0.0, 0.0),
-                        child: Text(
-                          '#Kết quả hiển thị theo bộ lọc',
-                          style:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Nunito Sans',
-                                    fontSize: 13.0,
-                                    letterSpacing: 0.0,
-                                    fontStyle: FontStyle.italic,
-                                  ),
-                        ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          if ((_model.nameSearch != '') ||
+                              (_model.dateStart != '') ||
+                              (_model.dateEnd != '') ||
+                              (_model.userCreated != ''))
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 10.0, 0.0, 0.0),
+                              child: Text(
+                                '#Kết quả hiển thị theo bộ lọc',
+                                style: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      fontSize: 13.0,
+                                      letterSpacing: 0.0,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                              ),
+                            ),
+                        ],
                       ),
                     if (_model.dataList.isNotEmpty)
                       Padding(
@@ -513,6 +524,9 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                       return Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .stretch,
                                                         children: List.generate(
                                                             itemTaskDone.length,
                                                             (itemTaskDoneIndex) {
@@ -581,6 +595,12 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                       ParamType
                                                                           .int,
                                                                     ),
+                                                                    'paramBack':
+                                                                        serializeParam(
+                                                                      '5',
+                                                                      ParamType
+                                                                          .String,
+                                                                    ),
                                                                   }.withoutNulls,
                                                                   extra: <String,
                                                                       dynamic>{
@@ -601,7 +621,6 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                               child: Container(
                                                                 width: double
                                                                     .infinity,
-                                                                height: 100.0,
                                                                 decoration:
                                                                     BoxDecoration(
                                                                   color: FlutterFlowTheme.of(
@@ -630,47 +649,41 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                           mainAxisSize:
                                                                               MainAxisSize.max,
                                                                           mainAxisAlignment:
-                                                                              MainAxisAlignment.center,
+                                                                              MainAxisAlignment.start,
                                                                           crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
+                                                                              CrossAxisAlignment.stretch,
                                                                           children:
                                                                               [
-                                                                            Expanded(
-                                                                              child: Text(
-                                                                                'Lần chạy thứ: ${itemTaskDoneItem.publishedCount.toString()}',
-                                                                                style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                      fontFamily: 'Nunito Sans',
-                                                                                      fontSize: 14.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                    ),
-                                                                              ),
+                                                                            Text(
+                                                                              'Lần chạy thứ: ${itemTaskDoneItem.publishedCount.toString()}',
+                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                    fontFamily: 'Nunito Sans',
+                                                                                    fontSize: 14.0,
+                                                                                    letterSpacing: 0.0,
+                                                                                  ),
                                                                             ),
-                                                                            Expanded(
+                                                                            Text(
+                                                                              'Thời gian tạo: ${dateTimeFormat(
+                                                                                'dd/MM/yyyy',
+                                                                                functions.stringToDateTime(itemTaskDoneItem.dateCreated),
+                                                                                locale: FFLocalizations.of(context).languageCode,
+                                                                              )}',
+                                                                              style: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                    fontFamily: 'Nunito Sans',
+                                                                                    fontSize: 13.0,
+                                                                                    letterSpacing: 0.0,
+                                                                                  ),
+                                                                            ),
+                                                                            Padding(
+                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
                                                                               child: Text(
-                                                                                'Thời gian tạo: ${dateTimeFormat(
-                                                                                  'dd/MM/yyyy',
-                                                                                  functions.stringToDateTime(itemTaskDoneItem.dateCreated),
-                                                                                  locale: FFLocalizations.of(context).languageCode,
-                                                                                )}',
-                                                                                style: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                'Người tạo: ${itemTaskDoneItem.createdUserId.firstName == 'null' ? ' ' : itemTaskDoneItem.createdUserId.firstName}',
+                                                                                style: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                       fontFamily: 'Nunito Sans',
+                                                                                      color: FlutterFlowTheme.of(context).secondaryText,
                                                                                       fontSize: 13.0,
                                                                                       letterSpacing: 0.0,
                                                                                     ),
-                                                                              ),
-                                                                            ),
-                                                                            Expanded(
-                                                                              child: Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-                                                                                child: Text(
-                                                                                  'Người tạo: ${itemTaskDoneItem.userCreated.firstName}',
-                                                                                  style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                        fontFamily: 'Nunito Sans',
-                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                        fontSize: 13.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                      ),
-                                                                                ),
                                                                               ),
                                                                             ),
                                                                           ].divide(const SizedBox(height: 4.0)),
@@ -901,7 +914,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                             Padding(
                                                                               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
                                                                               child: Text(
-                                                                                'Người tạo: ${itemPublishedListItem.userCreated.firstName}',
+                                                                                'Người tạo: ${itemPublishedListItem.createdUserId.firstName == 'null' ? ' ' : itemPublishedListItem.createdUserId.firstName}',
                                                                                 style: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                       fontFamily: 'Nunito Sans',
                                                                                       color: FlutterFlowTheme.of(context).secondaryText,
@@ -985,6 +998,39 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                               },
                             );
                           },
+                        ),
+                      ),
+                    if ((_model.dataList.isEmpty) &&
+                        (_model.checkdata == '1'))
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 150.0, 0.0, 0.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.database,
+                              color: FlutterFlowTheme.of(context).alternate,
+                              size: 55.0,
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 15.0, 0.0, 0.0),
+                              child: Text(
+                                'Không có dữ liệu !',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                   ],

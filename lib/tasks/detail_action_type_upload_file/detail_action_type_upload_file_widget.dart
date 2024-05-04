@@ -54,55 +54,50 @@ class _DetailActionTypeUploadFileWidgetState
       children: [
         Flexible(
           child: FFButtonWidget(
-            onPressed: ('1' == '1')
-                ? null
-                : () async {
-                    final selectedFiles = await selectFiles(
-                      multiFile: false,
-                    );
-                    if (selectedFiles != null) {
-                      setState(() => _model.isDataUploading = true);
-                      var selectedUploadedFiles = <FFUploadedFile>[];
+            onPressed: () async {
+              final selectedFiles = await selectFiles(
+                multiFile: false,
+              );
+              if (selectedFiles != null) {
+                setState(() => _model.isDataUploading = true);
+                var selectedUploadedFiles = <FFUploadedFile>[];
 
-                      try {
-                        selectedUploadedFiles = selectedFiles
-                            .map((m) => FFUploadedFile(
-                                  name: m.storagePath.split('/').last,
-                                  bytes: m.bytes,
-                                ))
-                            .toList();
-                      } finally {
-                        _model.isDataUploading = false;
-                      }
-                      if (selectedUploadedFiles.length ==
-                          selectedFiles.length) {
-                        setState(() {
-                          _model.uploadedLocalFile =
-                              selectedUploadedFiles.first;
-                        });
-                      } else {
-                        setState(() {});
-                        return;
-                      }
-                    }
+                try {
+                  selectedUploadedFiles = selectedFiles
+                      .map((m) => FFUploadedFile(
+                            name: m.storagePath.split('/').last,
+                            bytes: m.bytes,
+                          ))
+                      .toList();
+                } finally {
+                  _model.isDataUploading = false;
+                }
+                if (selectedUploadedFiles.length == selectedFiles.length) {
+                  setState(() {
+                    _model.uploadedLocalFile = selectedUploadedFiles.first;
+                  });
+                } else {
+                  setState(() {});
+                  return;
+                }
+              }
 
-                    _model.apiResult7cn =
-                        await UploadFileGroup.uploadFileCall.call(
-                      accessToken: FFAppState().accessToken,
-                      file: _model.uploadedLocalFile,
-                    );
-                    if ((_model.apiResult7cn?.succeeded ?? true)) {
-                      await widget.calback?.call(
-                        getJsonField(
-                          (_model.apiResult7cn?.jsonBody ?? ''),
-                          r'''$.data.id''',
-                        ).toString(),
-                      );
-                      setState(() {});
-                    }
+              _model.apiResult7cn = await UploadFileGroup.uploadFileCall.call(
+                accessToken: FFAppState().accessToken,
+                file: _model.uploadedLocalFile,
+              );
+              if ((_model.apiResult7cn?.succeeded ?? true)) {
+                await widget.calback?.call(
+                  getJsonField(
+                    (_model.apiResult7cn?.jsonBody ?? ''),
+                    r'''$.data.id''',
+                  ).toString(),
+                );
+                setState(() {});
+              }
 
-                    setState(() {});
-                  },
+              setState(() {});
+            },
             text: 'Upload tài liệu',
             icon: const Icon(
               Icons.attach_file,

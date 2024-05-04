@@ -1464,7 +1464,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget>
                                                           final selectedMedia =
                                                               await selectMediaWithSourceBottomSheet(
                                                             context: context,
-                                                            imageQuality: 5,
+                                                            imageQuality: 100,
                                                             allowPhoto: true,
                                                             includeDimensions:
                                                                 true,

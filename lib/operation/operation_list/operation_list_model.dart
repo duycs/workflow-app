@@ -34,6 +34,10 @@ class OperationListModel extends FlutterFlowModel<OperationListWidget> {
 
   String executeId = '';
 
+  String checkData = '';
+
+  bool isLoad = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -81,6 +85,7 @@ class OperationListModel extends FlutterFlowModel<OperationListWidget> {
             .data
             .toList()
             .cast<OperationsStruct>();
+        checkData = '1';
       }
     } else {
       return;

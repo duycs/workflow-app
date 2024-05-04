@@ -23,7 +23,7 @@ class OperationDetailModel extends FlutterFlowModel<OperationDetailWidget> {
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
   // State field(s) for Switch widget.
-  bool? switchValue;
+  bool switchValue = true;
 
   @override
   void initState(BuildContext context) {}

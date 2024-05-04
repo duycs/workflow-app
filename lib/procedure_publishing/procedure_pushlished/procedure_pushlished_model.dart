@@ -60,6 +60,8 @@ class ProcedurePushlishedModel
   FormFieldController<String>? dropDownValueController;
   DateTime? datePicked1;
   DateTime? datePicked2;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? reloadTokenProcedrue1;
   // Stores action output result for [Backend Call - API (ProcedureTemplateUpdateLimitPublished)] action in Button widget.
   ApiCallResponse? apiResultUpdateLimit;
   // Stores action output result for [Backend Call - API (ProcedurePublished)] action in Button widget.

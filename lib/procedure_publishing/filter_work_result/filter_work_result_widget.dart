@@ -136,7 +136,7 @@ class _FilterWorkResultWidgetState extends State<FilterWorkResultWidget> {
                       children: [
                         Expanded(
                           child: Text(
-                            'Khoảng thời gian xuất bản :',
+                            'Khoảng thời gian tạo:',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -390,7 +390,7 @@ class _FilterWorkResultWidgetState extends State<FilterWorkResultWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
                     child: TextFormField(
                       controller: _model.nameUserCreatedTextController,
                       focusNode: _model.nameUserCreatedFocusNode,

@@ -56,9 +56,9 @@ class DropdownUserListModel extends FlutterFlowModel<DropdownUserListWidget> {
   TextEditingController? textNameTextController;
   String? Function(BuildContext, String?)? textNameTextControllerValidator;
   // State field(s) for Switch widget.
-  bool? switchValue1;
+  bool switchValue1 = true;
   // State field(s) for Switch widget.
-  bool? switchValue2;
+  bool switchValue2 = false;
   // Models for checkBoxToggle dynamic component.
   late FlutterFlowDynamicModels<CheckBoxToggleModel> checkBoxToggleModels;
 

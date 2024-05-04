@@ -91,39 +91,14 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  await showDialog(
-                    context: context,
-                    builder: (alertDialogContext) {
-                      return AlertDialog(
-                        title: Text(getJsonField(
-                          FFAppState().staffLogin,
-                          r'''$.branch_id''',
-                        ).toString()),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(alertDialogContext),
-                            child: const Text('Ok'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
-                child: Text(
-                  'Tạo bộ phận',
-                  style: FlutterFlowTheme.of(context).headlineMedium.override(
-                        fontFamily: 'Nunito Sans',
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        fontSize: 20.0,
-                        letterSpacing: 0.0,
-                      ),
-                ),
+              Text(
+                'Tạo bộ phận',
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily: 'Nunito Sans',
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      fontSize: 20.0,
+                      letterSpacing: 0.0,
+                    ),
               ),
             ],
           ),

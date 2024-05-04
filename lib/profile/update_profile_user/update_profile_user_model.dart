@@ -76,6 +76,9 @@ class UpdateProfileUserModel extends FlutterFlowModel<UpdateProfileUserWidget> {
     if (val.length < 12) {
       return 'CCCD không hợp lệ';
     }
+    if (val.length > 12) {
+      return 'CCCD không hợp lệ';
+    }
 
     return null;
   }

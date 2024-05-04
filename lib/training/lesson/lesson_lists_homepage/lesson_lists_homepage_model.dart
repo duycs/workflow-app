@@ -5,12 +5,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'lesson_list_homepage_copy_widget.dart'
-    show LessonListHomepageCopyWidget;
+import 'lesson_lists_homepage_widget.dart' show LessonListsHomepageWidget;
 import 'package:flutter/material.dart';
 
-class LessonListHomepageCopyModel
-    extends FlutterFlowModel<LessonListHomepageCopyWidget> {
+class LessonListsHomepageModel
+    extends FlutterFlowModel<LessonListsHomepageWidget> {
   ///  Local state fields for this page.
 
   List<LessonsStruct> listLesson = [];

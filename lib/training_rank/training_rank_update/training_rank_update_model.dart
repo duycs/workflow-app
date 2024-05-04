@@ -25,19 +25,19 @@ class TrainingRankUpdateModel
   TextEditingController? textController3;
   String? Function(BuildContext, String?)? textController3Validator;
   // State field(s) for Switch widget.
-  bool? switchValue1;
+  bool switchValue1 = true;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController4;
   String? Function(BuildContext, String?)? textController4Validator;
   // State field(s) for Switch widget.
-  bool? switchValue2;
+  bool switchValue2 = true;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode3;
   TextEditingController? textController5;
   String? Function(BuildContext, String?)? textController5Validator;
   // State field(s) for Switch widget.
-  bool? switchValue3;
+  bool switchValue3 = true;
 
   @override
   void initState(BuildContext context) {}

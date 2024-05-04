@@ -59,11 +59,11 @@ class _FilterStudyProgramUserWidgetState
     _model.lessionsTextController ??= TextEditingController(
         text: widget.lessonName != ''
             ? widget.lessonName
-            : ' ');
+            : '');
     _model.lessionsFocusNode ??= FocusNode();
 
     _model.nameTextController ??= TextEditingController(
-        text: widget.name != '' ? widget.name : ' ');
+        text: widget.name != '' ? widget.name : '');
     _model.nameFocusNode ??= FocusNode();
   }
 

@@ -12,6 +12,7 @@ import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'question_list_model.dart';
 export 'question_list_model.dart';
@@ -219,7 +220,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                           obscureText: false,
                           decoration: InputDecoration(
                             isDense: false,
-                            labelText: 'Tìm kiếm câu hỏi...',
+                            labelText: 'Tìm kiếm ...',
                             labelStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
@@ -327,7 +328,10 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                             .requestFocus(_model.unfocusNode)
                                         : FocusScope.of(context).unfocus(),
                                     child: FilterQuestionWidget(
-                                      name: _model.nameSearch,
+                                      name: (_model.nameSearch != '') &&
+                                              (_model.nameSearch != ' ')
+                                          ? _model.nameSearch
+                                          : '',
                                       status: _model.status,
                                       callBack:
                                           (statusFilter, nameFilter) async {
@@ -374,7 +378,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                           fontStyle: FontStyle.italic,
                         ),
                   ),
-                if (_model.isLoad == true)
+                if ((_model.dataList.isNotEmpty) && (_model.isLoad == true))
                   Expanded(
                     child: Builder(
                       builder: (context) {
@@ -615,6 +619,41 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                           },
                         );
                       },
+                    ),
+                  ),
+                if ((_model.dataList.isEmpty) && (_model.isLoad == true))
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 0.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.database,
+                            color: FlutterFlowTheme.of(context).alternate,
+                            size: 55.0,
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 15.0, 0.0, 0.0),
+                            child: Text(
+                              'Không có dữ liệu !',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 18.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
               ].divide(const SizedBox(height: 8.0)),

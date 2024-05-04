@@ -24,6 +24,12 @@ class PersonnelListModel extends FlutterFlowModel<PersonnelListWidget> {
 
   String statusFilter = '';
 
+  bool isShow = false;
+
+  String branch = '';
+
+  String department = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

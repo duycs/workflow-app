@@ -219,12 +219,13 @@ class PathDepartmentCall {
     String? branchId = '',
     String? code = '',
     dynamic programsIdJson,
+    String? status = '',
     String? accessToken = '',
   }) async {
     final programsId = _serializeJson(programsIdJson, true);
     final ffApiRequestBody = '''
 {
-  "status": "published",
+  "status": "$status",
   "name": "$name",
   "description": "$description",
   "branch_id": "$branchId",
@@ -371,6 +372,7 @@ class GetListUserCall {
       },
       params: {
         'fields': "email",
+        'limit': 5000,
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -2337,7 +2339,7 @@ class GetListTaskCall {
       },
       params: {
         'fields':
-            "id, status, name, description, content, date_start, date_end, deadline, estimate_in_second, workflow_id.id,workflow_id.name, number, published_count, step_id, execute_type, action_type, current,staffs.id, staffs.staffs_id.id, staffs.staffs_id.user_id.id, staffs.staffs_id.user_id.first_name,operations.id, operations.operations_id.id, operations.operations_id.name, operations.operations_id.date_start, operations.operations_id.date_end, operations.operations_id.deadline, operations.operations_id.estimate_in_second, operations.operations_id.operation_id,operations.operations_id.action_type, operations.operations_id.step_id,operations.operations_id.content, operations.operations_id.result, operations.operations_id.staffs.id, operations.operations_id.staffs.staffs_id.id,  operations.operations_id.staffs.staffs_id.user_id.email,operations.operations_id.status,staffs.staffs_id.department_id.name,step_id.id,step_id.name,step_id.number, operations.operations_id.files.directus_files_id.id,operations.operations_id.files.directus_files_id.type,operations.operations_id.files.directus_files_id.filename_download,operations.operations_id.files.directus_files_id.id,operations.operations_id.files.directus_files_id.type,operations.operations_id.date_updated,workflow_id.name,staffs.staffs_id.user_id.avatar, organization_id.id, workflow_id.organization_id,submit_staff_id.id, submit_staff_id.user_id.first_name,submit_staff_id.user_id.avatar,date_created,time_operate,created_user_id.first_name",
+            "id, status, name, description, content, date_start, date_end, deadline, estimate_in_second, workflow_id.id,workflow_id.name, number, published_count, step_id, execute_type, action_type, current,staffs.id, staffs.staffs_id.id, staffs.staffs_id.user_id.id, staffs.staffs_id.user_id.first_name,operations.id, operations.operations_id.id, operations.operations_id.name, operations.operations_id.date_start, operations.operations_id.date_end, operations.operations_id.deadline, operations.operations_id.estimate_in_second, operations.operations_id.operation_id,operations.operations_id.action_type, operations.operations_id.step_id,operations.operations_id.content, operations.operations_id.result, operations.operations_id.staffs.id, operations.operations_id.staffs.staffs_id.id,  operations.operations_id.staffs.staffs_id.user_id.email,operations.operations_id.status,staffs.staffs_id.department_id.name,step_id.id,step_id.name,step_id.number, operations.operations_id.files.directus_files_id.id,operations.operations_id.files.directus_files_id.type,operations.operations_id.files.directus_files_id.filename_download,operations.operations_id.files.directus_files_id.id,operations.operations_id.files.directus_files_id.type,operations.operations_id.date_updated,workflow_id.name,staffs.staffs_id.user_id.avatar, organization_id.id, workflow_id.organization_id,submit_staff_id.id, submit_staff_id.user_id.first_name,submit_staff_id.user_id.avatar,submit_staff_id.user_id.id,submit_staff_id.branch_id,submit_staff_id.department_id,created_user_id.first_name, date_created",
         'filter': filter,
         'sort': "number",
       },

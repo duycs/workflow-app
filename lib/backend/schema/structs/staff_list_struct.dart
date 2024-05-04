@@ -19,7 +19,7 @@ class StaffListStruct extends BaseStruct {
     List<StaffTasksStruct>? tasks,
     bool? check,
     List<StaffLessionStruct>? staffLessions,
-    List<StaffListStruct>? staffTests,
+    List<TestListStruct>? staffTests,
   })  : _id = id,
         _status = status,
         _cccd = cccd,
@@ -125,10 +125,10 @@ class StaffListStruct extends BaseStruct {
   bool hasStaffLessions() => _staffLessions != null;
 
   // "staff_tests" field.
-  List<StaffListStruct>? _staffTests;
-  List<StaffListStruct> get staffTests => _staffTests ?? const [];
-  set staffTests(List<StaffListStruct>? val) => _staffTests = val;
-  void updateStaffTests(Function(List<StaffListStruct>) updateFn) =>
+  List<TestListStruct>? _staffTests;
+  List<TestListStruct> get staffTests => _staffTests ?? const [];
+  set staffTests(List<TestListStruct>? val) => _staffTests = val;
+  void updateStaffTests(Function(List<TestListStruct>) updateFn) =>
       updateFn(_staffTests ??= []);
   bool hasStaffTests() => _staffTests != null;
 
@@ -154,7 +154,7 @@ class StaffListStruct extends BaseStruct {
         ),
         staffTests: getStructList(
           data['staff_tests'],
-          StaffListStruct.fromMap,
+          TestListStruct.fromMap,
         ),
       );
 
@@ -314,11 +314,11 @@ class StaffListStruct extends BaseStruct {
           true,
           structBuilder: StaffLessionStruct.fromSerializableMap,
         ),
-        staffTests: deserializeStructParam<StaffListStruct>(
+        staffTests: deserializeStructParam<TestListStruct>(
           data['staff_tests'],
           ParamType.DataStruct,
           true,
-          structBuilder: StaffListStruct.fromSerializableMap,
+          structBuilder: TestListStruct.fromSerializableMap,
         ),
       );
 

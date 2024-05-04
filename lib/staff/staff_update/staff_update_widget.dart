@@ -1091,7 +1091,11 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 isMultiSelect: false,
                               ),
                             ),
-                          if (_model.selectRole)
+                          if ((_model.selectRole == true) ||
+                              (_model.roleValue ==
+                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                              (_model.roleValue ==
+                                  '3755a98d-f064-45cd-80e4-5084ab1dd2c4'))
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 20.0),
@@ -1366,6 +1370,12 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     } else if (_model.roleValue ==
                                         'a8d33527-375b-4599-ac70-6a3fcad1de39') {
                                       return 'Quản lý chi nhánh';
+                                    } else if (getJsonField(
+                                          widget.staffDetail,
+                                          r'''$.user_id.role''',
+                                        ).toString() ==
+                                        '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                                      return 'Admin tổ chức';
                                     } else {
                                       return null;
                                     }

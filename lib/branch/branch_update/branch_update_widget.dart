@@ -1,8 +1,10 @@
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -18,13 +20,15 @@ class BranchUpdateWidget extends StatefulWidget {
     this.code,
     this.description,
     this.codeList,
-  });
+    String? status,
+  }) : status = status ?? '';
 
   final String? id;
   final String? name;
   final String? code;
   final String? description;
   final List<String>? codeList;
+  final String status;
 
   @override
   State<BranchUpdateWidget> createState() => _BranchUpdateWidgetState();
@@ -414,6 +418,47 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                     .asValidator(context),
                               ),
                             ),
+                            Text(
+                              'Trạng thái:',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                            FlutterFlowRadioButton(
+                              options:
+                                  ['Hoạt động', 'Không hoạt động'].toList(),
+                              onChanged: (val) => setState(() {}),
+                              controller: _model.radioButtonValueController ??=
+                                  FormFieldController<String>(
+                                      widget.status == 'published'
+                                          ? 'Hoạt động'
+                                          : 'Không hoạt động'),
+                              optionHeight: 32.0,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                              selectedTextStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                              buttonPosition: RadioButtonPosition.left,
+                              direction: Axis.vertical,
+                              radioButtonColor:
+                                  FlutterFlowTheme.of(context).primary,
+                              inactiveRadioButtonColor:
+                                  FlutterFlowTheme.of(context).secondaryText,
+                              toggleable: false,
+                              horizontalAlignment: WrapAlignment.start,
+                              verticalAlignment: WrapCrossAlignment.start,
+                            ),
                           ].divide(const SizedBox(height: 6.0)),
                         ),
                       ),
@@ -520,7 +565,8 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                           requesDataJson: <String, dynamic>{
                                             'name': _model
                                                 .branchNameTextController.text,
-                                            'status': 'published',
+                                            'status':
+                                                _model.radioButtonValue == 'Hoạt động' ? 'published' : 'draft',
                                             'description': _model
                                                 .descriptionBranchTextController
                                                 .text,

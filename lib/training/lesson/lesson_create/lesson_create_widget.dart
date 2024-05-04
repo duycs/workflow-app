@@ -280,7 +280,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                           ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 8.0, 0.0, 0.0),
+                              16.0, 8.0, 0.0, 0.0),
                           child: Text(
                             'Bài thi',
                             style: FlutterFlowTheme.of(context)
@@ -513,6 +513,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                     final selectedMedia =
                                         await selectMediaWithSourceBottomSheet(
                                       context: context,
+                                      imageQuality: 100,
                                       allowPhoto: true,
                                     );
                                     if (selectedMedia != null &&

@@ -40,57 +40,63 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultGetTaskDone = await TaskGroup.getListTaskCall.call(
-        accessToken: FFAppState().accessToken,
-        filter: '{\"_and\":[{\"submit_staff_id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffLogin,
-          r'''$.id''',
-        ).toString().toString()}\"}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffLogin,
-          r'''$.organization_id''',
-        ).toString().toString()}\"}}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
-      );
-      if ((_model.apiResultGetTaskDone?.succeeded ?? true)) {
-        setState(() {
-          _model.list = TaskListDataStruct.maybeFromMap(
-                  (_model.apiResultGetTaskDone?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<TaskListStruct>();
-        });
-      }
-      _model.apiResultGetTask = await TaskGroup.getListTaskCall.call(
-        accessToken: FFAppState().accessToken,
-        filter:
-            '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffLogin,
-          r'''$.id''',
-        ).toString().toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffLogin,
-          r'''$.organization_id''',
-        ).toString().toString()}\"}}}]}',
-      );
-      if ((_model.apiResultGetTask?.succeeded ?? true)) {
-        setState(() {
-          _model.taskToDo = TaskListDataStruct.maybeFromMap(
-                  (_model.apiResultGetTask?.jsonBody ?? ''))!
-              .data
-              .where((e) =>
-                  (e.status == 'todo') &&
-                  (e.current.toString() == '1'))
-              .toList()
-              .toList()
-              .cast<TaskListStruct>();
-          _model.taskWait = TaskListDataStruct.maybeFromMap(
-                  (_model.apiResultGetTask?.jsonBody ?? ''))!
-              .data
-              .where((e) =>
-                  (e.status == 'todo') &&
-                  (e.current.toString() == '0'))
-              .toList()
-              .toList()
-              .cast<TaskListStruct>();
-        });
+      _model.getTaskDoneToken = await action_blocks.tokenReload(context);
+      if (_model.getTaskDoneToken!) {
+        _model.apiResultGetTaskDone = await TaskGroup.getListTaskCall.call(
+          accessToken: FFAppState().accessToken,
+          filter: '{\"_and\":[{\"submit_staff_id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.id''',
+          ).toString().toString()}\"}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.organization_id''',
+          ).toString().toString()}\"}}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
+        );
+        if ((_model.apiResultGetTaskDone?.succeeded ?? true)) {
+          setState(() {
+            _model.list = TaskListDataStruct.maybeFromMap(
+                    (_model.apiResultGetTaskDone?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<TaskListStruct>();
+          });
+        }
+        _model.apiResultGetTask = await TaskGroup.getListTaskCall.call(
+          accessToken: FFAppState().accessToken,
+          filter:
+              '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.id''',
+          ).toString().toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.organization_id''',
+          ).toString().toString()}\"}}}]}',
+        );
+        if ((_model.apiResultGetTask?.succeeded ?? true)) {
+          setState(() {
+            _model.taskToDo = TaskListDataStruct.maybeFromMap(
+                    (_model.apiResultGetTask?.jsonBody ?? ''))!
+                .data
+                .where((e) =>
+                    (e.status == 'todo') &&
+                    (e.current.toString() == '1'))
+                .toList()
+                .toList()
+                .cast<TaskListStruct>();
+            _model.taskWait = TaskListDataStruct.maybeFromMap(
+                    (_model.apiResultGetTask?.jsonBody ?? ''))!
+                .data
+                .where((e) =>
+                    (e.status == 'todo') &&
+                    (e.current.toString() == '0'))
+                .toList()
+                .toList()
+                .cast<TaskListStruct>();
+            _model.ishows = true;
+          });
+        }
+      } else {
+        setState(() {});
       }
     });
 
@@ -149,7 +155,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                   primary: false,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding:
@@ -175,10 +181,10 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                 .call(
                                           accessToken: FFAppState().accessToken,
                                           filter:
-                                              '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                              '{\"_and\":[{\"submit_staff_id\":{\"_eq\":\"${getJsonField(
                                             FFAppState().staffLogin,
                                             r'''$.id''',
-                                          ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                          ).toString()}\"}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
                                             FFAppState().staffLogin,
                                             r'''$.organization_id''',
                                           ).toString()}\"}}},{\"name\":{\"_icontains\":\"${_model.textController.text}\"}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
@@ -210,10 +216,10 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                 .call(
                                           accessToken: FFAppState().accessToken,
                                           filter:
-                                              '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                              '{\"_and\":[{\"submit_staff_id\":{\"_eq\":\"${getJsonField(
                                             FFAppState().staffLogin,
                                             r'''$.id''',
-                                          ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                          ).toString()}\"}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
                                             FFAppState().staffLogin,
                                             r'''$.organization_id''',
                                           ).toString()}\"}}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
@@ -318,10 +324,10 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                   accessToken:
                                                       FFAppState().accessToken,
                                                   filter:
-                                                      '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                                      '{\"_and\":[{\"submit_staff_id\":{\"_eq\":\"${getJsonField(
                                                     FFAppState().staffLogin,
                                                     r'''$.id''',
-                                                  ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                                  ).toString()}\"}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
                                                     FFAppState().staffLogin,
                                                     r'''$.organization_id''',
                                                   ).toString()}\"}}},{\"name\":{\"_icontains\":\"${_model.textController.text}\"}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
@@ -358,10 +364,10 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                   accessToken:
                                                       FFAppState().accessToken,
                                                   filter:
-                                                      '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                                      '{\"_and\":[{\"submit_staff_id\":{\"_eq\":\"${getJsonField(
                                                     FFAppState().staffLogin,
                                                     r'''$.id''',
-                                                  ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                                  ).toString()}\"}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
                                                     FFAppState().staffLogin,
                                                     r'''$.organization_id''',
                                                   ).toString()}\"}}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
@@ -595,10 +601,31 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                           ].divide(const SizedBox(width: 6.0)),
                         ),
                       ),
+                      if ((_model.textController.text != '') ||
+                          (_model.dateStartFilter != null &&
+                              _model.dateStartFilter != '') ||
+                          (_model.dateEndFilter != null &&
+                              _model.dateEndFilter != '') ||
+                          (_model.typeFilter != null &&
+                              _model.typeFilter != ''))
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 16.0),
+                          child: Text(
+                            '# Kết quả tìm kiếm theo bộ lọc',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ),
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          if (_model.list.isNotEmpty)
+                          if ((_model.list.isNotEmpty) &&
+                              (_model.ishows == true))
                             Builder(
                               builder: (context) {
                                 final dataList = _model.list.toList();
@@ -739,6 +766,12 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                         .publishedCount,
                                                                     ParamType
                                                                         .int,
+                                                                  ),
+                                                                  'paramBack':
+                                                                      serializeParam(
+                                                                    '2',
+                                                                    ParamType
+                                                                        .String,
                                                                   ),
                                                                 }.withoutNulls,
                                                               );
@@ -1928,6 +1961,43 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                   },
                                 );
                               },
+                            ),
+                          if ((_model.list.isEmpty) &&
+                              (_model.ishows == true))
+                            Align(
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 150.0, 0.0, 0.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    FaIcon(
+                                      FontAwesomeIcons.database,
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      size: 55.0,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 15.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Chưa có task nào được hoàn thành !',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              fontSize: 18.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                         ],
                       ),
