@@ -111,7 +111,7 @@ class _DetailActionTypeUploadFileWidgetState
               color: FlutterFlowTheme.of(context).alternate,
               textStyle: FlutterFlowTheme.of(context).labelLarge.override(
                     fontFamily: 'Nunito Sans',
-                    fontSize: 13.0,
+                    fontSize: 14.0,
                     letterSpacing: 0.0,
                   ),
               borderSide: BorderSide(

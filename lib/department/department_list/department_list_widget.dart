@@ -2,9 +2,11 @@ import '/department/filter_status_department/filter_status_department_widget.dar
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'department_list_model.dart';
 export 'department_list_model.dart';
@@ -20,6 +22,8 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
   late DepartmentListModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  late StreamSubscription<bool> _keyboardVisibilitySubscription;
+  bool _isKeyboardVisible = false;
 
   @override
   void initState() {
@@ -36,6 +40,15 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
       });
     });
 
+    if (!isWeb) {
+      _keyboardVisibilitySubscription =
+          KeyboardVisibilityController().onChange.listen((bool visible) {
+        setState(() {
+          _isKeyboardVisible = visible;
+        });
+      });
+    }
+
     _model.nameSearchTextController ??= TextEditingController();
     _model.nameSearchFocusNode ??= FocusNode();
   }
@@ -44,6 +57,9 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
   void dispose() {
     _model.dispose();
 
+    if (!isWeb) {
+      _keyboardVisibilitySubscription.cancel();
+    }
     super.dispose();
   }
 
@@ -56,32 +72,37 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            context.pushNamed(
-              'DepartmentCreate',
-              queryParameters: {
-                'checkCode': serializeParam(
-                  _model.dataParam,
-                  ParamType.String,
-                  true,
-                ),
-              }.withoutNulls,
-              extra: <String, dynamic>{
-                kTransitionInfoKey: const TransitionInfo(
-                  hasTransition: true,
-                  transitionType: PageTransitionType.fade,
-                  duration: Duration(milliseconds: 0),
-                ),
-              },
-            );
-          },
-          backgroundColor: FlutterFlowTheme.of(context).primary,
-          elevation: 8.0,
-          child: Icon(
-            Icons.add,
-            color: FlutterFlowTheme.of(context).info,
-            size: 24.0,
+        floatingActionButton: Visibility(
+          visible: !(isWeb
+              ? MediaQuery.viewInsetsOf(context).bottom > 0
+              : _isKeyboardVisible),
+          child: FloatingActionButton(
+            onPressed: () async {
+              context.pushNamed(
+                'DepartmentCreate',
+                queryParameters: {
+                  'checkCode': serializeParam(
+                    _model.dataParam,
+                    ParamType.String,
+                    true,
+                  ),
+                }.withoutNulls,
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 0),
+                  ),
+                },
+              );
+            },
+            backgroundColor: FlutterFlowTheme.of(context).primary,
+            elevation: 8.0,
+            child: Icon(
+              Icons.add,
+              color: FlutterFlowTheme.of(context).info,
+              size: 24.0,
+            ),
           ),
         ),
         appBar: AppBar(
@@ -115,13 +136,13 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -375,6 +396,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                               .bodyLarge
                                               .override(
                                                 fontFamily: 'Nunito Sans',
+                                                fontSize: 14.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
@@ -395,8 +417,10 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Nunito Sans',
-                                                          fontSize: 13.0,
+                                                          fontSize: 14.0,
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
                                                         ),
                                               ),
                                             ),
@@ -434,8 +458,10 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Nunito Sans',
-                                                          fontSize: 13.0,
+                                                          fontSize: 14.0,
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
                                                         ),
                                               ),
                                             ),
@@ -474,8 +500,10 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Nunito Sans',
-                                                          fontSize: 13.0,
+                                                          fontSize: 14.0,
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
                                                         ),
                                               ),
                                             ),

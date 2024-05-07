@@ -154,6 +154,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                         ),
                         FlutterFlowChoiceChips(
@@ -175,7 +176,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             iconColor: FlutterFlowTheme.of(context).primaryText,
-                            iconSize: 18.0,
+                            iconSize: 14.0,
                             elevation: 4.0,
                             borderRadius: BorderRadius.circular(16.0),
                           ),
@@ -192,7 +193,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                 ),
                             iconColor:
                                 FlutterFlowTheme.of(context).secondaryText,
-                            iconSize: 18.0,
+                            iconSize: 14.0,
                             elevation: 0.0,
                             borderRadius: BorderRadius.circular(16.0),
                           ),
@@ -225,6 +226,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
                                 ),
                           ),
                           FlutterFlowDropDown<String>(
@@ -464,6 +466,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                   fontFamily: 'Nunito Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -580,6 +583,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   color: Colors.white,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),

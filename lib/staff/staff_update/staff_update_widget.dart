@@ -126,6 +126,13 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
     ).toString().toString());
     _model.cccdFocusNode ??= FocusNode();
 
+    _model.titleTextTextController ??= TextEditingController(
+        text: getJsonField(
+      widget.staffDetail,
+      r'''$.title''',
+    ).toString().toString());
+    _model.titleTextFocusNode ??= FocusNode();
+
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -192,13 +199,13 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
           style: FlutterFlowTheme.of(context).headlineMedium.override(
                 fontFamily: 'Nunito Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
-                fontSize: 20.0,
+                fontSize: 18.0,
                 letterSpacing: 0.0,
               ),
         ),
         actions: const [],
         centerTitle: false,
-        elevation: 2.0,
+        elevation: 1.0,
       ),
       body: SafeArea(
         top: true,
@@ -507,6 +514,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   .labelSmall
                                   .override(
                                     fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
@@ -652,6 +660,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   .labelSmall
                                   .override(
                                     fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
@@ -724,6 +733,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   .labelSmall
                                   .override(
                                     fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
@@ -826,14 +836,14 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                40.0, 0.0, 0.0, 10.0),
+                                20.0, 0.0, 0.0, 10.0),
                             child: Text(
                               'Giới tính',
                               style: FlutterFlowTheme.of(context)
                                   .bodyLarge
                                   .override(
                                     fontFamily: 'Nunito Sans',
-                                    fontSize: 12.0,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -863,6 +873,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Nunito Sans',
+                                    fontSize: 13.0,
                                     letterSpacing: 0.0,
                                   ),
                               buttonPosition: RadioButtonPosition.left,
@@ -995,6 +1006,148 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 isMultiSelect: false,
                               ),
                             ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 20.0, 20.0),
+                            child: FlutterFlowDropDown<String>(
+                              controller: _model.titleValueController ??=
+                                  FormFieldController<String>(
+                                _model.titleValue ??= '',
+                              ),
+                              options:
+                                  List<String>.from(['1', '2', '3', '4', '5']),
+                              optionLabels: const [
+                                'Trưởng chi nhánh',
+                                'Phó chi nhánh',
+                                'Trưởng bộ phận',
+                                'Phó bộ phận',
+                                'Nhân viên'
+                              ],
+                              onChanged: (val) async {
+                                setState(() => _model.titleValue = val);
+                                setState(() {
+                                  _model.titleTextTextController?.text = () {
+                                    if (_model.titleValue == '5') {
+                                      return 'Nhân viên';
+                                    } else if (_model.titleValue == '4') {
+                                      return 'Phó bộ phận';
+                                    } else if (_model.titleValue == '3') {
+                                      return 'Trưởng bộ phận';
+                                    } else if (_model.titleValue == '2') {
+                                      return 'Phó chi nhánh';
+                                    } else if (_model.titleValue == '1') {
+                                      return 'Trưởng chi nhánh';
+                                    } else {
+                                      return ' ';
+                                    }
+                                  }();
+                                });
+                                setState(() {});
+                              },
+                              width: double.infinity,
+                              height: 56.0,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    letterSpacing: 0.0,
+                                  ),
+                              hintText: 'Chọn chức vụ',
+                              icon: Icon(
+                                Icons.keyboard_arrow_down_rounded,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 15.0,
+                              ),
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              elevation: 1.0,
+                              borderColor:
+                                  FlutterFlowTheme.of(context).alternate,
+                              borderWidth: 1.0,
+                              borderRadius: 8.0,
+                              margin: const EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 4.0, 12.0, 4.0),
+                              hidesUnderline: true,
+                              isSearchable: false,
+                              isMultiSelect: false,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 20.0, 20.0),
+                            child: TextFormField(
+                              controller: _model.titleTextTextController,
+                              focusNode: _model.titleTextFocusNode,
+                              textCapitalization: TextCapitalization.words,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'Chức vụ',
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                                hintText: 'Vd: Nhân viên',
+                                hintStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                filled: true,
+                                fillColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 24.0, 0.0, 24.0),
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .labelSmall
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                              keyboardType: TextInputType.phone,
+                              validator: _model.titleTextTextControllerValidator
+                                  .asValidator(context),
+                            ),
+                          ),
                           if ((_model.roleValue ==
                                   'a8d33527-375b-4599-ac70-6a3fcad1de39') ||
                               (FFAppState().user.role ==
@@ -1252,10 +1405,10 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   ),
                                   tileColor: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  activeColor:
-                                      FlutterFlowTheme.of(context).primary,
+                                  activeColor: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                   activeTrackColor:
-                                      FlutterFlowTheme.of(context).accent1,
+                                      FlutterFlowTheme.of(context).primary,
                                   dense: false,
                                   controlAffinity:
                                       ListTileControlAffinity.trailing,
@@ -1360,26 +1513,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     FFAppState().staffLogin,
                                     r'''$.branch_id''',
                                   ),
-                                  'title': () {
-                                    if (_model.roleValue ==
-                                        '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
-                                      return 'Nhân viên';
-                                    } else if (_model.roleValue ==
-                                        '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                      return 'Quản lý bộ phận';
-                                    } else if (_model.roleValue ==
-                                        'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                      return 'Quản lý chi nhánh';
-                                    } else if (getJsonField(
-                                          widget.staffDetail,
-                                          r'''$.user_id.role''',
-                                        ).toString() ==
-                                        '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                                      return 'Admin tổ chức';
-                                    } else {
-                                      return null;
-                                    }
-                                  }(),
+                                  'title': _model.titleTextTextController.text,
                                 },
                               );
                               if ((_model
@@ -1490,20 +1624,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   FFAppState().staffLogin,
                                   r'''$.branch_id''',
                                 ),
-                                'title': () {
-                                  if (_model.roleValue ==
-                                      '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
-                                    return 'Nhân viên';
-                                  } else if (_model.roleValue ==
-                                      '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                    return 'Quản lý bộ phận';
-                                  } else if (_model.roleValue ==
-                                      'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                    return 'Quản lý chi nhánh';
-                                  } else {
-                                    return null;
-                                  }
-                                }(),
+                                'title': _model.titleTextTextController.text,
                               },
                             );
                             if ((_model.apiResultUpdateUserStaff?.succeeded ??
@@ -1557,6 +1678,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                         FlutterFlowTheme.of(context).titleMedium.override(
                               fontFamily: 'Nunito Sans',
                               color: Colors.white,
+                              fontSize: 16.0,
                               letterSpacing: 0.0,
                             ),
                     elevation: 2.0,

@@ -376,9 +376,9 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Nunito Sans',
-                                  fontSize: 16.0,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
+                                  fontWeight: FontWeight.w500,
                                 ),
                           ),
                           if (_model.requestData!.lessions.isNotEmpty)

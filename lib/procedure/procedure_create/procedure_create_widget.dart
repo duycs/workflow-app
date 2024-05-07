@@ -24,7 +24,12 @@ import 'procedure_create_model.dart';
 export 'procedure_create_model.dart';
 
 class ProcedureCreateWidget extends StatefulWidget {
-  const ProcedureCreateWidget({super.key});
+  const ProcedureCreateWidget({
+    super.key,
+    String? checkRouter,
+  }) : checkRouter = checkRouter ?? '0';
+
+  final String checkRouter;
 
   @override
   State<ProcedureCreateWidget> createState() => _ProcedureCreateWidgetState();
@@ -112,7 +117,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                 ),
           ),
@@ -581,30 +586,67 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                     setState(() {
                       _model.loop = 0;
                     });
-
-                    context.pushNamed(
-                      'ProcedureList',
-                      extra: <String, dynamic>{
-                        kTransitionInfoKey: const TransitionInfo(
-                          hasTransition: true,
-                          transitionType: PageTransitionType.fade,
-                          duration: Duration(milliseconds: 0),
-                        ),
-                      },
-                    );
-
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Tạo mới quy trình thành công!',
-                          style: TextStyle(
-                            color: FlutterFlowTheme.of(context).primaryText,
+                    if (widget.checkRouter == 'task') {
+                      context.pushNamed(
+                        'TaskList',
+                        queryParameters: {
+                          'checkRouter': serializeParam(
+                            'workflow',
+                            ParamType.String,
                           ),
+                        }.withoutNulls,
+                        extra: <String, dynamic>{
+                          kTransitionInfoKey: const TransitionInfo(
+                            hasTransition: true,
+                            transitionType: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                          ),
+                        },
+                      );
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Tạo mới quy trình thành công!',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: const Duration(milliseconds: 4000),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
                         ),
-                        duration: const Duration(milliseconds: 4000),
-                        backgroundColor: FlutterFlowTheme.of(context).secondary,
-                      ),
-                    );
+                      );
+                      if (shouldSetState) setState(() {});
+                      return;
+                    } else {
+                      context.pushNamed(
+                        'ProcedureList',
+                        extra: <String, dynamic>{
+                          kTransitionInfoKey: const TransitionInfo(
+                            hasTransition: true,
+                            transitionType: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                          ),
+                        },
+                      );
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Tạo mới quy trình thành công!',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: const Duration(milliseconds: 4000),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
+                        ),
+                      );
+                      if (shouldSetState) setState(() {});
+                      return;
+                    }
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
@@ -633,6 +675,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Nunito Sans',
                         color: Colors.white,
+                        fontSize: 14.0,
                         letterSpacing: 0.0,
                       ),
                   elevation: 3.0,
@@ -646,7 +689,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
             ),
           ],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -764,6 +807,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                               .bodyLarge
                                               .override(
                                                 fontFamily: 'Nunito Sans',
+                                                fontSize: 14.0,
                                                 letterSpacing: 0.0,
                                               ),
                                           validator: _model
@@ -1055,6 +1099,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                               .override(
                                                 fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
                                                 fontStyle: FontStyle.italic,
                                               ),
                                         ),
@@ -1189,7 +1234,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w500,
+                                                                        .normal,
                                                               ),
                                                       elevation: 3.0,
                                                       borderSide: const BorderSide(
@@ -1235,6 +1280,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                               .override(
                                                 fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
                                                 fontStyle: FontStyle.italic,
                                               ),
                                         ),
@@ -1371,7 +1417,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w500,
+                                                                        .normal,
                                                               ),
                                                       elevation: 3.0,
                                                       borderSide: const BorderSide(
@@ -1448,12 +1494,12 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                               .override(
                                                                 fontFamily:
                                                                     'Nunito Sans',
-                                                                fontSize: 18.0,
+                                                                fontSize: 14.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .normal,
+                                                                        .w500,
                                                               ),
                                                         ),
                                                       ),
@@ -1482,6 +1528,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                               .override(
                                                                 fontFamily:
                                                                     'Nunito Sans',
+                                                                fontSize: 12.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
@@ -1747,9 +1794,11 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                           fontFamily:
                                                                               'Nunito Sans',
                                                                           fontSize:
-                                                                              13.0,
+                                                                              14.0,
                                                                           letterSpacing:
                                                                               0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
                                                                         ),
                                                                   ),
                                                                 ),
@@ -1823,6 +1872,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                                 color: FlutterFlowTheme.of(context).primaryText,
                                                                                 fontSize: 14.0,
                                                                                 letterSpacing: 0.0,
+                                                                                fontWeight: FontWeight.normal,
                                                                               ),
                                                                           borderSide:
                                                                               const BorderSide(
@@ -1874,6 +1924,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                                 color: FlutterFlowTheme.of(context).primaryText,
                                                                                 fontSize: 14.0,
                                                                                 letterSpacing: 0.0,
+                                                                                fontWeight: FontWeight.normal,
                                                                               ),
                                                                           borderSide:
                                                                               const BorderSide(
@@ -1931,7 +1982,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:
-                                                                            FontWeight.w500,
+                                                                            FontWeight.normal,
                                                                       ),
                                                                   unselectedTextStyle: FlutterFlowTheme.of(
                                                                           context)
@@ -1981,9 +2032,12 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                               .override(
                                                                 fontFamily:
                                                                     'Nunito Sans',
-                                                                fontSize: 13.0,
+                                                                fontSize: 14.0,
                                                                 letterSpacing:
                                                                     0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
                                                               ),
                                                         ),
                                                       ),
@@ -2105,6 +2159,9 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                           14.0,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal,
                                                                     ),
                                                                 borderSide:
                                                                     const BorderSide(
@@ -2220,6 +2277,9 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                           14.0,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal,
                                                                     ),
                                                                 borderSide:
                                                                     const BorderSide(
@@ -2334,9 +2394,9 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                               .bodyMedium
                                                                               .override(
                                                                                 fontFamily: 'Nunito Sans',
-                                                                                fontSize: 13.0,
+                                                                                fontSize: 14.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.w500,
+                                                                                fontWeight: FontWeight.normal,
                                                                               ),
                                                                         ),
                                                                       ],
@@ -2448,9 +2508,9 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                               .bodyMedium
                                                                               .override(
                                                                                 fontFamily: 'Nunito Sans',
-                                                                                fontSize: 13.0,
+                                                                                fontSize: 14.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.w500,
+                                                                                fontWeight: FontWeight.normal,
                                                                               ),
                                                                         ),
                                                                       ],
@@ -2562,9 +2622,9 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                               .bodyMedium
                                                                               .override(
                                                                                 fontFamily: 'Nunito Sans',
-                                                                                fontSize: 13.0,
+                                                                                fontSize: 14.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.w500,
+                                                                                fontWeight: FontWeight.normal,
                                                                               ),
                                                                         ),
                                                                       ],
@@ -2674,9 +2734,9 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                               .bodyMedium
                                                                               .override(
                                                                                 fontFamily: 'Nunito Sans',
-                                                                                fontSize: 13.0,
+                                                                                fontSize: 14.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.w500,
+                                                                                fontWeight: FontWeight.normal,
                                                                               ),
                                                                         ),
                                                                       ],
@@ -2786,9 +2846,9 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                               .bodyMedium
                                                                               .override(
                                                                                 fontFamily: 'Nunito Sans',
-                                                                                fontSize: 13.0,
+                                                                                fontSize: 14.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.w500,
+                                                                                fontWeight: FontWeight.normal,
                                                                               ),
                                                                         ),
                                                                       ],

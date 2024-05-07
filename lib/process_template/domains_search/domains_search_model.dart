@@ -47,9 +47,9 @@ class DomainsSearchModel extends FlutterFlowModel<DomainsSearchWidget> {
   TextEditingController? textNameTextController;
   String? Function(BuildContext, String?)? textNameTextControllerValidator;
   // State field(s) for Switch widget.
-  bool switchValue1 = true;
+  bool? switchValue1;
   // State field(s) for Switch widget.
-  bool switchValue2 = false;
+  bool? switchValue2;
   // Models for checkBoxToggle dynamic component.
   late FlutterFlowDynamicModels<CheckBoxToggleModel> checkBoxToggleModels;
 

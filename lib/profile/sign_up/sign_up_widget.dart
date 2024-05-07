@@ -213,6 +213,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                           .override(
                                             fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                     ),
                                     Padding(
@@ -282,6 +283,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                         .primary,
                                                     fontSize: 16.0,
                                                     letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w500,
                                                     decoration: TextDecoration
                                                         .underline,
                                                   ),
@@ -405,16 +407,16 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                               const EdgeInsets.all(
                                                                   24.0),
                                                         ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyLarge
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Nunito Sans',
+                                                              fontSize: 14.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                            ),
                                                         keyboardType:
                                                             TextInputType
                                                                 .emailAddress,
@@ -542,6 +544,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                       .override(
                                                         fontFamily:
                                                             'Nunito Sans',
+                                                        fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                                   validator: _model
@@ -702,6 +705,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
+                                                            fontSize: 14.0,
                                                             letterSpacing: 0.0,
                                                           ),
                                                       validator: _model
@@ -737,6 +741,9 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w500,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
                                                                 ),
                                                       ),
                                                     ),
@@ -831,6 +838,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                       .override(
                                                         fontFamily:
                                                             'Nunito Sans',
+                                                        fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                                   validator: _model
@@ -927,6 +935,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                       .override(
                                                         fontFamily:
                                                             'Nunito Sans',
+                                                        fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                                   validator: _model
@@ -1023,6 +1032,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                       .override(
                                                         fontFamily:
                                                             'Nunito Sans',
+                                                        fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                                   keyboardType:
@@ -1122,6 +1132,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                       .override(
                                                         fontFamily:
                                                             'Nunito Sans',
+                                                        fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                                   keyboardType:
@@ -1144,7 +1155,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                   Padding(
                                                     padding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
+                                                            .fromSTEB(4.0, 0.0,
                                                                 0.0, 4.0),
                                                     child: InkWell(
                                                       splashColor:
@@ -1266,7 +1277,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                                           context)
                                                                       .secondaryText,
                                                                   fontSize:
-                                                                      16.0,
+                                                                      14.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -1304,6 +1315,9 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w500,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
                                                                 ),
                                                       ),
                                                     ),
@@ -1323,22 +1337,28 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                     FormFieldController<String>(
                                                         'Nam'),
                                                 optionHeight: 32.0,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                textStyle: FlutterFlowTheme.of(
+                                                        context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      fontSize: 16.0,
+                                                      letterSpacing: 0.0,
+                                                    ),
                                                 selectedTextStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
                                                               'Nunito Sans',
-                                                          fontSize: 16.0,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          fontSize: 14.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                                 textPadding:
@@ -1572,6 +1592,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                     .override(
                                                       fontFamily: 'Nunito Sans',
                                                       color: Colors.white,
+                                                      fontSize: 14.0,
                                                       letterSpacing: 0.0,
                                                     ),
                                             elevation: 3.0,

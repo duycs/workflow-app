@@ -88,14 +88,14 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
             'Nội dung bài học',
             style: FlutterFlowTheme.of(context).headlineSmall.override(
                   fontFamily: 'Nunito Sans',
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                   fontWeight: FontWeight.normal,
                 ),
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: Column(
           mainAxisSize: MainAxisSize.max,
@@ -124,7 +124,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                 .headlineSmall
                                 .override(
                                   fontFamily: 'Nunito Sans',
-                                  fontSize: 20.0,
+                                  fontSize: 18.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -1243,7 +1243,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                                               context)
                                                                           .primary,
                                                                       fontSize:
-                                                                          12.0,
+                                                                          13.0,
                                                                       letterSpacing:
                                                                           0.0,
                                                                       fontWeight:
@@ -1314,7 +1314,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryText,
-                                                          fontSize: 12.0,
+                                                          fontSize: 14.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
@@ -1761,8 +1761,9 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                           style:
                               FlutterFlowTheme.of(context).bodyLarge.override(
                                     fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.w500,
                                   ),
                         ),
                       ),
@@ -1791,8 +1792,9 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                   .bodyLarge
                                   .override(
                                     fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                             Row(
@@ -1935,6 +1937,9 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                                       'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
                                                                 ),
                                                           ),
                                                         ],
@@ -1997,16 +2002,16 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                                       context)
                                                                   .languageCode,
                                                         ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .labelSmall
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Nunito Sans',
+                                                              fontSize: 12.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                            ),
                                                       ),
                                                     ].divide(
                                                         const SizedBox(width: 16.0)),
@@ -2091,6 +2096,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Nunito Sans',
                         color: Colors.white,
+                        fontSize: 14.0,
                         letterSpacing: 0.0,
                       ),
                   elevation: 3.0,

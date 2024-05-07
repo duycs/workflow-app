@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
+import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -106,20 +107,42 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Chỉnh sửa bài học',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Nunito Sans',
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 20.0,
-                      letterSpacing: 0.0,
-                    ),
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  await showDialog(
+                    context: context,
+                    builder: (alertDialogContext) {
+                      return AlertDialog(
+                        title: Text(_model.radioButtonStatusValue!),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(alertDialogContext),
+                            child: const Text('Ok'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Text(
+                  'Chỉnh sửa bài học',
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                        fontFamily: 'Nunito Sans',
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        fontSize: 18.0,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
             ],
           ),
           actions: const [],
           centerTitle: true,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -276,7 +299,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                   .labelMedium
                                   .override(
                                     fontFamily: 'Nunito Sans',
-                                    fontSize: 13.0,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                               hintText: 'Danh sách danh mục ',
@@ -311,6 +334,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
                                 ),
                           ),
                         ),
@@ -337,7 +361,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Nunito Sans',
-                                  fontSize: 13.0,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                 ),
                             hintText: 'Danh sách bài thi',
@@ -470,6 +494,66 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                 ),
                               ),
                             ].divide(const SizedBox(width: 4.0)),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 8.0, 0.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 3.0),
+                                child: Text(
+                                  'Trạng thái bài học:',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                ),
+                              ),
+                              FlutterFlowRadioButton(
+                                options:
+                                    ['Hoạt động', 'Không hoạt động'].toList(),
+                                onChanged: (val) => setState(() {}),
+                                controller: _model
+                                        .radioButtonStatusValueController ??=
+                                    FormFieldController<String>(getJsonField(
+                                              widget.items,
+                                              r'''$.status''',
+                                            ).toString() ==
+                                            'published'
+                                        ? 'Hoạt động'
+                                        : 'Không hoạt động'),
+                                optionHeight: 32.0,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                                selectedTextStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                                buttonPosition: RadioButtonPosition.left,
+                                direction: Axis.vertical,
+                                radioButtonColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                inactiveRadioButtonColor:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                toggleable: false,
+                                horizontalAlignment: WrapAlignment.start,
+                                verticalAlignment: WrapCrossAlignment.start,
+                              ),
+                            ],
                           ),
                         ),
                         Padding(
@@ -625,7 +709,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                         .override(
                                           fontFamily: 'Nunito Sans',
                                           color: Colors.white,
-                                          fontSize: 13.0,
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
@@ -838,7 +922,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                         .override(
                                           fontFamily: 'Nunito Sans',
                                           color: Colors.white,
-                                          fontSize: 13.0,
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
@@ -1079,7 +1163,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                         .override(
                                           fontFamily: 'Nunito Sans',
                                           color: Colors.white,
-                                          fontSize: 13.0,
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
@@ -1199,6 +1283,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                           fontFamily: 'Nunito Sans',
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
+                          fontSize: 14.0,
                           letterSpacing: 0.0,
                         ),
                     elevation: 3.0,

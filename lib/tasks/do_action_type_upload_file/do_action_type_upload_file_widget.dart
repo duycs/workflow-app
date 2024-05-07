@@ -63,7 +63,7 @@ class _DoActionTypeUploadFileWidgetState
       padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
       child: Column(
         mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) ||
               ((widget.file != null && widget.file != '') &&
@@ -177,7 +177,35 @@ class _DoActionTypeUploadFileWidgetState
               (functions.checkFileLast((String tail) {
                     return tail.split('.').last;
                   }(widget.fileTail!)) ==
-                  'pdf'))
+                  'pdf') &&
+              (_model.isShowPdf == false))
+            InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () async {
+                setState(() {
+                  _model.isShowPdf = true;
+                });
+              },
+              child: Text(
+                '(Xem thêm)',
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Nunito Sans',
+                      color: FlutterFlowTheme.of(context).primary,
+                      fontSize: 13.0,
+                      letterSpacing: 0.0,
+                      fontStyle: FontStyle.italic,
+                    ),
+              ),
+            ),
+          if ((widget.fileTail != '6f2dfeb5-4df6-4b73-93c4-109f72133a25') &&
+              (functions.checkFileLast((String tail) {
+                    return tail.split('.').last;
+                  }(widget.fileTail!)) ==
+                  'pdf') &&
+              _model.isShowPdf)
             FlutterFlowPdfViewer(
               networkPath:
                   '${FFAppConstants.ApiBaseUrl}/assets/${widget.file}?access_token=${FFAppState().accessToken}',
@@ -224,6 +252,33 @@ class _DoActionTypeUploadFileWidgetState
                     fit: BoxFit.cover,
                   ),
                 ),
+              ),
+            ),
+          if ((widget.fileTail != '6f2dfeb5-4df6-4b73-93c4-109f72133a25') &&
+              (functions.checkFileLast((String tail) {
+                    return tail.split('.').last;
+                  }(widget.fileTail!)) ==
+                  'pdf') &&
+              _model.isShowPdf)
+            InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () async {
+                setState(() {
+                  _model.isShowPdf = false;
+                });
+              },
+              child: Text(
+                '(Ẩn bớt)',
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Nunito Sans',
+                      color: FlutterFlowTheme.of(context).primary,
+                      fontSize: 13.0,
+                      letterSpacing: 0.0,
+                      fontStyle: FontStyle.italic,
+                    ),
               ),
             ),
           Row(
@@ -301,7 +356,7 @@ class _DoActionTypeUploadFileWidgetState
                   color: FlutterFlowTheme.of(context).alternate,
                   textStyle: FlutterFlowTheme.of(context).labelLarge.override(
                         fontFamily: 'Nunito Sans',
-                        fontSize: 13.0,
+                        fontSize: 14.0,
                         letterSpacing: 0.0,
                       ),
                   borderSide: BorderSide(
@@ -344,7 +399,7 @@ class _DoActionTypeUploadFileWidgetState
                     color: FlutterFlowTheme.of(context).alternate,
                     textStyle: FlutterFlowTheme.of(context).labelLarge.override(
                           fontFamily: 'Nunito Sans',
-                          fontSize: 13.0,
+                          fontSize: 14.0,
                           letterSpacing: 0.0,
                         ),
                     borderSide: BorderSide(

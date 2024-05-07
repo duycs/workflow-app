@@ -324,7 +324,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                   .titleLarge
                                   .override(
                                     fontFamily: 'Nunito Sans',
-                                    fontSize: 18.0,
+                                    fontSize: 20.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
@@ -547,6 +547,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                 fontFamily: 'Nunito Sans',
                                                 fontSize: 13.0,
                                                 letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
                                               ),
                                         ),
                                       ),
@@ -611,6 +612,8 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                               .primaryText,
                                                       fontSize: 14.0,
                                                       letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.normal,
                                                     ),
                                                 borderSide: const BorderSide(
                                                   color: Colors.transparent,
@@ -654,6 +657,8 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                               .primaryText,
                                                       fontSize: 14.0,
                                                       letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.normal,
                                                     ),
                                                 borderSide: const BorderSide(
                                                   color: Colors.transparent,
@@ -734,8 +739,9 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                     .labelMedium
                                     .override(
                                       fontFamily: 'Nunito Sans',
-                                      fontSize: 13.0,
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
                                     ),
                               ),
                             ),
@@ -812,6 +818,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                 .primaryText,
                                             fontSize: 14.0,
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.normal,
                                           ),
                                       borderSide: const BorderSide(
                                         color: Colors.transparent,
@@ -884,6 +891,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                 .primaryText,
                                             fontSize: 14.0,
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.normal,
                                           ),
                                       borderSide: const BorderSide(
                                         color: Colors.transparent,
@@ -956,15 +964,17 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                             ),
                                             Text(
                                               listOneItem.title,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    fontSize: 13.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
                                             ),
                                           ],
                                         ),
@@ -1037,15 +1047,17 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                             ),
                                             Text(
                                               listTwoItem.title,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    fontSize: 13.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
                                             ),
                                           ],
                                         ),
@@ -1119,15 +1131,17 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                             ),
                                             Text(
                                               listThreeItem.title,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    fontSize: 13.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
                                             ),
                                           ],
                                         ),
@@ -1200,15 +1214,17 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                             ),
                                             Text(
                                               listFourItem.title,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    fontSize: 13.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
                                             ),
                                           ],
                                         ),
@@ -1281,15 +1297,17 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                             ),
                                             Text(
                                               listFiveItem.title,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    fontSize: 13.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
                                             ),
                                           ],
                                         ),
@@ -1361,15 +1379,17 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                             ),
                                             Text(
                                               listSixItem.title,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    fontSize: 13.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
                                             ),
                                           ],
                                         ),
@@ -1808,6 +1828,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                         fontFamily: 'Nunito Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
+                                        fontSize: 14.0,
                                         letterSpacing: 0.0,
                                       ),
                                   borderSide: BorderSide(
@@ -1980,6 +2001,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                         .titleSmall
                                         .override(
                                           fontFamily: 'Nunito Sans',
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                         ),
                                     borderSide: const BorderSide(

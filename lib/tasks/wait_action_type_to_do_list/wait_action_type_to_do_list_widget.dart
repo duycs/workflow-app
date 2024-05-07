@@ -61,6 +61,11 @@ class _WaitActionTypeToDoListWidgetState
         checkboxBorderColor: FlutterFlowTheme.of(context).secondaryText,
         textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
               fontFamily: 'Nunito Sans',
+              fontSize: 14.0,
+              letterSpacing: 0.0,
+            ),
+        unselectedTextStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+              fontFamily: 'Nunito Sans',
               fontSize: 13.0,
               letterSpacing: 0.0,
             ),

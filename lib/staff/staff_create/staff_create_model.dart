@@ -66,6 +66,8 @@ class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
 
   String avatar = '';
 
+  bool checkRoleText = false;
+
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
@@ -164,6 +166,13 @@ class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
   // State field(s) for role widget.
   String? roleValue;
   FormFieldController<String>? roleValueController;
+  // State field(s) for title widget.
+  String? titleValue;
+  FormFieldController<String>? titleValueController;
+  // State field(s) for titleText widget.
+  FocusNode? titleTextFocusNode;
+  TextEditingController? titleTextTextController;
+  String? Function(BuildContext, String?)? titleTextTextControllerValidator;
   // State field(s) for branch widget.
   String? branchValue;
   FormFieldController<String>? branchValueController;
@@ -218,6 +227,9 @@ class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
 
     cccdFocusNode?.dispose();
     cccdTextController?.dispose();
+
+    titleTextFocusNode?.dispose();
+    titleTextTextController?.dispose();
   }
 
   /// Additional helper methods.

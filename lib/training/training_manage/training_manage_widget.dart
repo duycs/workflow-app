@@ -111,7 +111,7 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily: 'Nunito Sans',
                       color: FlutterFlowTheme.of(context).secondaryBackground,
-                      fontSize: 22.0,
+                      fontSize: 18.0,
                       letterSpacing: 0.0,
                     ),
               ),
@@ -132,7 +132,7 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
           ),
           actions: const [],
           centerTitle: true,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),

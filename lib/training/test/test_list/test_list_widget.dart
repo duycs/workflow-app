@@ -108,7 +108,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily: 'Nunito Sans',
                       color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 20.0,
+                      fontSize: 18.0,
                       letterSpacing: 0.0,
                     ),
               ),
@@ -116,7 +116,7 @@ class _TestListWidgetState extends State<TestListWidget> {
           ),
           actions: const [],
           centerTitle: true,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -829,6 +829,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                     decoration: const BoxDecoration(),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -974,6 +975,22 @@ class _TestListWidgetState extends State<TestListWidget> {
                             ].divide(const SizedBox(width: 8.0)),
                           ),
                         ),
+                        if (_model.filter != '')
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 10.0, 0.0, 0.0),
+                            child: Text(
+                              '#Kết quả hiển thị theo bộ lọc',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                            ),
+                          ),
                         Expanded(
                           child: Stack(
                             children: [
@@ -1112,6 +1129,8 @@ class _TestListWidgetState extends State<TestListWidget> {
                                                                         .override(
                                                                           fontFamily:
                                                                               'Nunito Sans',
+                                                                          fontSize:
+                                                                              14.0,
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),

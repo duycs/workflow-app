@@ -435,7 +435,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'ProcedureCreate',
           path: '/procedureCreate',
-          builder: (context, params) => const ProcedureCreateWidget(),
+          builder: (context, params) => ProcedureCreateWidget(
+            checkRouter: params.getParam(
+              'checkRouter',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'ProcedureUpdate',
@@ -600,7 +605,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'TaskList',
           path: '/taskList',
-          builder: (context, params) => const TaskListWidget(),
+          builder: (context, params) => TaskListWidget(
+            checkRouter: params.getParam(
+              'checkRouter',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'DepartmentUpdate',
@@ -660,7 +670,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'listStaffProfileCompany',
+          name: 'ListStaffProfileCompany',
           path: '/listStaffProfileCompany',
           builder: (context, params) => ListStaffProfileCompanyWidget(
             id: params.getParam(

@@ -51,6 +51,8 @@ class ProcedurePushlishedModel
           int index, Function(ProcedurePublishedStepStruct) updateFn) =>
       staffOne[index] = updateFn(staffOne[index]);
 
+  bool isLoad = false;
+
   ///  State fields for stateful widgets in this component.
 
   // Stores action output result for [Backend Call - API (workflowsList)] action in ProcedurePushlished widget.

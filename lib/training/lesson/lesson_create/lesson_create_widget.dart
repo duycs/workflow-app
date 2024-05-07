@@ -83,14 +83,14 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
             'Tạo bài học',
             style: FlutterFlowTheme.of(context).headlineSmall.override(
                   fontFamily: 'Nunito Sans',
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                   fontWeight: FontWeight.normal,
                 ),
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -253,7 +253,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                   .labelMedium
                                   .override(
                                     fontFamily: 'Nunito Sans',
-                                    fontSize: 13.0,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                               hintText: 'Danh sách danh mục ',
@@ -309,7 +309,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Nunito Sans',
-                                  fontSize: 13.0,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                 ),
                             hintText: 'Danh sách bài thi',
@@ -573,7 +573,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                         .override(
                                           fontFamily: 'Nunito Sans',
                                           color: Colors.white,
-                                          fontSize: 13.0,
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
@@ -748,7 +748,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                         .override(
                                           fontFamily: 'Nunito Sans',
                                           color: Colors.white,
-                                          fontSize: 13.0,
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
@@ -923,7 +923,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                         .override(
                                           fontFamily: 'Nunito Sans',
                                           color: Colors.white,
-                                          fontSize: 13.0,
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),

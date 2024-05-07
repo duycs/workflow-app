@@ -325,7 +325,6 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                     onChanged: (val) =>
                         setState(() => _model.dropDownStatusValue = val),
                     width: double.infinity,
-                    height: 50.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,
@@ -363,7 +362,6 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                   onChanged: (val) =>
                       setState(() => _model.programIdValue = val),
                   width: double.infinity,
-                  height: 50.0,
                   textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Nunito Sans',
                         letterSpacing: 0.0,

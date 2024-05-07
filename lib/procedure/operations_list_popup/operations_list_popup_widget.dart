@@ -159,7 +159,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                     .bodyLarge
                                     .override(
                                       fontFamily: 'Nunito Sans',
-                                      fontSize: 22.0,
+                                      fontSize: 20.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.normal,
                                     ),

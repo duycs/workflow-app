@@ -136,6 +136,7 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
+                              fontWeight: FontWeight.w500,
                             ),
                       ),
                       FlutterFlowChoiceChips(
@@ -480,6 +481,7 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                                   fontFamily: 'Nunito Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -566,6 +568,7 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   color: Colors.white,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),

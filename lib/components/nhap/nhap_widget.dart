@@ -95,7 +95,9 @@ class _NhapWidgetState extends State<NhapWidget> {
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Nunito Sans',
                                   color: Colors.white,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
+                                  fontWeight: FontWeight.normal,
                                 ),
                         elevation: 3.0,
                         borderSide: const BorderSide(

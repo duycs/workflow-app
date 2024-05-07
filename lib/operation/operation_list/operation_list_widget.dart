@@ -4,10 +4,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/operation/filter_operation/filter_operation_widget.dart';
 import '/operation/operation_create/operation_create_widget.dart';
 import '/operation/operation_detail/operation_detail_widget.dart';
+import 'dart:async';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'operation_list_model.dart';
 export 'operation_list_model.dart';
@@ -24,6 +26,8 @@ class _OperationListWidgetState extends State<OperationListWidget>
   late OperationListModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  late StreamSubscription<bool> _keyboardVisibilitySubscription;
+  bool _isKeyboardVisible = false;
 
   @override
   void initState() {
@@ -39,6 +43,15 @@ class _OperationListWidgetState extends State<OperationListWidget>
       });
     });
 
+    if (!isWeb) {
+      _keyboardVisibilitySubscription =
+          KeyboardVisibilityController().onChange.listen((bool visible) {
+        setState(() {
+          _isKeyboardVisible = visible;
+        });
+      });
+    }
+
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
@@ -53,6 +66,9 @@ class _OperationListWidgetState extends State<OperationListWidget>
   void dispose() {
     _model.dispose();
 
+    if (!isWeb) {
+      _keyboardVisibilitySubscription.cancel();
+    }
     super.dispose();
   }
 
@@ -65,36 +81,42 @@ class _OperationListWidgetState extends State<OperationListWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            await showModalBottomSheet(
-              isScrollControlled: true,
-              backgroundColor: Colors.transparent,
-              enableDrag: false,
-              context: context,
-              builder: (context) {
-                return GestureDetector(
-                  onTap: () => _model.unfocusNode.canRequestFocus
-                      ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                      : FocusScope.of(context).unfocus(),
-                  child: Padding(
-                    padding: MediaQuery.viewInsetsOf(context),
-                    child: OperationCreateWidget(
-                      callback: () async {
-                        await _model.getLinkOperations(context);
-                      },
+        floatingActionButton: Visibility(
+          visible: !(isWeb
+              ? MediaQuery.viewInsetsOf(context).bottom > 0
+              : _isKeyboardVisible),
+          child: FloatingActionButton(
+            onPressed: () async {
+              await showModalBottomSheet(
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                enableDrag: false,
+                context: context,
+                builder: (context) {
+                  return GestureDetector(
+                    onTap: () => _model.unfocusNode.canRequestFocus
+                        ? FocusScope.of(context)
+                            .requestFocus(_model.unfocusNode)
+                        : FocusScope.of(context).unfocus(),
+                    child: Padding(
+                      padding: MediaQuery.viewInsetsOf(context),
+                      child: OperationCreateWidget(
+                        callback: () async {
+                          await _model.getLinkOperations(context);
+                        },
+                      ),
                     ),
-                  ),
-                );
-              },
-            ).then((value) => safeSetState(() {}));
-          },
-          backgroundColor: FlutterFlowTheme.of(context).primary,
-          elevation: 8.0,
-          child: Icon(
-            Icons.add,
-            color: FlutterFlowTheme.of(context).info,
-            size: 24.0,
+                  );
+                },
+              ).then((value) => safeSetState(() {}));
+            },
+            backgroundColor: FlutterFlowTheme.of(context).primary,
+            elevation: 8.0,
+            child: Icon(
+              Icons.add,
+              color: FlutterFlowTheme.of(context).info,
+              size: 24.0,
+            ),
           ),
         ),
         appBar: AppBar(
@@ -128,13 +150,13 @@ class _OperationListWidgetState extends State<OperationListWidget>
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -312,7 +334,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                     '#Kết quả hiển thị theo bộ lọc',
                     style: FlutterFlowTheme.of(context).labelMedium.override(
                           fontFamily: 'Nunito Sans',
-                          fontSize: 13.0,
+                          fontSize: 12.0,
                           letterSpacing: 0.0,
                           fontStyle: FontStyle.italic,
                         ),

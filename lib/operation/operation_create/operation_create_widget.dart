@@ -428,6 +428,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                       .override(
                                         fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                 ),
                                 Switch.adaptive(
@@ -436,10 +437,10 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                     setState(
                                         () => _model.switchValue = newValue);
                                   },
-                                  activeColor:
-                                      FlutterFlowTheme.of(context).primary,
+                                  activeColor: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                   activeTrackColor:
-                                      FlutterFlowTheme.of(context).accent1,
+                                      FlutterFlowTheme.of(context).primary,
                                   inactiveTrackColor:
                                       FlutterFlowTheme.of(context).alternate,
                                   inactiveThumbColor:
@@ -483,6 +484,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                       fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 0.0,
@@ -633,6 +635,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     color: Colors.white,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                               borderSide: const BorderSide(

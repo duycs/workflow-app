@@ -95,13 +95,13 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
             'Profile',
             style: FlutterFlowTheme.of(context).bodyLarge.override(
                   fontFamily: 'Nunito Sans',
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,

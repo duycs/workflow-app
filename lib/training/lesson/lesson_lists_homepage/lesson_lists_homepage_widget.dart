@@ -3,9 +3,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/training/lesson/filter_lesson_home_page/filter_lesson_home_page_widget.dart';
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:provider/provider.dart';
 import 'lesson_lists_homepage_model.dart';
 export 'lesson_lists_homepage_model.dart';
@@ -22,6 +24,8 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
   late LessonListsHomepageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  late StreamSubscription<bool> _keyboardVisibilitySubscription;
+  bool _isKeyboardVisible = false;
 
   @override
   void initState() {
@@ -42,6 +46,15 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
       }
     });
 
+    if (!isWeb) {
+      _keyboardVisibilitySubscription =
+          KeyboardVisibilityController().onChange.listen((bool visible) {
+        setState(() {
+          _isKeyboardVisible = visible;
+        });
+      });
+    }
+
     _model.nameSearchTextController ??= TextEditingController();
     _model.nameSearchFocusNode ??= FocusNode();
   }
@@ -50,6 +63,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
   void dispose() {
     _model.dispose();
 
+    if (!isWeb) {
+      _keyboardVisibilitySubscription.cancel();
+    }
     super.dispose();
   }
 
@@ -72,7 +88,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                 ),
           ),
@@ -227,7 +243,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                           letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                   ),
                                 ),
@@ -310,7 +326,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                     fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
-                                    fontSize: 10.0,
+                                    fontSize: 12.0,
                                     letterSpacing: 0.0,
                                     fontStyle: FontStyle.italic,
                                   ),
@@ -441,7 +457,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                             .override(
                                                               fontFamily:
                                                                   'Nunito Sans',
-                                                              fontSize: 13.0,
+                                                              fontSize: 14.0,
                                                               letterSpacing:
                                                                   0.0,
                                                               fontWeight:
@@ -481,7 +497,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                           letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                   ),
                                 ),
@@ -564,7 +580,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                     fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
-                                    fontSize: 10.0,
+                                    fontSize: 12.0,
                                     letterSpacing: 0.0,
                                     fontStyle: FontStyle.italic,
                                   ),
@@ -695,7 +711,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                             .override(
                                                               fontFamily:
                                                                   'Nunito Sans',
-                                                              fontSize: 13.0,
+                                                              fontSize: 14.0,
                                                               letterSpacing:
                                                                   0.0,
                                                               fontWeight:
@@ -729,7 +745,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w600,
                                 ),
                           ),
                         ),
@@ -810,7 +826,8 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                             context)
                                                         .primary,
                                                     letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w300,
+                                                    fontWeight:
+                                                        FontWeight.normal,
                                                   ),
                                             ),
                                           ),
@@ -892,7 +909,8 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                         .primary,
                                                     fontSize: 14.0,
                                                     letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w300,
+                                                    fontWeight:
+                                                        FontWeight.normal,
                                                   ),
                                             ),
                                           ),
@@ -982,7 +1000,8 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                             context)
                                                         .primary,
                                                     letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w300,
+                                                    fontWeight:
+                                                        FontWeight.normal,
                                                   ),
                                             ),
                                           ),
@@ -1069,7 +1088,8 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                             context)
                                                         .primary,
                                                     letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w300,
+                                                    fontWeight:
+                                                        FontWeight.normal,
                                                   ),
                                             ),
                                           ),
@@ -1100,7 +1120,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                           letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                   ),
                                 ),
@@ -1183,7 +1203,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                     fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
-                                    fontSize: 10.0,
+                                    fontSize: 12.0,
                                     letterSpacing: 0.0,
                                     fontStyle: FontStyle.italic,
                                   ),
@@ -1305,7 +1325,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
-                                                            fontSize: 13.0,
+                                                            fontSize: 14.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight
@@ -1337,7 +1357,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w600,
                                 ),
                           ),
                         ),
@@ -1381,7 +1401,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
                                               letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w300,
+                                              fontWeight: FontWeight.normal,
                                             ),
                                       ),
                                     ],
@@ -1422,7 +1442,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
                                               letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w300,
+                                              fontWeight: FontWeight.normal,
                                             ),
                                       ),
                                     ],
@@ -1471,7 +1491,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                             fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
-                                            fontSize: 10.0,
+                                            fontSize: 12.0,
                                             letterSpacing: 0.0,
                                             fontStyle: FontStyle.italic,
                                           ),
@@ -1684,7 +1704,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                   fontFamily:
                                                                       'Nunito Sans',
                                                                   fontSize:
-                                                                      15.0,
+                                                                      14.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -1710,6 +1730,8 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                   .override(
                                                                     fontFamily:
                                                                         'Nunito Sans',
+                                                                    fontSize:
+                                                                        13.0,
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
@@ -1766,16 +1788,19 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
-              child: wrapWithModel(
-                model: _model.navBarModel,
-                updateCallback: () => setState(() {}),
-                child: const NavBarWidget(
-                  selectedPageIndex: 6,
+            if (!(isWeb
+                ? MediaQuery.viewInsetsOf(context).bottom > 0
+                : _isKeyboardVisible))
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                child: wrapWithModel(
+                  model: _model.navBarModel,
+                  updateCallback: () => setState(() {}),
+                  child: const NavBarWidget(
+                    selectedPageIndex: 6,
+                  ),
                 ),
               ),
-            ),
           ],
         ),
       ),

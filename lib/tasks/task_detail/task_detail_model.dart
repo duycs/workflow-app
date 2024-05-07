@@ -30,6 +30,8 @@ class TaskDetailModel extends FlutterFlowModel<TaskDetailWidget> {
 
   int loop = 0;
 
+  bool isShowPdf = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

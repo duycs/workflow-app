@@ -88,13 +88,13 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -288,6 +288,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                         ),
                       ),

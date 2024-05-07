@@ -77,7 +77,7 @@ class LessonListHomepageModel
           'yyyy-MM-dd',
           getCurrentTimestamp,
           locale: FFLocalizations.of(context).languageCode,
-        ))) : ' '}${(widget.lesonHistory != null && widget.lesonHistory != '') || (widget.lesonHistory == 'lessonHistory') ? '\"}}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]}' : ' '}${programsId != '' ? ',{\"lession_id\":{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${programsId != '' ? programsId : ' '}${programsId != '' ? '\"}}}}}' : ' '}]}',
+        ))) : ' '}${(widget.lesonHistory != null && widget.lesonHistory != '') || (widget.lesonHistory == 'lessonHistory') ? '\"}}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]}' : ' '}${programsId != '' ? ',{\"lession_id\":{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${programsId != '' ? programsId : ' '}${programsId != '' ? '\"}}}}}' : ' '},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
     );
     if ((apiResultList.succeeded ?? true)) {
       listLesson = EmployeeLessonListDataStruct.maybeFromMap(

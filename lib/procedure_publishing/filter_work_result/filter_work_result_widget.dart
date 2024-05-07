@@ -481,6 +481,7 @@ class _FilterWorkResultWidgetState extends State<FilterWorkResultWidget> {
                                     fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
@@ -516,6 +517,7 @@ class _FilterWorkResultWidgetState extends State<FilterWorkResultWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     color: Colors.white,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),

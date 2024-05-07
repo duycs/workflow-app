@@ -120,7 +120,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily: 'Nunito Sans',
                       color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 20.0,
+                      fontSize: 18.0,
                       letterSpacing: 0.0,
                     ),
               ),
@@ -128,7 +128,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
           ),
           actions: const [],
           centerTitle: true,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -424,6 +424,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                   .bodyLarge
                                   .override(
                                     fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                               maxLines: 5,
@@ -822,7 +823,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                   fontFamily: 'Nunito Sans',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  fontSize: 13.0,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
@@ -976,6 +977,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   color: Colors.white,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,

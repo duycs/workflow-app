@@ -124,7 +124,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily: 'Nunito Sans',
                       color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 20.0,
+                      fontSize: 18.0,
                       letterSpacing: 0.0,
                     ),
               ),
@@ -132,7 +132,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
           ),
           actions: const [],
           centerTitle: true,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -163,6 +163,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                               alignLabelWithHint: false,
@@ -245,6 +246,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                               alignLabelWithHint: false,
@@ -299,17 +301,21 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                           ),
                         ),
                         if (_model.checkCode == '1')
-                          Text(
-                            'Mã bộ phận đã tồn tại!',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  color: FlutterFlowTheme.of(context).error,
-                                  fontSize: 12.0,
-                                  letterSpacing: 0.0,
-                                  fontStyle: FontStyle.italic,
-                                ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 0.0, 0.0),
+                            child: Text(
+                              'Mã bộ phận đã tồn tại!',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: FlutterFlowTheme.of(context).error,
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                            ),
                           ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -326,6 +332,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                               alignLabelWithHint: false,
@@ -387,6 +394,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                           ),
@@ -425,7 +433,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                 .secondaryBackground,
                             elevation: 2.0,
                             borderColor: FlutterFlowTheme.of(context).alternate,
-                            borderWidth: 2.0,
+                            borderWidth: 0.5,
                             borderRadius: 8.0,
                             margin: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 4.0, 16.0, 4.0),
@@ -495,7 +503,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                               FlutterFlowTheme.of(context).secondaryBackground,
                           elevation: 2.0,
                           borderColor: FlutterFlowTheme.of(context).alternate,
-                          borderWidth: 2.0,
+                          borderWidth: 0.5,
                           borderRadius: 8.0,
                           margin: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
@@ -521,6 +529,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                       .override(
                                         fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                 ),
                               ),
@@ -746,7 +755,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                   },
                   text: 'Cập nhật',
                   options: FFButtonOptions(
-                    width: 270.0,
+                    width: 200.0,
                     height: 50.0,
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
@@ -756,7 +765,9 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Nunito Sans',
                           color: Colors.white,
+                          fontSize: 14.0,
                           letterSpacing: 0.0,
+                          fontWeight: FontWeight.normal,
                         ),
                     elevation: 3.0,
                     borderSide: const BorderSide(

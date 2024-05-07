@@ -68,13 +68,13 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
           style: FlutterFlowTheme.of(context).headlineMedium.override(
                 fontFamily: 'Nunito Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
-                fontSize: 20.0,
+                fontSize: 18.0,
                 letterSpacing: 0.0,
               ),
         ),
         actions: const [],
         centerTitle: false,
-        elevation: 2.0,
+        elevation: 1.0,
       ),
       body: SafeArea(
         top: true,
@@ -101,7 +101,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                             alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 16.0),
+                                  0.0, 0.0, 0.0, 8.0),
                               child: Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
@@ -129,6 +129,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                             .override(
                                               fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ),
@@ -171,7 +172,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                             alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 16.0),
+                                  0.0, 0.0, 0.0, 8.0),
                               child: Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
@@ -199,6 +200,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                             .override(
                                               fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ),
@@ -241,7 +243,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                             alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 16.0),
+                                  0.0, 0.0, 0.0, 8.0),
                               child: Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
@@ -269,6 +271,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                             .override(
                                               fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ),
@@ -311,7 +314,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                             alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 16.0),
+                                  0.0, 0.0, 0.0, 8.0),
                               child: Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
@@ -339,6 +342,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                             .override(
                                               fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ),
@@ -381,7 +385,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                             alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 16.0),
+                                  0.0, 0.0, 0.0, 8.0),
                               child: Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
@@ -409,6 +413,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                             .override(
                                               fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ),
@@ -453,7 +458,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                               alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 16.0),
+                                    0.0, 0.0, 0.0, 8.0),
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -486,6 +491,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
                                                 ),
                                           ),
                                         ),
@@ -612,6 +618,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                           .override(
                                             fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                     ),
                                   ),
@@ -719,7 +726,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                   },
                   text: 'Chỉnh sửa',
                   options: FFButtonOptions(
-                    width: 270.0,
+                    width: 200.0,
                     height: 50.0,
                     padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     iconPadding:
@@ -729,7 +736,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                         FlutterFlowTheme.of(context).titleMedium.override(
                               fontFamily: 'Nunito Sans',
                               color: Colors.white,
-                              fontSize: 16.0,
+                              fontSize: 14.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w500,
                             ),

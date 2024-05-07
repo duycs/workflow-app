@@ -45,6 +45,8 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
 
   bool ishows = false;
 
+  bool isShowPdf = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

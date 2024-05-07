@@ -13,7 +13,6 @@ class UpdateProfileUserModel extends FlutterFlowModel<UpdateProfileUserWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // State field(s) for name widget.
   FocusNode? nameFocusNode;
@@ -112,7 +111,6 @@ class UpdateProfileUserModel extends FlutterFlowModel<UpdateProfileUserWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     nameFocusNode?.dispose();
     nameTextController?.dispose();
 

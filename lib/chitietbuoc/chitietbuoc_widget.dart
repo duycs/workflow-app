@@ -96,6 +96,7 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
                         fontFamily: 'Nunito Sans',
                         color: Colors.white,
+                        fontSize: 18.0,
                         letterSpacing: 0.0,
                         lineHeight: 1.2,
                       ),
@@ -109,8 +110,8 @@ class _ChitietbuocWidgetState extends State<ChitietbuocWidget> {
             ),
           ),
           actions: const [],
-          centerTitle: true,
-          elevation: 2.0,
+          centerTitle: false,
+          elevation: 1.0,
         ),
         body: Container(
           height: double.infinity,

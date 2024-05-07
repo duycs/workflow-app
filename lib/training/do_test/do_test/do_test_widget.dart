@@ -784,6 +784,58 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                   ),
                                                 if (listQuestionItem.questionsId
                                                         .answerType ==
+                                                    'number')
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      '(Trả lời số)',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            fontSize: 13.0,
+                                                            letterSpacing: 0.0,
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                if (listQuestionItem.questionsId
+                                                        .answerType ==
+                                                    'text')
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      '(Trả lời văn bản ngắn)',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            fontSize: 13.0,
+                                                            letterSpacing: 0.0,
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                if (listQuestionItem.questionsId
+                                                        .answerType ==
                                                     'checkbox')
                                                   Builder(
                                                     builder: (context) {

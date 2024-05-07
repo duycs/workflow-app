@@ -65,6 +65,7 @@ class _AlertStaffCheckDepartmentsWidgetState
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Nunito Sans',
                         letterSpacing: 0.0,
+                        fontWeight: FontWeight.w500,
                       ),
                 ),
               ),
@@ -109,6 +110,7 @@ class _AlertStaffCheckDepartmentsWidgetState
                                           .override(
                                             fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.normal,
                                           ),
                                     ),
                                   ),

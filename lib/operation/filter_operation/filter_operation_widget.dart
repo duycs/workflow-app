@@ -332,7 +332,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                   ].divide(const SizedBox(width: 8.0)),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
                   child: TextFormField(
                     controller: _model.nameTextController1,
                     focusNode: _model.nameFocusNode1,
@@ -388,7 +388,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
                   child: TextFormField(
                     controller: _model.nameTextController2,
                     focusNode: _model.nameFocusNode2,
@@ -444,7 +444,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
                   child: FlutterFlowDropDown<String>(
                     controller: _model.statusValueController ??=
                         FormFieldController<String>(
@@ -482,7 +482,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
                   child: FlutterFlowDropDown<String>(
                     controller: _model.actionValueController ??=
                         FormFieldController<String>(
@@ -566,6 +566,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                                   fontFamily: 'Nunito Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -607,6 +608,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   color: Colors.white,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),

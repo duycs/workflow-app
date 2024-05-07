@@ -10,6 +10,8 @@ class DoActionTypeUploadFileModel
 
   String fileName = '';
 
+  bool isShowPdf = false;
+
   ///  State fields for stateful widgets in this component.
 
   bool isDataUploading = false;

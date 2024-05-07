@@ -440,7 +440,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           iconColor: FlutterFlowTheme.of(context).info,
-                          iconSize: 18.0,
+                          iconSize: 14.0,
                           elevation: 2.0,
                           borderColor: FlutterFlowTheme.of(context).noColor,
                           borderWidth: 1.0,
@@ -458,7 +458,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                 letterSpacing: 0.0,
                               ),
                           iconColor: FlutterFlowTheme.of(context).secondaryText,
-                          iconSize: 18.0,
+                          iconSize: 14.0,
                           elevation: 0.0,
                           borderColor:
                               FlutterFlowTheme.of(context).primaryBackground,
@@ -490,8 +490,9 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                     textAlign: TextAlign.start,
                     style: FlutterFlowTheme.of(context).labelMedium.override(
                           fontFamily: 'Nunito Sans',
-                          fontSize: 13.0,
+                          fontSize: 12.0,
                           letterSpacing: 0.0,
+                          fontStyle: FontStyle.italic,
                         ),
                   ),
                 ),
@@ -897,7 +898,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryText,
-                                              fontSize: 13.0,
+                                              fontSize: 14.0,
                                               letterSpacing: 0.0,
                                             ),
                                       ),

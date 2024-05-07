@@ -4,11 +4,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/procedure_publishing/filter_work_result/filter_work_result_widget.dart';
+import 'dart:async';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'work_result_list_model.dart';
@@ -25,6 +27,8 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
   late WorkResultListModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  late StreamSubscription<bool> _keyboardVisibilitySubscription;
+  bool _isKeyboardVisible = false;
 
   @override
   void initState() {
@@ -37,6 +41,15 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
       setState(() {});
     });
 
+    if (!isWeb) {
+      _keyboardVisibilitySubscription =
+          KeyboardVisibilityController().onChange.listen((bool visible) {
+        setState(() {
+          _isKeyboardVisible = visible;
+        });
+      });
+    }
+
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
   }
@@ -45,6 +58,9 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
   void dispose() {
     _model.dispose();
 
+    if (!isWeb) {
+      _keyboardVisibilitySubscription.cancel();
+    }
     super.dispose();
   }
 
@@ -69,7 +85,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
                         fontFamily: 'Nunito Sans',
                         color: FlutterFlowTheme.of(context).primaryText,
-                        fontSize: 20.0,
+                        fontSize: 18.0,
                         letterSpacing: 0.0,
                       ),
                 ),
@@ -100,7 +116,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: Column(
           mainAxisSize: MainAxisSize.max,
@@ -301,7 +317,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                     .labelMedium
                                     .override(
                                       fontFamily: 'Nunito Sans',
-                                      fontSize: 13.0,
+                                      fontSize: 12.0,
                                       letterSpacing: 0.0,
                                       fontStyle: FontStyle.italic,
                                     ),
@@ -375,9 +391,12 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                   fontFamily:
                                                                       'Nunito Sans',
                                                                   fontSize:
-                                                                      14.0,
+                                                                      16.0,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
                                                                 ),
                                                           ),
                                                         ),
@@ -407,6 +426,8 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .secondary,
+                                                                  fontSize:
+                                                                      14.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -429,7 +450,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                     padding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(4.0, 0.0,
-                                                                0.0, 16.0),
+                                                                0.0, 0.0),
                                                     child: RichText(
                                                       textScaler:
                                                           MediaQuery.of(context)
@@ -489,6 +510,186 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                   FontWeight
                                                                       .w300,
                                                             ),
+                                                          )
+                                                        ],
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(4.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: RichText(
+                                                      textScaler:
+                                                          MediaQuery.of(context)
+                                                              .textScaler,
+                                                      text: TextSpan(
+                                                        children: [
+                                                          TextSpan(
+                                                            text:
+                                                                'Tên nhân viên: ',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w300,
+                                                                ),
+                                                          ),
+                                                          TextSpan(
+                                                            text: (itemsItem.steps.isNotEmpty) &&
+                                                                    (itemsItem
+                                                                            .steps
+                                                                            .first
+                                                                            .tasks
+                                                                            .where(
+                                                                                (e) =>
+                                                                                    (dateTimeFormat(
+                                                                                          'dd/MM/yyyy',
+                                                                                          functions.stringToDateTime(e.dateCreated),
+                                                                                          locale: FFLocalizations.of(context).languageCode,
+                                                                                        ) ==
+                                                                                        dateTimeFormat(
+                                                                                          'dd/MM/yyyy',
+                                                                                          getCurrentTimestamp,
+                                                                                          locale: FFLocalizations.of(context).languageCode,
+                                                                                        )) &&
+                                                                                    (e.status ==
+                                                                                        'done') &&
+                                                                                    ((itemsItem.steps.first.tasks.first.submitStaffId != null) &&
+                                                                                        (itemsItem.steps.first.tasks.first.submitStaffId.toMap().toString() !=
+                                                                                            'null')) &&
+                                                                                    ((itemsItem.steps.first.tasks.first.submitStaffId.userId != null) &&
+                                                                                        (itemsItem.steps.first.tasks.first.submitStaffId.userId.toMap().toString() !=
+                                                                                            'null')))
+                                                                            .toList().isNotEmpty) &&
+                                                                    ((itemsItem.steps.first.tasks.first.submitStaffId !=
+                                                                            null) &&
+                                                                        (itemsItem.steps.first.tasks.first.submitStaffId.toMap().toString() !=
+                                                                            'null')) &&
+                                                                    ((itemsItem.steps.first.tasks.first.submitStaffId.userId !=
+                                                                            null) &&
+                                                                        (itemsItem.steps.first.tasks.first.submitStaffId.userId.toMap().toString() !=
+                                                                            'null'))
+                                                                ? itemsItem
+                                                                    .steps
+                                                                    .first
+                                                                    .tasks
+                                                                    .first
+                                                                    .submitStaffId
+                                                                    .userId
+                                                                    .firstName
+                                                                : ' ',
+                                                            style: const TextStyle(),
+                                                          )
+                                                        ],
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(4.0, 0.0,
+                                                                0.0, 6.0),
+                                                    child: RichText(
+                                                      textScaler:
+                                                          MediaQuery.of(context)
+                                                              .textScaler,
+                                                      text: TextSpan(
+                                                        children: [
+                                                          TextSpan(
+                                                            text:
+                                                                'Ngày hoàn thành:  ',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w300,
+                                                                ),
+                                                          ),
+                                                          TextSpan(
+                                                            text: (itemsItem.steps.isNotEmpty) &&
+                                                                    (itemsItem
+                                                                            .steps
+                                                                            .first
+                                                                            .tasks
+                                                                            .where(
+                                                                                (e) =>
+                                                                                    (dateTimeFormat(
+                                                                                          'dd/MM/yyyy',
+                                                                                          functions.stringToDateTime(e.dateCreated),
+                                                                                          locale: FFLocalizations.of(context).languageCode,
+                                                                                        ) ==
+                                                                                        dateTimeFormat(
+                                                                                          'dd/MM/yyyy',
+                                                                                          getCurrentTimestamp,
+                                                                                          locale: FFLocalizations.of(context).languageCode,
+                                                                                        )) &&
+                                                                                    (e.status ==
+                                                                                        'done') &&
+                                                                                    (e.dateEnd !=
+                                                                                        'null'))
+                                                                            .toList().isNotEmpty) &&
+                                                                    (itemsItem
+                                                                            .steps
+                                                                            .first
+                                                                            .number ==
+                                                                        itemsItem
+                                                                            .steps
+                                                                            .first
+                                                                            .tasks
+                                                                            .first
+                                                                            .publishedCount)
+                                                                ? itemsItem
+                                                                    .steps
+                                                                    .first
+                                                                    .tasks
+                                                                    .first
+                                                                    .dateEnd
+                                                                : ' ',
+                                                            style: const TextStyle(),
                                                           )
                                                         ],
                                                         style:
@@ -658,7 +859,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                               'Lần chạy thứ: ${itemTaskDoneItem.publishedCount.toString()}',
                                                                               style: FlutterFlowTheme.of(context).bodyLarge.override(
                                                                                     fontFamily: 'Nunito Sans',
-                                                                                    fontSize: 14.0,
+                                                                                    fontSize: 16.0,
                                                                                     letterSpacing: 0.0,
                                                                                   ),
                                                                             ),
@@ -670,7 +871,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                               )}',
                                                                               style: FlutterFlowTheme.of(context).labelMedium.override(
                                                                                     fontFamily: 'Nunito Sans',
-                                                                                    fontSize: 13.0,
+                                                                                    fontSize: 14.0,
                                                                                     letterSpacing: 0.0,
                                                                                   ),
                                                                             ),
@@ -681,7 +882,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                 style: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                       fontFamily: 'Nunito Sans',
                                                                                       color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                      fontSize: 13.0,
+                                                                                      fontSize: 14.0,
                                                                                       letterSpacing: 0.0,
                                                                                     ),
                                                                               ),
@@ -721,7 +922,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                         fontFamily: 'Nunito Sans',
                                                                                         fontSize: 13.0,
                                                                                         letterSpacing: 0.0,
-                                                                                        fontWeight: FontWeight.bold,
+                                                                                        fontWeight: FontWeight.w500,
                                                                                       ),
                                                                                 ),
                                                                               ].divide(const SizedBox(width: 8.0)),
@@ -739,7 +940,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                       );
                                                     },
                                                   ),
-                                                ],
+                                                ].divide(const SizedBox(height: 4.0)),
                                               ),
                                               expanded: Visibility(
                                                 visible:
@@ -1037,16 +1238,19 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
-              child: wrapWithModel(
-                model: _model.navBarModel,
-                updateCallback: () => setState(() {}),
-                child: const NavBarWidget(
-                  selectedPageIndex: 5,
+            if (!(isWeb
+                ? MediaQuery.viewInsetsOf(context).bottom > 0
+                : _isKeyboardVisible))
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                child: wrapWithModel(
+                  model: _model.navBarModel,
+                  updateCallback: () => setState(() {}),
+                  child: const NavBarWidget(
+                    selectedPageIndex: 5,
+                  ),
                 ),
               ),
-            ),
           ],
         ),
       ),

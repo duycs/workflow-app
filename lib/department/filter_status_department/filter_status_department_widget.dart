@@ -139,7 +139,6 @@ class _FilterStatusDepartmentWidgetState
                     onChanged: (val) =>
                         setState(() => _model.dropDownStatusValue = val),
                     width: double.infinity,
-                    height: 50.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,
@@ -179,7 +178,6 @@ class _FilterStatusDepartmentWidgetState
                     onChanged: (val) =>
                         setState(() => _model.branchIdValue = val),
                     width: double.infinity,
-                    height: 50.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,
@@ -235,6 +233,7 @@ class _FilterStatusDepartmentWidgetState
                                   fontFamily: 'Nunito Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -279,6 +278,7 @@ class _FilterStatusDepartmentWidgetState
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   color: Colors.white,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),

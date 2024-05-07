@@ -86,13 +86,13 @@ class _LessonsListUserWidgetState extends State<LessonsListUserWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -370,6 +370,7 @@ class _LessonsListUserWidgetState extends State<LessonsListUserWidget> {
                                                       .override(
                                                         fontFamily:
                                                             'Nunito Sans',
+                                                        fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -390,6 +391,7 @@ class _LessonsListUserWidgetState extends State<LessonsListUserWidget> {
                                                       .override(
                                                         fontFamily:
                                                             'Nunito Sans',
+                                                        fontSize: 13.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),

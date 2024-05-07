@@ -13,13 +13,15 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
     String? status,
     ProcedurePublishedUserCreatedIdStruct? createdUserId,
     String? dateEnd,
+    SubmitStaffIdStruct? submitStaffId,
   })  : _id = id,
         _publishedCount = publishedCount,
         _dateCreated = dateCreated,
         _userCreated = userCreated,
         _status = status,
         _createdUserId = createdUserId,
-        _dateEnd = dateEnd;
+        _dateEnd = dateEnd,
+        _submitStaffId = submitStaffId;
 
   // "id" field.
   String? _id;
@@ -75,6 +77,15 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
   set dateEnd(String? val) => _dateEnd = val;
   bool hasDateEnd() => _dateEnd != null;
 
+  // "submit_staff_id" field.
+  SubmitStaffIdStruct? _submitStaffId;
+  SubmitStaffIdStruct get submitStaffId =>
+      _submitStaffId ?? SubmitStaffIdStruct();
+  set submitStaffId(SubmitStaffIdStruct? val) => _submitStaffId = val;
+  void updateSubmitStaffId(Function(SubmitStaffIdStruct) updateFn) =>
+      updateFn(_submitStaffId ??= SubmitStaffIdStruct());
+  bool hasSubmitStaffId() => _submitStaffId != null;
+
   static ProcedurePublishedStepTaskStruct fromMap(Map<String, dynamic> data) =>
       ProcedurePublishedStepTaskStruct(
         id: data['id'] as String?,
@@ -86,6 +97,8 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
         createdUserId: ProcedurePublishedUserCreatedIdStruct.maybeFromMap(
             data['created_user_id']),
         dateEnd: data['date_end'] as String?,
+        submitStaffId:
+            SubmitStaffIdStruct.maybeFromMap(data['submit_staff_id']),
       );
 
   static ProcedurePublishedStepTaskStruct? maybeFromMap(dynamic data) => data
@@ -101,6 +114,7 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
         'status': _status,
         'created_user_id': _createdUserId?.toMap(),
         'date_end': _dateEnd,
+        'submit_staff_id': _submitStaffId?.toMap(),
       }.withoutNulls;
 
   @override
@@ -132,6 +146,10 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
         'date_end': serializeParam(
           _dateEnd,
           ParamType.String,
+        ),
+        'submit_staff_id': serializeParam(
+          _submitStaffId,
+          ParamType.DataStruct,
         ),
       }.withoutNulls;
 
@@ -177,6 +195,12 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        submitStaffId: deserializeStructParam(
+          data['submit_staff_id'],
+          ParamType.DataStruct,
+          false,
+          structBuilder: SubmitStaffIdStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -191,7 +215,8 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
         userCreated == other.userCreated &&
         status == other.status &&
         createdUserId == other.createdUserId &&
-        dateEnd == other.dateEnd;
+        dateEnd == other.dateEnd &&
+        submitStaffId == other.submitStaffId;
   }
 
   @override
@@ -202,7 +227,8 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
         userCreated,
         status,
         createdUserId,
-        dateEnd
+        dateEnd,
+        submitStaffId
       ]);
 }
 
@@ -214,6 +240,7 @@ ProcedurePublishedStepTaskStruct createProcedurePublishedStepTaskStruct({
   String? status,
   ProcedurePublishedUserCreatedIdStruct? createdUserId,
   String? dateEnd,
+  SubmitStaffIdStruct? submitStaffId,
 }) =>
     ProcedurePublishedStepTaskStruct(
       id: id,
@@ -223,4 +250,5 @@ ProcedurePublishedStepTaskStruct createProcedurePublishedStepTaskStruct({
       status: status,
       createdUserId: createdUserId ?? ProcedurePublishedUserCreatedIdStruct(),
       dateEnd: dateEnd,
+      submitStaffId: submitStaffId ?? SubmitStaffIdStruct(),
     );

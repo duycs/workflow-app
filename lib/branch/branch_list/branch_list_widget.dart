@@ -124,13 +124,13 @@ class _BranchListWidgetState extends State<BranchListWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -305,7 +305,7 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                   ].divide(const SizedBox(width: 8.0)),
                 ),
               ),
-              if ((_model.searchStatus != '') &&
+              if ((_model.searchStatus != '') ||
                   (_model.filter != ''))
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 0.0, 0.0),
@@ -313,7 +313,7 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                     '#Kết quả hiển thị theo bộ lọc',
                     style: FlutterFlowTheme.of(context).labelMedium.override(
                           fontFamily: 'Nunito Sans',
-                          fontSize: 13.0,
+                          fontSize: 12.0,
                           letterSpacing: 0.0,
                           fontStyle: FontStyle.italic,
                         ),

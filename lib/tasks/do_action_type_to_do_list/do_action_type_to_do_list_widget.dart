@@ -70,7 +70,6 @@ class _DoActionTypeToDoListWidgetState
                       context: context,
                       builder: (alertDialogContext) {
                         return AlertDialog(
-                          title: const Text('Bạn chắc không?'),
                           content: const Text('Xác nhận đã thực hiện!'),
                           actions: [
                             TextButton(

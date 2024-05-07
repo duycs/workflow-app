@@ -5,11 +5,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/procedure_publishing/filter_procedure_published/filter_procedure_published_widget.dart';
 import '/procedure_publishing/procedure_pushlished/procedure_pushlished_widget.dart';
+import 'dart:async';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'procedure_published_list_model.dart';
@@ -28,6 +30,8 @@ class _ProcedurePublishedListWidgetState
   late ProcedurePublishedListModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  late StreamSubscription<bool> _keyboardVisibilitySubscription;
+  bool _isKeyboardVisible = false;
 
   @override
   void initState() {
@@ -40,6 +44,15 @@ class _ProcedurePublishedListWidgetState
       setState(() {});
     });
 
+    if (!isWeb) {
+      _keyboardVisibilitySubscription =
+          KeyboardVisibilityController().onChange.listen((bool visible) {
+        setState(() {
+          _isKeyboardVisible = visible;
+        });
+      });
+    }
+
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
   }
@@ -48,6 +61,9 @@ class _ProcedurePublishedListWidgetState
   void dispose() {
     _model.dispose();
 
+    if (!isWeb) {
+      _keyboardVisibilitySubscription.cancel();
+    }
     super.dispose();
   }
 
@@ -104,13 +120,13 @@ class _ProcedurePublishedListWidgetState
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: Column(
           mainAxisSize: MainAxisSize.max,
@@ -302,7 +318,7 @@ class _ProcedurePublishedListWidgetState
                           style:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Nunito Sans',
-                                    fontSize: 13.0,
+                                    fontSize: 12.0,
                                     letterSpacing: 0.0,
                                     fontStyle: FontStyle.italic,
                                   ),
@@ -364,12 +380,12 @@ class _ProcedurePublishedListWidgetState
                                                             .override(
                                                               fontFamily:
                                                                   'Nunito Sans',
-                                                              fontSize: 14.0,
+                                                              fontSize: 16.0,
                                                               letterSpacing:
                                                                   0.0,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .w600,
+                                                                      .w500,
                                                             ),
                                                       ),
                                                     ),
@@ -397,6 +413,7 @@ class _ProcedurePublishedListWidgetState
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .secondary,
+                                                            fontSize: 14.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
@@ -719,16 +736,19 @@ class _ProcedurePublishedListWidgetState
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
-              child: wrapWithModel(
-                model: _model.navBarModel,
-                updateCallback: () => setState(() {}),
-                child: const NavBarWidget(
-                  selectedPageIndex: 3,
+            if (!(isWeb
+                ? MediaQuery.viewInsetsOf(context).bottom > 0
+                : _isKeyboardVisible))
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                child: wrapWithModel(
+                  model: _model.navBarModel,
+                  updateCallback: () => setState(() {}),
+                  child: const NavBarWidget(
+                    selectedPageIndex: 3,
+                  ),
                 ),
               ),
-            ),
           ],
         ),
       ),

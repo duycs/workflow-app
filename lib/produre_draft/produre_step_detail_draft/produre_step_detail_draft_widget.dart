@@ -116,14 +116,14 @@ class _ProdureStepDetailDraftWidgetState
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: Colors.white,
-                  fontSize: 22.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                   lineHeight: 1.2,
                 ),
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,

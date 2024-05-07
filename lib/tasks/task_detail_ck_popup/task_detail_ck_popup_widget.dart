@@ -91,7 +91,7 @@ class _TaskDetailCkPopupWidgetState extends State<TaskDetailCkPopupWidget> {
                     style: FlutterFlowTheme.of(context).headlineMedium.override(
                           fontFamily: 'Nunito Sans',
                           color: FlutterFlowTheme.of(context).primaryText,
-                          fontSize: 20.0,
+                          fontSize: 18.0,
                           letterSpacing: 0.0,
                         ),
                   ),
@@ -141,6 +141,7 @@ class _TaskDetailCkPopupWidgetState extends State<TaskDetailCkPopupWidget> {
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Nunito Sans',
                         color: Colors.white,
+                        fontSize: 14.0,
                         letterSpacing: 0.0,
                       ),
                   elevation: 3.0,

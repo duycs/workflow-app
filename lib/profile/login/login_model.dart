@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'login_widget.dart' show LoginWidget;
 import 'package:flutter/material.dart';
 
@@ -12,10 +13,20 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   void updateLoginDataStruct(Function(LoginResourceDataStruct) updateFn) =>
       updateFn(loginData ??= LoginResourceDataStruct());
 
+  bool isLoad = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
+  // Stores action output result for [Custom Action - checkLoginSharePreferences] action in Login widget.
+  bool? checkEmailWf;
+  // Stores action output result for [Custom Action - getReTokenUser] action in Login widget.
+  String? checkWfToken;
+  // Stores action output result for [Backend Call - API (RefreshToken)] action in Login widget.
+  ApiCallResponse? apiResultRefreshTokenLogin;
+  // Stores action output result for [Backend Call - API (GetStaffId)] action in Login widget.
+  ApiCallResponse? apiResultGetStaffIdReWfLogin;
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressTextController;
@@ -114,6 +125,17 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
         password: passwordTextController.text,
       );
       if ((apiResultLogin.succeeded ?? true)) {
+        await actions.saveInfoUser(
+          'wf_email',
+          emailAddressTextController.text,
+        );
+        await actions.saveInfoUser(
+          'wf_token',
+          getJsonField(
+            (apiResultLogin.jsonBody ?? ''),
+            r'''$.data.refresh_token''',
+          ).toString().toString(),
+        );
         loginData = LoginResourceDataStruct.maybeFromMap(
             (apiResultLogin.jsonBody ?? ''));
         FFAppState().accessToken = loginData!.data.accessToken;

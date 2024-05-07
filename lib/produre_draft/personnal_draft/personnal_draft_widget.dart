@@ -83,7 +83,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily: 'Nunito Sans',
                       color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 22.0,
+                      fontSize: 18.0,
                       letterSpacing: 0.0,
                     ),
               ),
@@ -105,7 +105,7 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
           ),
           actions: const [],
           centerTitle: true,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -1081,7 +1081,10 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
+                                                            fontSize: 14.0,
                                                             letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
                                                           ),
                                                     ),
                                                     Padding(
@@ -1190,6 +1193,9 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                                       'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
                                                                 ),
                                                           ),
                                                         ),
@@ -1473,6 +1479,9 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                                       'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
                                                                 ),
                                                           ),
                                                         ),
@@ -1756,6 +1765,9 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                                       'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
                                                                 ),
                                                           ),
                                                         ),
@@ -2039,6 +2051,9 @@ class _PersonnalDraftWidgetState extends State<PersonnalDraftWidget> {
                                                                       'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
                                                                 ),
                                                           ),
                                                         ),

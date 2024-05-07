@@ -52,7 +52,7 @@ class OperationCreateModel extends FlutterFlowModel<OperationCreateWidget> {
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
   // State field(s) for Switch widget.
-  bool switchValue = true;
+  bool? switchValue;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? apiResuftRefreshTokenOperaAdd;
   // Stores action output result for [Backend Call - API (OperationAdd)] action in Button widget.

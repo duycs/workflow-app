@@ -91,7 +91,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                   'Báo cáo ảnh',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
                         fontFamily: 'Nunito Sans',
-                        fontSize: 20.0,
+                        fontSize: 18.0,
                         letterSpacing: 0.0,
                       ),
                 ),
@@ -148,7 +148,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -338,7 +338,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                           style:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Nunito Sans',
-                                    fontSize: 13.0,
+                                    fontSize: 12.0,
                                     letterSpacing: 0.0,
                                     fontStyle: FontStyle.italic,
                                   ),
@@ -502,7 +502,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Nunito Sans',
-                                                          fontSize: 13.0,
+                                                          fontSize: 14.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -528,7 +528,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primary,
-                                                        fontSize: 13.0,
+                                                        fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,

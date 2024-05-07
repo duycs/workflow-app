@@ -322,6 +322,7 @@ class _ProcessTemplateDetailWidgetState
                               fontFamily: 'Nunito Sans',
                               color: FlutterFlowTheme.of(context).primaryText,
                               letterSpacing: 0.0,
+                              fontWeight: FontWeight.w500,
                             ),
                       ),
                     ),

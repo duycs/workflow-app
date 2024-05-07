@@ -186,13 +186,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -225,6 +225,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                             Expanded(
@@ -240,7 +241,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                     .override(
                                       fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
+                                      fontWeight: FontWeight.normal,
                                     ),
                               ),
                             ),
@@ -265,6 +266,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                             Expanded(
@@ -282,7 +284,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                     .override(
                                       fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
+                                      fontWeight: FontWeight.normal,
                                     ),
                               ),
                             ),
@@ -370,7 +372,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                     .override(
                                       fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.normal,
                                     ),
                               ),
                             ),
@@ -424,7 +426,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                 fontFamily: 'Nunito Sans',
                                                 fontSize: 14.0,
                                                 letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
+                                                fontWeight: FontWeight.w500,
                                               ),
                                         ),
                                         Expanded(
@@ -437,12 +439,21 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                   fontFamily: 'Nunito Sans',
                                                   fontSize: 14.0,
                                                   letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
+                                                  fontWeight: FontWeight.w500,
                                                 ),
                                           ),
                                         ),
                                         if ((dataListItem.status == 'todo') &&
-                                            (dataListItem.current == 1))
+                                            (dataListItem.current == 1) &&
+                                            (dataListItem.staffs
+                                                    .where((e) =>
+                                                        e.staffsId.id ==
+                                                        getJsonField(
+                                                          FFAppState()
+                                                              .staffLogin,
+                                                          r'''$.id''',
+                                                        ))
+                                                    .toList().isNotEmpty))
                                           FFButtonWidget(
                                             onPressed: () async {
                                               var shouldSetState = false;
@@ -742,7 +753,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                         fontFamily:
                                                             'Nunito Sans',
                                                         color: Colors.white,
-                                                        fontSize: 12.0,
+                                                        fontSize: 13.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -978,20 +989,24 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
                                                 ),
                                           ),
                                           Expanded(
                                             child: Text(
                                               dataListItem.timeOperate,
                                               textAlign: TextAlign.end,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 13.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
                                             ),
                                           ),
                                         ].divide(const SizedBox(width: 10.0)),
@@ -1025,6 +1040,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
                                                 ),
                                           ),
                                           Expanded(
@@ -1032,14 +1048,17 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                               dataListItem.estimateInSecond
                                                   .toString(),
                                               textAlign: TextAlign.end,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 13.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
                                             ),
                                           ),
                                         ].divide(const SizedBox(width: 10.0)),
@@ -1073,6 +1092,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
                                                 ),
                                           ),
                                           Expanded(
@@ -1086,14 +1106,17 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                         .languageCode,
                                               ),
                                               textAlign: TextAlign.end,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 13.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
                                             ),
                                           ),
                                         ].divide(const SizedBox(width: 10.0)),
@@ -1127,6 +1150,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
                                                 ),
                                           ),
                                           Expanded(
@@ -1140,14 +1164,17 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                         .languageCode,
                                               ),
                                               textAlign: TextAlign.end,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 13.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
                                             ),
                                           ),
                                         ].divide(const SizedBox(width: 8.0)),
@@ -1249,7 +1276,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                   fontFamily: 'Nunito Sans',
                                                   fontSize: 14.0,
                                                   letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.normal,
+                                                  fontWeight: FontWeight.w500,
                                                 ),
                                           ),
                                         if (dataListItem.actionType ==
@@ -1686,10 +1713,16 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                   Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
                                                       Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
                                                         children: [
                                                           if (dataListItem
                                                                   .operations
@@ -1846,6 +1879,58 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                         8.0)),
                                                               ),
                                                             ),
+                                                          if ((functions.checkFileLast(
+                                                                      (String tail) {
+                                                                    return tail
+                                                                        .split(
+                                                                            '.')
+                                                                        .last;
+                                                                  }(dataListItem.operations.first.operationsId.files.first.directusFilesId.filenameDownload)) ==
+                                                                  'pdf') &&
+                                                              (_model.isShowPdf ==
+                                                                  false) &&
+                                                              (dataListItem
+                                                                      .operations
+                                                                      .first
+                                                                      .operationsId
+                                                                      .files.isNotEmpty))
+                                                            InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                setState(() {
+                                                                  _model.isShowPdf =
+                                                                      true;
+                                                                });
+                                                              },
+                                                              child: Text(
+                                                                '(Xem thêm)',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      fontSize:
+                                                                          13.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontStyle:
+                                                                          FontStyle
+                                                                              .italic,
+                                                                    ),
+                                                              ),
+                                                            ),
                                                         ].divide(const SizedBox(
                                                             height: 8.0)),
                                                       ),
@@ -1860,13 +1945,60 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                   .operations
                                                                   .first
                                                                   .operationsId
-                                                                  .files.isNotEmpty))
+                                                                  .files.isNotEmpty) &&
+                                                          (_model.isShowPdf ==
+                                                              true))
                                                         FlutterFlowPdfViewer(
                                                           networkPath:
                                                               '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
                                                           height: 300.0,
                                                           horizontalScroll:
                                                               false,
+                                                        ),
+                                                      if ((functions.checkFileLast(
+                                                                  (String tail) {
+                                                                return tail
+                                                                    .split('.')
+                                                                    .last;
+                                                              }(dataListItem.operations.first.operationsId.files.first.directusFilesId.filenameDownload)) ==
+                                                              'pdf') &&
+                                                          (_model.isShowPdf ==
+                                                              true))
+                                                        InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            setState(() {
+                                                              _model.isShowPdf =
+                                                                  false;
+                                                            });
+                                                          },
+                                                          child: Text(
+                                                            '(Ẩn bớt)',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                ),
+                                                          ),
                                                         ),
                                                       if ((functions.checkFileLast(
                                                                   (String tail) {
@@ -2130,7 +2262,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                     fontFamily:
                                                                         'Nunito Sans',
                                                                     fontSize:
-                                                                        13.0,
+                                                                        14.0,
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),

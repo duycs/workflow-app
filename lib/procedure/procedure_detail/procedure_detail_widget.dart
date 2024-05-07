@@ -207,13 +207,13 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -360,8 +360,12 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                                                         .override(
                                                                           fontFamily:
                                                                               'Nunito Sans',
+                                                                          fontSize:
+                                                                              14.0,
                                                                           letterSpacing:
                                                                               0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
                                                                         ),
                                                                   ),
                                                                 ),
@@ -441,6 +445,8 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                                         fontFamily:
                                                             'Nunito Sans',
                                                         letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
                                                         fontStyle:
                                                             FontStyle.italic,
                                                       ),
@@ -539,7 +545,7 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:
-                                                                            FontWeight.w500,
+                                                                            FontWeight.normal,
                                                                       ),
                                                                   elevation:
                                                                       3.0,
@@ -581,6 +587,8 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                                         fontFamily:
                                                             'Nunito Sans',
                                                         letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
                                                         fontStyle:
                                                             FontStyle.italic,
                                                       ),
@@ -680,7 +688,7 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:
-                                                                            FontWeight.w500,
+                                                                            FontWeight.normal,
                                                                       ),
                                                                   elevation:
                                                                       3.0,
@@ -1320,6 +1328,7 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Nunito Sans',
                                   color: Colors.white,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
