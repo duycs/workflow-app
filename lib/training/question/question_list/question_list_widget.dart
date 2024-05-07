@@ -12,6 +12,7 @@ import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'question_list_model.dart';
 export 'question_list_model.dart';
@@ -177,13 +178,13 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -219,7 +220,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                           obscureText: false,
                           decoration: InputDecoration(
                             isDense: false,
-                            labelText: 'Tìm kiếm câu hỏi...',
+                            labelText: 'Tìm kiếm ...',
                             labelStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
@@ -297,66 +298,64 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                       ),
                     ),
                     Builder(
-                      builder: (context) => Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
-                        child: FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 10.0,
-                          borderWidth: 1.0,
-                          buttonSize: 50.0,
-                          icon: Icon(
-                            Icons.tune_rounded,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 30.0,
-                          ),
-                          onPressed: () async {
-                            await showDialog(
-                              context: context,
-                              builder: (dialogContext) {
-                                return Dialog(
-                                  elevation: 0,
-                                  insetPadding: EdgeInsets.zero,
-                                  backgroundColor: Colors.transparent,
-                                  alignment: const AlignmentDirectional(0.0, 0.0)
-                                      .resolve(Directionality.of(context)),
-                                  child: GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: FilterQuestionWidget(
-                                      name: _model.nameSearch,
-                                      status: _model.status,
-                                      callBack:
-                                          (statusFilter, nameFilter) async {
-                                        setState(() {
-                                          _model.nameSearch = nameFilter!;
-                                          _model.status = statusFilter!;
-                                        });
-                                        setState(() {
-                                          _model.questionNameTextController
-                                              ?.clear();
-                                        });
-                                        setState(() {
-                                          _model.questionNameTextController
-                                              ?.text = ((nameFilter != null &&
-                                                      nameFilter != '') &&
-                                                  (nameFilter != ' ')
-                                              ? nameFilter
-                                              : '');
-                                        });
-                                        await _model.getListQuestion(context);
-                                        setState(() {});
-                                      },
-                                    ),
-                                  ),
-                                );
-                              },
-                            ).then((value) => setState(() {}));
-                          },
+                      builder: (context) => FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 10.0,
+                        borderWidth: 1.0,
+                        buttonSize: 50.0,
+                        icon: Icon(
+                          Icons.tune_rounded,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 30.0,
                         ),
+                        onPressed: () async {
+                          await showDialog(
+                            context: context,
+                            builder: (dialogContext) {
+                              return Dialog(
+                                elevation: 0,
+                                insetPadding: EdgeInsets.zero,
+                                backgroundColor: Colors.transparent,
+                                alignment: const AlignmentDirectional(0.0, 0.0)
+                                    .resolve(Directionality.of(context)),
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: FilterQuestionWidget(
+                                    name: (_model.nameSearch != '') &&
+                                            (_model.nameSearch != ' ')
+                                        ? _model.nameSearch
+                                        : '',
+                                    status: _model.status,
+                                    callBack: (statusFilter, nameFilter) async {
+                                      setState(() {
+                                        _model.nameSearch = nameFilter!;
+                                        _model.status = statusFilter!;
+                                      });
+                                      setState(() {
+                                        _model.questionNameTextController
+                                            ?.clear();
+                                      });
+                                      setState(() {
+                                        _model.questionNameTextController
+                                            ?.text = ((nameFilter != null &&
+                                                    nameFilter != '') &&
+                                                (nameFilter != ' ')
+                                            ? nameFilter
+                                            : '');
+                                      });
+                                      await _model.getListQuestion(context);
+                                      setState(() {});
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => setState(() {}));
+                        },
                       ),
                     ),
                   ],
@@ -369,12 +368,12 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                     '#Kết quả hiển thị theo bộ lọc',
                     style: FlutterFlowTheme.of(context).labelMedium.override(
                           fontFamily: 'Nunito Sans',
-                          fontSize: 13.0,
+                          fontSize: 12.0,
                           letterSpacing: 0.0,
                           fontStyle: FontStyle.italic,
                         ),
                   ),
-                if (_model.isLoad == true)
+                if ((_model.dataList.isNotEmpty) && (_model.isLoad == true))
                   Expanded(
                     child: Builder(
                       builder: (context) {
@@ -513,33 +512,56 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                                           ),
                                                     ),
                                                   ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(4.0, 0.0,
-                                                                0.0, 0.0),
-                                                    child: Text(
-                                                      detailViewItem.status ==
+                                                  Container(
+                                                    height: 30.0,
+                                                    decoration: BoxDecoration(
+                                                      color: detailViewItem.status ==
                                                               'published'
-                                                          ? 'Hoạt động'
-                                                          : 'Không hoạt động',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Nunito Sans',
-                                                            color: detailViewItem.status ==
-                                                                    'published'
-                                                                ? FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary
-                                                                : FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .error,
-                                                            fontSize: 13.0,
-                                                            letterSpacing: 0.0,
-                                                          ),
+                                                          ? FlutterFlowTheme.of(
+                                                                  context)
+                                                              .accent2
+                                                          : FlutterFlowTheme.of(
+                                                                  context)
+                                                              .accent3,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20.0),
+                                                    ),
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        detailViewItem.status ==
+                                                                'published'
+                                                            ? 'Hoạt động'
+                                                            : 'Không hoạt động',
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Nunito Sans',
+                                                              color: detailViewItem.status ==
+                                                                      'published'
+                                                                  ? FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondary
+                                                                  : FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .tertiary,
+                                                              fontSize: 13.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                            ),
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
@@ -615,6 +637,41 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                           },
                         );
                       },
+                    ),
+                  ),
+                if ((_model.dataList.isEmpty) && (_model.isLoad == true))
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 0.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.database,
+                            color: FlutterFlowTheme.of(context).alternate,
+                            size: 55.0,
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 15.0, 0.0, 0.0),
+                            child: Text(
+                              'Không có dữ liệu !',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 18.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
               ].divide(const SizedBox(height: 8.0)),

@@ -341,15 +341,21 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                             FlutterFlowDropDown<String>(
                               controller: _model.dropDownValueController ??=
                                   FormFieldController<String>(
-                                _model.dropDownValue ??=
-                                    widget.operationUpdate?.actionType,
+                                _model.dropDownValue ??= '',
                               ),
-                              options: const [
+                              options: List<String>.from([
                                 'submit_text',
                                 'image',
                                 'upload_file',
                                 'to_do_list',
                                 'approve'
+                              ]),
+                              optionLabels: const [
+                                'Nhập văn bản',
+                                'Chụp ảnh',
+                                'Upload file',
+                                'Checklist công việc',
+                                'Phê duyệt'
                               ],
                               onChanged: (val) =>
                                   setState(() => _model.dropDownValue = val),
@@ -392,31 +398,36 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                  'Trạng thái hoạt động:',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                                Switch.adaptive(
-                                  value: _model.switchValue ??=
-                                      widget.operationUpdate?.status == 'done',
-                                  onChanged: (newValue) async {
-                                    setState(
-                                        () => _model.switchValue = newValue);
-                                  },
-                                  activeColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  activeTrackColor:
-                                      FlutterFlowTheme.of(context).accent1,
-                                  inactiveTrackColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  inactiveThumbColor:
-                                      FlutterFlowTheme.of(context)
-                                          .secondaryText,
+                                Expanded(
+                                  child: SwitchListTile.adaptive(
+                                    value: _model.switchListTileValue ??=
+                                        widget.operationUpdate?.status == 'done'
+                                            ? true
+                                            : false,
+                                    onChanged: (newValue) async {
+                                      setState(() => _model
+                                          .switchListTileValue = newValue);
+                                    },
+                                    title: Text(
+                                      'Trạng thái hoạt động:',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                    tileColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    activeColor: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    activeTrackColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    dense: false,
+                                    controlAffinity:
+                                        ListTileControlAffinity.trailing,
+                                  ),
                                 ),
                               ].divide(const SizedBox(width: 16.0)),
                             ),
@@ -455,6 +466,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                       fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 0.0,
@@ -506,9 +518,10 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                           .call(
                                     requestDataJson: <String, dynamic>{
                                       'name': _model.textController1.text,
-                                      'status': _model.switchValue == true
-                                          ? 'done'
-                                          : 'draft',
+                                      'status':
+                                          _model.switchListTileValue == true
+                                              ? 'done'
+                                              : 'draft',
                                       'content': _model.textController2.text,
                                       'description':
                                           _model.textController3.text,
@@ -589,6 +602,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     color: Colors.white,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                               borderSide: const BorderSide(

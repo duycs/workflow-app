@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -83,13 +84,14 @@ class _ProfileWidgetState extends State<ProfileWidget>
               style: FlutterFlowTheme.of(context).headlineMedium.override(
                     fontFamily: 'Nunito Sans',
                     color: FlutterFlowTheme.of(context).primaryText,
-                    fontSize: 20.0,
+                    fontSize: 18.0,
                     letterSpacing: 0.0,
                   ),
             ),
           ),
           actions: const [],
           centerTitle: false,
+          elevation: 1.0,
         ),
         body: Column(
           mainAxisSize: MainAxisSize.max,
@@ -176,7 +178,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                             Expanded(
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
@@ -190,37 +192,46 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           .headlineSmall
                                           .override(
                                             fontFamily: 'Nunito Sans',
-                                            fontSize: 18.0,
+                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),
+                                  if (_model.staffDetail?.branchId.name !=
+                                          null &&
+                                      _model.staffDetail?.branchId.name != '')
+                                    Text(
+                                      _model.staffDetail?.branchId != null
+                                          ? _model.staffDetail!.branchId.name
+                                          : ' ',
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            fontSize: 13.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  if (_model.staffDetail?.departmentId.name !=
+                                          null &&
+                                      _model.staffDetail?.departmentId.name !=
+                                          '')
+                                    Text(
+                                      _model.staffDetail?.departmentId != null
+                                          ? _model
+                                              .staffDetail!.departmentId.name
+                                          : ' ',
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            fontSize: 13.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
                                   Text(
-                                    _model.staffDetail != null
-                                        ? _model.staffDetail!.branchId.name
-                                        : ' ',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          fontSize: 13.0,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                  Text(
-                                    _model.staffDetail != null
-                                        ? _model.staffDetail!.departmentId.name
-                                        : ' ',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          fontSize: 13.0,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                  Text(
-                                    _model.staffDetail != null
+                                    _model.staffDetail?.title != null &&
+                                            _model.staffDetail?.title != ''
                                         ? _model.staffDetail!.title
                                         : ' ',
                                     style: FlutterFlowTheme.of(context)
@@ -257,7 +268,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       .labelLarge
                                       .override(
                                         fontFamily: 'Nunito Sans',
+                                        fontSize: 16.0,
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                 ),
                                 Padding(
@@ -594,6 +607,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     .override(
                                       fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
                                     ),
                               ),
                             ],
@@ -878,7 +892,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Nunito Sans',
+                                    fontSize: 16.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                           ],
@@ -948,6 +964,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Nunito Sans',
+                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -976,7 +993,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                             'a8d33527-375b-4599-ac70-6a3fcad1de39'))
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 12.0, 16.0, 0.0),
+                            16.0, 12.0, 16.0, 12.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -1033,6 +1050,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Nunito Sans',
+                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -1119,6 +1137,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Nunito Sans',
+                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -1210,6 +1229,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Nunito Sans',
+                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -1248,7 +1268,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Nunito Sans',
+                                    fontSize: 16.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                           ],
@@ -1318,6 +1340,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Nunito Sans',
+                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -1403,6 +1426,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Nunito Sans',
+                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -1488,6 +1512,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Nunito Sans',
+                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -1526,7 +1551,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                           ],
@@ -1593,6 +1620,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Nunito Sans',
+                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -1675,6 +1703,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Nunito Sans',
+                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -1759,6 +1788,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Nunito Sans',
+                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -1844,6 +1874,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Nunito Sans',
+                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -1878,6 +1909,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
                                 ),
                           ),
                         ],
@@ -1942,6 +1974,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         .labelLarge
                                         .override(
                                           fontFamily: 'Nunito Sans',
+                                          fontSize: 16.0,
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -2022,6 +2055,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         .labelLarge
                                         .override(
                                           fontFamily: 'Nunito Sans',
+                                          fontSize: 16.0,
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -2108,6 +2142,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         .labelLarge
                                         .override(
                                           fontFamily: 'Nunito Sans',
+                                          fontSize: 16.0,
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -2188,6 +2223,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         .labelLarge
                                         .override(
                                           fontFamily: 'Nunito Sans',
+                                          fontSize: 16.0,
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -2252,6 +2288,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         .labelLarge
                                         .override(
                                           fontFamily: 'Nunito Sans',
+                                          fontSize: 16.0,
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -2331,6 +2368,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         .labelLarge
                                         .override(
                                           fontFamily: 'Nunito Sans',
+                                          fontSize: 16.0,
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -2366,6 +2404,12 @@ class _ProfileWidgetState extends State<ProfileWidget>
                             FFAppState().user = UserStruct();
                             FFAppState().expires = 0;
                           });
+                          await actions.clearInfoUser(
+                            'wf_email',
+                          );
+                          await actions.clearInfoUser(
+                            'wf_token',
+                          );
 
                           context.goNamed(
                             'Login',
@@ -2390,6 +2434,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                           textStyle:
                               FlutterFlowTheme.of(context).labelLarge.override(
                                     fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,

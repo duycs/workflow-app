@@ -341,13 +341,22 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                               children: [
                                 FlutterFlowDropDown<String>(
                                   controller: _model.dropDownValueController ??=
-                                      FormFieldController<String>(null),
-                                  options: const [
+                                      FormFieldController<String>(
+                                    _model.dropDownValue ??= '',
+                                  ),
+                                  options: List<String>.from([
                                     'submit_text',
                                     'image',
                                     'upload_file',
                                     'to_do_list',
                                     'approve'
+                                  ]),
+                                  optionLabels: const [
+                                    'Nhập văn bản',
+                                    'Chụp ảnh',
+                                    'Upload file',
+                                    'Checklist công việc',
+                                    'Phê duyệt'
                                   ],
                                   onChanged: (val) => setState(
                                       () => _model.dropDownValue = val),
@@ -419,6 +428,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                       .override(
                                         fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                 ),
                                 Switch.adaptive(
@@ -427,10 +437,10 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                     setState(
                                         () => _model.switchValue = newValue);
                                   },
-                                  activeColor:
-                                      FlutterFlowTheme.of(context).primary,
+                                  activeColor: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                   activeTrackColor:
-                                      FlutterFlowTheme.of(context).accent1,
+                                      FlutterFlowTheme.of(context).primary,
                                   inactiveTrackColor:
                                       FlutterFlowTheme.of(context).alternate,
                                   inactiveThumbColor:
@@ -474,6 +484,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                       fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 0.0,
@@ -624,6 +635,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     color: Colors.white,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                               borderSide: const BorderSide(

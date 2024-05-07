@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import 'procedure_published_list_widget.dart' show ProcedurePublishedListWidget;
 import 'package:flutter/material.dart';
@@ -28,6 +29,8 @@ class ProcedurePublishedListModel
   String dateEnd = '';
 
   String searchUserCreated = '';
+
+  String checkData = '';
 
   ///  State fields for stateful widgets in this page.
 
@@ -72,18 +75,18 @@ class ProcedurePublishedListModel
             ).toString().toString()}\"}}';
           } else if (FFAppState().user.role ==
               'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-            return ',{\"steps\":{\"tasks\":{\"submit_staff_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
+            return ',{\"steps\":{\"staffs\":{\"staffs_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
               FFAppState().staffLogin,
               r'''$.branch_id''',
             ).toString().toString()}\"}}}}}';
           } else if (FFAppState().user.role ==
               '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-            return ',{\"steps\":{\"tasks\":{\"submit_staff_id\":{\"department_id\":{\"_eq\":\"${getJsonField(
+            return ',{\"steps\":{\"staffs\":{\"staffs_id\":{\"department_id\":{\"_eq\":\"${getJsonField(
               FFAppState().staffLogin,
               r'''$.department_id''',
             ).toString().toString()}\"}}}}}';
           } else {
-            return ',{\"steps\":{\"tasks\":{\"submit_staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
+            return ',{\"steps\":{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
               FFAppState().staffLogin,
               r'''$.id''',
             ).toString().toString()}\"}}}}}';
@@ -98,6 +101,7 @@ class ProcedurePublishedListModel
             .data
             .toList()
             .cast<ProcedurePublishedListStruct>();
+        checkData = '1';
       }
     } else {
       return;

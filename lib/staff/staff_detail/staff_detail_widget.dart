@@ -103,13 +103,13 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
           style: FlutterFlowTheme.of(context).headlineMedium.override(
                 fontFamily: 'Nunito Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
-                fontSize: 20.0,
+                fontSize: 18.0,
                 letterSpacing: 0.0,
               ),
         ),
         actions: const [],
         centerTitle: false,
-        elevation: 2.0,
+        elevation: 1.0,
       ),
       body: SafeArea(
         top: true,
@@ -231,6 +231,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                           .override(
                                             fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                     ),
                                     Expanded(
@@ -273,6 +274,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                           .override(
                                             fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                     ),
                                     Expanded(
@@ -315,6 +317,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                           .override(
                                             fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                     ),
                                     Expanded(
@@ -357,6 +360,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                           .override(
                                             fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                     ),
                                     Expanded(
@@ -399,6 +403,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                           .override(
                                             fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                     ),
                                     Expanded(
@@ -447,6 +452,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                           .override(
                                             fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                     ),
                                     Expanded(
@@ -539,6 +545,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                             .override(
                                               fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                       Expanded(
@@ -591,6 +598,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                             .override(
                                               fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                       Expanded(
@@ -643,6 +651,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                             .override(
                                               fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                       Expanded(
@@ -710,6 +719,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                         FlutterFlowTheme.of(context).titleMedium.override(
                               fontFamily: 'Nunito Sans',
                               color: Colors.white,
+                              fontSize: 16.0,
                               letterSpacing: 0.0,
                             ),
                     elevation: 2.0,

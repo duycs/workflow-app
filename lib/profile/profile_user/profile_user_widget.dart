@@ -95,13 +95,13 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
             'Profile',
             style: FlutterFlowTheme.of(context).bodyLarge.override(
                   fontFamily: 'Nunito Sans',
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -565,7 +565,6 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                             0.0, 0.0, 0.0, 16.0),
                                         child: Container(
                                           width: double.infinity,
-                                          height: 50.0,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryBackground,
@@ -584,7 +583,8 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                                 const AlignmentDirectional(-1.0, 0.0),
                                             child: Padding(
                                               padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(8.0, 8.0, 8.0, 8.0),
+                                                  .fromSTEB(
+                                                      8.0, 14.0, 8.0, 14.0),
                                               child: Text(
                                                 getJsonField(
                                                           _model.user,
@@ -634,7 +634,6 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                             0.0, 0.0, 0.0, 16.0),
                                         child: Container(
                                           width: double.infinity,
-                                          height: 50.0,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryBackground,
@@ -653,7 +652,8 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                                 const AlignmentDirectional(-1.0, 0.0),
                                             child: Padding(
                                               padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(8.0, 8.0, 8.0, 8.0),
+                                                  .fromSTEB(
+                                                      8.0, 14.0, 8.0, 14.0),
                                               child: Text(
                                                 getJsonField(
                                                           _model.user,
@@ -678,65 +678,75 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                           ),
                                         ),
                                       ),
-                                    Text(
-                                      'Chức vụ',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 16.0),
-                                      child: Container(
-                                        width: double.infinity,
-                                        height: 50.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          shape: BoxShape.rectangle,
-                                          border: Border.all(
+                                    if (getJsonField(
+                                          _model.user,
+                                          r'''$.title''',
+                                        ) !=
+                                        null)
+                                      Text(
+                                        'Chức vụ',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
+                                    if (getJsonField(
+                                          _model.user,
+                                          r'''$.title''',
+                                        ) !=
+                                        null)
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 16.0),
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: 50.0,
+                                          decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                            width: 1.0,
+                                                .primaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            shape: BoxShape.rectangle,
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              width: 1.0,
+                                            ),
                                           ),
-                                        ),
-                                        child: Align(
-                                          alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    8.0, 0.0, 0.0, 0.0),
-                                            child: Text(
-                                              getJsonField(
+                                          child: Align(
+                                            alignment:
+                                                const AlignmentDirectional(-1.0, 0.0),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(8.0, 0.0, 0.0, 0.0),
+                                              child: Text(
+                                                getJsonField(
+                                                          _model.user,
+                                                          r'''$.title''',
+                                                        ) !=
+                                                        null
+                                                    ? getJsonField(
                                                         _model.user,
                                                         r'''$.title''',
-                                                      ) !=
-                                                      null
-                                                  ? getJsonField(
-                                                      _model.user,
-                                                      r'''$.title''',
-                                                    ).toString()
-                                                  : ' ',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                                      ).toString()
+                                                    : ' ',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
                                   ].divide(const SizedBox(height: 8.0)),
                                 ),
                               ),

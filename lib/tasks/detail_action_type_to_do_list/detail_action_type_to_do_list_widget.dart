@@ -149,12 +149,15 @@ class _DetailActionTypeToDoListWidgetState
                 : FlutterFlowTheme.of(context).info,
           ),
         ),
-        Text(
-          widget.listData!.operationsId.content,
-          style: FlutterFlowTheme.of(context).bodyMedium.override(
-                fontFamily: 'Nunito Sans',
-                letterSpacing: 0.0,
-              ),
+        Expanded(
+          child: Text(
+            widget.listData!.operationsId.content,
+            maxLines: 5,
+            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  fontFamily: 'Nunito Sans',
+                  letterSpacing: 0.0,
+                ),
+          ),
         ),
       ],
     );

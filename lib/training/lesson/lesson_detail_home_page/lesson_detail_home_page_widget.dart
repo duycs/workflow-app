@@ -106,7 +106,7 @@ class _LessonDetailHomePageWidgetState
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
                         fontFamily: 'Nunito Sans',
                         color: FlutterFlowTheme.of(context).primaryText,
-                        fontSize: 20.0,
+                        fontSize: 18.0,
                         letterSpacing: 0.0,
                       ),
                 ),
@@ -119,8 +119,7 @@ class _LessonDetailHomePageWidgetState
                           context: context,
                           builder: (alertDialogContext) {
                             return AlertDialog(
-                              title: const Text('Xác nhận'),
-                              content: const Text('Ghim bài đang học'),
+                              content: const Text('Bắt đầu bài học!'),
                               actions: [
                                 TextButton(
                                   onPressed: () =>
@@ -242,7 +241,7 @@ class _LessonDetailHomePageWidgetState
                                 .headlineSmall
                                 .override(
                                   fontFamily: 'Nunito Sans',
-                                  fontSize: 20.0,
+                                  fontSize: 18.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -262,17 +261,31 @@ class _LessonDetailHomePageWidgetState
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              if (getJsonField(
-                                    widget.listItems,
-                                    r'''$.video''',
-                                  ) !=
-                                  null)
+                              if ((_model.status != 'draft') &&
+                                  (getJsonField(
+                                        widget.listItems,
+                                        r'''$.video''',
+                                      ) !=
+                                      null))
                                 FlutterFlowVideoPlayer(
                                   path:
                                       '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
                                     widget.listItems,
                                     r'''$.video''',
                                   ).toString()}?access_token=${FFAppState().accessToken}',
+                                  videoType: VideoType.network,
+                                  width: double.infinity,
+                                  height: 220.0,
+                                  autoPlay: false,
+                                  looping: true,
+                                  showControls: true,
+                                  allowFullScreen: true,
+                                  allowPlaybackSpeedMenu: false,
+                                  lazyLoad: false,
+                                ),
+                              if (_model.status == 'draft')
+                                const FlutterFlowVideoPlayer(
+                                  path: '',
                                   videoType: VideoType.network,
                                   width: double.infinity,
                                   height: 220.0,
@@ -485,7 +498,8 @@ class _LessonDetailHomePageWidgetState
                                                                             widget.listItems,
                                                                             r'''$.file.filename_download''',
                                                                           ).toString())) ==
-                                                                          'heif'))))
+                                                                          'heif'))) &&
+                                                              (_model.status != 'draft'))
                                                             Padding(
                                                               padding:
                                                                   const EdgeInsetsDirectional
@@ -1156,91 +1170,92 @@ class _LessonDetailHomePageWidgetState
                                                                                 widget.listItems,
                                                                                 r'''$.file.filename_download''',
                                                                               ).toString())) ==
-                                                                              'pdfua')) ||
-                                                                      ((((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(getJsonField(
-                                                                                widget.listItems,
-                                                                                r'''$.file.filename_download''',
-                                                                              ).toString())) ==
-                                                                              'jpeg') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(getJsonField(
-                                                                                widget.listItems,
-                                                                                r'''$.file.filename_download''',
-                                                                              ).toString())) ==
-                                                                              'png') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(getJsonField(
-                                                                                widget.listItems,
-                                                                                r'''$.file.filename_download''',
-                                                                              ).toString())) ==
-                                                                              'gif') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(getJsonField(
-                                                                                widget.listItems,
-                                                                                r'''$.file.filename_download''',
-                                                                              ).toString())) ==
-                                                                              'jpg') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(getJsonField(
-                                                                                widget.listItems,
-                                                                                r'''$.file.filename_download''',
-                                                                              ).toString())) ==
-                                                                              'bmp') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(getJsonField(
-                                                                                widget.listItems,
-                                                                                r'''$.file.filename_download''',
-                                                                              ).toString())) ==
-                                                                              'tiff') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(getJsonField(
-                                                                                widget.listItems,
-                                                                                r'''$.file.filename_download''',
-                                                                              ).toString())) ==
-                                                                              'tif') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(getJsonField(
-                                                                                widget.listItems,
-                                                                                r'''$.file.filename_download''',
-                                                                              ).toString())) ==
-                                                                              'raw') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(getJsonField(
-                                                                                widget.listItems,
-                                                                                r'''$.file.filename_download''',
-                                                                              ).toString())) ==
-                                                                              'webp') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(getJsonField(
-                                                                                widget.listItems,
-                                                                                r'''$.file.filename_download''',
-                                                                              ).toString())) ==
-                                                                              'svg') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(getJsonField(
-                                                                                widget.listItems,
-                                                                                r'''$.file.filename_download''',
-                                                                              ).toString())) ==
-                                                                              'heic') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(getJsonField(
-                                                                                widget.listItems,
-                                                                                r'''$.file.filename_download''',
-                                                                              ).toString())) ==
-                                                                              'heif'))) {
+                                                                              'pdfua') ||
+                                                                          ((((String type) {
+                                                                                    return type.split('.').last;
+                                                                                  }(getJsonField(
+                                                                                    widget.listItems,
+                                                                                    r'''$.file.filename_download''',
+                                                                                  ).toString())) ==
+                                                                                  'jpeg') ||
+                                                                              (((String type) {
+                                                                                    return type.split('.').last;
+                                                                                  }(getJsonField(
+                                                                                    widget.listItems,
+                                                                                    r'''$.file.filename_download''',
+                                                                                  ).toString())) ==
+                                                                                  'png') ||
+                                                                              (((String type) {
+                                                                                    return type.split('.').last;
+                                                                                  }(getJsonField(
+                                                                                    widget.listItems,
+                                                                                    r'''$.file.filename_download''',
+                                                                                  ).toString())) ==
+                                                                                  'gif') ||
+                                                                              (((String type) {
+                                                                                    return type.split('.').last;
+                                                                                  }(getJsonField(
+                                                                                    widget.listItems,
+                                                                                    r'''$.file.filename_download''',
+                                                                                  ).toString())) ==
+                                                                                  'jpg') ||
+                                                                              (((String type) {
+                                                                                    return type.split('.').last;
+                                                                                  }(getJsonField(
+                                                                                    widget.listItems,
+                                                                                    r'''$.file.filename_download''',
+                                                                                  ).toString())) ==
+                                                                                  'bmp') ||
+                                                                              (((String type) {
+                                                                                    return type.split('.').last;
+                                                                                  }(getJsonField(
+                                                                                    widget.listItems,
+                                                                                    r'''$.file.filename_download''',
+                                                                                  ).toString())) ==
+                                                                                  'tiff') ||
+                                                                              (((String type) {
+                                                                                    return type.split('.').last;
+                                                                                  }(getJsonField(
+                                                                                    widget.listItems,
+                                                                                    r'''$.file.filename_download''',
+                                                                                  ).toString())) ==
+                                                                                  'tif') ||
+                                                                              (((String type) {
+                                                                                    return type.split('.').last;
+                                                                                  }(getJsonField(
+                                                                                    widget.listItems,
+                                                                                    r'''$.file.filename_download''',
+                                                                                  ).toString())) ==
+                                                                                  'raw') ||
+                                                                              (((String type) {
+                                                                                    return type.split('.').last;
+                                                                                  }(getJsonField(
+                                                                                    widget.listItems,
+                                                                                    r'''$.file.filename_download''',
+                                                                                  ).toString())) ==
+                                                                                  'webp') ||
+                                                                              (((String type) {
+                                                                                    return type.split('.').last;
+                                                                                  }(getJsonField(
+                                                                                    widget.listItems,
+                                                                                    r'''$.file.filename_download''',
+                                                                                  ).toString())) ==
+                                                                                  'svg') ||
+                                                                              (((String type) {
+                                                                                    return type.split('.').last;
+                                                                                  }(getJsonField(
+                                                                                    widget.listItems,
+                                                                                    r'''$.file.filename_download''',
+                                                                                  ).toString())) ==
+                                                                                  'heic') ||
+                                                                              (((String type) {
+                                                                                    return type.split('.').last;
+                                                                                  }(getJsonField(
+                                                                                    widget.listItems,
+                                                                                    r'''$.file.filename_download''',
+                                                                                  ).toString())) ==
+                                                                                  'heif'))) &&
+                                                                      (_model.status != 'draft')) {
                                                                     setState(
                                                                         () {
                                                                       _model.checkFile =
@@ -1299,11 +1314,13 @@ class _LessonDetailHomePageWidgetState
                                                     ],
                                                   ),
                                                 ),
-                                                if (getJsonField(
-                                                      widget.listItems,
-                                                      r'''$.file''',
-                                                    ) !=
-                                                    null)
+                                                if ((_model.status !=
+                                                        'draft') &&
+                                                    (getJsonField(
+                                                          widget.listItems,
+                                                          r'''$.file''',
+                                                        ) !=
+                                                        null))
                                                   FFButtonWidget(
                                                     onPressed: () async {
                                                       await actions
@@ -1852,110 +1869,122 @@ class _LessonDetailHomePageWidgetState
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Expanded(
-                                child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Builder(
-                                    builder: (context) => InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        await showDialog(
-                                          context: context,
-                                          builder: (dialogContext) {
-                                            return Dialog(
-                                              elevation: 0,
-                                              insetPadding: EdgeInsets.zero,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
-                                              child: GestureDetector(
-                                                onTap: () => _model.unfocusNode
-                                                        .canRequestFocus
-                                                    ? FocusScope.of(context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode)
-                                                    : FocusScope.of(context)
-                                                        .unfocus(),
-                                                child: ConfirmDoTestWidget(
-                                                  testId: _model.testId,
-                                                  lessionId: getJsonField(
-                                                    widget.listItems,
-                                                    r'''$.id''',
-                                                  ).toString(),
-                                                  avatar: getJsonField(
-                                                    widget.listItems,
-                                                    r'''$.image_cover''',
-                                                  ).toString(),
+                              if (_model.status == 'inprogress')
+                                Expanded(
+                                  child: Align(
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Builder(
+                                      builder: (context) => InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: const AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: GestureDetector(
+                                                  onTap: () => _model
+                                                          .unfocusNode
+                                                          .canRequestFocus
+                                                      ? FocusScope.of(context)
+                                                          .requestFocus(_model
+                                                              .unfocusNode)
+                                                      : FocusScope.of(context)
+                                                          .unfocus(),
+                                                  child: ConfirmDoTestWidget(
+                                                    testId: _model.testId,
+                                                    lessionId: getJsonField(
+                                                      widget.listItems,
+                                                      r'''$.id''',
+                                                    ).toString(),
+                                                    avatar: getJsonField(
+                                                      widget.listItems,
+                                                      r'''$.image_cover''',
+                                                    ).toString(),
+                                                  ),
                                                 ),
-                                              ),
-                                            );
-                                          },
-                                        ).then((value) => setState(() {}));
-                                      },
-                                      child: Container(
-                                        height: 45.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
-                                        child: Align(
+                                              );
+                                            },
+                                          ).then((value) => setState(() {}));
+                                        },
+                                        child: Container(
+                                          height: 45.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(12.0),
+                                          ),
                                           alignment:
                                               const AlignmentDirectional(0.0, 0.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              Row(
+                                          child: Align(
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 0.0),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 0.0, 16.0, 0.0),
+                                              child: Row(
                                                 mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Icon(
+                                                        Icons
+                                                            .question_mark_outlined,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        size: 20.0,
+                                                      ),
+                                                      Text(
+                                                        'Làm kiểm tra',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                    ].divide(
+                                                        const SizedBox(width: 4.0)),
+                                                  ),
                                                   Icon(
-                                                    Icons
-                                                        .question_mark_outlined,
+                                                    Icons.chevron_right_rounded,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .secondaryText,
-                                                    size: 20.0,
-                                                  ),
-                                                  Text(
-                                                    'Làm kiểm tra',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                ].divide(const SizedBox(width: 8.0)),
-                                              ),
-                                              Icon(
-                                                Icons.chevron_right_rounded,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
                                                         .primaryText,
-                                                size: 24.0,
+                                                    size: 24.0,
+                                                  ),
+                                                ],
                                               ),
-                                            ],
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
                               Expanded(
                                 child: Align(
                                   alignment: const AlignmentDirectional(0.0, 0.0),
@@ -2002,43 +2031,48 @@ class _LessonDetailHomePageWidgetState
                                       child: Align(
                                         alignment:
                                             const AlignmentDirectional(0.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Icon(
-                                                  Icons
-                                                      .question_answer_outlined,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 20.0,
-                                                ),
-                                                Text(
-                                                  'Bài đã thi',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .labelMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
-                                              ].divide(const SizedBox(width: 8.0)),
-                                            ),
-                                            Icon(
-                                              Icons.chevron_right_rounded,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 24.0,
-                                            ),
-                                          ],
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 0.0, 16.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Icon(
+                                                    Icons
+                                                        .question_answer_outlined,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    size: 20.0,
+                                                  ),
+                                                  Text(
+                                                    'Bài đã thi',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ].divide(const SizedBox(width: 4.0)),
+                                              ),
+                                              Icon(
+                                                Icons.chevron_right_rounded,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                size: 24.0,
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -2174,42 +2208,43 @@ class _LessonDetailHomePageWidgetState
                                     ),
                                   ),
                                 ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  if ('1' == '2')
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 16.0, 0.0),
-                                      child: InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          context.pushNamed('LessonNote');
-                                        },
-                                        child: Text(
-                                          'Xem chi tiết',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                fontSize: 13.0,
-                                                letterSpacing: 0.0,
-                                                fontStyle: FontStyle.italic,
-                                                decoration:
-                                                    TextDecoration.underline,
-                                              ),
+                              if ('1' == '2')
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    if ('1' == '2')
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 16.0, 0.0),
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.pushNamed('LessonNote');
+                                          },
+                                          child: Text(
+                                            'Xem chi tiết',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  fontSize: 13.0,
+                                                  letterSpacing: 0.0,
+                                                  fontStyle: FontStyle.italic,
+                                                  decoration:
+                                                      TextDecoration.underline,
+                                                ),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                ],
-                              ),
+                                  ],
+                                ),
                             ],
                           ),
                         ),
@@ -2323,7 +2358,7 @@ class _LessonDetailHomePageWidgetState
                                               errorBuilder: (context, error,
                                                       stackTrace) =>
                                                   Image.asset(
-                                                'assets/images/error_image.png',
+                                                'assets/images/error_image.jpg',
                                                 width: 40.0,
                                                 height: 40.0,
                                                 fit: BoxFit.fill,
@@ -2540,31 +2575,32 @@ class _LessonDetailHomePageWidgetState
                                                       ].divide(const SizedBox(
                                                           width: 16.0)),
                                                     ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Text(
-                                                          'Thích',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .labelSmall
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
-                                                        const Icon(
-                                                          Icons.favorite,
-                                                          color:
-                                                              Color(0xFFFF0202),
-                                                          size: 20.0,
-                                                        ),
-                                                      ].divide(
-                                                          const SizedBox(width: 2.0)),
-                                                    ),
+                                                    if ('1' == '2')
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Text(
+                                                            'Thích',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelSmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                          const Icon(
+                                                            Icons.favorite,
+                                                            color: Color(
+                                                                0xFFFF0202),
+                                                            size: 20.0,
+                                                          ),
+                                                        ].divide(const SizedBox(
+                                                            width: 2.0)),
+                                                      ),
                                                   ].divide(
                                                       const SizedBox(width: 10.0)),
                                                 ),
@@ -2586,108 +2622,113 @@ class _LessonDetailHomePageWidgetState
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(40.0),
-                    child: Image.network(
-                      '${FFAppConstants.ApiBaseUrl}/assets/${FFAppState().user.avatar}?access_token=${FFAppState().accessToken}',
-                      width: 40.0,
-                      height: 40.0,
-                      fit: BoxFit.cover,
+            if (_model.status != 'draft')
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(40.0),
+                      child: Image.network(
+                        '${FFAppConstants.ApiBaseUrl}/assets/${FFAppState().user.avatar}?access_token=${FFAppState().accessToken}',
+                        width: 40.0,
+                        height: 40.0,
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  Flexible(
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                      child: Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          borderRadius: BorderRadius.circular(16.0),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 0.0, 8.0, 0.0),
-                                child: TextFormField(
-                                  controller: _model.commentsTextController,
-                                  focusNode: _model.commentsFocusNode,
-                                  autofocus: false,
-                                  textInputAction: TextInputAction.send,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
+                    Flexible(
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                        child: Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 8.0, 0.0),
+                                  child: TextFormField(
+                                    controller: _model.commentsTextController,
+                                    focusNode: _model.commentsFocusNode,
+                                    autofocus: false,
+                                    textInputAction: TextInputAction.send,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      hintText: 'Viết bình luận...',
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      enabledBorder: InputBorder.none,
+                                      focusedBorder: InputBorder.none,
+                                      errorBorder: InputBorder.none,
+                                      focusedErrorBorder: InputBorder.none,
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
                                         .override(
                                           fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
-                                    hintText: 'Viết bình luận...',
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    enabledBorder: InputBorder.none,
-                                    focusedBorder: InputBorder.none,
-                                    errorBorder: InputBorder.none,
-                                    focusedErrorBorder: InputBorder.none,
+                                    validator: _model
+                                        .commentsTextControllerValidator
+                                        .asValidator(context),
                                   ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  validator: _model
-                                      .commentsTextControllerValidator
-                                      .asValidator(context),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 4.0, 0.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  await _model.postComment(context);
-                                  setState(() {});
-                                  setState(() {
-                                    _model.commentsTextController?.clear();
-                                  });
-                                  await _model.getComments(context);
-                                  setState(() {});
-                                },
-                                child: Icon(
-                                  Icons.send,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 24.0,
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 4.0, 0.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    if (_model.commentsTextController.text !=
+                                            '') {
+                                      await _model.postComment(context);
+                                      setState(() {});
+                                      setState(() {
+                                        _model.commentsTextController?.clear();
+                                      });
+                                      await _model.getComments(context);
+                                      setState(() {});
+                                    }
+                                  },
+                                  child: Icon(
+                                    Icons.send,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ].divide(const SizedBox(width: 6.0)),
+                            ].divide(const SizedBox(width: 6.0)),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
           ],
         ),
       ),

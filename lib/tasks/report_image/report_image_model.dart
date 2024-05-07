@@ -25,6 +25,8 @@ class ReportImageModel extends FlutterFlowModel<ReportImageWidget> {
 
   String endDate = '';
 
+  String checkData = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -52,12 +54,32 @@ class ReportImageModel extends FlutterFlowModel<ReportImageWidget> {
     if (reloadTokenTasks!) {
       apiResultGetReportImage = await TaskGroup.getListTaskCall.call(
         accessToken: FFAppState().accessToken,
-        filter: '{\"_and\":[{},{\"status\":{\"_eq\":\"done\"}}, {\"action_type\":{\"_eq\":\"image\"}}${(nameProcedure != '') && (nameProcedure != ' ') ? ',{\"workflow_id\":{\"name\":{\"_icontains\":\"$nameProcedure\"}}}' : ' '}${(nameSearch != '') && (nameSearch != ' ') ? ',{\"staffs\":{\"staffs_id\":{\"user_id\":{\"first_name\":{\"_icontains\":\"$nameSearch\"}}}}}' : ' '}${(startDate != '') && (endDate != ' ') ? ',{\"operations\":{\"operations_id\":{\"date_updated\":{\"_gte\":\"$startDate\"}}}}' : ' '}${(endDate != '') && (endDate != ' ') ? ',{\"operations\":{\"operations_id\":{\"date_updated\":{\"_lte\":\"${(String var1) {
-            return DateTime.parse(var1).add(const Duration(days: 1)).toString();
-          }(endDate)}\"}}}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffLogin,
-          r'''$.organization_id''',
-        ).toString().toString()}\"}}}'}]}',
+        filter:
+            '{\"_and\":[{},{\"status\":{\"_eq\":\"done\"}}, {\"action_type\":{\"_eq\":\"image\"}}${(nameProcedure != '') && (nameProcedure != ' ') ? ',{\"workflow_id\":{\"name\":{\"_icontains\":\"$nameProcedure\"}}}' : ' '}${(nameSearch != '') && (nameSearch != ' ') ? ',{\"submit_staff_id\":{\"user_id\":{\"first_name\":{\"_icontains\":\"$nameSearch\"}}}}' : ' '}${(startDate != '') && (endDate != ' ') ? ',{\"operations\":{\"operations_id\":{\"date_updated\":{\"_gte\":\"$startDate\"}}}}' : ' '}${(endDate != '') && (endDate != ' ') ? ',{\"operations\":{\"operations_id\":{\"date_updated\":{\"_lte\":\"${(String var1) {
+                return DateTime.parse(var1).add(const Duration(days: 1)).toString();
+              }(endDate)}\"}}}}' : ' '}${() {
+          if (FFAppState().user.role ==
+              '82073000-1ba2-43a4-a55c-459d17c23b68') {
+            return ',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+              FFAppState().staffLogin,
+              r'''$.organization_id''',
+            ).toString().toString()}\"}}}';
+          } else if (FFAppState().user.role ==
+              'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+            return ',{\"submit_staff_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
+              FFAppState().staffLogin,
+              r'''$.branch_id''',
+            ).toString().toString()}\"}}}';
+          } else if (FFAppState().user.role ==
+              '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+            return ',{\"submit_staff_id\":{\"department_id\":{\"_eq\":\"${getJsonField(
+              FFAppState().staffLogin,
+              r'''$.department_id''',
+            ).toString().toString()}\"}}}';
+          } else {
+            return ',{\"submit_staff_id\":{\"user_id\":{\"id\":{\"_eq\":\"${FFAppState().user.id}\"}}}}';
+          }
+        }()}]}',
       );
       if ((apiResultGetReportImage.succeeded ?? true)) {
         reportImage = TaskListDataStruct.maybeFromMap(
@@ -65,6 +87,7 @@ class ReportImageModel extends FlutterFlowModel<ReportImageWidget> {
             .data
             .toList()
             .cast<TaskListStruct>();
+        checkData = '1';
       }
     } else {
       return;

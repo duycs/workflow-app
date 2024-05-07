@@ -110,13 +110,13 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
           style: FlutterFlowTheme.of(context).headlineMedium.override(
                 fontFamily: 'Nunito Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
-                fontSize: 22.0,
+                fontSize: 18.0,
                 letterSpacing: 0.0,
               ),
         ),
         actions: const [],
         centerTitle: true,
-        elevation: 2.0,
+        elevation: 1.0,
       ),
       body: SafeArea(
         top: true,
@@ -190,7 +190,9 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                                     .labelLarge
                                     .override(
                                       fontFamily: 'Nunito Sans',
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
                                     ),
                               ),
                             ].divide(const SizedBox(width: 8.0)),
@@ -257,6 +259,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                         ),
                         style: FlutterFlowTheme.of(context).labelSmall.override(
                               fontFamily: 'Nunito Sans',
+                              fontSize: 14.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.normal,
                             ),
@@ -462,7 +465,9 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                                     .labelLarge
                                     .override(
                                       fontFamily: 'Nunito Sans',
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
                                     ),
                               ),
                             ].divide(const SizedBox(width: 8.0)),
@@ -779,6 +784,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                         FlutterFlowTheme.of(context).titleMedium.override(
                               fontFamily: 'Nunito Sans',
                               color: Colors.white,
+                              fontSize: 14.0,
                               letterSpacing: 0.0,
                             ),
                     elevation: 2.0,

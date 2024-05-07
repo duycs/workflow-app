@@ -1,10 +1,12 @@
 import '/branch/branch_create/branch_create_widget.dart';
+import '/branch/filter_branch/filter_branch_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'branch_list_model.dart';
 export 'branch_list_model.dart';
 
@@ -105,7 +107,16 @@ class _BranchListWidgetState extends State<BranchListWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.pushNamed(
+                'Profile',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 0),
+                  ),
+                },
+              );
             },
           ),
           title: Text(
@@ -113,18 +124,19 @@ class _BranchListWidgetState extends State<BranchListWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
@@ -247,176 +259,275 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                             _model.textControllerValidator.asValidator(context),
                       ),
                     ),
+                    Builder(
+                      builder: (context) => FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 10.0,
+                        borderWidth: 1.0,
+                        buttonSize: 50.0,
+                        icon: Icon(
+                          Icons.tune_rounded,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 30.0,
+                        ),
+                        onPressed: () async {
+                          await showDialog(
+                            context: context,
+                            builder: (dialogContext) {
+                              return Dialog(
+                                elevation: 0,
+                                insetPadding: EdgeInsets.zero,
+                                backgroundColor: Colors.transparent,
+                                alignment: const AlignmentDirectional(0.0, 0.0)
+                                    .resolve(Directionality.of(context)),
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: FilterBranchWidget(
+                                    status: _model.searchStatus,
+                                    callBack: (status) async {
+                                      setState(() {
+                                        _model.searchStatus = status!;
+                                      });
+                                      await _model.getLinkBranch(context);
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => setState(() {}));
+                        },
+                      ),
+                    ),
                   ].divide(const SizedBox(width: 8.0)),
                 ),
               ),
+              if ((_model.searchStatus != '') ||
+                  (_model.filter != ''))
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 0.0, 0.0),
+                  child: Text(
+                    '#Kết quả hiển thị theo bộ lọc',
+                    style: FlutterFlowTheme.of(context).labelMedium.override(
+                          fontFamily: 'Nunito Sans',
+                          fontSize: 12.0,
+                          letterSpacing: 0.0,
+                          fontStyle: FontStyle.italic,
+                        ),
+                  ),
+                ),
               Expanded(
-                child: Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 16.0),
-                  child: Builder(
-                    builder: (context) {
-                      final branchItem = _model.listBranch.toList();
-                      return ListView.separated(
-                        padding: EdgeInsets.zero,
-                        primary: false,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: branchItem.length,
-                        separatorBuilder: (_, __) => const SizedBox(height: 8.0),
-                        itemBuilder: (context, branchItemIndex) {
-                          final branchItemItem = branchItem[branchItemIndex];
-                          return InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              context.pushNamed(
-                                'BranchDetail',
-                                queryParameters: {
-                                  'id': serializeParam(
-                                    branchItemItem.id,
-                                    ParamType.String,
-                                  ),
-                                  'name': serializeParam(
-                                    branchItemItem.name,
-                                    ParamType.String,
-                                  ),
-                                  'code': serializeParam(
-                                    branchItemItem.code,
-                                    ParamType.String,
-                                  ),
-                                  'description': serializeParam(
-                                    branchItemItem.description,
-                                    ParamType.String,
-                                  ),
-                                  'codeListitem': serializeParam(
-                                    _model.codeList,
-                                    ParamType.String,
-                                    true,
-                                  ),
-                                  'status': serializeParam(
-                                    branchItemItem.status,
-                                    ParamType.String,
-                                  ),
-                                }.withoutNulls,
-                                extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
-                                    hasTransition: true,
-                                    transitionType: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 0),
-                                  ),
+                child: Stack(
+                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 12.0, 16.0, 16.0),
+                      child: Builder(
+                        builder: (context) {
+                          final branchItem = _model.listBranch.toList();
+                          return ListView.separated(
+                            padding: EdgeInsets.zero,
+                            primary: false,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            itemCount: branchItem.length,
+                            separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+                            itemBuilder: (context, branchItemIndex) {
+                              final branchItemItem =
+                                  branchItem[branchItemIndex];
+                              return InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'BranchDetail',
+                                    queryParameters: {
+                                      'id': serializeParam(
+                                        branchItemItem.id,
+                                        ParamType.String,
+                                      ),
+                                      'name': serializeParam(
+                                        branchItemItem.name,
+                                        ParamType.String,
+                                      ),
+                                      'code': serializeParam(
+                                        branchItemItem.code,
+                                        ParamType.String,
+                                      ),
+                                      'description': serializeParam(
+                                        branchItemItem.description,
+                                        ParamType.String,
+                                      ),
+                                      'codeListitem': serializeParam(
+                                        _model.codeList,
+                                        ParamType.String,
+                                        true,
+                                      ),
+                                      'status': serializeParam(
+                                        branchItemItem.status,
+                                        ParamType.String,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
                                 },
-                              );
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 1.0,
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    offset: const Offset(
-                                      0.0,
-                                      1.0,
-                                    ),
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Text(
-                                      'Chi nhánh: ${branchItemItem.name}',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                    ),
-                                    Text(
-                                      'Mã chi nhánh: ${branchItemItem.code}',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                    ),
-                                    Text(
-                                      'Mô tả:',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                    ),
-                                    Text(
-                                      branchItemItem.description,
-                                      maxLines: 2,
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelSmall
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                    Row(
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 1.0,
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        offset: const Offset(
+                                          0.0,
+                                          1.0,
+                                        ),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
                                       children: [
-                                        Align(
-                                          alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
-                                          child: Text(
-                                            branchItemItem.status == 'published'
-                                                ? 'Hoạt động'
-                                                : 'Không hoạt đọng',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodySmall
-                                                .override(
-                                                  fontFamily: 'Nunito Sans',
-                                                  color:
-                                                      branchItemItem.status ==
+                                        Text(
+                                          'Chi nhánh: ${branchItemItem.name}',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                        Text(
+                                          'Mã chi nhánh: ${branchItemItem.code}',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                        Text(
+                                          'Mô tả:',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                        Text(
+                                          branchItemItem.description,
+                                          maxLines: 2,
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelSmall
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  -1.0, 0.0),
+                                              child: Text(
+                                                branchItemItem.status ==
+                                                        'published'
+                                                    ? 'Hoạt động'
+                                                    : 'Không hoạt đọng',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodySmall
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      color: branchItemItem
+                                                                  .status ==
                                                               'published'
                                                           ? const Color(0xFF00A907)
                                                           : FlutterFlowTheme.of(
                                                                   context)
                                                               .tertiary,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w300,
-                                                  fontStyle: FontStyle.italic,
-                                                ),
-                                          ),
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                      fontStyle:
+                                                          FontStyle.italic,
+                                                    ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
+                                      ].divide(const SizedBox(height: 4.0)),
                                     ),
-                                  ].divide(const SizedBox(height: 4.0)),
+                                  ),
                                 ),
-                              ),
-                            ),
+                              );
+                            },
                           );
                         },
-                      );
-                    },
-                  ),
+                      ),
+                    ),
+                    if ((_model.listBranch.isEmpty) &&
+                        (_model.checkData == '1'))
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.database,
+                            color: FlutterFlowTheme.of(context).alternate,
+                            size: 55.0,
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 15.0, 0.0, 0.0),
+                            child: Text(
+                              'Không có dữ liệu !',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 18.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                  ],
                 ),
               ),
             ],

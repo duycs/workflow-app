@@ -32,6 +32,9 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
       return 'Vui lòng nhập email';
     }
 
+    if (val.length > 50) {
+      return 'Email quá dài';
+    }
     if (!RegExp(
             '^[a-zA-Z0-9.a-zA-Z0-9.!#\$%&\'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\\.[a-zA-Z]+')
         .hasMatch(val)) {
@@ -72,6 +75,10 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
       return 'Vui lòng nhập tên tổ chức';
     }
 
+    if (val.length > 50) {
+      return 'Tên quá dài!';
+    }
+
     return null;
   }
 
@@ -82,6 +89,13 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
   String? _nameTextControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Vui lòng nhập họ tên';
+    }
+
+    if (val.isEmpty) {
+      return 'Tên không hợp lệ';
+    }
+    if (val.length > 50) {
+      return 'Tên quá dài';
     }
 
     return null;
@@ -96,6 +110,12 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
       return 'Vui lòng nhập số điện thoại';
     }
 
+    if (val.length < 10) {
+      return 'Số điện thoại không hợp lệ';
+    }
+    if (val.length > 10) {
+      return 'Số điện thoại không hợp lệ';
+    }
     if (!RegExp('(03|05|07|08|09)+([0-9]{8})\\b').hasMatch(val)) {
       return 'Số điện thoại không hợp lệ';
     }
@@ -114,6 +134,9 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
     if (val.length < 12) {
       return 'CCCD gồm 12 số';
     }
+    if (val.length > 12) {
+      return 'CCCD gồm 12 số';
+    }
 
     return null;
   }
@@ -121,8 +144,6 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
   DateTime? datePicked;
   // State field(s) for RadioButton widget.
   FormFieldController<String>? radioButtonValueController;
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? createUserToken;
   // Stores action output result for [Backend Call - API (CreateOrganizationUser)] action in Button widget.
   ApiCallResponse? apiResultCreateUser;
 

@@ -138,6 +138,13 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
   // State field(s) for role widget.
   String? roleValue;
   FormFieldController<String>? roleValueController;
+  // State field(s) for title widget.
+  String? titleValue;
+  FormFieldController<String>? titleValueController;
+  // State field(s) for titleText widget.
+  FocusNode? titleTextFocusNode;
+  TextEditingController? titleTextTextController;
+  String? Function(BuildContext, String?)? titleTextTextControllerValidator;
   // State field(s) for branch widget.
   String? branchValue;
   FormFieldController<String>? branchValueController;
@@ -192,6 +199,9 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
 
     cccdFocusNode?.dispose();
     cccdTextController?.dispose();
+
+    titleTextFocusNode?.dispose();
+    titleTextTextController?.dispose();
   }
 
   /// Additional helper methods.

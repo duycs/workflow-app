@@ -363,53 +363,55 @@ class _FilterLessonHomePageWidgetState
                       ),
                     ),
                   ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-                  child: FlutterFlowDropDown<String>(
-                    controller: _model.dropDownStatusValueController ??=
-                        FormFieldController<String>(
-                      _model.dropDownStatusValue ??=
-                          widget.status != ''
-                              ? () {
-                                  if (widget.status == 'published') {
-                                    return '2';
-                                  } else if (widget.status == 'draft') {
-                                    return '1';
-                                  } else {
-                                    return null;
-                                  }
-                                }()
-                              : null,
+                if ('2' == '1')
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                    child: FlutterFlowDropDown<String>(
+                      controller: _model.dropDownStatusValueController ??=
+                          FormFieldController<String>(
+                        _model.dropDownStatusValue ??=
+                            widget.status != ''
+                                ? () {
+                                    if (widget.status == 'published') {
+                                      return '2';
+                                    } else if (widget.status == 'draft') {
+                                      return '1';
+                                    } else {
+                                      return null;
+                                    }
+                                  }()
+                                : null,
+                      ),
+                      options: List<String>.from(['1', '2']),
+                      optionLabels: const ['Không hoạt động', 'Hoạt động'],
+                      onChanged: (val) =>
+                          setState(() => _model.dropDownStatusValue = val),
+                      width: double.infinity,
+                      textStyle:
+                          FlutterFlowTheme.of(context).bodyMedium.override(
+                                fontFamily: 'Nunito Sans',
+                                letterSpacing: 0.0,
+                              ),
+                      hintText: 'Trạng thái hoạt động bài học',
+                      icon: Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        size: 24.0,
+                      ),
+                      fillColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      elevation: 2.0,
+                      borderColor: FlutterFlowTheme.of(context).alternate,
+                      borderWidth: 2.0,
+                      borderRadius: 8.0,
+                      margin:
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                      hidesUnderline: true,
+                      isOverButton: true,
+                      isSearchable: false,
+                      isMultiSelect: false,
                     ),
-                    options: List<String>.from(['1', '2']),
-                    optionLabels: const ['Không hoạt động', 'Hoạt động'],
-                    onChanged: (val) =>
-                        setState(() => _model.dropDownStatusValue = val),
-                    width: double.infinity,
-                    height: 50.0,
-                    textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Nunito Sans',
-                          letterSpacing: 0.0,
-                        ),
-                    hintText: 'Trạng thái hoạt động bài học',
-                    icon: Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      size: 24.0,
-                    ),
-                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                    elevation: 2.0,
-                    borderColor: FlutterFlowTheme.of(context).alternate,
-                    borderWidth: 2.0,
-                    borderRadius: 8.0,
-                    margin:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
-                    hidesUnderline: true,
-                    isOverButton: true,
-                    isSearchable: false,
-                    isMultiSelect: false,
                   ),
-                ),
                 if ((widget.statusLoveFilter == '') ||
                     (widget.statusLoveFilter != 'love'))
                   Container(
@@ -439,7 +441,7 @@ class _FilterLessonHomePageWidgetState
                           optionLabels: const ['Yêu thích'],
                           onChanged: (val) => setState(
                               () => _model.lessonFavoriteStatusValue = val),
-                          width: 300.0,
+                          width: double.infinity,
                           textStyle:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Nunito Sans',
@@ -486,7 +488,7 @@ class _FilterLessonHomePageWidgetState
                         _model.programList.map((e) => e.name).toList(),
                     onChanged: (val) =>
                         setState(() => _model.programsValue = val),
-                    width: 300.0,
+                    width: double.infinity,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,

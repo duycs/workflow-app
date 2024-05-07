@@ -50,6 +50,8 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
   FocusNode? durationHoursFocusNode;
   TextEditingController? durationHoursTextController;
   String? Function(BuildContext, String?)? durationHoursTextControllerValidator;
+  // State field(s) for RadioButtonStatus widget.
+  FormFieldController<String>? radioButtonStatusValueController;
   bool isDataUploading1 = false;
   FFUploadedFile uploadedLocalFile1 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -134,7 +136,8 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
           r'''$.id''',
         ).toString().toString(),
         requestDataJson: <String, String?>{
-          'status': 'published',
+          'status':
+              radioButtonStatusValue == 'Hoạt động' ? 'published' : 'draft',
           'name': nameTextController.text,
           'description': descriptionTextController.text,
           'content': checkContent,
@@ -247,7 +250,8 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
           r'''$.id''',
         ).toString().toString(),
         requestDataJson: <String, dynamic>{
-          'status': 'published',
+          'status':
+              radioButtonStatusValue == 'Hoạt động' ? 'published' : 'draft',
           'name': nameTextController.text,
           'description': descriptionTextController.text,
           'content': checkContent,
@@ -462,4 +466,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
       }
     }
   }
+
+  /// Additional helper methods.
+  String? get radioButtonStatusValue => radioButtonStatusValueController?.value;
 }

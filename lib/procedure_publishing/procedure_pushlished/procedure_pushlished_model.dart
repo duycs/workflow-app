@@ -51,6 +51,8 @@ class ProcedurePushlishedModel
           int index, Function(ProcedurePublishedStepStruct) updateFn) =>
       staffOne[index] = updateFn(staffOne[index]);
 
+  bool isLoad = false;
+
   ///  State fields for stateful widgets in this component.
 
   // Stores action output result for [Backend Call - API (workflowsList)] action in ProcedurePushlished widget.
@@ -60,6 +62,8 @@ class ProcedurePushlishedModel
   FormFieldController<String>? dropDownValueController;
   DateTime? datePicked1;
   DateTime? datePicked2;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? reloadTokenProcedrue1;
   // Stores action output result for [Backend Call - API (ProcedureTemplateUpdateLimitPublished)] action in Button widget.
   ApiCallResponse? apiResultUpdateLimit;
   // Stores action output result for [Backend Call - API (ProcedurePublished)] action in Button widget.

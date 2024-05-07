@@ -135,6 +135,7 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
+                              fontWeight: FontWeight.w500,
                             ),
                       ),
                       FlutterFlowChoiceChips(
@@ -158,7 +159,7 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                                 letterSpacing: 0.0,
                               ),
                           iconColor: FlutterFlowTheme.of(context).primaryText,
-                          iconSize: 18.0,
+                          iconSize: 14.0,
                           elevation: 4.0,
                           borderRadius: BorderRadius.circular(16.0),
                         ),
@@ -174,7 +175,7 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                                 letterSpacing: 0.0,
                               ),
                           iconColor: FlutterFlowTheme.of(context).secondaryText,
-                          iconSize: 18.0,
+                          iconSize: 14.0,
                           elevation: 0.0,
                           borderRadius: BorderRadius.circular(16.0),
                         ),
@@ -394,7 +395,7 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                                             locale: FFLocalizations.of(context)
                                                 .languageCode,
                                           )
-                                        : 'Đến ngày',
+                                        : 'Đến hết ngày',
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -478,6 +479,7 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                                   fontFamily: 'Nunito Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -510,12 +512,16 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                                         .stringToDateTime(_model.dateStart),
                                     locale: FFLocalizations.of(context)
                                         .languageCode,
-                                  )}\"}}' : ' '}${_model.dateEnd != '' ? ',{\"date_created\":{\"_lte\":\"${dateTimeFormat(
+                                  )}\"}}' : ' '}${_model.dateEnd != '' ? ',{\"date_created\":{\"_lte\":\"${(String var1) {
+                                    return DateTime.parse(var1)
+                                        .add(const Duration(days: 1))
+                                        .toString();
+                                  }(dateTimeFormat(
                                     'yyyy-MM-dd',
                                     functions.stringToDateTime(_model.dateEnd),
                                     locale: FFLocalizations.of(context)
                                         .languageCode,
-                                  )}\"}}' : ' '}${_model.typeValue != ' ' ? ',{\"action_type\":{\"_eq\":\"${() {
+                                  ))}\"}}' : ' '}${_model.typeValue != ' ' ? ',{\"action_type\":{\"_eq\":\"${() {
                                     if (_model.typeValue == 'Nhập văn bản') {
                                       return 'submit_text';
                                     } else if (_model.typeValue ==
@@ -565,6 +571,7 @@ class _FilterTaskListWidgetState extends State<FilterTaskListWidget> {
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   color: Colors.white,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),

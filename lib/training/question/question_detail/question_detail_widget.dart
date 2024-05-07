@@ -131,7 +131,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                           ),

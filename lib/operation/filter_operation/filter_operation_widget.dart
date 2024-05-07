@@ -316,7 +316,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                               (_model.dateEnd != '') &&
                                       (_model.dateEnd != ' ')
                                   ? _model.dateEnd
-                                  : 'Đến ngày',
+                                  : 'Đến hết ngày',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
@@ -332,7 +332,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                   ].divide(const SizedBox(width: 8.0)),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
                   child: TextFormField(
                     controller: _model.nameTextController1,
                     focusNode: _model.nameFocusNode1,
@@ -388,7 +388,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
                   child: TextFormField(
                     controller: _model.nameTextController2,
                     focusNode: _model.nameFocusNode2,
@@ -444,7 +444,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
                   child: FlutterFlowDropDown<String>(
                     controller: _model.statusValueController ??=
                         FormFieldController<String>(
@@ -482,21 +482,25 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
                   child: FlutterFlowDropDown<String>(
                     controller: _model.actionValueController ??=
                         FormFieldController<String>(
-                      _model.actionValue ??=
-                          widget.userCreate != ''
-                              ? widget.userCreate
-                              : '',
+                      _model.actionValue ??= '',
                     ),
-                    options: const [
+                    options: List<String>.from([
                       'submit_text',
                       'image',
                       'upload_file',
                       'to_do_list',
                       'approve'
+                    ]),
+                    optionLabels: const [
+                      'Nhập văn bản',
+                      'Chụp ảnh',
+                      'Upload file',
+                      'Checklist công việc',
+                      'Phê duyệt'
                     ],
                     onChanged: (val) =>
                         setState(() => _model.actionValue = val),
@@ -562,6 +566,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                                   fontFamily: 'Nunito Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -603,6 +608,7 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   color: Colors.white,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),

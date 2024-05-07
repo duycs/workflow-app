@@ -84,13 +84,13 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -118,6 +118,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
                                 ),
                           ),
                           Expanded(
@@ -234,7 +235,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Nunito Sans',
-                                                fontSize: 16.0,
+                                                fontSize: 14.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
@@ -247,7 +248,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
-                                                  fontSize: 16.0,
+                                                  fontSize: 14.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
@@ -294,7 +295,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .primaryText,
-                                                      fontSize: 15.0,
+                                                      fontSize: 14.0,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.normal,

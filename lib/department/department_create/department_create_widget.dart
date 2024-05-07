@@ -91,45 +91,20 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  await showDialog(
-                    context: context,
-                    builder: (alertDialogContext) {
-                      return AlertDialog(
-                        title: Text(getJsonField(
-                          FFAppState().staffLogin,
-                          r'''$.branch_id''',
-                        ).toString()),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(alertDialogContext),
-                            child: const Text('Ok'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
-                child: Text(
-                  'Tạo bộ phận',
-                  style: FlutterFlowTheme.of(context).headlineMedium.override(
-                        fontFamily: 'Nunito Sans',
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        fontSize: 20.0,
-                        letterSpacing: 0.0,
-                      ),
-                ),
+              Text(
+                'Tạo bộ phận',
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily: 'Nunito Sans',
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      fontSize: 18.0,
+                      letterSpacing: 0.0,
+                    ),
               ),
             ],
           ),
           actions: const [],
           centerTitle: true,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -384,6 +359,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                           ),
@@ -444,6 +420,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
                                 ),
                           ),
                         ),
@@ -682,8 +659,8 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                   },
                   text: 'Lưu',
                   options: FFButtonOptions(
-                    width: 270.0,
-                    height: 50.0,
+                    width: 200.0,
+                    height: 40.0,
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
@@ -692,6 +669,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Nunito Sans',
                           color: Colors.white,
+                          fontSize: 14.0,
                           letterSpacing: 0.0,
                         ),
                     elevation: 3.0,

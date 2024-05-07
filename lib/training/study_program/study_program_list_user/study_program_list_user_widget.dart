@@ -7,6 +7,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'study_program_list_user_model.dart';
 export 'study_program_list_user_model.dart';
 
@@ -81,7 +82,7 @@ class _StudyProgramListUserWidgetState
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily: 'Nunito Sans',
                       color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 20.0,
+                      fontSize: 18.0,
                       letterSpacing: 0.0,
                     ),
               ),
@@ -89,7 +90,7 @@ class _StudyProgramListUserWidgetState
           ),
           actions: const [],
           centerTitle: true,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 24.0),
@@ -269,7 +270,6 @@ class _StudyProgramListUserWidgetState
                                               .textFieldNameSearchTextController
                                               ?.text = name!;
                                         });
-                                        setState(() {});
                                       },
                                     ),
                                   ),
@@ -282,6 +282,25 @@ class _StudyProgramListUserWidgetState
                     ],
                   ),
                 ),
+                if ('${(_model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.lessonNameSeach != '') && (_model.lessonNameSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"${_model.lessonNameSeach}\"}}}}' : ' '}${(_model.dateStartSeach != '') && (_model.dateStartSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"${_model.dateStartSeach}\"}}}}' : ' '}${(_model.dateEndSeach != '') && (_model.dateEndSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"${_model.dateEndSeach}\"}}}}' : ' '}' !=
+                    '    ')
+                  Align(
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                      child: Text(
+                        '#Kết quả hiển thị theo bộ lọc',
+                        style:
+                            FlutterFlowTheme.of(context).labelMedium.override(
+                                  fontFamily: 'Nunito Sans',
+                                  fontSize: 12.0,
+                                  letterSpacing: 0.0,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                      ),
+                    ),
+                  ),
                 if (_model.isLoad == true)
                   Builder(
                     builder: (context) {
@@ -355,7 +374,7 @@ class _StudyProgramListUserWidgetState
                                                       .primaryText,
                                                   fontSize: 14.0,
                                                   letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.normal,
+                                                  fontWeight: FontWeight.w500,
                                                 ),
                                           ),
                                           InkWell(
@@ -402,7 +421,7 @@ class _StudyProgramListUserWidgetState
                                                                 .primaryText,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FontWeight.w600,
+                                                            FontWeight.normal,
                                                       ),
                                                 ),
                                                 if ((_model.checkShow != null &&
@@ -441,13 +460,11 @@ class _StudyProgramListUserWidgetState
                                       final dataListTestsView = dataListViewItem
                                           .studioIdTest
                                           .toList();
-                                      return ListView.builder(
-                                        padding: EdgeInsets.zero,
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.vertical,
-                                        itemCount: dataListTestsView.length,
-                                        itemBuilder:
-                                            (context, dataListTestsViewIndex) {
+                                      return Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: List.generate(
+                                            dataListTestsView.length,
+                                            (dataListTestsViewIndex) {
                                           final dataListTestsViewItem =
                                               dataListTestsView[
                                                   dataListTestsViewIndex];
@@ -496,7 +513,7 @@ class _StudyProgramListUserWidgetState
                                                                       0.0,
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .normal,
+                                                                          .w500,
                                                                 ),
                                                           ),
                                                           Text(
@@ -519,12 +536,12 @@ class _StudyProgramListUserWidgetState
                                                                           context)
                                                                       .primaryText,
                                                                   fontSize:
-                                                                      10.0,
+                                                                      12.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .w300,
+                                                                          .normal,
                                                                 ),
                                                           ),
                                                         ].divide(const SizedBox(
@@ -566,6 +583,8 @@ class _StudyProgramListUserWidgetState
                                                                       'Nunito Sans',
                                                                   color: Colors
                                                                       .white,
+                                                                  fontSize:
+                                                                      14.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
@@ -606,7 +625,7 @@ class _StudyProgramListUserWidgetState
                                               ),
                                             ),
                                           );
-                                        },
+                                        }),
                                       );
                                     },
                                   ),
@@ -615,13 +634,11 @@ class _StudyProgramListUserWidgetState
                                     builder: (context) {
                                       final dataListLessionsView =
                                           dataListViewItem.lessions.toList();
-                                      return ListView.builder(
-                                        padding: EdgeInsets.zero,
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.vertical,
-                                        itemCount: dataListLessionsView.length,
-                                        itemBuilder: (context,
-                                            dataListLessionsViewIndex) {
+                                      return Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: List.generate(
+                                            dataListLessionsView.length,
+                                            (dataListLessionsViewIndex) {
                                           final dataListLessionsViewItem =
                                               dataListLessionsView[
                                                   dataListLessionsViewIndex];
@@ -691,7 +708,7 @@ class _StudyProgramListUserWidgetState
                                                                           .lessionsId
                                                                           .name
                                                                       : ' ',
-                                                                  maxLines: 3,
+                                                                  maxLines: 2,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .titleSmall
@@ -705,7 +722,7 @@ class _StudyProgramListUserWidgetState
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:
-                                                                            FontWeight.normal,
+                                                                            FontWeight.w500,
                                                                       ),
                                                                 ),
                                                                 Text(
@@ -715,10 +732,7 @@ class _StudyProgramListUserWidgetState
                                                                           String>(
                                                                           dateTimeFormat(
                                                                             'dd-MM-yyyy',
-                                                                            functions.stringToDateTime(valueOrDefault<String>(
-                                                                              dataListLessionsViewItem.lessionsId.dateCreated,
-                                                                              '0',
-                                                                            )),
+                                                                            functions.stringToDateTime(dataListLessionsViewItem.lessionsId.dateCreated),
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
                                                                           ),
@@ -735,11 +749,11 @@ class _StudyProgramListUserWidgetState
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .primaryText,
                                                                         fontSize:
-                                                                            10.0,
+                                                                            12.0,
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:
-                                                                            FontWeight.w300,
+                                                                            FontWeight.normal,
                                                                       ),
                                                                 ),
                                                               ],
@@ -780,6 +794,8 @@ class _StudyProgramListUserWidgetState
                                                                           'Nunito Sans',
                                                                       color: Colors
                                                                           .white,
+                                                                      fontSize:
+                                                                          14.0,
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -824,7 +840,7 @@ class _StudyProgramListUserWidgetState
                                               ),
                                             ),
                                           );
-                                        },
+                                        }),
                                       );
                                     },
                                   ),
@@ -834,6 +850,38 @@ class _StudyProgramListUserWidgetState
                         },
                       );
                     },
+                  ),
+                if ((_model.dataList.isEmpty) && (_model.isLoad == true))
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 0.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        FaIcon(
+                          FontAwesomeIcons.database,
+                          color: FlutterFlowTheme.of(context).alternate,
+                          size: 55.0,
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 15.0, 0.0, 0.0),
+                          child: Text(
+                            'Không có dữ liệu !',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
               ],
             ),

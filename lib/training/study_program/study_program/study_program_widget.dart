@@ -242,9 +242,9 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Nunito Sans',
-                                    fontSize: 16.0,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
+                                    fontWeight: FontWeight.w500,
                                   ),
                         ),
                         Builder(

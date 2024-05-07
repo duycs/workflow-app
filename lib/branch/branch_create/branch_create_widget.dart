@@ -438,7 +438,9 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                       fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
                                     ),
                                 elevation: 0.0,
                                 borderSide: BorderSide(
@@ -547,7 +549,20 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                             ),
                                           );
                                           await widget.callBackList?.call();
-                                          Navigator.pop(context);
+
+                                          context.pushNamed(
+                                            'BranchList',
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  const TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType.fade,
+                                                duration:
+                                                    Duration(milliseconds: 0),
+                                              ),
+                                            },
+                                          );
                                         } else {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
@@ -593,7 +608,9 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     color: Colors.white,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
                                   ),
                               borderSide: const BorderSide(
                                 color: Colors.transparent,

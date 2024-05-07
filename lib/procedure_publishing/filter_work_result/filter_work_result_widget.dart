@@ -136,7 +136,7 @@ class _FilterWorkResultWidgetState extends State<FilterWorkResultWidget> {
                       children: [
                         Expanded(
                           child: Text(
-                            'Khoảng thời gian xuất bản :',
+                            'Khoảng thời gian tạo:',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -390,7 +390,7 @@ class _FilterWorkResultWidgetState extends State<FilterWorkResultWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
                     child: TextFormField(
                       controller: _model.nameUserCreatedTextController,
                       focusNode: _model.nameUserCreatedFocusNode,
@@ -481,6 +481,7 @@ class _FilterWorkResultWidgetState extends State<FilterWorkResultWidget> {
                                     fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
@@ -516,6 +517,7 @@ class _FilterWorkResultWidgetState extends State<FilterWorkResultWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     color: Colors.white,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),

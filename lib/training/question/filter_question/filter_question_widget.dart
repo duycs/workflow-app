@@ -174,11 +174,7 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                       onChanged: (_) => EasyDebounce.debounce(
                         '_model.nameTextController',
                         const Duration(milliseconds: 2000),
-                        () async {
-                          setState(() {
-                            _model.nameSearch = _model.nameTextController.text;
-                          });
-                        },
+                        () => setState(() {}),
                       ),
                       autofocus: false,
                       obscureText: false,
@@ -265,6 +261,7 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                                     fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
@@ -284,9 +281,8 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                                         _model.statusSearch != ''
                                     ? _model.statusSearch
                                     : '',
-                                _model.nameSearch != null &&
-                                        _model.nameSearch != ''
-                                    ? _model.nameSearch
+                                _model.nameTextController.text != ''
+                                    ? _model.nameTextController.text
                                     : '',
                               );
                               Navigator.pop(context);
@@ -304,6 +300,7 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     color: Colors.white,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),

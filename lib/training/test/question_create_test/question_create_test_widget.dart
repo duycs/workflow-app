@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -299,7 +300,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                             .bodyLarge
                                             .override(
                                               fontFamily: 'Nunito Sans',
-                                              fontSize: 14.0,
+                                              fontSize: 13.0,
                                               letterSpacing: 0.0,
                                             ),
                                         hintText: 'Nhập đáp án...',
@@ -375,7 +376,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                             .bodyLarge
                                             .override(
                                               fontFamily: 'Nunito Sans',
-                                              fontSize: 14.0,
+                                              fontSize: 13.0,
                                               letterSpacing: 0.0,
                                             ),
                                         hintText: 'Nhập đáp án...',
@@ -657,6 +658,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                         .override(
                                           fontFamily: 'Nunito Sans',
                                           color: Colors.white,
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
@@ -734,6 +736,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                     .override(
                                       fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
                                     ),
                               ),
                             ),
@@ -852,6 +855,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                       fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 0.0,
@@ -868,6 +872,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                         Expanded(
                           child: FFButtonWidget(
                             onPressed: () async {
+                              var shouldSetState = false;
                               setState(() {
                                 _model.updateRequestDataStruct(
                                   (e) => e
@@ -882,70 +887,82 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                               if (_model.requestData!.answers
                                       .where((e) => e.correct == 1)
                                       .toList().isNotEmpty) {
-                                _model.apiResultCreate =
-                                    await QuestionGroup.questionCreateCall.call(
-                                  requestDataJson: _model.requestData?.toMap(),
-                                  accessToken: FFAppState().accessToken,
-                                );
-                                if ((_model.apiResultCreate?.succeeded ??
-                                    true)) {
-                                  Navigator.pop(context);
-                                  await widget.callBackList?.call(
-                                    (((_model.apiResultCreate?.jsonBody ?? '')
-                                                    .toList()
-                                                    .map<QuestionObjectStruct?>(
-                                                        QuestionObjectStruct
-                                                            .maybeFromMap)
-                                                    .toList()
-                                                as Iterable<
-                                                    QuestionObjectStruct?>)
-                                            .withoutNulls[0])
-                                        .id,
+                                _model.reloadTokenQuestionCreated =
+                                    await action_blocks.tokenReload(context);
+                                shouldSetState = true;
+                                if (_model.reloadTokenQuestionCreated!) {
+                                  _model.apiResultCreate = await QuestionGroup
+                                      .questionCreateCall
+                                      .call(
+                                    requestDataJson:
+                                        _model.requestData?.toMap(),
+                                    accessToken: FFAppState().accessToken,
                                   );
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: const Text('Tạo mới thành công!'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: const Text('Ok'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
+                                  shouldSetState = true;
+                                  if ((_model.apiResultCreate?.succeeded ??
+                                      true)) {
+                                    Navigator.pop(context);
+                                    await widget.callBackList?.call(
+                                      (((_model.apiResultCreate?.jsonBody ?? '')
+                                                      .toList()
+                                                      .map<QuestionObjectStruct?>(
+                                                          QuestionObjectStruct
+                                                              .maybeFromMap)
+                                                      .toList()
+                                                  as Iterable<
+                                                      QuestionObjectStruct?>)
+                                              .withoutNulls[0])
+                                          .id,
+                                    );
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: const Text('Tạo mới thành công!'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: const Text('Ok'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  } else {
+                                    Navigator.pop(context);
+                                    await widget.callBackList?.call(
+                                      (((_model.apiResultCreate?.jsonBody ?? '')
+                                                      .toList()
+                                                      .map<QuestionObjectStruct?>(
+                                                          QuestionObjectStruct
+                                                              .maybeFromMap)
+                                                      .toList()
+                                                  as Iterable<
+                                                      QuestionObjectStruct?>)
+                                              .withoutNulls[0])
+                                          .id,
+                                    );
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: const Text('Tạo mới thành công!'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: const Text('Ok'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  }
                                 } else {
-                                  Navigator.pop(context);
-                                  await widget.callBackList?.call(
-                                    (((_model.apiResultCreate?.jsonBody ?? '')
-                                                    .toList()
-                                                    .map<QuestionObjectStruct?>(
-                                                        QuestionObjectStruct
-                                                            .maybeFromMap)
-                                                    .toList()
-                                                as Iterable<
-                                                    QuestionObjectStruct?>)
-                                            .withoutNulls[0])
-                                        .id,
-                                  );
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: const Text('Tạo mới thành công!'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: const Text('Ok'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
+                                  setState(() {});
+                                  if (shouldSetState) setState(() {});
+                                  return;
                                 }
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
@@ -964,7 +981,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                 );
                               }
 
-                              setState(() {});
+                              if (shouldSetState) setState(() {});
                             },
                             text: 'Lưu',
                             options: FFButtonOptions(
@@ -979,6 +996,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     color: Colors.white,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                               borderSide: const BorderSide(

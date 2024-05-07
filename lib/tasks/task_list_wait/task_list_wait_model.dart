@@ -43,9 +43,13 @@ class TaskListWaitModel extends FlutterFlowModel<TaskListWaitWidget> {
 
   String? isShow;
 
+  bool isShows = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in TaskListWait widget.
+  bool? getTaskFailToken;
   // Stores action output result for [Backend Call - API (GetListTask)] action in TaskListWait widget.
   ApiCallResponse? apiResultGetTaskFail;
   // Stores action output result for [Backend Call - API (GetListTask)] action in TaskListWait widget.

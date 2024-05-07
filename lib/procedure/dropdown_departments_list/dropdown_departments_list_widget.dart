@@ -9,6 +9,7 @@ import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'dropdown_departments_list_model.dart';
 export 'dropdown_departments_list_model.dart';
@@ -263,6 +264,7 @@ class _DropdownDepartmentsListWidgetState
                   padding:
                       const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 80.0),
                   child: SingleChildScrollView(
+                    primary: false,
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -513,142 +515,193 @@ class _DropdownDepartmentsListWidgetState
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 16.0),
-                                child: Builder(
-                                  builder: (context) {
-                                    final listView = _model.data
-                                        .where((e) => e.name
-                                            .toLowerCase()
-                                            .contains(_model
-                                                .textNameTextController.text
-                                                .toLowerCase()))
-                                        .toList();
-                                    return ListView.separated(
-                                      padding: EdgeInsets.zero,
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.vertical,
-                                      itemCount: listView.length,
-                                      separatorBuilder: (_, __) =>
-                                          const SizedBox(height: 16.0),
-                                      itemBuilder: (context, listViewIndex) {
-                                        final listViewItem =
-                                            listView[listViewIndex];
-                                        return Container(
-                                          decoration: const BoxDecoration(),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  wrapWithModel(
-                                                    model: _model
-                                                        .checkBoxToggleModels
-                                                        .getModel(
-                                                      '${listViewItem.id}${listViewItem.name}${listViewItem.checkDep.toString()}',
-                                                      listViewIndex,
-                                                    ),
-                                                    updateCallback: () =>
-                                                        setState(() {}),
-                                                    updateOnChange: true,
-                                                    child: CheckBoxToggleWidget(
-                                                      key: Key(
-                                                        'Keyeub_${'${listViewItem.id}${listViewItem.name}${listViewItem.checkDep.toString()}'}',
+                              if (_model.isLoad == true)
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 16.0),
+                                  child: Builder(
+                                    builder: (context) {
+                                      final listView = _model.data
+                                          .where((e) => e.name
+                                              .toLowerCase()
+                                              .contains(_model
+                                                  .textNameTextController.text
+                                                  .toLowerCase()))
+                                          .toList();
+                                      return ListView.separated(
+                                        padding: EdgeInsets.zero,
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.vertical,
+                                        itemCount: listView.length,
+                                        separatorBuilder: (_, __) =>
+                                            const SizedBox(height: 16.0),
+                                        itemBuilder: (context, listViewIndex) {
+                                          final listViewItem =
+                                              listView[listViewIndex];
+                                          return Container(
+                                            decoration: const BoxDecoration(),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    wrapWithModel(
+                                                      model: _model
+                                                          .checkBoxToggleModels
+                                                          .getModel(
+                                                        '${listViewItem.id}${listViewItem.name}${listViewItem.checkDep.toString()}',
+                                                        listViewIndex,
                                                       ),
-                                                      checkParam:
-                                                          listViewItem.checkDep,
-                                                      color: 'colorUser',
-                                                      callBack:
-                                                          (checkCall) async {
-                                                        setState(() {
-                                                          _model.loop = 0;
-                                                        });
-                                                        while (_model.loop <
-                                                            _model
-                                                                .data.length) {
-                                                          setState(() {});
-                                                          if (listViewItem.id ==
-                                                              _model
-                                                                  .data[_model
-                                                                      .loop]
-                                                                  .id) {
+                                                      updateCallback: () =>
+                                                          setState(() {}),
+                                                      updateOnChange: true,
+                                                      child:
+                                                          CheckBoxToggleWidget(
+                                                        key: Key(
+                                                          'Keyeub_${'${listViewItem.id}${listViewItem.name}${listViewItem.checkDep.toString()}'}',
+                                                        ),
+                                                        checkParam: listViewItem
+                                                            .checkDep,
+                                                        color: 'colorUser',
+                                                        callBack:
+                                                            (checkCall) async {
+                                                          setState(() {
+                                                            _model.loop = 0;
+                                                          });
+                                                          while (_model.loop <
+                                                              _model.data
+                                                                  .length) {
+                                                            setState(() {});
+                                                            if (listViewItem
+                                                                    .id ==
+                                                                _model
+                                                                    .data[_model
+                                                                        .loop]
+                                                                    .id) {
+                                                              setState(() {
+                                                                _model
+                                                                    .updateDataAtIndex(
+                                                                  _model.loop,
+                                                                  (e) => e
+                                                                    ..checkDep =
+                                                                        checkCall,
+                                                                );
+                                                              });
+                                                            }
                                                             setState(() {
-                                                              _model
-                                                                  .updateDataAtIndex(
-                                                                _model.loop,
-                                                                (e) => e
-                                                                  ..checkDep =
-                                                                      checkCall,
-                                                              );
+                                                              _model.loop =
+                                                                  _model.loop +
+                                                                      1;
                                                             });
                                                           }
                                                           setState(() {
-                                                            _model.loop =
-                                                                _model.loop + 1;
+                                                            _model.loop = 0;
                                                           });
-                                                        }
-                                                        setState(() {
-                                                          _model.loop = 0;
-                                                        });
-                                                      },
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  4.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            listViewItem.name,
-                                                            maxLines: 2,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                          ),
-                                                        ],
+                                                        },
                                                       ),
                                                     ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    4.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              listViewItem.name,
+                                                              maxLines: 2,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
                                 ),
-                              ),
                               Divider(
                                 height: 1.0,
                                 thickness: 1.0,
                                 color: FlutterFlowTheme.of(context).alternate,
                               ),
+                              if ((_model.data
+                                          .where((e) => e.name
+                                              .toLowerCase()
+                                              .contains(_model
+                                                  .textNameTextController.text
+                                                  .toLowerCase()))
+                                          .toList().isEmpty) &&
+                                  (_model.isLoad == true))
+                                Align(
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 100.0, 0.0, 50.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        FaIcon(
+                                          FontAwesomeIcons.database,
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          size: 55.0,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 15.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Không có dữ liệu !',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  fontSize: 18.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                             ],
                           ),
                         ),

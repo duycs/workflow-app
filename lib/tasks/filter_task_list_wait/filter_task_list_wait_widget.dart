@@ -136,6 +136,7 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Nunito Sans',
                               letterSpacing: 0.0,
+                              fontWeight: FontWeight.w500,
                             ),
                       ),
                       FlutterFlowChoiceChips(
@@ -395,7 +396,7 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                                             locale: FFLocalizations.of(context)
                                                 .languageCode,
                                           )
-                                        : 'Đến ngày',
+                                        : 'Đến hết ngày',
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -479,6 +480,7 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                                   fontFamily: 'Nunito Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -511,12 +513,16 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                                         .stringToDateTime(_model.dateStart),
                                     locale: FFLocalizations.of(context)
                                         .languageCode,
-                                  )}\"}}' : ' '}${_model.dateEnd != '' ? ',{\"date_created\":{\"_lte\":\"${dateTimeFormat(
+                                  )}\"}}' : ' '}${_model.dateEnd != '' ? ((String var1) {
+                                    return DateTime.parse(var1)
+                                        .add(const Duration(days: 1))
+                                        .toString();
+                                  }(',{\"date_created\":{\"_lte\":\"${dateTimeFormat(
                                     'yyyy-MM-dd',
                                     functions.stringToDateTime(_model.dateEnd),
                                     locale: FFLocalizations.of(context)
                                         .languageCode,
-                                  )}\"}}' : ' '}${_model.typeValue != null && _model.typeValue != '' ? ',{\"action_type\":{\"_eq\":\"${() {
+                                  )}\"}}')) : ' '}${_model.typeValue != null && _model.typeValue != '' ? ',{\"action_type\":{\"_eq\":\"${() {
                                     if (_model.typeValue == 'Nhập văn bản') {
                                       return 'submit_text';
                                     } else if (_model.typeValue ==
@@ -566,6 +572,7 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   color: Colors.white,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),

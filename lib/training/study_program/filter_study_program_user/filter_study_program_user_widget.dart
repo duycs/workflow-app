@@ -59,11 +59,11 @@ class _FilterStudyProgramUserWidgetState
     _model.lessionsTextController ??= TextEditingController(
         text: widget.lessonName != ''
             ? widget.lessonName
-            : ' ');
+            : '');
     _model.lessionsFocusNode ??= FocusNode();
 
     _model.nameTextController ??= TextEditingController(
-        text: widget.name != '' ? widget.name : ' ');
+        text: widget.name != '' ? widget.name : '');
     _model.nameFocusNode ??= FocusNode();
   }
 
@@ -474,6 +474,7 @@ class _FilterStudyProgramUserWidgetState
                                   fontFamily: 'Nunito Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -509,6 +510,7 @@ class _FilterStudyProgramUserWidgetState
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   color: Colors.white,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),

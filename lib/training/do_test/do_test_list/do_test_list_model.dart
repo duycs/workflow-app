@@ -23,6 +23,8 @@ class DoTestListModel extends FlutterFlowModel<DoTestListWidget> {
 
   String dateEndFilter = '';
 
+  bool isShow = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

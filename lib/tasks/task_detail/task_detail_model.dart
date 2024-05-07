@@ -24,6 +24,14 @@ class TaskDetailModel extends FlutterFlowModel<TaskDetailWidget> {
 
   bool isLoad = false;
 
+  WorkflowsStruct? stepList;
+  void updateStepListStruct(Function(WorkflowsStruct) updateFn) =>
+      updateFn(stepList ??= WorkflowsStruct());
+
+  int loop = 0;
+
+  bool isShowPdf = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -31,6 +39,22 @@ class TaskDetailModel extends FlutterFlowModel<TaskDetailWidget> {
   bool? getTaskListToken;
   // Stores action output result for [Backend Call - API (GetListTask)] action in TaskDetail widget.
   ApiCallResponse? apiResultGetTaskList;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? confirmOperationDetail2Token;
+  // Stores action output result for [Backend Call - API (ConfirmOperation)] action in Button widget.
+  ApiCallResponse? apiResultConfirmOperationDetail2;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? getWorkflowDetailToken2;
+  // Stores action output result for [Backend Call - API (workflowsOne)] action in Button widget.
+  ApiCallResponse? apiResultGetWorkflowDetail;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? receiveTaskDetailToken;
+  // Stores action output result for [Backend Call - API (ReceiveTask)] action in Button widget.
+  ApiCallResponse? apiResultReceiveTaskDetail;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? getTaskListDetailToken;
+  // Stores action output result for [Backend Call - API (GetListTask)] action in Button widget.
+  ApiCallResponse? apiResultGetTaskListDetail2;
   // Stores action output result for [Backend Call - API (UpdateOperation)] action in detail_action_type_to_do_list widget.
   ApiCallResponse? apiResultCheckList;
   // Stores action output result for [Action Block - tokenReload] action in detail_action_type_approve widget.
@@ -38,9 +62,9 @@ class TaskDetailModel extends FlutterFlowModel<TaskDetailWidget> {
   // Stores action output result for [Backend Call - API (ConfirmOperation)] action in detail_action_type_approve widget.
   ApiCallResponse? apiResultConfirm;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? apiResultx5lToken;
+  bool? apiResultx5lTokenCopy;
   // Stores action output result for [Backend Call - API (UpdateOperation)] action in Button widget.
-  ApiCallResponse? apiResultx5l;
+  ApiCallResponse? apiResultx5lCopy;
   // Stores action output result for [Action Block - tokenReload] action in detail_action_type_upload_file widget.
   bool? apiResultl2eToken;
   // Stores action output result for [Backend Call - API (UpdateOperation)] action in detail_action_type_upload_file widget.

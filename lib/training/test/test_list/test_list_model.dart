@@ -19,6 +19,8 @@ class TestListModel extends FlutterFlowModel<TestListWidget> {
 
   String filter = '';
 
+  String checkData = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -58,6 +60,7 @@ class TestListModel extends FlutterFlowModel<TestListWidget> {
             .data
             .toList()
             .cast<TestListStruct>();
+        checkData = '1';
       }
     } else {
       return;

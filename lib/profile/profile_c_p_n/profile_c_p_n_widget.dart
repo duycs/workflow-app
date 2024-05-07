@@ -1,16 +1,15 @@
 import '/components/nav_bar_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:provider/provider.dart';
 import 'profile_c_p_n_model.dart';
 export 'profile_c_p_n_model.dart';
@@ -22,13 +21,12 @@ class ProfileCPNWidget extends StatefulWidget {
   State<ProfileCPNWidget> createState() => _ProfileCPNWidgetState();
 }
 
-class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
-    with TickerProviderStateMixin {
+class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
   late ProfileCPNModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = <String, AnimationInfo>{};
+  late StreamSubscription<bool> _keyboardVisibilitySubscription;
+  bool _isKeyboardVisible = false;
 
   @override
   void initState() {
@@ -41,48 +39,23 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
       setState(() {});
     });
 
-    animationsMap.addAll({
-      'blurOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          VisibilityEffect(duration: 200.ms),
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 200.0.ms,
-            duration: 500.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          TiltEffect(
-            curve: Curves.easeInOut,
-            delay: 200.0.ms,
-            duration: 500.0.ms,
-            begin: const Offset(0.698, 0),
-            end: const Offset(0, 0),
-          ),
-          ScaleEffect(
-            curve: Curves.easeInOut,
-            delay: 200.0.ms,
-            duration: 500.0.ms,
-            begin: const Offset(0.7, 0.7),
-            end: const Offset(1.0, 1.0),
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 200.0.ms,
-            duration: 500.0.ms,
-            begin: const Offset(0.0, 30.0),
-            end: const Offset(0.0, 0.0),
-          ),
-        ],
-      ),
-    });
+    if (!isWeb) {
+      _keyboardVisibilitySubscription =
+          KeyboardVisibilityController().onChange.listen((bool visible) {
+        setState(() {
+          _isKeyboardVisible = visible;
+        });
+      });
+    }
   }
 
   @override
   void dispose() {
     _model.dispose();
 
+    if (!isWeb) {
+      _keyboardVisibilitySubscription.cancel();
+    }
     super.dispose();
   }
 
@@ -227,7 +200,10 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
+                                                            fontSize: 20.0,
                                                             letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
                                                           ),
                                                     ),
                                                     Row(
@@ -506,39 +482,8 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                             MainAxisSize.max,
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
-                                                                .spaceBetween,
+                                                                .end,
                                                         children: [
-                                                          RatingBar.builder(
-                                                            onRatingUpdate: (newValue) =>
-                                                                setState(() =>
-                                                                    _model.ratingBarValue =
-                                                                        newValue),
-                                                            itemBuilder:
-                                                                (context,
-                                                                        index) =>
-                                                                    Icon(
-                                                              Icons
-                                                                  .star_rounded,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondary,
-                                                            ),
-                                                            direction:
-                                                                Axis.horizontal,
-                                                            initialRating: _model
-                                                                    .ratingBarValue ??=
-                                                                5.0,
-                                                            unratedColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .accent2,
-                                                            itemCount: 5,
-                                                            itemSize: 24.0,
-                                                            glowColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondary,
-                                                          ),
                                                           FFButtonWidget(
                                                             onPressed:
                                                                 () async {
@@ -590,8 +535,12 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                                             'Nunito Sans',
                                                                         color: Colors
                                                                             .white,
+                                                                        fontSize:
+                                                                            14.0,
                                                                         letterSpacing:
                                                                             0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
                                                                       ),
                                                               elevation: 3.0,
                                                               borderSide:
@@ -604,21 +553,6 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                                   BorderRadius
                                                                       .circular(
                                                                           12.0),
-                                                              hoverColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .accent1,
-                                                              hoverBorderSide:
-                                                                  BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                                width: 2.0,
-                                                              ),
-                                                              hoverTextColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
                                                             ),
                                                           ),
                                                         ],
@@ -633,14 +567,17 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                               .alternate,
                                                     ),
                                                     Text(
-                                                      'Người sáng lập',
+                                                      'Ban lãnh đạo',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .labelMedium
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
+                                                            fontSize: 14.0,
                                                             letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
                                                           ),
                                                     ),
                                                     Padding(
@@ -744,8 +681,12 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                                           .override(
                                                                             fontFamily:
                                                                                 'Nunito Sans',
+                                                                            fontSize:
+                                                                                14.0,
                                                                             letterSpacing:
                                                                                 0.0,
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
                                                                           ),
                                                                     ),
                                                                     Text(
@@ -934,7 +875,10 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
+                                                            fontSize: 14.0,
                                                             letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
                                                           ),
                                                     ),
                                                     Html(
@@ -975,7 +919,10 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
+                                                            fontSize: 14.0,
                                                             letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
                                                           ),
                                                     ),
                                                     Text(
@@ -1288,8 +1235,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                                       ),
                                     ),
                                   ),
-                                ).animateOnPageLoad(
-                                    animationsMap['blurOnPageLoadAnimation']!),
+                                ),
                               ),
                             ),
                             Align(
@@ -1347,16 +1293,19 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget>
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
-              child: wrapWithModel(
-                model: _model.navBarModel,
-                updateCallback: () => setState(() {}),
-                child: const NavBarWidget(
-                  selectedPageIndex: 4,
+            if (!(isWeb
+                ? MediaQuery.viewInsetsOf(context).bottom > 0
+                : _isKeyboardVisible))
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                child: wrapWithModel(
+                  model: _model.navBarModel,
+                  updateCallback: () => setState(() {}),
+                  child: const NavBarWidget(
+                    selectedPageIndex: 4,
+                  ),
                 ),
               ),
-            ),
           ],
         ),
       ),

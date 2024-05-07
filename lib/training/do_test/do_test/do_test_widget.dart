@@ -234,37 +234,6 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                     .onResetTimer();
 
                                                 _model.instantTimer?.cancel();
-                                                var confirmDialogResponse =
-                                                    await showDialog<bool>(
-                                                          context: context,
-                                                          builder:
-                                                              (alertDialogContext) {
-                                                            return AlertDialog(
-                                                              content: Text(_model
-                                                                  .timerMilliseconds
-                                                                  .toString()),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          false),
-                                                                  child: const Text(
-                                                                      'Cancel'),
-                                                                ),
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          true),
-                                                                  child: const Text(
-                                                                      'Confirm'),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          },
-                                                        ) ??
-                                                        false;
                                                 while (_model.loopQuestion <
                                                     _model.list!.questions
                                                         .length) {
@@ -480,26 +449,27 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                   .apiResultCaculatorScores1
                                                                   ?.succeeded ??
                                                               true)) {
-                                                            await showDialog(
-                                                              context: context,
-                                                              builder:
-                                                                  (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: const Text(
-                                                                      'Thông báo'),
-                                                                  content: const Text(
-                                                                      'Nộp bài thi thành công!'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: const Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
-                                                                );
-                                                              },
+                                                            ScaffoldMessenger
+                                                                    .of(context)
+                                                                .showSnackBar(
+                                                              SnackBar(
+                                                                content: Text(
+                                                                  'Nộp bài thi thành công!',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                  ),
+                                                                ),
+                                                                duration: const Duration(
+                                                                    milliseconds:
+                                                                        4000),
+                                                                backgroundColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondary,
+                                                              ),
                                                             );
 
                                                             context.pushNamed(
@@ -534,7 +504,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                 'percentCorect':
                                                                     serializeParam(
                                                                   getJsonField(
-                                                                    (_model.apiResultCaculatorScores
+                                                                    (_model.apiResultCaculatorScores1
                                                                             ?.jsonBody ??
                                                                         ''),
                                                                     r'''$.percent_correct''',
@@ -796,6 +766,58 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                 0.0, 0.0),
                                                     child: Text(
                                                       '(Chọn 1 hoặc nhiều đáp án đúng)',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            fontSize: 13.0,
+                                                            letterSpacing: 0.0,
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                if (listQuestionItem.questionsId
+                                                        .answerType ==
+                                                    'number')
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      '(Trả lời số)',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            fontSize: 13.0,
+                                                            letterSpacing: 0.0,
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                if (listQuestionItem.questionsId
+                                                        .answerType ==
+                                                    'text')
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      '(Trả lời văn bản ngắn)',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
@@ -1098,6 +1120,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                               ) ??
                               false;
                           if (confirmDialogResponse) {
+                            _model.instantTimer?.cancel();
                             _model.timerController.onStopTimer();
                             _model.timerController.onResetTimer();
 
@@ -1355,11 +1378,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                               if (shouldSetState) setState(() {});
                               return;
                             }
-                          } else {
-                            if (shouldSetState) setState(() {});
-                            return;
                           }
-
                           if (shouldSetState) setState(() {});
                         },
                         text: 'Nộp bài',

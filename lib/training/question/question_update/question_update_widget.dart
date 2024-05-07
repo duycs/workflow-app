@@ -436,7 +436,7 @@ class _QuestionUpdateWidgetState extends State<QuestionUpdateWidget> {
                                                   .bodyLarge
                                                   .override(
                                                     fontFamily: 'Nunito Sans',
-                                                    fontSize: 14.0,
+                                                    fontSize: 13.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                           hintText: 'Nhập đáp án...',
@@ -528,7 +528,7 @@ class _QuestionUpdateWidgetState extends State<QuestionUpdateWidget> {
                                                   .bodyLarge
                                                   .override(
                                                     fontFamily: 'Nunito Sans',
-                                                    fontSize: 14.0,
+                                                    fontSize: 13.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                           hintText: 'Nhập đáp án...',
@@ -838,6 +838,7 @@ class _QuestionUpdateWidgetState extends State<QuestionUpdateWidget> {
                                           .override(
                                             fontFamily: 'Nunito Sans',
                                             color: Colors.white,
+                                            fontSize: 14.0,
                                             letterSpacing: 0.0,
                                           ),
                                       elevation: 3.0,
@@ -917,6 +918,7 @@ class _QuestionUpdateWidgetState extends State<QuestionUpdateWidget> {
                                       .override(
                                         fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                 ),
                               ),
@@ -1040,6 +1042,7 @@ class _QuestionUpdateWidgetState extends State<QuestionUpdateWidget> {
                                         fontFamily: 'Nunito Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
+                                        fontSize: 14.0,
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 0.0,
@@ -1171,6 +1174,7 @@ class _QuestionUpdateWidgetState extends State<QuestionUpdateWidget> {
                                     .override(
                                       fontFamily: 'Nunito Sans',
                                       color: Colors.white,
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
                                 borderSide: const BorderSide(

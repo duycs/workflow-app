@@ -131,6 +131,7 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                               borderRadius: 30.0,
                               borderWidth: 1.0,
                               buttonSize: 60.0,
+                              fillColor: const Color(0x90FFFFFF),
                               icon: Icon(
                                 Icons.arrow_back_rounded,
                                 color: FlutterFlowTheme.of(context).primaryText,

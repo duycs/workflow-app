@@ -70,17 +70,17 @@ class _DoActionTypeToDoListWidgetState
                       context: context,
                       builder: (alertDialogContext) {
                         return AlertDialog(
-                          title: const Text('Bạn chắc không?'),
+                          content: const Text('Xác nhận đã thực hiện!'),
                           actions: [
                             TextButton(
                               onPressed: () =>
                                   Navigator.pop(alertDialogContext, false),
-                              child: const Text('Không'),
+                              child: const Text('Đóng'),
                             ),
                             TextButton(
                               onPressed: () =>
                                   Navigator.pop(alertDialogContext, true),
-                              child: const Text('Có'),
+                              child: const Text('Xác nhận'),
                             ),
                           ],
                         );
@@ -103,17 +103,17 @@ class _DoActionTypeToDoListWidgetState
                       context: context,
                       builder: (alertDialogContext) {
                         return AlertDialog(
-                          title: const Text('Bạn chắc không?'),
+                          content: const Text('Xác nhận chưa thực hiện!'),
                           actions: [
                             TextButton(
                               onPressed: () =>
                                   Navigator.pop(alertDialogContext, false),
-                              child: const Text('Không'),
+                              child: const Text('Đóng'),
                             ),
                             TextButton(
                               onPressed: () =>
                                   Navigator.pop(alertDialogContext, true),
-                              child: const Text('Có'),
+                              child: const Text('Xác nhận'),
                             ),
                           ],
                         );
@@ -140,12 +140,15 @@ class _DoActionTypeToDoListWidgetState
             checkColor: FlutterFlowTheme.of(context).info,
           ),
         ),
-        Text(
-          widget.listdata!.operationsId.content,
-          style: FlutterFlowTheme.of(context).bodyMedium.override(
-                fontFamily: 'Nunito Sans',
-                letterSpacing: 0.0,
-              ),
+        Expanded(
+          child: Text(
+            widget.listdata!.operationsId.content,
+            maxLines: 5,
+            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  fontFamily: 'Nunito Sans',
+                  letterSpacing: 0.0,
+                ),
+          ),
         ),
       ].divide(const SizedBox(width: 8.0)),
     );

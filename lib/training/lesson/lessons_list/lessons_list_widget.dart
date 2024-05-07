@@ -107,13 +107,13 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -309,92 +309,95 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Nunito Sans',
                               color: FlutterFlowTheme.of(context).secondaryText,
-                              fontSize: 10.0,
+                              fontSize: 12.0,
                               letterSpacing: 0.0,
                               fontStyle: FontStyle.italic,
                             ),
                       ),
                     ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 44.0),
-                    child: Builder(
-                      builder: (context) {
-                        final listItems = _model.list.toList();
-                        return ListView.separated(
-                          padding: EdgeInsets.zero,
-                          primary: false,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: listItems.length,
-                          separatorBuilder: (_, __) => const SizedBox(height: 12.0),
-                          itemBuilder: (context, listItemsIndex) {
-                            final listItemsItem = listItems[listItemsIndex];
-                            return Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 16.0, 0.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed(
-                                    'LessonDetail',
-                                    queryParameters: {
-                                      'idLesson': serializeParam(
-                                        listItemsItem.id,
-                                        ParamType.String,
-                                      ),
-                                    }.withoutNulls,
-                                    extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
-                                        hasTransition: true,
-                                        transitionType: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                      ),
-                                    },
-                                  );
-                                },
-                                child: Container(
-                                  width: 220.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    border: Border.all(
+                  Flexible(
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 44.0),
+                      child: Builder(
+                        builder: (context) {
+                          final listItems = _model.list.toList();
+                          return ListView.separated(
+                            padding: EdgeInsets.zero,
+                            primary: false,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            itemCount: listItems.length,
+                            separatorBuilder: (_, __) => const SizedBox(height: 12.0),
+                            itemBuilder: (context, listItemsIndex) {
+                              final listItemsItem = listItems[listItemsIndex];
+                              return Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 16.0, 0.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      'LessonDetail',
+                                      queryParameters: {
+                                        'idLesson': serializeParam(
+                                          listItemsItem.id,
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      width: 1.0,
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        width: 1.0,
+                                      ),
                                     ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(3.0),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                            child: Image.network(
-                                              '${FFAppConstants.ApiBaseUrl}/assets/${listItemsItem.imageCover}?access_token=${FFAppState().accessToken}',
-                                              width: 100.0,
-                                              height: 100.0,
-                                              fit: BoxFit.cover,
-                                              alignment: const Alignment(0.0, 0.0),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(3.0),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                              child: Image.network(
+                                                '${FFAppConstants.ApiBaseUrl}/assets/${listItemsItem.imageCover}?access_token=${FFAppState().accessToken}',
+                                                width: 100.0,
+                                                height: 100.0,
+                                                fit: BoxFit.cover,
+                                                alignment: const Alignment(0.0, 0.0),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Expanded(
-                                          child: Container(
-                                            height: 100.0,
-                                            decoration: const BoxDecoration(),
+                                          Expanded(
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
@@ -407,6 +410,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                                       .override(
                                                         fontFamily:
                                                             'Nunito Sans',
+                                                        fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -422,19 +426,22 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                                       .override(
                                                         fontFamily:
                                                             'Nunito Sans',
+                                                        fontSize: 13.0,
                                                         letterSpacing: 0.0,
                                                         lineHeight: 1.0,
                                                       ),
                                                 ),
                                                 Text(
                                                   '',
-                                                  maxLines: 1,
+                                                  textAlign: TextAlign.start,
+                                                  maxLines: 2,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodySmall
                                                       .override(
                                                         fontFamily:
                                                             'Nunito Sans',
+                                                        fontSize: 13.0,
                                                         letterSpacing: 0.0,
                                                         lineHeight: 1.0,
                                                       ),
@@ -442,47 +449,128 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                                 Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
-                                                    Icon(
-                                                      Icons.timelapse_outlined,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      size: 20.0,
+                                                    SingleChildScrollView(
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        3.0,
+                                                                        0.0),
+                                                            child: Icon(
+                                                              Icons
+                                                                  .timelapse_outlined,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryText,
+                                                              size: 20.0,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            listItemsItem
+                                                                .durationHours
+                                                                .toString(),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                          Text(
+                                                            'phút',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ].divide(const SizedBox(
+                                                            width: 2.0)),
+                                                      ),
                                                     ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Text(
-                                                          listItemsItem
-                                                              .durationHours
-                                                              .toString(),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodySmall
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
+                                                    Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              1.0, 0.0),
+                                                      child: Container(
+                                                        height: 30.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: listItemsItem.status ==
+                                                                  'published'
+                                                              ? FlutterFlowTheme
+                                                                      .of(
+                                                                          context)
+                                                                  .accent2
+                                                              : FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .accent3,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20.0),
                                                         ),
-                                                        Text(
-                                                          'phút',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodySmall
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      0.0,
+                                                                      8.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            listItemsItem
+                                                                        .status ==
+                                                                    'published'
+                                                                ? 'Hoạt động'
+                                                                : 'Không hoạt động',
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: listItemsItem
+                                                                              .status ==
+                                                                          'published'
+                                                                      ? FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondary
+                                                                      : FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .tertiary,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
                                                         ),
-                                                      ].divide(
-                                                          const SizedBox(width: 2.0)),
+                                                      ),
                                                     ),
                                                   ].divide(
                                                       const SizedBox(width: 4.0)),
@@ -490,16 +578,16 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                               ].divide(const SizedBox(height: 6.0)),
                                             ),
                                           ),
-                                        ),
-                                      ].divide(const SizedBox(width: 8.0)),
+                                        ].divide(const SizedBox(width: 8.0)),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            );
-                          },
-                        );
-                      },
+                              );
+                            },
+                          );
+                        },
+                      ),
                     ),
                   ),
                   if ((_model.list.isEmpty) && (_model.checkAPI == '1'))
@@ -520,7 +608,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Text(
-                              'Chưa có dữ liệu',
+                              'Không có dữ liệu !',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -528,21 +616,6 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                     fontSize: 18.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
-                                  ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 3.0, 0.0, 0.0),
-                            child: Text(
-                              'Hiện tại bạn chưa có dữ liệu nào!',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
                                   ),
                             ),
                           ),

@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/tasks/done_action_type_to_do_list/done_action_type_to_do_list_widget.dart';
 import '/tasks/filter_task_list_done/filter_task_list_done_widget.dart';
+import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -16,6 +17,7 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'task_list_done_model.dart';
@@ -32,6 +34,8 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
   late TaskListDoneModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  late StreamSubscription<bool> _keyboardVisibilitySubscription;
+  bool _isKeyboardVisible = false;
 
   @override
   void initState() {
@@ -40,59 +44,74 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultGetTaskDone = await TaskGroup.getListTaskCall.call(
-        accessToken: FFAppState().accessToken,
-        filter: '{\"_and\":[{\"submit_staff_id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffLogin,
-          r'''$.id''',
-        ).toString().toString()}\"}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffLogin,
-          r'''$.organization_id''',
-        ).toString().toString()}\"}}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
-      );
-      if ((_model.apiResultGetTaskDone?.succeeded ?? true)) {
-        setState(() {
-          _model.list = TaskListDataStruct.maybeFromMap(
-                  (_model.apiResultGetTaskDone?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<TaskListStruct>();
-        });
-      }
-      _model.apiResultGetTask = await TaskGroup.getListTaskCall.call(
-        accessToken: FFAppState().accessToken,
-        filter:
-            '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffLogin,
-          r'''$.id''',
-        ).toString().toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffLogin,
-          r'''$.organization_id''',
-        ).toString().toString()}\"}}}]}',
-      );
-      if ((_model.apiResultGetTask?.succeeded ?? true)) {
-        setState(() {
-          _model.taskToDo = TaskListDataStruct.maybeFromMap(
-                  (_model.apiResultGetTask?.jsonBody ?? ''))!
-              .data
-              .where((e) =>
-                  (e.status == 'todo') &&
-                  (e.current.toString() == '1'))
-              .toList()
-              .toList()
-              .cast<TaskListStruct>();
-          _model.taskWait = TaskListDataStruct.maybeFromMap(
-                  (_model.apiResultGetTask?.jsonBody ?? ''))!
-              .data
-              .where((e) =>
-                  (e.status == 'todo') &&
-                  (e.current.toString() == '0'))
-              .toList()
-              .toList()
-              .cast<TaskListStruct>();
-        });
+      _model.getTaskDoneToken = await action_blocks.tokenReload(context);
+      if (_model.getTaskDoneToken!) {
+        _model.apiResultGetTaskDone = await TaskGroup.getListTaskCall.call(
+          accessToken: FFAppState().accessToken,
+          filter: '{\"_and\":[{\"submit_staff_id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.id''',
+          ).toString().toString()}\"}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.organization_id''',
+          ).toString().toString()}\"}}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
+        );
+        if ((_model.apiResultGetTaskDone?.succeeded ?? true)) {
+          setState(() {
+            _model.list = TaskListDataStruct.maybeFromMap(
+                    (_model.apiResultGetTaskDone?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<TaskListStruct>();
+          });
+        }
+        _model.apiResultGetTask = await TaskGroup.getListTaskCall.call(
+          accessToken: FFAppState().accessToken,
+          filter:
+              '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.id''',
+          ).toString().toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.organization_id''',
+          ).toString().toString()}\"}}}]}',
+        );
+        if ((_model.apiResultGetTask?.succeeded ?? true)) {
+          setState(() {
+            _model.taskToDo = TaskListDataStruct.maybeFromMap(
+                    (_model.apiResultGetTask?.jsonBody ?? ''))!
+                .data
+                .where((e) =>
+                    (e.status == 'todo') &&
+                    (e.current.toString() == '1'))
+                .toList()
+                .toList()
+                .cast<TaskListStruct>();
+            _model.taskWait = TaskListDataStruct.maybeFromMap(
+                    (_model.apiResultGetTask?.jsonBody ?? ''))!
+                .data
+                .where((e) =>
+                    (e.status == 'todo') &&
+                    (e.current.toString() == '0'))
+                .toList()
+                .toList()
+                .cast<TaskListStruct>();
+            _model.ishows = true;
+          });
+        }
+      } else {
+        setState(() {});
       }
     });
+
+    if (!isWeb) {
+      _keyboardVisibilitySubscription =
+          KeyboardVisibilityController().onChange.listen((bool visible) {
+        setState(() {
+          _isKeyboardVisible = visible;
+        });
+      });
+    }
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
@@ -102,6 +121,9 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
   void dispose() {
     _model.dispose();
 
+    if (!isWeb) {
+      _keyboardVisibilitySubscription.cancel();
+    }
     super.dispose();
   }
 
@@ -128,7 +150,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
                         fontFamily: 'Nunito Sans',
                         color: FlutterFlowTheme.of(context).primaryText,
-                        fontSize: 20.0,
+                        fontSize: 18.0,
                         letterSpacing: 0.0,
                       ),
                 ),
@@ -137,7 +159,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: Column(
           mainAxisSize: MainAxisSize.max,
@@ -149,7 +171,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                   primary: false,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding:
@@ -175,10 +197,10 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                 .call(
                                           accessToken: FFAppState().accessToken,
                                           filter:
-                                              '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                              '{\"_and\":[{\"submit_staff_id\":{\"_eq\":\"${getJsonField(
                                             FFAppState().staffLogin,
                                             r'''$.id''',
-                                          ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                          ).toString()}\"}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
                                             FFAppState().staffLogin,
                                             r'''$.organization_id''',
                                           ).toString()}\"}}},{\"name\":{\"_icontains\":\"${_model.textController.text}\"}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
@@ -210,10 +232,10 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                 .call(
                                           accessToken: FFAppState().accessToken,
                                           filter:
-                                              '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                              '{\"_and\":[{\"submit_staff_id\":{\"_eq\":\"${getJsonField(
                                             FFAppState().staffLogin,
                                             r'''$.id''',
-                                          ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                          ).toString()}\"}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
                                             FFAppState().staffLogin,
                                             r'''$.organization_id''',
                                           ).toString()}\"}}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
@@ -318,10 +340,10 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                   accessToken:
                                                       FFAppState().accessToken,
                                                   filter:
-                                                      '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                                      '{\"_and\":[{\"submit_staff_id\":{\"_eq\":\"${getJsonField(
                                                     FFAppState().staffLogin,
                                                     r'''$.id''',
-                                                  ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                                  ).toString()}\"}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
                                                     FFAppState().staffLogin,
                                                     r'''$.organization_id''',
                                                   ).toString()}\"}}},{\"name\":{\"_icontains\":\"${_model.textController.text}\"}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
@@ -358,10 +380,10 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                   accessToken:
                                                       FFAppState().accessToken,
                                                   filter:
-                                                      '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                                      '{\"_and\":[{\"submit_staff_id\":{\"_eq\":\"${getJsonField(
                                                     FFAppState().staffLogin,
                                                     r'''$.id''',
-                                                  ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                                  ).toString()}\"}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
                                                     FFAppState().staffLogin,
                                                     r'''$.organization_id''',
                                                   ).toString()}\"}}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]}]}',
@@ -481,124 +503,163 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                       Padding(
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FFButtonWidget(
-                              onPressed: () async {
-                                context.pushNamed(
-                                  'TaskListWait',
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                    ),
-                                  },
-                                );
-                              },
-                              text:
-                                  'Chờ thực hiện (${_model.taskWait.length.toString()})',
-                              options: FFButtonOptions(
-                                width: 115.0,
-                                height: 30.0,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      fontSize: 11.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                            ),
-                            FFButtonWidget(
-                              onPressed: () async {
-                                context.pushNamed(
-                                  'TaskList',
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                    ),
+                                    0.0, 0.0, 0.0, 1.0),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    context.pushNamed(
+                                      'TaskListWait',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
                                   },
-                                );
-                              },
-                              text:
-                                  'Đang thực hiện (${_model.taskToDo.length.toString()})',
-                              options: FFButtonOptions(
-                                width: 115.0,
-                                height: 30.0,
-                                padding: const EdgeInsets.all(0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      fontSize: 11.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                borderSide: const BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
+                                  text:
+                                      'Chờ thực hiện (${_model.taskWait.length.toString()})',
+                                  options: FFButtonOptions(
+                                    width: 115.0,
+                                    height: 30.0,
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
                                 ),
-                                borderRadius: BorderRadius.circular(20.0),
                               ),
-                            ),
-                            FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
-                              },
-                              text:
-                                  'Hoàn thành (${_model.list.length.toString()})',
-                              options: FFButtonOptions(
-                                width: 115.0,
-                                height: 30.0,
-                                padding: const EdgeInsets.all(0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).primary,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      fontSize: 11.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 1.0),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    context.pushNamed(
+                                      'TaskList',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  },
+                                  text:
+                                      'Đang thực hiện (${_model.taskToDo.length.toString()})',
+                                  options: FFButtonOptions(
+                                    width: 115.0,
+                                    height: 30.0,
+                                    padding: const EdgeInsets.all(0.0),
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                    borderSide: const BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
                                     ),
-                                borderSide: const BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
                                 ),
-                                borderRadius: BorderRadius.circular(20.0),
                               ),
-                            ),
-                          ].divide(const SizedBox(width: 6.0)),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 1.0),
+                                child: FFButtonWidget(
+                                  onPressed: () {
+                                    print('Button pressed ...');
+                                  },
+                                  text:
+                                      'Hoàn thành (${_model.list.length.toString()})',
+                                  options: FFButtonOptions(
+                                    width: 115.0,
+                                    height: 30.0,
+                                    padding: const EdgeInsets.all(0.0),
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                    borderSide: const BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
+                                ),
+                              ),
+                            ].divide(const SizedBox(width: 6.0)),
+                          ),
                         ),
                       ),
+                      if ((_model.textController.text != '') ||
+                          (_model.dateStartFilter != null &&
+                              _model.dateStartFilter != '') ||
+                          (_model.dateEndFilter != null &&
+                              _model.dateEndFilter != '') ||
+                          (_model.typeFilter != null &&
+                              _model.typeFilter != ''))
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 12.0),
+                          child: Text(
+                            '# Kết quả tìm kiếm theo bộ lọc',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  fontSize: 12.0,
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ),
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          if (_model.list.isNotEmpty)
+                          if ((_model.list.isNotEmpty) &&
+                              (_model.ishows == true))
                             Builder(
                               builder: (context) {
                                 final dataList = _model.list.toList();
@@ -679,6 +740,8 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                               'Nunito Sans',
                                                                           letterSpacing:
                                                                               0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
                                                                         ),
                                                                   ),
                                                                 ),
@@ -739,6 +802,12 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                         .publishedCount,
                                                                     ParamType
                                                                         .int,
+                                                                  ),
+                                                                  'paramBack':
+                                                                      serializeParam(
+                                                                    '2',
+                                                                    ParamType
+                                                                        .String,
                                                                   ),
                                                                 }.withoutNulls,
                                                               );
@@ -833,9 +902,12 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                     fontFamily:
                                                                         'Nunito Sans',
                                                                     fontSize:
-                                                                        13.0,
+                                                                        14.0,
                                                                     letterSpacing:
                                                                         0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
                                                                     fontStyle:
                                                                         FontStyle
                                                                             .italic,
@@ -861,7 +933,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                           0.0,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w500,
+                                                                              .normal,
                                                                     ),
                                                               ),
                                                             ),
@@ -901,9 +973,12 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                   fontFamily:
                                                                       'Nunito Sans',
                                                                   fontSize:
-                                                                      13.0,
+                                                                      14.0,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
                                                                   fontStyle:
                                                                       FontStyle
                                                                           .italic,
@@ -929,7 +1004,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                         0.0,
                                                                     fontWeight:
                                                                         FontWeight
-                                                                            .w500,
+                                                                            .normal,
                                                                   ),
                                                             ),
                                                           ),
@@ -971,9 +1046,12 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                     fontFamily:
                                                                         'Nunito Sans',
                                                                     fontSize:
-                                                                        13.0,
+                                                                        14.0,
                                                                     letterSpacing:
                                                                         0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
                                                                     fontStyle:
                                                                         FontStyle
                                                                             .italic,
@@ -1005,7 +1083,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                           0.0,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w500,
+                                                                              .normal,
                                                                     ),
                                                               ),
                                                             ),
@@ -1047,9 +1125,12 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                     fontFamily:
                                                                         'Nunito Sans',
                                                                     fontSize:
-                                                                        13.0,
+                                                                        14.0,
                                                                     letterSpacing:
                                                                         0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
                                                                     fontStyle:
                                                                         FontStyle
                                                                             .italic,
@@ -1074,7 +1155,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                           0.0,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w500,
+                                                                              .normal,
                                                                     ),
                                                               ),
                                                             ),
@@ -1117,9 +1198,12 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                     fontFamily:
                                                                         'Nunito Sans',
                                                                     fontSize:
-                                                                        13.0,
+                                                                        14.0,
                                                                     letterSpacing:
                                                                         0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
                                                                     fontStyle:
                                                                         FontStyle
                                                                             .italic,
@@ -1145,7 +1229,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                           0.0,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w500,
+                                                                              .normal,
                                                                     ),
                                                               ),
                                                             ),
@@ -1187,9 +1271,12 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                     fontFamily:
                                                                         'Nunito Sans',
                                                                     fontSize:
-                                                                        13.0,
+                                                                        14.0,
                                                                     letterSpacing:
                                                                         0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
                                                                     fontStyle:
                                                                         FontStyle
                                                                             .italic,
@@ -1221,7 +1308,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                           0.0,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w500,
+                                                                              .normal,
                                                                     ),
                                                               ),
                                                             ),
@@ -1262,9 +1349,12 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                     fontFamily:
                                                                         'Nunito Sans',
                                                                     fontSize:
-                                                                        13.0,
+                                                                        14.0,
                                                                     letterSpacing:
                                                                         0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
                                                                     fontStyle:
                                                                         FontStyle
                                                                             .italic,
@@ -1296,7 +1386,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                           0.0,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w500,
+                                                                              .normal,
                                                                     ),
                                                               ),
                                                             ),
@@ -1338,7 +1428,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primary,
-                                                                fontSize: 12.0,
+                                                                fontSize: 13.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontStyle:
@@ -1379,7 +1469,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Nunito Sans',
-                                                                fontSize: 13.0,
+                                                                fontSize: 14.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontStyle:
@@ -1420,7 +1510,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                             .override(
                                                               fontFamily:
                                                                   'Nunito Sans',
-                                                              fontSize: 13.0,
+                                                              fontSize: 14.0,
                                                               letterSpacing:
                                                                   0.0,
                                                               fontStyle:
@@ -1482,6 +1572,8 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                 Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Padding(
                                                       padding:
@@ -1647,12 +1739,12 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                             width: 8.0)),
                                                       ),
                                                     ),
-                                                    if (functions.checkFileLast(
-                                                            (String tail) {
-                                                          return tail
-                                                              .split('.')
-                                                              .last;
-                                                        }(dataListItem
+                                                    if ((functions.checkFileLast((String
+                                                                tail) {
+                                                              return tail
+                                                                  .split('.')
+                                                                  .last;
+                                                            }(dataListItem
                                                                 .operations
                                                                 .first
                                                                 .operationsId
@@ -1660,12 +1752,114 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                 .first
                                                                 .directusFilesId
                                                                 .filenameDownload)) ==
-                                                        'pdf')
+                                                            'pdf') &&
+                                                        (_model.isShowPdf ==
+                                                            false))
+                                                      InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          setState(() {
+                                                            _model.isShowPdf =
+                                                                true;
+                                                          });
+                                                        },
+                                                        child: Text(
+                                                          '(Xem thêm)',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    if ((functions.checkFileLast((String
+                                                                tail) {
+                                                              return tail
+                                                                  .split('.')
+                                                                  .last;
+                                                            }(dataListItem
+                                                                .operations
+                                                                .first
+                                                                .operationsId
+                                                                .files
+                                                                .first
+                                                                .directusFilesId
+                                                                .filenameDownload)) ==
+                                                            'pdf') &&
+                                                        _model.isShowPdf)
                                                       FlutterFlowPdfViewer(
                                                         networkPath:
                                                             '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
                                                         height: 300.0,
                                                         horizontalScroll: false,
+                                                      ),
+                                                    if ((functions.checkFileLast((String
+                                                                tail) {
+                                                              return tail
+                                                                  .split('.')
+                                                                  .last;
+                                                            }(dataListItem
+                                                                .operations
+                                                                .first
+                                                                .operationsId
+                                                                .files
+                                                                .first
+                                                                .directusFilesId
+                                                                .filenameDownload)) ==
+                                                            'pdf') &&
+                                                        _model.isShowPdf)
+                                                      InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          setState(() {
+                                                            _model.isShowPdf =
+                                                                false;
+                                                          });
+                                                        },
+                                                        child: Text(
+                                                          '(Ẩn bớt)',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic,
+                                                              ),
+                                                        ),
                                                       ),
                                                     if (functions.checkFileLast(
                                                             (String tail) {
@@ -1929,6 +2123,43 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                 );
                               },
                             ),
+                          if ((_model.list.isEmpty) &&
+                              (_model.ishows == true))
+                            Align(
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 150.0, 0.0, 0.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    FaIcon(
+                                      FontAwesomeIcons.database,
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      size: 55.0,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 15.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Chưa có task nào được hoàn thành!',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              fontSize: 18.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                         ],
                       ),
                     ],
@@ -1936,16 +2167,19 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
-              child: wrapWithModel(
-                model: _model.navBarModel,
-                updateCallback: () => setState(() {}),
-                child: const NavBarWidget(
-                  selectedPageIndex: 1,
+            if (!(isWeb
+                ? MediaQuery.viewInsetsOf(context).bottom > 0
+                : _isKeyboardVisible))
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                child: wrapWithModel(
+                  model: _model.navBarModel,
+                  updateCallback: () => setState(() {}),
+                  child: const NavBarWidget(
+                    selectedPageIndex: 1,
+                  ),
                 ),
               ),
-            ),
           ],
         ),
       ),

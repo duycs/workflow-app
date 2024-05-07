@@ -88,11 +88,11 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Tạo bài test',
+                'Tạo bài thi',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily: 'Nunito Sans',
                       color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 20.0,
+                      fontSize: 18.0,
                       letterSpacing: 0.0,
                     ),
               ),
@@ -100,7 +100,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
           ),
           actions: const [],
           centerTitle: true,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -401,6 +401,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                   .bodyLarge
                                   .override(
                                     fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                               maxLines: 5,
@@ -585,7 +586,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                                             'Nunito Sans',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FontWeight.w500,
+                                                            FontWeight.normal,
                                                       ),
                                                 ),
                                                 Expanded(
@@ -802,7 +803,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                   fontFamily: 'Nunito Sans',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  fontSize: 13.0,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
@@ -940,6 +941,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   color: Colors.white,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,

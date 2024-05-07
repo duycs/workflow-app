@@ -180,13 +180,13 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
             'Báo cáo đào tạo',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -229,7 +229,9 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Nunito Sans',
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
                                 ),
                           ),
                         ),

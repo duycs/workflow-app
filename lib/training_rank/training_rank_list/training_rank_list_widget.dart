@@ -83,7 +83,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily: 'Nunito Sans',
                       color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 22.0,
+                      fontSize: 18.0,
                       letterSpacing: 0.0,
                     ),
               ),
@@ -105,7 +105,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
           ),
           actions: const [],
           centerTitle: true,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -842,6 +842,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                           ),
@@ -945,7 +946,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                           ),
                                       iconColor:
                                           FlutterFlowTheme.of(context).info,
-                                      iconSize: 18.0,
+                                      iconSize: 14.0,
                                       elevation: 2.0,
                                       borderColor:
                                           FlutterFlowTheme.of(context).accent1,
@@ -966,7 +967,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                           ),
                                       iconColor: FlutterFlowTheme.of(context)
                                           .secondaryText,
-                                      iconSize: 18.0,
+                                      iconSize: 14.0,
                                       elevation: 0.0,
                                       borderColor: FlutterFlowTheme.of(context)
                                           .primaryBackground,
@@ -1081,8 +1082,12 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Nunito Sans',
+                                                                fontSize: 14.0,
                                                                 letterSpacing:
                                                                     0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
                                                               ),
                                                         ),
                                                         Padding(
@@ -1221,7 +1226,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                                         0.0,
                                                                     fontWeight:
                                                                         FontWeight
-                                                                            .w300,
+                                                                            .normal,
                                                                     fontStyle:
                                                                         FontStyle
                                                                             .italic,
@@ -1358,7 +1363,10 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
+                                                            fontSize: 14.0,
                                                             letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
                                                           ),
                                                     ),
                                                     Padding(
@@ -1466,7 +1474,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w300,
+                                                                        .normal,
                                                                 fontStyle:
                                                                     FontStyle
                                                                         .italic,
@@ -1601,7 +1609,10 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
+                                                            fontSize: 14.0,
                                                             letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
                                                           ),
                                                     ),
                                                     Padding(
@@ -1709,7 +1720,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w300,
+                                                                        .normal,
                                                                 fontStyle:
                                                                     FontStyle
                                                                         .italic,
@@ -1844,7 +1855,10 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
+                                                            fontSize: 14.0,
                                                             letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
                                                           ),
                                                     ),
                                                     Padding(
@@ -1952,7 +1966,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w300,
+                                                                        .normal,
                                                                 fontStyle:
                                                                     FontStyle
                                                                         .italic,

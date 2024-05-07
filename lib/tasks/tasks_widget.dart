@@ -73,16 +73,20 @@ class _TasksWidgetState extends State<TasksWidget> {
           ),
           title: Row(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Align(
                 alignment: const AlignmentDirectional(0.0, 0.0),
-                child: Text(
-                  'Hôm nay 01/12/2023',
-                  style: FlutterFlowTheme.of(context).headlineSmall.override(
-                        fontFamily: 'Nunito Sans',
-                        letterSpacing: 0.0,
-                      ),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                  child: Text(
+                    'Hôm nay 01/12/2023',
+                    style: FlutterFlowTheme.of(context).headlineSmall.override(
+                          fontFamily: 'Nunito Sans',
+                          fontSize: 18.0,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
                 ),
               ),
               Icon(
@@ -93,8 +97,8 @@ class _TasksWidgetState extends State<TasksWidget> {
             ],
           ),
           actions: const [],
-          centerTitle: true,
-          elevation: 2.0,
+          centerTitle: false,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,

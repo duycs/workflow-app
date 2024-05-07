@@ -261,7 +261,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       context.goNamed(
-                        'LessonList_HomepageCopy',
+                        'LessonLists_Homepage',
                         extra: <String, dynamic>{
                           kTransitionInfoKey: const TransitionInfo(
                             hasTransition: true,

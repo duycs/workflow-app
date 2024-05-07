@@ -68,6 +68,7 @@ class _ProdureStep02WidgetState extends State<ProdureStep02Widget> {
               'Tạo mới quy trình',
               style: FlutterFlowTheme.of(context).titleSmall.override(
                     fontFamily: 'Nunito Sans',
+                    fontSize: 18.0,
                     letterSpacing: 0.0,
                   ),
             ),
@@ -95,7 +96,7 @@ class _ProdureStep02WidgetState extends State<ProdureStep02Widget> {
         ),
         actions: const [],
         centerTitle: false,
-        elevation: 0.0,
+        elevation: 1.0,
       ),
       body: SafeArea(
         top: true,

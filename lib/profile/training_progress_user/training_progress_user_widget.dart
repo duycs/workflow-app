@@ -181,12 +181,13 @@ class _TrainingProgressUserWidgetState extends State<TrainingProgressUserWidget>
             'Tiến độ đào tạo',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: const [],
-          centerTitle: true,
-          elevation: 2.0,
+          centerTitle: false,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,

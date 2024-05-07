@@ -9,6 +9,7 @@ import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'dropdown_user_list_model.dart';
 export 'dropdown_user_list_model.dart';
@@ -231,6 +232,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                   padding:
                       const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 80.0),
                   child: SingleChildScrollView(
+                    primary: false,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -481,190 +483,256 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 16.0),
-                                child: Builder(
-                                  builder: (context) {
-                                    final listView = _model.staffList
-                                        .where((e) =>
-                                            e.userId.firstName
-                                                .toLowerCase()
-                                                .contains(_model
-                                                    .textNameTextController.text
-                                                    .toLowerCase()) ||
-                                            e.userId.email
-                                                .toLowerCase()
-                                                .contains(_model
-                                                    .textNameTextController.text
-                                                    .toLowerCase()))
-                                        .toList();
-                                    return ListView.separated(
-                                      padding: EdgeInsets.zero,
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.vertical,
-                                      itemCount: listView.length,
-                                      separatorBuilder: (_, __) =>
-                                          const SizedBox(height: 16.0),
-                                      itemBuilder: (context, listViewIndex) {
-                                        final listViewItem =
-                                            listView[listViewIndex];
-                                        return Container(
-                                          decoration: const BoxDecoration(),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  wrapWithModel(
-                                                    model: _model
-                                                        .checkBoxToggleModels
-                                                        .getModel(
-                                                      '${listViewItem.userId.firstName}${listViewItem.check.toString()}${listViewItem.id}',
-                                                      listViewIndex,
-                                                    ),
-                                                    updateCallback: () =>
-                                                        setState(() {}),
-                                                    updateOnChange: true,
-                                                    child: CheckBoxToggleWidget(
-                                                      key: Key(
-                                                        'Key31x_${'${listViewItem.userId.firstName}${listViewItem.check.toString()}${listViewItem.id}'}',
+                              if (_model.isLoad == true)
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 16.0),
+                                  child: Builder(
+                                    builder: (context) {
+                                      final listView = _model.staffList
+                                          .where((e) =>
+                                              e.userId.firstName
+                                                  .toLowerCase()
+                                                  .contains(_model
+                                                      .textNameTextController
+                                                      .text
+                                                      .toLowerCase()) ||
+                                              e.userId.email
+                                                  .toLowerCase()
+                                                  .contains(_model
+                                                      .textNameTextController
+                                                      .text
+                                                      .toLowerCase()))
+                                          .toList();
+                                      return ListView.separated(
+                                        padding: EdgeInsets.zero,
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.vertical,
+                                        itemCount: listView.length,
+                                        separatorBuilder: (_, __) =>
+                                            const SizedBox(height: 16.0),
+                                        itemBuilder: (context, listViewIndex) {
+                                          final listViewItem =
+                                              listView[listViewIndex];
+                                          return Container(
+                                            decoration: const BoxDecoration(),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    wrapWithModel(
+                                                      model: _model
+                                                          .checkBoxToggleModels
+                                                          .getModel(
+                                                        '${listViewItem.userId.firstName}${listViewItem.check.toString()}${listViewItem.id}',
+                                                        listViewIndex,
                                                       ),
-                                                      checkParam:
-                                                          listViewItem.check,
-                                                      color: 'colorUser',
-                                                      callBack:
-                                                          (checkCall) async {
-                                                        setState(() {});
-                                                        while (_model.loop <
-                                                            _model.staffList
-                                                                .length) {
-                                                          if (listViewItem.id ==
-                                                              _model
-                                                                  .staffList[
-                                                                      _model
-                                                                          .loop]
-                                                                  .id) {
+                                                      updateCallback: () =>
+                                                          setState(() {}),
+                                                      updateOnChange: true,
+                                                      child:
+                                                          CheckBoxToggleWidget(
+                                                        key: Key(
+                                                          'Key31x_${'${listViewItem.userId.firstName}${listViewItem.check.toString()}${listViewItem.id}'}',
+                                                        ),
+                                                        checkParam:
+                                                            listViewItem.check,
+                                                        color: 'colorUser',
+                                                        callBack:
+                                                            (checkCall) async {
+                                                          setState(() {});
+                                                          while (_model.loop <
+                                                              _model.staffList
+                                                                  .length) {
+                                                            if (listViewItem
+                                                                    .id ==
+                                                                _model
+                                                                    .staffList[
+                                                                        _model
+                                                                            .loop]
+                                                                    .id) {
+                                                              setState(() {
+                                                                _model
+                                                                    .updateStaffListAtIndex(
+                                                                  _model.loop,
+                                                                  (e) => e
+                                                                    ..check =
+                                                                        checkCall,
+                                                                );
+                                                              });
+                                                            }
                                                             setState(() {
-                                                              _model
-                                                                  .updateStaffListAtIndex(
-                                                                _model.loop,
-                                                                (e) => e
-                                                                  ..check =
-                                                                      checkCall,
-                                                              );
+                                                              _model.loop =
+                                                                  _model.loop +
+                                                                      1;
                                                             });
                                                           }
                                                           setState(() {
-                                                            _model.loop =
-                                                                _model.loop + 1;
+                                                            _model.loop = 0;
                                                           });
-                                                        }
-                                                        setState(() {
-                                                          _model.loop = 0;
-                                                        });
-                                                      },
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                4.0, 0.0),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              40.0),
-                                                      child: Image.network(
-                                                        '${FFAppConstants.ApiBaseUrl}/assets/${listViewItem.userId.avatar != '' ? listViewItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
-                                                        width: 32.0,
-                                                        height: 32.0,
-                                                        fit: BoxFit.cover,
+                                                        },
                                                       ),
                                                     ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Padding(
+                                                    Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
                                                               .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
                                                                   4.0,
-                                                                  0.0,
-                                                                  0.0,
                                                                   0.0),
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            listViewItem.userId
-                                                                .firstName,
-                                                            maxLines: 2,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        4.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Text(
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(40.0),
+                                                        child: Image.network(
+                                                          '${FFAppConstants.ApiBaseUrl}/assets/${listViewItem.userId.avatar != '' ? listViewItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                          width: 32.0,
+                                                          height: 32.0,
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    4.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
                                                               listViewItem
-                                                                  .userId.email,
+                                                                  .userId
+                                                                  .firstName,
                                                               maxLines: 2,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .bodySmall
+                                                                  .bodyMedium
                                                                   .override(
                                                                     fontFamily:
                                                                         'Nunito Sans',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primary,
                                                                     letterSpacing:
                                                                         0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
                                                                   ),
                                                             ),
-                                                          ),
-                                                        ],
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          4.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                listViewItem
+                                                                    .userId
+                                                                    .email,
+                                                                maxLines: 2,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
                                 ),
-                              ),
                               Divider(
                                 height: 1.0,
                                 thickness: 1.0,
                                 color: FlutterFlowTheme.of(context).alternate,
                               ),
+                              if ((_model.staffList
+                                          .where((e) =>
+                                              e.userId.firstName
+                                                  .toLowerCase()
+                                                  .contains(_model
+                                                      .textNameTextController
+                                                      .text
+                                                      .toLowerCase()) ||
+                                              e.userId.email
+                                                  .toLowerCase()
+                                                  .contains(_model
+                                                      .textNameTextController
+                                                      .text
+                                                      .toLowerCase()))
+                                          .toList().isEmpty) &&
+                                  (_model.isLoad == true))
+                                Align(
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 100.0, 0.0, 50.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        FaIcon(
+                                          FontAwesomeIcons.database,
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          size: 55.0,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 15.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Không có dữ liệu !',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  fontSize: 18.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                             ],
                           ),
                         ),
@@ -673,7 +741,8 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 24.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(15.0, 12.0, 15.0, 24.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

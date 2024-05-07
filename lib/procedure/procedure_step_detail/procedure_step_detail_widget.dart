@@ -107,6 +107,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                                         .bodyLarge
                                         .override(
                                           fontFamily: 'Nunito Sans',
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
                                         ),

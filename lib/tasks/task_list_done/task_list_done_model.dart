@@ -43,9 +43,15 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
 
   String? isShow;
 
+  bool ishows = false;
+
+  bool isShowPdf = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in TaskListDone widget.
+  bool? getTaskDoneToken;
   // Stores action output result for [Backend Call - API (GetListTask)] action in TaskListDone widget.
   ApiCallResponse? apiResultGetTaskDone;
   // Stores action output result for [Backend Call - API (GetListTask)] action in TaskListDone widget.

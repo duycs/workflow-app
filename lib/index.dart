@@ -150,5 +150,5 @@ export '/procedure_publishing/work_result_detail/work_result_detail_widget.dart'
     show WorkResultDetailWidget;
 export '/operation/operation_list/operation_list_widget.dart'
     show OperationListWidget;
-export '/training/lesson/lesson_list_homepage_copy/lesson_list_homepage_copy_widget.dart'
-    show LessonListHomepageCopyWidget;
+export '/training/lesson/lesson_lists_homepage/lesson_lists_homepage_widget.dart'
+    show LessonListsHomepageWidget;

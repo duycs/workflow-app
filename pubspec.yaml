@@ -40,8 +40,8 @@ dependencies:
   flutter_animate: 4.1.1+1
   flutter_cache_manager: 3.3.1
   flutter_html: 3.0.0-alpha.5
+  flutter_keyboard_visibility: 5.4.1
   flutter_plugin_android_lifecycle: 2.0.17
-  flutter_rating_bar: 4.0.1
   flutter_widget_from_html_core: ^0.10.1
   fluttertoast: ^8.0.7
   font_awesome_flutter: 10.6.0
@@ -112,12 +112,13 @@ dev_dependencies:
 
 
 flutter_launcher_icons:
-  android: true
+  android: 'launcher_icon'
   ios: true
-  remove_alpha_ios: true
   web:
     generate: true
   image_path: 'assets/images/app_launcher_icon.png'
+  adaptive_icon_background: '#00000000'
+  adaptive_icon_foreground: 'assets/images/adaptive_foreground_icon.png'
 
 
 # For information on the generic Dart part of this file, see the

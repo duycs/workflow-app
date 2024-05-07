@@ -96,6 +96,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                     .data
                     .toList()
                     .cast<UserStruct>();
+                _model.checkDob = false;
               });
             }
           } else {
@@ -120,6 +121,9 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
 
     _model.cccdTextController ??= TextEditingController();
     _model.cccdFocusNode ??= FocusNode();
+
+    _model.titleTextTextController ??= TextEditingController();
+    _model.titleTextFocusNode ??= FocusNode();
 
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(
@@ -187,13 +191,13 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
           style: FlutterFlowTheme.of(context).headlineMedium.override(
                 fontFamily: 'Nunito Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
-                fontSize: 20.0,
+                fontSize: 18.0,
                 letterSpacing: 0.0,
               ),
         ),
         actions: const [],
         centerTitle: false,
-        elevation: 2.0,
+        elevation: 1.0,
       ),
       body: SafeArea(
         top: true,
@@ -349,7 +353,9 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                       .labelLarge
                                       .override(
                                         fontFamily: 'Nunito Sans',
+                                        fontSize: 16.0,
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                 ),
                               ].divide(const SizedBox(width: 8.0)),
@@ -440,6 +446,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         .labelSmall
                                         .override(
                                           fontFamily: 'Nunito Sans',
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
@@ -469,11 +476,12 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                             const Duration(milliseconds: 2000),
                                             () async {
                                               if (_model.listEmail
-                                                  .map((e) => e.email)
-                                                  .toList()
-                                                  .contains(_model
-                                                      .emailTextController
-                                                      .text)) {
+                                                      .where((e) =>
+                                                          _model
+                                                              .emailTextController
+                                                              .text ==
+                                                          e.email)
+                                                      .toList().isNotEmpty) {
                                                 setState(() {
                                                   _model.checkEmail = '1';
                                                 });
@@ -560,6 +568,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                               .labelSmall
                                               .override(
                                                 fontFamily: 'Nunito Sans',
+                                                fontSize: 14.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.normal,
                                               ),
@@ -574,7 +583,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 0.0, 0.0, 0.0),
+                                                  40.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Email đã tồn tại!',
                                             style: FlutterFlowTheme.of(context)
@@ -584,8 +593,9 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .error,
-                                                  fontSize: 10.0,
+                                                  fontSize: 12.0,
                                                   letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
                                                   fontStyle: FontStyle.italic,
                                                 ),
                                           ),
@@ -666,6 +676,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         .labelSmall
                                         .override(
                                           fontFamily: 'Nunito Sans',
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
@@ -748,6 +759,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         .labelSmall
                                         .override(
                                           fontFamily: 'Nunito Sans',
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
@@ -879,7 +891,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 0.0, 0.0, 0.0),
+                                                  40.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Vui lòng nhập ngày sinh',
                                             style: FlutterFlowTheme.of(context)
@@ -889,8 +901,10 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .error,
-                                                  fontSize: 10.0,
+                                                  fontSize: 12.0,
                                                   letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
+                                                  fontStyle: FontStyle.italic,
                                                 ),
                                           ),
                                         ),
@@ -906,8 +920,9 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         .bodyLarge
                                         .override(
                                           fontFamily: 'Nunito Sans',
-                                          fontSize: 12.0,
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                   ),
                                 ),
@@ -932,6 +947,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Nunito Sans',
+                                              fontSize: 13.0,
                                               letterSpacing: 0.0,
                                             ),
                                     buttonPosition: RadioButtonPosition.left,
@@ -1066,7 +1082,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                         .secondaryText,
                                                 letterSpacing: 0.0,
                                               ),
-                                          hintText: 'Chọn chức vụ',
+                                          hintText: 'Chọn quyền',
                                           icon: Icon(
                                             Icons.keyboard_arrow_down_rounded,
                                             color: FlutterFlowTheme.of(context)
@@ -1094,7 +1110,120 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 0.0, 0.0, 0.0),
+                                                  40.0, 0.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Vui lòng chọn quyền',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .error,
+                                                  fontSize: 12.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
+                                                  fontStyle: FontStyle.italic,
+                                                ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 20.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 0.0, 20.0, 4.0),
+                                        child: FlutterFlowDropDown<String>(
+                                          controller:
+                                              _model.titleValueController ??=
+                                                  FormFieldController<String>(
+                                            _model.titleValue ??= '',
+                                          ),
+                                          options: List<String>.from(
+                                              ['1', '2', '3', '4', '5']),
+                                          optionLabels: const [
+                                            'Trưởng chi nhánh',
+                                            'Phó chi nhánh',
+                                            'Trưởng bộ phận',
+                                            'Phó bộ phận',
+                                            'Nhân viên'
+                                          ],
+                                          onChanged: (val) async {
+                                            setState(
+                                                () => _model.titleValue = val);
+                                            setState(() {
+                                              _model.titleTextTextController
+                                                  ?.text = () {
+                                                if (_model.titleValue == '5') {
+                                                  return 'Nhân viên';
+                                                } else if (_model.titleValue ==
+                                                    '4') {
+                                                  return 'Phó bộ phận';
+                                                } else if (_model.titleValue ==
+                                                    '3') {
+                                                  return 'Trưởng bộ phận';
+                                                } else if (_model.titleValue ==
+                                                    '2') {
+                                                  return 'Phó chi nhánh';
+                                                } else if (_model.titleValue ==
+                                                    '1') {
+                                                  return 'Trưởng chi nhánh';
+                                                } else {
+                                                  return ' ';
+                                                }
+                                              }();
+                                            });
+                                            setState(() {});
+                                          },
+                                          width: double.infinity,
+                                          height: 56.0,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                letterSpacing: 0.0,
+                                              ),
+                                          hintText: 'Chọn chức vụ',
+                                          icon: Icon(
+                                            Icons.keyboard_arrow_down_rounded,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 15.0,
+                                          ),
+                                          fillColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryBackground,
+                                          elevation: 1.0,
+                                          borderColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .alternate,
+                                          borderWidth: 1.0,
+                                          borderRadius: 8.0,
+                                          margin:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  20.0, 4.0, 12.0, 4.0),
+                                          hidesUnderline: true,
+                                          isSearchable: false,
+                                          isMultiSelect: false,
+                                        ),
+                                      ),
+                                      if (_model.checkRoleText)
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  40.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Vui lòng chọn chức vụ',
                                             style: FlutterFlowTheme.of(context)
@@ -1104,11 +1233,129 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .error,
-                                                  fontSize: 10.0,
+                                                  fontSize: 12.0,
                                                   letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
+                                                  fontStyle: FontStyle.italic,
                                                 ),
                                           ),
                                         ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 20.0, 20.0, 4.0),
+                                        child: TextFormField(
+                                          controller:
+                                              _model.titleTextTextController,
+                                          focusNode: _model.titleTextFocusNode,
+                                          onChanged: (_) =>
+                                              EasyDebounce.debounce(
+                                            '_model.titleTextTextController',
+                                            const Duration(milliseconds: 2000),
+                                            () async {
+                                              if (_model.listEmail
+                                                      .where((e) =>
+                                                          _model
+                                                              .titleTextTextController
+                                                              .text ==
+                                                          e.email)
+                                                      .toList().isNotEmpty) {
+                                                setState(() {
+                                                  _model.checkEmail = '1';
+                                                });
+                                              } else {
+                                                setState(() {
+                                                  _model.checkEmail = '0';
+                                                });
+                                              }
+                                            },
+                                          ),
+                                          textCapitalization:
+                                              TextCapitalization.words,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelText: 'Chức vụ',
+                                            labelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLarge
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      fontSize: 14.0,
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            hintText: 'Vd: Nhân viên',
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                    ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            filled: true,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                            contentPadding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    20.0, 24.0, 0.0, 24.0),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelSmall
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                          keyboardType:
+                                              TextInputType.emailAddress,
+                                          validator: _model
+                                              .titleTextTextControllerValidator
+                                              .asValidator(context),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -1238,7 +1485,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                           Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
-                                                    20.0, 0.0, 0.0, 0.0),
+                                                    40.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Vui lòng chọn chi nhánh',
                                               style: FlutterFlowTheme.of(
@@ -1249,8 +1496,9 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .error,
-                                                    fontSize: 10.0,
+                                                    fontSize: 12.0,
                                                     letterSpacing: 0.0,
+                                                    fontStyle: FontStyle.italic,
                                                   ),
                                             ),
                                           ),
@@ -1347,7 +1595,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                           Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
-                                                    20.0, 0.0, 0.0, 0.0),
+                                                    40.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Vui lòng chọn bộ phận',
                                               style: FlutterFlowTheme.of(
@@ -1381,7 +1629,9 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         .bodyLarge
                                         .override(
                                           fontFamily: 'Nunito Sans',
+                                          fontSize: 16.0,
                                           letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
                                           fontStyle: FontStyle.italic,
                                         ),
                                   ),
@@ -1817,37 +2067,155 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                             if (shouldSetState) setState(() {});
                             return;
                           } else {
-                            if (_model.datePicked == null) {
+                            if (_model.titleValue == null ||
+                                _model.titleValue == '') {
                               setState(() {
-                                _model.checkDob = true;
+                                _model.checkRoleText = true;
                               });
                               if (shouldSetState) setState(() {});
                               return;
                             } else {
-                              if ((_model.roleValue ==
-                                      'a8d33527-375b-4599-ac70-6a3fcad1de39') ||
-                                  (FFAppState().user.role ==
-                                      '6a8bc644-cb2d-4a31-b11e-b86e19824725')) {
-                                if (_model.branchValue == null ||
-                                    _model.branchValue == '') {
-                                  setState(() {
-                                    _model.checkBranch = true;
-                                  });
-                                  if (shouldSetState) setState(() {});
-                                  return;
-                                } else {
-                                  if (_model.departmentValue == null ||
-                                      _model.departmentValue == '') {
-                                    if ((_model.roleValue ==
-                                            'a8d33527-375b-4599-ac70-6a3fcad1de39') &&
-                                        (FFAppState().user.role !=
-                                            '6a8bc644-cb2d-4a31-b11e-b86e19824725')) {
-                                      setState(() {});
-                                      _model.createBToken = await action_blocks
+                              if (_model.datePicked == null) {
+                                setState(() {
+                                  _model.checkDob = true;
+                                });
+                                if (shouldSetState) setState(() {});
+                                return;
+                              } else {
+                                if ((_model.roleValue ==
+                                        'a8d33527-375b-4599-ac70-6a3fcad1de39') ||
+                                    (FFAppState().user.role ==
+                                        '6a8bc644-cb2d-4a31-b11e-b86e19824725')) {
+                                  if (_model.branchValue == null ||
+                                      _model.branchValue == '') {
+                                    setState(() {
+                                      _model.checkBranch = true;
+                                    });
+                                    if (shouldSetState) setState(() {});
+                                    return;
+                                  } else {
+                                    if (_model.departmentValue == null ||
+                                        _model.departmentValue == '') {
+                                      if ((_model.roleValue ==
+                                              'a8d33527-375b-4599-ac70-6a3fcad1de39') &&
+                                          (FFAppState().user.role !=
+                                              '6a8bc644-cb2d-4a31-b11e-b86e19824725')) {
+                                        setState(() {});
+                                        _model.createBToken =
+                                            await action_blocks
+                                                .tokenReload(context);
+                                        shouldSetState = true;
+                                        if (_model.createBToken!) {
+                                          _model.apiResultCreateB =
+                                              await StaffGroup.createStaffCall
+                                                  .call(
+                                            accessToken:
+                                                FFAppState().accessToken,
+                                            requestDataJson: <String, dynamic>{
+                                              'email': _model
+                                                  .emailTextController.text,
+                                              'password': 'Abcd@1234',
+                                              'role': _model.roleValue,
+                                              'first_name': _model
+                                                  .nameTextController.text,
+                                              'last_name': _model
+                                                  .nameTextController.text,
+                                              'status': 'active',
+                                              'department_id': null,
+                                              'branch_id': _model.branchValue,
+                                              'cccd': _model
+                                                  .cccdTextController.text,
+                                              'gender':
+                                                  _model.radioButtonValue ==
+                                                          'Nam'
+                                                      ? 'male'
+                                                      : 'female',
+                                              'phone': _model
+                                                  .phoneTextController.text,
+                                              'dob': dateTimeFormat(
+                                                'yyyy-MM-dd',
+                                                _model.datePicked,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
+                                              'avatar': _model.avatarId,
+                                              'title': _model
+                                                  .titleTextTextController.text,
+                                            },
+                                          );
+                                          shouldSetState = true;
+                                          if ((_model.apiResultCreateB
+                                                  ?.succeeded ??
+                                              true)) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Tạo mới thành công!',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                              ),
+                                            );
+
+                                            context.pushNamed(
+                                              'PersonnelList',
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.fade,
+                                                  duration:
+                                                      Duration(milliseconds: 0),
+                                                ),
+                                              },
+                                            );
+                                          } else {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Tạo mới thất bại!',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                              ),
+                                            );
+                                          }
+                                        } else {
+                                          setState(() {});
+                                        }
+                                      } else {
+                                        setState(() {
+                                          _model.checkDepartment = true;
+                                        });
+                                        if (shouldSetState) setState(() {});
+                                        return;
+                                      }
+                                    } else {
+                                      _model.createOToken = await action_blocks
                                           .tokenReload(context);
                                       shouldSetState = true;
-                                      if (_model.createBToken!) {
-                                        _model.apiResultCreateB =
+                                      if (_model.createOToken!) {
+                                        _model.apiResultCreateO =
                                             await StaffGroup.createStaffCall
                                                 .call(
                                           accessToken: FFAppState().accessToken,
@@ -1861,7 +2229,8 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                             'last_name':
                                                 _model.nameTextController.text,
                                             'status': 'active',
-                                            'department_id': null,
+                                            'department_id':
+                                                _model.departmentValue,
                                             'branch_id': _model.branchValue,
                                             'cccd':
                                                 _model.cccdTextController.text,
@@ -1879,25 +2248,13 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                       .languageCode,
                                             ),
                                             'avatar': _model.avatarId,
-                                            'title': () {
-                                              if (_model.roleValue ==
-                                                  '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
-                                                return 'Nhân viên';
-                                              } else if (_model.roleValue ==
-                                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                                return 'Quản lý bộ phận';
-                                              } else if (_model.roleValue ==
-                                                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                                return 'Quản lý chi nhánh';
-                                              } else {
-                                                return null;
-                                              }
-                                            }(),
+                                            'title': _model
+                                                .titleTextTextController.text,
                                           },
                                         );
                                         shouldSetState = true;
                                         if ((_model
-                                                .apiResultCreateB?.succeeded ??
+                                                .apiResultCreateO?.succeeded ??
                                             true)) {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
@@ -1954,225 +2311,108 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                       } else {
                                         setState(() {});
                                       }
-                                    } else {
-                                      setState(() {
-                                        _model.checkDepartment = true;
-                                      });
-                                      if (shouldSetState) setState(() {});
-                                      return;
                                     }
-                                  } else {
-                                    _model.createOToken = await action_blocks
-                                        .tokenReload(context);
-                                    shouldSetState = true;
-                                    if (_model.createOToken!) {
-                                      _model.apiResultCreateO =
-                                          await StaffGroup.createStaffCall.call(
-                                        accessToken: FFAppState().accessToken,
-                                        requestDataJson: <String, dynamic>{
-                                          'email':
-                                              _model.emailTextController.text,
-                                          'password': 'Abcd@1234',
-                                          'role': _model.roleValue,
-                                          'first_name':
-                                              _model.nameTextController.text,
-                                          'last_name':
-                                              _model.nameTextController.text,
-                                          'status': 'active',
-                                          'department_id':
-                                              _model.departmentValue,
-                                          'branch_id': _model.branchValue,
-                                          'cccd':
-                                              _model.cccdTextController.text,
-                                          'gender':
-                                              _model.radioButtonValue == 'Nam'
-                                                  ? 'male'
-                                                  : 'female',
-                                          'phone':
-                                              _model.phoneTextController.text,
-                                          'dob': dateTimeFormat(
-                                            'yyyy-MM-dd',
-                                            _model.datePicked,
-                                            locale: FFLocalizations.of(context)
-                                                .languageCode,
-                                          ),
-                                          'avatar': _model.avatarId,
-                                          'title': () {
-                                            if (_model.roleValue ==
-                                                '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
-                                              return 'Nhân viên';
-                                            } else if (_model.roleValue ==
-                                                '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                              return 'Quản lý bộ phận';
-                                            } else if (_model.roleValue ==
-                                                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                              return 'Quản lý chi nhánh';
-                                            } else {
-                                              return null;
-                                            }
-                                          }(),
-                                        },
-                                      );
-                                      shouldSetState = true;
-                                      if ((_model.apiResultCreateO?.succeeded ??
-                                          true)) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Tạo mới thành công!',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                              ),
-                                            ),
-                                            duration:
-                                                const Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary,
-                                          ),
-                                        );
-
-                                        context.pushNamed(
-                                          'PersonnelList',
-                                          extra: <String, dynamic>{
-                                            kTransitionInfoKey: const TransitionInfo(
-                                              hasTransition: true,
-                                              transitionType:
-                                                  PageTransitionType.fade,
-                                              duration:
-                                                  Duration(milliseconds: 0),
-                                            ),
-                                          },
-                                        );
-                                      } else {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Tạo mới thất bại!',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                              ),
-                                            ),
-                                            duration:
-                                                const Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .error,
-                                          ),
-                                        );
-                                      }
-                                    } else {
-                                      setState(() {});
-                                    }
-                                  }
-                                }
-                              } else {
-                                _model.createDSToken =
-                                    await action_blocks.tokenReload(context);
-                                shouldSetState = true;
-                                if (_model.createDSToken!) {
-                                  _model.apiResultCreateDS =
-                                      await StaffGroup.createStaffCall.call(
-                                    accessToken: FFAppState().accessToken,
-                                    requestDataJson: <String, dynamic>{
-                                      'email': _model.emailTextController.text,
-                                      'password': 'Abcd@1234',
-                                      'role': _model.roleValue,
-                                      'first_name':
-                                          _model.nameTextController.text,
-                                      'last_name':
-                                          _model.nameTextController.text,
-                                      'status': 'active',
-                                      'department_id':
-                                          _model.selectDepartment != null
-                                              ? _model.selectDepartment?.id
-                                              : ' ',
-                                      'branch_id': getJsonField(
-                                        FFAppState().staffLogin,
-                                        r'''$.branch_id''',
-                                      ),
-                                      'cccd': _model.cccdTextController.text,
-                                      'gender': _model.radioButtonValue == 'Nam'
-                                          ? 'male'
-                                          : 'female',
-                                      'phone': _model.phoneTextController.text,
-                                      'dob': dateTimeFormat(
-                                        'yyyy-MM-dd',
-                                        _model.datePicked,
-                                        locale: FFLocalizations.of(context)
-                                            .languageCode,
-                                      ),
-                                      'avatar': _model.avatarId,
-                                      'title': () {
-                                        if (_model.roleValue ==
-                                            '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
-                                          return 'Nhân viên';
-                                        } else if (_model.roleValue ==
-                                            '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                          return 'Quản lý bộ phận';
-                                        } else if (_model.roleValue ==
-                                            'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                          return 'Quản lý chi nhánh';
-                                        } else {
-                                          return null;
-                                        }
-                                      }(),
-                                    },
-                                  );
-                                  shouldSetState = true;
-                                  if ((_model.apiResultCreateDS?.succeeded ??
-                                      true)) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Tạo mới thành công!',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                        ),
-                                        duration: const Duration(milliseconds: 4000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondary,
-                                      ),
-                                    );
-
-                                    context.pushNamed(
-                                      'PersonnelList',
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                        ),
-                                      },
-                                    );
-                                  } else {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Tạo mới thất bại!',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                        ),
-                                        duration: const Duration(milliseconds: 4000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context).error,
-                                      ),
-                                    );
                                   }
                                 } else {
-                                  setState(() {});
+                                  _model.createDSToken =
+                                      await action_blocks.tokenReload(context);
+                                  shouldSetState = true;
+                                  if (_model.createDSToken!) {
+                                    _model.apiResultCreateDS =
+                                        await StaffGroup.createStaffCall.call(
+                                      accessToken: FFAppState().accessToken,
+                                      requestDataJson: <String, dynamic>{
+                                        'email':
+                                            _model.emailTextController.text,
+                                        'password': 'Abcd@1234',
+                                        'role': _model.roleValue,
+                                        'first_name':
+                                            _model.nameTextController.text,
+                                        'last_name':
+                                            _model.nameTextController.text,
+                                        'status': 'active',
+                                        'department_id':
+                                            _model.selectDepartment != null
+                                                ? _model.selectDepartment?.id
+                                                : ' ',
+                                        'branch_id': getJsonField(
+                                          FFAppState().staffLogin,
+                                          r'''$.branch_id''',
+                                        ),
+                                        'cccd': _model.cccdTextController.text,
+                                        'gender':
+                                            _model.radioButtonValue == 'Nam'
+                                                ? 'male'
+                                                : 'female',
+                                        'phone':
+                                            _model.phoneTextController.text,
+                                        'dob': dateTimeFormat(
+                                          'yyyy-MM-dd',
+                                          _model.datePicked,
+                                          locale: FFLocalizations.of(context)
+                                              .languageCode,
+                                        ),
+                                        'avatar': _model.avatarId,
+                                        'title':
+                                            _model.titleTextTextController.text,
+                                      },
+                                    );
+                                    shouldSetState = true;
+                                    if ((_model.apiResultCreateDS?.succeeded ??
+                                        true)) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Tạo mới thành công!',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              const Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                        ),
+                                      );
+
+                                      context.pushNamed(
+                                        'PersonnelList',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                          ),
+                                        },
+                                      );
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Tạo mới thất bại!',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              const Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .error,
+                                        ),
+                                      );
+                                    }
+                                  } else {
+                                    setState(() {});
+                                  }
                                 }
                               }
                             }
@@ -2194,6 +2434,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                             FlutterFlowTheme.of(context).titleMedium.override(
                                   fontFamily: 'Nunito Sans',
                                   color: Colors.white,
+                                  fontSize: 16.0,
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 2.0,

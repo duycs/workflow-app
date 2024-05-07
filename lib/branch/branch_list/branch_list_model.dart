@@ -29,6 +29,10 @@ class BranchListModel extends FlutterFlowModel<BranchListWidget> {
   void updateCodeListAtIndex(int index, Function(String) updateFn) =>
       codeList[index] = updateFn(codeList[index]);
 
+  String checkData = '';
+
+  String searchStatus = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -60,7 +64,7 @@ class BranchListModel extends FlutterFlowModel<BranchListWidget> {
             '{\"_and\":[{}${(filter != '') && (filter != ' ') ? ',{\"name\":{\"_icontains\":\"$filter\"}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
           FFAppState().staffLogin,
           r'''$.organization_id''',
-        ).toString().toString()}\"}}}'}]}',
+        ).toString().toString()}\"}}}'}${(searchStatus != '') && (searchStatus != ' ') ? ',{\"status\":{\"_icontains\":\"$searchStatus\"}}' : ' '}]}',
       );
       if ((apiResultListBranch.succeeded ?? true)) {
         listBranch = BranchListDataStruct.maybeFromMap(
@@ -68,6 +72,7 @@ class BranchListModel extends FlutterFlowModel<BranchListWidget> {
             .data
             .toList()
             .cast<BranchListStruct>();
+        checkData = '1';
       }
     } else {
       return;

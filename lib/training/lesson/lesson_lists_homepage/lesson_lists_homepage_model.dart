@@ -3,14 +3,14 @@ import '/backend/schema/structs/index.dart';
 import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'lesson_list_homepage_copy_widget.dart'
-    show LessonListHomepageCopyWidget;
+import 'lesson_lists_homepage_widget.dart' show LessonListsHomepageWidget;
 import 'package:flutter/material.dart';
 
-class LessonListHomepageCopyModel
-    extends FlutterFlowModel<LessonListHomepageCopyWidget> {
+class LessonListsHomepageModel
+    extends FlutterFlowModel<LessonListsHomepageWidget> {
   ///  Local state fields for this page.
 
   List<LessonsStruct> listLesson = [];
@@ -125,7 +125,7 @@ class LessonListHomepageCopyModel
         }(dateEndList)) : ' '}${(dateEndList != '') && (dateEndList != 'noData') ? '\"}}' : ' '}${(lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? ',{\"reacts\":{\"reacts_id\":{\"status\":{\"_eq\":\"love\"}}}},{\"reacts\":{\"reacts_id\":{\"staff_id\":{\"_eq\":\"' : ' '}${(lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? FFAppState().staffid : ' '}${(lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? '\"}}}}' : ' '}${programsAllId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${programsAllId != '' ? programsAllId : ' '}${programsAllId != '' ? '\"}}}}' : ' '},{\"programs\":{\"programs_id\":{\"departments\":{\"departments_id\":{\"_neq\":\"${getJsonField(
         FFAppState().staffDepartment,
         r'''$.id''',
-      ).toString().toString()}\"}}}}}]}',
+      ).toString().toString()}\"}}}}},{\"status\":{\"_icontains\":\"published\"}}]}',
     );
     if ((apiResultList.succeeded ?? true)) {
       listLesson =
@@ -164,7 +164,7 @@ class LessonListHomepageCopyModel
     apiResultListRow = await LessonGroup.employeeLessonListCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"status\":{\"_eq\":\"draft\"}},{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '}]}',
+          '{\"_and\":[{\"status\":{\"_eq\":\"draft\"}},{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
     );
     if ((apiResultListRow.succeeded ?? true)) {
       listLessonRow = EmployeeLessonListDataStruct.maybeFromMap(
@@ -209,7 +209,7 @@ class LessonListHomepageCopyModel
         'yyyy-MM-dd',
         getCurrentTimestamp,
         locale: FFLocalizations.of(context).languageCode,
-      ))}\"}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '}]}',
+      ))}\"}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
     );
     if ((apiResultListRow2.succeeded ?? true)) {
       listLessonRow2 = EmployeeLessonListDataStruct.maybeFromMap(
@@ -254,7 +254,7 @@ class LessonListHomepageCopyModel
         'yyyy-MM-dd',
         getCurrentTimestamp,
         locale: FFLocalizations.of(context).languageCode,
-      ))}\"}}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]}]}',
+      ))}\"}}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
     );
     if ((apiResultListRow3.succeeded ?? true)) {
       listLessonRow3 = EmployeeLessonListDataStruct.maybeFromMap(

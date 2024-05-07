@@ -31,12 +31,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => const LoginWidget(),
+      errorBuilder: (context, state) => appStateNotifier.showSplashImage
+          ? Builder(
+              builder: (context) => Container(
+                color: Colors.transparent,
+                child: Image.asset(
+                  'assets/images/512.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+            )
+          : const LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => const LoginWidget(),
+          builder: (context, _) => appStateNotifier.showSplashImage
+              ? Builder(
+                  builder: (context) => Container(
+                    color: Colors.transparent,
+                    child: Image.asset(
+                      'assets/images/512.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                )
+              : const LoginWidget(),
         ),
         FFRoute(
           name: 'LessonList_Homepage',
@@ -415,7 +435,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'ProcedureCreate',
           path: '/procedureCreate',
-          builder: (context, params) => const ProcedureCreateWidget(),
+          builder: (context, params) => ProcedureCreateWidget(
+            checkRouter: params.getParam(
+              'checkRouter',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'ProcedureUpdate',
@@ -580,7 +605,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'TaskList',
           path: '/taskList',
-          builder: (context, params) => const TaskListWidget(),
+          builder: (context, params) => TaskListWidget(
+            checkRouter: params.getParam(
+              'checkRouter',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'DepartmentUpdate',
@@ -640,7 +670,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'listStaffProfileCompany',
+          name: 'ListStaffProfileCompany',
           path: '/listStaffProfileCompany',
           builder: (context, params) => ListStaffProfileCompanyWidget(
             id: params.getParam(
@@ -704,6 +734,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'publishedCount',
               ParamType.int,
             ),
+            paramBack: params.getParam(
+              'paramBack',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -751,9 +785,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const OperationListWidget(),
         ),
         FFRoute(
-          name: 'LessonList_HomepageCopy',
-          path: '/lessonListHomepageCopy',
-          builder: (context, params) => const LessonListHomepageCopyWidget(),
+          name: 'LessonLists_Homepage',
+          path: '/lessonListsHomepage',
+          builder: (context, params) => const LessonListsHomepageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

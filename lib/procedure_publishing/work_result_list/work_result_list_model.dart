@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import 'work_result_list_widget.dart' show WorkResultListWidget;
 import 'package:flutter/material.dart';
@@ -27,6 +28,23 @@ class WorkResultListModel extends FlutterFlowModel<WorkResultListWidget> {
   String dateEnd = '';
 
   String userCreated = '';
+
+  int loop = 0;
+
+  int loop2 = 0;
+
+  int loop3 = 0;
+
+  String checkdata = '';
+
+  List<int> checkRemove = [];
+  void addToCheckRemove(int item) => checkRemove.add(item);
+  void removeFromCheckRemove(int item) => checkRemove.remove(item);
+  void removeAtIndexFromCheckRemove(int index) => checkRemove.removeAt(index);
+  void insertAtIndexInCheckRemove(int index, int item) =>
+      checkRemove.insert(index, item);
+  void updateCheckRemoveAtIndex(int index, Function(int) updateFn) =>
+      checkRemove[index] = updateFn(checkRemove[index]);
 
   ///  State fields for stateful widgets in this page.
 
@@ -97,6 +115,7 @@ class WorkResultListModel extends FlutterFlowModel<WorkResultListWidget> {
             .data
             .toList()
             .cast<ProcedurePublishedListStruct>();
+        checkdata = '1';
       }
     } else {
       FFAppState().update(() {});

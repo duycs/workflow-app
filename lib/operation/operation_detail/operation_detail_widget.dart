@@ -392,37 +392,39 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                  'Trạng thái hoạt động:',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                                Switch.adaptive(
-                                  value: _model.switchValue ??=
-                                      widget.operationDetail?.status == 'done',
-                                  onChanged: ('1' == '1')
-                                      ? null
-                                      : (newValue) async {
-                                          setState(() =>
-                                              _model.switchValue = newValue);
-                                        },
-                                  activeColor: ('1' == '1')
-                                      ? FlutterFlowTheme.of(context).primary
-                                      : FlutterFlowTheme.of(context).primary,
-                                  activeTrackColor: ('1' == '1')
-                                      ? FlutterFlowTheme.of(context).accent1
-                                      : FlutterFlowTheme.of(context).accent1,
-                                  inactiveTrackColor: ('1' == '1')
-                                      ? FlutterFlowTheme.of(context).alternate
-                                      : FlutterFlowTheme.of(context).alternate,
-                                  inactiveThumbColor: ('1' == '1')
-                                      ? FlutterFlowTheme.of(context).primary
-                                      : FlutterFlowTheme.of(context)
-                                          .secondaryText,
+                                Expanded(
+                                  child: SwitchListTile.adaptive(
+                                    value: _model.switchListTileValue ??=
+                                        widget.operationDetail?.status == 'done'
+                                            ? true
+                                            : false,
+                                    onChanged: ('1' == '1')
+                                        ? null
+                                        : (newValue) async {
+                                            setState(() =>
+                                                _model.switchListTileValue =
+                                                    newValue);
+                                          },
+                                    title: Text(
+                                      'Trạng thái hoạt động:',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                    tileColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    activeColor: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    activeTrackColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    dense: false,
+                                    controlAffinity:
+                                        ListTileControlAffinity.trailing,
+                                  ),
                                 ),
                               ].divide(const SizedBox(width: 16.0)),
                             ),
@@ -461,6 +463,7 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                                       fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 0.0,
@@ -507,6 +510,7 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     color: Colors.white,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                               borderSide: const BorderSide(

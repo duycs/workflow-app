@@ -63,6 +63,7 @@ class _DoneActionTypeApproveWidgetState
               textStyle: FlutterFlowTheme.of(context).labelLarge.override(
                     fontFamily: 'Nunito Sans',
                     color: FlutterFlowTheme.of(context).error,
+                    fontSize: 14.0,
                     letterSpacing: 0.0,
                   ),
               borderSide: BorderSide(

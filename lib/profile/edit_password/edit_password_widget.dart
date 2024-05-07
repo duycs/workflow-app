@@ -72,13 +72,13 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
           'Đổi mật khẩu',
           style: FlutterFlowTheme.of(context).headlineMedium.override(
                 fontFamily: 'Nunito Sans',
-                fontSize: 20.0,
+                fontSize: 18.0,
                 letterSpacing: 0.0,
               ),
         ),
         actions: const [],
         centerTitle: false,
-        elevation: 2.0,
+        elevation: 1.0,
       ),
       body: SafeArea(
         top: true,
@@ -354,7 +354,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                                     color: FlutterFlowTheme.of(context).error,
                                     fontSize: 12.0,
                                     letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w300,
+                                    fontWeight: FontWeight.normal,
                                     fontStyle: FontStyle.italic,
                                   ),
                         ),
@@ -489,7 +489,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                 text: 'Xác nhận',
                 options: FFButtonOptions(
                   width: 270.0,
-                  height: 50.0,
+                  height: 40.0,
                   padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                   iconPadding:
                       const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
@@ -497,6 +497,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Nunito Sans',
                         color: Colors.white,
+                        fontSize: 14.0,
                         letterSpacing: 0.0,
                       ),
                   elevation: 3.0,

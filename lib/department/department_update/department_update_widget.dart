@@ -1,6 +1,7 @@
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -118,45 +119,20 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  await showDialog(
-                    context: context,
-                    builder: (alertDialogContext) {
-                      return AlertDialog(
-                        title: Text(getJsonField(
-                          FFAppState().staffLogin,
-                          r'''$.branch_id''',
-                        ).toString()),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(alertDialogContext),
-                            child: const Text('Ok'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
-                child: Text(
-                  'Chỉnh sửa bộ phận',
-                  style: FlutterFlowTheme.of(context).headlineMedium.override(
-                        fontFamily: 'Nunito Sans',
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        fontSize: 20.0,
-                        letterSpacing: 0.0,
-                      ),
-                ),
+              Text(
+                'Chỉnh sửa bộ phận',
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily: 'Nunito Sans',
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      fontSize: 18.0,
+                      letterSpacing: 0.0,
+                    ),
               ),
             ],
           ),
           actions: const [],
           centerTitle: true,
-          elevation: 2.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -187,6 +163,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                               alignLabelWithHint: false,
@@ -269,6 +246,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                               alignLabelWithHint: false,
@@ -323,17 +301,21 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                           ),
                         ),
                         if (_model.checkCode == '1')
-                          Text(
-                            'Mã bộ phận đã tồn tại!',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  color: FlutterFlowTheme.of(context).error,
-                                  fontSize: 12.0,
-                                  letterSpacing: 0.0,
-                                  fontStyle: FontStyle.italic,
-                                ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 0.0, 0.0),
+                            child: Text(
+                              'Mã bộ phận đã tồn tại!',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: FlutterFlowTheme.of(context).error,
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                            ),
                           ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -350,6 +332,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                               alignLabelWithHint: false,
@@ -411,6 +394,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                           ),
@@ -449,7 +433,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                 .secondaryBackground,
                             elevation: 2.0,
                             borderColor: FlutterFlowTheme.of(context).alternate,
-                            borderWidth: 2.0,
+                            borderWidth: 0.5,
                             borderRadius: 8.0,
                             margin: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 4.0, 16.0, 4.0),
@@ -519,7 +503,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                               FlutterFlowTheme.of(context).secondaryBackground,
                           elevation: 2.0,
                           borderColor: FlutterFlowTheme.of(context).alternate,
-                          borderWidth: 2.0,
+                          borderWidth: 0.5,
                           borderRadius: 8.0,
                           margin: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
@@ -527,6 +511,66 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                           isOverButton: true,
                           isSearchable: false,
                           isMultiSelect: false,
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 8.0, 0.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 3.0),
+                                child: Text(
+                                  'Trạng thái',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                ),
+                              ),
+                              FlutterFlowRadioButton(
+                                options:
+                                    ['Hoạt động', 'Không hoạt động'].toList(),
+                                onChanged: (val) => setState(() {}),
+                                controller: _model
+                                        .radioButtonStatusValueController ??=
+                                    FormFieldController<String>(getJsonField(
+                                              widget.items,
+                                              r'''$.status''',
+                                            ).toString() ==
+                                            'published'
+                                        ? 'Hoạt động'
+                                        : 'Không hoạt động'),
+                                optionHeight: 32.0,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                                selectedTextStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                                buttonPosition: RadioButtonPosition.left,
+                                direction: Axis.vertical,
+                                radioButtonColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                inactiveRadioButtonColor:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                toggleable: false,
+                                horizontalAlignment: WrapAlignment.start,
+                                verticalAlignment: WrapCrossAlignment.start,
+                              ),
+                            ],
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -711,7 +755,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                   },
                   text: 'Cập nhật',
                   options: FFButtonOptions(
-                    width: 270.0,
+                    width: 200.0,
                     height: 50.0,
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
@@ -721,7 +765,9 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Nunito Sans',
                           color: Colors.white,
+                          fontSize: 14.0,
                           letterSpacing: 0.0,
+                          fontWeight: FontWeight.normal,
                         ),
                     elevation: 3.0,
                     borderSide: const BorderSide(
