@@ -1,8 +1,12 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'study_program_rank_model.dart';
 export 'study_program_rank_model.dart';
 
@@ -69,25 +73,25 @@ class _StudyProgramRankWidgetState extends State<StudyProgramRankWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
         body: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(
+              Container(
                 width: double.infinity,
                 child: TextFormField(
                   controller: _model.nameSearchTextController,
                   focusNode: _model.nameSearchFocusNode,
                   onChanged: (_) => EasyDebounce.debounce(
                     '_model.nameSearchTextController',
-                    const Duration(milliseconds: 500),
+                    Duration(milliseconds: 500),
                     () => setState(() {}),
                   ),
                   autofocus: false,
@@ -138,8 +142,8 @@ class _StudyProgramRankWidgetState extends State<StudyProgramRankWidget> {
                     filled: true,
                     fillColor: FlutterFlowTheme.of(context).primaryBackground,
                     contentPadding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
-                    prefixIcon: const Icon(
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                    prefixIcon: Icon(
                       Icons.search,
                       size: 24.0,
                     ),
@@ -167,7 +171,7 @@ class _StudyProgramRankWidgetState extends State<StudyProgramRankWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                 child: Text(
                   'Chương trình đào tạo 1',
                   textAlign: TextAlign.center,
@@ -180,7 +184,7 @@ class _StudyProgramRankWidgetState extends State<StudyProgramRankWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 10.0),
                 child: Container(
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -197,7 +201,7 @@ class _StudyProgramRankWidgetState extends State<StudyProgramRankWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 3.0),
                             child: Text(
                               'CÒN LẠI',
@@ -214,7 +218,7 @@ class _StudyProgramRankWidgetState extends State<StudyProgramRankWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 3.0, 0.0),
                                 child: Icon(
                                   Icons.timer_sharp,
@@ -248,7 +252,7 @@ class _StudyProgramRankWidgetState extends State<StudyProgramRankWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 3.0),
                             child: Text(
                               'HÔM NAY',
@@ -265,7 +269,7 @@ class _StudyProgramRankWidgetState extends State<StudyProgramRankWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 3.0, 0.0),
                                 child: Icon(
                                   Icons.arrow_drop_up,
@@ -298,7 +302,7 @@ class _StudyProgramRankWidgetState extends State<StudyProgramRankWidget> {
                 color: FlutterFlowTheme.of(context).alternate,
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                 child: ListView(
                   padding: EdgeInsets.zero,
                   shrinkWrap: true,
@@ -312,7 +316,7 @@ class _StudyProgramRankWidgetState extends State<StudyProgramRankWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 5.0, 0.0),
                               child: Text(
                                 '#1',
@@ -326,7 +330,7 @@ class _StudyProgramRankWidgetState extends State<StudyProgramRankWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 5.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(15.0),
@@ -368,7 +372,7 @@ class _StudyProgramRankWidgetState extends State<StudyProgramRankWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 5.0, 0.0),
                               child: Text(
                                 '#1',
@@ -382,7 +386,7 @@ class _StudyProgramRankWidgetState extends State<StudyProgramRankWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 5.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(15.0),
@@ -424,7 +428,7 @@ class _StudyProgramRankWidgetState extends State<StudyProgramRankWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 5.0, 0.0),
                               child: Text(
                                 '#1',
@@ -438,7 +442,7 @@ class _StudyProgramRankWidgetState extends State<StudyProgramRankWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 5.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(15.0),
@@ -472,7 +476,7 @@ class _StudyProgramRankWidgetState extends State<StudyProgramRankWidget> {
                         ),
                       ],
                     ),
-                  ].divide(const SizedBox(height: 10.0)),
+                  ].divide(SizedBox(height: 10.0)),
                 ),
               ),
             ],

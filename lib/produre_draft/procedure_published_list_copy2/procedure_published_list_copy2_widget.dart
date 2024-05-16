@@ -3,10 +3,13 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/backend/schema/structs/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'procedure_published_list_copy2_model.dart';
@@ -97,7 +100,7 @@ class _ProcedurePublishedListCopy2WidgetState
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -111,7 +114,7 @@ class _ProcedurePublishedListCopy2WidgetState
               children: [
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -121,7 +124,7 @@ class _ProcedurePublishedListCopy2WidgetState
                           focusNode: _model.textFieldFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController',
-                            const Duration(milliseconds: 500),
+                            Duration(milliseconds: 500),
                             () => setState(() {}),
                           ),
                           autofocus: false,
@@ -142,7 +145,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                   letterSpacing: 0.0,
                                 ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Color(0x00000000),
                                 width: 1.0,
                               ),
@@ -172,9 +175,9 @@ class _ProcedurePublishedListCopy2WidgetState
                             filled: true,
                             fillColor:
                                 FlutterFlowTheme.of(context).primaryBackground,
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 0.0, 0.0),
-                            prefixIcon: const Icon(
+                            prefixIcon: Icon(
                               Icons.search,
                               size: 24.0,
                             ),
@@ -224,7 +227,7 @@ class _ProcedurePublishedListCopy2WidgetState
                 if ('2' == '1')
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 3.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 3.0, 0.0, 0.0),
                     child: Text(
                       '#Kết quả hiển thị theo bộ lọc',
                       style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -238,7 +241,7 @@ class _ProcedurePublishedListCopy2WidgetState
                   ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                   child: ListView(
                     padding: EdgeInsets.zero,
                     primary: false,
@@ -247,7 +250,7 @@ class _ProcedurePublishedListCopy2WidgetState
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: Container(
                           decoration: BoxDecoration(
                             color:
@@ -255,17 +258,17 @@ class _ProcedurePublishedListCopy2WidgetState
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 6.0, 6.0, 6.0, 0.0),
                             child: Container(
                               width: double.infinity,
-                              color: const Color(0x00000000),
+                              color: Color(0x00000000),
                               child: ExpandableNotifier(
                                 controller:
                                     _model.expandableExpandableController,
                                 child: ExpandablePanel(
                                   header: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 6.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -284,7 +287,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                             ),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(3.0),
+                                            padding: EdgeInsets.all(3.0),
                                             child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(6.0),
@@ -293,7 +296,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                                 width: 70.0,
                                                 height: 70.0,
                                                 fit: BoxFit.cover,
-                                                alignment: const Alignment(0.0, 0.0),
+                                                alignment: Alignment(0.0, 0.0),
                                               ),
                                             ),
                                           ),
@@ -361,7 +364,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                             ],
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 3.0)),
+                                      ].divide(SizedBox(width: 3.0)),
                                     ),
                                   ),
                                   collapsed: Container(),
@@ -371,7 +374,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                         CrossAxisAlignment.stretch,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 6.0),
                                         child: Container(
                                           width: double.infinity,
@@ -384,7 +387,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .alternate,
-                                                offset: const Offset(
+                                                offset: Offset(
                                                   0.0,
                                                   1.0,
                                                 ),
@@ -395,7 +398,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 10.0, 10.0, 12.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -442,7 +445,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -466,7 +469,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                                         ),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(height: 4.0)),
+                                                        SizedBox(height: 4.0)),
                                                   ),
                                                 ),
                                                 Expanded(
@@ -497,7 +500,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                                             .override(
                                                               fontFamily:
                                                                   'Nunito Sans',
-                                                              color: const Color(
+                                                              color: Color(
                                                                   0xFFFF0000),
                                                               fontSize: 13.0,
                                                               letterSpacing:
@@ -522,7 +525,7 @@ class _ProcedurePublishedListCopy2WidgetState
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         15.0,
                                                                         0.0,
@@ -563,11 +566,11 @@ class _ProcedurePublishedListCopy2WidgetState
                                                                           .bold,
                                                                 ),
                                                           ),
-                                                        ].divide(const SizedBox(
+                                                        ].divide(SizedBox(
                                                             width: 8.0)),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(height: 5.0)),
+                                                        SizedBox(height: 5.0)),
                                                   ),
                                                 ),
                                               ],
@@ -575,9 +578,9 @@ class _ProcedurePublishedListCopy2WidgetState
                                           ),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(height: 4.0)),
+                                    ].divide(SizedBox(height: 4.0)),
                                   ),
-                                  theme: const ExpandableThemeData(
+                                  theme: ExpandableThemeData(
                                     tapHeaderToExpand: true,
                                     tapBodyToExpand: false,
                                     tapBodyToCollapse: false,
@@ -591,7 +594,7 @@ class _ProcedurePublishedListCopy2WidgetState
                           ),
                         ),
                       ),
-                    ].divide(const SizedBox(height: 4.0)),
+                    ].divide(SizedBox(height: 4.0)),
                   ),
                 ),
               ],

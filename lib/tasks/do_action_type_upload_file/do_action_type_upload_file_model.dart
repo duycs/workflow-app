@@ -1,15 +1,34 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
+import '/flutter_flow/flutter_flow_pdf_viewer.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
+import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'do_action_type_upload_file_widget.dart'
     show DoActionTypeUploadFileWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class DoActionTypeUploadFileModel
     extends FlutterFlowModel<DoActionTypeUploadFileWidget> {
   ///  Local state fields for this component.
 
-  String fileName = '';
+  List<String> fileName = [];
+  void addToFileName(String item) => fileName.add(item);
+  void removeFromFileName(String item) => fileName.remove(item);
+  void removeAtIndexFromFileName(int index) => fileName.removeAt(index);
+  void insertAtIndexInFileName(int index, String item) =>
+      fileName.insert(index, item);
+  void updateFileNameAtIndex(int index, Function(String) updateFn) =>
+      fileName[index] = updateFn(fileName[index]);
 
   bool isShowPdf = false;
 

@@ -12,8 +12,10 @@ import '/training/test/radio_group_tests_add/radio_group_tests_add_widget.dart';
 import '/training/test/test_long_text_add/test_long_text_add_widget.dart';
 import '/training/test/test_number_add/test_number_add_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'test_create_model.dart';
 export 'test_create_model.dart';
@@ -22,7 +24,7 @@ class TestCreateWidget extends StatefulWidget {
   const TestCreateWidget({
     super.key,
     String? checkScroll,
-  }) : checkScroll = checkScroll ?? '0';
+  }) : this.checkScroll = checkScroll ?? '0';
 
   final String checkScroll;
 
@@ -108,7 +110,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
               ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 1.0,
         ),
@@ -122,7 +124,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
               children: [
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: EdgeInsets.all(16.0),
                     child: SingleChildScrollView(
                       primary: false,
                       child: Column(
@@ -130,7 +132,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Stack(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
@@ -194,9 +196,9 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                 text: 'Up ảnh đại diện',
                                 options: FFButtonOptions(
                                   height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -222,7 +224,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                             ],
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: TextFormField(
                               controller: _model.textController1,
@@ -286,14 +288,14 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: TextFormField(
                               controller: _model.textController2,
                               focusNode: _model.textFieldFocusNode2,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.textController2',
-                                const Duration(milliseconds: 2000),
+                                Duration(milliseconds: 2000),
                                 () => setState(() {}),
                               ),
                               autofocus: false,
@@ -356,7 +358,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(-1.0, -1.0),
+                            alignment: AlignmentDirectional(-1.0, -1.0),
                             child: TextFormField(
                               controller: _model.textController3,
                               focusNode: _model.textFieldFocusNode3,
@@ -437,7 +439,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.textController4,
@@ -494,7 +496,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                             BorderRadius.circular(0.0),
                                       ),
                                       contentPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               8.0, 0.0, 8.0, 0.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -520,7 +522,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 4.0)),
+                            ].divide(SizedBox(width: 4.0)),
                           ),
                           wrapWithModel(
                             model: _model.questionTestModel,
@@ -542,7 +544,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                               .primaryText,
                                         ),
                                       ),
-                                      duration: const Duration(milliseconds: 4000),
+                                      duration: Duration(milliseconds: 4000),
                                       backgroundColor:
                                           FlutterFlowTheme.of(context).error,
                                     ),
@@ -565,12 +567,12 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                 scrollDirection: Axis.vertical,
                                 itemCount: questionList.length,
                                 separatorBuilder: (_, __) =>
-                                    const SizedBox(height: 12.0),
+                                    SizedBox(height: 12.0),
                                 itemBuilder: (context, questionListIndex) {
                                   final questionListItem =
                                       questionList[questionListIndex];
                                   return Container(
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -582,7 +584,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                            padding: EdgeInsets.all(8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
@@ -631,7 +633,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                                     });
                                                   },
                                                 ),
-                                              ].divide(const SizedBox(width: 8.0)),
+                                              ].divide(SizedBox(width: 8.0)),
                                             ),
                                           ),
                                         ),
@@ -736,13 +738,13 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                               );
                             },
                           ),
-                        ].divide(const SizedBox(height: 16.0)),
+                        ].divide(SizedBox(height: 16.0)),
                       ),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(16.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -795,16 +797,16 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                             setState(() {});
                           },
                           text: 'Câu hỏi mới',
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.add,
                             size: 15.0,
                           ),
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).secondary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -817,7 +819,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -829,7 +831,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            var shouldSetState = false;
+                            var _shouldSetState = false;
                             if (_model.formKey.currentState == null ||
                                 !_model.formKey.currentState!.validate()) {
                               return;
@@ -838,18 +840,18 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                   context: context,
                                   builder: (alertDialogContext) {
                                     return AlertDialog(
-                                      title: const Text('Xác nhận'),
-                                      content: const Text('Bạn chắc chắn muốn lưu!'),
+                                      title: Text('Xác nhận'),
+                                      content: Text('Bạn chắc chắn muốn lưu!'),
                                       actions: [
                                         TextButton(
                                           onPressed: () => Navigator.pop(
                                               alertDialogContext, false),
-                                          child: const Text('Hủy'),
+                                          child: Text('Hủy'),
                                         ),
                                         TextButton(
                                           onPressed: () => Navigator.pop(
                                               alertDialogContext, true),
-                                          child: const Text('Xác nhận'),
+                                          child: Text('Xác nhận'),
                                         ),
                                       ],
                                     );
@@ -872,7 +874,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                               });
                               _model.reloadTokenCreateTest =
                                   await action_blocks.tokenReload(context);
-                              shouldSetState = true;
+                              _shouldSetState = true;
                               if (_model.reloadTokenCreateTest!) {
                                 _model.apiResultCreateTest =
                                     await TestGroup.createTestCall.call(
@@ -892,7 +894,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                     'good_score': _model.textController2.text,
                                   },
                                 );
-                                shouldSetState = true;
+                                _shouldSetState = true;
                                 if ((_model.apiResultCreateTest?.succeeded ??
                                     true)) {
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -904,7 +906,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                               .primaryText,
                                         ),
                                       ),
-                                      duration: const Duration(milliseconds: 4000),
+                                      duration: Duration(milliseconds: 4000),
                                       backgroundColor:
                                           FlutterFlowTheme.of(context)
                                               .secondary,
@@ -914,7 +916,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                   context.pushNamed(
                                     'TestList',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -924,26 +926,26 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                 }
                               } else {
                                 setState(() {});
-                                if (shouldSetState) setState(() {});
+                                if (_shouldSetState) setState(() {});
                                 return;
                               }
                             } else {
-                              if (shouldSetState) setState(() {});
+                              if (_shouldSetState) setState(() {});
                               return;
                             }
 
-                            if (shouldSetState) setState(() {});
+                            if (_shouldSetState) setState(() {});
                           },
                           text: 'Lưu',
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.save,
                             size: 15.0,
                           ),
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -955,7 +957,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -963,7 +965,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                           ),
                         ),
                       ),
-                    ].divide(const SizedBox(width: 16.0)),
+                    ].divide(SizedBox(width: 16.0)),
                   ),
                 ),
               ],

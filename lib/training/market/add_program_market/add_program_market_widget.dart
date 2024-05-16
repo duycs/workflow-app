@@ -7,9 +7,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'add_program_market_model.dart';
 export 'add_program_market_model.dart';
@@ -87,7 +89,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                       color: FlutterFlowTheme.of(context).primaryText,
                     ),
                   ),
-                  duration: const Duration(milliseconds: 4000),
+                  duration: Duration(milliseconds: 4000),
                   backgroundColor: FlutterFlowTheme.of(context).error,
                 ),
               );
@@ -113,7 +115,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                     color: FlutterFlowTheme.of(context).primaryText,
                   ),
                 ),
-                duration: const Duration(milliseconds: 4000),
+                duration: Duration(milliseconds: 4000),
                 backgroundColor: FlutterFlowTheme.of(context).error,
               ),
             );
@@ -145,17 +147,17 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
     return Visibility(
       visible: _model.isLoad == true,
       child: Align(
-        alignment: const AlignmentDirectional(0.0, 0.0),
+        alignment: AlignmentDirectional(0.0, 0.0),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: Container(
             width: double.infinity,
-            constraints: const BoxConstraints(
+            constraints: BoxConstraints(
               maxHeight: 450.0,
             ),
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
                   blurRadius: 4.0,
                   color: Color(0x33000000),
@@ -168,7 +170,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
               borderRadius: BorderRadius.circular(12.0),
             ),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
+              padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -180,7 +182,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 12.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -215,9 +217,9 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 20.0, 0.0, 20.0),
                               child: FlutterFlowDropDown<String>(
                                 controller:
@@ -255,7 +257,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                     FlutterFlowTheme.of(context).alternate,
                                 borderWidth: 2.0,
                                 borderRadius: 8.0,
-                                margin: const EdgeInsetsDirectional.fromSTEB(
+                                margin: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 4.0, 16.0, 4.0),
                                 hidesUnderline: true,
                                 isOverButton: true,
@@ -265,7 +267,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: FlutterFlowDropDown<String>(
                               controller:
                                   _model.dropDownCategoryValueController ??=
@@ -302,7 +304,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                   FlutterFlowTheme.of(context).alternate,
                               borderWidth: 2.0,
                               borderRadius: 8.0,
-                              margin: const EdgeInsetsDirectional.fromSTEB(
+                              margin: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 4.0, 16.0, 4.0),
                               hidesUnderline: true,
                               isOverButton: true,
@@ -311,7 +313,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 20.0, 0.0, 16.0),
                             child: TextFormField(
                               controller: _model.textController,
@@ -387,7 +389,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -400,9 +402,9 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                             text: 'Đóng',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -416,7 +418,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                               ),
                               borderRadius: BorderRadius.circular(20.0),
@@ -426,8 +428,9 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                         Expanded(
                           child: FFButtonWidget(
                             onPressed: () async {
-                              var shouldSetState = false;
-                              if (!(_model.textController.text != '')) {
+                              var _shouldSetState = false;
+                              if (!(_model.textController.text != null &&
+                                  _model.textController.text != '')) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
@@ -437,12 +440,12 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                             .primaryText,
                                       ),
                                     ),
-                                    duration: const Duration(milliseconds: 4000),
+                                    duration: Duration(milliseconds: 4000),
                                     backgroundColor:
                                         FlutterFlowTheme.of(context).error,
                                   ),
                                 );
-                                if (shouldSetState) setState(() {});
+                                if (_shouldSetState) setState(() {});
                                 return;
                               }
                               setState(() {});
@@ -454,7 +457,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                   (_model.dropDownCategoryValue != ' ')) {
                                 _model.updatePrice =
                                     await action_blocks.tokenReload(context);
-                                shouldSetState = true;
+                                _shouldSetState = true;
                                 if (_model.updatePrice!) {
                                   _model.apiResultUpdatePrice =
                                       await StudyProgramGroup
@@ -464,13 +467,17 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                     id: widget.id,
                                     price: int.tryParse(
                                         _model.textController.text),
+                                    authorId: getJsonField(
+                                      FFAppState().staffOrganization,
+                                      r'''$.authors[0]''',
+                                    ).toString(),
                                   );
-                                  shouldSetState = true;
+                                  _shouldSetState = true;
                                   if ((_model.apiResultUpdatePrice?.succeeded ??
                                       true)) {
                                     _model.addMarket = await action_blocks
                                         .tokenReload(context);
-                                    shouldSetState = true;
+                                    _shouldSetState = true;
                                     if (_model.addMarket!) {
                                       _model.apiResultk6q =
                                           await StudyProgramGroup
@@ -482,7 +489,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                         categoryId:
                                             _model.dropDownCategoryValue,
                                       );
-                                      shouldSetState = true;
+                                      _shouldSetState = true;
                                       if ((_model.apiResultk6q?.succeeded ??
                                           true)) {
                                         ScaffoldMessenger.of(context)
@@ -497,7 +504,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                               ),
                                             ),
                                             duration:
-                                                const Duration(milliseconds: 4000),
+                                                Duration(milliseconds: 4000),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .secondary,
@@ -517,7 +524,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                               ),
                                             ),
                                             duration:
-                                                const Duration(milliseconds: 4000),
+                                                Duration(milliseconds: 4000),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .error,
@@ -536,30 +543,30 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                   context: context,
                                   builder: (alertDialogContext) {
                                     return AlertDialog(
-                                      content: const Text(
+                                      content: Text(
                                           'Vui lòng chọn lĩnh vực và danh mục!'),
                                       actions: [
                                         TextButton(
                                           onPressed: () =>
                                               Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
+                                          child: Text('Ok'),
                                         ),
                                       ],
                                     );
                                   },
                                 );
-                                if (shouldSetState) setState(() {});
+                                if (_shouldSetState) setState(() {});
                                 return;
                               }
 
-                              if (shouldSetState) setState(() {});
+                              if (_shouldSetState) setState(() {});
                             },
                             text: 'Xác nhận',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).tertiary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -572,7 +579,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                     fontWeight: FontWeight.normal,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -580,7 +587,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                             ),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 12.0)),
+                      ].divide(SizedBox(width: 12.0)),
                     ),
                   ),
                 ],

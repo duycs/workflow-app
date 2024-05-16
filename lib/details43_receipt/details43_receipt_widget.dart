@@ -1,7 +1,11 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'details43_receipt_model.dart';
 export 'details43_receipt_model.dart';
 
@@ -63,7 +67,7 @@ class _Details43ReceiptWidgetState extends State<Details43ReceiptWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 0.0,
         ),
@@ -74,18 +78,18 @@ class _Details43ReceiptWidgetState extends State<Details43ReceiptWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Align(
-                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  alignment: AlignmentDirectional(0.0, -1.0),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 12.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 12.0),
                     child: Container(
                       width: double.infinity,
-                      constraints: const BoxConstraints(
+                      constraints: BoxConstraints(
                         maxWidth: 770.0,
                       ),
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
-                        boxShadow: const [
+                        boxShadow: [
                           BoxShadow(
                             blurRadius: 3.0,
                             color: Color(0x33000000),
@@ -101,14 +105,14 @@ class _Details43ReceiptWidgetState extends State<Details43ReceiptWidget> {
                         ),
                       ),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 12.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Align(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
+                              alignment: AlignmentDirectional(0.0, -1.0),
                               child: Container(
                                 width: 120.0,
                                 height: 120.0,
@@ -121,7 +125,7 @@ class _Details43ReceiptWidgetState extends State<Details43ReceiptWidget> {
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(8.0),
                                   child: Container(
                                     width: 140.0,
                                     height: 140.0,
@@ -145,7 +149,7 @@ class _Details43ReceiptWidgetState extends State<Details43ReceiptWidget> {
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
+                              alignment: AlignmentDirectional(0.0, -1.0),
                               child: Text(
                                 'Transaction Success',
                                 style: FlutterFlowTheme.of(context)
@@ -157,7 +161,7 @@ class _Details43ReceiptWidgetState extends State<Details43ReceiptWidget> {
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
+                              alignment: AlignmentDirectional(0.0, -1.0),
                               child: Text(
                                 '\$25,250',
                                 style: FlutterFlowTheme.of(context)
@@ -177,7 +181,7 @@ class _Details43ReceiptWidgetState extends State<Details43ReceiptWidget> {
                               textScaler: MediaQuery.of(context).textScaler,
                               text: TextSpan(
                                 children: [
-                                  const TextSpan(
+                                  TextSpan(
                                     text: 'Bank Address\n',
                                     style: TextStyle(),
                                   ),
@@ -206,7 +210,7 @@ class _Details43ReceiptWidgetState extends State<Details43ReceiptWidget> {
                               textScaler: MediaQuery.of(context).textScaler,
                               text: TextSpan(
                                 children: [
-                                  const TextSpan(
+                                  TextSpan(
                                     text: 'Bank Name: ',
                                     style: TextStyle(),
                                   ),
@@ -234,7 +238,7 @@ class _Details43ReceiptWidgetState extends State<Details43ReceiptWidget> {
                               textScaler: MediaQuery.of(context).textScaler,
                               text: TextSpan(
                                 children: [
-                                  const TextSpan(
+                                  TextSpan(
                                     text: 'Account #: ',
                                     style: TextStyle(),
                                   ),
@@ -262,7 +266,7 @@ class _Details43ReceiptWidgetState extends State<Details43ReceiptWidget> {
                               textScaler: MediaQuery.of(context).textScaler,
                               text: TextSpan(
                                 children: [
-                                  const TextSpan(
+                                  TextSpan(
                                     text: 'IBAN: ',
                                     style: TextStyle(),
                                   ),
@@ -292,7 +296,7 @@ class _Details43ReceiptWidgetState extends State<Details43ReceiptWidget> {
                               color: FlutterFlowTheme.of(context).alternate,
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   12.0, 0.0, 12.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -330,7 +334,7 @@ class _Details43ReceiptWidgetState extends State<Details43ReceiptWidget> {
                                         ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(12.0),
+                                    padding: EdgeInsets.all(12.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -353,7 +357,7 @@ class _Details43ReceiptWidgetState extends State<Details43ReceiptWidget> {
                                             ),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(2.0),
+                                            padding: EdgeInsets.all(2.0),
                                             child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(40.0),
@@ -368,10 +372,10 @@ class _Details43ReceiptWidgetState extends State<Details43ReceiptWidget> {
                                         ),
                                         Stack(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           children: [
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Container(
                                                 width: 120.0,
@@ -395,7 +399,7 @@ class _Details43ReceiptWidgetState extends State<Details43ReceiptWidget> {
                                                         .alternate,
                                                 shape: BoxShape.circle,
                                               ),
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Icon(
                                                 Icons
@@ -423,7 +427,7 @@ class _Details43ReceiptWidgetState extends State<Details43ReceiptWidget> {
                                             ),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(2.0),
+                                            padding: EdgeInsets.all(2.0),
                                             child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(40.0),
@@ -436,21 +440,21 @@ class _Details43ReceiptWidgetState extends State<Details43ReceiptWidget> {
                                             ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 16.0)),
+                                      ].divide(SizedBox(width: 16.0)),
                                     ),
                                   ),
                                 ]
-                                    .divide(const SizedBox(height: 4.0))
-                                    .addToEnd(const SizedBox(height: 12.0)),
+                                    .divide(SizedBox(height: 4.0))
+                                    .addToEnd(SizedBox(height: 12.0)),
                               ),
                             ),
-                          ].divide(const SizedBox(height: 8.0)),
+                          ].divide(SizedBox(height: 8.0)),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ].addToEnd(const SizedBox(height: 44.0)),
+              ].addToEnd(SizedBox(height: 44.0)),
             ),
           ),
         ),

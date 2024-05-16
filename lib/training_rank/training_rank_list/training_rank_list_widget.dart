@@ -2,9 +2,12 @@ import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'training_rank_list_model.dart';
 export 'training_rank_list_model.dart';
 
@@ -103,7 +106,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
               ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 1.0,
         ),
@@ -131,13 +134,13 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                   ),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 12.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -148,7 +151,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                 size: 32.0,
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'check.io',
@@ -174,7 +177,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 12.0, 0.0, 0.0),
                                 child: Text(
                                   'Platform Navigation',
@@ -187,10 +190,10 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -201,7 +204,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -214,7 +217,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Dashboard',
@@ -232,10 +235,10 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -246,7 +249,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -259,7 +262,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Chats',
@@ -277,10 +280,10 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -291,7 +294,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -304,7 +307,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Projects',
@@ -322,7 +325,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Settings',
@@ -335,10 +338,10 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -348,7 +351,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -362,7 +365,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Notifications',
@@ -387,9 +390,9 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                           ),
                                           child: Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 4.0, 8.0, 4.0),
                                               child: Text(
                                                 '12',
@@ -414,10 +417,10 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -428,7 +431,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -441,7 +444,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Billing',
@@ -459,10 +462,10 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 200),
                                   curve: Curves.easeInOut,
                                   width: double.infinity,
                                   height: 44.0,
@@ -473,7 +476,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 6.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -486,7 +489,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Explore',
@@ -503,13 +506,13 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 12.0)),
+                            ].divide(SizedBox(height: 12.0)),
                           ),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(0.0, -1.0),
+                          alignment: AlignmentDirectional(0.0, -1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 16.0),
                             child: Container(
                               width: 250.0,
@@ -524,7 +527,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(4.0),
+                                padding: EdgeInsets.all(4.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -587,7 +590,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                 size: 16.0,
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         4.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -676,7 +679,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                 size: 16.0,
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         4.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -719,7 +722,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                           color: FlutterFlowTheme.of(context).alternate,
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 12.0, 16.0, 12.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -736,14 +739,14 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(2.0),
+                                  padding: EdgeInsets.all(2.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: CachedNetworkImage(
                                       fadeInDuration:
-                                          const Duration(milliseconds: 500),
+                                          Duration(milliseconds: 500),
                                       fadeOutDuration:
-                                          const Duration(milliseconds: 500),
+                                          Duration(milliseconds: 500),
                                       imageUrl:
                                           'https://images.unsplash.com/photo-1624561172888-ac93c696e10c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHVzZXJzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
                                       width: 44.0,
@@ -755,7 +758,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -788,7 +791,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -809,13 +812,13 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                 ),
               Expanded(
                 child: Align(
-                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  alignment: AlignmentDirectional(0.0, -1.0),
                   child: Container(
                     width: double.infinity,
-                    constraints: const BoxConstraints(
+                    constraints: BoxConstraints(
                       maxWidth: 970.0,
                     ),
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: SingleChildScrollView(
                       primary: false,
                       child: Column(
@@ -830,10 +833,10 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                             Container(
                               width: double.infinity,
                               height: 24.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                             ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 16.0, 0.0, 0.0),
                             child: Text(
                               'Danh sách cấp bậc đào tạo theo phòng ban',
@@ -847,7 +850,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 8.0, 16.0, 0.0),
                             child: TextFormField(
                               controller: _model.textController,
@@ -897,7 +900,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                   ),
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 0.0, 0.0),
                                 suffixIcon: Icon(
                                   Icons.search_rounded,
@@ -922,10 +925,10 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 8.0, 0.0, 8.0),
                                   child: FlutterFlowChoiceChips(
-                                    options: const [
+                                    options: [
                                       ChipData('Tất cả (30)'),
                                       ChipData('Marketing'),
                                       ChipData('Kinh doanh'),
@@ -987,12 +990,12 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                   ),
                                 ),
                               ]
-                                  .addToStart(const SizedBox(width: 16.0))
-                                  .addToEnd(const SizedBox(width: 16.0)),
+                                  .addToStart(SizedBox(width: 16.0))
+                                  .addToEnd(SizedBox(width: 16.0)),
                             ),
                           ),
                           ListView(
-                            padding: const EdgeInsets.fromLTRB(
+                            padding: EdgeInsets.fromLTRB(
                               0,
                               0,
                               0,
@@ -1017,7 +1020,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                           blurRadius: 0.0,
                                           color: FlutterFlowTheme.of(context)
                                               .alternate,
-                                          offset: const Offset(
+                                          offset: Offset(
                                             0.0,
                                             1.0,
                                           ),
@@ -1025,7 +1028,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                       ],
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           16.0, 12.0, 16.0, 12.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -1061,7 +1064,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(12.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Column(
@@ -1092,7 +1095,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -1114,7 +1117,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                                 ),
                                                           ),
                                                         ),
-                                                      ].divide(const SizedBox(
+                                                      ].divide(SizedBox(
                                                           height: 4.0)),
                                                     ),
                                                   ),
@@ -1147,7 +1150,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                           ),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         8.0,
                                                                         4.0,
@@ -1160,7 +1163,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                               children: [
                                                                 Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child: Text(
@@ -1178,7 +1181,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                                 ),
                                                                 Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child: Text(
@@ -1194,7 +1197,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                                         ),
                                                                   ),
                                                                 ),
-                                                              ].divide(const SizedBox(
+                                                              ].divide(SizedBox(
                                                                   width: 2.0)),
                                                             ),
                                                           ),
@@ -1210,7 +1213,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                           ),
                                                           child: Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     -1.0, 0.0),
                                                             child: Text(
                                                               'Hoạt động',
@@ -1220,7 +1223,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                                   .override(
                                                                     fontFamily:
                                                                         'Nunito Sans',
-                                                                    color: const Color(
+                                                                    color: Color(
                                                                         0xFF00A907),
                                                                     letterSpacing:
                                                                         0.0,
@@ -1248,7 +1251,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                             Expanded(
                                               flex: 2,
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 12.0, 0.0),
                                                 child: Text(
@@ -1272,7 +1275,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                             Expanded(
                                               flex: 3,
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     -1.0, 0.0),
                                                 child: Text(
                                                   'Head of Design',
@@ -1303,7 +1306,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                       blurRadius: 0.0,
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
-                                      offset: const Offset(
+                                      offset: Offset(
                                         0.0,
                                         1.0,
                                       ),
@@ -1311,7 +1314,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                   ],
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 12.0, 16.0, 12.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -1344,7 +1347,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                           children: [
                                             Expanded(
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         12.0, 0.0, 0.0, 0.0),
                                                 child: Column(
@@ -1371,7 +1374,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1395,7 +1398,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(height: 4.0)),
+                                                      SizedBox(height: 4.0)),
                                                 ),
                                               ),
                                             ),
@@ -1424,11 +1427,11 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                       ),
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       8.0,
                                                                       4.0,
@@ -1458,7 +1461,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                       ),
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 -1.0, 0.0),
                                                         child: Text(
                                                           'Hoạt động',
@@ -1468,7 +1471,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Nunito Sans',
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFF00A907),
                                                                 letterSpacing:
                                                                     0.0,
@@ -1497,7 +1500,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                           flex: 2,
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 12.0, 0.0),
                                             child: Text(
                                               '5 mins ago',
@@ -1521,7 +1524,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                           flex: 3,
                                           child: Align(
                                             alignment:
-                                                const AlignmentDirectional(-1.0, 0.0),
+                                                AlignmentDirectional(-1.0, 0.0),
                                             child: Text(
                                               'Head of Design',
                                               style:
@@ -1549,7 +1552,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                       blurRadius: 0.0,
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
-                                      offset: const Offset(
+                                      offset: Offset(
                                         0.0,
                                         1.0,
                                       ),
@@ -1557,7 +1560,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                   ],
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 12.0, 16.0, 12.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -1590,7 +1593,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                           children: [
                                             Expanded(
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         12.0, 0.0, 0.0, 0.0),
                                                 child: Column(
@@ -1617,7 +1620,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1641,7 +1644,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(height: 4.0)),
+                                                      SizedBox(height: 4.0)),
                                                 ),
                                               ),
                                             ),
@@ -1670,11 +1673,11 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                       ),
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       8.0,
                                                                       4.0,
@@ -1704,7 +1707,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                       ),
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 -1.0, 0.0),
                                                         child: Text(
                                                           'Hoạt động',
@@ -1714,7 +1717,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Nunito Sans',
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFF00A907),
                                                                 letterSpacing:
                                                                     0.0,
@@ -1743,7 +1746,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                           flex: 2,
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 12.0, 0.0),
                                             child: Text(
                                               '5 mins ago',
@@ -1767,7 +1770,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                           flex: 3,
                                           child: Align(
                                             alignment:
-                                                const AlignmentDirectional(-1.0, 0.0),
+                                                AlignmentDirectional(-1.0, 0.0),
                                             child: Text(
                                               'Head of Design',
                                               style:
@@ -1795,7 +1798,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                       blurRadius: 0.0,
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
-                                      offset: const Offset(
+                                      offset: Offset(
                                         0.0,
                                         1.0,
                                       ),
@@ -1803,7 +1806,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                   ],
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 12.0, 16.0, 12.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -1836,7 +1839,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                           children: [
                                             Expanded(
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         12.0, 0.0, 0.0, 0.0),
                                                 child: Column(
@@ -1863,7 +1866,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1887,7 +1890,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(height: 4.0)),
+                                                      SizedBox(height: 4.0)),
                                                 ),
                                               ),
                                             ),
@@ -1916,11 +1919,11 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                       ),
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       8.0,
                                                                       4.0,
@@ -1950,7 +1953,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                       ),
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 -1.0, 0.0),
                                                         child: Text(
                                                           'Không hoạt động',
@@ -1960,7 +1963,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Nunito Sans',
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFFFF0000),
                                                                 letterSpacing:
                                                                     0.0,
@@ -1989,7 +1992,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                           flex: 2,
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 12.0, 0.0),
                                             child: Text(
                                               '5 mins ago',
@@ -2013,7 +2016,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                           flex: 3,
                                           child: Align(
                                             alignment:
-                                                const AlignmentDirectional(-1.0, 0.0),
+                                                AlignmentDirectional(-1.0, 0.0),
                                             child: Text(
                                               'Head of Design',
                                               style:
@@ -2031,7 +2034,7 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 1.0)),
+                            ].divide(SizedBox(height: 1.0)),
                           ),
                         ],
                       ),

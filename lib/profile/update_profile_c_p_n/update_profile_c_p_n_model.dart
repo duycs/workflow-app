@@ -1,9 +1,22 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_video_player.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
+import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'update_profile_c_p_n_widget.dart' show UpdateProfileCPNWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
   ///  Local state fields for this page.
@@ -137,7 +150,7 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
           accessToken: FFAppState().accessToken,
           fileList: uploadedLocalFiles2,
         );
-        if ((apiResultUploadImage2.succeeded ?? true)) {
+        if ((apiResultUploadImage2?.succeeded ?? true)) {
           if (uploadedLocalFiles2.length == 1) {
             updateFilesStruct(
               (e) => e
@@ -158,7 +171,7 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
             );
           } else {
             imagesUpload = FileUploadStruct.maybeFromMap(
-                    (apiResultUploadImage2.jsonBody ?? ''))!
+                    (apiResultUploadImage2?.jsonBody ?? ''))!
                 .data
                 .map((e) => e.id)
                 .toList()

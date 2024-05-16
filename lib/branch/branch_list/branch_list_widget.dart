@@ -1,15 +1,19 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/branch/branch_create/branch_create_widget.dart';
 import '/branch/filter_branch/filter_branch_widget.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'package:shake/shake.dart';
@@ -159,7 +163,7 @@ class _BranchListWidgetState extends State<BranchListWidget> {
               context.pushNamed(
                 'Profile',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
+                  kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -181,7 +185,7 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -192,7 +196,7 @@ class _BranchListWidgetState extends State<BranchListWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -203,9 +207,10 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                         focusNode: _model.textFieldFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.textController',
-                          const Duration(milliseconds: 500),
+                          Duration(milliseconds: 500),
                           () async {
-                            if (_model.textController.text != '') {
+                            if (_model.textController.text != null &&
+                                _model.textController.text != '') {
                               setState(() {
                                 _model.filter = _model.textController.text;
                               });
@@ -267,9 +272,9 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                           filled: true,
                           fillColor:
                               FlutterFlowTheme.of(context).primaryBackground,
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 0.0, 0.0),
-                          prefixIcon: const Icon(
+                          prefixIcon: Icon(
                             Icons.search_sharp,
                             size: 24.0,
                           ),
@@ -277,7 +282,8 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                               ? InkWell(
                                   onTap: () async {
                                     _model.textController?.clear();
-                                    if (_model.textController.text != '') {
+                                    if (_model.textController.text != null &&
+                                        _model.textController.text != '') {
                                       setState(() {
                                         _model.filter =
                                             _model.textController.text;
@@ -333,7 +339,7 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                                 elevation: 0,
                                 insetPadding: EdgeInsets.zero,
                                 backgroundColor: Colors.transparent,
-                                alignment: const AlignmentDirectional(0.0, 0.0)
+                                alignment: AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
                                 child: GestureDetector(
                                   onTap: () =>
@@ -359,13 +365,13 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                         },
                       ),
                     ),
-                  ].divide(const SizedBox(width: 8.0)),
+                  ].divide(SizedBox(width: 8.0)),
                 ),
               ),
-              if ((_model.searchStatus != '') ||
-                  (_model.filter != ''))
+              if ((_model.searchStatus != null && _model.searchStatus != '') ||
+                  (_model.filter != null && _model.filter != ''))
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
                   child: Text(
                     '#Kết quả hiển thị theo bộ lọc',
                     style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -379,7 +385,7 @@ class _BranchListWidgetState extends State<BranchListWidget> {
               Expanded(
                 child: Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                   child: PagedListView<ApiPagingParams, dynamic>.separated(
                     pagingController: _model.setListViewController(
                       (nextPageMarker) => BranchGroup.branchListCall.call(
@@ -387,17 +393,17 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                         offset: nextPageMarker.nextPageNumber * 20,
                         limit: 20,
                         filter:
-                            '{\"_and\":[{}${(_model.filter != '') && (_model.filter != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.filter}\"}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            '{\"_and\":[{}${(_model.filter != null && _model.filter != '') && (_model.filter != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.filter}\"}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                           FFAppState().staffLogin,
                           r'''$.organization_id''',
-                        ).toString()}\"}}}'}${(_model.searchStatus != '') && (_model.searchStatus != ' ') ? ',{\"status\":{\"_icontains\":\"${_model.searchStatus}\"}}' : ' '}]}',
+                        ).toString()}\"}}}'}${(_model.searchStatus != null && _model.searchStatus != '') && (_model.searchStatus != ' ') ? ',{\"status\":{\"_icontains\":\"${_model.searchStatus}\"}}' : ' '}]}',
                       ),
                     ),
                     padding: EdgeInsets.zero,
                     primary: false,
                     reverse: false,
                     scrollDirection: Axis.vertical,
-                    separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+                    separatorBuilder: (_, __) => SizedBox(height: 8.0),
                     builderDelegate: PagedChildBuilderDelegate<dynamic>(
                       // Customize what your widget looks like when it's loading the first page.
                       firstPageProgressIndicatorBuilder: (_) => Center(
@@ -423,8 +429,8 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                           ),
                         ),
                       ),
-                      noItemsFoundIndicatorBuilder: (_) => const Center(
-                        child: SizedBox(
+                      noItemsFoundIndicatorBuilder: (_) => Center(
+                        child: Container(
                           width: double.infinity,
                           child: DataNotFoundWidget(),
                         ),
@@ -433,7 +439,7 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                         final branchItemItem = _model.listViewPagingController!
                             .itemList![branchItemIndex];
                         return Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -471,7 +477,7 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
+                                  kTransitionInfoKey: TransitionInfo(
                                     hasTransition: true,
                                     transitionType: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 0),
@@ -493,7 +499,7 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                                     blurRadius: 1.0,
                                     color:
                                         FlutterFlowTheme.of(context).alternate,
-                                    offset: const Offset(
+                                    offset: Offset(
                                       0.0,
                                       1.0,
                                     ),
@@ -502,7 +508,7 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(8.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -568,10 +574,10 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                                                 BorderRadius.circular(20.0),
                                           ),
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 8.0, 0.0),
                                             child: Text(
                                               branchItemItem.status ==
@@ -600,7 +606,7 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                                         ),
                                       ],
                                     ),
-                                  ].divide(const SizedBox(height: 4.0)),
+                                  ].divide(SizedBox(height: 4.0)),
                                 ),
                               ),
                             ),

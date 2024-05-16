@@ -1,13 +1,16 @@
+import '/backend/schema/structs/index.dart';
 import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/lesson/filter_lesson_home_page/filter_lesson_home_page_widget.dart';
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'lesson_lists_homepage_model.dart';
 export 'lesson_lists_homepage_model.dart';
@@ -34,7 +37,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (FFAppState().staffid != '') {
+      if (FFAppState().staffid != null && FFAppState().staffid != '') {
         await _model.getListLessonRow(context);
         setState(() {});
         await _model.getListLessonRow2(context);
@@ -92,7 +95,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -109,15 +112,15 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
-                      child: SizedBox(
+                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                      child: Container(
                         width: double.infinity,
                         child: TextFormField(
                           controller: _model.nameSearchTextController,
                           focusNode: _model.nameSearchFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.nameSearchTextController',
-                            const Duration(milliseconds: 500),
+                            Duration(milliseconds: 500),
                             () async {
                               await _model.getListLessonRow(context);
                               setState(() {});
@@ -180,9 +183,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                             filled: true,
                             fillColor:
                                 FlutterFlowTheme.of(context).primaryBackground,
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 0.0, 0.0),
-                            prefixIcon: const Icon(
+                            prefixIcon: Icon(
                               Icons.search,
                               size: 24.0,
                             ),
@@ -225,10 +228,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        if ((FFAppState().staffid != '') &&
-                            (_model.listLessonRow.isNotEmpty))
+                        if ((FFAppState().staffid != null &&
+                                FFAppState().staffid != '') &&
+                            (_model.listLessonRow.length > 0))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 12.0, 5.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -274,7 +278,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -311,11 +315,13 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                               ],
                             ),
                           ),
-                        if ((_model.nameSearchTextController.text != '') &&
-                            ((FFAppState().staffid != '') &&
-                                (_model.listLessonRow.isNotEmpty)))
+                        if ((_model.nameSearchTextController.text != null &&
+                                _model.nameSearchTextController.text != '') &&
+                            ((FFAppState().staffid != null &&
+                                    FFAppState().staffid != '') &&
+                                (_model.listLessonRow.length > 0)))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 2.0, 16.0, 0.0),
                             child: Text(
                               '#Kết quả tìm kiếm theo bộ lọc',
@@ -332,27 +338,29 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   ),
                             ),
                           ),
-                        if ((FFAppState().staffid != '') &&
-                            (_model.listLessonRow.isNotEmpty))
+                        if ((FFAppState().staffid != null &&
+                                FFAppState().staffid != '') &&
+                            (_model.listLessonRow.length > 0))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 4.0),
                             child: Container(
                               width: double.infinity,
                               height: 130.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Visibility(
-                                visible: (FFAppState().staffid != '') &&
-                                    (_model.listLessonRow.isNotEmpty),
+                                visible: (FFAppState().staffid != null &&
+                                        FFAppState().staffid != '') &&
+                                    (_model.listLessonRow.length > 0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 12.0),
                                   child: Builder(
                                     builder: (context) {
                                       final listRow =
                                           _model.listLessonRow.toList();
                                       return ListView.separated(
-                                        padding: const EdgeInsets.fromLTRB(
+                                        padding: EdgeInsets.fromLTRB(
                                           16.0,
                                           0,
                                           0,
@@ -362,7 +370,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                         scrollDirection: Axis.horizontal,
                                         itemCount: listRow.length,
                                         separatorBuilder: (_, __) =>
-                                            const SizedBox(width: 12.0),
+                                            SizedBox(width: 12.0),
                                         itemBuilder: (context, listRowIndex) {
                                           final listRowItem =
                                               listRow[listRowIndex];
@@ -395,7 +403,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      const TransitionInfo(
+                                                      TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType.fade,
@@ -424,7 +432,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsets.all(6.0),
+                                                        EdgeInsets.all(6.0),
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -451,7 +459,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       4.0,
@@ -482,11 +490,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             1.0, -1.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   8.0,
@@ -516,7 +524,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                           ),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         5.0,
                                                                         2.0,
@@ -524,7 +532,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                         2.0),
                                                             child: Text(
                                                               () {
-                                                                if ((listRowItem.dateStart != '') &&
+                                                                if ((listRowItem.dateStart != null && listRowItem.dateStart != '') &&
                                                                     (listRowItem.lessionId.estimateInDay !=
                                                                         null) &&
                                                                     (listRowItem.programId.estimateInDay !=
@@ -651,7 +659,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                       return null!;
                                                                     }
                                                                   }();
-                                                                } else if ((listRowItem.dateStart != '') &&
+                                                                } else if ((listRowItem.dateStart != null && listRowItem.dateStart != '') &&
                                                                     (listRowItem.lessionId.estimateInDay !=
                                                                         null) &&
                                                                     (listRowItem.programId.estimateInDay ==
@@ -719,7 +727,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                       return null!;
                                                                     }
                                                                   }();
-                                                                } else if ((listRowItem.dateStart != '') &&
+                                                                } else if ((listRowItem.dateStart != null && listRowItem.dateStart != '') &&
                                                                     (listRowItem.lessionId.estimateInDay ==
                                                                         null) &&
                                                                     (listRowItem.programId.estimateInDay !=
@@ -787,7 +795,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                       return null!;
                                                                     }
                                                                   }();
-                                                                } else if ((listRowItem.dateStart == '') &&
+                                                                } else if ((listRowItem.dateStart == null || listRowItem.dateStart == '') &&
                                                                     (listRowItem.lessionId.estimateInDay !=
                                                                         null) &&
                                                                     (listRowItem.programId.estimateInDay !=
@@ -855,7 +863,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                       return null!;
                                                                     }
                                                                   }();
-                                                                } else if ((listRowItem.dateStart == '') &&
+                                                                } else if ((listRowItem.dateStart == null || listRowItem.dateStart == '') &&
                                                                     (listRowItem.lessionId.estimateInDay ==
                                                                         null) &&
                                                                     (listRowItem.programId.estimateInDay !=
@@ -923,13 +931,13 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                       return null!;
                                                                     }
                                                                   }();
-                                                                } else if ((listRowItem.dateStart == '') &&
+                                                                } else if ((listRowItem.dateStart == null || listRowItem.dateStart == '') &&
                                                                     (listRowItem.lessionId.estimateInDay !=
                                                                         null) &&
                                                                     (listRowItem.programId.estimateInDay ==
                                                                         null)) {
                                                                   return 'Không có hạn';
-                                                                } else if ((listRowItem.dateStart != '') &&
+                                                                } else if ((listRowItem.dateStart != null && listRowItem.dateStart != '') &&
                                                                     (listRowItem
                                                                             .lessionId
                                                                             .estimateInDay ==
@@ -939,7 +947,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             .estimateInDay ==
                                                                         null)) {
                                                                   return 'Không có hạn';
-                                                                } else if ((listRowItem.dateStart == '') &&
+                                                                } else if ((listRowItem.dateStart == null || listRowItem.dateStart == '') &&
                                                                     (listRowItem
                                                                             .programId
                                                                             .estimateInDay ==
@@ -985,10 +993,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                               ),
                             ),
                           ),
-                        if ((FFAppState().staffid != '') &&
-                            (_model.listLessonRow2.isNotEmpty))
+                        if ((FFAppState().staffid != null &&
+                                FFAppState().staffid != '') &&
+                            (_model.listLessonRow2.length > 0))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 12.0, 5.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -1034,7 +1043,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -1071,11 +1080,13 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                               ],
                             ),
                           ),
-                        if ((_model.nameSearchTextController.text != '') &&
-                            ((FFAppState().staffid != '') &&
-                                (_model.listLessonRow2.isNotEmpty)))
+                        if ((_model.nameSearchTextController.text != null &&
+                                _model.nameSearchTextController.text != '') &&
+                            ((FFAppState().staffid != null &&
+                                    FFAppState().staffid != '') &&
+                                (_model.listLessonRow2.length > 0)))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 2.0, 16.0, 0.0),
                             child: Text(
                               '#Kết quả tìm kiếm theo bộ lọc',
@@ -1092,27 +1103,29 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   ),
                             ),
                           ),
-                        if ((FFAppState().staffid != '') &&
-                            (_model.listLessonRow2.isNotEmpty))
+                        if ((FFAppState().staffid != null &&
+                                FFAppState().staffid != '') &&
+                            (_model.listLessonRow2.length > 0))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 4.0),
                             child: Container(
                               width: double.infinity,
                               height: 130.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Visibility(
-                                visible: (FFAppState().staffid != '') &&
-                                    (_model.listLessonRow2.isNotEmpty),
+                                visible: (FFAppState().staffid != null &&
+                                        FFAppState().staffid != '') &&
+                                    (_model.listLessonRow2.length > 0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 12.0),
                                   child: Builder(
                                     builder: (context) {
                                       final listRow2 =
                                           _model.listLessonRow2.toList();
                                       return ListView.separated(
-                                        padding: const EdgeInsets.fromLTRB(
+                                        padding: EdgeInsets.fromLTRB(
                                           16.0,
                                           0,
                                           0,
@@ -1122,7 +1135,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                         scrollDirection: Axis.horizontal,
                                         itemCount: listRow2.length,
                                         separatorBuilder: (_, __) =>
-                                            const SizedBox(width: 12.0),
+                                            SizedBox(width: 12.0),
                                         itemBuilder: (context, listRow2Index) {
                                           final listRow2Item =
                                               listRow2[listRow2Index];
@@ -1155,7 +1168,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      const TransitionInfo(
+                                                      TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType.fade,
@@ -1184,7 +1197,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsets.all(6.0),
+                                                        EdgeInsets.all(6.0),
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -1211,7 +1224,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       4.0,
@@ -1244,11 +1257,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                     opacity: 0.8,
                                                     child: Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               1.0, -1.0),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     8.0,
@@ -1278,7 +1291,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           2.0,
@@ -1311,7 +1324,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             onPressed: () =>
                                                                                 Navigator.pop(alertDialogContext),
                                                                             child:
-                                                                                const Text('Ok'),
+                                                                                Text('Ok'),
                                                                           ),
                                                                         ],
                                                                       );
@@ -1320,7 +1333,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                 },
                                                                 child: Text(
                                                                   () {
-                                                                    if ((listRow2Item.dateStart != '') &&
+                                                                    if ((listRow2Item.dateStart != null && listRow2Item.dateStart != '') &&
                                                                         (listRow2Item.lessionId.estimateInDay !=
                                                                             null) &&
                                                                         (listRow2Item.programId.estimateInDay !=
@@ -1422,7 +1435,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                           return null!;
                                                                         }
                                                                       }();
-                                                                    } else if ((listRow2Item.dateStart != '') &&
+                                                                    } else if ((listRow2Item.dateStart != null && listRow2Item.dateStart != '') &&
                                                                         (listRow2Item.lessionId.estimateInDay !=
                                                                             null) &&
                                                                         (listRow2Item.programId.estimateInDay ==
@@ -1464,7 +1477,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                           return null!;
                                                                         }
                                                                       }();
-                                                                    } else if ((listRow2Item.dateStart != '') &&
+                                                                    } else if ((listRow2Item.dateStart != null && listRow2Item.dateStart != '') &&
                                                                         (listRow2Item.lessionId.estimateInDay ==
                                                                             null) &&
                                                                         (listRow2Item.programId.estimateInDay !=
@@ -1506,7 +1519,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                           return null!;
                                                                         }
                                                                       }();
-                                                                    } else if ((listRow2Item.dateStart == '') &&
+                                                                    } else if ((listRow2Item.dateStart == null || listRow2Item.dateStart == '') &&
                                                                         (listRow2Item.lessionId.estimateInDay !=
                                                                             null) &&
                                                                         (listRow2Item.programId.estimateInDay !=
@@ -1548,7 +1561,8 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                           return null!;
                                                                         }
                                                                       }();
-                                                                    } else if ((listRow2Item.dateStart ==
+                                                                    } else if ((listRow2Item.dateStart == null ||
+                                                                            listRow2Item.dateStart ==
                                                                                 '') &&
                                                                         (listRow2Item.lessionId.estimateInDay ==
                                                                             null) &&
@@ -1592,6 +1606,8 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                         }
                                                                       }();
                                                                     } else if ((listRow2Item.dateStart ==
+                                                                                null ||
+                                                                            listRow2Item.dateStart ==
                                                                                 '') &&
                                                                         (listRow2Item.lessionId.estimateInDay !=
                                                                             null) &&
@@ -1599,6 +1615,8 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             null)) {
                                                                       return 'Không có hạn';
                                                                     } else if ((listRow2Item.dateStart ==
+                                                                                null ||
+                                                                            listRow2Item.dateStart ==
                                                                                 '') &&
                                                                         (listRow2Item.lessionId.estimateInDay ==
                                                                             null) &&
@@ -1606,6 +1624,8 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             null)) {
                                                                       return 'Không có hạn';
                                                                     } else if ((listRow2Item.dateStart ==
+                                                                                null ||
+                                                                            listRow2Item.dateStart ==
                                                                                 '') &&
                                                                         (listRow2Item.lessionId.estimateInDay ==
                                                                             null) &&
@@ -1649,7 +1669,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                             ),
                           ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 12.0, 16.0, 0.0),
                           child: Text(
                             'Bài học khác',
@@ -1665,7 +1685,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1698,7 +1718,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -1710,11 +1730,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   child: Container(
                                     height: 36.0,
                                     decoration: BoxDecoration(
-                                      color: const Color(0x2A4B39EF),
+                                      color: Color(0x2A4B39EF),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           32.0, 0.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -1729,7 +1749,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                           ),
                                           Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Text(
                                               'Đang học',
                                               style: FlutterFlowTheme.of(
@@ -1746,7 +1766,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                   ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 8.0)),
+                                        ].divide(SizedBox(width: 8.0)),
                                       ),
                                     ),
                                   ),
@@ -1780,7 +1800,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -1792,11 +1812,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   child: Container(
                                     height: 36.0,
                                     decoration: BoxDecoration(
-                                      color: const Color(0x2A4B39EF),
+                                      color: Color(0x2A4B39EF),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           32.0, 0.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -1811,7 +1831,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                           ),
                                           Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Text(
                                               'Hoàn thành',
                                               style: FlutterFlowTheme.of(
@@ -1829,17 +1849,17 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                   ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 8.0)),
+                                        ].divide(SizedBox(width: 8.0)),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 12.0)),
+                            ].divide(SizedBox(width: 12.0)),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1872,7 +1892,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -1884,11 +1904,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   child: Container(
                                     height: 36.0,
                                     decoration: BoxDecoration(
-                                      color: const Color(0x2A4B39EF),
+                                      color: Color(0x2A4B39EF),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           32.0, 0.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -1903,7 +1923,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                           ),
                                           Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Text(
                                               'Yêu thích',
                                               style: FlutterFlowTheme.of(
@@ -1920,7 +1940,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                   ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 8.0)),
+                                        ].divide(SizedBox(width: 8.0)),
                                       ),
                                     ),
                                   ),
@@ -1954,7 +1974,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -1966,11 +1986,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   child: Container(
                                     height: 36.0,
                                     decoration: BoxDecoration(
-                                      color: const Color(0x2A4B39EF),
+                                      color: Color(0x2A4B39EF),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           32.0, 0.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -1979,7 +1999,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 2.0),
                                             child: Icon(
                                               Icons.style_sharp,
@@ -1991,7 +2011,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                           ),
                                           Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Text(
                                               'Bắt buộc',
                                               style: FlutterFlowTheme.of(
@@ -2008,19 +2028,20 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                   ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 8.0)),
+                                        ].divide(SizedBox(width: 8.0)),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 12.0)),
+                            ].divide(SizedBox(width: 12.0)),
                           ),
                         ),
-                        if ((FFAppState().staffid != '') &&
-                            (_model.listLessonRow3.isNotEmpty))
+                        if ((FFAppState().staffid != null &&
+                                FFAppState().staffid != '') &&
+                            (_model.listLessonRow3.length > 0))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 24.0, 5.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -2066,7 +2087,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -2103,11 +2124,13 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                               ],
                             ),
                           ),
-                        if ((_model.nameSearchTextController.text != '') &&
-                            ((FFAppState().staffid != '') &&
-                                (_model.listLessonRow3.isNotEmpty)))
+                        if ((_model.nameSearchTextController.text != null &&
+                                _model.nameSearchTextController.text != '') &&
+                            ((FFAppState().staffid != null &&
+                                    FFAppState().staffid != '') &&
+                                (_model.listLessonRow3.length > 0)))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 2.0, 16.0, 0.0),
                             child: Text(
                               '#Kết quả tìm kiếm theo bộ lọc',
@@ -2124,24 +2147,26 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   ),
                             ),
                           ),
-                        if ((FFAppState().staffid != '') &&
-                            (_model.listLessonRow3.isNotEmpty))
+                        if ((FFAppState().staffid != null &&
+                                FFAppState().staffid != '') &&
+                            (_model.listLessonRow3.length > 0))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 4.0),
                             child: Container(
                               width: double.infinity,
                               height: 130.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Visibility(
-                                visible: (FFAppState().staffid != '') &&
-                                    (_model.listLessonRow3.isNotEmpty),
+                                visible: (FFAppState().staffid != null &&
+                                        FFAppState().staffid != '') &&
+                                    (_model.listLessonRow3.length > 0),
                                 child: Builder(
                                   builder: (context) {
                                     final listRow3 =
                                         _model.listLessonRow3.toList();
                                     return ListView.separated(
-                                      padding: const EdgeInsets.fromLTRB(
+                                      padding: EdgeInsets.fromLTRB(
                                         16.0,
                                         0,
                                         0,
@@ -2151,7 +2176,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                       scrollDirection: Axis.horizontal,
                                       itemCount: listRow3.length,
                                       separatorBuilder: (_, __) =>
-                                          const SizedBox(width: 12.0),
+                                          SizedBox(width: 12.0),
                                       itemBuilder: (context, listRow3Index) {
                                         final listRow3Item =
                                             listRow3[listRow3Index];
@@ -2180,7 +2205,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                               }.withoutNulls,
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
-                                                    const TransitionInfo(
+                                                    TransitionInfo(
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType.fade,
@@ -2208,7 +2233,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                             child: Stack(
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsets.all(6.0),
+                                                  padding: EdgeInsets.all(6.0),
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -2234,7 +2259,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     4.0,
@@ -2266,11 +2291,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                   opacity: 0.8,
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             1.0, -1.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   8.0,
@@ -2300,7 +2325,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                           ),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         5.0,
                                                                         2.0,
@@ -2308,7 +2333,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                         2.0),
                                                             child: Text(
                                                               () {
-                                                                if ((listRow3Item.dateStart != '') &&
+                                                                if ((listRow3Item.dateStart != null && listRow3Item.dateStart != '') &&
                                                                     (listRow3Item.lessionId.estimateInDay !=
                                                                         null) &&
                                                                     (listRow3Item.programId.estimateInDay !=
@@ -2435,7 +2460,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                       return null!;
                                                                     }
                                                                   }();
-                                                                } else if ((listRow3Item.dateStart != '') &&
+                                                                } else if ((listRow3Item.dateStart != null && listRow3Item.dateStart != '') &&
                                                                     (listRow3Item.lessionId.estimateInDay !=
                                                                         null) &&
                                                                     (listRow3Item.programId.estimateInDay ==
@@ -2503,7 +2528,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                       return null!;
                                                                     }
                                                                   }();
-                                                                } else if ((listRow3Item.dateStart != '') &&
+                                                                } else if ((listRow3Item.dateStart != null && listRow3Item.dateStart != '') &&
                                                                     (listRow3Item.lessionId.estimateInDay ==
                                                                         null) &&
                                                                     (listRow3Item.programId.estimateInDay !=
@@ -2571,7 +2596,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                       return null!;
                                                                     }
                                                                   }();
-                                                                } else if ((listRow3Item.dateStart == '') &&
+                                                                } else if ((listRow3Item.dateStart == null || listRow3Item.dateStart == '') &&
                                                                     (listRow3Item.lessionId.estimateInDay !=
                                                                         null) &&
                                                                     (listRow3Item.programId.estimateInDay !=
@@ -2639,7 +2664,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                       return null!;
                                                                     }
                                                                   }();
-                                                                } else if ((listRow3Item.dateStart == '') &&
+                                                                } else if ((listRow3Item.dateStart == null || listRow3Item.dateStart == '') &&
                                                                     (listRow3Item.lessionId.estimateInDay ==
                                                                         null) &&
                                                                     (listRow3Item.programId.estimateInDay !=
@@ -2707,13 +2732,13 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                       return null!;
                                                                     }
                                                                   }();
-                                                                } else if ((listRow3Item.dateStart == '') &&
+                                                                } else if ((listRow3Item.dateStart == null || listRow3Item.dateStart == '') &&
                                                                     (listRow3Item.lessionId.estimateInDay !=
                                                                         null) &&
                                                                     (listRow3Item.programId.estimateInDay ==
                                                                         null)) {
                                                                   return 'Không có hạn';
-                                                                } else if ((listRow3Item.dateStart != '') &&
+                                                                } else if ((listRow3Item.dateStart != null && listRow3Item.dateStart != '') &&
                                                                     (listRow3Item
                                                                             .lessionId
                                                                             .estimateInDay ==
@@ -2723,7 +2748,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                             .estimateInDay ==
                                                                         null)) {
                                                                   return 'Không có hạn';
-                                                                } else if ((listRow3Item.dateStart == '') &&
+                                                                } else if ((listRow3Item.dateStart == null || listRow3Item.dateStart == '') &&
                                                                     (listRow3Item
                                                                             .lessionId
                                                                             .estimateInDay ==
@@ -2770,7 +2795,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                             ),
                           ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 24.0, 16.0, 0.0),
                           child: Text(
                             'Hãy thử khám phá',
@@ -2786,7 +2811,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -2795,7 +2820,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                 child: Container(
                                   width: 100.0,
                                   decoration: BoxDecoration(
-                                    color: const Color(0x2539D2C0),
+                                    color: Color(0x2539D2C0),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Row(
@@ -2836,7 +2861,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                 child: Container(
                                   width: 100.0,
                                   decoration: BoxDecoration(
-                                    color: const Color(0x2539D2C0),
+                                    color: Color(0x2539D2C0),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Row(
@@ -2873,11 +2898,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 12.0)),
+                            ].divide(SizedBox(width: 12.0)),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 22.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -2898,14 +2923,19 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                           fontWeight: FontWeight.w500,
                                         ),
                                   ),
-                                  if ((_model.nameSearchTextController
+                                  if ((_model.nameSearchTextController.text !=
+                                              null &&
+                                          _model.nameSearchTextController
                                                   .text !=
                                               '') ||
-                                      ((_model.status != '') &&
+                                      ((_model.status != null &&
+                                              _model.status != '') &&
                                           (_model.status != 'noData')) ||
-                                      ((_model.dateEndList != '') &&
+                                      ((_model.dateEndList != null &&
+                                              _model.dateEndList != '') &&
                                           (_model.dateEndList != 'noData')) ||
-                                      ((_model.dateStartList != '') &&
+                                      ((_model.dateStartList != null &&
+                                              _model.dateStartList != '') &&
                                           (_model.dateStartList != 'noData')))
                                     Text(
                                       '#Kết quả tìm kiếm theo bộ lọc',
@@ -2920,10 +2950,10 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                             fontStyle: FontStyle.italic,
                                           ),
                                     ),
-                                ].divide(const SizedBox(height: 4.0)),
+                                ].divide(SizedBox(height: 4.0)),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Builder(
                                   builder: (context) => FlutterFlowIconButton(
                                     borderColor: Colors.transparent,
@@ -2944,7 +2974,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                             elevation: 0,
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
@@ -3014,9 +3044,10 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                             ],
                           ),
                         ),
-                        if (FFAppState().staffid != '')
+                        if (FFAppState().staffid != null &&
+                            FFAppState().staffid != '')
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 4.0, 16.0, 16.0),
                             child: Builder(
                               builder: (context) {
@@ -3028,7 +3059,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   scrollDirection: Axis.vertical,
                                   itemCount: list.length,
                                   separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 8.0),
+                                      SizedBox(height: 8.0),
                                   itemBuilder: (context, listIndex) {
                                     final listItem = list[listIndex];
                                     return InkWell(
@@ -3054,7 +3085,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                             ),
                                           }.withoutNulls,
                                           extra: <String, dynamic>{
-                                            kTransitionInfoKey: const TransitionInfo(
+                                            kTransitionInfoKey: TransitionInfo(
                                               hasTransition: true,
                                               transitionType:
                                                   PageTransitionType.fade,
@@ -3079,7 +3110,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                           ),
                                         ),
                                         child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
+                                          padding: EdgeInsets.all(8.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
@@ -3094,7 +3125,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                   height: 100.0,
                                                   fit: BoxFit.cover,
                                                   alignment:
-                                                      const Alignment(0.0, 0.0),
+                                                      Alignment(0.0, 0.0),
                                                 ),
                                               ),
                                               Expanded(
@@ -3138,7 +3169,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         4.0,
@@ -3191,12 +3222,12 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                           ),
                                                         ),
                                                       ].divide(
-                                                          const SizedBox(width: 4.0)),
+                                                          SizedBox(width: 4.0)),
                                                     ),
                                                   ],
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 8.0)),
+                                            ].divide(SizedBox(width: 8.0)),
                                           ),
                                         ),
                                       ),
@@ -3216,11 +3247,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                 ? MediaQuery.viewInsetsOf(context).bottom > 0
                 : _isKeyboardVisible))
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
                 child: wrapWithModel(
                   model: _model.navBarModel,
                   updateCallback: () => setState(() {}),
-                  child: const NavBarWidget(
+                  child: NavBarWidget(
                     selectedPageIndex: 6,
                   ),
                 ),

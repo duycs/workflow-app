@@ -9,8 +9,11 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'study_program_create_model.dart';
 export 'study_program_create_model.dart';
@@ -71,11 +74,11 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Container(
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxHeight: 750.0,
           ),
           decoration: BoxDecoration(
@@ -92,7 +95,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 28.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 28.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -126,7 +129,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -169,7 +172,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: EdgeInsets.all(16.0),
                     child: SingleChildScrollView(
                       primary: false,
                       child: Column(
@@ -177,14 +180,14 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 8.0),
                             child: TextFormField(
                               controller: _model.programNameTextController,
                               focusNode: _model.programNameFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.programNameTextController',
-                                const Duration(milliseconds: 2000),
+                                Duration(milliseconds: 2000),
                                 () async {
                                   setState(() {
                                     _model.updateRequestDataStruct(
@@ -255,7 +258,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 8.0),
                             child: TextFormField(
                               controller:
@@ -263,7 +266,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                               focusNode: _model.programDescriptionFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.programDescriptionTextController',
-                                const Duration(milliseconds: 2000),
+                                Duration(milliseconds: 2000),
                                 () async {
                                   setState(() {
                                     _model.updateRequestDataStruct(
@@ -335,7 +338,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 8.0),
                             child: wrapWithModel(
                               model: _model.testsDropdownModel,
@@ -387,7 +390,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                        const TextSpan(
+                                        TextSpan(
                                           text: '(Không bắt buộc)',
                                           style: TextStyle(
                                             fontSize: 13.0,
@@ -416,14 +419,14 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                           fontStyle: FontStyle.italic,
                                         ),
                                   ),
-                                ].divide(const SizedBox(height: 4.0)),
+                                ].divide(SizedBox(height: 4.0)),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
-                                  child: SizedBox(
+                                  child: Container(
                                     width: 85.0,
                                     child: TextFormField(
                                       controller:
@@ -431,7 +434,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                       focusNode: _model.estimateInDayFocusNode,
                                       onChanged: (_) => EasyDebounce.debounce(
                                         '_model.estimateInDayTextController',
-                                        const Duration(milliseconds: 2000),
+                                        Duration(milliseconds: 2000),
                                         () async {
                                           setState(() {
                                             _model.updateRequestDataStruct(
@@ -466,7 +469,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                                 .alternate,
                                             width: 1.0,
                                           ),
-                                          borderRadius: const BorderRadius.only(
+                                          borderRadius: BorderRadius.only(
                                             bottomLeft: Radius.circular(0.0),
                                             bottomRight: Radius.circular(0.0),
                                             topLeft: Radius.circular(0.0),
@@ -479,7 +482,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                                 .primary,
                                             width: 1.0,
                                           ),
-                                          borderRadius: const BorderRadius.only(
+                                          borderRadius: BorderRadius.only(
                                             bottomLeft: Radius.circular(0.0),
                                             bottomRight: Radius.circular(0.0),
                                             topLeft: Radius.circular(0.0),
@@ -492,7 +495,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                                 .error,
                                             width: 1.0,
                                           ),
-                                          borderRadius: const BorderRadius.only(
+                                          borderRadius: BorderRadius.only(
                                             bottomLeft: Radius.circular(0.0),
                                             bottomRight: Radius.circular(0.0),
                                             topLeft: Radius.circular(0.0),
@@ -506,7 +509,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                                 .error,
                                             width: 1.0,
                                           ),
-                                          borderRadius: const BorderRadius.only(
+                                          borderRadius: BorderRadius.only(
                                             bottomLeft: Radius.circular(0.0),
                                             bottomRight: Radius.circular(0.0),
                                             topLeft: Radius.circular(0.0),
@@ -543,7 +546,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                             ],
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 14.0, 0.0, 0.0),
                             child: wrapWithModel(
                               model: _model.lessionsDropdownModel,
@@ -563,12 +566,12 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                       context: context,
                                       builder: (alertDialogContext) {
                                         return AlertDialog(
-                                          title: const Text('Bài học đã có!'),
+                                          title: Text('Bài học đã có!'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
                                                   alertDialogContext),
-                                              child: const Text('Ok'),
+                                              child: Text('Ok'),
                                             ),
                                           ],
                                         );
@@ -584,7 +587,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                           Builder(
                             builder: (context) {
                               final listView =
-                                  _model.requestData?.lessions.toList() ?? [];
+                                  _model.requestData?.lessions?.toList() ?? [];
                               return ListView.builder(
                                 padding: EdgeInsets.zero,
                                 shrinkWrap: true,
@@ -593,7 +596,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                 itemBuilder: (context, listViewIndex) {
                                   final listViewItem = listView[listViewIndex];
                                   return Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 5.0),
                                     child: Container(
                                       width: 100.0,
@@ -612,7 +615,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                                 MainAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 10.0, 0.0),
                                                 child: Text(
@@ -676,16 +679,16 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                               );
                             },
                           ),
-                        ].divide(const SizedBox(height: 4.0)),
+                        ].divide(SizedBox(height: 4.0)),
                       ),
                     ),
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 24.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 24.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        var shouldSetState = false;
+                        var _shouldSetState = false;
                         if (_model.formKey.currentState == null ||
                             !_model.formKey.currentState!.validate()) {
                           return;
@@ -699,24 +702,24 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                             context: context,
                             builder: (alertDialogContext) {
                               return AlertDialog(
-                                content: const Text('Thời hạn phải lớn hơn 0 !'),
+                                content: Text('Thời hạn phải lớn hơn 0 !'),
                                 actions: [
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.pop(alertDialogContext),
-                                    child: const Text('Ok'),
+                                    child: Text('Ok'),
                                   ),
                                 ],
                               );
                             },
                           );
-                          if (shouldSetState) setState(() {});
+                          if (_shouldSetState) setState(() {});
                           return;
                         }
 
                         _model.tokenReloadStudyProgramCreate =
                             await action_blocks.tokenReload(context);
-                        shouldSetState = true;
+                        _shouldSetState = true;
                         if (_model.tokenReloadStudyProgramCreate!) {
                           setState(() {
                             _model.updateRequestDataStruct(
@@ -729,7 +732,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                             requestDataJson: _model.requestData?.toMap(),
                             accessToken: FFAppState().accessToken,
                           );
-                          shouldSetState = true;
+                          _shouldSetState = true;
                           if ((_model.apiResulti4j?.succeeded ?? true)) {
                             Navigator.pop(context);
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -741,7 +744,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                         .primaryText,
                                   ),
                                 ),
-                                duration: const Duration(milliseconds: 4000),
+                                duration: Duration(milliseconds: 4000),
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).secondary,
                               ),
@@ -757,7 +760,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                         .primaryText,
                                   ),
                                 ),
-                                duration: const Duration(milliseconds: 4000),
+                                duration: Duration(milliseconds: 4000),
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).error,
                               ),
@@ -767,20 +770,20 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                           await widget.callBackList?.call();
                         } else {
                           setState(() {});
-                          if (shouldSetState) setState(() {});
+                          if (_shouldSetState) setState(() {});
                           return;
                         }
 
-                        if (shouldSetState) setState(() {});
+                        if (_shouldSetState) setState(() {});
                       },
                       text: 'Lưu',
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -789,7 +792,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           width: 1.0,
                         ),
                         borderRadius: BorderRadius.circular(8.0),

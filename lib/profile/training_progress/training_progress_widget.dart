@@ -3,9 +3,14 @@ import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'training_progress_model.dart';
 export 'training_progress_model.dart';
 
@@ -44,15 +49,15 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.0, 20.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 20.0),
+            end: Offset(0.0, 0.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.698, 0),
-            end: const Offset(0, 0),
+            begin: Offset(0.698, 0),
+            end: Offset(0, 0),
           ),
         ],
       ),
@@ -70,15 +75,15 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.0, 20.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 20.0),
+            end: Offset(0.0, 0.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.698, 0),
-            end: const Offset(0, 0),
+            begin: Offset(0.698, 0),
+            end: Offset(0, 0),
           ),
         ],
       ),
@@ -96,15 +101,15 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.0, 20.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 20.0),
+            end: Offset(0.0, 0.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.698, 0),
-            end: const Offset(0, 0),
+            begin: Offset(0.698, 0),
+            end: Offset(0, 0),
           ),
         ],
       ),
@@ -122,15 +127,15 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.0, 20.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 20.0),
+            end: Offset(0.0, 0.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.698, 0),
-            end: const Offset(0, 0),
+            begin: Offset(0.698, 0),
+            end: Offset(0, 0),
           ),
         ],
       ),
@@ -184,7 +189,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -198,12 +203,12 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                 Container(
                   width: double.infinity,
                   height: 140.0,
-                  constraints: const BoxConstraints(
+                  constraints: BoxConstraints(
                     maxHeight: 140.0,
                   ),
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: const [
+                    boxShadow: [
                       BoxShadow(
                         blurRadius: 3.0,
                         color: Color(0x33000000),
@@ -215,13 +220,13 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                     ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 0.0, 0.0),
                           child: Text(
                             'Danh sách chương trình đào tạo (3)',
@@ -237,7 +242,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                         ),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: ListView(
                               padding: EdgeInsets.zero,
@@ -246,7 +251,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                               scrollDirection: Axis.horizontal,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 8.0, 8.0),
                                   child: Container(
                                     width: 130.0,
@@ -255,12 +260,12 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                           .secondaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                       border: Border.all(
-                                        color: const Color(0xFFE0E3E7),
+                                        color: Color(0xFFE0E3E7),
                                         width: 2.0,
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(12.0),
+                                      padding: EdgeInsets.all(12.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -278,12 +283,12 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                     .displaySmall
                                                     .override(
                                                       fontFamily: 'Nunito Sans',
-                                                      color: const Color(0xA54B39EF),
+                                                      color: Color(0xA54B39EF),
                                                       letterSpacing: 0.0,
                                                     ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 6.0),
                                                 child: Text(
@@ -298,11 +303,11 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                       ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 2.0)),
+                                            ].divide(SizedBox(width: 2.0)),
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 4.0, 0.0, 0.0),
                                             child: Text(
                                               'Đào tạo Runner',
@@ -322,7 +327,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 8.0, 8.0),
                                   child: Container(
                                     width: 130.0,
@@ -331,12 +336,12 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                           .secondaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                       border: Border.all(
-                                        color: const Color(0xFFE0E3E7),
+                                        color: Color(0xFFE0E3E7),
                                         width: 2.0,
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(12.0),
+                                      padding: EdgeInsets.all(12.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -362,7 +367,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                     ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 6.0),
                                                 child: Text(
@@ -377,11 +382,11 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                       ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 2.0)),
+                                            ].divide(SizedBox(width: 2.0)),
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 4.0, 0.0, 0.0),
                                             child: Text(
                                               'Nội quy công ty',
@@ -401,7 +406,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 16.0, 8.0),
                                   child: Container(
                                     width: 150.0,
@@ -410,12 +415,12 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                           .secondaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                       border: Border.all(
-                                        color: const Color(0xFFE0E3E7),
+                                        color: Color(0xFFE0E3E7),
                                         width: 2.0,
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(12.0),
+                                      padding: EdgeInsets.all(12.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -441,7 +446,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                     ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 6.0),
                                                 child: Text(
@@ -456,11 +461,11 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                       ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 2.0)),
+                                            ].divide(SizedBox(width: 2.0)),
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 4.0, 0.0, 0.0),
                                             child: Text(
                                               'Đào tạo quản lý',
@@ -489,12 +494,12 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                 ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
-                      boxShadow: const [
+                      boxShadow: [
                         BoxShadow(
                           blurRadius: 3.0,
                           color: Color(0x33000000),
@@ -507,13 +512,13 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(16.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: Text(
                               'Danh sách bài thi của nhân viên',
@@ -535,7 +540,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                 ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 4.0, 0.0, 0.0),
                             child: Text(
                               'Đã học/Tổng',
@@ -555,12 +560,12 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                 ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
-                      boxShadow: const [
+                      boxShadow: [
                         BoxShadow(
                           blurRadius: 3.0,
                           color: Color(0x33000000),
@@ -573,13 +578,13 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(16.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: Text(
                               'Bài thi',
@@ -601,7 +606,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                 ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 4.0, 0.0, 0.0),
                             child: Text(
                               'Đã thi/Tổng',
@@ -621,12 +626,12 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                 ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
-                      boxShadow: const [
+                      boxShadow: [
                         BoxShadow(
                           blurRadius: 3.0,
                           color: Color(0x33000000),
@@ -642,14 +647,14 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 12.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 12.0, 12.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -665,7 +670,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                           ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         'Lịch test sắp tới',
@@ -684,7 +689,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 8.0),
                           child: ListView(
                             padding: EdgeInsets.zero,
@@ -692,14 +697,14 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                             scrollDirection: Axis.vertical,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 1.0),
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    boxShadow: const [
+                                    boxShadow: [
                                       BoxShadow(
                                         blurRadius: 0.0,
                                         color: Color(0xFFE0E3E7),
@@ -710,9 +715,9 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                       )
                                     ],
                                   ),
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 2.0, 0.0, 2.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -731,7 +736,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 12.0, 16.0, 12.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -807,7 +812,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                   ],
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 4.0, 0.0, 0.0),
                                                   child: Text(
@@ -823,7 +828,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -832,7 +837,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                     children: [
                                                       Container(
                                                         decoration:
-                                                            const BoxDecoration(),
+                                                            BoxDecoration(),
                                                         child: Icon(
                                                           Icons.access_time,
                                                           color: FlutterFlowTheme
@@ -857,7 +862,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     16.0,
                                                                     4.0,
@@ -892,14 +897,14 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 1.0),
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    boxShadow: const [
+                                    boxShadow: [
                                       BoxShadow(
                                         blurRadius: 0.0,
                                         color: Color(0xFFE0E3E7),
@@ -910,9 +915,9 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                       )
                                     ],
                                   ),
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 2.0, 0.0, 2.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -931,7 +936,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 12.0, 16.0, 12.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -1007,7 +1012,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                   ],
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 4.0, 0.0, 0.0),
                                                   child: Text(
@@ -1023,7 +1028,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -1032,7 +1037,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                     children: [
                                                       Container(
                                                         decoration:
-                                                            const BoxDecoration(),
+                                                            BoxDecoration(),
                                                         child: Icon(
                                                           Icons.access_time,
                                                           color: FlutterFlowTheme
@@ -1057,7 +1062,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     16.0,
                                                                     4.0,
@@ -1101,12 +1106,12 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                 ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 24.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 24.0),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
-                      boxShadow: const [
+                      boxShadow: [
                         BoxShadow(
                           blurRadius: 3.0,
                           color: Color(0x33000000),
@@ -1120,13 +1125,13 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                     ),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 12.0, 0.0, 0.0),
                             child: Text(
                               'Báo cáo',
@@ -1139,7 +1144,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 4.0, 0.0, 0.0),
                             child: Text(
                               'Báo cáo theo bài học',
@@ -1152,7 +1157,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 4.0, 16.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -1160,7 +1165,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                               children: [
                                 Container(
                                   height: 32.0,
-                                  constraints: const BoxConstraints(
+                                  constraints: BoxConstraints(
                                     maxHeight: 32.0,
                                   ),
                                   decoration: BoxDecoration(
@@ -1169,7 +1174,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                     borderRadius: BorderRadius.circular(30.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 8.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -1184,7 +1189,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Tổng',
@@ -1202,7 +1207,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                 ),
                                 Container(
                                   height: 32.0,
-                                  constraints: const BoxConstraints(
+                                  constraints: BoxConstraints(
                                     maxHeight: 32.0,
                                   ),
                                   decoration: BoxDecoration(
@@ -1211,7 +1216,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                     borderRadius: BorderRadius.circular(30.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 8.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -1226,7 +1231,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Hoàn thành',
@@ -1244,7 +1249,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                 ),
                                 Container(
                                   height: 32.0,
-                                  constraints: const BoxConstraints(
+                                  constraints: BoxConstraints(
                                     maxHeight: 32.0,
                                   ),
                                   decoration: BoxDecoration(
@@ -1253,7 +1258,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                     borderRadius: BorderRadius.circular(30.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 8.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -1268,7 +1273,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Đang',
@@ -1288,9 +1293,9 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 16.0, 16.0, 0.0),
-                            child: SizedBox(
+                            child: Container(
                               width: double.infinity,
                               height: 200.0,
                               child: FlutterFlowLineChart(
@@ -1348,7 +1353,7 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
                                       .secondaryBackground,
                                   showBorder: false,
                                 ),
-                                axisBounds: const AxisBounds(),
+                                axisBounds: AxisBounds(),
                                 xAxisLabelInfo: AxisLabelInfo(
                                   title: 'Last 30 Days',
                                   titleTextStyle: FlutterFlowTheme.of(context)

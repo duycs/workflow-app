@@ -1,10 +1,21 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/rating_staf_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/training/market/filter_programs/filter_programs_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'market_place_widget.dart' show MarketPlaceWidget;
+import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
   ///  Local state fields for this page.
@@ -114,18 +125,18 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
         await GroupMarketLessonGroup.getListMarketLessonCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"price\":{\"_eq\":\"0\"}}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${searchMarketTextController.text != '' ? searchMarketTextController.text : ' '}${searchMarketTextController.text != '' ? '\"}}' : ' '}]}',
+          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"price\":{\"_eq\":\"0\"}}${searchMarketTextController.text != null && searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${searchMarketTextController.text != null && searchMarketTextController.text != '' ? searchMarketTextController.text : ' '}${searchMarketTextController.text != null && searchMarketTextController.text != '' ? '\"}}' : ' '}]}',
     );
-    if ((apiResultGetList.succeeded ?? true)) {
+    if ((apiResultGetList?.succeeded ?? true)) {
       listDataProgramsFree = MarketLessonListDataStruct.maybeFromMap(
-              (apiResultGetList.jsonBody ?? ''))!
+              (apiResultGetList?.jsonBody ?? ''))!
           .data
           .toList()
           .cast<MarketLessonListStruct>();
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultGetList.jsonBody ?? ''),
+        jsonErrors: (apiResultGetList?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -136,7 +147,7 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -154,18 +165,18 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
         await GroupMarketLessonGroup.getListMarketLessonCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"price\":{\"_gt\":\"0\"}}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${searchMarketTextController.text != '' ? searchMarketTextController.text : ' '}${searchMarketTextController.text != '' ? '\"}}' : ' '}]}',
+          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"price\":{\"_gt\":\"0\"}}${searchMarketTextController.text != null && searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${searchMarketTextController.text != null && searchMarketTextController.text != '' ? searchMarketTextController.text : ' '}${searchMarketTextController.text != null && searchMarketTextController.text != '' ? '\"}}' : ' '}]}',
     );
-    if ((apiResultGetListNoFree.succeeded ?? true)) {
+    if ((apiResultGetListNoFree?.succeeded ?? true)) {
       listDataProgramsNoFree = MarketLessonListDataStruct.maybeFromMap(
-              (apiResultGetListNoFree.jsonBody ?? ''))!
+              (apiResultGetListNoFree?.jsonBody ?? ''))!
           .data
           .toList()
           .cast<MarketLessonListStruct>();
     } else {
       checkRefreshTokenBlock1 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultGetListNoFree.jsonBody ?? ''),
+        jsonErrors: (apiResultGetListNoFree?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock1!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -176,7 +187,7 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -194,18 +205,18 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
         await GroupMarketLessonGroup.getListMarketLessonCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${searchMarketTextController.text != '' ? searchMarketTextController.text : ' '}${searchMarketTextController.text != '' ? '\"}}' : ' '}]}',
+          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}}${searchMarketTextController.text != null && searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${searchMarketTextController.text != null && searchMarketTextController.text != '' ? searchMarketTextController.text : ' '}${searchMarketTextController.text != null && searchMarketTextController.text != '' ? '\"}}' : ' '}]}',
     );
-    if ((apiResultGetListAll.succeeded ?? true)) {
+    if ((apiResultGetListAll?.succeeded ?? true)) {
       listDataProgramsAll = MarketLessonListDataStruct.maybeFromMap(
-              (apiResultGetListAll.jsonBody ?? ''))!
+              (apiResultGetListAll?.jsonBody ?? ''))!
           .data
           .toList()
           .cast<MarketLessonListStruct>();
     } else {
       checkRefreshTokenBlock2 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultGetListAll.jsonBody ?? ''),
+        jsonErrors: (apiResultGetListAll?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock2!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -216,7 +227,7 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -233,16 +244,16 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
     apiResultGetListAuthors = await GroupAuthorsGroup.listAuthorsCall.call(
       accessToken: FFAppState().accessToken,
     );
-    if ((apiResultGetListAuthors.succeeded ?? true)) {
+    if ((apiResultGetListAuthors?.succeeded ?? true)) {
       listDataAuthors = AuthorsListDataStruct.maybeFromMap(
-              (apiResultGetListAuthors.jsonBody ?? ''))!
+              (apiResultGetListAuthors?.jsonBody ?? ''))!
           .data
           .toList()
           .cast<AuthorsListStruct>();
     } else {
       checkRefreshTokenBlock3 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultGetListAuthors.jsonBody ?? ''),
+        jsonErrors: (apiResultGetListAuthors?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock3!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -253,7 +264,7 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -270,16 +281,16 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
     apiResultList = await GetDomainsGroup.getDomainsCall.call(
       accessToken: FFAppState().accessToken,
     );
-    if ((apiResultList.succeeded ?? true)) {
+    if ((apiResultList?.succeeded ?? true)) {
       listDataDomains = DomainsListDataDataStruct.maybeFromMap(
-              (apiResultList.jsonBody ?? ''))!
+              (apiResultList?.jsonBody ?? ''))!
           .data
           .toList()
           .cast<DomainsListListStruct>();
     } else {
       checkRefreshTokenBlock4 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultList.jsonBody ?? ''),
+        jsonErrors: (apiResultList?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock4!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -290,7 +301,7 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );

@@ -2,8 +2,10 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'filter_reprot_image_model.dart';
 export 'filter_reprot_image_model.dart';
@@ -16,10 +18,10 @@ class FilterReprotImageWidget extends StatefulWidget {
     String? dateStart,
     String? dateEnd,
     this.callBack,
-  })  : name = name ?? '',
-        nameProcedure = nameProcedure ?? '',
-        dateStart = dateStart ?? '',
-        dateEnd = dateEnd ?? '';
+  })  : this.name = name ?? '',
+        this.nameProcedure = nameProcedure ?? '',
+        this.dateStart = dateStart ?? '',
+        this.dateEnd = dateEnd ?? '';
 
   final String name;
   final String nameProcedure;
@@ -56,11 +58,11 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
     });
 
     _model.nameStaffTextController ??= TextEditingController(
-        text: widget.name != '' ? widget.name : '');
+        text: widget.name != null && widget.name != '' ? widget.name : '');
     _model.nameStaffFocusNode ??= FocusNode();
 
     _model.tenquytrinhTextController ??= TextEditingController(
-        text: widget.nameProcedure != ''
+        text: widget.nameProcedure != null && widget.nameProcedure != ''
             ? widget.nameProcedure
             : '');
     _model.tenquytrinhFocusNode ??= FocusNode();
@@ -78,13 +80,13 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Container(
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -97,7 +99,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0),
             child: SingleChildScrollView(
               primary: false,
               child: Column(
@@ -133,7 +135,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -164,7 +166,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            final datePicked1Date = await showDatePicker(
+                            final _datePicked1Date = await showDatePicker(
                               context: context,
                               initialDate: getCurrentTimestamp,
                               firstDate: DateTime(1900),
@@ -201,12 +203,12 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                               },
                             );
 
-                            if (datePicked1Date != null) {
+                            if (_datePicked1Date != null) {
                               safeSetState(() {
                                 _model.datePicked1 = DateTime(
-                                  datePicked1Date.year,
-                                  datePicked1Date.month,
-                                  datePicked1Date.day,
+                                  _datePicked1Date.year,
+                                  _datePicked1Date.month,
+                                  _datePicked1Date.day,
                                 );
                               });
                             }
@@ -229,7 +231,8 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                                 size: 24.0,
                               ),
                               Text(
-                                (_model.dateStart != '') &&
+                                (_model.dateStart != null &&
+                                            _model.dateStart != '') &&
                                         (_model.dateStart != ' ')
                                     ? _model.dateStart
                                     : 'Từ ngày',
@@ -252,7 +255,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            final datePicked2Date = await showDatePicker(
+                            final _datePicked2Date = await showDatePicker(
                               context: context,
                               initialDate: getCurrentTimestamp,
                               firstDate: DateTime(1900),
@@ -289,12 +292,12 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                               },
                             );
 
-                            if (datePicked2Date != null) {
+                            if (_datePicked2Date != null) {
                               safeSetState(() {
                                 _model.datePicked2 = DateTime(
-                                  datePicked2Date.year,
-                                  datePicked2Date.month,
-                                  datePicked2Date.day,
+                                  _datePicked2Date.year,
+                                  _datePicked2Date.month,
+                                  _datePicked2Date.day,
                                 );
                               });
                             }
@@ -317,7 +320,8 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                                 size: 24.0,
                               ),
                               Text(
-                                (_model.dateEnd != '') &&
+                                (_model.dateEnd != null &&
+                                            _model.dateEnd != '') &&
                                         (_model.dateEnd != ' ')
                                     ? _model.dateEnd
                                     : 'Đến hết ngày',
@@ -333,7 +337,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                           ),
                         ),
                       ),
-                    ].divide(const SizedBox(width: 8.0)),
+                    ].divide(SizedBox(width: 8.0)),
                   ),
                   if ((FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68') ||
                       (FFAppState().user.role ==
@@ -341,10 +345,10 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                       (FFAppState().user.role ==
                           '6a8bc644-cb2d-4a31-b11e-b86e19824725'))
                     Align(
-                      alignment: const AlignmentDirectional(-1.0, -1.0),
+                      alignment: AlignmentDirectional(-1.0, -1.0),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
                         child: TextFormField(
                           controller: _model.nameStaffTextController,
                           focusNode: _model.nameStaffFocusNode,
@@ -405,7 +409,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                     ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
                     child: TextFormField(
                       controller: _model.tenquytrinhTextController,
                       focusNode: _model.tenquytrinhFocusNode,
@@ -462,7 +466,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -485,9 +489,9 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                             text: 'Xoá bộ lọc',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -515,19 +519,19 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                               await widget.callBack?.call(
                                 _model.nameStaffTextController.text,
                                 _model.tenquytrinhTextController.text,
-                                _model.dateStart,
-                                _model.dateEnd,
+                                '${_model.dateStart}',
+                                '${_model.dateEnd}',
                               );
                               Navigator.pop(context);
                             },
                             text: 'Xác nhận',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: const Color(0xFF33BA45),
+                              color: Color(0xFF33BA45),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
@@ -537,7 +541,7 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -545,10 +549,10 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                             ),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 16.0)),
+                      ].divide(SizedBox(width: 16.0)),
                     ),
                   ),
-                ].divide(const SizedBox(height: 8.0)),
+                ].divide(SizedBox(height: 8.0)),
               ),
             ),
           ),

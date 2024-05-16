@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
@@ -9,6 +10,8 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'work_result_detail_model.dart';
 export 'work_result_detail_model.dart';
@@ -88,18 +91,18 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
         body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                if (_model.list.isNotEmpty)
+                if (_model.list.length > 0)
                   Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -123,7 +126,9 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                           ),
                           Expanded(
                             child: Text(
-                              _model.list.first.createdUserId
+                              _model.list.first.createdUserId.firstName !=
+                                          null &&
+                                      _model.list.first.createdUserId
                                               .firstName !=
                                           ''
                                   ? _model.list.first.createdUserId.firstName
@@ -139,11 +144,11 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                   ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 8.0)),
+                        ].divide(SizedBox(width: 8.0)),
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -158,7 +163,8 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    _model.list.first.workflowId.name !=
+                                    _model.list.first.workflowId.name != null &&
+                                            _model.list.first.workflowId.name !=
                                                 ''
                                         ? _model.list.first.workflowId.name
                                         : ' ',
@@ -185,10 +191,10 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                           fontStyle: FontStyle.italic,
                                         ),
                                   ),
-                                ].divide(const SizedBox(height: 2.0)),
+                                ].divide(SizedBox(height: 2.0)),
                               ),
                             ),
-                          ].divide(const SizedBox(width: 8.0)),
+                          ].divide(SizedBox(width: 8.0)),
                         ),
                       ),
                     ],
@@ -202,7 +208,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
                       itemCount: dataList.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 16.0),
+                      separatorBuilder: (_, __) => SizedBox(height: 16.0),
                       itemBuilder: (context, dataListIndex) {
                         final dataListItem = dataList[dataListIndex];
                         return Container(
@@ -213,7 +219,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                             borderRadius: BorderRadius.circular(18.0),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: EdgeInsets.all(16.0),
                             child: SingleChildScrollView(
                               primary: false,
                               child: Column(
@@ -221,7 +227,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -254,7 +260,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                 ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 4.0)),
+                                      ].divide(SizedBox(width: 4.0)),
                                     ),
                                   ),
                                   SingleChildScrollView(
@@ -273,7 +279,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                               width: 40.0,
                                               height: 40.0,
                                               clipBehavior: Clip.antiAlias,
-                                              decoration: const BoxDecoration(
+                                              decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
                                               ),
                                               child: Image.network(
@@ -302,14 +308,14 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                     ),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 4.0)),
+                                          ].divide(SizedBox(width: 4.0)),
                                         ),
                                         if (dataListItem.operations.first
                                                 .operationsId.result ==
                                             'submit_text')
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 16.0, 0.0, 0.0),
                                             child: Container(
                                               width: double.infinity,
@@ -324,9 +330,15 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(8.0),
+                                                padding: EdgeInsets.all(8.0),
                                                 child: Text(
                                                   dataListItem
+                                                                  .operations
+                                                                  .first
+                                                                  .operationsId
+                                                                  .result !=
+                                                              null &&
+                                                          dataListItem
                                                                   .operations
                                                                   .first
                                                                   .operationsId
@@ -353,10 +365,11 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                         if ((dataListItem.actionType ==
                                                 'image') &&
                                             (dataListItem.operations.first
-                                                    .operationsId.files.isNotEmpty))
+                                                    .operationsId.files.length >
+                                                0))
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
@@ -379,7 +392,9 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                                         .operations
                                                                         .first
                                                                         .operationsId
-                                                                        .files.isNotEmpty)
+                                                                        .files
+                                                                        .length >
+                                                                    0)
                                                             ? '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}'
                                                             : ' ',
                                                         fit: BoxFit.contain,
@@ -392,7 +407,9 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                                       .operations
                                                                       .first
                                                                       .operationsId
-                                                                      .files.isNotEmpty)
+                                                                      .files
+                                                                      .length >
+                                                                  0)
                                                           ? '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}'
                                                           : ' ',
                                                       useHeroAnimation: true,
@@ -407,7 +424,9 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                                 .operations
                                                                 .first
                                                                 .operationsId
-                                                                .files.isNotEmpty)
+                                                                .files
+                                                                .length >
+                                                            0)
                                                     ? '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}'
                                                     : ' ',
                                                 transitionOnUserGestures: true,
@@ -422,7 +441,9 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                                     .operations
                                                                     .first
                                                                     .operationsId
-                                                                    .files.isNotEmpty)
+                                                                    .files
+                                                                    .length >
+                                                                0)
                                                         ? '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}'
                                                         : ' ',
                                                     width: 300.0,
@@ -438,14 +459,16 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                         .operations
                                                         .first
                                                         .operationsId
-                                                        .files.isNotEmpty) &&
+                                                        .files
+                                                        .length >
+                                                    0) &&
                                                 (dataListItem.actionType ==
                                                     'upload_file')))
                                           Align(
                                             alignment:
-                                                const AlignmentDirectional(-1.0, 0.0),
+                                                AlignmentDirectional(-1.0, 0.0),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
@@ -550,7 +573,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                           'pdf')
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -572,7 +595,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                       Expanded(
                                                         child: Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -1.0, 0.0),
                                                           child: Text(
                                                             dataListItem
@@ -611,7 +634,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                               .directusFilesId
                                                               .filenameDownload)) ==
                                                       'pdf')
-                                                    const FlutterFlowPdfViewer(
+                                                    FlutterFlowPdfViewer(
                                                       networkPath:
                                                           'http://www.pdf995.com/samples/pdf.pdf',
                                                       width: double.infinity,
@@ -649,7 +672,9 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                               .operations
                                                               .first
                                                               .operationsId
-                                                              .files.isNotEmpty) {
+                                                              .files
+                                                              .length >
+                                                          0) {
                                                         await actions
                                                             .downloadFile(
                                                           '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
@@ -666,21 +691,21 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                       }
                                                     },
                                                     text: 'Tải tài liệu',
-                                                    icon: const Icon(
+                                                    icon: Icon(
                                                       Icons.download,
                                                       size: 15.0,
                                                     ),
                                                     options: FFButtonOptions(
                                                       height: 40.0,
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   24.0,
                                                                   0.0,
                                                                   24.0,
                                                                   0.0),
                                                       iconPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -712,7 +737,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                               8.0),
                                                     ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
                                           ),
@@ -742,7 +767,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                               );
                                             },
                                           ),
-                                      ].divide(const SizedBox(height: 8.0)),
+                                      ].divide(SizedBox(height: 8.0)),
                                     ),
                                   ),
                                 ],
@@ -754,7 +779,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                     );
                   },
                 ),
-              ].divide(const SizedBox(height: 8.0)),
+              ].divide(SizedBox(height: 8.0)),
             ),
           ),
         ),

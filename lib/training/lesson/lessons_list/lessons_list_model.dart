@@ -1,12 +1,22 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/data_not_found/data_not_found_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/training/lesson/filter_lesson/filter_lesson_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import 'dart:async';
 import 'lessons_list_widget.dart' show LessonsListWidget;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
+import 'package:shake/shake.dart';
 
 class LessonsListModel extends FlutterFlowModel<LessonsListWidget> {
   ///  Local state fields for this page.
@@ -68,13 +78,13 @@ class LessonsListModel extends FlutterFlowModel<LessonsListWidget> {
       filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.organization_id''',
-      ).toString().toString()}\"}}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}' : ' '}${(status != '') && (status != 'noData') ? ',{\"status\":{\"_icontains\":\"' : ' '}${(status != '') && (status != 'noData') ? status : ' '}${(status != '') && (status != 'noData') ? '\"}}' : ' '}${(dateStart != '') && (dateStart != 'noDate') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(dateStart != '') && (dateStart != 'noDate') ? dateStart : ' '}${(dateStart != '') && (dateStart != 'noDate') ? '\"}}' : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? ((String var1) {
-          return DateTime.parse(var1).add(const Duration(days: 1)).toString();
-        }(dateEnd)) : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? '\"}}' : ' '}${programId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${programId != '' ? programId : ' '}${programId != '' ? '\"}}}}' : ' '}]}',
+      ).toString().toString()}\"}}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? '\"}}' : ' '}${(status != null && status != '') && (status != 'noData') ? ',{\"status\":{\"_icontains\":\"' : ' '}${(status != null && status != '') && (status != 'noData') ? status : ' '}${(status != null && status != '') && (status != 'noData') ? '\"}}' : ' '}${(dateStart != null && dateStart != '') && (dateStart != 'noDate') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(dateStart != null && dateStart != '') && (dateStart != 'noDate') ? dateStart : ' '}${(dateStart != null && dateStart != '') && (dateStart != 'noDate') ? '\"}}' : ' '}${(dateEnd != null && dateEnd != '') && (dateEnd != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(dateEnd != null && dateEnd != '') && (dateEnd != 'noData') ? ((String var1) {
+          return DateTime.parse(var1).add(Duration(days: 1)).toString();
+        }(dateEnd)) : ' '}${(dateEnd != null && dateEnd != '') && (dateEnd != 'noData') ? '\"}}' : ' '}${programId != null && programId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${programId != null && programId != '' ? programId : ' '}${programId != null && programId != '' ? '\"}}}}' : ' '}]}',
     );
-    if ((apiResultList.succeeded ?? true)) {
+    if ((apiResultList?.succeeded ?? true)) {
       list =
-          LessonsListDataStruct.maybeFromMap((apiResultList.jsonBody ?? ''))!
+          LessonsListDataStruct.maybeFromMap((apiResultList?.jsonBody ?? ''))!
               .data
               .toList()
               .cast<LessonsStruct>();
@@ -82,7 +92,7 @@ class LessonsListModel extends FlutterFlowModel<LessonsListWidget> {
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultList.jsonBody ?? ''),
+        jsonErrors: (apiResultList?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -93,7 +103,7 @@ class LessonsListModel extends FlutterFlowModel<LessonsListWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -110,7 +120,7 @@ class LessonsListModel extends FlutterFlowModel<LessonsListWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
+      await Future.delayed(Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -150,7 +160,7 @@ class LessonsListModel extends FlutterFlowModel<LessonsListWidget> {
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController?.appendPage(
           pageItems,
-          (pageItems.isNotEmpty)
+          (pageItems.length > 0)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,
