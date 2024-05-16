@@ -1287,7 +1287,9 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                       ],
                     ),
                   ),
-                  if (_model.searchMarketTextController.text != '')
+                  if ((_model.searchMarketTextController.text != '') ||
+                      ((_model.domain != '') &&
+                          (_model.domain != 'noData')))
                     Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 5.0),

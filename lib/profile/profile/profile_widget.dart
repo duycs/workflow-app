@@ -807,7 +807,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             '3755a98d-f064-45cd-80e4-5084ab1dd2c4') &&
                                         (getJsonField(
                                               FFAppState().staffOrganization,
-                                              r'''$.authors''',
+                                              r'''$.authors[0]''',
                                             ) ==
                                             null))
                                       Padding(
@@ -866,7 +866,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             '3755a98d-f064-45cd-80e4-5084ab1dd2c4') &&
                                         (getJsonField(
                                               FFAppState().staffOrganization,
-                                              r'''$.authors''',
+                                              r'''$.authors[0]''',
                                             ) !=
                                             null))
                                       Padding(
@@ -2654,6 +2654,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                           await actions.clearInfoUser(
                             'wf_token',
                           );
+                          await actions.notifiRemoveServer();
 
                           context.goNamed(
                             'Login',

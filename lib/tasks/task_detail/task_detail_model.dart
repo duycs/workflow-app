@@ -32,6 +32,16 @@ class TaskDetailModel extends FlutterFlowModel<TaskDetailWidget> {
 
   bool isShowPdf = false;
 
+  List<FileUploadStruct> listFileId = [];
+  void addToListFileId(FileUploadStruct item) => listFileId.add(item);
+  void removeFromListFileId(FileUploadStruct item) => listFileId.remove(item);
+  void removeAtIndexFromListFileId(int index) => listFileId.removeAt(index);
+  void insertAtIndexInListFileId(int index, FileUploadStruct item) =>
+      listFileId.insert(index, item);
+  void updateListFileIdAtIndex(
+          int index, Function(FileUploadStruct) updateFn) =>
+      listFileId[index] = updateFn(listFileId[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -69,12 +79,6 @@ class TaskDetailModel extends FlutterFlowModel<TaskDetailWidget> {
   bool? apiResultx5lTokenCopy;
   // Stores action output result for [Backend Call - API (UpdateOperation)] action in Button widget.
   ApiCallResponse? apiResultx5lCopy;
-  // Stores action output result for [Action Block - tokenReload] action in detail_action_type_upload_file widget.
-  bool? apiResultl2eToken;
-  // Stores action output result for [Backend Call - API (UpdateOperation)] action in detail_action_type_upload_file widget.
-  ApiCallResponse? apiResultl2e;
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? downloadToken;
 
   @override
   void initState(BuildContext context) {}
