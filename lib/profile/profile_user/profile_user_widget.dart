@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -10,8 +9,6 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'profile_user_model.dart';
 export 'profile_user_model.dart';
@@ -102,7 +99,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -122,14 +119,14 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 1.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              boxShadow: [
+                              boxShadow: const [
                                 BoxShadow(
                                   blurRadius: 3.0,
                                   color: Color(0x33000000),
@@ -141,7 +138,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                               ],
                             ),
                             child: Padding(
-                              padding: EdgeInsets.all(16.0),
+                              padding: const EdgeInsets.all(16.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -159,7 +156,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(2.0),
+                                      padding: const EdgeInsets.all(2.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
                                         focusColor: Colors.transparent,
@@ -173,9 +170,9 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                               child:
                                                   FlutterFlowExpandedImageView(
                                                 image: CachedNetworkImage(
-                                                  fadeInDuration: Duration(
+                                                  fadeInDuration: const Duration(
                                                       milliseconds: 500),
-                                                  fadeOutDuration: Duration(
+                                                  fadeOutDuration: const Duration(
                                                       milliseconds: 500),
                                                   imageUrl:
                                                       '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
@@ -207,9 +204,9 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                                 BorderRadius.circular(50.0),
                                             child: CachedNetworkImage(
                                               fadeInDuration:
-                                                  Duration(milliseconds: 500),
+                                                  const Duration(milliseconds: 500),
                                               fadeOutDuration:
-                                                  Duration(milliseconds: 500),
+                                                  const Duration(milliseconds: 500),
                                               imageUrl:
                                                   '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
                                                 _model.user,
@@ -226,7 +223,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -250,7 +247,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 4.0, 0.0, 0.0),
                                             child: Text(
                                               getJsonField(
@@ -277,7 +274,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 12.0, 0.0, 12.0),
                           child: Container(
                             decoration: BoxDecoration(
@@ -287,7 +284,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                               shape: BoxShape.rectangle,
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 16.0, 16.0, 16.0),
                               child: SingleChildScrollView(
                                 child: Column(
@@ -306,7 +303,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                           ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 16.0),
                                       child: Container(
                                         width: double.infinity,
@@ -324,10 +321,10 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                         ),
                                         child: Align(
                                           alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
+                                              const AlignmentDirectional(-1.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               getJsonField(
@@ -365,7 +362,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                           ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 16.0),
                                       child: Container(
                                         width: double.infinity,
@@ -384,10 +381,10 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                         ),
                                         child: Align(
                                           alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
+                                              const AlignmentDirectional(-1.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               getJsonField(
@@ -395,10 +392,10 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                                         r'''$.gender''',
                                                       ) !=
                                                       null
-                                                  ? ('${getJsonField(
+                                                  ? (getJsonField(
                                                             _model.user,
                                                             r'''$.gender''',
-                                                          ).toString()}' ==
+                                                          ).toString() ==
                                                           'male'
                                                       ? 'Nam'
                                                       : 'Nữ')
@@ -427,7 +424,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                           ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 16.0),
                                       child: Container(
                                         width: double.infinity,
@@ -446,10 +443,10 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                         ),
                                         child: Align(
                                           alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
+                                              const AlignmentDirectional(-1.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               getJsonField(
@@ -486,7 +483,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                           ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 16.0),
                                       child: Container(
                                         width: double.infinity,
@@ -505,10 +502,10 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                         ),
                                         child: Align(
                                           alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
+                                              const AlignmentDirectional(-1.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               getJsonField(
@@ -564,7 +561,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                         ) !=
                                         null)
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 16.0),
                                         child: Container(
                                           width: double.infinity,
@@ -583,9 +580,9 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                           ),
                                           child: Align(
                                             alignment:
-                                                AlignmentDirectional(-1.0, 0.0),
+                                                const AlignmentDirectional(-1.0, 0.0),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       8.0, 14.0, 8.0, 14.0),
                                               child: Text(
@@ -633,7 +630,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                         ) !=
                                         null)
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 16.0),
                                         child: Container(
                                           width: double.infinity,
@@ -652,9 +649,9 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                           ),
                                           child: Align(
                                             alignment:
-                                                AlignmentDirectional(-1.0, 0.0),
+                                                const AlignmentDirectional(-1.0, 0.0),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       8.0, 14.0, 8.0, 14.0),
                                               child: Text(
@@ -702,7 +699,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                         ) !=
                                         null)
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 16.0),
                                         child: Container(
                                           width: double.infinity,
@@ -722,9 +719,9 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                           ),
                                           child: Align(
                                             alignment:
-                                                AlignmentDirectional(-1.0, 0.0),
+                                                const AlignmentDirectional(-1.0, 0.0),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 0.0, 0.0, 0.0),
                                               child: Text(
                                                 getJsonField(
@@ -750,18 +747,18 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                           ),
                                         ),
                                       ),
-                                  ].divide(SizedBox(height: 8.0)),
+                                  ].divide(const SizedBox(height: 8.0)),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ].addToEnd(SizedBox(height: 16.0)),
+                      ].addToEnd(const SizedBox(height: 16.0)),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       context.pushNamed(
@@ -773,7 +770,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                           ),
                         }.withoutNulls,
                         extra: <String, dynamic>{
-                          kTransitionInfoKey: TransitionInfo(
+                          kTransitionInfoKey: const TransitionInfo(
                             hasTransition: true,
                             transitionType: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
@@ -785,9 +782,9 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                     options: FFButtonOptions(
                       height: 40.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -796,7 +793,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                 letterSpacing: 0.0,
                               ),
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),

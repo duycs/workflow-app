@@ -15,16 +15,13 @@ import '/tasks/filter_task_list/filter_task_list_widget.dart';
 import '/tasks/task_list_ck_popup/task_list_ck_popup_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'package:shake/shake.dart';
@@ -35,7 +32,7 @@ class TaskListWidget extends StatefulWidget {
   const TaskListWidget({
     super.key,
     String? checkRouter,
-  }) : this.checkRouter = checkRouter ?? '0';
+  }) : checkRouter = checkRouter ?? '0';
 
   final String checkRouter;
 
@@ -102,7 +99,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
             _model.totalDone = TaskListDataStruct.maybeFromMap(
                     (_model.apiResultGetTaskList?.jsonBody ?? ''))
                 ?.data
-                ?.where((e) =>
+                .where((e) =>
                     (e.status == 'done') &&
                     (e.submitStaffId.id ==
                         getJsonField(
@@ -110,19 +107,19 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                           r'''$.id''',
                         )))
                 .toList()
-                ?.length;
+                .length;
             _model.totalWait = TaskListDataStruct.maybeFromMap(
                     (_model.apiResultGetTaskList?.jsonBody ?? ''))!
                 .data
                 .where((e) =>
-                    (e.status == 'todo') && ('${e.current.toString()}' == '0'))
+                    (e.status == 'todo') && (e.current.toString() == '0'))
                 .toList()
                 .length;
             _model.totalTodo = TaskListDataStruct.maybeFromMap(
                     (_model.apiResultGetTaskList?.jsonBody ?? ''))!
                 .data
                 .where((e) =>
-                    (e.status == 'todo') && ('${e.current.toString()}' == '1'))
+                    (e.status == 'todo') && (e.current.toString() == '1'))
                 .toList()
                 .length;
           });
@@ -203,7 +200,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
               ? MediaQuery.viewInsetsOf(context).bottom > 0
               : _isKeyboardVisible),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 70.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 70.0),
             child: FloatingActionButton(
               onPressed: () async {
                 await showModalBottomSheet(
@@ -260,7 +257,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
               ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -271,14 +268,14 @@ class _TaskListWidgetState extends State<TaskListWidget> {
           children: [
             Expanded(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -288,12 +285,10 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                               focusNode: _model.textFieldNameFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.textFieldNameTextController',
-                                Duration(milliseconds: 500),
+                                const Duration(milliseconds: 500),
                                 () async {
                                   setState(() {});
                                   if (_model.textFieldNameTextController.text !=
-                                          null &&
-                                      _model.textFieldNameTextController.text !=
                                           '') {
                                     setState(() {
                                       _model.filter =
@@ -376,9 +371,9 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context)
                                     .primaryBackground,
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 0.0, 0.0),
-                                prefixIcon: Icon(
+                                prefixIcon: const Icon(
                                   Icons.search,
                                   size: 24.0,
                                 ),
@@ -390,9 +385,6 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                               ?.clear();
                                           setState(() {});
                                           if (_model.textFieldNameTextController
-                                                      .text !=
-                                                  null &&
-                                              _model.textFieldNameTextController
                                                       .text !=
                                                   '') {
                                             setState(() {
@@ -468,7 +460,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: AlignmentDirectional(0.0, 0.0)
+                                      alignment: const AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
                                       child: GestureDetector(
                                         onTap: () => _model
@@ -519,7 +511,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
@@ -527,14 +519,14 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 1.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   context.pushNamed(
                                     'TaskListWait',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: TransitionInfo(
+                                      kTransitionInfoKey: const TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -547,9 +539,9 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                 options: FFButtonOptions(
                                   width: 115.0,
                                   height: 30.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
@@ -568,7 +560,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 1.0),
                               child: FFButtonWidget(
                                 onPressed: () {
@@ -579,8 +571,8 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                 options: FFButtonOptions(
                                   width: 115.0,
                                   height: 30.0,
-                                  padding: EdgeInsets.all(0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsets.all(0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -592,7 +584,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.normal,
                                       ),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
@@ -601,14 +593,14 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 1.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   context.pushNamed(
                                     'TaskListDone',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: TransitionInfo(
+                                      kTransitionInfoKey: const TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -621,8 +613,8 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                 options: FFButtonOptions(
                                   width: 115.0,
                                   height: 30.0,
-                                  padding: EdgeInsets.all(0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsets.all(0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
@@ -636,7 +628,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.normal,
                                       ),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
@@ -644,12 +636,11 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                 ),
                               ),
                             ),
-                          ].divide(SizedBox(width: 6.0)),
+                          ].divide(const SizedBox(width: 6.0)),
                         ),
                       ),
                     ),
-                    if ((_model.textFieldNameTextController.text != null &&
-                            _model.textFieldNameTextController.text != '') ||
+                    if ((_model.textFieldNameTextController.text != '') ||
                         (_model.dateStartFilter != null &&
                             _model.dateStartFilter != '') ||
                         (_model.dateEndFilter != null &&
@@ -657,7 +648,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                         (_model.typeFilter != null && _model.typeFilter != ''))
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                         child: Text(
                           '# Kết quả tìm kiếm theo bộ lọc',
                           style:
@@ -689,7 +680,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                     FFLocalizations.of(context).languageCode,
                               )}\"}}' : ' '}${(_model.dateEndFilter != null && _model.dateEndFilter != '') && (_model.dateEndFilter == ' ') ? ',{\"date_created\":{\"_lte\":\"${(String var1) {
                                 return DateTime.parse(var1)
-                                    .add(Duration(days: 1))
+                                    .add(const Duration(days: 1))
                                     .toString();
                               }(dateTimeFormat(
                                 'yyyy-MM-dd',
@@ -712,14 +703,14 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                 } else {
                                   return ' ';
                                 }
-                              }()}\"}}' : ' '}${_model.textFieldNameTextController.text != null && _model.textFieldNameTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.textFieldNameTextController.text}\"}}' : ' '}${(_model.createdFilter != null && _model.createdFilter != '') && (_model.createdFilter != '') ? ',{\"created_user_id\":{\"first_name\":{\"_icontains\":\"${_model.createdFilter}\"}}}' : ' '}${(_model.workflowNameFilter != null && _model.workflowNameFilter != '') && (_model.workflowNameFilter != '') ? ',{\"workflow_id\":{\"name\":{\"_icontains\":\"${_model.workflowNameFilter}\"}}}' : ' '}]}',
+                              }()}\"}}' : ' '}${_model.textFieldNameTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.textFieldNameTextController.text}\"}}' : ' '}${(_model.createdFilter != '') && (_model.createdFilter != '') ? ',{\"created_user_id\":{\"first_name\":{\"_icontains\":\"${_model.createdFilter}\"}}}' : ' '}${(_model.workflowNameFilter != '') && (_model.workflowNameFilter != '') ? ',{\"workflow_id\":{\"name\":{\"_icontains\":\"${_model.workflowNameFilter}\"}}}' : ' '}]}',
                           ),
                         ),
                         padding: EdgeInsets.zero,
                         primary: false,
                         reverse: false,
                         scrollDirection: Axis.vertical,
-                        separatorBuilder: (_, __) => SizedBox(height: 16.0),
+                        separatorBuilder: (_, __) => const SizedBox(height: 16.0),
                         builderDelegate: PagedChildBuilderDelegate<dynamic>(
                           // Customize what your widget looks like when it's loading the first page.
                           firstPageProgressIndicatorBuilder: (_) => Center(
@@ -745,8 +736,8 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                               ),
                             ),
                           ),
-                          noItemsFoundIndicatorBuilder: (_) => Center(
-                            child: Container(
+                          noItemsFoundIndicatorBuilder: (_) => const Center(
+                            child: SizedBox(
                               width: double.infinity,
                               child: DataNotFoundWidget(),
                             ),
@@ -765,7 +756,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     4.0, 8.0, 4.0, 16.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -773,7 +764,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                       CrossAxisAlignment.stretch,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 8.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -782,7 +773,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                         children: [
                                           Expanded(
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 4.0, 0.0),
                                               child: Column(
@@ -792,7 +783,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -833,7 +824,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                               'submit_text')
                                             Container(
                                               width: 50.0,
-                                              decoration: BoxDecoration(),
+                                              decoration: const BoxDecoration(),
                                               child: Visibility(
                                                 visible:
                                                     dataListItem.actionType ==
@@ -841,7 +832,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                 child: Builder(
                                                   builder: (context) => Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(4.0, 4.0,
                                                                 4.0, 4.0),
                                                     child: InkWell(
@@ -866,7 +857,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                               backgroundColor:
                                                                   Colors
                                                                       .transparent,
-                                                              alignment: AlignmentDirectional(
+                                                              alignment: const AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
@@ -930,7 +921,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                               ),
                                                                             ),
                                                                             duration:
-                                                                                Duration(milliseconds: 4000),
+                                                                                const Duration(milliseconds: 4000),
                                                                             backgroundColor:
                                                                                 FlutterFlowTheme.of(context).error,
                                                                           ),
@@ -967,18 +958,18 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                             ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 4.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
-                                                var _shouldSetState = false;
+                                                var shouldSetState = false;
                                                 var confirmDialogResponse =
                                                     await showDialog<bool>(
                                                           context: context,
                                                           builder:
                                                               (alertDialogContext) {
                                                             return AlertDialog(
-                                                              content: Text(
+                                                              content: const Text(
                                                                   'Xác nhận hoàn thành task!'),
                                                               actions: [
                                                                 TextButton(
@@ -986,7 +977,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                       Navigator.pop(
                                                                           alertDialogContext,
                                                                           false),
-                                                                  child: Text(
+                                                                  child: const Text(
                                                                       'Đóng'),
                                                                 ),
                                                                 TextButton(
@@ -994,7 +985,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                       Navigator.pop(
                                                                           alertDialogContext,
                                                                           true),
-                                                                  child: Text(
+                                                                  child: const Text(
                                                                       'Xác nhận'),
                                                                 ),
                                                               ],
@@ -1006,7 +997,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                   _model.confirmOperationCopy2Token =
                                                       await action_blocks
                                                           .tokenReload(context);
-                                                  _shouldSetState = true;
+                                                  shouldSetState = true;
                                                   if (_model
                                                       .confirmOperationCopy2Token!) {
                                                     _model.apiResultConfirmOperationCopy2 =
@@ -1024,7 +1015,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                           ? 'approve'
                                                           : 'submit',
                                                     );
-                                                    _shouldSetState = true;
+                                                    shouldSetState = true;
                                                     if ((_model
                                                             .apiResultConfirmOperationCopy2
                                                             ?.succeeded ??
@@ -1041,7 +1032,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                   .primaryText,
                                                             ),
                                                           ),
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               milliseconds:
                                                                   4000),
                                                           backgroundColor:
@@ -1063,7 +1054,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                   .primaryText,
                                                             ),
                                                           ),
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               milliseconds:
                                                                   4000),
                                                           backgroundColor:
@@ -1078,7 +1069,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                         await action_blocks
                                                             .tokenReload(
                                                                 context);
-                                                    _shouldSetState = true;
+                                                    shouldSetState = true;
                                                     if (_model
                                                         .getWorkflowCopyToken!) {
                                                       _model.apiResultGetWorkflowCopy =
@@ -1091,7 +1082,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                         id: dataListItem
                                                             .workflowId.id,
                                                       );
-                                                      _shouldSetState = true;
+                                                      shouldSetState = true;
                                                       if ((_model
                                                               .apiResultGetWorkflowCopy
                                                               ?.succeeded ??
@@ -1124,7 +1115,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                               await action_blocks
                                                                   .tokenReload(
                                                                       context);
-                                                          _shouldSetState =
+                                                          shouldSetState =
                                                               true;
                                                           if (_model
                                                               .apiResultqt8CopyToken!) {
@@ -1142,17 +1133,17 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                               staffId: (_model
                                                                       .stepList
                                                                       ?.steps
-                                                                      ?.where((e) =>
+                                                                      .where((e) =>
                                                                           e.number ==
                                                                           (dataListItem.number +
                                                                               1))
                                                                       .toList()
-                                                                      ?.first
-                                                                      ?.staffs?[_model.loop])
+                                                                      .first
+                                                                      .staffs[_model.loop])
                                                                   ?.staffsId
-                                                                  ?.id,
+                                                                  .id,
                                                             );
-                                                            _shouldSetState =
+                                                            shouldSetState =
                                                                 true;
                                                             if (!(_model
                                                                     .apiResultqt8Copy
@@ -1171,7 +1162,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                           .primaryText,
                                                                     ),
                                                                   ),
-                                                                  duration: Duration(
+                                                                  duration: const Duration(
                                                                       milliseconds:
                                                                           4000),
                                                                   backgroundColor:
@@ -1183,8 +1174,9 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                             }
                                                           } else {
                                                             setState(() {});
-                                                            if (_shouldSetState)
+                                                            if (shouldSetState) {
                                                               setState(() {});
+                                                            }
                                                             return;
                                                           }
 
@@ -1205,27 +1197,30 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                     }
                                                   } else {
                                                     setState(() {});
-                                                    if (_shouldSetState)
+                                                    if (shouldSetState) {
                                                       setState(() {});
+                                                    }
                                                     return;
                                                   }
                                                 } else {
-                                                  if (_shouldSetState)
+                                                  if (shouldSetState) {
                                                     setState(() {});
+                                                  }
                                                   return;
                                                 }
 
-                                                if (_shouldSetState)
+                                                if (shouldSetState) {
                                                   setState(() {});
+                                                }
                                               },
                                               text: 'Xác nhận',
                                               options: FFButtonOptions(
                                                 height: 30.0,
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         6.0, 0.0, 6.0, 0.0),
                                                 iconPadding:
-                                                    EdgeInsetsDirectional
+                                                    const EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -1243,7 +1238,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                           fontWeight:
                                                               FontWeight.normal,
                                                         ),
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1.0,
                                                 ),
@@ -1283,7 +1278,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      TransitionInfo(
+                                                      const TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType.fade,
@@ -1303,7 +1298,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                     ),
                                     if (_model.isShow != dataListItem.id)
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             8.0, 6.0, 0.0, 6.0),
                                         child: InkWell(
                                           splashColor: Colors.transparent,
@@ -1344,7 +1339,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                       .firstName !=
                                                   '')
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 0.0, 8.0, 6.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1355,7 +1350,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 6.0, 0.0),
                                                     child: Icon(
@@ -1402,13 +1397,13 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                           ),
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
                                               ),
                                             ),
                                           if (dataListItem.publishedCount !=
                                               null)
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 0.0, 8.0, 6.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1420,7 +1415,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 6.0, 0.0),
                                                     child: Icon(
@@ -1474,7 +1469,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                   null &&
                                               dataListItem.dateCreated != '')
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 0.0, 8.0, 6.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1483,7 +1478,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 6.0, 0.0),
                                                     child: Icon(
@@ -1544,7 +1539,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                           if (dataListItem.timeOperate !=
                                               'null')
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 0.0, 8.0, 6.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1553,7 +1548,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 6.0, 0.0),
                                                     child: Icon(
@@ -1607,7 +1602,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                           if (dataListItem.estimateInSecond !=
                                               0)
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 0.0, 8.0, 6.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1616,7 +1611,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 6.0, 0.0),
                                                     child: Icon(
@@ -1648,13 +1643,11 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                   ),
                                                   if (valueOrDefault<bool>(
                                                     '${dataListItem.dateStart}' !=
-                                                            null &&
-                                                        '${dataListItem.dateStart}' !=
                                                             '',
                                                     false,
                                                   ))
                                                     Text(
-                                                      '${dataListItem.estimateInSecond.toString()}',
+                                                      dataListItem.estimateInSecond.toString(),
                                                       textAlign: TextAlign.end,
                                                       style:
                                                           FlutterFlowTheme.of(
@@ -1679,13 +1672,11 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                             ),
                                           if (valueOrDefault<bool>(
                                             '${dataListItem.dateStart}' !=
-                                                    null &&
-                                                '${dataListItem.dateStart}' !=
                                                     '',
                                             false,
                                           ))
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 0.0, 8.0, 6.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1694,7 +1685,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 6.0, 0.0),
                                                     child: Icon(
@@ -1725,7 +1716,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                     ),
                                                   ),
                                                   Text(
-                                                    '${dateTimeFormat(
+                                                    dateTimeFormat(
                                                       'HH:mm dd/MM/yyyy',
                                                       functions
                                                           .stringToDateTime(
@@ -1735,7 +1726,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .languageCode,
-                                                    )}',
+                                                    ),
                                                     textAlign: TextAlign.end,
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1757,7 +1748,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                             ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 0.0, 6.0),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
@@ -1793,13 +1784,13 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                       ),
                                     if (dataListItem.actionType != 'to_do_list')
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 6.0, 0.0),
                                               child: Icon(
                                                 Icons.notes_sharp,
@@ -1829,13 +1820,13 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                       ),
                                     if (dataListItem.actionType == 'to_do_list')
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 6.0, 0.0),
                                               child: Icon(
                                                 Icons.notes_sharp,
@@ -1866,7 +1857,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                     if (dataListItem.actionType ==
                                         'upload_file')
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 16.0, 0.0, 0.0),
                                         child: wrapWithModel(
                                           model: _model
@@ -1906,7 +1897,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                             FileDataTypeStruct(
                                                           directusFilesId:
                                                               FileIDDataTypeStruct(
-                                                            id: file?[
+                                                            id: file[
                                                                 _model.loop],
                                                           ),
                                                         )),
@@ -1951,7 +1942,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                 .primaryText,
                                                       ),
                                                     ),
-                                                    duration: Duration(
+                                                    duration: const Duration(
                                                         milliseconds: 4000),
                                                     backgroundColor:
                                                         FlutterFlowTheme.of(
@@ -1975,7 +1966,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                 .primaryText,
                                                       ),
                                                     ),
-                                                    duration: Duration(
+                                                    duration: const Duration(
                                                         milliseconds: 4000),
                                                     backgroundColor:
                                                         FlutterFlowTheme.of(
@@ -1992,7 +1983,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                       ),
                                     if (dataListItem.actionType == 'image')
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 16.0, 0.0, 0.0),
                                         child: DoActionTypeImageWidget(
                                           key: Key(
@@ -2013,7 +2004,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                           FileDataTypeStruct(
                                                         directusFilesId:
                                                             FileIDDataTypeStruct(
-                                                          id: images?[
+                                                          id: images[
                                                               _model.loop],
                                                         ),
                                                       )),
@@ -2056,7 +2047,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                               .primaryText,
                                                     ),
                                                   ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 4000),
                                                   backgroundColor:
                                                       FlutterFlowTheme.of(
@@ -2077,7 +2068,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                               .primaryText,
                                                     ),
                                                   ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 4000),
                                                   backgroundColor:
                                                       FlutterFlowTheme.of(
@@ -2093,7 +2084,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                       ),
                                     if (dataListItem.actionType == 'approve')
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 16.0, 0.0, 0.0),
                                         child: DoActionTypeApproveWidget(
                                           key: Key(
@@ -2130,7 +2121,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                 .primaryText,
                                                       ),
                                                     ),
-                                                    duration: Duration(
+                                                    duration: const Duration(
                                                         milliseconds: 4000),
                                                     backgroundColor:
                                                         FlutterFlowTheme.of(
@@ -2151,7 +2142,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                 .primaryText,
                                                       ),
                                                     ),
-                                                    duration: Duration(
+                                                    duration: const Duration(
                                                         milliseconds: 4000),
                                                     backgroundColor:
                                                         FlutterFlowTheme.of(
@@ -2174,7 +2165,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                         ),
                                       ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 16.0, 0.0, 0.0),
                                       child: Builder(
                                         builder: (context) {
@@ -2239,7 +2230,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                     .primaryText,
                                                               ),
                                                             ),
-                                                            duration: Duration(
+                                                            duration: const Duration(
                                                                 milliseconds:
                                                                     4000),
                                                             backgroundColor:
@@ -2261,7 +2252,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                     .primaryText,
                                                               ),
                                                             ),
-                                                            duration: Duration(
+                                                            duration: const Duration(
                                                                 milliseconds:
                                                                     4000),
                                                             backgroundColor:
@@ -2338,11 +2329,11 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                 ? MediaQuery.viewInsetsOf(context).bottom > 0
                 : _isKeyboardVisible))
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
                 child: wrapWithModel(
                   model: _model.navBarModel,
                   updateCallback: () => setState(() {}),
-                  child: NavBarWidget(
+                  child: const NavBarWidget(
                     selectedPageIndex: 1,
                   ),
                 ),

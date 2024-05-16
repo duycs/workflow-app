@@ -1,4 +1,3 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -7,7 +6,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'filter_status_department_model.dart';
 export 'filter_status_department_model.dart';
@@ -18,7 +16,7 @@ class FilterStatusDepartmentWidget extends StatefulWidget {
     required this.callBack,
     this.status,
     String? branchId,
-  }) : this.branchId = branchId ?? '';
+  }) : branchId = branchId ?? '';
 
   final Future Function(String? status, String? branchId)? callBack;
   final String? status;
@@ -67,11 +65,11 @@ class _FilterStatusDepartmentWidgetState
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -84,7 +82,7 @@ class _FilterStatusDepartmentWidgetState
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -119,7 +117,7 @@ class _FilterStatusDepartmentWidgetState
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                   child: FlutterFlowDropDown<String>(
                     controller: _model.dropDownStatusValueController ??=
                         FormFieldController<String>(
@@ -137,7 +135,7 @@ class _FilterStatusDepartmentWidgetState
                               : null,
                     ),
                     options: List<String>.from(['1', '2']),
-                    optionLabels: ['Không hoạt động', 'Hoạt động'],
+                    optionLabels: const ['Không hoạt động', 'Hoạt động'],
                     onChanged: (val) =>
                         setState(() => _model.dropDownStatusValue = val),
                     width: double.infinity,
@@ -157,7 +155,7 @@ class _FilterStatusDepartmentWidgetState
                     borderWidth: 2.0,
                     borderRadius: 8.0,
                     margin:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                     hidesUnderline: true,
                     isOverButton: true,
                     isSearchable: false,
@@ -170,7 +168,7 @@ class _FilterStatusDepartmentWidgetState
                     controller: _model.branchIdValueController ??=
                         FormFieldController<String>(
                       _model.branchIdValue ??=
-                          widget.branchId != null && widget.branchId != ''
+                          widget.branchId != ''
                               ? widget.branchId
                               : null,
                     ),
@@ -196,14 +194,14 @@ class _FilterStatusDepartmentWidgetState
                     borderWidth: 2.0,
                     borderRadius: 8.0,
                     margin:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                     hidesUnderline: true,
                     isOverButton: true,
                     isSearchable: false,
                     isMultiSelect: false,
                   ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -223,9 +221,9 @@ class _FilterStatusDepartmentWidgetState
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -270,11 +268,11 @@ class _FilterStatusDepartmentWidgetState
                           text: 'Xác nhận',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: Color(0xFF33BA45),
+                            color: const Color(0xFF33BA45),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -284,7 +282,7 @@ class _FilterStatusDepartmentWidgetState
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -292,10 +290,10 @@ class _FilterStatusDepartmentWidgetState
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),
-              ].divide(SizedBox(height: 8.0)),
+              ].divide(const SizedBox(height: 8.0)),
             ),
           ),
         ),

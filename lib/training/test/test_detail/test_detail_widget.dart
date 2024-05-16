@@ -1,4 +1,3 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -11,9 +10,6 @@ import '/training/test/test_number/test_number_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 import 'test_detail_model.dart';
 export 'test_detail_model.dart';
 
@@ -26,7 +22,7 @@ class TestDetailWidget extends StatefulWidget {
     this.time,
     this.goodScore,
     String? checkScroll,
-  }) : this.checkScroll = checkScroll ?? '0';
+  }) : checkScroll = checkScroll ?? '0';
 
   final String? id;
   final String? name;
@@ -107,7 +103,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -125,9 +121,9 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Align(
-                        alignment: AlignmentDirectional(0.0, 1.0),
+                        alignment: const AlignmentDirectional(0.0, 1.0),
                         child: Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,
@@ -142,7 +138,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                     image: Image.asset(
                                       'assets/images/career_center-interview-what_exactly_are_aptitude_tests.jpg',
                                       fit: BoxFit.contain,
-                                      alignment: Alignment(0.0, 0.0),
+                                      alignment: const Alignment(0.0, 0.0),
                                     ),
                                     allowRotation: false,
                                     tag: 'imageTag',
@@ -161,7 +157,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                   width: double.infinity,
                                   height: 200.0,
                                   fit: BoxFit.cover,
-                                  alignment: Alignment(0.0, 0.0),
+                                  alignment: const Alignment(0.0, 0.0),
                                 ),
                               ),
                             ),
@@ -170,7 +166,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 0.0, 0.0),
                         child: Text(
                           widget.name == 'null' ? ' ' : widget.name!,
                           style: FlutterFlowTheme.of(context)
@@ -182,9 +178,9 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(-1.0, 0.0),
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 4.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -244,14 +240,14 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                       ),
                                     ],
                                   ),
-                                ].divide(SizedBox(width: 4.0)),
+                                ].divide(const SizedBox(width: 4.0)),
                               ),
                             ],
                           ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -284,7 +280,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                     letterSpacing: 0.0,
                                   ),
                             ),
-                          ].divide(SizedBox(width: 4.0)),
+                          ].divide(const SizedBox(width: 4.0)),
                         ),
                       ),
                       Divider(
@@ -296,7 +292,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                         child: Text(
                           'Nội dung',
                           style:
@@ -308,7 +304,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 4.0, 16.0, 16.0),
                         child: Text(
                           widget.description == 'null'
@@ -323,12 +319,12 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                       ),
                       if (_model.detail != null)
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Builder(
                             builder: (context) {
                               final questionList =
-                                  _model.detail?.questions?.toList() ?? [];
+                                  _model.detail?.questions.toList() ?? [];
                               return ListView.separated(
                                 padding: EdgeInsets.zero,
                                 primary: false,
@@ -336,7 +332,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                 scrollDirection: Axis.vertical,
                                 itemCount: questionList.length,
                                 separatorBuilder: (_, __) =>
-                                    SizedBox(height: 12.0),
+                                    const SizedBox(height: 12.0),
                                 itemBuilder: (context, questionListIndex) {
                                   final questionListItem =
                                       questionList[questionListIndex];
@@ -354,7 +350,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                         ),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -383,7 +379,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                                           launchURL(url!),
                                                 ),
                                               ),
-                                            ].divide(SizedBox(width: 4.0)),
+                                            ].divide(const SizedBox(width: 4.0)),
                                           ),
                                         ),
                                       ),
@@ -424,7 +420,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                                       answersId: answersItem,
                                                     ),
                                                   Container(
-                                                    decoration: BoxDecoration(),
+                                                    decoration: const BoxDecoration(),
                                                     child: Visibility(
                                                       visible: questionListItem
                                                               .questionsId
@@ -440,7 +436,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                                   ),
                                                   Container(
                                                     width: double.infinity,
-                                                    decoration: BoxDecoration(),
+                                                    decoration: const BoxDecoration(),
                                                     child: Visibility(
                                                       visible: questionListItem
                                                               .questionsId
@@ -472,7 +468,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     context.pushNamed(
@@ -487,7 +483,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                           ParamType.String,
                         ),
                         'time': serializeParam(
-                          _model.detail?.durationMinutes?.toString(),
+                          _model.detail?.durationMinutes.toString(),
                           ParamType.String,
                         ),
                         'description': serializeParam(
@@ -505,7 +501,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                         ),
                       }.withoutNulls,
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: TransitionInfo(
+                        kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),
@@ -514,16 +510,16 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                     );
                   },
                   text: 'Chỉnh sửa',
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.edit,
                     size: 15.0,
                   ),
                   options: FFButtonOptions(
                     height: 40.0,
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(72.0, 0.0, 72.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(72.0, 0.0, 72.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Nunito Sans',
@@ -531,7 +527,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                           letterSpacing: 0.0,
                         ),
                     elevation: 3.0,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),

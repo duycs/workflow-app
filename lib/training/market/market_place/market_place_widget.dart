@@ -1,16 +1,12 @@
-import '/backend/schema/structs/index.dart';
 import '/components/rating_staf_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/market/filter_programs/filter_programs_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'market_place_model.dart';
 export 'market_place_model.dart';
@@ -71,7 +67,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
             child: SingleChildScrollView(
               primary: false,
               child: Column(
@@ -109,7 +105,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,7 +145,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                           width: 40.0,
                           height: 40.0,
                           clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                           ),
                           child: Image.network(
@@ -162,15 +158,15 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    child: Container(
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    child: SizedBox(
                       width: double.infinity,
                       child: TextFormField(
                         controller: _model.searchMarketTextController,
                         focusNode: _model.searchMarketFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.searchMarketTextController',
-                          Duration(milliseconds: 500),
+                          const Duration(milliseconds: 500),
                           () async {
                             await _model.getProgramsMarketFree(context);
                             setState(() {});
@@ -200,7 +196,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                 letterSpacing: 0.0,
                               ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
                             ),
@@ -228,8 +224,8 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                           filled: true,
-                          fillColor: Color(0x15FF5963),
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          fillColor: const Color(0x15FF5963),
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 8.0, 0.0, 8.0),
                           suffixIcon: _model
                                   .searchMarketTextController!.text.isNotEmpty
@@ -268,7 +264,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 8.0, 3.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 8.0, 3.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -310,7 +306,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                 ),
                               }.withoutNulls,
                               extra: <String, dynamic>{
-                                kTransitionInfoKey: TransitionInfo(
+                                kTransitionInfoKey: const TransitionInfo(
                                   hasTransition: true,
                                   transitionType: PageTransitionType.fade,
                                   duration: Duration(milliseconds: 0),
@@ -345,11 +341,10 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                       ],
                     ),
                   ),
-                  if (_model.searchMarketTextController.text != null &&
-                      _model.searchMarketTextController.text != '')
+                  if (_model.searchMarketTextController.text != '')
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 5.0),
                       child: Text(
                         '#Kết quả tìm kiếm theo bộ lọc',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -362,11 +357,11 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                     ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                     child: Container(
                       width: double.infinity,
                       height: 140.0,
-                      decoration: BoxDecoration(),
+                      decoration: const BoxDecoration(),
                       child: Builder(
                         builder: (context) {
                           final listProgramsFree =
@@ -377,7 +372,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
                             itemCount: listProgramsFree.length,
-                            separatorBuilder: (_, __) => SizedBox(width: 24.0),
+                            separatorBuilder: (_, __) => const SizedBox(width: 24.0),
                             itemBuilder: (context, listProgramsFreeIndex) {
                               final listProgramsFreeItem =
                                   listProgramsFree[listProgramsFreeIndex];
@@ -396,7 +391,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: TransitionInfo(
+                                      kTransitionInfoKey: const TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -428,17 +423,17 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .primaryText
                                             ],
-                                            stops: [0.0, 1.0],
+                                            stops: const [0.0, 1.0],
                                             begin:
-                                                AlignmentDirectional(0.0, -1.0),
-                                            end: AlignmentDirectional(0, 1.0),
+                                                const AlignmentDirectional(0.0, -1.0),
+                                            end: const AlignmentDirectional(0, 1.0),
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(4.0),
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 4.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -494,7 +489,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 8.0, 3.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 8.0, 3.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -536,7 +531,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                 ),
                               }.withoutNulls,
                               extra: <String, dynamic>{
-                                kTransitionInfoKey: TransitionInfo(
+                                kTransitionInfoKey: const TransitionInfo(
                                   hasTransition: true,
                                   transitionType: PageTransitionType.fade,
                                   duration: Duration(milliseconds: 0),
@@ -571,11 +566,10 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                       ],
                     ),
                   ),
-                  if (_model.searchMarketTextController.text != null &&
-                      _model.searchMarketTextController.text != '')
+                  if (_model.searchMarketTextController.text != '')
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 5.0),
                       child: Text(
                         '#Kết quả tìm kiếm theo bộ lọc',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -588,11 +582,11 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                     ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                     child: Container(
                       width: double.infinity,
                       height: 185.0,
-                      decoration: BoxDecoration(),
+                      decoration: const BoxDecoration(),
                       child: Builder(
                         builder: (context) {
                           final listProgramsNoFree =
@@ -603,7 +597,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
                             itemCount: listProgramsNoFree.length,
-                            separatorBuilder: (_, __) => SizedBox(width: 24.0),
+                            separatorBuilder: (_, __) => const SizedBox(width: 24.0),
                             itemBuilder: (context, listProgramsNoFreeIndex) {
                               final listProgramsNoFreeItem =
                                   listProgramsNoFree[listProgramsNoFreeIndex];
@@ -622,7 +616,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: TransitionInfo(
+                                      kTransitionInfoKey: const TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -644,7 +638,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 4.0),
                                             child: ClipRRect(
                                               borderRadius:
@@ -659,7 +653,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     4.0, 4.0, 0.0, 0.0),
                                             child: ClipRRect(
                                               borderRadius:
@@ -721,20 +715,20 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                                     fontStyle: FontStyle.italic,
                                                   ),
                                             ),
-                                            TextSpan(
+                                            const TextSpan(
                                               text: 'đ',
                                               style: TextStyle(
                                                 fontSize: 12.0,
                                                 fontStyle: FontStyle.italic,
                                               ),
                                             ),
-                                            TextSpan(
+                                            const TextSpan(
                                               text: ' ',
                                               style: TextStyle(
                                                 fontSize: 12.0,
                                               ),
                                             ),
-                                            TextSpan(
+                                            const TextSpan(
                                               text: '1.500.000',
                                               style: TextStyle(
                                                 color: Color(0xFFFF0000),
@@ -744,7 +738,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                                 fontStyle: FontStyle.italic,
                                               ),
                                             ),
-                                            TextSpan(
+                                            const TextSpan(
                                               text: 'đ',
                                               style: TextStyle(
                                                 color: Color(0xFFFF0000),
@@ -770,8 +764,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           if (listProgramsNoFreeItem
-                                                  .reacts.length >
-                                              0)
+                                                  .reacts.isNotEmpty)
                                             RatingStafWidget(
                                               key: Key(
                                                   'Keyi65_${listProgramsNoFreeIndex}_of_${listProgramsNoFree.length}'),
@@ -779,8 +772,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                                   listProgramsNoFreeItem.reacts,
                                             ),
                                           if (listProgramsNoFreeItem
-                                                  .reacts.length <=
-                                              0)
+                                                  .reacts.isEmpty)
                                             Text(
                                               '',
                                               style:
@@ -794,7 +786,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                             ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 8.0, 0.0),
                                             child: Text(
                                               '(${listProgramsNoFreeItem.orderCount.toString()})',
@@ -823,7 +815,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 8.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 8.0, 4.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -851,7 +843,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                             context.pushNamed(
                               'CategoryMarket',
                               extra: <String, dynamic>{
-                                kTransitionInfoKey: TransitionInfo(
+                                kTransitionInfoKey: const TransitionInfo(
                                   hasTransition: true,
                                   transitionType: PageTransitionType.fade,
                                   duration: Duration(milliseconds: 0),
@@ -888,7 +880,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
@@ -901,11 +893,11 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                       ),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Color(0x8E1D2428),
+                          color: const Color(0x8E1D2428),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(10.0),
                           child: Builder(
                             builder: (context) {
                               final itemDomains =
@@ -913,7 +905,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                               return GridView.builder(
                                 padding: EdgeInsets.zero,
                                 gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 4,
                                   crossAxisSpacing: 10.0,
                                   mainAxisSpacing: 10.0,
@@ -935,7 +927,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                       context.pushNamed(
                                         'ProgramListMarket',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -952,7 +944,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 2.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -973,7 +965,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                             ),
                                             Expanded(
                                               child: Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   itemDomainsItem.name,
@@ -1005,7 +997,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 8.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 8.0, 4.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -1033,7 +1025,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                             context.pushNamed(
                               'AuthorList',
                               extra: <String, dynamic>{
-                                kTransitionInfoKey: TransitionInfo(
+                                kTransitionInfoKey: const TransitionInfo(
                                   hasTransition: true,
                                   transitionType: PageTransitionType.fade,
                                   duration: Duration(milliseconds: 0),
@@ -1070,7 +1062,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                     child: Container(
                       width: 100.0,
                       height: 135.0,
@@ -1084,7 +1076,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                             padding: EdgeInsets.zero,
                             scrollDirection: Axis.horizontal,
                             itemCount: listAuthors.length,
-                            separatorBuilder: (_, __) => SizedBox(width: 24.0),
+                            separatorBuilder: (_, __) => const SizedBox(width: 24.0),
                             itemBuilder: (context, listAuthorsIndex) {
                               final listAuthorsItem =
                                   listAuthors[listAuthorsIndex];
@@ -1103,7 +1095,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: TransitionInfo(
+                                      kTransitionInfoKey: const TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -1112,7 +1104,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                   );
                                 },
                                 child: Stack(
-                                  alignment: AlignmentDirectional(0.0, 1.0),
+                                  alignment: const AlignmentDirectional(0.0, 1.0),
                                   children: [
                                     Opacity(
                                       opacity: 0.5,
@@ -1120,32 +1112,32 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                         width: 130.0,
                                         height: 70.0,
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.only(
+                                          borderRadius: const BorderRadius.only(
                                             bottomLeft: Radius.circular(0.0),
                                             bottomRight: Radius.circular(0.0),
                                             topLeft: Radius.circular(8.0),
                                             topRight: Radius.circular(8.0),
                                           ),
                                           border: Border.all(
-                                            color: Color(0x7D57636C),
+                                            color: const Color(0x7D57636C),
                                           ),
                                         ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.all(6.0),
+                                      padding: const EdgeInsets.all(6.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 4.0),
                                             child: Container(
                                               width: 80.0,
                                               height: 80.0,
                                               clipBehavior: Clip.antiAlias,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                 shape: BoxShape.circle,
                                               ),
                                               child: Image.network(
@@ -1189,7 +1181,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 10.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 10.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -1210,7 +1202,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                       TextButton(
                                         onPressed: () =>
                                             Navigator.pop(alertDialogContext),
-                                        child: Text('Ok'),
+                                        child: const Text('Ok'),
                                       ),
                                     ],
                                   );
@@ -1233,7 +1225,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                           ),
                         ),
                         Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Builder(
                             builder: (context) => FlutterFlowIconButton(
                               borderColor: Colors.transparent,
@@ -1253,7 +1245,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: AlignmentDirectional(0.0, 0.0)
+                                      alignment: const AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
                                       child: GestureDetector(
                                         onTap: () => _model
@@ -1295,11 +1287,10 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                       ],
                     ),
                   ),
-                  if (_model.searchMarketTextController.text != null &&
-                      _model.searchMarketTextController.text != '')
+                  if (_model.searchMarketTextController.text != '')
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 5.0),
                       child: Text(
                         '#Kết quả tìm kiếm theo bộ lọc',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1312,7 +1303,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                     ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     child: Builder(
                       builder: (context) {
                         final itemProgramListAll =
@@ -1323,7 +1314,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           itemCount: itemProgramListAll.length,
-                          separatorBuilder: (_, __) => SizedBox(height: 16.0),
+                          separatorBuilder: (_, __) => const SizedBox(height: 16.0),
                           itemBuilder: (context, itemProgramListAllIndex) {
                             final itemProgramListAllItem =
                                 itemProgramListAll[itemProgramListAllIndex];
@@ -1342,7 +1333,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                     ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
+                                    kTransitionInfoKey: const TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -1410,10 +1401,9 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                               CrossAxisAlignment.end,
                                           children: [
                                             if (itemProgramListAllItem
-                                                    .reacts.length >
-                                                0)
+                                                    .reacts.isNotEmpty)
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 2.0),
                                                 child: Icon(
@@ -1425,12 +1415,10 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                                 ),
                                               ),
                                             if (itemProgramListAllItem
-                                                    .reacts.length >
-                                                0)
+                                                    .reacts.isNotEmpty)
                                               Text(
                                                 itemProgramListAllItem
-                                                            .reacts.length >
-                                                        0
+                                                            .reacts.isNotEmpty
                                                     ? formatNumber(
                                                         (List<String>
                                                             listItem) {
@@ -1466,7 +1454,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                               ),
                                             Expanded(
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 16.0, 0.0),
                                                 child: Row(
@@ -1477,7 +1465,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1508,16 +1496,16 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                                           ),
                                                     ),
                                                   ].divide(
-                                                      SizedBox(width: 4.0)),
+                                                      const SizedBox(width: 4.0)),
                                                 ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(width: 4.0)),
+                                          ].divide(const SizedBox(width: 4.0)),
                                         ),
                                       ],
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 12.0)),
+                                ].divide(const SizedBox(width: 12.0)),
                               ),
                             );
                           },

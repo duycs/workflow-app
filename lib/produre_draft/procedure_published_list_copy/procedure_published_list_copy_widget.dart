@@ -2,12 +2,9 @@ import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:provider/provider.dart';
 import 'procedure_published_list_copy_model.dart';
 export 'procedure_published_list_copy_model.dart';
 
@@ -74,7 +71,7 @@ class _ProcedurePublishedListCopyWidgetState
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -88,7 +85,7 @@ class _ProcedurePublishedListCopyWidgetState
               children: [
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -140,7 +137,7 @@ class _ProcedurePublishedListCopyWidgetState
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 0.0, 0.0),
                             suffixIcon: Icon(
                               Icons.search_rounded,
@@ -172,11 +169,11 @@ class _ProcedurePublishedListCopyWidgetState
                           print('IconButton pressed ...');
                         },
                       ),
-                    ].divide(SizedBox(width: 8.0)),
+                    ].divide(const SizedBox(width: 8.0)),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
                   child: Text(
                     'Kết quả hiển thị theo bộ lọc.',
                     style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -193,9 +190,9 @@ class _ProcedurePublishedListCopyWidgetState
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                         child: FlutterFlowChoiceChips(
-                          options: [
+                          options: const [
                             ChipData('Tất cả (20)'),
                             ChipData('Đang thực hiện (10)'),
                             ChipData('Hoàn thành (7)')
@@ -251,12 +248,12 @@ class _ProcedurePublishedListCopyWidgetState
                         ),
                       ),
                     ]
-                        .addToStart(SizedBox(width: 16.0))
-                        .addToEnd(SizedBox(width: 16.0)),
+                        .addToStart(const SizedBox(width: 16.0))
+                        .addToEnd(const SizedBox(width: 16.0)),
                   ),
                 ),
                 ListView(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     0,
                     0,
                     0,
@@ -273,7 +270,7 @@ class _ProcedurePublishedListCopyWidgetState
                           BoxShadow(
                             blurRadius: 0.0,
                             color: FlutterFlowTheme.of(context).alternate,
-                            offset: Offset(
+                            offset: const Offset(
                               0.0,
                               1.0,
                             ),
@@ -281,7 +278,7 @@ class _ProcedurePublishedListCopyWidgetState
                         ],
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 12.0, 16.0, 20.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -290,7 +287,7 @@ class _ProcedurePublishedListCopyWidgetState
                             Expanded(
                               flex: 4,
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -328,7 +325,7 @@ class _ProcedurePublishedListCopyWidgetState
                                           ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 12.0, 0.0),
                                       child: Text(
                                         'Nguyễn Đức Anh',
@@ -344,7 +341,7 @@ class _ProcedurePublishedListCopyWidgetState
                                             ),
                                       ),
                                     ),
-                                  ].divide(SizedBox(height: 4.0)),
+                                  ].divide(const SizedBox(height: 4.0)),
                                 ),
                               ),
                             ),
@@ -355,7 +352,7 @@ class _ProcedurePublishedListCopyWidgetState
                               Expanded(
                                 flex: 2,
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 12.0, 0.0),
                                   child: Text(
                                     '5 mins ago',
@@ -376,7 +373,7 @@ class _ProcedurePublishedListCopyWidgetState
                               Expanded(
                                 flex: 3,
                                 child: Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'Head of Design',
                                     style: FlutterFlowTheme.of(context)
@@ -408,7 +405,7 @@ class _ProcedurePublishedListCopyWidgetState
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Nunito Sans',
-                                        color: Color(0xFFFF0000),
+                                        color: const Color(0xFFFF0000),
                                         fontSize: 13.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.normal,
@@ -422,7 +419,7 @@ class _ProcedurePublishedListCopyWidgetState
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Stack(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       children: [
                                         CircularPercentIndicator(
                                           percent: 0.7,
@@ -463,9 +460,9 @@ class _ProcedurePublishedListCopyWidgetState
                                             fontWeight: FontWeight.bold,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 8.0)),
+                                  ].divide(const SizedBox(width: 8.0)),
                                 ),
-                              ].divide(SizedBox(height: 5.0)),
+                              ].divide(const SizedBox(height: 5.0)),
                             ),
                           ],
                         ),
@@ -479,7 +476,7 @@ class _ProcedurePublishedListCopyWidgetState
                           BoxShadow(
                             blurRadius: 0.0,
                             color: FlutterFlowTheme.of(context).alternate,
-                            offset: Offset(
+                            offset: const Offset(
                               0.0,
                               1.0,
                             ),
@@ -487,7 +484,7 @@ class _ProcedurePublishedListCopyWidgetState
                         ],
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 12.0, 16.0, 20.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -495,7 +492,7 @@ class _ProcedurePublishedListCopyWidgetState
                             Expanded(
                               flex: 4,
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -526,7 +523,7 @@ class _ProcedurePublishedListCopyWidgetState
                                       ],
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 12.0, 0.0),
                                       child: Text(
                                         '#Marketing',
@@ -543,7 +540,7 @@ class _ProcedurePublishedListCopyWidgetState
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 12.0, 0.0),
                                       child: Text(
                                         'Hồng Hạnh',
@@ -559,7 +556,7 @@ class _ProcedurePublishedListCopyWidgetState
                                             ),
                                       ),
                                     ),
-                                  ].divide(SizedBox(height: 4.0)),
+                                  ].divide(const SizedBox(height: 4.0)),
                                 ),
                               ),
                             ),
@@ -570,7 +567,7 @@ class _ProcedurePublishedListCopyWidgetState
                               Expanded(
                                 flex: 2,
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 12.0, 0.0),
                                   child: Text(
                                     '5 mins ago',
@@ -591,7 +588,7 @@ class _ProcedurePublishedListCopyWidgetState
                               Expanded(
                                 flex: 3,
                                 child: Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'Head of Design',
                                     style: FlutterFlowTheme.of(context)
@@ -637,7 +634,7 @@ class _ProcedurePublishedListCopyWidgetState
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Stack(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       children: [
                                         CircularPercentIndicator(
                                           percent: 0.7,
@@ -678,9 +675,9 @@ class _ProcedurePublishedListCopyWidgetState
                                             fontWeight: FontWeight.bold,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 8.0)),
+                                  ].divide(const SizedBox(width: 8.0)),
                                 ),
-                              ].divide(SizedBox(height: 5.0)),
+                              ].divide(const SizedBox(height: 5.0)),
                             ),
                           ],
                         ),
@@ -694,7 +691,7 @@ class _ProcedurePublishedListCopyWidgetState
                           BoxShadow(
                             blurRadius: 0.0,
                             color: FlutterFlowTheme.of(context).alternate,
-                            offset: Offset(
+                            offset: const Offset(
                               0.0,
                               1.0,
                             ),
@@ -702,7 +699,7 @@ class _ProcedurePublishedListCopyWidgetState
                         ],
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 12.0, 16.0, 20.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -710,7 +707,7 @@ class _ProcedurePublishedListCopyWidgetState
                             Expanded(
                               flex: 4,
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -741,7 +738,7 @@ class _ProcedurePublishedListCopyWidgetState
                                       ],
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 12.0, 0.0),
                                       child: Text(
                                         '#Marketing',
@@ -758,7 +755,7 @@ class _ProcedurePublishedListCopyWidgetState
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 12.0, 0.0),
                                       child: Text(
                                         'Nguyễn Đức Anh',
@@ -774,7 +771,7 @@ class _ProcedurePublishedListCopyWidgetState
                                             ),
                                       ),
                                     ),
-                                  ].divide(SizedBox(height: 4.0)),
+                                  ].divide(const SizedBox(height: 4.0)),
                                 ),
                               ),
                             ),
@@ -785,7 +782,7 @@ class _ProcedurePublishedListCopyWidgetState
                               Expanded(
                                 flex: 2,
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 12.0, 0.0),
                                   child: Text(
                                     '5 mins ago',
@@ -806,7 +803,7 @@ class _ProcedurePublishedListCopyWidgetState
                               Expanded(
                                 flex: 3,
                                 child: Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'Head of Design',
                                     style: FlutterFlowTheme.of(context)
@@ -852,7 +849,7 @@ class _ProcedurePublishedListCopyWidgetState
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Stack(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       children: [
                                         CircularPercentIndicator(
                                           percent: 0.7,
@@ -893,9 +890,9 @@ class _ProcedurePublishedListCopyWidgetState
                                             fontWeight: FontWeight.bold,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 8.0)),
+                                  ].divide(const SizedBox(width: 8.0)),
                                 ),
-                              ].divide(SizedBox(height: 5.0)),
+                              ].divide(const SizedBox(height: 5.0)),
                             ),
                           ],
                         ),
@@ -909,7 +906,7 @@ class _ProcedurePublishedListCopyWidgetState
                           BoxShadow(
                             blurRadius: 0.0,
                             color: FlutterFlowTheme.of(context).alternate,
-                            offset: Offset(
+                            offset: const Offset(
                               0.0,
                               1.0,
                             ),
@@ -917,7 +914,7 @@ class _ProcedurePublishedListCopyWidgetState
                         ],
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 12.0, 16.0, 20.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -925,7 +922,7 @@ class _ProcedurePublishedListCopyWidgetState
                             Expanded(
                               flex: 4,
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -959,7 +956,7 @@ class _ProcedurePublishedListCopyWidgetState
                                               .secondaryText,
                                           size: 16.0,
                                         ),
-                                      ].divide(SizedBox(width: 4.0)),
+                                      ].divide(const SizedBox(width: 4.0)),
                                     ),
                                     Text(
                                       '#Runner',
@@ -974,7 +971,7 @@ class _ProcedurePublishedListCopyWidgetState
                                           ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 12.0, 0.0),
                                       child: Text(
                                         'Nguyễn Đức Anh',
@@ -990,7 +987,7 @@ class _ProcedurePublishedListCopyWidgetState
                                             ),
                                       ),
                                     ),
-                                  ].divide(SizedBox(height: 4.0)),
+                                  ].divide(const SizedBox(height: 4.0)),
                                 ),
                               ),
                             ),
@@ -1001,7 +998,7 @@ class _ProcedurePublishedListCopyWidgetState
                               Expanded(
                                 flex: 2,
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 12.0, 0.0),
                                   child: Text(
                                     '5 mins ago',
@@ -1022,7 +1019,7 @@ class _ProcedurePublishedListCopyWidgetState
                               Expanded(
                                 flex: 3,
                                 child: Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'Head of Design',
                                     style: FlutterFlowTheme.of(context)
@@ -1054,7 +1051,7 @@ class _ProcedurePublishedListCopyWidgetState
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Nunito Sans',
-                                        color: Color(0xFFFF0000),
+                                        color: const Color(0xFFFF0000),
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.normal,
                                         fontStyle: FontStyle.italic,
@@ -1067,7 +1064,7 @@ class _ProcedurePublishedListCopyWidgetState
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Stack(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       children: [
                                         CircularPercentIndicator(
                                           percent: 0.7,
@@ -1108,9 +1105,9 @@ class _ProcedurePublishedListCopyWidgetState
                                             fontWeight: FontWeight.bold,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 8.0)),
+                                  ].divide(const SizedBox(width: 8.0)),
                                 ),
-                              ].divide(SizedBox(height: 5.0)),
+                              ].divide(const SizedBox(height: 5.0)),
                             ),
                           ],
                         ),
@@ -1124,7 +1121,7 @@ class _ProcedurePublishedListCopyWidgetState
                           BoxShadow(
                             blurRadius: 0.0,
                             color: FlutterFlowTheme.of(context).alternate,
-                            offset: Offset(
+                            offset: const Offset(
                               0.0,
                               1.0,
                             ),
@@ -1132,7 +1129,7 @@ class _ProcedurePublishedListCopyWidgetState
                         ],
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 12.0, 16.0, 20.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1140,7 +1137,7 @@ class _ProcedurePublishedListCopyWidgetState
                             Expanded(
                               flex: 4,
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -1174,7 +1171,7 @@ class _ProcedurePublishedListCopyWidgetState
                                               .secondaryText,
                                           size: 16.0,
                                         ),
-                                      ].divide(SizedBox(width: 4.0)),
+                                      ].divide(const SizedBox(width: 4.0)),
                                     ),
                                     Text(
                                       '#Runner',
@@ -1189,7 +1186,7 @@ class _ProcedurePublishedListCopyWidgetState
                                           ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 12.0, 0.0),
                                       child: Text(
                                         'Hồng Hạnh',
@@ -1205,7 +1202,7 @@ class _ProcedurePublishedListCopyWidgetState
                                             ),
                                       ),
                                     ),
-                                  ].divide(SizedBox(height: 4.0)),
+                                  ].divide(const SizedBox(height: 4.0)),
                                 ),
                               ),
                             ),
@@ -1216,7 +1213,7 @@ class _ProcedurePublishedListCopyWidgetState
                               Expanded(
                                 flex: 2,
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 12.0, 0.0),
                                   child: Text(
                                     '5 mins ago',
@@ -1237,7 +1234,7 @@ class _ProcedurePublishedListCopyWidgetState
                               Expanded(
                                 flex: 3,
                                 child: Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'Head of Design',
                                     style: FlutterFlowTheme.of(context)
@@ -1283,7 +1280,7 @@ class _ProcedurePublishedListCopyWidgetState
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Stack(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       children: [
                                         CircularPercentIndicator(
                                           percent: 0.7,
@@ -1324,15 +1321,15 @@ class _ProcedurePublishedListCopyWidgetState
                                             fontWeight: FontWeight.bold,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 8.0)),
+                                  ].divide(const SizedBox(width: 8.0)),
                                 ),
-                              ].divide(SizedBox(height: 5.0)),
+                              ].divide(const SizedBox(height: 5.0)),
                             ),
                           ],
                         ),
                       ),
                     ),
-                  ].divide(SizedBox(height: 1.0)),
+                  ].divide(const SizedBox(height: 1.0)),
                 ),
               ],
             ),

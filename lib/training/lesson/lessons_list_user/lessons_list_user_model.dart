@@ -1,22 +1,12 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/training/lesson/filter_lesson_user/filter_lesson_user_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'dart:async';
 import 'lessons_list_user_widget.dart' show LessonsListUserWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:provider/provider.dart';
-import 'package:shake/shake.dart';
 
 class LessonsListUserModel extends FlutterFlowModel<LessonsListUserWidget> {
   ///  Local state fields for this page.
@@ -79,13 +69,13 @@ class LessonsListUserModel extends FlutterFlowModel<LessonsListUserWidget> {
       filter: '{\"_and\":[${'{\"staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.id''',
-      ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"done\"}}'}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? ', {\"lession_id\":{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}}' : ' '}${(dateStartSearch != null && dateStartSearch != '') && (dateStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_gte\":\"${dateStartSearch}\"}}}' : '  '}${(dateEndStartSearch != null && dateEndStartSearch != '') && (dateEndStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_lte\":\"${(String var1) {
-          return DateTime.parse(var1).add(Duration(days: 1)).toString();
+      ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"done\"}}'}${nameSearchTextController.text != '' ? ', {\"lession_id\":{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}}' : ' '}${(dateStartSearch != '') && (dateStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_gte\":\"$dateStartSearch\"}}}' : '  '}${(dateEndStartSearch != '') && (dateEndStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_lte\":\"${(String var1) {
+          return DateTime.parse(var1).add(const Duration(days: 1)).toString();
         }(dateEndStartSearch)}\"}}}' : ' '}]}',
     );
-    if ((apiResultLinkLessonStaff?.succeeded ?? true)) {
+    if ((apiResultLinkLessonStaff.succeeded ?? true)) {
       listLessonStaff = EmployeeLessonListDataStruct.maybeFromMap(
-              (apiResultLinkLessonStaff?.jsonBody ?? ''))!
+              (apiResultLinkLessonStaff.jsonBody ?? ''))!
           .data
           .toList()
           .cast<EmployeeLessonListStruct>();
@@ -93,7 +83,7 @@ class LessonsListUserModel extends FlutterFlowModel<LessonsListUserWidget> {
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultLinkLessonStaff?.jsonBody ?? ''),
+        jsonErrors: (apiResultLinkLessonStaff.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -104,7 +94,7 @@ class LessonsListUserModel extends FlutterFlowModel<LessonsListUserWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -121,7 +111,7 @@ class LessonsListUserModel extends FlutterFlowModel<LessonsListUserWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -162,7 +152,7 @@ class LessonsListUserModel extends FlutterFlowModel<LessonsListUserWidget> {
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

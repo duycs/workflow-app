@@ -1,17 +1,10 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'category_market_widget.dart' show CategoryMarketWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class CategoryMarketModel extends FlutterFlowModel<CategoryMarketWidget> {
   ///  Local state fields for this page.
@@ -55,18 +48,18 @@ class CategoryMarketModel extends FlutterFlowModel<CategoryMarketWidget> {
     apiResultList = await GetDomainsGroup.getDomainsCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[${searchDomainsTextController.text != null && searchDomainsTextController.text != '' ? '{\"name\":{\"_icontains\":\"' : ' '}${searchDomainsTextController.text != null && searchDomainsTextController.text != '' ? searchDomainsTextController.text : ' '}${searchDomainsTextController.text != null && searchDomainsTextController.text != '' ? '\"}}' : ' '}]}',
+          '{\"_and\":[${searchDomainsTextController.text != '' ? '{\"name\":{\"_icontains\":\"' : ' '}${searchDomainsTextController.text != '' ? searchDomainsTextController.text : ' '}${searchDomainsTextController.text != '' ? '\"}}' : ' '}]}',
     );
-    if ((apiResultList?.succeeded ?? true)) {
+    if ((apiResultList.succeeded ?? true)) {
       listDataDomains = DomainsListDataDataStruct.maybeFromMap(
-              (apiResultList?.jsonBody ?? ''))!
+              (apiResultList.jsonBody ?? ''))!
           .data
           .toList()
           .cast<DomainsListListStruct>();
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultList?.jsonBody ?? ''),
+        jsonErrors: (apiResultList.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -77,7 +70,7 @@ class CategoryMarketModel extends FlutterFlowModel<CategoryMarketWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );

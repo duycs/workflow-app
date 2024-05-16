@@ -5,8 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'filter_programs_model.dart';
 export 'filter_programs_model.dart';
 
@@ -20,11 +18,11 @@ class FilterProgramsWidget extends StatefulWidget {
     String? priceMin,
     String? priceMax,
     required this.listDomain,
-  })  : this.domain = domain ?? '',
-        this.author = author ?? '',
-        this.category = category ?? '',
-        this.priceMin = priceMin ?? '',
-        this.priceMax = priceMax ?? '';
+  })  : domain = domain ?? '',
+        author = author ?? '',
+        category = category ?? '',
+        priceMin = priceMin ?? '',
+        priceMax = priceMax ?? '';
 
   final Future Function(String? domain, String? author, String? category,
       String? priceMin, String? priceMax)? callBack;
@@ -54,28 +52,28 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
     _model = createModel(context, () => FilterProgramsModel());
 
     _model.authorTextController ??= TextEditingController(
-        text: (widget.author != null && widget.author != '') &&
+        text: (widget.author != '') &&
                 (widget.author != 'noData')
             ? widget.author
             : '');
     _model.authorFocusNode ??= FocusNode();
 
     _model.categoryTextController ??= TextEditingController(
-        text: (widget.category != null && widget.category != '') &&
+        text: (widget.category != '') &&
                 (widget.category != 'noData')
             ? widget.category
             : '');
     _model.categoryFocusNode ??= FocusNode();
 
     _model.priceMinTextController ??= TextEditingController(
-        text: (widget.priceMin != null && widget.priceMin != '') &&
+        text: (widget.priceMin != '') &&
                 (widget.priceMin != 'noData')
             ? widget.priceMin
             : '');
     _model.priceMinFocusNode ??= FocusNode();
 
     _model.priceMaxTextController ??= TextEditingController(
-        text: (widget.priceMax != null && widget.priceMax != '') &&
+        text: (widget.priceMax != '') &&
                 (widget.priceMax != 'noData')
             ? widget.priceMax
             : '');
@@ -92,16 +90,16 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxHeight: 550.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -114,13 +112,13 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -158,12 +156,11 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                         child: FlutterFlowDropDown<String>(
                           controller: _model.domainValueController ??=
                               FormFieldController<String>(
-                            _model.domainValue ??= (widget.domain != null &&
-                                        widget.domain != '') &&
+                            _model.domainValue ??= (widget.domain != '') &&
                                     (widget.domain != 'noData')
                                 ? widget.domain
                                 : '',
@@ -201,7 +198,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                           borderColor: FlutterFlowTheme.of(context).alternate,
                           borderWidth: 1.0,
                           borderRadius: 8.0,
-                          margin: EdgeInsetsDirectional.fromSTEB(
+                          margin: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
                           hidesUnderline: true,
                           isOverButton: true,
@@ -211,7 +208,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                         child: TextFormField(
                           controller: _model.authorTextController,
                           focusNode: _model.authorFocusNode,
@@ -272,7 +269,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                         child: TextFormField(
                           controller: _model.categoryTextController,
                           focusNode: _model.categoryFocusNode,
@@ -333,7 +330,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -350,7 +347,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                     TextButton(
                                       onPressed: () =>
                                           Navigator.pop(alertDialogContext),
-                                      child: Text('Ok'),
+                                      child: const Text('Ok'),
                                     ),
                                   ],
                                 );
@@ -393,7 +390,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                       .secondaryBackground,
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       3.0, 0.0, 0.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.priceMinTextController,
@@ -485,7 +482,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                       .secondaryBackground,
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       3.0, 0.0, 0.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.priceMaxTextController,
@@ -557,13 +554,13 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                               ),
                             ],
                           ),
-                        ].divide(SizedBox(width: 20.0)),
+                        ].divide(const SizedBox(width: 20.0)),
                       ),
                     ],
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -589,9 +586,9 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -621,20 +618,16 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                       _model.domainValue != ''
                                   ? _model.domainValue
                                   : 'noData',
-                              _model.authorTextController.text != null &&
-                                      _model.authorTextController.text != ''
+                              _model.authorTextController.text != ''
                                   ? _model.authorTextController.text
                                   : 'noData',
-                              _model.categoryTextController.text != null &&
-                                      _model.categoryTextController.text != ''
+                              _model.categoryTextController.text != ''
                                   ? _model.categoryTextController.text
                                   : 'noData',
-                              _model.priceMinTextController.text != null &&
-                                      _model.priceMinTextController.text != ''
+                              _model.priceMinTextController.text != ''
                                   ? _model.priceMinTextController.text
                                   : 'noData',
-                              _model.priceMaxTextController.text != null &&
-                                      _model.priceMaxTextController.text != ''
+                              _model.priceMaxTextController.text != ''
                                   ? _model.priceMaxTextController.text
                                   : 'noData',
                             );
@@ -643,11 +636,11 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                           text: 'Xác nhận',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: Color(0xFF33BA45),
+                            color: const Color(0xFF33BA45),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -657,7 +650,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -665,7 +658,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),
               ],

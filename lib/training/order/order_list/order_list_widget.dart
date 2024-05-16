@@ -1,12 +1,8 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/order/order_detail/order_detail_widget.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'order_list_model.dart';
 export 'order_list_model.dart';
 
@@ -73,7 +69,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -84,12 +80,12 @@ class _OrderListWidgetState extends State<OrderListWidget> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 12.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 12.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
-                      child: Container(
+                      child: SizedBox(
                         width: double.infinity,
                         child: TextFormField(
                           controller: _model.searchTextController,
@@ -114,7 +110,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                       letterSpacing: 0.0,
                                     ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Color(0x00000000),
                                 width: 1.0,
                               ),
@@ -144,9 +140,9 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                             filled: true,
                             fillColor:
                                 FlutterFlowTheme.of(context).primaryBackground,
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 8.0, 0.0, 8.0),
-                            suffixIcon: Icon(
+                            suffixIcon: const Icon(
                               Icons.search_outlined,
                               color: Color(0xFF757575),
                               size: 22.0,
@@ -167,7 +163,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: FlutterFlowIconButton(
                         borderColor: Colors.transparent,
                         borderRadius: 10.0,
@@ -187,7 +183,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 4.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 4.0),
                 child: Text(
                   '#Kết quả tìm kiếm theo bộ lọc',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -200,7 +196,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 16.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 16.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -224,7 +220,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                   : FocusScope.of(context).unfocus(),
                               child: Padding(
                                 padding: MediaQuery.viewInsetsOf(context),
-                                child: OrderDetailWidget(),
+                                child: const OrderDetailWidget(),
                               ),
                             );
                           },
@@ -234,7 +230,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 8.0, 8.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -251,7 +247,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           4.0, 4.0, 0.0, 0.0),
                                       child: Container(
                                         decoration: BoxDecoration(
@@ -269,9 +265,9 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                           ),
                                           child: Align(
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(5.0, 2.0, 5.0, 2.0),
                                               child: Text(
                                                 'Hoàn tất',
@@ -302,14 +298,14 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                         CrossAxisAlignment.stretch,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 4.0),
                                         child: RichText(
                                           textScaler:
                                               MediaQuery.of(context).textScaler,
                                           text: TextSpan(
                                             children: [
-                                              TextSpan(
+                                              const TextSpan(
                                                 text: '#1: ',
                                                 style: TextStyle(),
                                               ),
@@ -345,7 +341,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                           ),
                                           Expanded(
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 4.0, 0.0, 0.0),
                                               child: Text(
                                                 '5 bài học',
@@ -376,7 +372,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                           ),
-                                        ].divide(SizedBox(width: 4.0)),
+                                        ].divide(const SizedBox(width: 4.0)),
                                       ),
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -389,7 +385,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                           ),
                                           Expanded(
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 4.0, 0.0, 0.0),
                                               child: Text(
                                                 'Mon. July 3rd',
@@ -414,7 +410,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
-                                        ].divide(SizedBox(width: 4.0)),
+                                        ].divide(const SizedBox(width: 4.0)),
                                       ),
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -427,7 +423,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                           ),
                                           Expanded(
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 4.0, 0.0, 0.0),
                                               child: Text(
                                                 'Nguyễn Hoàng Mai',
@@ -464,10 +460,10 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                               ),
                                             ),
                                             child: Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         8.0, 0.0, 8.0, 0.0),
                                                 child: Text(
@@ -484,15 +480,15 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                               ),
                                             ),
                                           ),
-                                        ].divide(SizedBox(width: 4.0)),
+                                        ].divide(const SizedBox(width: 4.0)),
                                       ),
                                     ],
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 8.0)),
+                              ].divide(const SizedBox(width: 8.0)),
                             ),
                           ),
-                          Divider(
+                          const Divider(
                             height: 1.0,
                             thickness: 1.0,
                             color: Color(0x5057636C),
@@ -504,7 +500,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               8.0, 8.0, 8.0, 8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -521,7 +517,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         4.0, 4.0, 0.0, 0.0),
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -539,10 +535,10 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                         ),
                                         child: Align(
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     5.0, 2.0, 5.0, 2.0),
                                             child: Text(
                                               'Hoàn tất',
@@ -572,14 +568,14 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                       CrossAxisAlignment.stretch,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 4.0),
                                       child: RichText(
                                         textScaler:
                                             MediaQuery.of(context).textScaler,
                                         text: TextSpan(
                                           children: [
-                                            TextSpan(
+                                            const TextSpan(
                                               text: '#2: ',
                                               style: TextStyle(),
                                             ),
@@ -617,7 +613,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 4.0, 0.0, 0.0),
                                             child: Text(
                                               '5 bài học',
@@ -646,7 +642,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                 fontWeight: FontWeight.w600,
                                               ),
                                         ),
-                                      ].divide(SizedBox(width: 4.0)),
+                                      ].divide(const SizedBox(width: 4.0)),
                                     ),
                                     Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -660,7 +656,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 4.0, 0.0, 0.0),
                                             child: Text(
                                               'Mon. July 3rd',
@@ -685,7 +681,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                      ].divide(SizedBox(width: 4.0)),
+                                      ].divide(const SizedBox(width: 4.0)),
                                     ),
                                     Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -699,7 +695,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 4.0, 0.0, 0.0),
                                             child: Text(
                                               'Nguyễn Hoàng Mai',
@@ -734,9 +730,9 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                           ),
                                           child: Align(
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 0.0, 8.0, 0.0),
                                               child: Text(
                                                 'Tổ chức',
@@ -752,22 +748,22 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                             ),
                                           ),
                                         ),
-                                      ].divide(SizedBox(width: 4.0)),
+                                      ].divide(const SizedBox(width: 4.0)),
                                     ),
                                   ],
                                 ),
                               ),
-                            ].divide(SizedBox(width: 8.0)),
+                            ].divide(const SizedBox(width: 8.0)),
                           ),
                         ),
-                        Divider(
+                        const Divider(
                           height: 1.0,
                           thickness: 1.0,
                           color: Color(0x5057636C),
                         ),
                       ],
                     ),
-                  ].divide(SizedBox(height: 12.0)),
+                  ].divide(const SizedBox(height: 12.0)),
                 ),
               ),
             ],

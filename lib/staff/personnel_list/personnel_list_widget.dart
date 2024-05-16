@@ -5,18 +5,14 @@ import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/staff/filter_personnel_list/filter_personnel_list_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'personnel_list_model.dart';
 export 'personnel_list_model.dart';
@@ -86,7 +82,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
               context.pushNamed(
                 'StaffCreate',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: TransitionInfo(
+                  kTransitionInfoKey: const TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -120,7 +116,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
               context.pushNamed(
                 'Profile',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: TransitionInfo(
+                  kTransitionInfoKey: const TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -144,14 +140,14 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
               ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
             child: SingleChildScrollView(
               primary: false,
               child: Column(
@@ -163,17 +159,16 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 0.0, 0.0),
                           child: TextFormField(
                             controller: _model.textController,
                             focusNode: _model.textFieldFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.textController',
-                              Duration(milliseconds: 500),
+                              const Duration(milliseconds: 500),
                               () async {
-                                if (_model.textController.text != null &&
-                                    _model.textController.text != '') {
+                                if (_model.textController.text != '') {
                                   _model.filterToken =
                                       await action_blocks.tokenReload(context);
                                   if (_model.filterToken!) {
@@ -321,9 +316,9 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
                                   .primaryBackground,
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 0.0, 0.0),
-                              prefixIcon: Icon(
+                              prefixIcon: const Icon(
                                 Icons.search,
                                 size: 24.0,
                               ),
@@ -331,9 +326,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                   ? InkWell(
                                       onTap: () async {
                                         _model.textController?.clear();
-                                        if (_model.textController.text !=
-                                                null &&
-                                            _model.textController.text != '') {
+                                        if (_model.textController.text != '') {
                                           _model.filterToken =
                                               await action_blocks
                                                   .tokenReload(context);
@@ -475,7 +468,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                       ),
                       Builder(
                         builder: (context) => Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               8.0, 8.0, 16.0, 0.0),
                           child: FlutterFlowIconButton(
                             borderColor: Colors.transparent,
@@ -495,7 +488,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                     elevation: 0,
                                     insetPadding: EdgeInsets.zero,
                                     backgroundColor: Colors.transparent,
-                                    alignment: AlignmentDirectional(0.0, 0.0)
+                                    alignment: const AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
                                     child: GestureDetector(
                                       onTap: () => _model
@@ -532,13 +525,11 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                       ),
                     ],
                   ),
-                  if ((_model.textController.text != null &&
-                          _model.textController.text != '') ||
-                      (_model.statusFilter != null &&
-                          _model.statusFilter != ''))
+                  if ((_model.textController.text != '') ||
+                      (_model.statusFilter != ''))
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
                       child: Text(
                         '# Kết quả tìm kiếm theo bộ lọc',
                         style:
@@ -554,19 +545,17 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                     pagingController: _model.setListViewController(
                       (nextPageMarker) => StaffGroup.getStaffListCall.call(
                         filter: () {
-                          if ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? ApiCallResponse({}, {}, 200)).jsonBody)!.data.length < 20) &&
-                              ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? ApiCallResponse({}, {}, 200)).jsonBody)?.data?.where((e) => e.userId.role == '82073000-1ba2-43a4-a55c-459d17c23b68').toList() != null &&
-                                      (StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? ApiCallResponse({}, {}, 200)).jsonBody)?.data?.where((e) => e.userId.role == '82073000-1ba2-43a4-a55c-459d17c23b68').toList())!
+                          if ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)!.data.length < 20) &&
+                              ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)?.data.where((e) => e.userId.role == '82073000-1ba2-43a4-a55c-459d17c23b68').toList() != null &&
+                                      (StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)?.data.where((e) => e.userId.role == '82073000-1ba2-43a4-a55c-459d17c23b68').toList())!
                                           .isNotEmpty) ==
                                   true)) {
-                            return '{\"_and\":[{}${(_model.textController.text != null && _model.textController.text != '') && (_model.textController.text != ' ') ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${() {
-                              if ((_model.statusFilter != null &&
-                                      _model.statusFilter != '') &&
+                            return '{\"_and\":[{}${(_model.textController.text != '') && (_model.textController.text != ' ') ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${() {
+                              if ((_model.statusFilter != '') &&
                                   (_model.statusFilter == 'Hoạt động') &&
                                   (_model.statusFilter != ' ')) {
                                 return ',{\"status\":{\"_eq\":\"active\"}}';
-                              } else if ((_model.statusFilter != null &&
-                                      _model.statusFilter != '') &&
+                              } else if ((_model.statusFilter != '') &&
                                   (_model.statusFilter == 'Không hoạt động') &&
                                   (_model.statusFilter != ' ')) {
                                 return ',{\"status\":{\"_neq\":\"active\"}}';
@@ -595,20 +584,18 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                               } else {
                                 return ' ';
                               }
-                            }()}${(_model.branch != '1') && (_model.branch != ' ') && (_model.branch != null && _model.branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branch}\"}}}' : ' '}${(_model.department != '1') && (_model.department != ' ') && (_model.department != null && _model.department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"${_model.department}\"}}}' : ' '},{\"user_id\":{\"role\":{\"_eq\":\"a8d33527-375b-4599-ac70-6a3fcad1de39\"}}}]}';
-                          } else if ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? ApiCallResponse({}, {}, 200)).jsonBody)!.data.length < 20) &&
-                              ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? ApiCallResponse({}, {}, 200)).jsonBody)?.data?.where((e) => e.userId.role == 'a8d33527-375b-4599-ac70-6a3fcad1de39').toList() != null &&
-                                      (StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? ApiCallResponse({}, {}, 200)).jsonBody)?.data?.where((e) => e.userId.role == 'a8d33527-375b-4599-ac70-6a3fcad1de39').toList())!
+                            }()}${(_model.branch != '1') && (_model.branch != ' ') && (_model.branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branch}\"}}}' : ' '}${(_model.department != '1') && (_model.department != ' ') && (_model.department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"${_model.department}\"}}}' : ' '},{\"user_id\":{\"role\":{\"_eq\":\"a8d33527-375b-4599-ac70-6a3fcad1de39\"}}}]}';
+                          } else if ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)!.data.length < 20) &&
+                              ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)?.data.where((e) => e.userId.role == 'a8d33527-375b-4599-ac70-6a3fcad1de39').toList() != null &&
+                                      (StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)?.data.where((e) => e.userId.role == 'a8d33527-375b-4599-ac70-6a3fcad1de39').toList())!
                                           .isNotEmpty) ==
                                   true)) {
-                            return '{\"_and\":[{}${(_model.textController.text != null && _model.textController.text != '') && (_model.textController.text != ' ') ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${() {
-                              if ((_model.statusFilter != null &&
-                                      _model.statusFilter != '') &&
+                            return '{\"_and\":[{}${(_model.textController.text != '') && (_model.textController.text != ' ') ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${() {
+                              if ((_model.statusFilter != '') &&
                                   (_model.statusFilter == 'Hoạt động') &&
                                   (_model.statusFilter != ' ')) {
                                 return ',{\"status\":{\"_eq\":\"active\"}}';
-                              } else if ((_model.statusFilter != null &&
-                                      _model.statusFilter != '') &&
+                              } else if ((_model.statusFilter != '') &&
                                   (_model.statusFilter == 'Không hoạt động') &&
                                   (_model.statusFilter != ' ')) {
                                 return ',{\"status\":{\"_neq\":\"active\"}}';
@@ -637,25 +624,23 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                               } else {
                                 return ' ';
                               }
-                            }()}${(_model.branch != '1') && (_model.branch != ' ') && (_model.branch != null && _model.branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branch}\"}}}' : ' '}${(_model.department != '1') && (_model.department != ' ') && (_model.department != null && _model.department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"${_model.department}\"}}}' : ' '},{\"user_id\":{\"role\":{\"_eq\":\"6a8bc644-cb2d-4a31-b11e-b86e19824725\"}}}]}';
-                          } else if ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? ApiCallResponse({}, {}, 200)).jsonBody)!.data.length < 20) &&
-                              ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? ApiCallResponse({}, {}, 200)).jsonBody)?.data?.where((e) => e.userId.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725').toList() !=
+                            }()}${(_model.branch != '1') && (_model.branch != ' ') && (_model.branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branch}\"}}}' : ' '}${(_model.department != '1') && (_model.department != ' ') && (_model.department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"${_model.department}\"}}}' : ' '},{\"user_id\":{\"role\":{\"_eq\":\"6a8bc644-cb2d-4a31-b11e-b86e19824725\"}}}]}';
+                          } else if ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)!.data.length < 20) &&
+                              ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)?.data.where((e) => e.userId.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725').toList() !=
                                           null &&
                                       (StaffListDataStruct.maybeFromMap(
-                                                  (nextPageMarker.lastResponse ?? ApiCallResponse({}, {}, 200)).jsonBody)
+                                                  (nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)
                                               ?.data
-                                              ?.where((e) => e.userId.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725')
+                                              .where((e) => e.userId.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725')
                                               .toList())!
                                           .isNotEmpty) ==
                                   true)) {
-                            return '{\"_and\":[{}${(_model.textController.text != null && _model.textController.text != '') && (_model.textController.text != ' ') ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${() {
-                              if ((_model.statusFilter != null &&
-                                      _model.statusFilter != '') &&
+                            return '{\"_and\":[{}${(_model.textController.text != '') && (_model.textController.text != ' ') ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${() {
+                              if ((_model.statusFilter != '') &&
                                   (_model.statusFilter == 'Hoạt động') &&
                                   (_model.statusFilter != ' ')) {
                                 return ',{\"status\":{\"_eq\":\"active\"}}';
-                              } else if ((_model.statusFilter != null &&
-                                      _model.statusFilter != '') &&
+                              } else if ((_model.statusFilter != '') &&
                                   (_model.statusFilter == 'Không hoạt động') &&
                                   (_model.statusFilter != ' ')) {
                                 return ',{\"status\":{\"_neq\":\"active\"}}';
@@ -684,16 +669,14 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                               } else {
                                 return ' ';
                               }
-                            }()}${(_model.branch != '1') && (_model.branch != ' ') && (_model.branch != null && _model.branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branch}\"}}}' : ' '}${(_model.department != '1') && (_model.department != ' ') && (_model.department != null && _model.department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"${_model.department}\"}}}' : ' '},{\"user_id\":{\"role\":{\"_eq\":\"3755a98d-f064-45cd-80e4-5084ab1dd2c4\"}}}]}';
+                            }()}${(_model.branch != '1') && (_model.branch != ' ') && (_model.branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branch}\"}}}' : ' '}${(_model.department != '1') && (_model.department != ' ') && (_model.department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"${_model.department}\"}}}' : ' '},{\"user_id\":{\"role\":{\"_eq\":\"3755a98d-f064-45cd-80e4-5084ab1dd2c4\"}}}]}';
                           } else {
-                            return '{\"_and\":[{}${(_model.textController.text != null && _model.textController.text != '') && (_model.textController.text != ' ') ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${() {
-                              if ((_model.statusFilter != null &&
-                                      _model.statusFilter != '') &&
+                            return '{\"_and\":[{}${(_model.textController.text != '') && (_model.textController.text != ' ') ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${() {
+                              if ((_model.statusFilter != '') &&
                                   (_model.statusFilter == 'Hoạt động') &&
                                   (_model.statusFilter != ' ')) {
                                 return ',{\"status\":{\"_eq\":\"active\"}}';
-                              } else if ((_model.statusFilter != null &&
-                                      _model.statusFilter != '') &&
+                              } else if ((_model.statusFilter != '') &&
                                   (_model.statusFilter == 'Không hoạt động') &&
                                   (_model.statusFilter != ' ')) {
                                 return ',{\"status\":{\"_neq\":\"active\"}}';
@@ -722,7 +705,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                               } else {
                                 return ' ';
                               }
-                            }()}${(_model.branch != '1') && (_model.branch != ' ') && (_model.branch != null && _model.branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branch}\"}}}' : ' '}${(_model.department != '1') && (_model.department != ' ') && (_model.department != null && _model.department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"${_model.department}\"}}}' : ' '},{\"user_id\":{\"role\":{\"_eq\":\"82073000-1ba2-43a4-a55c-459d17c23b68\"}}}]}';
+                            }()}${(_model.branch != '1') && (_model.branch != ' ') && (_model.branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branch}\"}}}' : ' '}${(_model.department != '1') && (_model.department != ' ') && (_model.department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"${_model.department}\"}}}' : ' '},{\"user_id\":{\"role\":{\"_eq\":\"82073000-1ba2-43a4-a55c-459d17c23b68\"}}}]}';
                           }
                         }(),
                         accessToken: FFAppState().accessToken,
@@ -737,25 +720,25 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                             nextPageMarker.nextPageNumber,
                             ((StaffListDataStruct.maybeFromMap((nextPageMarker
                                                     .lastResponse ??
-                                                ApiCallResponse({}, {}, 200))
+                                                const ApiCallResponse({}, {}, 200))
                                             .jsonBody)!
                                         .data
                                         .length <
                                     20) ==
                                 true),
-                            ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? ApiCallResponse({}, {}, 200)).jsonBody)
+                            ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)
                                             ?.data
-                                            ?.where((e) =>
+                                            .where((e) =>
                                                 e.userId.role ==
                                                 '3755a98d-f064-45cd-80e4-5084ab1dd2c4')
                                             .toList() !=
                                         null &&
                                     (StaffListDataStruct.maybeFromMap(
                                                 (nextPageMarker.lastResponse ??
-                                                        ApiCallResponse({}, {}, 200))
+                                                        const ApiCallResponse({}, {}, 200))
                                                     .jsonBody)
                                             ?.data
-                                            ?.where((e) => e.userId.role == '3755a98d-f064-45cd-80e4-5084ab1dd2c4')
+                                            .where((e) => e.userId.role == '3755a98d-f064-45cd-80e4-5084ab1dd2c4')
                                             .toList())!
                                         .isNotEmpty) ==
                                 true),
@@ -767,7 +750,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                     shrinkWrap: true,
                     reverse: false,
                     scrollDirection: Axis.vertical,
-                    separatorBuilder: (_, __) => SizedBox(height: 12.0),
+                    separatorBuilder: (_, __) => const SizedBox(height: 12.0),
                     builderDelegate: PagedChildBuilderDelegate<dynamic>(
                       // Customize what your widget looks like when it's loading the first page.
                       firstPageProgressIndicatorBuilder: (_) => Center(
@@ -793,8 +776,8 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                           ),
                         ),
                       ),
-                      noItemsFoundIndicatorBuilder: (_) => Center(
-                        child: Container(
+                      noItemsFoundIndicatorBuilder: (_) => const Center(
+                        child: SizedBox(
                           width: double.infinity,
                           child: DataNotFoundWidget(),
                         ),
@@ -817,7 +800,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                 ),
                               }.withoutNulls,
                               extra: <String, dynamic>{
-                                kTransitionInfoKey: TransitionInfo(
+                                kTransitionInfoKey: const TransitionInfo(
                                   hasTransition: true,
                                   transitionType: PageTransitionType.fade,
                                   duration: Duration(milliseconds: 0),
@@ -834,7 +817,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                 BoxShadow(
                                   blurRadius: 0.0,
                                   color: FlutterFlowTheme.of(context).alternate,
-                                  offset: Offset(
+                                  offset: const Offset(
                                     0.0,
                                     1.0,
                                   ),
@@ -845,7 +828,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 8.0, 16.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -865,7 +848,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                           ),
                                         ),
                                         child: Padding(
-                                          padding: EdgeInsets.all(2.0),
+                                          padding: const EdgeInsets.all(2.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
                                             focusColor: Colors.transparent,
@@ -917,7 +900,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                           children: [
                                             Expanded(
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         12.0, 0.0, 12.0, 0.0),
                                                 child: Column(
@@ -945,7 +928,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -970,7 +953,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      SizedBox(height: 4.0)),
+                                                      const SizedBox(height: 4.0)),
                                                 ),
                                               ),
                                             ),
@@ -1002,11 +985,11 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                       ),
                                                       child: Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       8.0,
                                                                       4.0,
@@ -1040,7 +1023,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                       ),
                                                       child: Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 -1.0, 0.0),
                                                         child: Text(
                                                           dataListItem.status ==
@@ -1089,7 +1072,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                           flex: 2,
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 12.0, 0.0),
                                             child: Text(
                                               '5 mins ago',
@@ -1113,7 +1096,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                           flex: 3,
                                           child: Align(
                                             alignment:
-                                                AlignmentDirectional(-1.0, 0.0),
+                                                const AlignmentDirectional(-1.0, 0.0),
                                             child: Text(
                                               'Head of Design',
                                               style:
@@ -1133,7 +1116,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                 if (dataListItem.userId.role !=
                                     '82073000-1ba2-43a4-a55c-459d17c23b68')
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         60.0, 8.0, 16.0, 8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -1163,7 +1146,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                             children: [
                                               Container(
                                                 width: 50.0,
-                                                decoration: BoxDecoration(),
+                                                decoration: const BoxDecoration(),
                                               ),
                                               Text(
                                                 '${dataListItem.staffLessions.where((e) => e.status == 'done').toList().length.toString()}/${dataListItem.staffLessions.length.toString()}',
@@ -1205,7 +1188,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                             children: [
                                               Container(
                                                 width: 50.0,
-                                                decoration: BoxDecoration(),
+                                                decoration: const BoxDecoration(),
                                               ),
                                               Text(
                                                 '${dataListItem.staffTests.where((e) => e.status == 'published').toList().length.toString()}/${dataListItem.staffTests.length.toString()}',
@@ -1250,7 +1233,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                               children: [
                                                 Container(
                                                   width: 50.0,
-                                                  decoration: BoxDecoration(),
+                                                  decoration: const BoxDecoration(),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -1354,13 +1337,13 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                               ],
                                             ),
                                           ),
-                                      ].divide(SizedBox(width: 16.0)),
+                                      ].divide(const SizedBox(width: 16.0)),
                                     ),
                                   ),
                                 if (dataListItem.userId.role !=
                                     '82073000-1ba2-43a4-a55c-459d17c23b68')
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         60.0, 0.0, 16.0, 16.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -1493,7 +1476,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                             ],
                                           ),
                                         ),
-                                      ].divide(SizedBox(width: 12.0)),
+                                      ].divide(const SizedBox(width: 12.0)),
                                     ),
                                   ),
                               ],

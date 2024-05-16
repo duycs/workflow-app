@@ -5,10 +5,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'confirm_do_test_model.dart';
 export 'confirm_do_test_model.dart';
@@ -78,11 +76,11 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -95,7 +93,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -141,7 +139,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                           if (widget.lessionId != null &&
                               widget.lessionId != '')
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Text(
                                 '${_model.list?.name}',
@@ -177,7 +175,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                     ),
                               ),
                               Text(
-                                '${_model.list?.durationMinutes?.toString()} phút',
+                                '${_model.list?.durationMinutes.toString()} phút',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
@@ -186,7 +184,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                            ].divide(SizedBox(width: 4.0)),
+                            ].divide(const SizedBox(width: 4.0)),
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
@@ -211,7 +209,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                            ].divide(SizedBox(width: 4.0)),
+                            ].divide(const SizedBox(width: 4.0)),
                           ),
                           Text(
                             '    ${_model.list?.description}',
@@ -223,11 +221,11 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                       letterSpacing: 0.0,
                                     ),
                           ),
-                        ].divide(SizedBox(height: 8.0)),
+                        ].divide(const SizedBox(height: 8.0)),
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -240,9 +238,9 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                 text: 'Đóng',
                                 options: FFButtonOptions(
                                   height: 40.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -288,7 +286,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: TransitionInfo(
+                                      kTransitionInfoKey: const TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -299,11 +297,11 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                 text: 'Xác nhận',
                                 options: FFButtonOptions(
                                   height: 40.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  color: Color(0xFF33BA45),
+                                  color: const Color(0xFF33BA45),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
@@ -312,7 +310,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.normal,
                                       ),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
@@ -320,12 +318,12 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                                 ),
                               ),
                             ),
-                          ].divide(SizedBox(width: 16.0)),
+                          ].divide(const SizedBox(width: 16.0)),
                         ),
                       ),
                     ],
                   ),
-              ].divide(SizedBox(height: 8.0)),
+              ].divide(const SizedBox(height: 8.0)),
             ),
           ),
         ),

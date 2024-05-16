@@ -1,19 +1,15 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/lesson/filter_lesson_home_page/filter_lesson_home_page_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'package:shake/shake.dart';
@@ -65,7 +61,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
         return;
       }
 
-      while (FFAppState().scrollCheck == '${'LessonList_Homepage'}') {
+      while (FFAppState().scrollCheck == 'LessonList_Homepage') {
         _model.tokenReloadLessonListHomepageCheck =
             await action_blocks.tokenReload(context);
         if (_model.tokenReloadLessonListHomepageCheck == true) {
@@ -146,35 +142,35 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Expanded(
-                        child: Container(
+                        child: SizedBox(
                           width: double.infinity,
                           child: TextFormField(
                             controller: _model.nameSearchTextController,
                             focusNode: _model.nameSearchFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.nameSearchTextController',
-                              Duration(milliseconds: 500),
+                              const Duration(milliseconds: 500),
                               () async {
                                 setState(() =>
                                     _model.listViewPagingController?.refresh());
@@ -233,9 +229,9 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
                                   .primaryBackground,
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 0.0, 0.0),
-                              prefixIcon: Icon(
+                              prefixIcon: const Icon(
                                 Icons.search,
                                 size: 24.0,
                               ),
@@ -273,7 +269,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Builder(
                           builder: (context) => FlutterFlowIconButton(
                             borderColor: Colors.transparent,
@@ -293,7 +289,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                     elevation: 0,
                                     insetPadding: EdgeInsets.zero,
                                     backgroundColor: Colors.transparent,
-                                    alignment: AlignmentDirectional(0.0, 0.0)
+                                    alignment: const AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
                                     child: GestureDetector(
                                       onTap: () => _model
@@ -357,15 +353,14 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                     ],
                   ),
                 ),
-                if ((_model.nameSearchTextController.text != null &&
-                        _model.nameSearchTextController.text != '') ||
-                    (_model.status != null && _model.status != '') ||
+                if ((_model.nameSearchTextController.text != '') ||
+                    (_model.status != '') ||
                     ((_model.dateEndList != null && _model.dateEndList != '') &&
                         (_model.dateEndList != '0')) ||
                     ((_model.dateStartList != null &&
                             _model.dateStartList != '') &&
                         (_model.dateStartList != '0')) ||
-                    (_model.statusLesson != null && _model.statusLesson != ''))
+                    (_model.statusLesson != ''))
                   Text(
                     '#Kết quả tìm kiếm theo bộ lọc',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -379,18 +374,18 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                     child: PagedListView<ApiPagingParams, dynamic>.separated(
                       pagingController: _model.setListViewController(
                         (nextPageMarker) =>
                             LessonGroup.employeeLessonListCall.call(
-                          filter: '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${_model.nameSearchTextController.text != null && _model.nameSearchTextController.text != '' ? ',' : ' '}${_model.nameSearchTextController.text != null && _model.nameSearchTextController.text != '' ? '{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${_model.nameSearchTextController.text != null && _model.nameSearchTextController.text != '' ? _model.nameSearchTextController.text : ' '}${_model.nameSearchTextController.text != null && _model.nameSearchTextController.text != '' ? '\"}}}' : ' '}${(_model.status != null && _model.status != '') && (_model.status != 'noData') ? ',' : ' '}${(_model.status != null && _model.status != '') && (_model.status != 'noData') ? '{\"lession_id\":{\"status\":{\"_icontains\":\"' : ' '}${(_model.status != null && _model.status != '') && (_model.status != 'noData') ? _model.status : ' '}${(_model.status != null && _model.status != '') && (_model.status != 'noData') ? '\"}}}' : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? ',' : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? '{\"lession_id\":{\"date_created\":{\"_gte\":\"' : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? _model.dateStartList : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? '\"}}}' : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != '0') ? ',' : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != '0') ? '{\"lession_id\":{\"date_created\":{\"_lte\":\"' : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != '0') ? ((String var1) {
+                          filter: '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${_model.nameSearchTextController.text != '' ? ',' : ' '}${_model.nameSearchTextController.text != '' ? '{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${_model.nameSearchTextController.text != '' ? _model.nameSearchTextController.text : ' '}${_model.nameSearchTextController.text != '' ? '\"}}}' : ' '}${(_model.status != '') && (_model.status != 'noData') ? ',' : ' '}${(_model.status != '') && (_model.status != 'noData') ? '{\"lession_id\":{\"status\":{\"_icontains\":\"' : ' '}${(_model.status != '') && (_model.status != 'noData') ? _model.status : ' '}${(_model.status != '') && (_model.status != 'noData') ? '\"}}}' : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? ',' : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? '{\"lession_id\":{\"date_created\":{\"_gte\":\"' : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? _model.dateStartList : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? '\"}}}' : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != '0') ? ',' : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != '0') ? '{\"lession_id\":{\"date_created\":{\"_lte\":\"' : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != '0') ? ((String var1) {
                               return DateTime.parse(var1)
-                                  .add(Duration(days: 1))
+                                  .add(const Duration(days: 1))
                                   .toString();
-                            }(_model.dateEndList!)) : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != '0') ? '\"}}}' : ' '}${(_model.statusLesson != null && _model.statusLesson != '') && (_model.statusLesson != 'noData') ? ',' : ' '}${(_model.statusLesson != null && _model.statusLesson != '') && (_model.statusLesson != 'noData') ? '{\"status\":{\"_eq\":\"' : ' '}${(_model.statusLesson != null && _model.statusLesson != '') && (_model.statusLesson != 'noData') ? _model.statusLesson : ' '}${(_model.statusLesson != null && _model.statusLesson != '') && (_model.statusLesson != 'noData') ? '\"}}' : ' '}${(_model.lessonFavoriteStatusList != null && _model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? ',' : ' '}${(_model.lessonFavoriteStatusList != null && _model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? '{\"lession_id\":{\"reacts\":{\"reacts_id\":{\"status\":{\"_eq\":\"' : ' '}${(_model.lessonFavoriteStatusList != null && _model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? _model.lessonFavoriteStatusList : ' '}${(_model.lessonFavoriteStatusList != null && _model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? '\"}}}}}, {\"lession_id\":{\"reacts\":{\"reacts_id\":{\"staff_id\":{\"_eq\":\"' : ' '}${(_model.lessonFavoriteStatusList != null && _model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? FFAppState().staffid : ' '}${(_model.lessonFavoriteStatusList != null && _model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? '\"}}}}}' : ' '}${widget.statusLesson != null && widget.statusLesson != '' ? ',{\"status\":{\"_eq\":\"' : ' '}${widget.statusLesson != null && widget.statusLesson != '' ? widget.statusLesson : ' '}${widget.statusLesson != null && widget.statusLesson != '' ? '\"}}' : ' '}${(widget.statusLove != null && widget.statusLove != '') && (widget.statusLove == 'love') ? ',{\"lession_id\":{\"reacts\":{\"reacts_id\":{\"status\":{\"_eq\":\"love\"}}}}}, {\"lession_id\":{\"reacts\":{\"reacts_id\":{\"staff_id\":{\"_eq\":\"' : ' '}${(widget.statusLove != null && widget.statusLove != '') && (widget.statusLove == 'love') ? FFAppState().staffid : ' '}${(widget.statusLove != null && widget.statusLove != '') && (widget.statusLove == 'love') ? '\"}}}}}' : ' '}${(widget.lessonNewCreate != null && widget.lessonNewCreate != '') && (widget.lessonNewCreate == 'dateToday') ? ',{\"lession_id\":{\"date_created\":{\"_gte\":\"' : ' '}${(widget.lessonNewCreate != null && widget.lessonNewCreate != '') && (widget.lessonNewCreate == 'dateToday') ? functions.aDayInThePast(getCurrentTimestamp) : ' '}${(widget.lessonNewCreate != null && widget.lessonNewCreate != '') && (widget.lessonNewCreate == 'dateToday') ? '\"}}},{\"lession_id\":{\"date_created\":{\"_lte\":\"' : ' '}${(widget.lessonNewCreate != null && widget.lessonNewCreate != '') && (widget.lessonNewCreate == 'dateToday') ? ((String var1) {
+                            }(_model.dateEndList!)) : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != '0') ? '\"}}}' : ' '}${(_model.statusLesson != '') && (_model.statusLesson != 'noData') ? ',' : ' '}${(_model.statusLesson != '') && (_model.statusLesson != 'noData') ? '{\"status\":{\"_eq\":\"' : ' '}${(_model.statusLesson != '') && (_model.statusLesson != 'noData') ? _model.statusLesson : ' '}${(_model.statusLesson != '') && (_model.statusLesson != 'noData') ? '\"}}' : ' '}${(_model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? ',' : ' '}${(_model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? '{\"lession_id\":{\"reacts\":{\"reacts_id\":{\"status\":{\"_eq\":\"' : ' '}${(_model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? _model.lessonFavoriteStatusList : ' '}${(_model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? '\"}}}}}, {\"lession_id\":{\"reacts\":{\"reacts_id\":{\"staff_id\":{\"_eq\":\"' : ' '}${(_model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? FFAppState().staffid : ' '}${(_model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? '\"}}}}}' : ' '}${widget.statusLesson != null && widget.statusLesson != '' ? ',{\"status\":{\"_eq\":\"' : ' '}${widget.statusLesson != null && widget.statusLesson != '' ? widget.statusLesson : ' '}${widget.statusLesson != null && widget.statusLesson != '' ? '\"}}' : ' '}${(widget.statusLove != null && widget.statusLove != '') && (widget.statusLove == 'love') ? ',{\"lession_id\":{\"reacts\":{\"reacts_id\":{\"status\":{\"_eq\":\"love\"}}}}}, {\"lession_id\":{\"reacts\":{\"reacts_id\":{\"staff_id\":{\"_eq\":\"' : ' '}${(widget.statusLove != null && widget.statusLove != '') && (widget.statusLove == 'love') ? FFAppState().staffid : ' '}${(widget.statusLove != null && widget.statusLove != '') && (widget.statusLove == 'love') ? '\"}}}}}' : ' '}${(widget.lessonNewCreate != null && widget.lessonNewCreate != '') && (widget.lessonNewCreate == 'dateToday') ? ',{\"lession_id\":{\"date_created\":{\"_gte\":\"' : ' '}${(widget.lessonNewCreate != null && widget.lessonNewCreate != '') && (widget.lessonNewCreate == 'dateToday') ? functions.aDayInThePast(getCurrentTimestamp) : ' '}${(widget.lessonNewCreate != null && widget.lessonNewCreate != '') && (widget.lessonNewCreate == 'dateToday') ? '\"}}},{\"lession_id\":{\"date_created\":{\"_lte\":\"' : ' '}${(widget.lessonNewCreate != null && widget.lessonNewCreate != '') && (widget.lessonNewCreate == 'dateToday') ? ((String var1) {
                               return DateTime.parse(var1)
-                                  .add(Duration(days: 1))
+                                  .add(const Duration(days: 1))
                                   .toString();
                             }(dateTimeFormat(
                               'yyyy-MM-dd',
@@ -398,13 +393,13 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                               locale: FFLocalizations.of(context).languageCode,
                             ))) : ' '}${(widget.lessonNewCreate != null && widget.lessonNewCreate != '') && (widget.lessonNewCreate == 'dateToday') ? '\"}}}' : ' '}${(widget.lesonHistory != null && widget.lesonHistory != '') || (widget.lesonHistory == 'lessonHistory') ? ',{\"_and\":[{\"lession_id\":{\"date_created\":{\"_gte\":\"' : ' '}${(widget.lesonHistory != null && widget.lesonHistory != '') || (widget.lesonHistory == 'lessonHistory') ? functions.aDayInThePast(getCurrentTimestamp) : ' '}${(widget.lesonHistory != null && widget.lesonHistory != '') || (widget.lesonHistory == 'lessonHistory') ? '\"}}},{\"lession_id\":{\"date_created\":{\"_lte\":\"' : ' '}${(widget.lesonHistory != null && widget.lesonHistory != '') || (widget.lesonHistory == 'lessonHistory') ? ((String var1) {
                               return DateTime.parse(var1)
-                                  .add(Duration(days: 1))
+                                  .add(const Duration(days: 1))
                                   .toString();
                             }(dateTimeFormat(
                               'yyyy-MM-dd',
                               getCurrentTimestamp,
                               locale: FFLocalizations.of(context).languageCode,
-                            ))) : ' '}${(widget.lesonHistory != null && widget.lesonHistory != '') || (widget.lesonHistory == 'lessonHistory') ? '\"}}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]}' : ' '}${_model.programsId != null && _model.programsId != '' ? ',{\"lession_id\":{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${_model.programsId != null && _model.programsId != '' ? _model.programsId : ' '}${_model.programsId != null && _model.programsId != '' ? '\"}}}}}' : ' '},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
+                            ))) : ' '}${(widget.lesonHistory != null && widget.lesonHistory != '') || (widget.lesonHistory == 'lessonHistory') ? '\"}}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]}' : ' '}${_model.programsId != '' ? ',{\"lession_id\":{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${_model.programsId != '' ? _model.programsId : ' '}${_model.programsId != '' ? '\"}}}}}' : ' '},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
                           limit: 20,
                           accessToken: FFAppState().accessToken,
                           offset: nextPageMarker.nextPageNumber * 20,
@@ -414,7 +409,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                       primary: false,
                       reverse: false,
                       scrollDirection: Axis.vertical,
-                      separatorBuilder: (_, __) => SizedBox(height: 10.0),
+                      separatorBuilder: (_, __) => const SizedBox(height: 10.0),
                       builderDelegate: PagedChildBuilderDelegate<dynamic>(
                         // Customize what your widget looks like when it's loading the first page.
                         firstPageProgressIndicatorBuilder: (_) => Center(
@@ -440,8 +435,8 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                             ),
                           ),
                         ),
-                        noItemsFoundIndicatorBuilder: (_) => Center(
-                          child: Container(
+                        noItemsFoundIndicatorBuilder: (_) => const Center(
+                          child: SizedBox(
                             width: double.infinity,
                             child: DataNotFoundWidget(),
                           ),
@@ -480,7 +475,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: TransitionInfo(
+                                  kTransitionInfoKey: const TransitionInfo(
                                     hasTransition: true,
                                     transitionType: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 0),
@@ -503,7 +498,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -515,7 +510,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                         width: 100.0,
                                         height: 100.0,
                                         fit: BoxFit.cover,
-                                        alignment: Alignment(0.0, 0.0),
+                                        alignment: const Alignment(0.0, 0.0),
                                       ),
                                     ),
                                     Expanded(
@@ -550,7 +545,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                                       ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 4.0, 0.0, 4.0),
                                                   child: Text(
@@ -596,12 +591,12 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                                       ),
                                                 ),
                                               ),
-                                            ].divide(SizedBox(width: 4.0)),
+                                            ].divide(const SizedBox(width: 4.0)),
                                           ),
                                         ],
                                       ),
                                     ),
-                                  ].divide(SizedBox(width: 8.0)),
+                                  ].divide(const SizedBox(width: 8.0)),
                                 ),
                               ),
                             ),
@@ -611,7 +606,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                     ),
                   ),
                 ),
-              ].divide(SizedBox(height: 8.0)),
+              ].divide(const SizedBox(height: 8.0)),
             ),
           ),
         ),

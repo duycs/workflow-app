@@ -3,10 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'filter_study_program_user_copy_model.dart';
 export 'filter_study_program_user_copy_model.dart';
 
@@ -17,9 +14,9 @@ class FilterStudyProgramUserCopyWidget extends StatefulWidget {
     String? dateStart,
     String? dateEnd,
     this.callBack,
-  })  : this.lessonName = lessonName ?? '',
-        this.dateStart = dateStart ?? '',
-        this.dateEnd = dateEnd ?? '';
+  })  : lessonName = lessonName ?? '',
+        dateStart = dateStart ?? '',
+        dateEnd = dateEnd ?? '';
 
   final String lessonName;
   final String dateStart;
@@ -48,7 +45,7 @@ class _FilterStudyProgramUserCopyWidgetState
     _model = createModel(context, () => FilterStudyProgramUserCopyModel());
 
     _model.lessionNameTextController ??= TextEditingController(
-        text: widget.lessonName != null && widget.lessonName != ''
+        text: widget.lessonName != ''
             ? widget.lessonName
             : '');
     _model.lessionNameFocusNode ??= FocusNode();
@@ -64,11 +61,11 @@ class _FilterStudyProgramUserCopyWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -81,7 +78,7 @@ class _FilterStudyProgramUserCopyWidgetState
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -116,7 +113,7 @@ class _FilterStudyProgramUserCopyWidgetState
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -146,7 +143,7 @@ class _FilterStudyProgramUserCopyWidgetState
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          final _datePicked1Date = await showDatePicker(
+                          final datePicked1Date = await showDatePicker(
                             context: context,
                             initialDate: getCurrentTimestamp,
                             firstDate: DateTime(1900),
@@ -183,12 +180,12 @@ class _FilterStudyProgramUserCopyWidgetState
                             },
                           );
 
-                          if (_datePicked1Date != null) {
+                          if (datePicked1Date != null) {
                             safeSetState(() {
                               _model.datePicked1 = DateTime(
-                                _datePicked1Date.year,
-                                _datePicked1Date.month,
-                                _datePicked1Date.day,
+                                datePicked1Date.year,
+                                datePicked1Date.month,
+                                datePicked1Date.day,
                               );
                             });
                           }
@@ -212,8 +209,7 @@ class _FilterStudyProgramUserCopyWidgetState
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
                                     )
-                                  : ((widget.dateStart != null &&
-                                              widget.dateStart != '') &&
+                                  : ((widget.dateStart != '') &&
                                           (widget.dateStart != '0')
                                       ? widget.dateStart
                                       : 'Từ ngày'),
@@ -236,7 +232,7 @@ class _FilterStudyProgramUserCopyWidgetState
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          final _datePicked2Date = await showDatePicker(
+                          final datePicked2Date = await showDatePicker(
                             context: context,
                             initialDate: getCurrentTimestamp,
                             firstDate: DateTime(1900),
@@ -273,12 +269,12 @@ class _FilterStudyProgramUserCopyWidgetState
                             },
                           );
 
-                          if (_datePicked2Date != null) {
+                          if (datePicked2Date != null) {
                             safeSetState(() {
                               _model.datePicked2 = DateTime(
-                                _datePicked2Date.year,
-                                _datePicked2Date.month,
-                                _datePicked2Date.day,
+                                datePicked2Date.year,
+                                datePicked2Date.month,
+                                datePicked2Date.day,
                               );
                             });
                           }
@@ -302,8 +298,7 @@ class _FilterStudyProgramUserCopyWidgetState
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
                                     )
-                                  : ((widget.dateEnd != null &&
-                                              widget.dateEnd != '') &&
+                                  : ((widget.dateEnd != '') &&
                                           (widget.dateEnd != '0')
                                       ? widget.dateEnd
                                       : 'Đến hết ngày'),
@@ -319,10 +314,10 @@ class _FilterStudyProgramUserCopyWidgetState
                         ),
                       ),
                     ),
-                  ].divide(SizedBox(width: 8.0)),
+                  ].divide(const SizedBox(width: 8.0)),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
                   child: TextFormField(
                     controller: _model.lessionNameTextController,
                     focusNode: _model.lessionNameFocusNode,
@@ -378,7 +373,7 @@ class _FilterStudyProgramUserCopyWidgetState
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -399,9 +394,9 @@ class _FilterStudyProgramUserCopyWidgetState
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -431,8 +426,7 @@ class _FilterStudyProgramUserCopyWidgetState
                               () {
                                 if (_model.dateStart != null) {
                                   return _model.dateStart;
-                                } else if (widget.dateStart != null &&
-                                    widget.dateStart != '') {
+                                } else if (widget.dateStart != '') {
                                   return functions
                                       .stringToDateTime(widget.dateStart);
                                 } else {
@@ -442,8 +436,7 @@ class _FilterStudyProgramUserCopyWidgetState
                               () {
                                 if (_model.dateEnd != null) {
                                   return _model.dateEnd;
-                                } else if (widget.dateEnd != null &&
-                                    widget.dateEnd != '') {
+                                } else if (widget.dateEnd != '') {
                                   return functions
                                       .stringToDateTime(widget.dateEnd);
                                 } else {
@@ -457,11 +450,11 @@ class _FilterStudyProgramUserCopyWidgetState
                           text: 'Xác nhận',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: Color(0xFF33BA45),
+                            color: const Color(0xFF33BA45),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -471,7 +464,7 @@ class _FilterStudyProgramUserCopyWidgetState
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -479,10 +472,10 @@ class _FilterStudyProgramUserCopyWidgetState
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),
-              ].divide(SizedBox(height: 8.0)),
+              ].divide(const SizedBox(height: 8.0)),
             ),
           ),
         ),

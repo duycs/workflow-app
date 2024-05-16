@@ -1,20 +1,15 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/add_workflow_market/add_workflow_market_widget.dart';
 import '/procedure/procedure_work_filter/procedure_work_filter_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'package:shake/shake.dart';
@@ -114,7 +109,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                 ),
               }.withoutNulls,
               extra: <String, dynamic>{
-                kTransitionInfoKey: TransitionInfo(
+                kTransitionInfoKey: const TransitionInfo(
                   hasTransition: true,
                   transitionType: PageTransitionType.fade,
                   duration: Duration(milliseconds: 0),
@@ -151,7 +146,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
               context.pushNamed(
                 'Profile',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: TransitionInfo(
+                  kTransitionInfoKey: const TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -174,7 +169,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -185,7 +180,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 10.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 10.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -196,7 +191,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                         focusNode: _model.textNameFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.textNameTextController',
-                          Duration(milliseconds: 500),
+                          const Duration(milliseconds: 500),
                           () async {
                             setState(() {
                               _model.searchName =
@@ -222,7 +217,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
                             ),
@@ -252,9 +247,9 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                           filled: true,
                           fillColor:
                               FlutterFlowTheme.of(context).primaryBackground,
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 0.0, 0.0),
-                          prefixIcon: Icon(
+                          prefixIcon: const Icon(
                             Icons.search,
                           ),
                           suffixIcon: _model
@@ -291,7 +286,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: FlutterFlowIconButton(
                         borderColor: Colors.transparent,
                         borderRadius: 10.0,
@@ -369,7 +364,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
               if ('${(_model.searchName != null && _model.searchName != '') && (_model.searchName != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.searchName}\"}}' : ' '}${(_model.dateStart != null && _model.dateStart != '') && (_model.dateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"${_model.dateStart}\"}}' : ' '}${(_model.dateEnd != null && _model.dateEnd != '') && (_model.dateEnd != ' ') ? ',{\"date_created\":{\"_lte\":\"${_model.dateEnd}\"}}' : ' '}${(_model.staffsId != null && _model.staffsId != '') && (_model.staffsId != ' ') ? ',{\"steps\":{\"staffs\":{\"staffs_id\":{\"_eq\":\"${_model.staffsId}\"}}}}' : ' '}' !=
                   '    ')
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 4.0, 0.0, 4.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 4.0, 0.0, 4.0),
                   child: Text(
                     '#Kết quả hiển thị theo bộ lọc',
                     textAlign: TextAlign.start,
@@ -383,7 +378,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                 ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
                   child: PagedListView<ApiPagingParams, dynamic>.separated(
                     pagingController: _model.setListViewController(
                       (nextPageMarker) =>
@@ -393,7 +388,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                         limit: 20,
                         filter: '{\"_and\":[{},{\"template\":{\"_neq\":\"1\"}}${(_model.searchName != null && _model.searchName != '') && (_model.searchName != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.searchName}\"}}' : ' '}${(_model.dateStart != null && _model.dateStart != '') && (_model.dateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"${_model.dateStart}\"}}' : ' '}${(_model.dateEnd != null && _model.dateEnd != '') && (_model.dateEnd != ' ') ? ',{\"date_created\":{\"_lte\":\"${(String var1) {
                             return DateTime.parse(var1)
-                                .add(Duration(days: 1))
+                                .add(const Duration(days: 1))
                                 .toString();
                           }(_model.dateEnd!)}\"}}' : ' '}${(_model.staffsId != null && _model.staffsId != '') && (_model.staffsId != ' ') ? ',{\"steps\":{\"staffs\":{\"staffs_id\":{\"_eq\":\"${_model.staffsId}\"}}}}' : ' '},{\"organization_id\":{\"_eq\":\"${getJsonField(
                           FFAppState().staffLogin,
@@ -405,7 +400,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                     primary: false,
                     reverse: false,
                     scrollDirection: Axis.vertical,
-                    separatorBuilder: (_, __) => SizedBox(height: 10.0),
+                    separatorBuilder: (_, __) => const SizedBox(height: 10.0),
                     builderDelegate: PagedChildBuilderDelegate<dynamic>(
                       // Customize what your widget looks like when it's loading the first page.
                       firstPageProgressIndicatorBuilder: (_) => Center(
@@ -431,8 +426,8 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                           ),
                         ),
                       ),
-                      noItemsFoundIndicatorBuilder: (_) => Center(
-                        child: Container(
+                      noItemsFoundIndicatorBuilder: (_) => const Center(
+                        child: SizedBox(
                           width: double.infinity,
                           child: DataNotFoundWidget(),
                         ),
@@ -441,7 +436,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                         final listViewItem = _model
                             .listViewPagingController!.itemList![listViewIndex];
                         return Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -462,7 +457,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: TransitionInfo(
+                                  kTransitionInfoKey: const TransitionInfo(
                                     hasTransition: true,
                                     transitionType: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 0),
@@ -476,7 +471,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                             },
                             child: Container(
                               width: double.infinity,
-                              constraints: BoxConstraints(
+                              constraints: const BoxConstraints(
                                 maxWidth: 570.0,
                               ),
                               decoration: BoxDecoration(
@@ -485,7 +480,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     12.0, 12.0, 12.0, 16.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -493,7 +488,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                       CrossAxisAlignment.stretch,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 8.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -527,7 +522,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                             fillColor:
                                                 FlutterFlowTheme.of(context)
                                                     .noColor,
-                                            icon: Icon(
+                                            icon: const Icon(
                                               Icons.add_business_outlined,
                                               color: Color(0xFFBD0127),
                                               size: 24.0,
@@ -564,11 +559,11 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                                   safeSetState(() {}));
                                             },
                                           ),
-                                        ].divide(SizedBox(width: 4.0)),
+                                        ].divide(const SizedBox(width: 4.0)),
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 4.0),
                                       child: Text(
                                         listViewItem.userCreated.firstName !=
@@ -597,7 +592,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                         children: [
                                           TextSpan(
                                             text: listViewItem.steps.length > 0
-                                                ? '${listViewItem.steps.length.toString()}'
+                                                ? listViewItem.steps.length.toString()
                                                 : '0',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -611,7 +606,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                           ),
-                                          TextSpan(
+                                          const TextSpan(
                                             text: ' Bước',
                                             style: TextStyle(),
                                           )

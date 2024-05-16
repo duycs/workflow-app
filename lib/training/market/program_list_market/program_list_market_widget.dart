@@ -1,12 +1,9 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'program_list_market_model.dart';
 export 'program_list_market_model.dart';
@@ -17,9 +14,9 @@ class ProgramListMarketWidget extends StatefulWidget {
     String? price,
     String? idAuthor,
     String? idDomain,
-  })  : this.price = price ?? '',
-        this.idAuthor = idAuthor ?? '',
-        this.idDomain = idDomain ?? '';
+  })  : price = price ?? '',
+        idAuthor = idAuthor ?? '',
+        idDomain = idDomain ?? '';
 
   final String price;
   final String idAuthor;
@@ -94,7 +91,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -108,19 +105,19 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
               children: [
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 12.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 12.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
-                        child: Container(
+                        child: SizedBox(
                           width: double.infinity,
                           child: TextFormField(
                             controller: _model.searchMarketTextController,
                             focusNode: _model.searchMarketFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.searchMarketTextController',
-                              Duration(milliseconds: 500),
+                              const Duration(milliseconds: 500),
                               () async {
                                 await _model.getProgramsList(context);
                                 setState(() {});
@@ -147,7 +144,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
                                 ),
@@ -175,8 +172,8 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                 borderRadius: BorderRadius.circular(5.0),
                               ),
                               filled: true,
-                              fillColor: Color(0x15FF5963),
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                              fillColor: const Color(0x15FF5963),
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 8.0, 0.0, 8.0),
                               suffixIcon: _model.searchMarketTextController!
                                       .text.isNotEmpty
@@ -188,7 +185,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                         setState(() {});
                                         setState(() {});
                                       },
-                                      child: Icon(
+                                      child: const Icon(
                                         Icons.clear,
                                         color: Color(0xFF757575),
                                         size: 22.0,
@@ -213,7 +210,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: FlutterFlowIconButton(
                           borderColor: Colors.transparent,
                           borderRadius: 10.0,
@@ -232,11 +229,10 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                     ],
                   ),
                 ),
-                if (_model.searchMarketTextController.text != null &&
-                    _model.searchMarketTextController.text != '')
+                if (_model.searchMarketTextController.text != '')
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 4.0),
                     child: Text(
                       '#Kết quả tìm kiếm theo bộ lọc',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -249,7 +245,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                     ),
                   ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 0.0),
                   child: Builder(
                     builder: (context) {
                       final itemPrograms = _model.listPrograms.toList();
@@ -259,23 +255,19 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount: itemPrograms.length,
-                        separatorBuilder: (_, __) => SizedBox(height: 16.0),
+                        separatorBuilder: (_, __) => const SizedBox(height: 16.0),
                         itemBuilder: (context, itemProgramsIndex) {
                           final itemProgramsItem =
                               itemPrograms[itemProgramsIndex];
                           return Visibility(
                             visible: (((widget.idAuthor ==
                                                 itemProgramsItem.authorId.id) &&
-                                            (widget.idAuthor != null &&
-                                                widget.idAuthor != '')) &&
+                                            (widget.idAuthor != '')) &&
                                         ((widget.idDomain ==
                                                 itemProgramsItem.domainId.id) &&
-                                            (widget.idDomain != null &&
-                                                widget.idDomain != ''))) ||
-                                    ((widget.idAuthor == null ||
-                                            widget.idAuthor == '') &&
-                                        (widget.idDomain == null ||
-                                            widget.idDomain == ''))
+                                            (widget.idDomain != ''))) ||
+                                    ((widget.idAuthor == '') &&
+                                        (widget.idDomain == ''))
                                 ? true
                                 : false,
                             child: InkWell(
@@ -293,7 +285,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                     ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
+                                    kTransitionInfoKey: const TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -369,10 +361,9 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.end,
                                           children: [
-                                            if (itemProgramsItem.reacts.length >
-                                                0)
+                                            if (itemProgramsItem.reacts.isNotEmpty)
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 2.0),
                                                 child: Icon(
@@ -383,11 +374,9 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                                   size: 18.0,
                                                 ),
                                               ),
-                                            if (itemProgramsItem.reacts.length >
-                                                0)
+                                            if (itemProgramsItem.reacts.isNotEmpty)
                                               Text(
-                                                itemProgramsItem.reacts.length >
-                                                        0
+                                                itemProgramsItem.reacts.isNotEmpty
                                                     ? formatNumber(
                                                         (List<String>
                                                             listItem) {
@@ -423,7 +412,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                               ),
                                             Expanded(
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 16.0, 0.0),
                                                 child: Row(
@@ -434,7 +423,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -465,16 +454,16 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                                           ),
                                                     ),
                                                   ].divide(
-                                                      SizedBox(width: 4.0)),
+                                                      const SizedBox(width: 4.0)),
                                                 ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(width: 4.0)),
+                                          ].divide(const SizedBox(width: 4.0)),
                                         ),
                                       ],
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 12.0)),
+                                ].divide(const SizedBox(width: 12.0)),
                               ),
                             ),
                           );

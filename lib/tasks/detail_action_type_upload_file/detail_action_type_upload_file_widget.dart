@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'detail_action_type_upload_file_model.dart';
 export 'detail_action_type_upload_file_model.dart';
@@ -100,15 +99,15 @@ class _DetailActionTypeUploadFileWidgetState
               setState(() {});
             },
             text: 'Upload tài liệu',
-            icon: Icon(
+            icon: const Icon(
               Icons.attach_file,
               size: 20.0,
             ),
             options: FFButtonOptions(
               width: 140.0,
               height: 40.0,
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-              iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
               color: FlutterFlowTheme.of(context).alternate,
               textStyle: FlutterFlowTheme.of(context).labelLarge.override(
                     fontFamily: 'Nunito Sans',
@@ -122,7 +121,7 @@ class _DetailActionTypeUploadFileWidgetState
             ),
           ),
         ),
-      ].divide(SizedBox(height: 6.0)),
+      ].divide(const SizedBox(height: 6.0)),
     );
   }
 }

@@ -2,8 +2,6 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'multi_select_do_test_model.dart';
 export 'multi_select_do_test_model.dart';
 
@@ -67,9 +65,7 @@ class _MultiSelectDoTestWidgetState extends State<MultiSelectDoTestWidget> {
               } else if ((widget.listAnswer!
                           .where(
                               (e) => e.answersId.id == widget.listQuestion?.id)
-                          .toList()
-                          .length >
-                      0) &&
+                          .toList().isNotEmpty) &&
                   (widget.listAnswer != null &&
                       (widget.listAnswer)!.isNotEmpty)) {
                 return true;
@@ -91,9 +87,7 @@ class _MultiSelectDoTestWidgetState extends State<MultiSelectDoTestWidget> {
                   (widget.listAnswer!
                           .where(
                               (e) => e.answersId.id == widget.listQuestion?.id)
-                          .toList()
-                          .length >
-                      0) &&
+                          .toList().isNotEmpty) &&
                   (widget.listAnswer != null &&
                       (widget.listAnswer)!.isNotEmpty)) {
                 return FlutterFlowTheme.of(context).secondary;
@@ -101,9 +95,7 @@ class _MultiSelectDoTestWidgetState extends State<MultiSelectDoTestWidget> {
                   (widget.listAnswer!
                           .where(
                               (e) => e.answersId.id == widget.listQuestion?.id)
-                          .toList()
-                          .length >
-                      0) &&
+                          .toList().isNotEmpty) &&
                   (widget.listAnswer != null &&
                       (widget.listAnswer)!.isNotEmpty)) {
                 return FlutterFlowTheme.of(context).error;
@@ -127,9 +119,7 @@ class _MultiSelectDoTestWidgetState extends State<MultiSelectDoTestWidget> {
                         (widget.listAnswer!
                                 .where((e) =>
                                     e.answersId.id == widget.listQuestion?.id)
-                                .toList()
-                                .length >
-                            0) &&
+                                .toList().isNotEmpty) &&
                         (widget.listAnswer != null &&
                             (widget.listAnswer)!.isNotEmpty)) {
                       return FlutterFlowTheme.of(context).secondary;
@@ -137,16 +127,14 @@ class _MultiSelectDoTestWidgetState extends State<MultiSelectDoTestWidget> {
                         (widget.listAnswer!
                                 .where((e) =>
                                     e.answersId.id == widget.listQuestion?.id)
-                                .toList()
-                                .length >
-                            0) &&
+                                .toList().isNotEmpty) &&
                         (widget.listAnswer != null &&
                             (widget.listAnswer)!.isNotEmpty)) {
                       return FlutterFlowTheme.of(context).error;
-                    } else if ((widget.listAnswer?.length == 0) &&
+                    } else if ((widget.listAnswer.isEmpty) &&
                         (widget.listQuestion?.correct == 1)) {
                       return FlutterFlowTheme.of(context).primary;
-                    } else if ((widget.listAnswer?.length == 0) &&
+                    } else if ((widget.listAnswer.isEmpty) &&
                         (widget.listQuestion?.correct != 1)) {
                       return FlutterFlowTheme.of(context).primaryText;
                     } else if (widget.listQuestion?.correct == 1) {

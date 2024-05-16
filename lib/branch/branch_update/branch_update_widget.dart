@@ -8,7 +8,6 @@ import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'branch_update_model.dart';
 export 'branch_update_model.dart';
@@ -22,7 +21,7 @@ class BranchUpdateWidget extends StatefulWidget {
     this.description,
     this.codeList,
     String? status,
-  }) : this.status = status ?? '';
+  }) : status = status ?? '';
 
   final String? id;
   final String? name;
@@ -74,17 +73,17 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
         child: Container(
           width: double.infinity,
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxHeight: 650.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 3.0,
                 color: Color(0x33000000),
@@ -100,19 +99,19 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
               width: 1.0,
             ),
           ),
-          alignment: AlignmentDirectional(0.0, 1.0),
+          alignment: const AlignmentDirectional(0.0, 1.0),
           child: Form(
             key: _model.formKey,
             autovalidateMode: AutovalidateMode.disabled,
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: SingleChildScrollView(
                         primary: false,
                         child: Column(
@@ -120,7 +119,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 28.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -165,7 +164,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                   ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 24.0),
                               child: TextFormField(
                                 controller: _model.branchNameTextController,
@@ -243,7 +242,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                               focusNode: _model.branchCodeFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.branchCodeTextController',
-                                Duration(milliseconds: 2000),
+                                const Duration(milliseconds: 2000),
                                 () async {
                                   if (widget.code ==
                                       _model.branchCodeTextController.text) {
@@ -326,7 +325,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                             ),
                             if (_model.checkCode == '1')
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 24.0),
                                 child: Text(
                                   'Mã chi nhánh đã tồn tại. Vui lòng chọn lại!',
@@ -354,7 +353,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                   ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 12.0),
                               child: TextFormField(
                                 controller:
@@ -461,21 +460,21 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                               horizontalAlignment: WrapAlignment.start,
                               verticalAlignment: WrapCrossAlignment.start,
                             ),
-                          ].divide(SizedBox(height: 6.0)),
+                          ].divide(const SizedBox(height: 6.0)),
                         ),
                       ),
                     ),
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 12.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
@@ -484,9 +483,9 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                               text: 'Hủy',
                               options: FFButtonOptions(
                                 height: 44.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -515,7 +514,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                             onPressed: (_model.checkCode == '1')
                                 ? null
                                 : () async {
-                                    var _shouldSetState = false;
+                                    var shouldSetState = false;
                                     if (_model.formKey.currentState == null ||
                                         !_model.formKey.currentState!
                                             .validate()) {
@@ -526,8 +525,8 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                               context: context,
                                               builder: (alertDialogContext) {
                                                 return AlertDialog(
-                                                  title: Text('Xác nhận'),
-                                                  content: Text(
+                                                  title: const Text('Xác nhận'),
+                                                  content: const Text(
                                                       'Bạn chắc chắn muốn lưu?'),
                                                   actions: [
                                                     TextButton(
@@ -535,14 +534,14 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                                           Navigator.pop(
                                                               alertDialogContext,
                                                               false),
-                                                      child: Text('Hủy'),
+                                                      child: const Text('Hủy'),
                                                     ),
                                                     TextButton(
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext,
                                                               true),
-                                                      child: Text('Xác nhận'),
+                                                      child: const Text('Xác nhận'),
                                                     ),
                                                   ],
                                                 );
@@ -551,14 +550,14 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                             false;
                                     if (confirmDialogResponse) {
                                       if (_model.checkCode == '1') {
-                                        if (_shouldSetState) setState(() {});
+                                        if (shouldSetState) setState(() {});
                                         return;
                                       }
 
                                       _model.refreshTokenBranchUpdate =
                                           await action_blocks
                                               .tokenReload(context);
-                                      _shouldSetState = true;
+                                      shouldSetState = true;
                                       if (_model.refreshTokenBranchUpdate!) {
                                         _model.apiResultCreateBranch =
                                             await BranchGroup.branchUpdateCall
@@ -569,7 +568,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                             'name': _model
                                                 .branchNameTextController.text,
                                             'status':
-                                                '${_model.radioButtonValue == 'Hoạt động' ? 'published' : 'draft'}',
+                                                _model.radioButtonValue == 'Hoạt động' ? 'published' : 'draft',
                                             'description': _model
                                                 .descriptionBranchTextController
                                                 .text,
@@ -577,7 +576,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                                 .branchCodeTextController.text,
                                           },
                                         );
-                                        _shouldSetState = true;
+                                        shouldSetState = true;
                                         if ((_model.apiResultCreateBranch
                                                 ?.succeeded ??
                                             true)) {
@@ -593,7 +592,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                                 ),
                                               ),
                                               duration:
-                                                  Duration(milliseconds: 4000),
+                                                  const Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -604,7 +603,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                             'BranchList',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
-                                                  TransitionInfo(
+                                                  const TransitionInfo(
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType.fade,
@@ -626,7 +625,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                                 ),
                                               ),
                                               duration:
-                                                  Duration(milliseconds: 4000),
+                                                  const Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
@@ -635,22 +634,22 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                         }
                                       } else {
                                         setState(() {});
-                                        if (_shouldSetState) setState(() {});
+                                        if (shouldSetState) setState(() {});
                                         return;
                                       }
                                     } else {
-                                      if (_shouldSetState) setState(() {});
+                                      if (shouldSetState) setState(() {});
                                       return;
                                     }
 
-                                    if (_shouldSetState) setState(() {});
+                                    if (shouldSetState) setState(() {});
                                   },
                             text: 'Lưu',
                             options: FFButtonOptions(
                               height: 44.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -661,7 +660,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

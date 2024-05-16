@@ -21,19 +21,20 @@ Future notifiAddServer(String staffId) async {
 
   OneSignal.login(staffId);
   print("StaffId: " + staffId);
-  OneSignal.User.pushSubscription.addObserver((state) {
-    print(OneSignal.User.pushSubscription.optedIn);
-    print(OneSignal.User.pushSubscription.id);
-    print(OneSignal.User.pushSubscription.token);
-    print(state.current.jsonRepresentation());
-  });
+  debugPrint("StaffId: " + staffId);
+  // OneSignal.User.pushSubscription.addObserver((state) {
+  //   print(OneSignal.User.pushSubscription.optedIn);
+  //   print(OneSignal.User.pushSubscription.id);
+  //   print(OneSignal.User.pushSubscription.token);
+  //   print(state.current.jsonRepresentation());
+  // });
 
-  OneSignal.User.addObserver((state) {
-    var userState = state.jsonRepresentation();
-    print('OneSignal user changed: $userState');
-  });
+  // OneSignal.User.addObserver((state) {
+  //   var userState = state.jsonRepresentation();
+  //   print('OneSignal user changed: $userState');
+  // });
 
-  OneSignal.Notifications.addPermissionObserver((state) {
-    print("Has permission " + state.toString());
-  });
+  // OneSignal.Notifications.addPermissionObserver((state) {
+  //   print("Has permission " + state.toString());
+  // });
 }

@@ -1,12 +1,8 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'market_place_draft_model.dart';
 export 'market_place_draft_model.dart';
 
@@ -55,7 +51,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         body: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -77,18 +73,18 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                   ),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Color(0xB11D2428),
+                      color: const Color(0xB11D2428),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -124,7 +120,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 0.0, 8.0),
                             child: Text(
                               'Tri thức là chìa khóa mở cửa tương lai',
@@ -132,15 +128,15 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                   .labelMedium
                                   .override(
                                     fontFamily: 'Nunito Sans',
-                                    color: Color(0xBEFFFFFF),
+                                    color: const Color(0xBEFFFFFF),
                                     letterSpacing: 0.0,
                                   ),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
-                            child: Container(
+                            child: SizedBox(
                               width: double.infinity,
                               child: TextFormField(
                                 controller: _model.searchTextController,
@@ -192,7 +188,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                   fillColor: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
                                   contentPadding:
-                                      EdgeInsetsDirectional.fromSTEB(
+                                      const EdgeInsetsDirectional.fromSTEB(
                                           24.0, 8.0, 0.0, 8.0),
                                   prefixIcon: Icon(
                                     Icons.search_rounded,
@@ -219,21 +215,21 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
                   child: Container(
                     height: 250.0,
-                    decoration: BoxDecoration(),
+                    decoration: const BoxDecoration(),
                     child: Column(
                       children: [
                         Align(
-                          alignment: Alignment(-1.0, 0),
+                          alignment: const Alignment(-1.0, 0),
                           child: TabBar(
                             isScrollable: true,
                             labelColor:
                                 FlutterFlowTheme.of(context).primaryText,
                             unselectedLabelColor:
                                 FlutterFlowTheme.of(context).secondaryText,
-                            labelPadding: EdgeInsetsDirectional.fromSTEB(
+                            labelPadding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
                             labelStyle: FlutterFlowTheme.of(context)
                                 .titleMedium
@@ -242,11 +238,11 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                   fontSize: 14.0,
                                   letterSpacing: 0.0,
                                 ),
-                            unselectedLabelStyle: TextStyle(),
+                            unselectedLabelStyle: const TextStyle(),
                             indicatorColor:
                                 FlutterFlowTheme.of(context).primary,
-                            padding: EdgeInsets.all(8.0),
-                            tabs: [
+                            padding: const EdgeInsets.all(8.0),
+                            tabs: const [
                               Tab(
                                 text: 'Thiết kế',
                               ),
@@ -284,7 +280,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                             controller: _model.tabBarController,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     10.0, 0.0, 0.0, 0.0),
                                 child: ListView(
                                   padding: EdgeInsets.zero,
@@ -303,14 +299,14 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(6.0),
+                                        padding: const EdgeInsets.all(6.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 4.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -427,7 +423,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                                               .italic,
                                                                     ),
                                                               ),
-                                                              TextSpan(
+                                                              const TextSpan(
                                                                 text: ' đ/bản',
                                                                 style:
                                                                     TextStyle(
@@ -469,7 +465,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                       ],
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
                                               ),
                                             ),
                                             Text(
@@ -514,14 +510,14 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(6.0),
+                                        padding: const EdgeInsets.all(6.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 4.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -638,7 +634,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                                               .italic,
                                                                     ),
                                                               ),
-                                                              TextSpan(
+                                                              const TextSpan(
                                                                 text: ' đ/bản',
                                                                 style:
                                                                     TextStyle(
@@ -664,7 +660,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                       ],
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
                                               ),
                                             ),
                                             Text(
@@ -698,11 +694,11 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                         ),
                                       ),
                                     ),
-                                  ].divide(SizedBox(width: 6.0)),
+                                  ].divide(const SizedBox(width: 6.0)),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 0.0, 0.0),
                                 child: ListView(
                                   padding: EdgeInsets.zero,
@@ -723,14 +719,14 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(6.0),
+                                        padding: const EdgeInsets.all(6.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 4.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -847,7 +843,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                                               .italic,
                                                                     ),
                                                               ),
-                                                              TextSpan(
+                                                              const TextSpan(
                                                                 text: ' đ/bản',
                                                                 style:
                                                                     TextStyle(
@@ -873,7 +869,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                       ],
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
                                               ),
                                             ),
                                             Text(
@@ -920,14 +916,14 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(6.0),
+                                        padding: const EdgeInsets.all(6.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 4.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1044,7 +1040,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                                               .italic,
                                                                     ),
                                                               ),
-                                                              TextSpan(
+                                                              const TextSpan(
                                                                 text: ' đ/bản',
                                                                 style:
                                                                     TextStyle(
@@ -1070,7 +1066,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                       ],
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
                                               ),
                                             ),
                                             Text(
@@ -1104,11 +1100,11 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                         ),
                                       ),
                                     ),
-                                  ].divide(SizedBox(width: 6.0)),
+                                  ].divide(const SizedBox(width: 6.0)),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 0.0, 0.0),
                                 child: ListView(
                                   padding: EdgeInsets.zero,
@@ -1129,14 +1125,14 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(6.0),
+                                        padding: const EdgeInsets.all(6.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 4.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1253,7 +1249,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                                               .italic,
                                                                     ),
                                                               ),
-                                                              TextSpan(
+                                                              const TextSpan(
                                                                 text: ' đ/bản',
                                                                 style:
                                                                     TextStyle(
@@ -1279,7 +1275,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                       ],
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
                                               ),
                                             ),
                                             Text(
@@ -1326,14 +1322,14 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(6.0),
+                                        padding: const EdgeInsets.all(6.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 4.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1450,7 +1446,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                                               .italic,
                                                                     ),
                                                               ),
-                                                              TextSpan(
+                                                              const TextSpan(
                                                                 text: ' đ/bản',
                                                                 style:
                                                                     TextStyle(
@@ -1476,7 +1472,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                       ],
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
                                               ),
                                             ),
                                             Text(
@@ -1510,11 +1506,11 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                         ),
                                       ),
                                     ),
-                                  ].divide(SizedBox(width: 6.0)),
+                                  ].divide(const SizedBox(width: 6.0)),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 0.0, 0.0),
                                 child: ListView(
                                   padding: EdgeInsets.zero,
@@ -1535,14 +1531,14 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(6.0),
+                                        padding: const EdgeInsets.all(6.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 4.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1659,7 +1655,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                                               .italic,
                                                                     ),
                                                               ),
-                                                              TextSpan(
+                                                              const TextSpan(
                                                                 text: ' đ/bản',
                                                                 style:
                                                                     TextStyle(
@@ -1685,7 +1681,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                       ],
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
                                               ),
                                             ),
                                             Text(
@@ -1732,14 +1728,14 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(6.0),
+                                        padding: const EdgeInsets.all(6.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 4.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1856,7 +1852,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                                               .italic,
                                                                     ),
                                                               ),
-                                                              TextSpan(
+                                                              const TextSpan(
                                                                 text: ' đ/bản',
                                                                 style:
                                                                     TextStyle(
@@ -1882,7 +1878,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                       ],
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
                                               ),
                                             ),
                                             Text(
@@ -1916,11 +1912,11 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                         ),
                                       ),
                                     ),
-                                  ].divide(SizedBox(width: 6.0)),
+                                  ].divide(const SizedBox(width: 6.0)),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 0.0, 0.0),
                                 child: ListView(
                                   padding: EdgeInsets.zero,
@@ -1941,14 +1937,14 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(6.0),
+                                        padding: const EdgeInsets.all(6.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 4.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -2065,7 +2061,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                                               .italic,
                                                                     ),
                                                               ),
-                                                              TextSpan(
+                                                              const TextSpan(
                                                                 text: ' đ/bản',
                                                                 style:
                                                                     TextStyle(
@@ -2091,7 +2087,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                       ],
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
                                               ),
                                             ),
                                             Text(
@@ -2138,14 +2134,14 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(6.0),
+                                        padding: const EdgeInsets.all(6.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 4.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -2262,7 +2258,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                                               .italic,
                                                                     ),
                                                               ),
-                                                              TextSpan(
+                                                              const TextSpan(
                                                                 text: ' đ/bản',
                                                                 style:
                                                                     TextStyle(
@@ -2288,7 +2284,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                       ],
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
                                               ),
                                             ),
                                             Text(
@@ -2322,11 +2318,11 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                         ),
                                       ),
                                     ),
-                                  ].divide(SizedBox(width: 6.0)),
+                                  ].divide(const SizedBox(width: 6.0)),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 0.0, 0.0),
                                 child: ListView(
                                   padding: EdgeInsets.zero,
@@ -2347,14 +2343,14 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(6.0),
+                                        padding: const EdgeInsets.all(6.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 4.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -2471,7 +2467,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                                               .italic,
                                                                     ),
                                                               ),
-                                                              TextSpan(
+                                                              const TextSpan(
                                                                 text: ' đ/bản',
                                                                 style:
                                                                     TextStyle(
@@ -2497,7 +2493,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                       ],
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
                                               ),
                                             ),
                                             Text(
@@ -2544,14 +2540,14 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(6.0),
+                                        padding: const EdgeInsets.all(6.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 4.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -2668,7 +2664,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                                               .italic,
                                                                     ),
                                                               ),
-                                                              TextSpan(
+                                                              const TextSpan(
                                                                 text: ' đ/bản',
                                                                 style:
                                                                     TextStyle(
@@ -2694,7 +2690,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                       ],
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
                                               ),
                                             ),
                                             Text(
@@ -2728,7 +2724,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                         ),
                                       ),
                                     ),
-                                  ].divide(SizedBox(width: 6.0)),
+                                  ].divide(const SizedBox(width: 6.0)),
                                 ),
                               ),
                             ],
@@ -2739,7 +2735,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 5.0, 4.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 5.0, 4.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -2781,11 +2777,11 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 24.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 24.0),
                   child: Container(
                     width: double.infinity,
                     height: 180.0,
-                    decoration: BoxDecoration(),
+                    decoration: const BoxDecoration(),
                     child: ListView(
                       padding: EdgeInsets.zero,
                       primary: false,
@@ -2801,13 +2797,13 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(4.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 4.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
@@ -2854,13 +2850,13 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(4.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 4.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
@@ -2907,13 +2903,13 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(4.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 4.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
@@ -2951,13 +2947,13 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 6.0)),
+                      ].divide(const SizedBox(width: 6.0)),
                     ),
                   ),
                 ),
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 24.0),
+                      const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 24.0),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -2971,15 +2967,15 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                     ),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Color(0x8E1D2428),
+                        color: const Color(0x8E1D2428),
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: GridView(
                           padding: EdgeInsets.zero,
                           gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 4,
                             crossAxisSpacing: 10.0,
                             mainAxisSpacing: 10.0,
@@ -3199,7 +3195,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 5.0, 4.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 5.0, 4.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -3241,11 +3237,11 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 24.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 24.0),
                   child: Container(
                     width: double.infinity,
                     height: 180.0,
-                    decoration: BoxDecoration(),
+                    decoration: const BoxDecoration(),
                     child: ListView(
                       padding: EdgeInsets.zero,
                       primary: false,
@@ -3261,13 +3257,13 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(4.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 4.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
@@ -3317,19 +3313,19 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                               fontStyle: FontStyle.italic,
                                             ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: 'đ',
                                         style: TextStyle(
                                           fontStyle: FontStyle.italic,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: ' ',
                                         style: TextStyle(
                                           fontSize: 12.0,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: '1.500.000',
                                         style: TextStyle(
                                           color: Color(0xFFFF0000),
@@ -3339,7 +3335,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                           fontStyle: FontStyle.italic,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: 'đ',
                                         style: TextStyle(
                                           color: Color(0xFFFF0000),
@@ -3372,13 +3368,13 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(4.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 4.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
@@ -3428,19 +3424,19 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                               fontStyle: FontStyle.italic,
                                             ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: 'đ',
                                         style: TextStyle(
                                           fontStyle: FontStyle.italic,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: ' ',
                                         style: TextStyle(
                                           fontSize: 12.0,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: '1.00.000',
                                         style: TextStyle(
                                           color: Color(0xFFFF0000),
@@ -3450,7 +3446,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                           fontStyle: FontStyle.italic,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: 'đ',
                                         style: TextStyle(
                                           color: Color(0xFFFF0000),
@@ -3483,13 +3479,13 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(4.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 4.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
@@ -3539,19 +3535,19 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                               fontStyle: FontStyle.italic,
                                             ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: 'đ',
                                         style: TextStyle(
                                           fontStyle: FontStyle.italic,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: ' ',
                                         style: TextStyle(
                                           fontSize: 12.0,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: '800.000',
                                         style: TextStyle(
                                           color: Color(0xFFFF0000),
@@ -3561,7 +3557,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                           fontStyle: FontStyle.italic,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: 'đ',
                                         style: TextStyle(
                                           color: Color(0xFFFF0000),
@@ -3585,12 +3581,12 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 6.0)),
+                      ].divide(const SizedBox(width: 6.0)),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 5.0, 4.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 5.0, 4.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -3632,11 +3628,11 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 24.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 24.0),
                   child: Container(
                     width: double.infinity,
                     height: 180.0,
-                    decoration: BoxDecoration(),
+                    decoration: const BoxDecoration(),
                     child: ListView(
                       padding: EdgeInsets.zero,
                       primary: false,
@@ -3652,13 +3648,13 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(4.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 4.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
@@ -3708,19 +3704,19 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                               fontStyle: FontStyle.italic,
                                             ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: 'đ',
                                         style: TextStyle(
                                           fontStyle: FontStyle.italic,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: ' ',
                                         style: TextStyle(
                                           fontSize: 12.0,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: '1.500.000',
                                         style: TextStyle(
                                           color: Color(0xFFFF0000),
@@ -3730,7 +3726,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                           fontStyle: FontStyle.italic,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: 'đ',
                                         style: TextStyle(
                                           color: Color(0xFFFF0000),
@@ -3763,13 +3759,13 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(4.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 4.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
@@ -3819,19 +3815,19 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                               fontStyle: FontStyle.italic,
                                             ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: 'đ',
                                         style: TextStyle(
                                           fontStyle: FontStyle.italic,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: ' ',
                                         style: TextStyle(
                                           fontSize: 12.0,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: '1.00.000',
                                         style: TextStyle(
                                           color: Color(0xFFFF0000),
@@ -3841,7 +3837,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                           fontStyle: FontStyle.italic,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: 'đ',
                                         style: TextStyle(
                                           color: Color(0xFFFF0000),
@@ -3874,13 +3870,13 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(4.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 4.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
@@ -3930,19 +3926,19 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                               fontStyle: FontStyle.italic,
                                             ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: 'đ',
                                         style: TextStyle(
                                           fontStyle: FontStyle.italic,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: ' ',
                                         style: TextStyle(
                                           fontSize: 12.0,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: '800.000',
                                         style: TextStyle(
                                           color: Color(0xFFFF0000),
@@ -3952,7 +3948,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                           fontStyle: FontStyle.italic,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: 'đ',
                                         style: TextStyle(
                                           color: Color(0xFFFF0000),
@@ -3976,12 +3972,12 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 6.0)),
+                      ].divide(const SizedBox(width: 6.0)),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -3999,7 +3995,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: FlutterFlowIconButton(
                           borderColor: Colors.transparent,
                           borderRadius: 10.0,
@@ -4019,7 +4015,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                   child: ListView(
                     padding: EdgeInsets.zero,
                     primary: false,
@@ -4036,7 +4032,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -4127,7 +4123,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                           FontStyle.italic,
                                                     ),
                                               ),
-                                              TextSpan(
+                                              const TextSpan(
                                                 text: ' đ/bản',
                                                 style: TextStyle(
                                                   fontSize: 13.0,
@@ -4157,7 +4153,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                       ],
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 6.0)),
+                                ].divide(const SizedBox(width: 6.0)),
                               ),
                               Text(
                                 'Nắm vững kiến thức chuyên sâu sinh lý mẹ bầu, tâm lý, sinh khí, hơi thở, ...\nBạn sẽ trở thành một HLV Yoga chuyên nghiệp, mở ra cơ hội nghề nghiệp mới cho bạn',
@@ -4183,7 +4179,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -4274,7 +4270,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                                           FontStyle.italic,
                                                     ),
                                               ),
-                                              TextSpan(
+                                              const TextSpan(
                                                 text: ' đ/bản',
                                                 style: TextStyle(
                                                   fontSize: 13.0,
@@ -4304,7 +4300,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                                       ],
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 6.0)),
+                                ].divide(const SizedBox(width: 6.0)),
                               ),
                               Text(
                                 'Nắm vững kiến thức chuyên sâu sinh lý mẹ bầu, tâm lý, sinh khí, hơi thở, ...\nBạn sẽ trở thành một HLV Yoga chuyên nghiệp, mở ra cơ hội nghề nghiệp mới cho bạn',
@@ -4320,7 +4316,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(height: 8.0)),
+                    ].divide(const SizedBox(height: 8.0)),
                   ),
                 ),
               ],

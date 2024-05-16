@@ -1,24 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_pdf_viewer.dart';
-import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'lesson_update_widget.dart' show LessonUpdateWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
   ///  Local state fields for this page.
@@ -114,16 +101,16 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
         r'''$.organization_id''',
       ).toString().toString()}\"}}]}',
     );
-    if ((apiResultListIdStaff?.succeeded ?? true)) {
+    if ((apiResultListIdStaff.succeeded ?? true)) {
       list = TestListDataStruct.maybeFromMap(
-              (apiResultListIdStaff?.jsonBody ?? ''))!
+              (apiResultListIdStaff.jsonBody ?? ''))!
           .data
           .toList()
           .cast<TestListStruct>();
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultListIdStaff?.jsonBody ?? ''),
+        jsonErrors: (apiResultListIdStaff.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -134,7 +121,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -164,7 +151,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
           'description': descriptionTextController.text,
           'content': checkContent,
           'image_cover': () {
-            if (uploadImage != null && uploadImage != '') {
+            if (uploadImage != '') {
               return uploadImage;
             } else if (getJsonField(
                   widget.items,
@@ -181,7 +168,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
           }()
               ?.toString(),
           'video': () {
-            if (uploadVideo != null && uploadVideo != '') {
+            if (uploadVideo != '') {
               return uploadVideo;
             } else if (getJsonField(
                   widget.items,
@@ -200,7 +187,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
           'duration_hours': durationHoursTextController.text,
           'test_id': null,
           'file': () {
-            if (uploadFile != null && uploadFile != '') {
+            if (uploadFile != '') {
               return uploadFile;
             } else if (getJsonField(
                   widget.items,
@@ -216,14 +203,13 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
             }
           }()
               ?.toString(),
-          'estimate_in_day': (estimateInDayTextController.text != null &&
-                      estimateInDayTextController.text != '') &&
+          'estimate_in_day': (estimateInDayTextController.text != '') &&
                   (int.parse(estimateInDayTextController.text) > 0)
               ? estimateInDayTextController.text
               : null,
         },
       );
-      if ((apiResultUpdateLesson?.succeeded ?? true)) {
+      if ((apiResultUpdateLesson.succeeded ?? true)) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -232,7 +218,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).secondary,
           ),
         );
@@ -240,7 +226,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
         context.pushNamed(
           'LessonsList',
           extra: <String, dynamic>{
-            kTransitionInfoKey: TransitionInfo(
+            kTransitionInfoKey: const TransitionInfo(
               hasTransition: true,
               transitionType: PageTransitionType.fade,
               duration: Duration(milliseconds: 0),
@@ -250,7 +236,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
       } else {
         checkRefreshTokenBlock33 = await action_blocks.checkRefreshToken(
           context,
-          jsonErrors: (apiResultUpdateLesson?.jsonBody ?? ''),
+          jsonErrors: (apiResultUpdateLesson.jsonBody ?? ''),
         );
         if (!checkRefreshTokenBlock33!) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -261,7 +247,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
                   color: FlutterFlowTheme.of(context).primaryText,
                 ),
               ),
-              duration: Duration(milliseconds: 4000),
+              duration: const Duration(milliseconds: 4000),
               backgroundColor: FlutterFlowTheme.of(context).error,
             ),
           );
@@ -283,7 +269,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
           'description': descriptionTextController.text,
           'content': checkContent,
           'image_cover': () {
-            if (uploadImage != null && uploadImage != '') {
+            if (uploadImage != '') {
               return uploadImage;
             } else if (getJsonField(
                   widget.items,
@@ -299,7 +285,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
             }
           }(),
           'video': () {
-            if (uploadVideo != null && uploadVideo != '') {
+            if (uploadVideo != '') {
               return uploadVideo;
             } else if (getJsonField(
                   widget.items,
@@ -317,7 +303,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
           'duration_hours': durationHoursTextController.text,
           'test_id': testIdValue,
           'file': () {
-            if (uploadFile != null && uploadFile != '') {
+            if (uploadFile != '') {
               return uploadFile;
             } else if (getJsonField(
                   widget.items,
@@ -332,14 +318,13 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
               return null;
             }
           }(),
-          'estimate_in_day': (estimateInDayTextController.text != null &&
-                      estimateInDayTextController.text != '') &&
+          'estimate_in_day': (estimateInDayTextController.text != '') &&
                   (int.parse(estimateInDayTextController.text) > 0)
               ? estimateInDayTextController.text
               : null,
         },
       );
-      if ((apiResultUpdateLesson1?.succeeded ?? true)) {
+      if ((apiResultUpdateLesson1.succeeded ?? true)) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -348,7 +333,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).secondary,
           ),
         );
@@ -356,7 +341,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
         context.pushNamed(
           'LessonsList',
           extra: <String, dynamic>{
-            kTransitionInfoKey: TransitionInfo(
+            kTransitionInfoKey: const TransitionInfo(
               hasTransition: true,
               transitionType: PageTransitionType.fade,
               duration: Duration(milliseconds: 0),
@@ -366,7 +351,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
       } else {
         checkRefreshTokenBlock55 = await action_blocks.checkRefreshToken(
           context,
-          jsonErrors: (apiResultUpdateLesson1?.jsonBody ?? ''),
+          jsonErrors: (apiResultUpdateLesson1.jsonBody ?? ''),
         );
         if (!checkRefreshTokenBlock55!) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -377,7 +362,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
                   color: FlutterFlowTheme.of(context).primaryText,
                 ),
               ),
-              duration: Duration(milliseconds: 4000),
+              duration: const Duration(milliseconds: 4000),
               backgroundColor: FlutterFlowTheme.of(context).error,
             ),
           );
@@ -396,15 +381,15 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
       accessToken: FFAppState().accessToken,
       file: uploadedLocalFile2,
     );
-    if ((apiResultUploadVideo?.succeeded ?? true)) {
+    if ((apiResultUploadVideo.succeeded ?? true)) {
       uploadVideo = getJsonField(
-        (apiResultUploadVideo?.jsonBody ?? ''),
+        (apiResultUploadVideo.jsonBody ?? ''),
         r'''$.data.id''',
       ).toString().toString();
     } else {
       checkRefreshTokenBlockef = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultUploadVideo?.jsonBody ?? ''),
+        jsonErrors: (apiResultUploadVideo.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlockef!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -415,7 +400,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -433,15 +418,15 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
       accessToken: FFAppState().accessToken,
       file: uploadedLocalFile1,
     );
-    if ((apiResultUploadImage?.succeeded ?? true)) {
+    if ((apiResultUploadImage.succeeded ?? true)) {
       uploadImage = getJsonField(
-        (apiResultUploadImage?.jsonBody ?? ''),
+        (apiResultUploadImage.jsonBody ?? ''),
         r'''$.data.id''',
       ).toString().toString();
     } else {
       checkRefreshTokenBlockgh = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultUploadImage?.jsonBody ?? ''),
+        jsonErrors: (apiResultUploadImage.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlockgh!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -452,7 +437,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -470,15 +455,15 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
       accessToken: FFAppState().accessToken,
       file: uploadedLocalFile3,
     );
-    if ((apiResultUploadFileFile?.succeeded ?? true)) {
+    if ((apiResultUploadFileFile.succeeded ?? true)) {
       uploadFile = getJsonField(
-        (apiResultUploadFileFile?.jsonBody ?? ''),
+        (apiResultUploadFileFile.jsonBody ?? ''),
         r'''$.data.id''',
       ).toString().toString();
     } else {
       checkRefreshTokenBlockbn = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultUploadFileFile?.jsonBody ?? ''),
+        jsonErrors: (apiResultUploadFileFile.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlockbn!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -489,7 +474,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
