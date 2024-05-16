@@ -13,11 +13,11 @@ import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 Future notifiAddServer(String staffId) async {
   // Add your function code here!
-  OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
+  //OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
 
-  OneSignal.initialize("014e851d-ca32-4c5e-840e-236166738a06");
+  //OneSignal.initialize("014e851d-ca32-4c5e-840e-236166738a06");
 
-  OneSignal.Notifications.requestPermission(true);
+  //OneSignal.Notifications.requestPermission(true);
 
   OneSignal.login(staffId);
   print("StaffId: " + staffId);
