@@ -495,61 +495,6 @@ class _DoActionTypeUploadFileWidgetState
                                         }(functions.fileName(dataUploadItem)!)) ==
                                         'pdf') &&
                                     _model.isShowPdf)
-                                  FlutterFlowPdfViewer(
-                                    fileBytes: dataUploadItem.bytes,
-                                    height: 300.0,
-                                    horizontalScroll: false,
-                                  ),
-                                if (functions.checkFileLast((String tail) {
-                                      return tail.split('.').last;
-                                    }(widget.fileTail!)) ==
-                                    'img')
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      await Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.fade,
-                                          child: FlutterFlowExpandedImageView(
-                                            image: Image.memory(
-                                              dataUploadItem.bytes ??
-                                                  Uint8List.fromList([]),
-                                              fit: BoxFit.contain,
-                                            ),
-                                            allowRotation: false,
-                                            tag:
-                                                '${FFAppConstants.ApiBaseUrl}/assets/${dataItem.id}?access_token=${FFAppState().accessToken}',
-                                            useHeroAnimation: true,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    child: Hero(
-                                      tag:
-                                          '${FFAppConstants.ApiBaseUrl}/assets/${dataItem.id}?access_token=${FFAppState().accessToken}',
-                                      transitionOnUserGestures: true,
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Image.memory(
-                                          dataUploadItem.bytes ??
-                                              Uint8List.fromList([]),
-                                          width: double.infinity,
-                                          height: 300.0,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                if ((functions.checkFileLast((String tail) {
-                                          return tail.split('.').last;
-                                        }(functions.fileName(dataUploadItem)!)) ==
-                                        'pdf') &&
-                                    _model.isShowPdf)
                                   InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,

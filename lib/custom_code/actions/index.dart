@@ -5,3 +5,4 @@ export 'clear_info_user.dart' show clearInfoUser;
 export 'check_login_share_preferences.dart' show checkLoginSharePreferences;
 export 'get_re_token_user.dart' show getReTokenUser;
 export 'navigator_to_login.dart' show navigatorToLogin;
+export 'notifi_add_server.dart' show notifiAddServer;

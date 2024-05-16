@@ -2951,6 +2951,7 @@ class GroupAuthorsGroup {
     'Authorization': 'Bearer [accessToken]',
   };
   static ListAuthorsCall listAuthorsCall = ListAuthorsCall();
+  static GetOneAuthorsCall getOneAuthorsCall = GetOneAuthorsCall();
 }
 
 class ListAuthorsCall {
@@ -2974,6 +2975,32 @@ class ListAuthorsCall {
             "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count",
         'offset': offset,
         'limit': limit,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetOneAuthorsCall {
+  Future<ApiCallResponse> call({
+    String? id = '',
+    String? accessToken = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetOneAuthors',
+      apiUrl: '${GroupAuthorsGroup.baseUrl}/items/authors/$id',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {
+        'fields':
+            "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count",
       },
       returnBody: true,
       encodeBodyUtf8: false,

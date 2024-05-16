@@ -1,6 +1,8 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'author_profile_widget.dart' show AuthorProfileWidget;
 import 'package:flutter/material.dart';
 
@@ -58,5 +60,25 @@ class AuthorProfileModel extends FlutterFlowModel<AuthorProfileWidget> {
   }
 
   /// Action blocks.
-  Future getOneAuthor(BuildContext context) async {}
+  Future getOneAuthor(BuildContext context) async {
+    bool? getOneAuthor;
+    ApiCallResponse? apiResultGetOneAuthors;
+
+    getOneAuthor = await action_blocks.tokenReload(context);
+    if (getOneAuthor!) {
+      apiResultGetOneAuthors = await GroupAuthorsGroup.getOneAuthorsCall.call(
+        accessToken: FFAppState().accessToken,
+        id: getJsonField(
+          FFAppState().staffOrganization,
+          r'''$.authors[0]''',
+        ).toString().toString(),
+      );
+      if ((apiResultGetOneAuthors.succeeded ?? true)) {
+        author = AuthorsListStruct.maybeFromMap(getJsonField(
+          (apiResultGetOneAuthors.jsonBody ?? ''),
+          r'''$.data''',
+        ));
+      }
+    }
+  }
 }
