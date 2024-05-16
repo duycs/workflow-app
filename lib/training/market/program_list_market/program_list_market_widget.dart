@@ -261,6 +261,12 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                             onTap: () async {
                               context.pushNamed(
                                 'ProgramMarketDetail',
+                                queryParameters: {
+                                  'idProgram': serializeParam(
+                                    itemProgramsItem.id,
+                                    ParamType.String,
+                                  ),
+                                }.withoutNulls,
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: const TransitionInfo(
                                     hasTransition: true,

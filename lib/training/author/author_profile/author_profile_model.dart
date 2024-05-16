@@ -81,4 +81,15 @@ class AuthorProfileModel extends FlutterFlowModel<AuthorProfileWidget> {
       }
     }
   }
+
+  Future getListProgramAuthors(BuildContext context) async {
+    bool? getListProgramAuthors;
+    ApiCallResponse? apiResult3pc;
+
+    getListProgramAuthors = await action_blocks.tokenReload(context);
+    if (getListProgramAuthors!) {
+      apiResult3pc =
+          await GroupMarketLessonGroup.getListMarketLessonCall.call();
+    }
+  }
 }

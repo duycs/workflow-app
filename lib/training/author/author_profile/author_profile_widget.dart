@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'author_profile_model.dart';
 export 'author_profile_model.dart';
@@ -26,6 +27,11 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => AuthorProfileModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await _model.getOneAuthor(context);
+    });
 
     _model.tabBarController = TabController(
       vsync: this,
@@ -149,7 +155,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 0.0, 0.0),
                                         child: Text(
-                                          'Abernathy Reynolds',
+                                          _model.author!.alias,
                                           style: FlutterFlowTheme.of(context)
                                               .headlineSmall
                                               .override(
@@ -218,7 +224,13 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                   .fromSTEB(
                                                       0.0, 0.0, 28.0, 0.0),
                                               child: Text(
-                                                '565654 lượt bán',
+                                                '${formatNumber(
+                                                  _model.author?.orderCount,
+                                                  formatType:
+                                                      FormatType.decimal,
+                                                  decimalType:
+                                                      DecimalType.commaDecimal,
+                                                )} lượt bán',
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyMedium
