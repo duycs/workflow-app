@@ -1,16 +1,12 @@
-import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:provider/provider.dart';
 import 'filter_task_list_wait_model.dart';
 export 'filter_task_list_wait_model.dart';
 
@@ -22,14 +18,22 @@ class FilterTaskListWaitWidget extends StatefulWidget {
     this.dateStart,
     this.dateEnd,
     this.type,
+    this.created,
+    this.workflowName,
   });
 
   final String? filterSearch;
-  final Future Function(List<TaskListStruct>? data, String? dateStartCallback,
-      String? dateEndCallback, String? typeCallback)? callback;
+  final Future Function(
+      String? dateStartCallback,
+      String? dateEndCallback,
+      String? typeCallback,
+      String? createdCallback,
+      String? workflowNameCallback)? callback;
   final String? dateStart;
   final String? dateEnd;
   final String? type;
+  final String? created;
+  final String? workflowName;
 
   @override
   State<FilterTaskListWaitWidget> createState() =>
@@ -58,6 +62,12 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
         _model.type = widget.type!;
       });
     });
+
+    _model.createdTextController ??= TextEditingController();
+    _model.createdFocusNode ??= FocusNode();
+
+    _model.workflowNameTextController ??= TextEditingController();
+    _model.workflowNameFocusNode ??= FocusNode();
   }
 
   @override
@@ -69,8 +79,6 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(
@@ -414,6 +422,185 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                     ].divide(const SizedBox(height: 4.0)),
                   ),
                 ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Người tạo task:',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Nunito Sans',
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 0.0, 8.0, 0.0),
+                              child: TextFormField(
+                                controller: _model.createdTextController,
+                                focusNode: _model.createdFocusNode,
+                                autofocus: true,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  hintText: 'Vd: Chị Nụ',
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                                validator: _model.createdTextControllerValidator
+                                    .asValidator(context),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ].divide(const SizedBox(height: 4.0)),
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Tên quy trình:',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Nunito Sans',
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 0.0, 8.0, 0.0),
+                              child: TextFormField(
+                                controller: _model.workflowNameTextController,
+                                focusNode: _model.workflowNameFocusNode,
+                                autofocus: true,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  hintText: 'Vd: Chị Nụ',
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                                validator: _model
+                                    .workflowNameTextControllerValidator
+                                    .asValidator(context),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ].divide(const SizedBox(height: 4.0)),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
@@ -431,39 +618,14 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                               _model.dateEnd = '';
                               _model.type = '';
                             });
-                            _model.clearFilterToken =
-                                await action_blocks.tokenReload(context);
-                            if (_model.clearFilterToken!) {
-                              _model.apiResultClearFilter =
-                                  await TaskGroup.getListTaskCall.call(
-                                accessToken: FFAppState().accessToken,
-                                filter:
-                                    '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                  FFAppState().staffLogin,
-                                  r'''$.id''',
-                                ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-                                  FFAppState().staffLogin,
-                                  r'''$.organization_id''',
-                                ).toString()}\"}}}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"name\":{\"_icontains\":\"${widget.filterSearch}\"}}' : ' '}]}',
-                              );
-                              if ((_model.apiResultClearFilter?.succeeded ??
-                                  true)) {
-                                await widget.callback?.call(
-                                  TaskListDataStruct.maybeFromMap((_model
-                                              .apiResultClearFilter?.jsonBody ??
-                                          ''))
-                                      ?.data,
-                                  _model.dateStart,
-                                  _model.dateEnd,
-                                  ' ',
-                                );
-                                Navigator.pop(context);
-                              }
-                            } else {
-                              setState(() {});
-                            }
-
-                            setState(() {});
+                            await widget.callback?.call(
+                              _model.dateStart,
+                              _model.dateEnd,
+                              ' ',
+                              '',
+                              '',
+                            );
+                            Navigator.pop(context);
                           },
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(
@@ -495,69 +657,14 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            _model.filterToken =
-                                await action_blocks.tokenReload(context);
-                            if (_model.filterToken!) {
-                              _model.apiResultFilter =
-                                  await TaskGroup.getListTaskCall.call(
-                                accessToken: FFAppState().accessToken,
-                                filter: '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                  FFAppState().staffLogin,
-                                  r'''$.id''',
-                                ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-                                  FFAppState().staffLogin,
-                                  r'''$.organization_id''',
-                                ).toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"0\"}}${_model.dateStart != '' ? ',{\"date_created\":{\"_gte\":\"${dateTimeFormat(
-                                    'yyyy-MM-dd',
-                                    functions
-                                        .stringToDateTime(_model.dateStart),
-                                    locale: FFLocalizations.of(context)
-                                        .languageCode,
-                                  )}\"}}' : ' '}${_model.dateEnd != '' ? ((String var1) {
-                                    return DateTime.parse(var1)
-                                        .add(const Duration(days: 1))
-                                        .toString();
-                                  }(',{\"date_created\":{\"_lte\":\"${dateTimeFormat(
-                                    'yyyy-MM-dd',
-                                    functions.stringToDateTime(_model.dateEnd),
-                                    locale: FFLocalizations.of(context)
-                                        .languageCode,
-                                  )}\"}}')) : ' '}${_model.typeValue != null && _model.typeValue != '' ? ',{\"action_type\":{\"_eq\":\"${() {
-                                    if (_model.typeValue == 'Nhập văn bản') {
-                                      return 'submit_text';
-                                    } else if (_model.typeValue ==
-                                        'Upload File') {
-                                      return 'upload_file';
-                                    } else if (_model.typeValue == 'Chụp ảnh') {
-                                      return 'image';
-                                    } else if (_model.typeValue ==
-                                        'Check List Công việc') {
-                                      return 'to_do_list';
-                                    } else if (_model.typeValue ==
-                                        'Phê duyệt') {
-                                      return 'approve';
-                                    } else {
-                                      return ' ';
-                                    }
-                                  }()}\"}}' : ' '}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"name\":{\"_icontains\":\"${widget.filterSearch}\"}}' : ' '}]}',
-                              );
-                              if ((_model.apiResultFilter?.succeeded ?? true)) {
-                                await widget.callback?.call(
-                                  TaskListDataStruct.maybeFromMap(
-                                          (_model.apiResultFilter?.jsonBody ??
-                                              ''))
-                                      ?.data,
-                                  _model.dateStart,
-                                  _model.dateEnd,
-                                  _model.typeValue,
-                                );
-                                Navigator.pop(context);
-                              }
-                            } else {
-                              setState(() {});
-                            }
-
-                            setState(() {});
+                            await widget.callback?.call(
+                              _model.dateStart,
+                              _model.dateEnd,
+                              _model.typeValue,
+                              _model.createdTextController.text,
+                              _model.workflowNameTextController.text,
+                            );
+                            Navigator.pop(context);
                           },
                           text: 'Xác nhận',
                           options: FFButtonOptions(

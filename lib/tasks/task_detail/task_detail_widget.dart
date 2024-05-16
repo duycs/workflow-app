@@ -1384,6 +1384,108 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                               key: Key(
                                                   'Key9hl_${dataListIndex}_of_${dataList.length}'),
                                               image: dataListItem,
+                                              callback: (imageid) async {
+                                                setState(() {
+                                                  _model.responseData = null;
+                                                });
+                                                while (_model.loop <
+                                                    imageid!.length) {
+                                                  setState(() {
+                                                    _model
+                                                        .updateResponseDataStruct(
+                                                      (e) => e
+                                                        ..status = 'done'
+                                                        ..updateFiles(
+                                                          (e) => e.add(
+                                                              FileDataTypeStruct(
+                                                            directusFilesId:
+                                                                FileIDDataTypeStruct(
+                                                              id: imageid[
+                                                                  _model.loop],
+                                                            ),
+                                                          )),
+                                                        ),
+                                                    );
+                                                  });
+                                                  setState(() {
+                                                    _model.loop =
+                                                        _model.loop + 1;
+                                                  });
+                                                }
+                                                setState(() {
+                                                  _model.loop = 0;
+                                                });
+                                                _model.updateImageToken =
+                                                    await action_blocks
+                                                        .tokenReload(context);
+                                                if (_model.updateImageToken!) {
+                                                  _model.apiResultUpdateImage =
+                                                      await TaskGroup
+                                                          .updateOperationCall
+                                                          .call(
+                                                    accessToken: FFAppState()
+                                                        .accessToken,
+                                                    operationId: dataListItem
+                                                        .operations
+                                                        .first
+                                                        .operationsId
+                                                        .id,
+                                                    requestDataJson: _model
+                                                        .responseData
+                                                        ?.toMap(),
+                                                  );
+                                                  if ((_model
+                                                          .apiResultUpdateImage
+                                                          ?.succeeded ??
+                                                      true)) {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(
+                                                          'Update thành công',
+                                                          style: TextStyle(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                          ),
+                                                        ),
+                                                        duration: const Duration(
+                                                            milliseconds: 4000),
+                                                        backgroundColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondary,
+                                                      ),
+                                                    );
+                                                  } else {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(
+                                                          'Update thất bại',
+                                                          style: TextStyle(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                          ),
+                                                        ),
+                                                        duration: const Duration(
+                                                            milliseconds: 4000),
+                                                        backgroundColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                      ),
+                                                    );
+                                                  }
+                                                } else {
+                                                  setState(() {});
+                                                }
+
+                                                setState(() {});
+                                              },
                                             ),
                                           ),
                                         if (dataListItem.actionType ==

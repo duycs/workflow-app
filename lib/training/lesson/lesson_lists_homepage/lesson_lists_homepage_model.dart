@@ -248,13 +248,13 @@ class LessonListsHomepageModel
     apiResultListRow3 = await LessonGroup.employeeLessonListCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '},{\"_and\":[{\"lession_id\":{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}}},{\"lession_id\":{\"date_created\":{\"_lte\":\"${(String var1) {
+          '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '},{\"_and\":[{\"_and\":[{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}},{\"date_created\":{\"_lte\":\"${(String var1) {
         return DateTime.parse(var1).add(const Duration(days: 1)).toString();
       }(dateTimeFormat(
         'yyyy-MM-dd',
         getCurrentTimestamp,
         locale: FFLocalizations.of(context).languageCode,
-      ))}\"}}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
+      ))}\"}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]}]},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
     );
     if ((apiResultListRow3.succeeded ?? true)) {
       listLessonRow3 = EmployeeLessonListDataStruct.maybeFromMap(

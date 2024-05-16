@@ -17,9 +17,11 @@ class ProcedureDetailWidget extends StatefulWidget {
   const ProcedureDetailWidget({
     super.key,
     required this.workflowsId,
-  });
+    String? checkScroll,
+  }) : checkScroll = checkScroll ?? '0';
 
   final String? workflowsId;
+  final String checkScroll;
 
   @override
   State<ProcedureDetailWidget> createState() => _ProcedureDetailWidgetState();
@@ -200,6 +202,11 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
             ),
             onPressed: () async {
               context.pop();
+              if (widget.checkScroll == 'ProcedureList') {
+                setState(() {
+                  FFAppState().scrollCheck = 'ProcedureList';
+                });
+              }
             },
           ),
           title: Text(

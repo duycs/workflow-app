@@ -10,35 +10,27 @@ class StudyProgramListUserModel
     extends FlutterFlowModel<StudyProgramListUserWidget> {
   ///  Local state fields for this page.
 
-  List<StudyProgramListStruct> dataList = [];
-  void addToDataList(StudyProgramListStruct item) => dataList.add(item);
-  void removeFromDataList(StudyProgramListStruct item) => dataList.remove(item);
-  void removeAtIndexFromDataList(int index) => dataList.removeAt(index);
-  void insertAtIndexInDataList(int index, StudyProgramListStruct item) =>
-      dataList.insert(index, item);
-  void updateDataListAtIndex(
-          int index, Function(StudyProgramListStruct) updateFn) =>
-      dataList[index] = updateFn(dataList[index]);
+  List<StaffsProgramsListStruct> staffsProgramsList = [];
+  void addToStaffsProgramsList(StaffsProgramsListStruct item) =>
+      staffsProgramsList.add(item);
+  void removeFromStaffsProgramsList(StaffsProgramsListStruct item) =>
+      staffsProgramsList.remove(item);
+  void removeAtIndexFromStaffsProgramsList(int index) =>
+      staffsProgramsList.removeAt(index);
+  void insertAtIndexInStaffsProgramsList(
+          int index, StaffsProgramsListStruct item) =>
+      staffsProgramsList.insert(index, item);
+  void updateStaffsProgramsListAtIndex(
+          int index, Function(StaffsProgramsListStruct) updateFn) =>
+      staffsProgramsList[index] = updateFn(staffsProgramsList[index]);
 
-  MetaDataStruct? meta;
-  void updateMetaStruct(Function(MetaDataStruct) updateFn) =>
-      updateFn(meta ??= MetaDataStruct());
+  String? checkOpen = '';
 
-  bool isLoad = false;
+  String lessonName = '';
 
-  String? checkShow;
+  String dateStart = '';
 
-  String? checkStudyShow;
-
-  int loop = 0;
-
-  String nameSearch = '';
-
-  String dateEndSeach = '';
-
-  String lessonNameSeach = '';
-
-  String dateStartSeach = '';
+  String dateEnd = '';
 
   ///  State fields for stateful widgets in this page.
 
@@ -60,77 +52,32 @@ class StudyProgramListUserModel
   }
 
   /// Action blocks.
-  Future getLinkProgram(BuildContext context) async {
-    ApiCallResponse? apiResultStudyProgramList;
-    ApiCallResponse? apiResultGetDoTest2;
-    bool? checkRefreshTokenBlock11;
+  Future getStaffsProgramsList(BuildContext context) async {
+    ApiCallResponse? apiResultList;
     bool? checkRefreshTokenBlock;
 
-    apiResultStudyProgramList =
-        await StudyProgramGroup.studyProgramOneCall.call(
+    apiResultList = await StudyProgramGroup.staffsProgramsCall.call(
       accessToken: FFAppState().accessToken,
-      filter: '{\"_and\":[{}${(nameSearch != '') && (nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"$nameSearch\"}}' : '  '}${(lessonNameSeach != '') && (lessonNameSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"$lessonNameSeach\"}}}}' : '  '}${(dateStartSeach != '') && (dateStartSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"$dateStartSeach\"}}}}' : ' '}${(dateEndSeach != '') && (dateEndSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"${(String date) {
-          return DateTime.parse(date).add(const Duration(days: 1)).toString();
-        }(dateEndSeach)}\"}}}}' : ' '}${',{\"departments\":{\"departments_id\":{\"id\":{\"_eq\":\"${getJsonField(
+      filter: '{\"_and\":[ {\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
-        r'''$.department_id''',
-      ).toString().toString()}\"}}}}'}]}',
+        r'''$.organization_id''',
+      ).toString().toString()}\"}}},{\"staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffLogin,
+        r'''$.id''',
+      ).toString().toString()}\"}}}${(dateStart != '') && (dateStart != 'noData') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(dateStart != '') && (dateStart != 'noData') ? dateStart : ' '}${(dateStart != '') && (dateStart != 'noData') ? '\"}}' : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? ((String var1) {
+          return DateTime.parse(var1).add(const Duration(days: 1)).toString();
+        }(dateEnd)) : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? '\"}}' : ' '}${textFieldNameSearchTextController.text != '' ? ',{\"program_id\":{\"name\":{\"_icontains\":\"' : ' '}${textFieldNameSearchTextController.text != '' ? textFieldNameSearchTextController.text : ' '}${textFieldNameSearchTextController.text != '' ? '\"}}}' : ' '}${(lessonName != '') && (lessonName != 'noData') ? ',{\"program_id\":{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"' : ' '}${(lessonName != '') && (lessonName != 'noData') ? lessonName : ' '}${(lessonName != '') && (lessonName != 'noData') ? '\"}}}}}' : ' '},{\"program_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
     );
-    if ((apiResultStudyProgramList.succeeded ?? true)) {
-      dataList = StudyProgramListDataStruct.maybeFromMap(
-              (apiResultStudyProgramList.jsonBody ?? ''))!
+    if ((apiResultList.succeeded ?? true)) {
+      staffsProgramsList = StaffsProgramsListDataStruct.maybeFromMap(
+              (apiResultList.jsonBody ?? ''))!
           .data
           .toList()
-          .cast<StudyProgramListStruct>();
-      meta = StudyProgramListDataStruct.maybeFromMap(
-              (apiResultStudyProgramList.jsonBody ?? ''))
-          ?.meta;
-      while (loop < dataList.length) {
-        if (dataList[loop].tests.isNotEmpty) {
-          apiResultGetDoTest2 = await DoTestGroup.staffsTestsListCall.call(
-            accessToken: FFAppState().accessToken,
-            filter: '{\"_and\":[{\"staff_id\":{\"_eq\":\"${getJsonField(
-              FFAppState().staffLogin,
-              r'''$.id''',
-            ).toString().toString()}\"}},{\"test_id\":{\"_eq\":\"${dataList[loop].tests.first.testsId.id}\"}}]}',
-          );
-          if ((apiResultGetDoTest2.succeeded ?? true)) {
-            updateDataListAtIndex(
-              loop,
-              (e) => e
-                ..studioIdTest = StaffsTestsListDataStruct.maybeFromMap(
-                        (apiResultGetDoTest2?.jsonBody ?? ''))!
-                    .data
-                    .toList(),
-            );
-          } else {
-            checkRefreshTokenBlock11 = await action_blocks.checkRefreshToken(
-              context,
-              jsonErrors: (apiResultGetDoTest2.jsonBody ?? ''),
-            );
-            if (!checkRefreshTokenBlock11!) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    FFAppConstants.ErrorLoadData,
-                    style: TextStyle(
-                      color: FlutterFlowTheme.of(context).primaryText,
-                    ),
-                  ),
-                  duration: const Duration(milliseconds: 4000),
-                  backgroundColor: FlutterFlowTheme.of(context).error,
-                ),
-              );
-            }
-          }
-        }
-        loop = loop + 1;
-      }
-      loop = 0;
+          .cast<StaffsProgramsListStruct>();
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultStudyProgramList.jsonBody ?? ''),
+        jsonErrors: (apiResultList.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -145,9 +92,9 @@ class StudyProgramListUserModel
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await getStaffsProgramsList(context);
       }
     }
-
-    isLoad = true;
   }
 }

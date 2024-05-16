@@ -71,6 +71,53 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                 .cast<BranchListStruct>();
           });
         }
+        _model.listDeparment4Token = await action_blocks.tokenReload(context);
+        if (_model.listDeparment4Token!) {
+          _model.apiResultListDeparment4 =
+              await DepartmentGroup.getDepartmentListCall.call(
+            accessToken: FFAppState().accessToken,
+            filter: () {
+              if ((_model.branchValue == '1') &&
+                  (FFAppState().user.role ==
+                      '82073000-1ba2-43a4-a55c-459d17c23b68')) {
+                return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                  FFAppState().staffLogin,
+                  r'''$.organization_id''',
+                ).toString().toString()}\"}}}]}';
+              } else if (((_model.branchValue == '1') &&
+                      (FFAppState().user.role ==
+                          'a8d33527-375b-4599-ac70-6a3fcad1de39')) ||
+                  ((_model.branchValue != '1') &&
+                      (FFAppState().user.role ==
+                          'a8d33527-375b-4599-ac70-6a3fcad1de39'))) {
+                return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                  FFAppState().staffLogin,
+                  r'''$.branch_id''',
+                ).toString().toString()}\"}}}]}';
+              } else if ((_model.branchValue != '1') &&
+                  (FFAppState().user.role ==
+                      '82073000-1ba2-43a4-a55c-459d17c23b68')) {
+                return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branchValue}\"}}}]}';
+              } else {
+                return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                  FFAppState().staffLogin,
+                  r'''$.organization_id''',
+                ).toString().toString()}\"}}}]}';
+              }
+            }(),
+          );
+          if ((_model.apiResultListDeparment4?.succeeded ?? true)) {
+            setState(() {
+              _model.departmentList = DepartmentListDataStruct.maybeFromMap(
+                      (_model.apiResultListDeparment4?.jsonBody ?? ''))!
+                  .data
+                  .toList()
+                  .cast<DepartmentListStruct>();
+            });
+          }
+        } else {
+          setState(() {});
+        }
       } else {
         setState(() {});
       }
@@ -214,7 +261,8 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                         ),
                       ].divide(const SizedBox(height: 4.0)),
                     ),
-                    if ('1' == '2')
+                    if (FFAppState().user.role ==
+                        '82073000-1ba2-43a4-a55c-459d17c23b68')
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -232,7 +280,10 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                           FlutterFlowDropDown<String>(
                             controller: _model.branchValueController ??=
                                 FormFieldController<String>(
-                              _model.branchValue ??= '',
+                              _model.branchValue ??=
+                                  widget.branch != null && widget.branch != ''
+                                      ? widget.branch
+                                      : '1',
                             ),
                             options: List<String>.from(
                                 _model.branchList.map((e) => e.id).toList()),
@@ -240,10 +291,10 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                 _model.branchList.map((e) => e.name).toList(),
                             onChanged: (val) async {
                               setState(() => _model.branchValue = val);
-                              _model.listDeparment2Token =
+                              _model.listDeparment3Token =
                                   await action_blocks.tokenReload(context);
-                              if (_model.listDeparment2Token!) {
-                                _model.apiResultListDeparment2 =
+                              if (_model.listDeparment3Token!) {
+                                _model.apiResultListDeparment3 =
                                     await DepartmentGroup.getDepartmentListCall
                                         .call(
                                   accessToken: FFAppState().accessToken,
@@ -251,12 +302,12 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                       '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branchValue}\"}}}]}',
                                 );
                                 if ((_model
-                                        .apiResultListDeparment2?.succeeded ??
+                                        .apiResultListDeparment3?.succeeded ??
                                     true)) {
                                   setState(() {
                                     _model.departmentList =
                                         DepartmentListDataStruct.maybeFromMap(
-                                                (_model.apiResultListDeparment2
+                                                (_model.apiResultListDeparment3
                                                         ?.jsonBody ??
                                                     ''))!
                                             .data
@@ -312,7 +363,10 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                           ),
                         ].divide(const SizedBox(height: 4.0)),
                       ),
-                    if ('1' == '2')
+                    if ((FFAppState().user.role ==
+                            '82073000-1ba2-43a4-a55c-459d17c23b68') ||
+                        (FFAppState().user.role ==
+                            'a8d33527-375b-4599-ac70-6a3fcad1de39'))
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -329,7 +383,11 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                           FlutterFlowDropDown<String>(
                             controller: _model.departmentValueController ??=
                                 FormFieldController<String>(
-                              _model.departmentValue ??= '',
+                              _model.departmentValue ??=
+                                  widget.department != null &&
+                                          widget.department != ''
+                                      ? widget.department
+                                      : '1',
                             ),
                             options: List<String>.from(_model.departmentList
                                 .map((e) => e.id)
@@ -488,16 +546,16 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                   await StaffGroup.getStaffListCall.call(
                                 accessToken: FFAppState().accessToken,
                                 filter:
-                                    '{\"_and\":[${widget.filterSearch != null && widget.filterSearch != '' ? '{\"user_id\":{\"first_name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}${(_model.statusValue != null && _model.statusValue != '') && (widget.filterSearch != null && widget.filterSearch != '') ? ',' : ' '}${() {
+                                    '{\"_and\":[{}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}${() {
                                   if ((_model.statusValue != null &&
                                           _model.statusValue != '') &&
                                       (_model.statusValue == 'Hoạt động')) {
-                                    return '{\"status\":{\"_eq\":\"active\"}}';
+                                    return ',{\"status\":{\"_eq\":\"active\"}}';
                                   } else if ((_model.statusValue != null &&
                                           _model.statusValue != '') &&
                                       (_model.statusValue ==
                                           'Không hoạt động')) {
-                                    return '{\"status\":{\"_neq\":\"active\"}}';
+                                    return ',{\"status\":{\"_neq\":\"active\"}}';
                                   } else {
                                     return ' ';
                                   }
@@ -523,7 +581,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                   } else {
                                     return ' ';
                                   }
-                                }()}]}',
+                                }()}${_model.branchValue != '1' ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branchValue}\"}}}' : ' '}${_model.departmentValue != '1' ? ',{\"department_id\":{\"id\":{\"_eq\":\"${_model.departmentValue}\"}}}' : ' '}]}',
                               );
                               if ((_model.apiResultFilter?.succeeded ?? true)) {
                                 setState(() {
@@ -538,14 +596,8 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                 await widget.callback?.call(
                                   _model.list,
                                   _model.statusValue,
-                                  valueOrDefault<String>(
-                                    _model.departmentValue,
-                                    '1',
-                                  ),
-                                  valueOrDefault<String>(
-                                    _model.branchValue,
-                                    '1',
-                                  ),
+                                  _model.departmentValue,
+                                  _model.branchValue,
                                 );
                                 Navigator.pop(context);
                               } else {

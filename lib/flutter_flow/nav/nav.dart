@@ -96,6 +96,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'id',
               ParamType.String,
             ),
+            checkScroll: params.getParam(
+              'checkScroll',
+              ParamType.String,
+            ),
+            programId: params.getParam(
+              'programId',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -121,11 +129,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'LessonNote',
-          path: '/lessonNote',
-          builder: (context, params) => const LessonNoteWidget(),
-        ),
-        FFRoute(
           name: 'TestDetail',
           path: '/testDetail',
           builder: (context, params) => TestDetailWidget(
@@ -148,6 +151,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             goodScore: params.getParam(
               'goodScore',
               ParamType.int,
+            ),
+            checkScroll: params.getParam(
+              'checkScroll',
+              ParamType.String,
             ),
           ),
         ),
@@ -189,12 +196,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'StudyProgramList',
           path: '/studyProgramList',
-          builder: (context, params) => const StudyProgramListWidget(),
-        ),
-        FFRoute(
-          name: 'Tasks',
-          path: '/tasks',
-          builder: (context, params) => const TasksWidget(),
+          builder: (context, params) => StudyProgramListWidget(
+            checkpage: params.getParam(
+              'checkpage',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'TaoCongViecMoi_Nhap',
@@ -232,24 +239,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const ProdureStepDetailDraftWidget(),
         ),
         FFRoute(
-          name: 'Home09Dashboard',
-          path: '/home09Dashboard',
-          builder: (context, params) => const Home09DashboardWidget(),
-        ),
-        FFRoute(
-          name: 'QuanLyQuyTrinh-1',
-          path: '/quanLyQuyTrinh1',
-          builder: (context, params) => const QuanLyQuyTrinh1Widget(),
-        ),
-        FFRoute(
           name: 'ProcedureList',
           path: '/procedureList',
           builder: (context, params) => const ProcedureListWidget(),
-        ),
-        FFRoute(
-          name: 'Nhap1',
-          path: '/nhap1',
-          builder: (context, params) => const Nhap1Widget(),
         ),
         FFRoute(
           name: 'Profile',
@@ -314,7 +306,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'TestCreate',
           path: '/testCreate',
-          builder: (context, params) => const TestCreateWidget(),
+          builder: (context, params) => TestCreateWidget(
+            checkScroll: params.getParam(
+              'checkScroll',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'TrainingRankDetail',
@@ -337,7 +334,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'LessonCreate',
           path: '/lessonCreate',
-          builder: (context, params) => const LessonCreateWidget(),
+          builder: (context, params) => LessonCreateWidget(
+            checkScroll: params.getParam(
+              'checkScroll',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'TrainingRankUpdate',
@@ -423,9 +425,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const QuestionListWidget(),
         ),
         FFRoute(
-          name: 'StudyProgramListUser',
-          path: '/studyProgramListUser',
-          builder: (context, params) => const StudyProgramListUserWidget(),
+          name: 'StudyProgramListUserDraft',
+          path: '/studyProgramListUserDraft',
+          builder: (context, params) => const StudyProgramListUserDraftWidget(),
         ),
         FFRoute(
           name: 'LessonsList',
@@ -438,6 +440,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ProcedureCreateWidget(
             checkRouter: params.getParam(
               'checkRouter',
+              ParamType.String,
+            ),
+            checkScroll: params.getParam(
+              'checkScroll',
               ParamType.String,
             ),
           ),
@@ -472,6 +478,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'workflowsId',
               ParamType.String,
             ),
+            checkScroll: params.getParam(
+              'checkScroll',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -480,6 +490,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => LessonDetailWidget(
             idLesson: params.getParam(
               'idLesson',
+              ParamType.String,
+            ),
+            checkSrcoll: params.getParam(
+              'checkSrcoll',
               ParamType.String,
             ),
           ),
@@ -553,6 +567,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
               isList: true,
             ),
+            programs: params.getParam<ProgramStruct>(
+              'programs',
+              ParamType.DataStruct,
+              isList: true,
+              structBuilder: ProgramStruct.fromSerializableMap,
+            ),
           ),
         ),
         FFRoute(
@@ -565,11 +585,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               isList: true,
             ),
           ),
-        ),
-        FFRoute(
-          name: 'blogs',
-          path: '/blogs',
-          builder: (context, params) => const BlogsWidget(),
         ),
         FFRoute(
           name: 'BranchDetail',
@@ -685,6 +700,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'boPhan',
               ParamType.String,
             ),
+            checkScroll: params.getParam(
+              'checkScroll',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -788,6 +807,101 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'LessonLists_Homepage',
           path: '/lessonListsHomepage',
           builder: (context, params) => const LessonListsHomepageWidget(),
+        ),
+        FFRoute(
+          name: 'MarketPlaceDraft',
+          path: '/marketPlaceDraft',
+          builder: (context, params) => const MarketPlaceDraftWidget(),
+        ),
+        FFRoute(
+          name: 'MarketPlace',
+          path: '/marketPlace',
+          builder: (context, params) => const MarketPlaceWidget(),
+        ),
+        FFRoute(
+          name: 'ProgramListMarket',
+          path: '/programListMarket',
+          builder: (context, params) => ProgramListMarketWidget(
+            price: params.getParam(
+              'price',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'CategoryMarket',
+          path: '/categoryMarket',
+          builder: (context, params) => const CategoryMarketWidget(),
+        ),
+        FFRoute(
+          name: 'AuthorList',
+          path: '/authorList',
+          builder: (context, params) => const AuthorListWidget(),
+        ),
+        FFRoute(
+          name: 'StudyProgramRank',
+          path: '/studyProgramRank',
+          builder: (context, params) => const StudyProgramRankWidget(),
+        ),
+        FFRoute(
+          name: 'AuthorMarketProfile',
+          path: '/authorMarketProfile',
+          builder: (context, params) => AuthorMarketProfileWidget(
+            itemAuthors: params.getParam(
+              'itemAuthors',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: AuthorsListStruct.fromSerializableMap,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ProgramMarketDetail',
+          path: '/programMarketDetail',
+          builder: (context, params) => ProgramMarketDetailWidget(
+            idProgram: params.getParam(
+              'idProgram',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'AuthorProfile',
+          path: '/authorProfile',
+          builder: (context, params) => const AuthorProfileWidget(),
+        ),
+        FFRoute(
+          name: 'OrderList',
+          path: '/orderList',
+          builder: (context, params) => const OrderListWidget(),
+        ),
+        FFRoute(
+          name: 'StudyProgramListUser',
+          path: '/studyProgramListUser',
+          builder: (context, params) => const StudyProgramListUserWidget(),
+        ),
+        FFRoute(
+          name: 'Staffs_programs_lesson',
+          path: '/staffsProgramsLesson',
+          builder: (context, params) => StaffsProgramsLessonWidget(
+            checkScroll: params.getParam(
+              'checkScroll',
+              ParamType.String,
+            ),
+            programsId: params.getParam(
+              'programsId',
+              ParamType.String,
+            ),
+            lessionId: params.getParam(
+              'lessionId',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'Details43Receipt',
+          path: '/details43Receipt',
+          builder: (context, params) => const Details43ReceiptWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
@@ -975,4 +1089,14 @@ class RootPageContext {
         value: RootPageContext(true, errorRoute),
         child: child,
       );
+}
+
+extension GoRouterLocationExtension on GoRouter {
+  String getCurrentLocation() {
+    final RouteMatch lastMatch = routerDelegate.currentConfiguration.last;
+    final RouteMatchList matchList = lastMatch is ImperativeRouteMatch
+        ? lastMatch.matches
+        : routerDelegate.currentConfiguration;
+    return matchList.uri.toString();
+  }
 }

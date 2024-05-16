@@ -19,7 +19,12 @@ import 'test_create_model.dart';
 export 'test_create_model.dart';
 
 class TestCreateWidget extends StatefulWidget {
-  const TestCreateWidget({super.key});
+  const TestCreateWidget({
+    super.key,
+    String? checkScroll,
+  }) : checkScroll = checkScroll ?? '0';
+
+  final String checkScroll;
 
   @override
   State<TestCreateWidget> createState() => _TestCreateWidgetState();
@@ -81,6 +86,11 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
             ),
             onPressed: () async {
               context.pop();
+              if (widget.checkScroll == 'TestList') {
+                setState(() {
+                  FFAppState().scrollCheck = 'TestList';
+                });
+              }
             },
           ),
           title: Row(

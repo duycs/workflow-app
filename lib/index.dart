@@ -4,7 +4,6 @@ export '/training/lesson/lesson_list_homepage/lesson_list_homepage_widget.dart'
 export '/training/lesson/lesson_detail_home_page/lesson_detail_home_page_widget.dart'
     show LessonDetailHomePageWidget;
 export '/training/do_test/do_test/do_test_widget.dart' show DoTestWidget;
-export '/training/lesson_note/lesson_note_widget.dart' show LessonNoteWidget;
 export '/training/test/test_detail/test_detail_widget.dart'
     show TestDetailWidget;
 export '/profile/training_progress_user/training_progress_user_widget.dart'
@@ -22,10 +21,9 @@ export '/chi_tiet_tien_do_cong_viec/chi_tiet_tien_do_cong_viec_widget.dart'
     show ChiTietTienDoCongViecWidget;
 export '/training/study_program/study_program_list/study_program_list_widget.dart'
     show StudyProgramListWidget;
-export '/tasks/tasks_widget.dart' show TasksWidget;
 export '/tao_cong_viec_moi_nhap/tao_cong_viec_moi_nhap_widget.dart'
     show TaoCongViecMoiNhapWidget;
-export '/training/training_manage/training_manage_widget.dart'
+export '/produre_draft/training_manage/training_manage_widget.dart'
     show TrainingManageWidget;
 export '/produre_draft/personnal_draft/personnal_draft_widget.dart'
     show PersonnalDraftWidget;
@@ -36,13 +34,8 @@ export '/training_rank/training_rank_create/training_rank_create_widget.dart'
 export '/staff/staff_create/staff_create_widget.dart' show StaffCreateWidget;
 export '/produre_draft/produre_step_detail_draft/produre_step_detail_draft_widget.dart'
     show ProdureStepDetailDraftWidget;
-export '/home09_dashboard/home09_dashboard_widget.dart'
-    show Home09DashboardWidget;
-export '/quan_ly_quy_trinh_1/quan_ly_quy_trinh1_widget.dart'
-    show QuanLyQuyTrinh1Widget;
 export '/procedure/procedure_list/procedure_list_widget.dart'
     show ProcedureListWidget;
-export '/nhap1/nhap1_widget.dart' show Nhap1Widget;
 export '/profile/profile/profile_widget.dart' show ProfileWidget;
 export '/staff/personnel_list/personnel_list_widget.dart'
     show PersonnelListWidget;
@@ -83,8 +76,8 @@ export '/staff/staff_update/staff_update_widget.dart' show StaffUpdateWidget;
 export '/training/test/test_list/test_list_widget.dart' show TestListWidget;
 export '/training/question/question_list/question_list_widget.dart'
     show QuestionListWidget;
-export '/training/study_program/study_program_list_user/study_program_list_user_widget.dart'
-    show StudyProgramListUserWidget;
+export '/produre_draft/study_program_list_user_draft/study_program_list_user_draft_widget.dart'
+    show StudyProgramListUserDraftWidget;
 export '/training/lesson/lessons_list/lessons_list_widget.dart'
     show LessonsListWidget;
 export '/procedure/procedure_create/procedure_create_widget.dart'
@@ -107,7 +100,6 @@ export '/department/department_detail/department_detail_widget.dart'
     show DepartmentDetailWidget;
 export '/department/department_create/department_create_widget.dart'
     show DepartmentCreateWidget;
-export '/blogs/blogs_widget.dart' show BlogsWidget;
 export '/branch/branch_detail/branch_detail_widget.dart'
     show BranchDetailWidget;
 export '/tasks/task_list/task_list_widget.dart' show TaskListWidget;
@@ -142,7 +134,7 @@ export '/process_template/process_template_list/process_template_list_widget.dar
     show ProcessTemplateListWidget;
 export '/process_template/process_template_detail/process_template_detail_widget.dart'
     show ProcessTemplateDetailWidget;
-export '/training/lesson/procedure_published_list_copy2/procedure_published_list_copy2_widget.dart'
+export '/produre_draft/procedure_published_list_copy2/procedure_published_list_copy2_widget.dart'
     show ProcedurePublishedListCopy2Widget;
 export '/procedure_publishing/work_result_list/work_result_list_widget.dart'
     show WorkResultListWidget;
@@ -152,3 +144,28 @@ export '/operation/operation_list/operation_list_widget.dart'
     show OperationListWidget;
 export '/training/lesson/lesson_lists_homepage/lesson_lists_homepage_widget.dart'
     show LessonListsHomepageWidget;
+export '/produre_draft/market_place_draft/market_place_draft_widget.dart'
+    show MarketPlaceDraftWidget;
+export '/training/market/market_place/market_place_widget.dart'
+    show MarketPlaceWidget;
+export '/training/market/program_list_market/program_list_market_widget.dart'
+    show ProgramListMarketWidget;
+export '/training/market/category_market/category_market_widget.dart'
+    show CategoryMarketWidget;
+export '/training/author/author_list/author_list_widget.dart'
+    show AuthorListWidget;
+export '/training/lesson/study_program_rank/study_program_rank_widget.dart'
+    show StudyProgramRankWidget;
+export '/training/author/author_market_profile/author_market_profile_widget.dart'
+    show AuthorMarketProfileWidget;
+export '/training/market/program_market_detail/program_market_detail_widget.dart'
+    show ProgramMarketDetailWidget;
+export '/training/author/author_profile/author_profile_widget.dart'
+    show AuthorProfileWidget;
+export '/training/order/order_list/order_list_widget.dart' show OrderListWidget;
+export '/training/study_program/study_program_list_user/study_program_list_user_widget.dart'
+    show StudyProgramListUserWidget;
+export '/training/lesson/staffs_programs_lesson/staffs_programs_lesson_widget.dart'
+    show StaffsProgramsLessonWidget;
+export '/details43_receipt/details43_receipt_widget.dart'
+    show Details43ReceiptWidget;

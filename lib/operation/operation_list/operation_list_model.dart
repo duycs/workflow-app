@@ -5,6 +5,7 @@ import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import 'operation_list_widget.dart' show OperationListWidget;
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class OperationListModel extends FlutterFlowModel<OperationListWidget> {
   ///  Local state fields for this page.
@@ -42,6 +43,10 @@ class OperationListModel extends FlutterFlowModel<OperationListWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in OperationList widget.
+  bool? tokenReloadOperationListList;
+  // Stores action output result for [Action Block - tokenReload] action in OperationList widget.
+  bool? tokenReloadOperationListCheck;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
@@ -50,6 +55,21 @@ class OperationListModel extends FlutterFlowModel<OperationListWidget> {
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
+
+  // State field(s) for ListViewOne widget.
+
+  PagingController<ApiPagingParams, dynamic>? listViewOnePagingController;
+  Function(ApiPagingParams nextPageMarker)? listViewOneApiCall;
+
+  // State field(s) for ListViewTwo widget.
+
+  PagingController<ApiPagingParams, dynamic>? listViewTwoPagingController;
+  Function(ApiPagingParams nextPageMarker)? listViewTwoApiCall;
+
+  // State field(s) for ListViewThree widget.
+
+  PagingController<ApiPagingParams, dynamic>? listViewThreePagingController;
+  Function(ApiPagingParams nextPageMarker)? listViewThreeApiCall;
 
   @override
   void initState(BuildContext context) {}
@@ -61,6 +81,9 @@ class OperationListModel extends FlutterFlowModel<OperationListWidget> {
     textController?.dispose();
 
     tabBarController?.dispose();
+    listViewOnePagingController?.dispose();
+    listViewTwoPagingController?.dispose();
+    listViewThreePagingController?.dispose();
   }
 
   /// Action blocks.
@@ -92,4 +115,179 @@ class OperationListModel extends FlutterFlowModel<OperationListWidget> {
       return;
     }
   }
+
+  /// Additional helper methods.
+  Future waitForOnePageForListViewOne({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete =
+          (listViewOnePagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForOnePageForListViewTwo({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete =
+          (listViewTwoPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForOnePageForListViewThree({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete =
+          (listViewThreePagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  PagingController<ApiPagingParams, dynamic> setListViewOneController(
+    Function(ApiPagingParams) apiCall,
+  ) {
+    listViewOneApiCall = apiCall;
+    return listViewOnePagingController ??=
+        _createListViewOneController(apiCall);
+  }
+
+  PagingController<ApiPagingParams, dynamic> _createListViewOneController(
+    Function(ApiPagingParams) query,
+  ) {
+    final controller = PagingController<ApiPagingParams, dynamic>(
+      firstPageKey: ApiPagingParams(
+        nextPageNumber: 0,
+        numItems: 0,
+        lastResponse: null,
+      ),
+    );
+    return controller..addPageRequestListener(listViewOneOperationListPage);
+  }
+
+  void listViewOneOperationListPage(ApiPagingParams nextPageMarker) =>
+      listViewOneApiCall!(nextPageMarker)
+          .then((listViewOneOperationListResponse) {
+        final pageItems = (OperationsListDataStruct.maybeFromMap(
+                        listViewOneOperationListResponse.jsonBody)!
+                    .data ??
+                [])
+            .toList() as List;
+        final newNumItems = nextPageMarker.numItems + pageItems.length;
+        listViewOnePagingController?.appendPage(
+          pageItems,
+          (pageItems.isNotEmpty)
+              ? ApiPagingParams(
+                  nextPageNumber: nextPageMarker.nextPageNumber + 1,
+                  numItems: newNumItems,
+                  lastResponse: listViewOneOperationListResponse,
+                )
+              : null,
+        );
+      });
+
+  PagingController<ApiPagingParams, dynamic> setListViewTwoController(
+    Function(ApiPagingParams) apiCall,
+  ) {
+    listViewTwoApiCall = apiCall;
+    return listViewTwoPagingController ??=
+        _createListViewTwoController(apiCall);
+  }
+
+  PagingController<ApiPagingParams, dynamic> _createListViewTwoController(
+    Function(ApiPagingParams) query,
+  ) {
+    final controller = PagingController<ApiPagingParams, dynamic>(
+      firstPageKey: ApiPagingParams(
+        nextPageNumber: 0,
+        numItems: 0,
+        lastResponse: null,
+      ),
+    );
+    return controller..addPageRequestListener(listViewTwoOperationListPage);
+  }
+
+  void listViewTwoOperationListPage(ApiPagingParams nextPageMarker) =>
+      listViewTwoApiCall!(nextPageMarker)
+          .then((listViewTwoOperationListResponse) {
+        final pageItems = (OperationsListDataStruct.maybeFromMap(
+                        listViewTwoOperationListResponse.jsonBody)!
+                    .data ??
+                [])
+            .toList() as List;
+        final newNumItems = nextPageMarker.numItems + pageItems.length;
+        listViewTwoPagingController?.appendPage(
+          pageItems,
+          (pageItems.isNotEmpty)
+              ? ApiPagingParams(
+                  nextPageNumber: nextPageMarker.nextPageNumber + 1,
+                  numItems: newNumItems,
+                  lastResponse: listViewTwoOperationListResponse,
+                )
+              : null,
+        );
+      });
+
+  PagingController<ApiPagingParams, dynamic> setListViewThreeController(
+    Function(ApiPagingParams) apiCall,
+  ) {
+    listViewThreeApiCall = apiCall;
+    return listViewThreePagingController ??=
+        _createListViewThreeController(apiCall);
+  }
+
+  PagingController<ApiPagingParams, dynamic> _createListViewThreeController(
+    Function(ApiPagingParams) query,
+  ) {
+    final controller = PagingController<ApiPagingParams, dynamic>(
+      firstPageKey: ApiPagingParams(
+        nextPageNumber: 0,
+        numItems: 0,
+        lastResponse: null,
+      ),
+    );
+    return controller..addPageRequestListener(listViewThreeOperationListPage);
+  }
+
+  void listViewThreeOperationListPage(ApiPagingParams nextPageMarker) =>
+      listViewThreeApiCall!(nextPageMarker)
+          .then((listViewThreeOperationListResponse) {
+        final pageItems = (OperationsListDataStruct.maybeFromMap(
+                        listViewThreeOperationListResponse.jsonBody)!
+                    .data ??
+                [])
+            .toList() as List;
+        final newNumItems = nextPageMarker.numItems + pageItems.length;
+        listViewThreePagingController?.appendPage(
+          pageItems,
+          (pageItems.isNotEmpty)
+              ? ApiPagingParams(
+                  nextPageNumber: nextPageMarker.nextPageNumber + 1,
+                  numItems: newNumItems,
+                  lastResponse: listViewThreeOperationListResponse,
+                )
+              : null,
+        );
+      });
 }

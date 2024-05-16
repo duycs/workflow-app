@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -14,7 +15,12 @@ import 'lesson_create_model.dart';
 export 'lesson_create_model.dart';
 
 class LessonCreateWidget extends StatefulWidget {
-  const LessonCreateWidget({super.key});
+  const LessonCreateWidget({
+    super.key,
+    String? checkScroll,
+  }) : checkScroll = checkScroll ?? '0';
+
+  final String checkScroll;
 
   @override
   State<LessonCreateWidget> createState() => _LessonCreateWidgetState();
@@ -44,6 +50,9 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
 
     _model.durationHoursTextController ??= TextEditingController();
     _model.durationHoursFocusNode ??= FocusNode();
+
+    _model.estimateInDayTextController ??= TextEditingController();
+    _model.estimateInDayFocusNode ??= FocusNode();
   }
 
   @override
@@ -77,6 +86,11 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
             ),
             onPressed: () async {
               context.pop();
+              if (widget.checkScroll == 'LessonsList') {
+                FFAppState().update(() {
+                  FFAppState().scrollCheck = 'LessonsList';
+                });
+              }
             },
           ),
           title: Text(
@@ -442,6 +456,159 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                               ),
                             ].divide(const SizedBox(width: 4.0)),
                           ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 8.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                flex: 2,
+                                child: Text(
+                                  'Thời hạn học bài: ',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 8.0, 0.0),
+                                  child: TextFormField(
+                                    controller:
+                                        _model.estimateInDayTextController,
+                                    focusNode: _model.estimateInDayFocusNode,
+                                    onChanged: (_) => EasyDebounce.debounce(
+                                      '_model.estimateInDayTextController',
+                                      const Duration(milliseconds: 2000),
+                                      () async {
+                                        setState(() {
+                                          _model.checkTime = int.tryParse(_model
+                                              .estimateInDayTextController
+                                              .text);
+                                        });
+                                      },
+                                    ),
+                                    autofocus: false,
+                                    textInputAction: TextInputAction.next,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(0.0),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(0.0),
+                                      ),
+                                      errorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(0.0),
+                                      ),
+                                      focusedErrorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(0.0),
+                                      ),
+                                      contentPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              8.0, 0.0, 8.0, 0.0),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    keyboardType: TextInputType.number,
+                                    validator: _model
+                                        .estimateInDayTextControllerValidator
+                                        .asValidator(context),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 3,
+                                child: Text(
+                                  'ngày',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ),
+                            ].divide(const SizedBox(width: 4.0)),
+                          ),
+                        ),
+                        if (((_model.estimateInDayTextController.text !=
+                                        '') &&
+                                (int.parse(_model
+                                        .estimateInDayTextController.text) <
+                                    1)) &&
+                            ((_model.checkTime != null) &&
+                                (_model.checkTime! < 1)))
+                          Text(
+                            'Thời hạn học bài phải lớn hơn 0',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  color: FlutterFlowTheme.of(context).error,
+                                  fontSize: 12.0,
+                                  letterSpacing: 0.0,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                          ),
+                        Text(
+                          '*Không bắt buộc',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                    fontStyle: FontStyle.italic,
+                                  ),
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -999,8 +1166,31 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                         (_model.descriptionTextController.text != '') &&
                         (_model.durationHoursTextController.text != '') &&
                         (_model.uploadImage != '')) {
-                      await _model.createLesson(context);
-                      setState(() {});
+                      if (_model.estimateInDayTextController.text != '') {
+                        if (int.parse(_model.estimateInDayTextController.text) >
+                            0) {
+                          await _model.createLesson(context);
+                          setState(() {});
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Thời hạn học bài phải lớn hơn 0!',
+                                style: TextStyle(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                ),
+                              ),
+                              duration: const Duration(milliseconds: 4000),
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).error,
+                            ),
+                          );
+                        }
+                      } else {
+                        await _model.createLesson(context);
+                        setState(() {});
+                      }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

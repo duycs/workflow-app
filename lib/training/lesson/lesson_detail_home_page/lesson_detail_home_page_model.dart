@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'lesson_detail_home_page_widget.dart' show LessonDetailHomePageWidget;
 import 'package:flutter/material.dart';
 
@@ -50,14 +51,6 @@ class LessonDetailHomePageModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (DeleteHeart)] action in Icon widget.
-  ApiCallResponse? apiResultDeleteHeart;
-  // Stores action output result for [Backend Call - API (postHeart)] action in Icon widget.
-  ApiCallResponse? apiResultoan;
-  // State field(s) for text widget.
-  FocusNode? textFocusNode;
-  TextEditingController? textTextController;
-  String? Function(BuildContext, String?)? textTextControllerValidator;
   // State field(s) for comments widget.
   FocusNode? commentsFocusNode;
   TextEditingController? commentsTextController;
@@ -66,6 +59,10 @@ class LessonDetailHomePageModel
   ApiCallResponse? apiResultUpdateStatus;
   // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
   bool? checkRefreshTokenBlockabcd;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? updateStatusStaffProgram;
+  // Stores action output result for [Backend Call - API (UpdateStaffProgramStatus)] action in Button widget.
+  ApiCallResponse? apiResultUpdateStaffProgramStatus;
 
   @override
   void initState(BuildContext context) {}
@@ -73,9 +70,6 @@ class LessonDetailHomePageModel
   @override
   void dispose() {
     unfocusNode.dispose();
-    textFocusNode?.dispose();
-    textTextController?.dispose();
-
     commentsFocusNode?.dispose();
     commentsTextController?.dispose();
   }
@@ -230,5 +224,91 @@ class LessonDetailHomePageModel
         await getHeart(context);
       }
     }
+  }
+
+  Future deleteHeart(BuildContext context) async {
+    ApiCallResponse? apiResultDeleteHeart;
+    bool? checkRefreshTokenBlock55;
+
+    apiResultDeleteHeart = await LessonGroup.deleteHeartCall.call(
+      accessToken: FFAppState().accessToken,
+      idHeart: functions.stringToInt(getJsonField(
+        listStaffIdHeart
+            .where((e) =>
+                getJsonField(
+                  e,
+                  r'''$.reacts_id.staff_id''',
+                ).toString().toString() ==
+                FFAppState().staffid)
+            .toList()
+            .first,
+        r'''$.id''',
+      ).toString().toString()),
+    );
+    if (!(apiResultDeleteHeart.succeeded ?? true)) {
+      checkRefreshTokenBlock55 = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultDeleteHeart.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock55!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await deleteHeart(context);
+      }
+
+      return;
+    }
+    await getHeart(context);
+  }
+
+  Future postHeart(BuildContext context) async {
+    ApiCallResponse? apiResultPostHeart;
+    bool? checkRefreshTokenBlock66;
+
+    apiResultPostHeart = await LessonGroup.postHeartCall.call(
+      accessToken: FFAppState().accessToken,
+      staffId: FFAppState().staffid,
+      status: 'love',
+      lessionId: getJsonField(
+        widget.listItems,
+        r'''$.id''',
+      ).toString().toString(),
+    );
+    if (!(apiResultPostHeart.succeeded ?? true)) {
+      checkRefreshTokenBlock66 = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultPostHeart.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock66!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await postHeart(context);
+      }
+
+      return;
+    }
+    await getHeart(context);
   }
 }

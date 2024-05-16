@@ -1,24 +1,32 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
+import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/training/market/add_program_market/add_program_market_widget.dart';
 import '/training/study_program/filter_study_program/filter_study_program_widget.dart';
 import '/training/study_program/study_program_create/study_program_create_widget.dart';
 import '/training/study_program/study_program_edit/study_program_edit_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:shake/shake.dart';
 import 'study_program_list_model.dart';
 export 'study_program_list_model.dart';
 
 class StudyProgramListWidget extends StatefulWidget {
-  const StudyProgramListWidget({super.key});
+  const StudyProgramListWidget({
+    super.key,
+    this.checkpage,
+  });
+
+  final String? checkpage;
 
   @override
   State<StudyProgramListWidget> createState() => _StudyProgramListWidgetState();
@@ -28,6 +36,8 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
   late StudyProgramListModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  late ShakeDetector shakeDetector;
+  var shakeActionInProgress = false;
 
   @override
   void initState() {
@@ -36,52 +46,46 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {});
+      setState(() {
+        FFAppState().scrollCheck = 'StudyProgramList';
+      });
       _model.tokenReloadStudyProgramList =
           await action_blocks.tokenReload(context);
       if (_model.tokenReloadStudyProgramList!) {
-        _model.apiResultStudyProgramList =
-            await StudyProgramGroup.studyProgramListCall.call(
-          accessToken: FFAppState().accessToken,
-          filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
-            FFAppState().staffLogin,
-            r'''$.organization_id''',
-          ).toString().toString()}\"}}]}',
-        );
-        if ((_model.apiResultStudyProgramList?.succeeded ?? true)) {
-          setState(() {
-            _model.dataList = StudyProgramListDataStruct.maybeFromMap(
-                    (_model.apiResultStudyProgramList?.jsonBody ?? ''))!
-                .data
-                .toList()
-                .cast<StudyProgramListStruct>();
-            _model.meta = StudyProgramListDataStruct.maybeFromMap(
-                    (_model.apiResultStudyProgramList?.jsonBody ?? ''))
-                ?.meta;
-          });
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'Lỗi tải dữ liệu!',
-                style: TextStyle(
-                  color: FlutterFlowTheme.of(context).primaryText,
-                ),
-              ),
-              duration: const Duration(milliseconds: 4000),
-              backgroundColor: FlutterFlowTheme.of(context).error,
-            ),
-          );
-        }
-
-        setState(() {
-          _model.isLoad = true;
-        });
-      } else {
         setState(() {});
+      } else {
+        FFAppState().update(() {});
         return;
       }
+
+      while (FFAppState().scrollCheck == 'StudyProgramList') {
+        _model.tokenReloadStudyProgramListCheck =
+            await action_blocks.tokenReload(context);
+        if (_model.tokenReloadStudyProgramListCheck == true) {
+          await Future.delayed(const Duration(milliseconds: 12000));
+        } else {
+          break;
+        }
+      }
     });
+
+    // On shake action.
+    shakeDetector = ShakeDetector.autoStart(
+      onPhoneShake: () async {
+        if (shakeActionInProgress) {
+          return;
+        }
+        shakeActionInProgress = true;
+        try {
+          setState(() {
+            FFAppState().scrollCheck = '';
+          });
+        } finally {
+          shakeActionInProgress = false;
+        }
+      },
+      shakeThresholdGravity: 1.5,
+    );
 
     _model.textFieldNameSearchTextController ??= TextEditingController();
     _model.textFieldNameSearchFocusNode ??= FocusNode();
@@ -91,6 +95,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
   void dispose() {
     _model.dispose();
 
+    shakeDetector.stopListening();
     super.dispose();
   }
 
@@ -105,50 +110,54 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        floatingActionButton: Builder(
-          builder: (context) => FloatingActionButton(
-            onPressed: () async {
-              await showDialog(
-                context: context,
-                builder: (dialogContext) {
-                  return Dialog(
-                    elevation: 0,
-                    insetPadding: EdgeInsets.zero,
-                    backgroundColor: Colors.transparent,
-                    alignment: const AlignmentDirectional(0.0, 1.0)
-                        .resolve(Directionality.of(context)),
-                    child: GestureDetector(
-                      onTap: () => _model.unfocusNode.canRequestFocus
-                          ? FocusScope.of(context)
-                              .requestFocus(_model.unfocusNode)
-                          : FocusScope.of(context).unfocus(),
-                      child: StudyProgramCreateWidget(
-                        callBackList: () async {
-                          setState(() {
-                            _model.checkShow = null;
-                            _model.dataList = [];
-                            _model.meta = null;
-                            _model.isLoad = false;
-                            _model.nameSearch = '';
-                            _model.dateEndSearch = '';
-                            _model.dateStartSearch = '';
-                            _model.lessionsNameSearch = '';
-                          });
-                          await _model.getListProgram(context);
-                          setState(() {});
-                        },
+        floatingActionButton: Visibility(
+          visible: widget.checkpage == 'profile',
+          child: Builder(
+            builder: (context) => FloatingActionButton(
+              onPressed: () async {
+                await showDialog(
+                  context: context,
+                  builder: (dialogContext) {
+                    return Dialog(
+                      elevation: 0,
+                      insetPadding: EdgeInsets.zero,
+                      backgroundColor: Colors.transparent,
+                      alignment: const AlignmentDirectional(0.0, 1.0)
+                          .resolve(Directionality.of(context)),
+                      child: GestureDetector(
+                        onTap: () => _model.unfocusNode.canRequestFocus
+                            ? FocusScope.of(context)
+                                .requestFocus(_model.unfocusNode)
+                            : FocusScope.of(context).unfocus(),
+                        child: StudyProgramCreateWidget(
+                          callBackList: () async {
+                            setState(() {
+                              _model.checkShow = null;
+                              _model.dataList = [];
+                              _model.meta = null;
+                              _model.isLoad = false;
+                              _model.nameSearch = '';
+                              _model.dateEndSearch = '';
+                              _model.dateStartSearch = '';
+                              _model.lessionsNameSearch = '';
+                            });
+                            setState(() =>
+                                _model.listViewPagingController1?.refresh());
+                            setState(() {});
+                          },
+                        ),
                       ),
-                    ),
-                  );
-                },
-              ).then((value) => setState(() {}));
-            },
-            backgroundColor: FlutterFlowTheme.of(context).primary,
-            elevation: 8.0,
-            child: Icon(
-              Icons.add,
-              color: FlutterFlowTheme.of(context).info,
-              size: 24.0,
+                    );
+                  },
+                ).then((value) => setState(() {}));
+              },
+              backgroundColor: FlutterFlowTheme.of(context).primary,
+              elevation: 8.0,
+              child: Icon(
+                Icons.add,
+                color: FlutterFlowTheme.of(context).info,
+                size: 24.0,
+              ),
             ),
           ),
         ),
@@ -166,16 +175,33 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pushNamed(
-                'Profile',
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                  ),
-                },
-              );
+              if (widget.checkpage == 'profile') {
+                context.pushNamed(
+                  'Profile',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: const TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 0),
+                    ),
+                  },
+                );
+
+                setState(() {
+                  FFAppState().scrollCheck = '';
+                });
+              } else {
+                context.pushNamed(
+                  'AuthorProfile',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: const TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 0),
+                    ),
+                  },
+                );
+              }
             },
           ),
           title: Row(
@@ -199,118 +225,187 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
         ),
         body: Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
-          child: SingleChildScrollView(
-            primary: false,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(12.0, 24.0, 12.0, 12.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed(
-                                    'LessonsList',
-                                    extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
-                                        hasTransition: true,
-                                        transitionType: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                      ),
-                                    },
-                                  );
-                                },
-                                child: Container(
-                                  width: 100.0,
-                                  height: 40.0,
-                                  decoration: BoxDecoration(
-                                    color:
-                                        FlutterFlowTheme.of(context).secondary,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Text(
-                                    'Danh sách bài học',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (widget.checkpage == 'profile')
+                Padding(
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed(
+                              'LessonsList',
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: const TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 0),
                                 ),
-                              ),
+                              },
+                            );
+
+                            setState(() {
+                              FFAppState().scrollCheck = '';
+                            });
+                          },
+                          child: Container(
+                            width: 100.0,
+                            height: 40.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).secondary,
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
-                            Expanded(
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed(
-                                    'TestList',
-                                    extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
-                                        hasTransition: true,
-                                        transitionType: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                      ),
-                                    },
-                                  );
-                                },
-                                child: Container(
-                                  width: 100.0,
-                                  height: 40.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    borderRadius: BorderRadius.circular(8.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: Text(
+                              'Danh sách bài học',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    letterSpacing: 0.0,
                                   ),
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Text(
-                                    'Danh sách bài thi',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
-                              ),
                             ),
-                          ].divide(const SizedBox(width: 16.0)),
+                          ),
                         ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: TextFormField(
-                                controller:
-                                    _model.textFieldNameSearchTextController,
-                                focusNode: _model.textFieldNameSearchFocusNode,
-                                onChanged: (_) => EasyDebounce.debounce(
-                                  '_model.textFieldNameSearchTextController',
-                                  const Duration(milliseconds: 500),
-                                  () async {
+                      ),
+                      Expanded(
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed(
+                              'TestList',
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: const TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 0),
+                                ),
+                              },
+                            );
+
+                            setState(() {
+                              FFAppState().scrollCheck = '';
+                            });
+                          },
+                          child: Container(
+                            width: 100.0,
+                            height: 40.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).error,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: Text(
+                              'Danh sách bài thi',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ].divide(const SizedBox(width: 16.0)),
+                  ),
+                ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 12.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        controller: _model.textFieldNameSearchTextController,
+                        focusNode: _model.textFieldNameSearchFocusNode,
+                        onChanged: (_) => EasyDebounce.debounce(
+                          '_model.textFieldNameSearchTextController',
+                          const Duration(milliseconds: 500),
+                          () async {
+                            setState(() {
+                              _model.nameSearch =
+                                  _model.textFieldNameSearchTextController.text;
+                              _model.isLoad = false;
+                              _model.dataList = [];
+                            });
+                            setState(() =>
+                                _model.listViewPagingController1?.refresh());
+                            setState(() {});
+                          },
+                        ),
+                        autofocus: false,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          labelText: 'Tìm kiếm tên chương trình',
+                          labelStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                          hintStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).alternate,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).primary,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          filled: true,
+                          fillColor:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 0.0, 0.0),
+                          prefixIcon: const Icon(
+                            Icons.search_sharp,
+                          ),
+                          suffixIcon: _model.textFieldNameSearchTextController!
+                                  .text.isNotEmpty
+                              ? InkWell(
+                                  onTap: () async {
+                                    _model.textFieldNameSearchTextController
+                                        ?.clear();
                                     setState(() {
                                       _model.nameSearch = _model
                                           .textFieldNameSearchTextController
@@ -318,1239 +413,1467 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                       _model.isLoad = false;
                                       _model.dataList = [];
                                     });
-                                    await _model.getListProgram(context);
+                                    setState(() => _model
+                                        .listViewPagingController1
+                                        ?.refresh());
                                     setState(() {});
                                     setState(() {});
                                   },
-                                ),
-                                autofocus: false,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'Tìm kiếm tên chương trình',
-                                  labelStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  hintStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  filled: true,
-                                  fillColor: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  contentPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
-                                          20.0, 0.0, 0.0, 0.0),
-                                  prefixIcon: const Icon(
-                                    Icons.search_sharp,
-                                  ),
-                                  suffixIcon: _model
-                                          .textFieldNameSearchTextController!
-                                          .text
-                                          .isNotEmpty
-                                      ? InkWell(
-                                          onTap: () async {
-                                            _model
-                                                .textFieldNameSearchTextController
-                                                ?.clear();
-                                            setState(() {
-                                              _model.nameSearch = _model
-                                                  .textFieldNameSearchTextController
-                                                  .text;
-                                              _model.isLoad = false;
-                                              _model.dataList = [];
-                                            });
-                                            await _model
-                                                .getListProgram(context);
-                                            setState(() {});
-                                            setState(() {});
-                                            setState(() {});
-                                          },
-                                          child: Icon(
-                                            Icons.clear,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            size: 16.0,
-                                          ),
-                                        )
-                                      : null,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      fontSize: 14.0,
-                                      letterSpacing: 0.0,
-                                    ),
-                                cursorColor:
-                                    FlutterFlowTheme.of(context).primary,
-                                validator: _model
-                                    .textFieldNameSearchTextControllerValidator
-                                    .asValidator(context),
-                              ),
-                            ),
-                            Builder(
-                              builder: (context) => Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    10.0, 0.0, 0.0, 0.0),
-                                child: FlutterFlowIconButton(
-                                  borderColor: Colors.transparent,
-                                  borderRadius: 10.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 50.0,
-                                  icon: Icon(
-                                    Icons.tune_rounded,
+                                  child: Icon(
+                                    Icons.clear,
                                     color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 30.0,
+                                        .secondaryText,
+                                    size: 16.0,
                                   ),
-                                  onPressed: () async {
-                                    await showDialog(
-                                      context: context,
-                                      builder: (dialogContext) {
-                                        return Dialog(
-                                          elevation: 0,
-                                          insetPadding: EdgeInsets.zero,
-                                          backgroundColor: Colors.transparent,
-                                          alignment: const AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          child: GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
-                                                    .unfocus(),
-                                            child: FilterStudyProgramWidget(
-                                              name: _model.nameSearch!,
-                                              lessionsName:
-                                                  _model.lessionsNameSearch!,
-                                              dateStart:
-                                                  _model.dateStartSearch!,
-                                              dateEnd: _model.dateEndSearch!,
-                                              callBack: (name, dateStart,
-                                                  dateEnd, lessions) async {
-                                                setState(() {
-                                                  _model
-                                                      .textFieldNameSearchTextController
-                                                      ?.clear();
-                                                });
-                                                setState(() {
-                                                  _model.nameSearch = name;
-                                                  _model.dateEndSearch =
-                                                      dateEnd;
-                                                  _model.dateStartSearch =
-                                                      dateStart;
-                                                  _model.lessionsNameSearch =
-                                                      lessions;
-                                                });
-                                                await _model
-                                                    .getListProgram(context);
-                                                setState(() {
-                                                  _model
-                                                      .textFieldNameSearchTextController
-                                                      ?.text = name!;
-                                                });
-                                                setState(() {});
-                                              },
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    ).then((value) => setState(() {}));
-                                  },
-                                ),
-                              ),
-                            ),
-                          ],
+                                )
+                              : null,
                         ),
-                      ].divide(const SizedBox(height: 16.0)),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Nunito Sans',
+                              fontSize: 14.0,
+                              letterSpacing: 0.0,
+                            ),
+                        cursorColor: FlutterFlowTheme.of(context).primary,
+                        validator: _model
+                            .textFieldNameSearchTextControllerValidator
+                            .asValidator(context),
+                      ),
+                    ),
+                    Builder(
+                      builder: (context) => FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 10.0,
+                        borderWidth: 1.0,
+                        buttonSize: 50.0,
+                        icon: Icon(
+                          Icons.tune_rounded,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 30.0,
+                        ),
+                        onPressed: () async {
+                          await showDialog(
+                            context: context,
+                            builder: (dialogContext) {
+                              return Dialog(
+                                elevation: 0,
+                                insetPadding: EdgeInsets.zero,
+                                backgroundColor: Colors.transparent,
+                                alignment: const AlignmentDirectional(0.0, 0.0)
+                                    .resolve(Directionality.of(context)),
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: FilterStudyProgramWidget(
+                                    name: _model.nameSearch!,
+                                    lessionsName: _model.lessionsNameSearch!,
+                                    dateStart: _model.dateStartSearch!,
+                                    dateEnd: _model.dateEndSearch!,
+                                    callBack: (name, dateStart, dateEnd,
+                                        lessions) async {
+                                      setState(() {
+                                        _model.textFieldNameSearchTextController
+                                            ?.clear();
+                                      });
+                                      setState(() {
+                                        _model.nameSearch = name;
+                                        _model.dateEndSearch = dateEnd;
+                                        _model.dateStartSearch = dateStart;
+                                        _model.lessionsNameSearch = lessions;
+                                      });
+                                      setState(() => _model
+                                          .listViewPagingController1
+                                          ?.refresh());
+                                      setState(() {
+                                        _model.textFieldNameSearchTextController
+                                            ?.text = name!;
+                                      });
+                                      setState(() {});
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => setState(() {}));
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if ('${(_model.nameSearch != null && _model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.lessionsNameSearch != null && _model.lessionsNameSearch != '') && (_model.lessionsNameSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"${_model.lessionsNameSearch}\"}}}}' : ' '}${(_model.dateStartSearch != null && _model.dateStartSearch != '') && (_model.dateStartSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"${_model.dateStartSearch}\"}}}}' : ' '}${(_model.dateEndSearch != null && _model.dateEndSearch != '') && (_model.dateEndSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"${_model.dateEndSearch}\"}}}}' : ' '}' !=
+                  '    ')
+                Align(
+                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                    child: Text(
+                      '#Kết quả hiển thị theo bộ lọc',
+                      style: FlutterFlowTheme.of(context).labelMedium.override(
+                            fontFamily: 'Nunito Sans',
+                            fontSize: 12.0,
+                            letterSpacing: 0.0,
+                            fontStyle: FontStyle.italic,
+                          ),
                     ),
                   ),
                 ),
-                Flexible(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        if ('${(_model.nameSearch != null && _model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.lessionsNameSearch != null && _model.lessionsNameSearch != '') && (_model.lessionsNameSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"${_model.lessionsNameSearch}\"}}}}' : ' '}${(_model.dateStartSearch != null && _model.dateStartSearch != '') && (_model.dateStartSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"${_model.dateStartSearch}\"}}}}' : ' '}${(_model.dateEndSearch != null && _model.dateEndSearch != '') && (_model.dateEndSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"${_model.dateEndSearch}\"}}}}' : ' '}' !=
-                            '    ')
-                          Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 12.0, 0.0),
-                              child: Text(
-                                '#Kết quả hiển thị theo bộ lọc',
-                                style: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      fontSize: 12.0,
-                                      letterSpacing: 0.0,
-                                      fontStyle: FontStyle.italic,
-                                    ),
-                              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                  child: PagedListView<ApiPagingParams, dynamic>.separated(
+                    pagingController: _model.setListViewController1(
+                      (nextPageMarker) =>
+                          StudyProgramGroup.studyProgramListCall.call(
+                        accessToken: FFAppState().accessToken,
+                        offset: nextPageMarker.nextPageNumber * 20,
+                        limit: 20,
+                        filter: '{\"_and\":[{}${(_model.nameSearch != null && _model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.lessionsNameSearch != null && _model.lessionsNameSearch != '') && (_model.lessionsNameSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"${_model.lessionsNameSearch}\"}}}}' : ' '}${(_model.dateStartSearch != null && _model.dateStartSearch != '') && (_model.dateStartSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"${_model.dateStartSearch}\"}}}}' : ' '}${(_model.dateEndSearch != null && _model.dateEndSearch != '') && (_model.dateEndSearch != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"${(String var1) {
+                            return DateTime.parse(var1)
+                                .add(const Duration(days: 1))
+                                .toString();
+                          }(_model.dateEndSearch!)}\"}}}}' : ' '}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
+                          FFAppState().staffLogin,
+                          r'''$.organization_id''',
+                        ).toString()}\"}}'}]}',
+                      ),
+                    ),
+                    padding: EdgeInsets.zero,
+                    primary: false,
+                    shrinkWrap: true,
+                    reverse: false,
+                    scrollDirection: Axis.vertical,
+                    separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                    builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                      // Customize what your widget looks like when it's loading the first page.
+                      firstPageProgressIndicatorBuilder: (_) => Center(
+                        child: SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
                             ),
                           ),
-                        if (_model.isLoad == true)
-                          Builder(
-                            builder: (context) {
-                              final dataListView = _model.dataList.toList();
-                              return ListView.separated(
-                                padding: EdgeInsets.zero,
-                                primary: false,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                itemCount: dataListView.length,
-                                separatorBuilder: (_, __) =>
-                                    const SizedBox(height: 10.0),
-                                itemBuilder: (context, dataListViewIndex) {
-                                  final dataListViewItem =
-                                      dataListView[dataListViewIndex];
-                                  return Container(
-                                    decoration: const BoxDecoration(),
-                                    child: Column(
+                        ),
+                      ),
+                      // Customize what your widget looks like when it's loading another page.
+                      newPageProgressIndicatorBuilder: (_) => Center(
+                        child: SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
+                            ),
+                          ),
+                        ),
+                      ),
+                      noItemsFoundIndicatorBuilder: (_) => const Center(
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: DataNotFoundWidget(),
+                        ),
+                      ),
+                      itemBuilder: (context, _, dataListViewIndex) {
+                        final dataListViewItem = _model
+                            .listViewPagingController1!
+                            .itemList![dataListViewIndex];
+                        return Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 2.0, 0.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    12.0, 0.0, 12.0, 12.0),
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: (_model.checkShow != null &&
+                                                _model.checkShow != '') &&
+                                            (_model.checkShow ==
+                                                dataListViewItem.id)
+                                        ? FlutterFlowTheme.of(context).alternate
+                                        : FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        blurRadius: 2.0,
+                                        color: Color(0x33000000),
+                                        offset: Offset(
+                                          0.0,
+                                          2.0,
+                                        ),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        5.0, 12.0, 5.0, 12.0),
+                                    child: Row(
                                       mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  12.0, 0.0, 12.0, 12.0),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: (_model.checkShow !=
-                                                              null &&
-                                                          _model.checkShow !=
-                                                              '') &&
-                                                      (_model.checkShow ==
-                                                          dataListViewItem.id)
-                                                  ? FlutterFlowTheme.of(context)
-                                                      .alternate
-                                                  : FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              boxShadow: const [
-                                                BoxShadow(
-                                                  blurRadius: 2.0,
-                                                  color: Color(0x33000000),
-                                                  offset: Offset(
-                                                    0.0,
-                                                    2.0,
-                                                  ),
-                                                )
-                                              ],
+                                        Stack(
+                                          children: [
+                                            ClipRRect(
                                               borderRadius:
-                                                  BorderRadius.circular(5.0),
+                                                  BorderRadius.circular(8.0),
+                                              child: Image.network(
+                                                '${FFAppConstants.ApiBaseUrl}/assets/${dataListViewItem.imageCover != null && dataListViewItem.imageCover != '' ? dataListViewItem.imageCover : ' '}?access_token=${FFAppState().accessToken}',
+                                                width: 80.0,
+                                                height: 80.0,
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      5.0, 12.0, 5.0, 12.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  FlutterFlowIconButton(
-                                                    borderRadius: 20.0,
-                                                    borderWidth: 1.0,
-                                                    buttonSize: 40.0,
-                                                    icon: Icon(
-                                                      Icons.edit,
-                                                      color:
-                                                          FlutterFlowTheme.of(
+                                            FlutterFlowIconButton(
+                                              borderRadius: 20.0,
+                                              borderWidth: 1.0,
+                                              buttonSize: 40.0,
+                                              fillColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              icon: Icon(
+                                                Icons.edit,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                size: 24.0,
+                                              ),
+                                              onPressed: () async {
+                                                await showModalBottomSheet(
+                                                  isScrollControlled: true,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  enableDrag: false,
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return GestureDetector(
+                                                      onTap: () => _model
+                                                              .unfocusNode
+                                                              .canRequestFocus
+                                                          ? FocusScope.of(
                                                                   context)
-                                                              .primaryText,
-                                                      size: 24.0,
-                                                    ),
-                                                    onPressed: () async {
-                                                      await showModalBottomSheet(
-                                                        isScrollControlled:
-                                                            true,
-                                                        backgroundColor:
-                                                            Colors.transparent,
-                                                        enableDrag: false,
-                                                        context: context,
-                                                        builder: (context) {
-                                                          return GestureDetector(
-                                                            onTap: () => _model
-                                                                    .unfocusNode
-                                                                    .canRequestFocus
-                                                                ? FocusScope.of(
-                                                                        context)
-                                                                    .requestFocus(
+                                                              .requestFocus(_model
+                                                                  .unfocusNode)
+                                                          : FocusScope.of(
+                                                                  context)
+                                                              .unfocus(),
+                                                      child: Padding(
+                                                        padding: MediaQuery
+                                                            .viewInsetsOf(
+                                                                context),
+                                                        child:
+                                                            StudyProgramEditWidget(
+                                                          dataDetail:
+                                                              dataListViewItem,
+                                                          callBackList1:
+                                                              () async {
+                                                            setState(() {
+                                                              _model.checkShow =
+                                                                  null;
+                                                              _model.dataList =
+                                                                  [];
+                                                              _model.meta =
+                                                                  null;
+                                                              _model.isLoad =
+                                                                  false;
+                                                              _model.nameSearch =
+                                                                  '';
+                                                              _model.dateEndSearch =
+                                                                  '';
+                                                              _model.dateStartSearch =
+                                                                  '';
+                                                              _model.lessionsNameSearch =
+                                                                  '';
+                                                            });
+                                                            setState(() {
+                                                              _model
+                                                                  .textFieldNameSearchTextController
+                                                                  ?.clear();
+                                                            });
+                                                            await _model
+                                                                .getListProgram(
+                                                                    context);
+                                                            setState(() {});
+                                                          },
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                ).then((value) =>
+                                                    safeSetState(() {}));
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                        Expanded(
+                                          flex: 2,
+                                          child: Align(
+                                            alignment:
+                                                const AlignmentDirectional(-1.0, 0.0),
+                                            child: Container(
+                                              width: double.infinity,
+                                              decoration: const BoxDecoration(),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.stretch,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      5.0),
+                                                          child: Text(
+                                                            '#${(dataListViewIndex + 1).toString()} : ${dataListViewItem.name != null && dataListViewItem.name != '' ? dataListViewItem.name : ' '}',
+                                                            maxLines: 2,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Align(
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  1.0, 0.0),
+                                                          child: InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              if (_model
+                                                                      .checkShow ==
+                                                                  dataListViewItem
+                                                                      .id) {
+                                                                setState(() {
+                                                                  _model.checkShow =
+                                                                      null;
+                                                                });
+                                                              } else {
+                                                                setState(() {
+                                                                  _model.checkShow =
+                                                                      dataListViewItem
+                                                                          .id;
+                                                                });
+                                                              }
+                                                            },
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Text(
+                                                                  (_model.checkShow != null &&
+                                                                              _model.checkShow !=
+                                                                                  '') &&
+                                                                          (dataListViewItem.id ==
+                                                                              _model.checkShow)
+                                                                      ? 'Thu nhỏ'
+                                                                      : 'Xem thêm',
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .end,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
+                                                                      ),
+                                                                ),
+                                                                if ((_model.checkShow !=
+                                                                            null &&
+                                                                        _model.checkShow !=
+                                                                            '') &&
+                                                                    (dataListViewItem
+                                                                            .id ==
                                                                         _model
-                                                                            .unfocusNode)
-                                                                : FocusScope.of(
-                                                                        context)
-                                                                    .unfocus(),
-                                                            child: Padding(
-                                                              padding: MediaQuery
-                                                                  .viewInsetsOf(
-                                                                      context),
-                                                              child:
-                                                                  StudyProgramEditWidget(
-                                                                dataDetail:
-                                                                    dataListViewItem,
-                                                                callBackList1:
-                                                                    () async {
-                                                                  setState(() {
-                                                                    _model.checkShow =
-                                                                        null;
-                                                                    _model.dataList =
-                                                                        [];
-                                                                    _model.meta =
-                                                                        null;
-                                                                    _model.isLoad =
-                                                                        false;
-                                                                    _model.nameSearch =
-                                                                        '';
-                                                                    _model.dateEndSearch =
-                                                                        '';
-                                                                    _model.dateStartSearch =
-                                                                        '';
-                                                                    _model.lessionsNameSearch =
-                                                                        '';
-                                                                  });
-                                                                  setState(() {
+                                                                            .checkShow))
+                                                                  Icon(
+                                                                    Icons
+                                                                        .keyboard_arrow_up,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                    size: 14.0,
+                                                                  ),
+                                                                if (dataListViewItem
+                                                                        .id !=
                                                                     _model
-                                                                        .textFieldNameSearchTextController
-                                                                        ?.clear();
-                                                                  });
-                                                                  await _model
-                                                                      .getListProgram(
-                                                                          context);
-                                                                  setState(
-                                                                      () {});
-                                                                },
-                                                              ),
+                                                                        .checkShow)
+                                                                  Icon(
+                                                                    Icons
+                                                                        .keyboard_arrow_down_outlined,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                    size: 14.0,
+                                                                  ),
+                                                              ].divide(const SizedBox(
+                                                                  width: 8.0)),
                                                             ),
-                                                          );
-                                                        },
-                                                      ).then((value) =>
-                                                          safeSetState(() {}));
-                                                    },
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ].divide(
+                                                        const SizedBox(width: 16.0)),
                                                   ),
-                                                  Expanded(
-                                                    flex: 2,
-                                                    child: Align(
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              -1.0, 0.0),
-                                                      child: Container(
-                                                        decoration:
-                                                            const BoxDecoration(),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Padding(
+                                                  Text(
+                                                    '${'${valueOrDefault<String>(
+                                                      dataListViewItem
+                                                          .lessions.length
+                                                          .toString(),
+                                                      '0',
+                                                    )} bài học'} - ${'${valueOrDefault<String>(
+                                                      dataListViewItem
+                                                          .tests.length
+                                                          .toString(),
+                                                      '0',
+                                                    )} bài thi'}',
+                                                    maxLines: 2,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.end,
+                                                    children: [
+                                                      if ((dataListViewItem
+                                                                  .template ==
+                                                              0) &&
+                                                          (getJsonField(
+                                                                FFAppState()
+                                                                    .staffOrganization,
+                                                                r'''$.authors''',
+                                                              ) !=
+                                                              null) &&
+                                                          ((dataListViewItem
+                                                                          .authorId ==
+                                                                      null ||
+                                                                  dataListViewItem
+                                                                          .authorId ==
+                                                                      '') ||
+                                                              ((dataListViewItem
+                                                                              .authorId !=
+                                                                          null &&
+                                                                      dataListViewItem
+                                                                              .authorId !=
+                                                                          '') &&
+                                                                  (dataListViewItem
+                                                                          .authorId ==
+                                                                      getJsonField(
+                                                                        FFAppState()
+                                                                            .staffOrganization,
+                                                                        r'''$.authors[0]''',
+                                                                      )))))
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      10.0,
+                                                                      0.0),
+                                                          child: FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              await showModalBottomSheet(
+                                                                isScrollControlled:
+                                                                    true,
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                enableDrag:
+                                                                    false,
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (context) {
+                                                                  return GestureDetector(
+                                                                    onTap: () => _model
+                                                                            .unfocusNode
+                                                                            .canRequestFocus
+                                                                        ? FocusScope.of(context).requestFocus(_model
+                                                                            .unfocusNode)
+                                                                        : FocusScope.of(context)
+                                                                            .unfocus(),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: MediaQuery
+                                                                          .viewInsetsOf(
+                                                                              context),
+                                                                      child:
+                                                                          AddProgramMarketWidget(
+                                                                        id: dataListViewItem
+                                                                            .id,
+                                                                        price: dataListViewItem
+                                                                            .price,
+                                                                        callback:
+                                                                            () async {
+                                                                          setState(
+                                                                              () {
+                                                                            _model.checkShow =
+                                                                                null;
+                                                                            _model.dataList =
+                                                                                [];
+                                                                            _model.meta =
+                                                                                null;
+                                                                            _model.isLoad =
+                                                                                false;
+                                                                            _model.nameSearch =
+                                                                                '';
+                                                                            _model.dateEndSearch =
+                                                                                '';
+                                                                            _model.dateStartSearch =
+                                                                                '';
+                                                                            _model.lessionsNameSearch =
+                                                                                '';
+                                                                          });
+                                                                          setState(() => _model
+                                                                              .listViewPagingController1
+                                                                              ?.refresh());
+                                                                          setState(
+                                                                              () {});
+                                                                        },
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ).then((value) =>
+                                                                  safeSetState(
+                                                                      () {}));
+                                                            },
+                                                            text: 'Marketplace',
+                                                            icon: Icon(
+                                                              Icons.add,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                              size: 20.0,
+                                                            ),
+                                                            options:
+                                                                FFButtonOptions(
+                                                              height: 36.0,
                                                               padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          8.0,
+                                                                          0.0),
+                                                              iconPadding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
-                                                                          5.0),
-                                                              child: Text(
-                                                                '#${(dataListViewIndex + 1).toString()} : ${dataListViewItem.name != '' ? dataListViewItem.name : ' '}',
-                                                                maxLines: 2,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Nunito Sans',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                      fontSize:
-                                                                          14.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                            Text(
-                                                              '${'${valueOrDefault<String>(
-                                                                dataListViewItem
-                                                                    .lessions
-                                                                    .length
-                                                                    .toString(),
-                                                                '0',
-                                                              )} bài học'} - ${'${valueOrDefault<String>(
-                                                                dataListViewItem
-                                                                    .tests
-                                                                    .length
-                                                                    .toString(),
-                                                                '0',
-                                                              )} bài thi'}',
-                                                              maxLines: 2,
-                                                              style: FlutterFlowTheme
+                                                                          0.0),
+                                                              color: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Nunito Sans',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
+                                                                  .tertiary,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
                                                             ),
-                                                          ],
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    flex: 1,
-                                                    child: Align(
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              1.0, 0.0),
-                                                      child: InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
-                                                        onTap: () async {
-                                                          if (_model
-                                                                  .checkShow ==
-                                                              dataListViewItem
-                                                                  .id) {
-                                                            setState(() {
-                                                              _model.checkShow =
-                                                                  null;
-                                                            });
-                                                          } else {
-                                                            setState(() {
-                                                              _model.checkShow =
+                                                      if ((dataListViewItem
+                                                                  .template ==
+                                                              1) &&
+                                                          (getJsonField(
+                                                                FFAppState()
+                                                                    .staffOrganization,
+                                                                r'''$.authors''',
+                                                              ) !=
+                                                              null) &&
+                                                          ((dataListViewItem
+                                                                          .authorId !=
+                                                                      null &&
                                                                   dataListViewItem
-                                                                      .id;
-                                                            });
-                                                          }
-                                                        },
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Text(
-                                                              (_model.checkShow !=
-                                                                              null &&
-                                                                          _model.checkShow !=
-                                                                              '') &&
-                                                                      (dataListViewItem
-                                                                              .id ==
-                                                                          _model
-                                                                              .checkShow)
-                                                                  ? 'Thu nhỏ'
-                                                                  : 'Xem thêm',
-                                                              textAlign:
-                                                                  TextAlign.end,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodySmall
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Nunito Sans',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                  ),
-                                                            ),
-                                                            if ((_model.checkShow !=
-                                                                        null &&
-                                                                    _model.checkShow !=
-                                                                        '') &&
-                                                                (dataListViewItem
-                                                                        .id ==
-                                                                    _model
-                                                                        .checkShow))
-                                                              Icon(
-                                                                Icons
-                                                                    .keyboard_arrow_up,
+                                                                          .authorId !=
+                                                                      '') &&
+                                                              (dataListViewItem
+                                                                      .authorId ==
+                                                                  getJsonField(
+                                                                    FFAppState()
+                                                                        .staffOrganization,
+                                                                    r'''$.authors[0]''',
+                                                                  ))))
+                                                        Text(
+                                                          'Đã bán trên Market',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primaryText,
-                                                                size: 14.0,
+                                                                    .secondaryText,
+                                                                fontSize: 12.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic,
                                                               ),
-                                                            if (dataListViewItem
-                                                                    .id !=
-                                                                _model
-                                                                    .checkShow)
-                                                              Icon(
-                                                                Icons
-                                                                    .keyboard_arrow_down_outlined,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                size: 14.0,
-                                                              ),
-                                                          ].divide(const SizedBox(
-                                                              width: 8.0)),
                                                         ),
-                                                      ),
-                                                    ),
+                                                      if ((dataListViewItem
+                                                                  .template ==
+                                                              0) &&
+                                                          (dataListViewItem
+                                                                      .authorId !=
+                                                                  null &&
+                                                              dataListViewItem
+                                                                      .authorId !=
+                                                                  '') &&
+                                                          ((getJsonField(
+                                                                    FFAppState()
+                                                                        .staffOrganization,
+                                                                    r'''$.authors''',
+                                                                  ) ==
+                                                                  null) ||
+                                                              ((getJsonField(
+                                                                        FFAppState()
+                                                                            .staffOrganization,
+                                                                        r'''$.authors''',
+                                                                      ) !=
+                                                                      null) &&
+                                                                  (dataListViewItem
+                                                                          .authorId ==
+                                                                      getJsonField(
+                                                                        FFAppState()
+                                                                            .staffOrganization,
+                                                                        r'''$.authors[0]''',
+                                                                      )))))
+                                                        Text(
+                                                          'Mua từ Market',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 12.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic,
+                                                              ),
+                                                        ),
+                                                    ],
                                                   ),
                                                 ],
                                               ),
                                             ),
                                           ),
                                         ),
-                                        if (dataListViewItem.id ==
-                                            _model.checkShow)
-                                          Builder(
-                                            builder: (context) {
-                                              final dataListTestsView =
-                                                  dataListViewItem.tests
-                                                      .toList();
-                                              return ListView.builder(
-                                                padding: EdgeInsets.zero,
-                                                primary: false,
-                                                shrinkWrap: true,
-                                                scrollDirection: Axis.vertical,
-                                                itemCount:
-                                                    dataListTestsView.length,
-                                                itemBuilder: (context,
-                                                    dataListTestsViewIndex) {
-                                                  final dataListTestsViewItem =
-                                                      dataListTestsView[
-                                                          dataListTestsViewIndex];
-                                                  return Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(12.0, 0.0,
-                                                                12.0, 6.0),
-                                                    child: InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        context.pushNamed(
-                                                          'TestDetail',
-                                                          queryParameters: {
-                                                            'id':
-                                                                serializeParam(
-                                                              dataListTestsViewItem
-                                                                  .testsId.id,
-                                                              ParamType.String,
-                                                            ),
-                                                            'name':
-                                                                serializeParam(
-                                                              dataListTestsViewItem
-                                                                  .testsId.name,
-                                                              ParamType.String,
-                                                            ),
-                                                            'description':
-                                                                serializeParam(
-                                                              dataListTestsViewItem
-                                                                  .testsId
-                                                                  .description,
-                                                              ParamType.String,
-                                                            ),
-                                                            'time':
-                                                                serializeParam(
-                                                              dataListTestsViewItem
-                                                                  .testsId
-                                                                  .durationMinutes
-                                                                  .toString(),
-                                                              ParamType.String,
-                                                            ),
-                                                          }.withoutNulls,
-                                                          extra: <String,
-                                                              dynamic>{
-                                                            kTransitionInfoKey:
-                                                                const TransitionInfo(
-                                                              hasTransition:
-                                                                  true,
-                                                              transitionType:
-                                                                  PageTransitionType
-                                                                      .fade,
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      0),
-                                                            ),
-                                                          },
-                                                        );
-                                                      },
-                                                      child: Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryBackground,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets.all(
-                                                                  6.0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              Expanded(
-                                                                flex: 7,
-                                                                child: Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Text(
-                                                                      dataListTestsViewItem.testsId.name !=
-                                                                                  ''
-                                                                          ? dataListTestsViewItem
-                                                                              .testsId
-                                                                              .name
-                                                                          : ' '
-                                                                              .maybeHandleOverflow(
-                                                                              maxChars: 30,
-                                                                              replacement: '…',
-                                                                            ),
-                                                                      maxLines:
-                                                                          2,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleSmall
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Nunito Sans',
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryText,
-                                                                            fontSize:
-                                                                                14.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.w500,
-                                                                          ),
-                                                                    ),
-                                                                    Text(
-                                                                      dataListTestsViewItem.testsId.dateCreated !=
-                                                                                  ''
-                                                                          ? valueOrDefault<
-                                                                              String>(
-                                                                              dateTimeFormat(
-                                                                                'dd-MM-yyyy',
-                                                                                functions.stringToDateTime(valueOrDefault<String>(
-                                                                                  dataListTestsViewItem.testsId.dateCreated,
-                                                                                  '0',
-                                                                                )),
-                                                                                locale: FFLocalizations.of(context).languageCode,
-                                                                              ),
-                                                                              '0',
-                                                                            )
-                                                                          : ' ',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodySmall
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Nunito Sans',
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryText,
-                                                                            fontSize:
-                                                                                12.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.normal,
-                                                                          ),
-                                                                    ),
-                                                                  ].divide(const SizedBox(
-                                                                      height:
-                                                                          4.0)),
-                                                                ),
-                                                              ),
-                                                              Expanded(
-                                                                flex: 2,
-                                                                child:
-                                                                    FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    context
-                                                                        .pushNamed(
-                                                                      'TestDetail',
-                                                                      queryParameters:
-                                                                          {
-                                                                        'id':
-                                                                            serializeParam(
-                                                                          dataListTestsViewItem
-                                                                              .testsId
-                                                                              .id,
-                                                                          ParamType
-                                                                              .String,
-                                                                        ),
-                                                                        'name':
-                                                                            serializeParam(
-                                                                          dataListTestsViewItem
-                                                                              .testsId
-                                                                              .name,
-                                                                          ParamType
-                                                                              .String,
-                                                                        ),
-                                                                        'description':
-                                                                            serializeParam(
-                                                                          dataListTestsViewItem
-                                                                              .testsId
-                                                                              .description,
-                                                                          ParamType
-                                                                              .String,
-                                                                        ),
-                                                                        'time':
-                                                                            serializeParam(
-                                                                          dataListTestsViewItem
-                                                                              .testsId
-                                                                              .durationMinutes
-                                                                              .toString(),
-                                                                          ParamType
-                                                                              .String,
-                                                                        ),
-                                                                      }.withoutNulls,
-                                                                      extra: <String,
-                                                                          dynamic>{
-                                                                        kTransitionInfoKey:
-                                                                            const TransitionInfo(
-                                                                          hasTransition:
-                                                                              true,
-                                                                          transitionType:
-                                                                              PageTransitionType.fade,
-                                                                          duration:
-                                                                              Duration(milliseconds: 0),
-                                                                        ),
-                                                                      },
-                                                                    );
-                                                                  },
-                                                                  text:
-                                                                      'Bài thi',
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    height:
-                                                                        30.0,
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            12.0,
-                                                                            0.0,
-                                                                            12.0,
-                                                                            0.0),
-                                                                    iconPadding:
-                                                                        const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .error,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleSmall
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Nunito Sans',
-                                                                          color:
-                                                                              Colors.white,
-                                                                          fontSize:
-                                                                              14.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.normal,
-                                                                        ),
-                                                                    elevation:
-                                                                        3.0,
-                                                                    borderSide:
-                                                                        const BorderSide(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                      width:
-                                                                          1.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Expanded(
-                                                                flex: 1,
-                                                                child:
-                                                                    FlutterFlowIconButton(
-                                                                  borderColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  borderRadius:
-                                                                      20.0,
-                                                                  borderWidth:
-                                                                      1.0,
-                                                                  buttonSize:
-                                                                      40.0,
-                                                                  icon: Icon(
-                                                                    Icons
-                                                                        .keyboard_arrow_right,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText,
-                                                                    size: 24.0,
-                                                                  ),
-                                                                  onPressed:
-                                                                      () async {
-                                                                    context
-                                                                        .pushNamed(
-                                                                      'TestDetail',
-                                                                      queryParameters:
-                                                                          {
-                                                                        'id':
-                                                                            serializeParam(
-                                                                          dataListTestsViewItem
-                                                                              .testsId
-                                                                              .id,
-                                                                          ParamType
-                                                                              .String,
-                                                                        ),
-                                                                        'name':
-                                                                            serializeParam(
-                                                                          dataListTestsViewItem
-                                                                              .testsId
-                                                                              .name,
-                                                                          ParamType
-                                                                              .String,
-                                                                        ),
-                                                                        'description':
-                                                                            serializeParam(
-                                                                          dataListTestsViewItem
-                                                                              .testsId
-                                                                              .description,
-                                                                          ParamType
-                                                                              .String,
-                                                                        ),
-                                                                        'time':
-                                                                            serializeParam(
-                                                                          dataListTestsViewItem
-                                                                              .testsId
-                                                                              .durationMinutes
-                                                                              .toString(),
-                                                                          ParamType
-                                                                              .String,
-                                                                        ),
-                                                                      }.withoutNulls,
-                                                                      extra: <String,
-                                                                          dynamic>{
-                                                                        kTransitionInfoKey:
-                                                                            const TransitionInfo(
-                                                                          hasTransition:
-                                                                              true,
-                                                                          transitionType:
-                                                                              PageTransitionType.fade,
-                                                                          duration:
-                                                                              Duration(milliseconds: 0),
-                                                                        ),
-                                                                      },
-                                                                    );
-                                                                  },
-                                                                ),
-                                                              ),
-                                                            ].divide(const SizedBox(
-                                                                width: 8.0)),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            },
-                                          ),
-                                        if (dataListViewItem.id ==
-                                            _model.checkShow)
-                                          Builder(
-                                            builder: (context) {
-                                              final dataListLessionsView =
-                                                  dataListViewItem.lessions
-                                                      .toList();
-                                              return ListView.builder(
-                                                padding: EdgeInsets.zero,
-                                                primary: false,
-                                                shrinkWrap: true,
-                                                scrollDirection: Axis.vertical,
-                                                itemCount:
-                                                    dataListLessionsView.length,
-                                                itemBuilder: (context,
-                                                    dataListLessionsViewIndex) {
-                                                  final dataListLessionsViewItem =
-                                                      dataListLessionsView[
-                                                          dataListLessionsViewIndex];
-                                                  return Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(12.0, 0.0,
-                                                                12.0, 6.0),
-                                                    child: InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        context.pushNamed(
-                                                          'LessonDetail',
-                                                          queryParameters: {
-                                                            'idLesson':
-                                                                serializeParam(
-                                                              dataListLessionsViewItem
-                                                                  .lessionsId
-                                                                  .id,
-                                                              ParamType.String,
-                                                            ),
-                                                          }.withoutNulls,
-                                                        );
-                                                      },
-                                                      child: Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryBackground,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets.all(
-                                                                  6.0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            children: [
-                                                              Expanded(
-                                                                flex: 1,
-                                                                child:
-                                                                    Container(
-                                                                  width: 30.0,
-                                                                  height: 30.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .tertiary,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            90.0),
-                                                                  ),
-                                                                  child:
-                                                                      ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                    child: Image
-                                                                        .network(
-                                                                      '${FFAppConstants.ApiBaseUrl}/assets/${dataListLessionsViewItem.lessionsId.imageCover != '' ? dataListLessionsViewItem.lessionsId.imageCover : ' '}?access_token=${FFAppState().accessToken}',
-                                                                      width:
-                                                                          300.0,
-                                                                      height:
-                                                                          200.0,
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Expanded(
-                                                                flex: 9,
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .min,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: [
-                                                                    Expanded(
-                                                                      flex: 3,
-                                                                      child:
-                                                                          Column(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
-                                                                        children: [
-                                                                          Text(
-                                                                            dataListLessionsViewItem.lessionsId.name != ''
-                                                                                ? dataListLessionsViewItem.lessionsId.name
-                                                                                : ' '.maybeHandleOverflow(
-                                                                                    maxChars: 25,
-                                                                                    replacement: '…',
-                                                                                  ),
-                                                                            maxLines:
-                                                                                2,
-                                                                            style: FlutterFlowTheme.of(context).titleSmall.override(
-                                                                                  fontFamily: 'Nunito Sans',
-                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                  fontSize: 14.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.w500,
-                                                                                ),
-                                                                          ),
-                                                                          Text(
-                                                                            dataListLessionsViewItem.lessionsId.dateCreated != ''
-                                                                                ? valueOrDefault<String>(
-                                                                                    dateTimeFormat(
-                                                                                      'dd-MM-yyyy',
-                                                                                      functions.stringToDateTime(valueOrDefault<String>(
-                                                                                        dataListLessionsViewItem.lessionsId.dateCreated,
-                                                                                        '0',
-                                                                                      )),
-                                                                                      locale: FFLocalizations.of(context).languageCode,
-                                                                                    ),
-                                                                                    '0',
-                                                                                  )
-                                                                                : ' ',
-                                                                            maxLines:
-                                                                                2,
-                                                                            style: FlutterFlowTheme.of(context).bodySmall.override(
-                                                                                  fontFamily: 'Nunito Sans',
-                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                  fontSize: 12.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.normal,
-                                                                                ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                    Expanded(
-                                                                      flex: 1,
-                                                                      child:
-                                                                          FFButtonWidget(
-                                                                        onPressed:
-                                                                            () async {
-                                                                          context
-                                                                              .pushNamed(
-                                                                            'LessonDetail',
-                                                                            queryParameters:
-                                                                                {
-                                                                              'idLesson': serializeParam(
-                                                                                dataListLessionsViewItem.lessionsId.id,
-                                                                                ParamType.String,
-                                                                              ),
-                                                                            }.withoutNulls,
-                                                                          );
-                                                                        },
-                                                                        text:
-                                                                            'Bài học',
-                                                                        options:
-                                                                            FFButtonOptions(
-                                                                          height:
-                                                                              30.0,
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                              12.0,
-                                                                              0.0,
-                                                                              12.0,
-                                                                              0.0),
-                                                                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).secondary,
-                                                                          textStyle: FlutterFlowTheme.of(context)
-                                                                              .titleSmall
-                                                                              .override(
-                                                                                fontFamily: 'Nunito Sans',
-                                                                                color: Colors.white,
-                                                                                fontSize: 14.0,
-                                                                                letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.normal,
-                                                                              ),
-                                                                          elevation:
-                                                                              3.0,
-                                                                          borderSide:
-                                                                              const BorderSide(
-                                                                            color:
-                                                                                Colors.transparent,
-                                                                            width:
-                                                                                1.0,
-                                                                          ),
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(8.0),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                              Expanded(
-                                                                flex: 1,
-                                                                child:
-                                                                    FlutterFlowIconButton(
-                                                                  borderRadius:
-                                                                      20.0,
-                                                                  borderWidth:
-                                                                      1.0,
-                                                                  buttonSize:
-                                                                      40.0,
-                                                                  icon: Icon(
-                                                                    Icons
-                                                                        .keyboard_arrow_right,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText,
-                                                                    size: 24.0,
-                                                                  ),
-                                                                  onPressed:
-                                                                      () async {
-                                                                    context
-                                                                        .pushNamed(
-                                                                      'LessonDetail',
-                                                                      queryParameters:
-                                                                          {
-                                                                        'idLesson':
-                                                                            serializeParam(
-                                                                          dataListLessionsViewItem
-                                                                              .lessionsId
-                                                                              .id,
-                                                                          ParamType
-                                                                              .String,
-                                                                        ),
-                                                                      }.withoutNulls,
-                                                                    );
-                                                                  },
-                                                                ),
-                                                              ),
-                                                            ].divide(const SizedBox(
-                                                                width: 8.0)),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            },
-                                          ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                        if ((_model.dataList.isEmpty) &&
-                            (_model.isLoad == true))
-                          Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 150.0, 0.0, 0.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  FaIcon(
-                                    FontAwesomeIcons.database,
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    size: 55.0,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 15.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Không có dữ liệu !',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            fontSize: 18.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
+                                      ].divide(const SizedBox(width: 4.0)),
                                     ),
                                   ),
-                                ],
+                                ),
                               ),
-                            ),
+                              if (dataListViewItem.id == _model.checkShow)
+                                Builder(
+                                  builder: (context) {
+                                    final dataListTestsView =
+                                        dataListViewItem.tests.toList();
+                                    return ListView.builder(
+                                      padding: EdgeInsets.zero,
+                                      primary: false,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: dataListTestsView.length,
+                                      itemBuilder:
+                                          (context, dataListTestsViewIndex) {
+                                        final dataListTestsViewItem =
+                                            dataListTestsView[
+                                                dataListTestsViewIndex];
+                                        return Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  12.0, 0.0, 12.0, 6.0),
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              context.pushNamed(
+                                                'TestDetail',
+                                                queryParameters: {
+                                                  'id': serializeParam(
+                                                    dataListTestsViewItem
+                                                        .testsId.id,
+                                                    ParamType.String,
+                                                  ),
+                                                  'name': serializeParam(
+                                                    dataListTestsViewItem
+                                                        .testsId.name,
+                                                    ParamType.String,
+                                                  ),
+                                                  'description': serializeParam(
+                                                    dataListTestsViewItem
+                                                        .testsId.description,
+                                                    ParamType.String,
+                                                  ),
+                                                  'time': serializeParam(
+                                                    dataListTestsViewItem
+                                                        .testsId.durationMinutes
+                                                        .toString(),
+                                                    ParamType.String,
+                                                  ),
+                                                  'checkScroll': serializeParam(
+                                                    'StudyProgramList',
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                                extra: <String, dynamic>{
+                                                  kTransitionInfoKey:
+                                                      const TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType.fade,
+                                                    duration: Duration(
+                                                        milliseconds: 0),
+                                                  ),
+                                                },
+                                              );
+
+                                              FFAppState().update(() {
+                                                FFAppState().scrollCheck = '';
+                                              });
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(6.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Expanded(
+                                                      flex: 7,
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            dataListTestsViewItem
+                                                                            .testsId
+                                                                            .name !=
+                                                                        null &&
+                                                                    dataListTestsViewItem
+                                                                            .testsId
+                                                                            .name !=
+                                                                        ''
+                                                                ? dataListTestsViewItem
+                                                                    .testsId
+                                                                    .name
+                                                                : ' '
+                                                                    .maybeHandleOverflow(
+                                                                    maxChars:
+                                                                        30,
+                                                                    replacement:
+                                                                        '…',
+                                                                  ),
+                                                            maxLines: 2,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                          ),
+                                                          Text(
+                                                            dataListTestsViewItem
+                                                                            .testsId
+                                                                            .dateCreated !=
+                                                                        null &&
+                                                                    dataListTestsViewItem
+                                                                            .testsId
+                                                                            .dateCreated !=
+                                                                        ''
+                                                                ? valueOrDefault<
+                                                                    String>(
+                                                                    dateTimeFormat(
+                                                                      'dd-MM-yyyy',
+                                                                      functions.stringToDateTime(
+                                                                          valueOrDefault<
+                                                                              String>(
+                                                                        dataListTestsViewItem
+                                                                            .testsId
+                                                                            .dateCreated,
+                                                                        '0',
+                                                                      )),
+                                                                      locale: FFLocalizations.of(
+                                                                              context)
+                                                                          .languageCode,
+                                                                    ),
+                                                                    '0',
+                                                                  )
+                                                                : ' ',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  fontSize:
+                                                                      12.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                          ),
+                                                        ].divide(const SizedBox(
+                                                            height: 4.0)),
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      flex: 2,
+                                                      child: FFButtonWidget(
+                                                        onPressed: () async {
+                                                          context.pushNamed(
+                                                            'TestDetail',
+                                                            queryParameters: {
+                                                              'id':
+                                                                  serializeParam(
+                                                                dataListTestsViewItem
+                                                                    .testsId.id,
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'name':
+                                                                  serializeParam(
+                                                                dataListTestsViewItem
+                                                                    .testsId
+                                                                    .name,
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'description':
+                                                                  serializeParam(
+                                                                dataListTestsViewItem
+                                                                    .testsId
+                                                                    .description,
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'time':
+                                                                  serializeParam(
+                                                                dataListTestsViewItem
+                                                                    .testsId
+                                                                    .durationMinutes
+                                                                    .toString(),
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'checkScroll':
+                                                                  serializeParam(
+                                                                'StudyProgramList',
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                            }.withoutNulls,
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              kTransitionInfoKey:
+                                                                  const TransitionInfo(
+                                                                hasTransition:
+                                                                    true,
+                                                                transitionType:
+                                                                    PageTransitionType
+                                                                        .fade,
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        0),
+                                                              ),
+                                                            },
+                                                          );
+
+                                                          FFAppState()
+                                                              .update(() {
+                                                            FFAppState()
+                                                                .scrollCheck = '';
+                                                          });
+                                                        },
+                                                        text: 'Bài thi',
+                                                        options:
+                                                            FFButtonOptions(
+                                                          height: 30.0,
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      12.0,
+                                                                      0.0,
+                                                                      12.0,
+                                                                      0.0),
+                                                          iconPadding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .error,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                          elevation: 3.0,
+                                                          borderSide:
+                                                              const BorderSide(
+                                                            color: Colors
+                                                                .transparent,
+                                                            width: 1.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      flex: 1,
+                                                      child:
+                                                          FlutterFlowIconButton(
+                                                        borderColor:
+                                                            Colors.transparent,
+                                                        borderRadius: 20.0,
+                                                        borderWidth: 1.0,
+                                                        buttonSize: 40.0,
+                                                        icon: Icon(
+                                                          Icons
+                                                              .keyboard_arrow_right,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          size: 24.0,
+                                                        ),
+                                                        onPressed: () async {
+                                                          context.pushNamed(
+                                                            'TestDetail',
+                                                            queryParameters: {
+                                                              'id':
+                                                                  serializeParam(
+                                                                dataListTestsViewItem
+                                                                    .testsId.id,
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'name':
+                                                                  serializeParam(
+                                                                dataListTestsViewItem
+                                                                    .testsId
+                                                                    .name,
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'description':
+                                                                  serializeParam(
+                                                                dataListTestsViewItem
+                                                                    .testsId
+                                                                    .description,
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'time':
+                                                                  serializeParam(
+                                                                dataListTestsViewItem
+                                                                    .testsId
+                                                                    .durationMinutes
+                                                                    .toString(),
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'checkScroll':
+                                                                  serializeParam(
+                                                                'StudyProgramList',
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                            }.withoutNulls,
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              kTransitionInfoKey:
+                                                                  const TransitionInfo(
+                                                                hasTransition:
+                                                                    true,
+                                                                transitionType:
+                                                                    PageTransitionType
+                                                                        .fade,
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        0),
+                                                              ),
+                                                            },
+                                                          );
+
+                                                          FFAppState()
+                                                              .update(() {
+                                                            FFAppState()
+                                                                .scrollCheck = '';
+                                                          });
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ].divide(
+                                                      const SizedBox(width: 8.0)),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                ),
+                              if (dataListViewItem.id == _model.checkShow)
+                                Builder(
+                                  builder: (context) {
+                                    final dataListLessionsView =
+                                        dataListViewItem.lessions.toList();
+                                    return ListView.builder(
+                                      padding: EdgeInsets.zero,
+                                      primary: false,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: dataListLessionsView.length,
+                                      itemBuilder:
+                                          (context, dataListLessionsViewIndex) {
+                                        final dataListLessionsViewItem =
+                                            dataListLessionsView[
+                                                dataListLessionsViewIndex];
+                                        return Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  12.0, 0.0, 12.0, 6.0),
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              context.pushNamed(
+                                                'LessonDetail',
+                                                queryParameters: {
+                                                  'idLesson': serializeParam(
+                                                    dataListLessionsViewItem
+                                                        .lessionsId.id,
+                                                    ParamType.String,
+                                                  ),
+                                                  'checkSrcoll': serializeParam(
+                                                    'StudyProgramList',
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                              );
+
+                                              setState(() {
+                                                FFAppState().scrollCheck = '';
+                                              });
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(6.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    Expanded(
+                                                      flex: 1,
+                                                      child: Container(
+                                                        width: 30.0,
+                                                        height: 30.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiary,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      90.0),
+                                                        ),
+                                                        child: ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                          child: Image.network(
+                                                            '${FFAppConstants.ApiBaseUrl}/assets/${dataListLessionsViewItem.lessionsId.imageCover != null && dataListLessionsViewItem.lessionsId.imageCover != '' ? dataListLessionsViewItem.lessionsId.imageCover : ' '}?access_token=${FFAppState().accessToken}',
+                                                            width: 300.0,
+                                                            height: 200.0,
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      flex: 9,
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Expanded(
+                                                            flex: 3,
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                  dataListLessionsViewItem.lessionsId.name !=
+                                                                              null &&
+                                                                          dataListLessionsViewItem.lessionsId.name !=
+                                                                              ''
+                                                                      ? dataListLessionsViewItem
+                                                                          .lessionsId
+                                                                          .name
+                                                                      : ' '
+                                                                          .maybeHandleOverflow(
+                                                                          maxChars:
+                                                                              25,
+                                                                          replacement:
+                                                                              '…',
+                                                                        ),
+                                                                  maxLines: 2,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        fontSize:
+                                                                            14.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      ),
+                                                                ),
+                                                                Text(
+                                                                  dataListLessionsViewItem.lessionsId.dateCreated !=
+                                                                              null &&
+                                                                          dataListLessionsViewItem.lessionsId.dateCreated !=
+                                                                              ''
+                                                                      ? valueOrDefault<
+                                                                          String>(
+                                                                          dateTimeFormat(
+                                                                            'dd-MM-yyyy',
+                                                                            functions.stringToDateTime(valueOrDefault<String>(
+                                                                              dataListLessionsViewItem.lessionsId.dateCreated,
+                                                                              '0',
+                                                                            )),
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          ),
+                                                                          '0',
+                                                                        )
+                                                                      : ' ',
+                                                                  maxLines: 2,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        fontSize:
+                                                                            12.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                      ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          Expanded(
+                                                            flex: 1,
+                                                            child:
+                                                                FFButtonWidget(
+                                                              onPressed:
+                                                                  () async {
+                                                                context
+                                                                    .pushNamed(
+                                                                  'LessonDetail',
+                                                                  queryParameters:
+                                                                      {
+                                                                    'idLesson':
+                                                                        serializeParam(
+                                                                      dataListLessionsViewItem
+                                                                          .lessionsId
+                                                                          .id,
+                                                                      ParamType
+                                                                          .String,
+                                                                    ),
+                                                                    'checkSrcoll':
+                                                                        serializeParam(
+                                                                      'StudyProgramList',
+                                                                      ParamType
+                                                                          .String,
+                                                                    ),
+                                                                  }.withoutNulls,
+                                                                );
+
+                                                                setState(() {
+                                                                  FFAppState()
+                                                                      .scrollCheck = '';
+                                                                });
+                                                              },
+                                                              text: 'Bài học',
+                                                              options:
+                                                                  FFButtonOptions(
+                                                                height: 30.0,
+                                                                padding: const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        12.0,
+                                                                        0.0,
+                                                                        12.0,
+                                                                        0.0),
+                                                                iconPadding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary,
+                                                                textStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal,
+                                                                    ),
+                                                                elevation: 3.0,
+                                                                borderSide:
+                                                                    const BorderSide(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  width: 1.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8.0),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      flex: 1,
+                                                      child:
+                                                          FlutterFlowIconButton(
+                                                        borderRadius: 20.0,
+                                                        borderWidth: 1.0,
+                                                        buttonSize: 40.0,
+                                                        icon: Icon(
+                                                          Icons
+                                                              .keyboard_arrow_right,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          size: 24.0,
+                                                        ),
+                                                        onPressed: () async {
+                                                          context.pushNamed(
+                                                            'LessonDetail',
+                                                            queryParameters: {
+                                                              'idLesson':
+                                                                  serializeParam(
+                                                                dataListLessionsViewItem
+                                                                    .lessionsId
+                                                                    .id,
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'checkSrcoll':
+                                                                  serializeParam(
+                                                                'StudyProgramList',
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                            }.withoutNulls,
+                                                          );
+
+                                                          setState(() {
+                                                            FFAppState()
+                                                                .scrollCheck = '';
+                                                          });
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ].divide(
+                                                      const SizedBox(width: 8.0)),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                ),
+                            ],
                           ),
-                      ].divide(const SizedBox(height: 12.0)),
+                        );
+                      },
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

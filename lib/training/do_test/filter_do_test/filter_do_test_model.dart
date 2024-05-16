@@ -28,10 +28,6 @@ class FilterDoTestModel extends FlutterFlowModel<FilterDoTestWidget> {
   bool? clearListStaffTestToken;
   // Stores action output result for [Backend Call - API (StaffsTestsList)] action in Button widget.
   ApiCallResponse? apiResultClearListStaffTest;
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? filterListStaffTestToken;
-  // Stores action output result for [Backend Call - API (StaffsTestsList)] action in Button widget.
-  ApiCallResponse? apiResultFilterListStaffTest;
 
   @override
   void initState(BuildContext context) {}

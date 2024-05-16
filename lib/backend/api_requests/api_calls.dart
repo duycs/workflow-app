@@ -142,11 +142,14 @@ class DepartmentGroup {
   static GetDepartmentListCall getDepartmentListCall = GetDepartmentListCall();
   static PostdepartmentCall postdepartmentCall = PostdepartmentCall();
   static PathDepartmentCall pathDepartmentCall = PathDepartmentCall();
+  static UpdateProgramsCall updateProgramsCall = UpdateProgramsCall();
 }
 
 class GetDepartmentListCall {
   Future<ApiCallResponse> call({
     String? filter = '',
+    int? limit = 5000,
+    int? offset = 0,
     String? accessToken = '',
   }) async {
     return ApiManager.instance.makeApiCall(
@@ -162,6 +165,8 @@ class GetDepartmentListCall {
             "id, status, name, description, branch_id.id, branch_id.name, code,programs.programs_id.id, programs.programs_id.name, programs.programs_id.lessions.lessions_id.id, programs.programs_id.lessions.lessions_id.name,staffs.id, staffs.user_id.id, staffs.user_id.emaile,staffs.user_id.first_name,staffs.user_id.role,organization_id",
         'filter': filter,
         'sort': "-date_created",
+        'limit': limit,
+        'offset': offset,
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -252,6 +257,34 @@ class PathDepartmentCall {
   }
 }
 
+class UpdateProgramsCall {
+  Future<ApiCallResponse> call({
+    dynamic requestDataJson,
+    String? accessToken = '',
+  }) async {
+    final requestData = _serializeJson(requestDataJson);
+    final ffApiRequestBody = requestData;
+    return ApiManager.instance.makeApiCall(
+      callName: 'UpdatePrograms',
+      apiUrl:
+          '${DepartmentGroup.baseUrl}/flows/trigger/d76ea3a4-88ff-4a81-b6c8-e6f8edc20652',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 /// End Department Group Code
 
 /// Start UploadFile Group Code
@@ -263,6 +296,7 @@ class UploadFileGroup {
     'Authorization': 'Bearer [accessToken]',
   };
   static UploadFileCall uploadFileCall = UploadFileCall();
+  static UploadListFileCall uploadListFileCall = UploadListFileCall();
 }
 
 class UploadFileCall {
@@ -272,6 +306,34 @@ class UploadFileCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'UploadFile',
+      apiUrl: '${UploadFileGroup.baseUrl}/files',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {
+        'file': file,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class UploadListFileCall {
+  Future<ApiCallResponse> call({
+    List<FFUploadedFile>? fileList,
+    String? accessToken = '',
+  }) async {
+    final file = fileList ?? [];
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'UploadListFile',
       apiUrl: '${UploadFileGroup.baseUrl}/files',
       callType: ApiCallType.POST,
       headers: {
@@ -504,11 +566,15 @@ class LessonGroup {
   static DeleteHeartCall deleteHeartCall = DeleteHeartCall();
   static UpdateStaffLessonStatusCall updateStaffLessonStatusCall =
       UpdateStaffLessonStatusCall();
+  static UpdateStaffProgramStatusCall updateStaffProgramStatusCall =
+      UpdateStaffProgramStatusCall();
 }
 
 class GetLessonListCall {
   Future<ApiCallResponse> call({
     String? filter = '',
+    int? limit = 5000,
+    int? offset = 0,
     String? accessToken = '',
   }) async {
     return ApiManager.instance.makeApiCall(
@@ -521,8 +587,10 @@ class GetLessonListCall {
       },
       params: {
         'fields[]':
-            "file,file.id,file.type,duration_hours,comments.id, comments.comments_id.id, comments.comments_id.content,id, status, name, description, content, image_cover, video, date_created, date_updated,test_id,comments.comments_id.staff_id.id,comments.comments_id.staff_id,comments.comments_id.staff_id.user_id,comments.comments_id.staff_id.user_id.email,comments.comments_id.staff_id.user_id.first_name,comments.comments_id.staff_id.user_id.avatar,comments.comments_id.date_created,reacts.id, reacts.reacts_id.status,reacts.reacts_id.staff_id,file.filename_download,organization_id,programs.programs_id.id,programs.programs_id.name",
+            "file,file.id,file.type,duration_hours,comments.id, comments.comments_id.id, comments.comments_id.content,id, status, name, description, content, image_cover, video, date_created, date_updated,test_id,comments.comments_id.staff_id.id,comments.comments_id.staff_id,comments.comments_id.staff_id.user_id,comments.comments_id.staff_id.user_id.email,comments.comments_id.staff_id.user_id.first_name,comments.comments_id.staff_id.user_id.avatar,comments.comments_id.date_created,reacts.id, reacts.reacts_id.status,reacts.reacts_id.staff_id,file.filename_download,organization_id,programs.programs_id.id,programs.programs_id.name,estimate_in_day",
         'filter': filter,
+        'limit': limit,
+        'offset': offset,
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -562,6 +630,8 @@ class GetLessionsOneCall {
 class EmployeeLessonListCall {
   Future<ApiCallResponse> call({
     String? filter = '',
+    int? offset = 0,
+    int? limit = 5000,
     String? accessToken = '',
   }) async {
     return ApiManager.instance.makeApiCall(
@@ -574,8 +644,10 @@ class EmployeeLessonListCall {
       },
       params: {
         'fields[]':
-            "lession_id.file.id,lession_id.file.type,id,status,progress,date_start,date_end,staff_id.id,staff_id.user_id.first_name,staff_id.user_id.last_name,lession_id.id,lession_id.name,lession_id.description,lession_id.content,lession_id.image_cover,lession_id.video,lession_id.date_updated,lession_id.comments.id,lession_id.comments.comments_id.id,lession_id.comments.comments_id.content,lession_id.status,lession_id.date_created,lession_id.test_id,lession_id.comments.comments_id.staff_id.user_id.avatar,lession_id.comments.comments_id.staff_id.user_id.first_name,lession_id.duration_hours,lession_id.comments.comments_id.date_created,lession_id.file.filename_download,lession_id.programs.programs_id.id,lession_id.programs.programs_id.name",
+            "lession_id.file.id,lession_id.file.type,id,status,progress,date_start,date_end,staff_id.id,staff_id.user_id.first_name,staff_id.user_id.last_name,lession_id.id,lession_id.name,lession_id.description,lession_id.content,lession_id.image_cover,lession_id.video,lession_id.date_updated,lession_id.comments.id,lession_id.comments.comments_id.id,lession_id.comments.comments_id.content,lession_id.status,lession_id.date_created,lession_id.test_id,lession_id.comments.comments_id.staff_id.user_id.avatar,lession_id.comments.comments_id.staff_id.user_id.first_name,lession_id.duration_hours,lession_id.comments.comments_id.date_created,lession_id.file.filename_download,lession_id.programs.programs_id.id,lession_id.programs.programs_id.name,lession_id.estimate_in_day,program_id.name, program_id.estimate_in_day,date_created, program_id.id",
         'filter': filter,
+        'limit': limit,
+        'offset': offset,
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -786,16 +858,50 @@ class DeleteHeartCall {
 class UpdateStaffLessonStatusCall {
   Future<ApiCallResponse> call({
     String? id = '',
+    String? dateStart = '',
     String? accessToken = '',
   }) async {
-    const ffApiRequestBody = '''
+    final ffApiRequestBody = '''
 {
-  	  "status": "inprogress"
+  "status": "inprogress",
+  "date_start": "$dateStart"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateStaffLessonStatus',
       apiUrl: '${LessonGroup.baseUrl}/items/staffs_lessions/$id',
       callType: ApiCallType.PATCH,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class UpdateStaffProgramStatusCall {
+  Future<ApiCallResponse> call({
+    String? staffId = '',
+    String? programId = '',
+    String? accessToken = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "staff_id": "$staffId",
+  "program_id": "$programId"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'UpdateStaffProgramStatus',
+      apiUrl:
+          '${LessonGroup.baseUrl}/flows/trigger/8c284328-1373-4da4-98f5-b3024d3e9861',
+      callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $accessToken',
@@ -830,6 +936,10 @@ class StudyProgramGroup {
       StudyProgramLessionsUpdateCall();
   static SynchronizedStaffLessonCall synchronizedStaffLessonCall =
       SynchronizedStaffLessonCall();
+  static StaffsProgramsCall staffsProgramsCall = StaffsProgramsCall();
+  static UpdateStudyProgramPriceCall updateStudyProgramPriceCall =
+      UpdateStudyProgramPriceCall();
+  static AddProgramMarketCall addProgramMarketCall = AddProgramMarketCall();
 }
 
 class StudyProgramListCall {
@@ -850,7 +960,7 @@ class StudyProgramListCall {
       params: {
         'filter': filter,
         'fields':
-            "organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id",
+            "date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id, image_cover, template, price, author_id",
         'offset': offset,
         'limit': limit,
         'meta': "total_count,filter_count",
@@ -983,6 +1093,101 @@ class SynchronizedStaffLessonCall {
   }
 }
 
+class StaffsProgramsCall {
+  Future<ApiCallResponse> call({
+    String? filter = '',
+    int? offset = 0,
+    int? limit = 5000,
+    String? accessToken = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'StaffsPrograms',
+      apiUrl: '${StudyProgramGroup.baseUrl}/items/staffs_programs',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {
+        'fields[]':
+            "id, status, date_created, staff_id, organization_id, progress, lession_done, lession_count, date_start, date_end, deadline,program_id.id, program_id.name, program_id.lessions.lessions_id,program_id.description,program_id.duration_hours,program_id.organization_id,program_id.estimate_in_day,program_id.date_create,program_id.lessions.lessions_id.id,program_id.lessions.lessions_id.status,program_id.lessions.lessions_id.name,program_id.lessions.lessions_id.description,program_id.lessions.lessions_id.content,program_id.lessions.lessions_id.image_cover,program_id.lessions.lessions_id.video,program_id.lessions.lessions_id.date_created,program_id.lessions.lessions_id.date_updated,program_id.lessions.lessions_id.duration_hours,program_id.lessions.lessions_id.organization_id,program_id.lessions.lessions_id.estimate_in_day,program_id.tests.tests_id.id,program_id.tests.tests_id.status,program_id.status,program_id.date_created",
+        'filter': filter,
+        'limit': limit,
+        'offset': offset,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class UpdateStudyProgramPriceCall {
+  Future<ApiCallResponse> call({
+    String? id = '',
+    int? price,
+    String? accessToken = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "price": $price
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'UpdateStudyProgramPrice',
+      apiUrl: '${StudyProgramGroup.baseUrl}/items/programs/$id',
+      callType: ApiCallType.PATCH,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class AddProgramMarketCall {
+  Future<ApiCallResponse> call({
+    String? id = '',
+    String? domainId = '',
+    String? categoryId = '',
+    String? accessToken = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "program_id": "$id",
+  "category_id": "$categoryId",
+  "domain_id": "$domainId"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'AddProgramMarket',
+      apiUrl:
+          '${StudyProgramGroup.baseUrl}/flows/trigger/39a06a6d-e1f8-4271-85e8-5773579b0c2c',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 /// End StudyProgram Group Code
 
 /// Start DoTest Group Code
@@ -1005,6 +1210,8 @@ class DoTestGroup {
 class StaffsTestsListCall {
   Future<ApiCallResponse> call({
     String? filter = '',
+    int? limit = 5000,
+    int? offset = 0,
     String? accessToken = '',
   }) async {
     return ApiManager.instance.makeApiCall(
@@ -1020,6 +1227,8 @@ class StaffsTestsListCall {
             "id,status,test_id.id,test_id.name,score,date_start,date_end,total_correct,total_incorrect,test_id.duration_minutes,date_created,percent_correct,test_id.good_score,lession_id.name, lession_id.id, lession_id.image_cover,test_id.description",
         'filter': filter,
         'sort': "-date_created",
+        'limit': limit,
+        'offset': offset,
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -1244,6 +1453,8 @@ class QuestionTestAddCall {
 class TestListCall {
   Future<ApiCallResponse> call({
     String? filter = '',
+    int? offset = 0,
+    int? limit = 5000,
     String? accessToken = '',
   }) async {
     return ApiManager.instance.makeApiCall(
@@ -1258,6 +1469,9 @@ class TestListCall {
         'fields':
             "questions.id, questions.questions_id.answers.answers_id.id, questions.questions_id.answers.answers_id.content, questions.questions_id.answers.answers_id.correct,id, status, name, description, duration_minutes, questions.questions_id.id, questions.questions_id.content, questions.questions_id.status, questions.questions_id.content, questions.questions_id.answer_type, questions.questions_id.auto_correct,organization_id,good_score",
         'filter': filter,
+        'limit': limit,
+        'offset': offset,
+        'sort': "-date_created",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -1271,6 +1485,8 @@ class TestListCall {
 class TestOneCall {
   Future<ApiCallResponse> call({
     String? testsId = '',
+    int? offset = 0,
+    int? limit = 5000,
     String? accessToken = '',
   }) async {
     return ApiManager.instance.makeApiCall(
@@ -1284,6 +1500,9 @@ class TestOneCall {
       params: {
         'fields':
             "id, status, name, description, duration_minutes, questions.questions_id.id, questions.questions_id.content, questions.questions_id.status, questions.questions_id.content, questions.questions_id.answer_type, questions.questions_id.auto_correct,questions.id, questions.questions_id.answers.answers_id.id, questions.questions_id.answers.answers_id.content, questions.questions_id.answers.answers_id.correct,good_score",
+        'limit': limit,
+        'offset': offset,
+        'sort': "-date_created",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -1359,6 +1578,7 @@ class QuestionListCall {
         'filter': filter,
         'limit': limit,
         'sort': "-date_created",
+        'offset': offset,
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -1942,6 +2162,8 @@ class BranchGroup {
 class BranchListCall {
   Future<ApiCallResponse> call({
     String? filter = '',
+    int? limit = 5000,
+    int? offset = 0,
     String? accessToken = '',
   }) async {
     return ApiManager.instance.makeApiCall(
@@ -1955,7 +2177,10 @@ class BranchListCall {
       params: {
         'filter': filter,
         'fields[]':
-            "id, status, name, description, code,departments.id, departments.name, departments.departments_id.id, departments.departments_id.name,staffs.id,staffs.name,staffs.title, staffs.user_id.first_name,organization_id.id",
+            "departments.staffs.id,id, status, name, description, code,departments.id, departments.name, departments.departments_id.id, departments.departments_id.name,staffs.id,staffs.name,staffs.title, staffs.user_id.first_name,organization_id.id",
+        'offset': offset,
+        'limit': limit,
+        'sort': "-date_created",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -2042,6 +2267,8 @@ class StaffGroup {
 class GetStaffListCall {
   Future<ApiCallResponse> call({
     String? filter = '',
+    int? limit = 5000,
+    int? offset = 0,
     String? accessToken = '',
   }) async {
     return ApiManager.instance.makeApiCall(
@@ -2057,6 +2284,8 @@ class GetStaffListCall {
             "id, title, user_id.role, status,organization_id.id,organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,tasks.tasks_id.status,staff_tests.percent_correct",
         'filter': filter,
         'sort': "-date_created",
+        'limit': limit,
+        'offset': offset,
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -2083,7 +2312,7 @@ class GetStaffGetOneCall {
       },
       params: {
         'fields':
-            "id, title, user_id.role, status, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,tasks.id, tasks.tasks_id.id, tasks.tasks_id.name, tasks.tasks_id.number, tasks.tasks_id.status, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.workflow_id, tasks.tasks_id.current,skills.id, skills.skills_id.id, skills.skills_id.name,current_step_id.id, current_step_id.name,tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files",
+            "id, title, user_id.role, status, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,tasks.id, tasks.tasks_id.id, tasks.tasks_id.name, tasks.tasks_id.number, tasks.tasks_id.status, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.workflow_id, tasks.tasks_id.current,skills.id, skills.skills_id.id, skills.skills_id.name,current_step_id.id, current_step_id.name,tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,tasks.tasks_id.status,staff_tests.percent_correct,date_created",
         'filter': filter,
         'sort': "-date_created",
       },
@@ -2228,6 +2457,8 @@ class OrganizationGroup {
 class GetOneOrganizationCall {
   Future<ApiCallResponse> call({
     String? organizationId = '',
+    int? limit = 5000,
+    int? offset = 0,
     String? accessToken = '',
   }) async {
     return ApiManager.instance.makeApiCall(
@@ -2241,7 +2472,10 @@ class GetOneOrganizationCall {
       },
       params: {
         'fields':
-            "id, status, name, description, code,hotline,avatar,logo,address,video,image,branchs.id, branchs.name,branchs.branchs_id.departments.departments_id.id, branchs.branchs_id.departments.departments_id.name,staffs.id, staffs.user_id.id, staffs.user_id.email",
+            "id, status, name, description, code,hotline,avatar,logo,address,video,image,files.id,files.directus_files_id,files.directus_files_id.id,branchs.id, branchs.name,branchs.branchs_id.departments.departments_id.id, branchs.branchs_id.departments.departments_id.name,staffs.id, staffs.user_id.id, staffs.user_id.email",
+        'limit': limit,
+        'offset': offset,
+        'sort': "-date_created",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -2284,6 +2518,8 @@ class UpdateOrganizationCall {
 class GetOrganizationCall {
   Future<ApiCallResponse> call({
     String? organizationId = '',
+    int? limit = 5000,
+    int? offset = 0,
     String? accessToken = '',
   }) async {
     return ApiManager.instance.makeApiCall(
@@ -2297,7 +2533,10 @@ class GetOrganizationCall {
       },
       params: {
         'fields':
-            "id, status, name, description, code,hotline,avatar,description,logo,video,address,image,branchs.departments.id, branchs.departments.name,staffs.id, staffs.user_id.id, staffs.user_id.email,id, status, name, description, code,branchs.id, branchs.name, staffs.user_id.role, staffs.user_id.first_name,staffs.user_id.avatar",
+            "id, status, name, description, code,hotline,avatar,description,logo,video,address,image,branchs.departments.id, branchs.departments.name,staffs.id, staffs.user_id.id, staffs.user_id.email,id, status, name, description, code,branchs.id, branchs.name, staffs.user_id.role, staffs.user_id.first_name,staffs.user_id.avatar,files,files.directus_files_id,files.directus_files_id.id,staffs.user_id.title, branchs.title",
+        'limit': limit,
+        'sort': "-date_created",
+        'offset': offset,
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -2327,6 +2566,8 @@ class TaskGroup {
 class GetListTaskCall {
   Future<ApiCallResponse> call({
     String? filter = '',
+    int? limit = 5000,
+    int? offset = 0,
     String? accessToken = '',
   }) async {
     return ApiManager.instance.makeApiCall(
@@ -2342,6 +2583,8 @@ class GetListTaskCall {
             "id, status, name, description, content, date_start, date_end, deadline, estimate_in_second, workflow_id.id,workflow_id.name, number, published_count, step_id, execute_type, action_type, current,staffs.id, staffs.staffs_id.id, staffs.staffs_id.user_id.id, staffs.staffs_id.user_id.first_name,operations.id, operations.operations_id.id, operations.operations_id.name, operations.operations_id.date_start, operations.operations_id.date_end, operations.operations_id.deadline, operations.operations_id.estimate_in_second, operations.operations_id.operation_id,operations.operations_id.action_type, operations.operations_id.step_id,operations.operations_id.content, operations.operations_id.result, operations.operations_id.staffs.id, operations.operations_id.staffs.staffs_id.id,  operations.operations_id.staffs.staffs_id.user_id.email,operations.operations_id.status,staffs.staffs_id.department_id.name,step_id.id,step_id.name,step_id.number, operations.operations_id.files.directus_files_id.id,operations.operations_id.files.directus_files_id.type,operations.operations_id.files.directus_files_id.filename_download,operations.operations_id.files.directus_files_id.id,operations.operations_id.files.directus_files_id.type,operations.operations_id.date_updated,workflow_id.name,staffs.staffs_id.user_id.avatar, organization_id.id, workflow_id.organization_id,submit_staff_id.id, submit_staff_id.user_id.first_name,submit_staff_id.user_id.avatar,submit_staff_id.user_id.id,submit_staff_id.branch_id,submit_staff_id.department_id,created_user_id.first_name, date_created",
         'filter': filter,
         'sort': "number",
+        'limit': limit,
+        'offset': offset,
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -2464,6 +2707,8 @@ class OperationGroup {
 class OperationListCall {
   Future<ApiCallResponse> call({
     String? filter = '',
+    int? limit = 5000,
+    int? offset = 0,
     String? accessToken = '',
   }) async {
     return ApiManager.instance.makeApiCall(
@@ -2480,6 +2725,8 @@ class OperationListCall {
         'filter': filter,
         'sort': "-date_created",
         'total_count': 5000,
+        'limit': limit,
+        'offset': offset,
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -2616,6 +2863,170 @@ class GetDomainsListCall {
 }
 
 /// End Domain Group Code
+
+/// Start GroupMarketLesson Group Code
+
+class GroupMarketLessonGroup {
+  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static Map<String, String> headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer [accessToken]',
+  };
+  static GetListMarketLessonCall getListMarketLessonCall =
+      GetListMarketLessonCall();
+  static GetOneProgramsCall getOneProgramsCall = GetOneProgramsCall();
+}
+
+class GetListMarketLessonCall {
+  Future<ApiCallResponse> call({
+    String? filter = '',
+    int? offset = 0,
+    int? limit = 5000,
+    String? accessToken = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetListMarketLesson',
+      apiUrl: '${GroupMarketLessonGroup.baseUrl}/items/programs',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {
+        'fields[]':
+            "date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id,template,domain_id,category_id,author_id,price,author_id.id,author_id.status,author_id.alias,author_id.description,author_id.domains.domains_id.id,author_id.domains.domains_id.name,domain_id.name, domain_id.id,image_cover, order_count, reacts.id, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status,category_id.name,category_id.id,author_id.avatar",
+        'filter': filter,
+        'limit': limit,
+        'offset': offset,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetOneProgramsCall {
+  Future<ApiCallResponse> call({
+    String? idPrograms = '',
+    int? limit = 5000,
+    int? offset = 0,
+    String? filter = '',
+    String? accessToken = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetOnePrograms',
+      apiUrl: '${GroupMarketLessonGroup.baseUrl}/items/programs/$idPrograms',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {
+        'fields[]':
+            "date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id,template,domain_id,category_id,author_id,price,author_id.id,author_id.status,author_id.alias,author_id.description,author_id.domains.domains_id.id,author_id.domains.domains_id.name,domain_id.name, domain_id.id,image_cover, order_count, reacts.id, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status,category_id.name,category_id.id,author_id.avatar",
+        'offset': offset,
+        'limit': limit,
+        'filter': filter,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End GroupMarketLesson Group Code
+
+/// Start GroupAuthors Group Code
+
+class GroupAuthorsGroup {
+  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static Map<String, String> headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer [accessToken]',
+  };
+  static ListAuthorsCall listAuthorsCall = ListAuthorsCall();
+}
+
+class ListAuthorsCall {
+  Future<ApiCallResponse> call({
+    String? filter = '',
+    int? limit = 5000,
+    int? offset = 0,
+    String? accessToken = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'ListAuthors',
+      apiUrl: '${GroupAuthorsGroup.baseUrl}/items/authors',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {
+        'filter': filter,
+        'fields[]':
+            "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count",
+        'offset': offset,
+        'limit': limit,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End GroupAuthors Group Code
+
+/// Start GetDomains Group Code
+
+class GetDomainsGroup {
+  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static Map<String, String> headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer [accessToken]',
+  };
+  static GetDomainsCall getDomainsCall = GetDomainsCall();
+}
+
+class GetDomainsCall {
+  Future<ApiCallResponse> call({
+    String? filter = '',
+    int? limit = 5000,
+    int? offset = 0,
+    String? accessToken = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetDomains',
+      apiUrl: '${GetDomainsGroup.baseUrl}/items/domains',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {
+        'filter': filter,
+        'limit': limit,
+        'offset': offset,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End GetDomains Group Code
 
 class ApiPagingParams {
   int nextPageNumber = 0;

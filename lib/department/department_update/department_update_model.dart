@@ -75,11 +75,11 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
   // State field(s) for DropDownBranch_id widget.
   String? dropDownBranchIdValue;
   FormFieldController<String>? dropDownBranchIdValueController;
+  // State field(s) for RadioButtonStatus widget.
+  FormFieldController<String>? radioButtonStatusValueController;
   // State field(s) for programs_id widget.
   String? programsIdValue;
   FormFieldController<String>? programsIdValueController;
-  // State field(s) for RadioButtonStatus widget.
-  FormFieldController<String>? radioButtonStatusValueController;
 
   @override
   void initState(BuildContext context) {}

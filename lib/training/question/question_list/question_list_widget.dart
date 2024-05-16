@@ -1,5 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
+import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -8,12 +8,14 @@ import '/training/question/question_create/question_create_widget.dart';
 import '/training/question/question_menu/question_menu_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'dart:async';
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:shake/shake.dart';
 import 'question_list_model.dart';
 export 'question_list_model.dart';
 
@@ -29,6 +31,8 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
   late QuestionListModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  late ShakeDetector shakeDetector;
+  var shakeActionInProgress = false;
 
   @override
   void initState() {
@@ -37,55 +41,46 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {});
+      setState(() {
+        FFAppState().scrollCheck = 'QuestionList';
+      });
       _model.tokenReloadQuestionList = await action_blocks.tokenReload(context);
       if (_model.tokenReloadQuestionList!) {
-        _model.apiResultQuestionList =
-            await QuestionGroup.questionListCall.call(
-          accessToken: FFAppState().accessToken,
-          filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
-            FFAppState().staffLogin,
-            r'''$.organization_id''',
-          ).toString().toString()}\"}}]}',
-        );
-        if ((_model.apiResultQuestionList?.succeeded ?? true)) {
-          setState(() {
-            _model.dataList = (getJsonField(
-              (_model.apiResultQuestionList?.jsonBody ?? ''),
-              r'''$.data''',
-              true,
-            )!
-                    .toList()
-                    .map<QuestionObjectStruct?>(
-                        QuestionObjectStruct.maybeFromMap)
-                    .toList() as Iterable<QuestionObjectStruct?>)
-                .withoutNulls
-                .toList()
-                .cast<QuestionObjectStruct>();
-          });
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'Lỗi tải dữ liệu!',
-                style: TextStyle(
-                  color: FlutterFlowTheme.of(context).primaryText,
-                ),
-              ),
-              duration: const Duration(milliseconds: 4000),
-              backgroundColor: FlutterFlowTheme.of(context).error,
-            ),
-          );
-        }
-
         setState(() {
           _model.isLoad = true;
         });
+        while (FFAppState().scrollCheck == 'QuestionList') {
+          _model.tokenReloadQuestionListCheck =
+              await action_blocks.tokenReload(context);
+          if (_model.tokenReloadQuestionListCheck == true) {
+            await Future.delayed(const Duration(milliseconds: 12000));
+          } else {
+            break;
+          }
+        }
       } else {
-        setState(() {});
+        FFAppState().update(() {});
         return;
       }
     });
+
+    // On shake action.
+    shakeDetector = ShakeDetector.autoStart(
+      onPhoneShake: () async {
+        if (shakeActionInProgress) {
+          return;
+        }
+        shakeActionInProgress = true;
+        try {
+          setState(() {
+            FFAppState().scrollCheck = '';
+          });
+        } finally {
+          shakeActionInProgress = false;
+        }
+      },
+      shakeThresholdGravity: 1.5,
+    );
 
     _model.questionNameTextController ??= TextEditingController();
     _model.questionNameFocusNode ??= FocusNode();
@@ -95,6 +90,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
   void dispose() {
     _model.dispose();
 
+    shakeDetector.stopListening();
     super.dispose();
   }
 
@@ -128,8 +124,15 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                           : FocusScope.of(context).unfocus(),
                       child: QuestionCreateWidget(
                         callBackList: () async {
-                          setState(() {});
-                          await _model.getListQuestion(context);
+                          setState(() {
+                            _model.nameSearch = ' ';
+                            _model.status = ' ';
+                          });
+                          setState(() {
+                            _model.questionNameTextController?.clear();
+                          });
+                          setState(
+                              () => _model.listViewPagingController?.refresh());
                           setState(() {});
                         },
                       ),
@@ -171,6 +174,10 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                   ),
                 },
               );
+
+              setState(() {
+                FFAppState().scrollCheck = '';
+              });
             },
           ),
           title: Text(
@@ -191,7 +198,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
@@ -212,8 +219,8 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                 _model.nameSearch =
                                     _model.questionNameTextController.text;
                               });
-                              await _model.getListQuestion(context);
-                              setState(() {});
+                              setState(() =>
+                                  _model.listViewPagingController?.refresh());
                               setState(() {});
                             },
                           ),
@@ -273,8 +280,9 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                         _model.nameSearch = _model
                                             .questionNameTextController.text;
                                       });
-                                      await _model.getListQuestion(context);
-                                      setState(() {});
+                                      setState(() => _model
+                                          .listViewPagingController
+                                          ?.refresh());
                                       setState(() {});
                                       setState(() {});
                                     },
@@ -347,7 +355,10 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                             ? nameFilter
                                             : '');
                                       });
-                                      await _model.getListQuestion(context);
+                                      setState(() => _model
+                                          .listViewPagingController
+                                          ?.refresh());
+                                      await _model.waitForOnePageForListView();
                                       setState(() {});
                                     },
                                   ),
@@ -373,304 +384,314 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                           fontStyle: FontStyle.italic,
                         ),
                   ),
-                if ((_model.dataList.isNotEmpty) && (_model.isLoad == true))
+                if (_model.isLoad == true)
                   Expanded(
-                    child: Builder(
-                      builder: (context) {
-                        final detailView = _model.dataList.toList();
-                        return ListView.separated(
-                          padding: EdgeInsets.zero,
-                          primary: false,
-                          scrollDirection: Axis.vertical,
-                          itemCount: detailView.length,
-                          separatorBuilder: (_, __) => const SizedBox(height: 8.0),
-                          itemBuilder: (context, detailViewIndex) {
-                            final detailViewItem = detailView[detailViewIndex];
-                            return Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 1.0),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 8.0, 0.0, 8.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        '#${(detailViewIndex + 1).toString()}',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
+                    child: PagedListView<ApiPagingParams, dynamic>.separated(
+                      pagingController: _model.setListViewController(
+                        (nextPageMarker) => QuestionGroup.questionListCall.call(
+                          accessToken: FFAppState().accessToken,
+                          limit: 20,
+                          offset: nextPageMarker.nextPageNumber * 20,
+                          filter:
+                              '{\"_and\":[{}${(_model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"content\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.status != '') && (_model.status != ' ') ? ',{\"status\":{\"_eq\":\"${_model.status}\"}}' : ' '}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffLogin,
+                            r'''$.organization_id''',
+                          ).toString()}\"}}'}]}',
+                        ),
+                      ),
+                      padding: EdgeInsets.zero,
+                      primary: false,
+                      reverse: false,
+                      scrollDirection: Axis.vertical,
+                      separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                      builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                        // Customize what your widget looks like when it's loading the first page.
+                        firstPageProgressIndicatorBuilder: (_) => Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        ),
+                        // Customize what your widget looks like when it's loading another page.
+                        newPageProgressIndicatorBuilder: (_) => Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        ),
+                        noItemsFoundIndicatorBuilder: (_) => const Center(
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: double.infinity,
+                            child: DataNotFoundWidget(),
+                          ),
+                        ),
+                        itemBuilder: (context, _, detailViewIndex) {
+                          final detailViewItem = _model
+                              .listViewPagingController!
+                              .itemList![detailViewIndex];
+                          return Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 1.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 8.0, 0.0, 8.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '#${(detailViewIndex + 1).toString()}',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 0.0, 0.0, 0.0),
+                                            child: Text(
+                                              detailViewItem.content,
+                                              maxLines: 2,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
-                                      ),
-                                      Expanded(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      12.0, 0.0, 0.0, 0.0),
-                                              child: Text(
-                                                detailViewItem.content,
-                                                maxLines: 2,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 8.0, 0.0, 0.0),
+                                            child: Text(
+                                              '# ${() {
+                                                if (detailViewItem.answerType ==
+                                                    'radio') {
+                                                  return 'Trắc nghiệm 1 đáp án';
+                                                } else if (detailViewItem
+                                                        .answerType ==
+                                                    'checkbox') {
+                                                  return 'Trắc nghiệm 1 hoặc nhiều đáp án';
+                                                } else if (detailViewItem
+                                                        .answerType ==
+                                                    'text') {
+                                                  return 'Trả lời văn bản ngắn';
+                                                } else {
+                                                  return 'Trả lời số';
+                                                }
+                                              }()}',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondary,
+                                                    fontSize: 13.0,
+                                                    letterSpacing: 0.0,
+                                                    fontStyle: FontStyle.italic,
+                                                  ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 4.0, 0.0, 0.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          12.0, 0.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    dateTimeFormat(
+                                                      'dd-MM-yyyy',
+                                                      functions
+                                                          .stringToDateTime(
+                                                              detailViewItem
+                                                                  .dateCreated),
+                                                      locale:
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .languageCode,
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelSmall
                                                         .override(
                                                           fontFamily:
                                                               'Nunito Sans',
+                                                          fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                         ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      12.0, 8.0, 0.0, 0.0),
-                                              child: Text(
-                                                '# ${() {
-                                                  if (detailViewItem
-                                                          .answerType ==
-                                                      'radio') {
-                                                    return 'Trắc nghiệm 1 đáp án';
-                                                  } else if (detailViewItem
-                                                          .answerType ==
-                                                      'checkbox') {
-                                                    return 'Trắc nghiệm 1 hoặc nhiều đáp án';
-                                                  } else if (detailViewItem
-                                                          .answerType ==
-                                                      'text') {
-                                                    return 'Trả lời văn bản ngắn';
-                                                  } else {
-                                                    return 'Trả lời số';
-                                                  }
-                                                }()}',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Nunito Sans',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondary,
-                                                      fontSize: 13.0,
-                                                      letterSpacing: 0.0,
-                                                      fontStyle:
-                                                          FontStyle.italic,
-                                                    ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 4.0, 0.0, 0.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Padding(
+                                                  ),
+                                                ),
+                                                Container(
+                                                  height: 30.0,
+                                                  decoration: BoxDecoration(
+                                                    color:
+                                                        '${detailViewItem.status}' ==
+                                                                'published'
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .accent2
+                                                            : FlutterFlowTheme
+                                                                    .of(context)
+                                                                .accent3,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20.0),
+                                                  ),
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Padding(
                                                     padding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(12.0, 0.0,
-                                                                0.0, 0.0),
+                                                            .fromSTEB(8.0, 0.0,
+                                                                8.0, 0.0),
                                                     child: Text(
-                                                      dateTimeFormat(
-                                                        'dd-MM-yyyy',
-                                                        functions
-                                                            .stringToDateTime(
-                                                                detailViewItem
-                                                                    .dateCreated),
-                                                        locale:
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .languageCode,
-                                                      ),
+                                                      '${detailViewItem.status}' ==
+                                                              'published'
+                                                          ? 'Hoạt động'
+                                                          : 'Không hoạt động',
                                                       style: FlutterFlowTheme
                                                               .of(context)
-                                                          .labelSmall
+                                                          .bodyMedium
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
+                                                            color: '${detailViewItem.status}' ==
+                                                                    'published'
+                                                                ? FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .tertiary,
                                                             fontSize: 13.0,
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
                                                   ),
-                                                  Container(
-                                                    height: 30.0,
-                                                    decoration: BoxDecoration(
-                                                      color: detailViewItem.status ==
-                                                              'published'
-                                                          ? FlutterFlowTheme.of(
-                                                                  context)
-                                                              .accent2
-                                                          : FlutterFlowTheme.of(
-                                                                  context)
-                                                              .accent3,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.0),
-                                                    ),
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        detailViewItem.status ==
-                                                                'published'
-                                                            ? 'Hoạt động'
-                                                            : 'Không hoạt động',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Nunito Sans',
-                                                              color: detailViewItem.status ==
-                                                                      'published'
-                                                                  ? FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary
-                                                                  : FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .tertiary,
-                                                              fontSize: 13.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                            ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                      Builder(
-                                        builder: (context) =>
-                                            FlutterFlowIconButton(
-                                          borderRadius: 20.0,
-                                          borderWidth: 1.0,
-                                          buttonSize: 40.0,
-                                          icon: Icon(
-                                            Icons.more_vert,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 24.0,
                                           ),
-                                          onPressed: () async {
-                                            await showAlignedDialog(
-                                              context: context,
-                                              isGlobal: false,
-                                              avoidOverflow: true,
-                                              targetAnchor:
-                                                  const AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
-                                              followerAnchor:
-                                                  const AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
-                                              builder: (dialogContext) {
-                                                return Material(
-                                                  color: Colors.transparent,
-                                                  child: GestureDetector(
-                                                    onTap: () => _model
-                                                            .unfocusNode
-                                                            .canRequestFocus
-                                                        ? FocusScope.of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode)
-                                                        : FocusScope.of(context)
-                                                            .unfocus(),
-                                                    child: SizedBox(
-                                                      height: 150.0,
-                                                      child: QuestionMenuWidget(
-                                                        item: detailViewItem,
-                                                        callBackRequest:
-                                                            () async {
-                                                          await _model
-                                                              .getListQuestion(
-                                                                  context);
-                                                          setState(() {});
-                                                        },
-                                                      ),
+                                        ],
+                                      ),
+                                    ),
+                                    Builder(
+                                      builder: (context) =>
+                                          FlutterFlowIconButton(
+                                        borderRadius: 20.0,
+                                        borderWidth: 1.0,
+                                        buttonSize: 40.0,
+                                        icon: Icon(
+                                          Icons.more_vert,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          size: 24.0,
+                                        ),
+                                        onPressed: () async {
+                                          await showAlignedDialog(
+                                            context: context,
+                                            isGlobal: false,
+                                            avoidOverflow: true,
+                                            targetAnchor: const AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            followerAnchor:
+                                                const AlignmentDirectional(0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                            builder: (dialogContext) {
+                                              return Material(
+                                                color: Colors.transparent,
+                                                child: GestureDetector(
+                                                  onTap: () => _model
+                                                          .unfocusNode
+                                                          .canRequestFocus
+                                                      ? FocusScope.of(context)
+                                                          .requestFocus(_model
+                                                              .unfocusNode)
+                                                      : FocusScope.of(context)
+                                                          .unfocus(),
+                                                  child: SizedBox(
+                                                    height: 150.0,
+                                                    child: QuestionMenuWidget(
+                                                      item: detailViewItem,
+                                                      callBackRequest:
+                                                          () async {
+                                                        setState(() {
+                                                          _model.nameSearch =
+                                                              ' ';
+                                                          _model.status = ' ';
+                                                        });
+                                                        setState(() {
+                                                          _model
+                                                              .questionNameTextController
+                                                              ?.clear();
+                                                        });
+                                                        setState(() => _model
+                                                            .listViewPagingController
+                                                            ?.refresh());
+                                                        await _model
+                                                            .waitForOnePageForListView();
+                                                        setState(() {});
+                                                      },
                                                     ),
                                                   ),
-                                                );
-                                              },
-                                            ).then((value) => setState(() {}));
-                                          },
-                                        ),
+                                                ),
+                                              );
+                                            },
+                                          ).then((value) => setState(() {}));
+                                        },
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            );
-                          },
-                        );
-                      },
-                    ),
-                  ),
-                if ((_model.dataList.isEmpty) && (_model.isLoad == true))
-                  Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 0.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          FaIcon(
-                            FontAwesomeIcons.database,
-                            color: FlutterFlowTheme.of(context).alternate,
-                            size: 55.0,
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 15.0, 0.0, 0.0),
-                            child: Text(
-                              'Không có dữ liệu !',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    fontSize: 18.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
                             ),
-                          ),
-                        ],
+                          );
+                        },
                       ),
                     ),
                   ),

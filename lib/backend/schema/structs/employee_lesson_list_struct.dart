@@ -14,6 +14,8 @@ class EmployeeLessonListStruct extends BaseStruct {
     StaffIdStruct? staffId,
     LessionIdStruct? lessionId,
     ProgramsIdStruct? programsId,
+    ProgramsIddStruct? programId,
+    String? dateCreated,
   })  : _id = id,
         _status = status,
         _progress = progress,
@@ -21,7 +23,9 @@ class EmployeeLessonListStruct extends BaseStruct {
         _dateEnd = dateEnd,
         _staffId = staffId,
         _lessionId = lessionId,
-        _programsId = programsId;
+        _programsId = programsId,
+        _programId = programId,
+        _dateCreated = dateCreated;
 
   // "id" field.
   String? _id;
@@ -78,6 +82,20 @@ class EmployeeLessonListStruct extends BaseStruct {
       updateFn(_programsId ??= ProgramsIdStruct());
   bool hasProgramsId() => _programsId != null;
 
+  // "program_id" field.
+  ProgramsIddStruct? _programId;
+  ProgramsIddStruct get programId => _programId ?? ProgramsIddStruct();
+  set programId(ProgramsIddStruct? val) => _programId = val;
+  void updateProgramId(Function(ProgramsIddStruct) updateFn) =>
+      updateFn(_programId ??= ProgramsIddStruct());
+  bool hasProgramId() => _programId != null;
+
+  // "date_created" field.
+  String? _dateCreated;
+  String get dateCreated => _dateCreated ?? '';
+  set dateCreated(String? val) => _dateCreated = val;
+  bool hasDateCreated() => _dateCreated != null;
+
   static EmployeeLessonListStruct fromMap(Map<String, dynamic> data) =>
       EmployeeLessonListStruct(
         id: data['id'] as String?,
@@ -88,6 +106,8 @@ class EmployeeLessonListStruct extends BaseStruct {
         staffId: StaffIdStruct.maybeFromMap(data['staff_id']),
         lessionId: LessionIdStruct.maybeFromMap(data['lession_id']),
         programsId: ProgramsIdStruct.maybeFromMap(data['programs_id']),
+        programId: ProgramsIddStruct.maybeFromMap(data['program_id']),
+        dateCreated: data['date_created'] as String?,
       );
 
   static EmployeeLessonListStruct? maybeFromMap(dynamic data) => data is Map
@@ -103,6 +123,8 @@ class EmployeeLessonListStruct extends BaseStruct {
         'staff_id': _staffId?.toMap(),
         'lession_id': _lessionId?.toMap(),
         'programs_id': _programsId?.toMap(),
+        'program_id': _programId?.toMap(),
+        'date_created': _dateCreated,
       }.withoutNulls;
 
   @override
@@ -138,6 +160,14 @@ class EmployeeLessonListStruct extends BaseStruct {
         'programs_id': serializeParam(
           _programsId,
           ParamType.DataStruct,
+        ),
+        'program_id': serializeParam(
+          _programId,
+          ParamType.DataStruct,
+        ),
+        'date_created': serializeParam(
+          _dateCreated,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -187,6 +217,17 @@ class EmployeeLessonListStruct extends BaseStruct {
           false,
           structBuilder: ProgramsIdStruct.fromSerializableMap,
         ),
+        programId: deserializeStructParam(
+          data['program_id'],
+          ParamType.DataStruct,
+          false,
+          structBuilder: ProgramsIddStruct.fromSerializableMap,
+        ),
+        dateCreated: deserializeParam(
+          data['date_created'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -202,7 +243,9 @@ class EmployeeLessonListStruct extends BaseStruct {
         dateEnd == other.dateEnd &&
         staffId == other.staffId &&
         lessionId == other.lessionId &&
-        programsId == other.programsId;
+        programsId == other.programsId &&
+        programId == other.programId &&
+        dateCreated == other.dateCreated;
   }
 
   @override
@@ -214,7 +257,9 @@ class EmployeeLessonListStruct extends BaseStruct {
         dateEnd,
         staffId,
         lessionId,
-        programsId
+        programsId,
+        programId,
+        dateCreated
       ]);
 }
 
@@ -227,6 +272,8 @@ EmployeeLessonListStruct createEmployeeLessonListStruct({
   StaffIdStruct? staffId,
   LessionIdStruct? lessionId,
   ProgramsIdStruct? programsId,
+  ProgramsIddStruct? programId,
+  String? dateCreated,
 }) =>
     EmployeeLessonListStruct(
       id: id,
@@ -237,4 +284,6 @@ EmployeeLessonListStruct createEmployeeLessonListStruct({
       staffId: staffId ?? StaffIdStruct(),
       lessionId: lessionId ?? LessionIdStruct(),
       programsId: programsId ?? ProgramsIdStruct(),
+      programId: programId ?? ProgramsIddStruct(),
+      dateCreated: dateCreated,
     );

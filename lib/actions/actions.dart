@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 
@@ -97,8 +98,18 @@ Future<bool?> tokenReload(BuildContext context) async {
                   .data
                   .expires;
     });
+    await actions.saveInfoUser(
+      'wf_token',
+      getJsonField(
+        (apiResultRefreshTokenCheck.jsonBody ?? ''),
+        r'''$.data.refresh_token''',
+      ).toString().toString(),
+    );
   } else {
     await action_blocks.clearSession(context);
+    FFAppState().update(() {
+      FFAppState().scrollCheck = '';
+    });
 
     context.pushNamed(
       'Login',

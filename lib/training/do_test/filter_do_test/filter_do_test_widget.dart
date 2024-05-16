@@ -23,8 +23,8 @@ class FilterDoTestWidget extends StatefulWidget {
   final String? filterSearch;
   final String? dateStart;
   final String? dateEnd;
-  final Future Function(List<StaffsTestsListStruct>? listCallback,
-      String? dateStartCallback, String? dateEndCallback)? callback;
+  final Future Function(String? dateStartCallback, String? dateEndCallback)?
+      callback;
 
   @override
   State<FilterDoTestWidget> createState() => _FilterDoTestWidgetState();
@@ -344,7 +344,6 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                                         .toList()
                                         .cast<StaffsTestsListStruct>();
                                 await widget.callback?.call(
-                                  _model.llst,
                                   ' ',
                                   ' ',
                                 );
@@ -385,42 +384,10 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            _model.filterListStaffTestToken =
-                                await action_blocks.tokenReload(context);
-                            if (_model.filterListStaffTestToken!) {
-                              _model.apiResultFilterListStaffTest =
-                                  await DoTestGroup.staffsTestsListCall.call(
-                                accessToken: FFAppState().accessToken,
-                                filter:
-                                    '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"test_id\":{\"name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}${_model.dateStart != '' ? ',{\"date_start\":{\"_gte\":\"${_model.dateStart}\"}}' : ' '}${_model.dateEnd != '' ? ',{\"date_start\":{\"_lte\":\"${_model.dateEnd}\"}}' : ' '}]}',
-                              );
-                              if ((_model.apiResultFilterListStaffTest
-                                      ?.succeeded ??
-                                  true)) {
-                                _model.llst =
-                                    StaffsTestsListDataStruct.maybeFromMap(
-                                            (_model.apiResultFilterListStaffTest
-                                                    ?.jsonBody ??
-                                                ''))!
-                                        .data
-                                        .toList()
-                                        .cast<StaffsTestsListStruct>();
-                                await widget.callback?.call(
-                                  StaffsTestsListDataStruct.maybeFromMap((_model
-                                              .apiResultFilterListStaffTest
-                                              ?.jsonBody ??
-                                          ''))
-                                      ?.data,
-                                  _model.dateStart,
-                                  _model.dateEnd,
-                                );
-                                Navigator.pop(context);
-                              }
-                            } else {
-                              setState(() {});
-                            }
-
-                            setState(() {});
+                            await widget.callback?.call(
+                              _model.dateStart,
+                              _model.dateEnd,
+                            );
                           },
                           text: 'Xác nhận',
                           options: FFButtonOptions(

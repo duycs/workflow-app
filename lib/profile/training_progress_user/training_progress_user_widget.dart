@@ -1296,11 +1296,11 @@ class _TrainingProgressUserWidgetState extends State<TrainingProgressUserWidget>
                                 data: [
                                   FFLineChartData(
                                     xData: List.generate(
-                                        random_data.randomInteger(0, 0),
+                                        random_data.randomInteger(5, 5),
                                         (index) =>
                                             random_data.randomInteger(0, 10)),
                                     yData: List.generate(
-                                        random_data.randomInteger(0, 0),
+                                        random_data.randomInteger(5, 5),
                                         (index) =>
                                             random_data.randomInteger(0, 10)),
                                     settings: LineChartBarData(
@@ -1319,11 +1319,11 @@ class _TrainingProgressUserWidgetState extends State<TrainingProgressUserWidget>
                                   ),
                                   FFLineChartData(
                                     xData: List.generate(
-                                        random_data.randomInteger(0, 0),
+                                        random_data.randomInteger(5, 5),
                                         (index) =>
                                             random_data.randomInteger(0, 200)),
                                     yData: List.generate(
-                                        random_data.randomInteger(0, 0),
+                                        random_data.randomInteger(5, 5),
                                         (index) =>
                                             random_data.randomInteger(0, 200)),
                                     settings: LineChartBarData(

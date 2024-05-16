@@ -29,6 +29,8 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
 
   String checkContent = '';
 
+  int? checkTime;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -50,6 +52,10 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
   FocusNode? durationHoursFocusNode;
   TextEditingController? durationHoursTextController;
   String? Function(BuildContext, String?)? durationHoursTextControllerValidator;
+  // State field(s) for estimate_in_day widget.
+  FocusNode? estimateInDayFocusNode;
+  TextEditingController? estimateInDayTextController;
+  String? Function(BuildContext, String?)? estimateInDayTextControllerValidator;
   // State field(s) for RadioButtonStatus widget.
   FormFieldController<String>? radioButtonStatusValueController;
   bool isDataUploading1 = false;
@@ -78,6 +84,9 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
 
     durationHoursFocusNode?.dispose();
     durationHoursTextController?.dispose();
+
+    estimateInDayFocusNode?.dispose();
+    estimateInDayTextController?.dispose();
   }
 
   /// Action blocks.
@@ -194,6 +203,10 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
             }
           }()
               ?.toString(),
+          'estimate_in_day': (estimateInDayTextController.text != '') &&
+                  (int.parse(estimateInDayTextController.text) > 0)
+              ? estimateInDayTextController.text
+              : null,
         },
       );
       if ((apiResultUpdateLesson.succeeded ?? true)) {
@@ -305,6 +318,10 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
               return null;
             }
           }(),
+          'estimate_in_day': (estimateInDayTextController.text != '') &&
+                  (int.parse(estimateInDayTextController.text) > 0)
+              ? estimateInDayTextController.text
+              : null,
         },
       );
       if ((apiResultUpdateLesson1.succeeded ?? true)) {

@@ -445,6 +445,66 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 3.0),
+                                child: Text(
+                                  'Trạng thái',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                ),
+                              ),
+                              FlutterFlowRadioButton(
+                                options:
+                                    ['Hoạt động', 'Không hoạt động'].toList(),
+                                onChanged: (val) => setState(() {}),
+                                controller: _model
+                                        .radioButtonStatusValueController ??=
+                                    FormFieldController<String>(getJsonField(
+                                              widget.items,
+                                              r'''$.status''',
+                                            ).toString() ==
+                                            'published'
+                                        ? 'Hoạt động'
+                                        : 'Không hoạt động'),
+                                optionHeight: 32.0,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                                selectedTextStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                                buttonPosition: RadioButtonPosition.left,
+                                direction: Axis.vertical,
+                                radioButtonColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                inactiveRadioButtonColor:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                toggleable: false,
+                                horizontalAlignment: WrapAlignment.start,
+                                verticalAlignment: WrapCrossAlignment.start,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 8.0, 0.0, 0.0),
                           child: Text(
                             'Chương trình đào tạo',
                             style: FlutterFlowTheme.of(context)
@@ -511,66 +571,6 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                           isOverButton: true,
                           isSearchable: false,
                           isMultiSelect: false,
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 8.0, 0.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 3.0),
-                                child: Text(
-                                  'Trạng thái',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
-                              ),
-                              FlutterFlowRadioButton(
-                                options:
-                                    ['Hoạt động', 'Không hoạt động'].toList(),
-                                onChanged: (val) => setState(() {}),
-                                controller: _model
-                                        .radioButtonStatusValueController ??=
-                                    FormFieldController<String>(getJsonField(
-                                              widget.items,
-                                              r'''$.status''',
-                                            ).toString() ==
-                                            'published'
-                                        ? 'Hoạt động'
-                                        : 'Không hoạt động'),
-                                optionHeight: 32.0,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
-                                selectedTextStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
-                                buttonPosition: RadioButtonPosition.left,
-                                direction: Axis.vertical,
-                                radioButtonColor:
-                                    FlutterFlowTheme.of(context).primary,
-                                inactiveRadioButtonColor:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                toggleable: false,
-                                horizontalAlignment: WrapAlignment.start,
-                                verticalAlignment: WrapCrossAlignment.start,
-                              ),
-                            ],
-                          ),
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -698,7 +698,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              'Kiểm tra lại tên, mô tả, mã bộ phận, chương trình đào tạo!',
+                              'Các trường tên, mô tả, mã bộ phận bắt buộc phải nhập!',
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
@@ -740,7 +740,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              'Kiểm tra lại tên, mô tả, mã bộ phận, chương trình đào tạo!',
+                              'Các trường tên, mô tả, mã bộ phận bắt buộc phải nhập!',
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),

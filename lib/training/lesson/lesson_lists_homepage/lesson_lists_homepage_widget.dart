@@ -388,6 +388,10 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                     listRowItem.id,
                                                     ParamType.String,
                                                   ),
+                                                  'programId': serializeParam(
+                                                    listRowItem.programId.id,
+                                                    ParamType.String,
+                                                  ),
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
@@ -416,58 +420,560 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                   width: 1.0,
                                                 ),
                                               ),
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(6.0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Expanded(
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                        child: Image.network(
-                                                          '${FFAppConstants.ApiBaseUrl}/assets/${listRowItem.lessionId.imageCover}?access_token=${FFAppState().accessToken}',
-                                                          width:
-                                                              double.infinity,
-                                                          height:
-                                                              double.infinity,
-                                                          fit: BoxFit.cover,
+                                              child: Stack(
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(6.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Expanded(
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                            child:
+                                                                Image.network(
+                                                              '${FFAppConstants.ApiBaseUrl}/assets/${listRowItem.lessionId.imageCover}?access_token=${FFAppState().accessToken}',
+                                                              width: double
+                                                                  .infinity,
+                                                              height: double
+                                                                  .infinity,
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
                                                         ),
-                                                      ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            listRowItem
+                                                                .lessionId.name,
+                                                            maxLines: 2,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                    Padding(
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            1.0, -1.0),
+                                                    child: Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
-                                                                  4.0,
-                                                                  0.0,
+                                                                  8.0,
+                                                                  8.0,
                                                                   0.0),
-                                                      child: Text(
-                                                        listRowItem
-                                                            .lessionId.name,
-                                                        maxLines: 2,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Nunito Sans',
-                                                              fontSize: 14.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20.0),
+                                                        ),
+                                                        child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .alternate,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20.0),
+                                                          ),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        5.0,
+                                                                        2.0,
+                                                                        5.0,
+                                                                        2.0),
+                                                            child: Text(
+                                                              () {
+                                                                if ((listRowItem.dateStart != '') &&
+                                                                    (listRowItem.lessionId.estimateInDay !=
+                                                                        null) &&
+                                                                    (listRowItem.programId.estimateInDay !=
+                                                                        null)) {
+                                                                  return () {
+                                                                    if ((String item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3,
+                                                                            int
+                                                                                item4) {
+                                                                      return (DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3).add(Duration(days: item4))))
+                                                                              .inDays >=
+                                                                          0;
+                                                                    }(
+                                                                        listRowItem
+                                                                            .dateCreated,
+                                                                        listRowItem
+                                                                            .programId
+                                                                            .estimateInDay,
+                                                                        listRowItem
+                                                                            .dateStart,
+                                                                        listRowItem
+                                                                            .lessionId
+                                                                            .estimateInDay)) {
+                                                                      return () {
+                                                                        if ((String item1,
+                                                                                int item2,
+                                                                                String item3) {
+                                                                          return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays >
+                                                                              0;
+                                                                        }(
+                                                                            listRowItem.dateStart,
+                                                                            listRowItem.lessionId.estimateInDay,
+                                                                            dateTimeFormat(
+                                                                              'yyyy-MM-dd',
+                                                                              getCurrentTimestamp,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ))) {
+                                                                          return '${(String item1, int item2, String item3) {
+                                                                            return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays.toString();
+                                                                          }(listRowItem.dateStart, listRowItem.lessionId.estimateInDay, dateTimeFormat(
+                                                                                'yyyy-MM-dd',
+                                                                                getCurrentTimestamp,
+                                                                                locale: FFLocalizations.of(context).languageCode,
+                                                                              ))} ngày';
+                                                                        } else if ((String item1, int item2, String item3) {
+                                                                          return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays <=
+                                                                              0;
+                                                                        }(
+                                                                            listRowItem.dateStart,
+                                                                            listRowItem.lessionId.estimateInDay,
+                                                                            dateTimeFormat(
+                                                                              'yyyy-MM-dd',
+                                                                              getCurrentTimestamp,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ))) {
+                                                                          return 'Hết hạn';
+                                                                        } else {
+                                                                          return null!;
+                                                                        }
+                                                                      }();
+                                                                    } else if ((String
+                                                                                item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3,
+                                                                            int
+                                                                                item4) {
+                                                                      return (DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3).add(Duration(days: item4))))
+                                                                              .inDays <
+                                                                          0;
+                                                                    }(
+                                                                        listRowItem
+                                                                            .dateCreated,
+                                                                        listRowItem
+                                                                            .programId
+                                                                            .estimateInDay,
+                                                                        listRowItem
+                                                                            .dateStart,
+                                                                        listRowItem
+                                                                            .lessionId
+                                                                            .estimateInDay)) {
+                                                                      return () {
+                                                                        if ((String item1,
+                                                                                int item2,
+                                                                                String item3) {
+                                                                          return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays >
+                                                                              0;
+                                                                        }(
+                                                                            listRowItem.dateCreated,
+                                                                            listRowItem.programId.estimateInDay,
+                                                                            dateTimeFormat(
+                                                                              'yyyy-MM-dd',
+                                                                              getCurrentTimestamp,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ))) {
+                                                                          return '${(String item1, int item2, String item3) {
+                                                                            return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays.toString();
+                                                                          }(listRowItem.dateCreated, listRowItem.programId.estimateInDay, dateTimeFormat(
+                                                                                'yyyy-MM-dd',
+                                                                                getCurrentTimestamp,
+                                                                                locale: FFLocalizations.of(context).languageCode,
+                                                                              ))} ngày';
+                                                                        } else if ((String item1, int item2, String item3) {
+                                                                          return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays <=
+                                                                              0;
+                                                                        }(
+                                                                            listRowItem.dateCreated,
+                                                                            listRowItem.programId.estimateInDay,
+                                                                            dateTimeFormat(
+                                                                              'yyyy-MM-dd',
+                                                                              getCurrentTimestamp,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ))) {
+                                                                          return 'Hết hạn';
+                                                                        } else {
+                                                                          return null!;
+                                                                        }
+                                                                      }();
+                                                                    } else {
+                                                                      return null!;
+                                                                    }
+                                                                  }();
+                                                                } else if ((listRowItem.dateStart != '') &&
+                                                                    (listRowItem.lessionId.estimateInDay !=
+                                                                        null) &&
+                                                                    (listRowItem.programId.estimateInDay ==
+                                                                        null)) {
+                                                                  return () {
+                                                                    if ((String item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3) {
+                                                                      return DateTime.parse(item1)
+                                                                              .add(Duration(days: item2))
+                                                                              .difference(DateTime.parse(item3))
+                                                                              .inDays >
+                                                                          0;
+                                                                    }(
+                                                                        listRowItem
+                                                                            .dateStart,
+                                                                        listRowItem
+                                                                            .lessionId
+                                                                            .estimateInDay,
+                                                                        dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          getCurrentTimestamp,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))) {
+                                                                      return '${(String item1, int item2, String item3) {
+                                                                        return DateTime.parse(item1)
+                                                                            .add(Duration(days: item2))
+                                                                            .difference(DateTime.parse(item3))
+                                                                            .inDays
+                                                                            .toString();
+                                                                      }(listRowItem.dateStart, listRowItem.lessionId.estimateInDay, dateTimeFormat(
+                                                                            'yyyy-MM-dd',
+                                                                            getCurrentTimestamp,
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          ))} ngày';
+                                                                    } else if ((String
+                                                                                item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3) {
+                                                                      return DateTime.parse(item1)
+                                                                              .add(Duration(days: item2))
+                                                                              .difference(DateTime.parse(item3))
+                                                                              .inDays <=
+                                                                          0;
+                                                                    }(
+                                                                        listRowItem
+                                                                            .dateStart,
+                                                                        listRowItem
+                                                                            .lessionId
+                                                                            .estimateInDay,
+                                                                        dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          getCurrentTimestamp,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))) {
+                                                                      return 'Hết hạn';
+                                                                    } else {
+                                                                      return null!;
+                                                                    }
+                                                                  }();
+                                                                } else if ((listRowItem.dateStart != '') &&
+                                                                    (listRowItem.lessionId.estimateInDay ==
+                                                                        null) &&
+                                                                    (listRowItem.programId.estimateInDay !=
+                                                                        null)) {
+                                                                  return () {
+                                                                    if ((String item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3) {
+                                                                      return DateTime.parse(item1)
+                                                                              .add(Duration(days: item2))
+                                                                              .difference(DateTime.parse(item3))
+                                                                              .inDays >
+                                                                          0;
+                                                                    }(
+                                                                        listRowItem
+                                                                            .dateCreated,
+                                                                        listRowItem
+                                                                            .programId
+                                                                            .estimateInDay,
+                                                                        dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          getCurrentTimestamp,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))) {
+                                                                      return '${(String item1, int item2, String item3) {
+                                                                        return DateTime.parse(item1)
+                                                                            .add(Duration(days: item2))
+                                                                            .difference(DateTime.parse(item3))
+                                                                            .inDays
+                                                                            .toString();
+                                                                      }(listRowItem.dateCreated, listRowItem.programId.estimateInDay, dateTimeFormat(
+                                                                            'yyyy-MM-dd',
+                                                                            getCurrentTimestamp,
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          ))}ngày';
+                                                                    } else if ((String
+                                                                                item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3) {
+                                                                      return DateTime.parse(item1)
+                                                                              .add(Duration(days: item2))
+                                                                              .difference(DateTime.parse(item3))
+                                                                              .inDays <=
+                                                                          0;
+                                                                    }(
+                                                                        listRowItem
+                                                                            .dateCreated,
+                                                                        listRowItem
+                                                                            .programId
+                                                                            .estimateInDay,
+                                                                        dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          getCurrentTimestamp,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))) {
+                                                                      return 'Hết hạn';
+                                                                    } else {
+                                                                      return null!;
+                                                                    }
+                                                                  }();
+                                                                } else if ((listRowItem.dateStart == '') &&
+                                                                    (listRowItem.lessionId.estimateInDay !=
+                                                                        null) &&
+                                                                    (listRowItem.programId.estimateInDay !=
+                                                                        null)) {
+                                                                  return () {
+                                                                    if ((String item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3) {
+                                                                      return DateTime.parse(item1)
+                                                                              .add(Duration(days: item2))
+                                                                              .difference(DateTime.parse(item3))
+                                                                              .inDays >
+                                                                          0;
+                                                                    }(
+                                                                        listRowItem
+                                                                            .dateCreated,
+                                                                        listRowItem
+                                                                            .programId
+                                                                            .estimateInDay,
+                                                                        dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          getCurrentTimestamp,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))) {
+                                                                      return '${(String item1, int item2, String item3) {
+                                                                        return DateTime.parse(item1)
+                                                                            .add(Duration(days: item2))
+                                                                            .difference(DateTime.parse(item3))
+                                                                            .inDays
+                                                                            .toString();
+                                                                      }(listRowItem.dateCreated, listRowItem.programId.estimateInDay, dateTimeFormat(
+                                                                            'yyyy-MM-dd',
+                                                                            getCurrentTimestamp,
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          ))}ngày';
+                                                                    } else if ((String
+                                                                                item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3) {
+                                                                      return DateTime.parse(item1)
+                                                                              .add(Duration(days: item2))
+                                                                              .difference(DateTime.parse(item3))
+                                                                              .inDays <=
+                                                                          0;
+                                                                    }(
+                                                                        listRowItem
+                                                                            .dateCreated,
+                                                                        listRowItem
+                                                                            .programId
+                                                                            .estimateInDay,
+                                                                        dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          getCurrentTimestamp,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))) {
+                                                                      return 'Hết hạn';
+                                                                    } else {
+                                                                      return null!;
+                                                                    }
+                                                                  }();
+                                                                } else if ((listRowItem.dateStart == '') &&
+                                                                    (listRowItem.lessionId.estimateInDay ==
+                                                                        null) &&
+                                                                    (listRowItem.programId.estimateInDay !=
+                                                                        null)) {
+                                                                  return () {
+                                                                    if ((String item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3) {
+                                                                      return DateTime.parse(item1)
+                                                                              .add(Duration(days: item2))
+                                                                              .difference(DateTime.parse(item3))
+                                                                              .inDays >
+                                                                          0;
+                                                                    }(
+                                                                        listRowItem
+                                                                            .dateCreated,
+                                                                        listRowItem
+                                                                            .programId
+                                                                            .estimateInDay,
+                                                                        dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          getCurrentTimestamp,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))) {
+                                                                      return '${(String item1, int item2, String item3) {
+                                                                        return DateTime.parse(item1)
+                                                                            .add(Duration(days: item2))
+                                                                            .difference(DateTime.parse(item3))
+                                                                            .inDays
+                                                                            .toString();
+                                                                      }(listRowItem.dateCreated, listRowItem.programId.estimateInDay, dateTimeFormat(
+                                                                            'yyyy-MM-dd',
+                                                                            getCurrentTimestamp,
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          ))}ngày';
+                                                                    } else if ((String
+                                                                                item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3) {
+                                                                      return DateTime.parse(item1)
+                                                                              .add(Duration(days: item2))
+                                                                              .difference(DateTime.parse(item3))
+                                                                              .inDays <=
+                                                                          0;
+                                                                    }(
+                                                                        listRowItem
+                                                                            .dateCreated,
+                                                                        listRowItem
+                                                                            .programId
+                                                                            .estimateInDay,
+                                                                        dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          getCurrentTimestamp,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))) {
+                                                                      return 'Hết hạn';
+                                                                    } else {
+                                                                      return null!;
+                                                                    }
+                                                                  }();
+                                                                } else if ((listRowItem.dateStart == '') &&
+                                                                    (listRowItem.lessionId.estimateInDay !=
+                                                                        null) &&
+                                                                    (listRowItem.programId.estimateInDay ==
+                                                                        null)) {
+                                                                  return 'Không có hạn';
+                                                                } else if ((listRowItem.dateStart != '') &&
+                                                                    (listRowItem
+                                                                            .lessionId
+                                                                            .estimateInDay ==
+                                                                        null) &&
+                                                                    (listRowItem
+                                                                            .programId
+                                                                            .estimateInDay ==
+                                                                        null)) {
+                                                                  return 'Không có hạn';
+                                                                } else if ((listRowItem.dateStart == '') &&
+                                                                    (listRowItem
+                                                                            .programId
+                                                                            .estimateInDay ==
+                                                                        null) &&
+                                                                    (listRowItem
+                                                                            .lessionId
+                                                                            .estimateInDay ==
+                                                                        null)) {
+                                                                  return 'Không có hạn';
+                                                                } else {
+                                                                  return null!;
+                                                                }
+                                                              }(),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    fontSize:
+                                                                        10.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
                                                             ),
+                                                          ),
+                                                        ),
                                                       ),
                                                     ),
-                                                  ],
-                                                ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           );
@@ -642,6 +1148,10 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                     listRow2Item.id,
                                                     ParamType.String,
                                                   ),
+                                                  'programId': serializeParam(
+                                                    listRow2Item.programId.id,
+                                                    ParamType.String,
+                                                  ),
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
@@ -670,58 +1180,463 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                   width: 1.0,
                                                 ),
                                               ),
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(6.0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Expanded(
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                        child: Image.network(
-                                                          '${FFAppConstants.ApiBaseUrl}/assets/${listRow2Item.lessionId.imageCover}?access_token=${FFAppState().accessToken}',
-                                                          width:
-                                                              double.infinity,
-                                                          height:
-                                                              double.infinity,
-                                                          fit: BoxFit.cover,
+                                              child: Stack(
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(6.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Expanded(
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                            child:
+                                                                Image.network(
+                                                              '${FFAppConstants.ApiBaseUrl}/assets/${listRow2Item.lessionId.imageCover}?access_token=${FFAppState().accessToken}',
+                                                              width: double
+                                                                  .infinity,
+                                                              height: double
+                                                                  .infinity,
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            listRow2Item
+                                                                .lessionId.name,
+                                                            maxLines: 2,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Opacity(
+                                                    opacity: 0.8,
+                                                    child: Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              1.0, -1.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    8.0,
+                                                                    8.0,
+                                                                    0.0),
+                                                        child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20.0),
+                                                          ),
+                                                          child: Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .alternate,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20.0),
+                                                            ),
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          5.0,
+                                                                          2.0,
+                                                                          5.0,
+                                                                          2.0),
+                                                              child: InkWell(
+                                                                splashColor: Colors
+                                                                    .transparent,
+                                                                focusColor: Colors
+                                                                    .transparent,
+                                                                hoverColor: Colors
+                                                                    .transparent,
+                                                                highlightColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                onTap:
+                                                                    () async {
+                                                                  await showDialog(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (alertDialogContext) {
+                                                                      return AlertDialog(
+                                                                        title: Text(listRow2Item
+                                                                            .programId
+                                                                            .estimateInDay
+                                                                            .toString()),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                            child:
+                                                                                const Text('Ok'),
+                                                                          ),
+                                                                        ],
+                                                                      );
+                                                                    },
+                                                                  );
+                                                                },
+                                                                child: Text(
+                                                                  () {
+                                                                    if ((listRow2Item.dateStart != '') &&
+                                                                        (listRow2Item.lessionId.estimateInDay !=
+                                                                            null) &&
+                                                                        (listRow2Item.programId.estimateInDay !=
+                                                                            null)) {
+                                                                      return () {
+                                                                        if ((String item1,
+                                                                                int
+                                                                                    item2,
+                                                                                String
+                                                                                    item3,
+                                                                                int
+                                                                                    item4) {
+                                                                          return (DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3).add(Duration(days: item4)))).inDays >=
+                                                                              0;
+                                                                        }(
+                                                                            listRow2Item
+                                                                                .dateCreated,
+                                                                            listRow2Item
+                                                                                .programId.estimateInDay,
+                                                                            listRow2Item
+                                                                                .dateStart,
+                                                                            listRow2Item
+                                                                                .lessionId.estimateInDay)) {
+                                                                          return () {
+                                                                            if ((String item1, int item2, String item3) {
+                                                                              return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays > 0;
+                                                                            }(
+                                                                                listRow2Item.dateStart,
+                                                                                listRow2Item.lessionId.estimateInDay,
+                                                                                dateTimeFormat(
+                                                                                  'yyyy-MM-dd',
+                                                                                  getCurrentTimestamp,
+                                                                                  locale: FFLocalizations.of(context).languageCode,
+                                                                                ))) {
+                                                                              return '${(String item1, int item2, String item3) {
+                                                                                return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays.toString();
+                                                                              }(listRow2Item.dateStart, listRow2Item.lessionId.estimateInDay, dateTimeFormat(
+                                                                                    'yyyy-MM-dd',
+                                                                                    getCurrentTimestamp,
+                                                                                    locale: FFLocalizations.of(context).languageCode,
+                                                                                  ))} ngày';
+                                                                            } else if ((String item1, int item2, String item3) {
+                                                                              return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays <= 0;
+                                                                            }(
+                                                                                listRow2Item.dateStart,
+                                                                                listRow2Item.lessionId.estimateInDay,
+                                                                                dateTimeFormat(
+                                                                                  'yyyy-MM-dd',
+                                                                                  getCurrentTimestamp,
+                                                                                  locale: FFLocalizations.of(context).languageCode,
+                                                                                ))) {
+                                                                              return 'Hết hạn';
+                                                                            } else {
+                                                                              return null!;
+                                                                            }
+                                                                          }();
+                                                                        } else if ((String
+                                                                                item1,
+                                                                            int item2,
+                                                                            String item3,
+                                                                            int item4) {
+                                                                          return (DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3).add(Duration(days: item4)))).inDays <
+                                                                              0;
+                                                                        }(listRow2Item.dateCreated, listRow2Item.programId.estimateInDay, listRow2Item.dateStart, listRow2Item.lessionId.estimateInDay)) {
+                                                                          return () {
+                                                                            if ((String item1, int item2, String item3) {
+                                                                              return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays > 0;
+                                                                            }(
+                                                                                listRow2Item.dateCreated,
+                                                                                listRow2Item.programId.estimateInDay,
+                                                                                dateTimeFormat(
+                                                                                  'yyyy-MM-dd',
+                                                                                  getCurrentTimestamp,
+                                                                                  locale: FFLocalizations.of(context).languageCode,
+                                                                                ))) {
+                                                                              return '${(String item1, int item2, String item3) {
+                                                                                return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays.toString();
+                                                                              }(listRow2Item.dateCreated, listRow2Item.programId.estimateInDay, dateTimeFormat(
+                                                                                    'yyyy-MM-dd',
+                                                                                    getCurrentTimestamp,
+                                                                                    locale: FFLocalizations.of(context).languageCode,
+                                                                                  ))} ngày';
+                                                                            } else if ((String item1, int item2, String item3) {
+                                                                              return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays <= 0;
+                                                                            }(
+                                                                                listRow2Item.dateCreated,
+                                                                                listRow2Item.programId.estimateInDay,
+                                                                                dateTimeFormat(
+                                                                                  'yyyy-MM-dd',
+                                                                                  getCurrentTimestamp,
+                                                                                  locale: FFLocalizations.of(context).languageCode,
+                                                                                ))) {
+                                                                              return 'Hết hạn';
+                                                                            } else {
+                                                                              return null!;
+                                                                            }
+                                                                          }();
+                                                                        } else {
+                                                                          return null!;
+                                                                        }
+                                                                      }();
+                                                                    } else if ((listRow2Item.dateStart != '') &&
+                                                                        (listRow2Item.lessionId.estimateInDay !=
+                                                                            null) &&
+                                                                        (listRow2Item.programId.estimateInDay ==
+                                                                            null)) {
+                                                                      return () {
+                                                                        if ((String item1,
+                                                                                int item2,
+                                                                                String item3) {
+                                                                          return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays >
+                                                                              0;
+                                                                        }(
+                                                                            listRow2Item.dateStart,
+                                                                            listRow2Item.lessionId.estimateInDay,
+                                                                            dateTimeFormat(
+                                                                              'yyyy-MM-dd',
+                                                                              getCurrentTimestamp,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ))) {
+                                                                          return '${(String item1, int item2, String item3) {
+                                                                            return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays.toString();
+                                                                          }(listRow2Item.dateStart, listRow2Item.lessionId.estimateInDay, dateTimeFormat(
+                                                                                'yyyy-MM-dd',
+                                                                                getCurrentTimestamp,
+                                                                                locale: FFLocalizations.of(context).languageCode,
+                                                                              ))} ngày';
+                                                                        } else if ((String item1, int item2, String item3) {
+                                                                          return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays <=
+                                                                              0;
+                                                                        }(
+                                                                            listRow2Item.dateStart,
+                                                                            listRow2Item.lessionId.estimateInDay,
+                                                                            dateTimeFormat(
+                                                                              'yyyy-MM-dd',
+                                                                              getCurrentTimestamp,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ))) {
+                                                                          return 'Hết hạn';
+                                                                        } else {
+                                                                          return null!;
+                                                                        }
+                                                                      }();
+                                                                    } else if ((listRow2Item.dateStart != '') &&
+                                                                        (listRow2Item.lessionId.estimateInDay ==
+                                                                            null) &&
+                                                                        (listRow2Item.programId.estimateInDay !=
+                                                                            null)) {
+                                                                      return () {
+                                                                        if ((String item1,
+                                                                                int item2,
+                                                                                String item3) {
+                                                                          return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays >
+                                                                              0;
+                                                                        }(
+                                                                            listRow2Item.dateCreated,
+                                                                            listRow2Item.programId.estimateInDay,
+                                                                            dateTimeFormat(
+                                                                              'yyyy-MM-dd',
+                                                                              getCurrentTimestamp,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ))) {
+                                                                          return '${(String item1, int item2, String item3) {
+                                                                            return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays.toString();
+                                                                          }(listRow2Item.dateCreated, listRow2Item.programId.estimateInDay, dateTimeFormat(
+                                                                                'yyyy-MM-dd',
+                                                                                getCurrentTimestamp,
+                                                                                locale: FFLocalizations.of(context).languageCode,
+                                                                              ))}ngày';
+                                                                        } else if ((String item1, int item2, String item3) {
+                                                                          return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays <=
+                                                                              0;
+                                                                        }(
+                                                                            listRow2Item.dateCreated,
+                                                                            listRow2Item.programId.estimateInDay,
+                                                                            dateTimeFormat(
+                                                                              'yyyy-MM-dd',
+                                                                              getCurrentTimestamp,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ))) {
+                                                                          return 'Hết hạn';
+                                                                        } else {
+                                                                          return null!;
+                                                                        }
+                                                                      }();
+                                                                    } else if ((listRow2Item.dateStart == '') &&
+                                                                        (listRow2Item.lessionId.estimateInDay !=
+                                                                            null) &&
+                                                                        (listRow2Item.programId.estimateInDay !=
+                                                                            null)) {
+                                                                      return () {
+                                                                        if ((String item1,
+                                                                                int item2,
+                                                                                String item3) {
+                                                                          return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays >
+                                                                              0;
+                                                                        }(
+                                                                            listRow2Item.dateCreated,
+                                                                            listRow2Item.programId.estimateInDay,
+                                                                            dateTimeFormat(
+                                                                              'yyyy-MM-dd',
+                                                                              getCurrentTimestamp,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ))) {
+                                                                          return '${(String item1, int item2, String item3) {
+                                                                            return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays.toString();
+                                                                          }(listRow2Item.dateCreated, listRow2Item.programId.estimateInDay, dateTimeFormat(
+                                                                                'yyyy-MM-dd',
+                                                                                getCurrentTimestamp,
+                                                                                locale: FFLocalizations.of(context).languageCode,
+                                                                              ))} ngày';
+                                                                        } else if ((String item1, int item2, String item3) {
+                                                                          return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays <=
+                                                                              0;
+                                                                        }(
+                                                                            listRow2Item.dateCreated,
+                                                                            listRow2Item.programId.estimateInDay,
+                                                                            dateTimeFormat(
+                                                                              'yyyy-MM-dd',
+                                                                              getCurrentTimestamp,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ))) {
+                                                                          return 'Hết hạn';
+                                                                        } else {
+                                                                          return null!;
+                                                                        }
+                                                                      }();
+                                                                    } else if ((listRow2Item.dateStart ==
+                                                                                '') &&
+                                                                        (listRow2Item.lessionId.estimateInDay ==
+                                                                            null) &&
+                                                                        (listRow2Item.programId.estimateInDay !=
+                                                                            null)) {
+                                                                      return () {
+                                                                        if ((String item1,
+                                                                                int item2,
+                                                                                String item3) {
+                                                                          return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays >
+                                                                              0;
+                                                                        }(
+                                                                            listRow2Item.dateCreated,
+                                                                            listRow2Item.programId.estimateInDay,
+                                                                            dateTimeFormat(
+                                                                              'yyyy-MM-dd',
+                                                                              getCurrentTimestamp,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ))) {
+                                                                          return '${(String item1, int item2, String item3) {
+                                                                            return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays.toString();
+                                                                          }(listRow2Item.dateCreated, listRow2Item.programId.estimateInDay, dateTimeFormat(
+                                                                                'yyyy-MM-dd',
+                                                                                getCurrentTimestamp,
+                                                                                locale: FFLocalizations.of(context).languageCode,
+                                                                              ))} ngày';
+                                                                        } else if ((String item1, int item2, String item3) {
+                                                                          return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays <=
+                                                                              0;
+                                                                        }(
+                                                                            listRow2Item.dateCreated,
+                                                                            listRow2Item.programId.estimateInDay,
+                                                                            dateTimeFormat(
+                                                                              'yyyy-MM-dd',
+                                                                              getCurrentTimestamp,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ))) {
+                                                                          return 'Hết hạn';
+                                                                        } else {
+                                                                          return null!;
+                                                                        }
+                                                                      }();
+                                                                    } else if ((listRow2Item.dateStart ==
+                                                                                '') &&
+                                                                        (listRow2Item.lessionId.estimateInDay !=
+                                                                            null) &&
+                                                                        (listRow2Item.programId.estimateInDay ==
+                                                                            null)) {
+                                                                      return 'Không có hạn';
+                                                                    } else if ((listRow2Item.dateStart ==
+                                                                                '') &&
+                                                                        (listRow2Item.lessionId.estimateInDay ==
+                                                                            null) &&
+                                                                        (listRow2Item.programId.estimateInDay ==
+                                                                            null)) {
+                                                                      return 'Không có hạn';
+                                                                    } else if ((listRow2Item.dateStart ==
+                                                                                '') &&
+                                                                        (listRow2Item.lessionId.estimateInDay ==
+                                                                            null) &&
+                                                                        (listRow2Item.programId.estimateInDay == null)) {
+                                                                      return 'Không có hạn';
+                                                                    } else {
+                                                                      return null!;
+                                                                    }
+                                                                  }(),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryText,
+                                                                        fontSize:
+                                                                            10.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  4.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        listRow2Item
-                                                            .lessionId.name,
-                                                        maxLines: 2,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Nunito Sans',
-                                                              fontSize: 14.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                            ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           );
@@ -1290,51 +2205,560 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                 width: 1.0,
                                               ),
                                             ),
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(6.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Expanded(
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                      child: Image.network(
-                                                        '${FFAppConstants.ApiBaseUrl}/assets/${listRow3Item.lessionId.imageCover}?access_token=${FFAppState().accessToken}',
-                                                        width: double.infinity,
-                                                        height: double.infinity,
-                                                        fit: BoxFit.cover,
+                                            child: Stack(
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.all(6.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Expanded(
+                                                        child: ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                          child: Image.network(
+                                                            '${FFAppConstants.ApiBaseUrl}/assets/${listRow3Item.lessionId.imageCover}?access_token=${FFAppState().accessToken}',
+                                                            width:
+                                                                double.infinity,
+                                                            height:
+                                                                double.infinity,
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    4.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          listRow3Item
+                                                              .lessionId.name,
+                                                          maxLines: 2,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyLarge
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                fontSize: 14.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Opacity(
+                                                  opacity: 0.8,
+                                                  child: Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            1.0, -1.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  8.0,
+                                                                  8.0,
+                                                                  0.0),
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20.0),
+                                                        ),
+                                                        child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .alternate,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20.0),
+                                                          ),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        5.0,
+                                                                        2.0,
+                                                                        5.0,
+                                                                        2.0),
+                                                            child: Text(
+                                                              () {
+                                                                if ((listRow3Item.dateStart != '') &&
+                                                                    (listRow3Item.lessionId.estimateInDay !=
+                                                                        null) &&
+                                                                    (listRow3Item.programId.estimateInDay !=
+                                                                        null)) {
+                                                                  return () {
+                                                                    if ((String item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3,
+                                                                            int
+                                                                                item4) {
+                                                                      return (DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3).add(Duration(days: item4))))
+                                                                              .inDays >=
+                                                                          0;
+                                                                    }(
+                                                                        listRow3Item
+                                                                            .dateCreated,
+                                                                        listRow3Item
+                                                                            .programId
+                                                                            .estimateInDay,
+                                                                        listRow3Item
+                                                                            .dateStart,
+                                                                        listRow3Item
+                                                                            .lessionId
+                                                                            .estimateInDay)) {
+                                                                      return () {
+                                                                        if ((String item1,
+                                                                                int item2,
+                                                                                String item3) {
+                                                                          return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays >
+                                                                              0;
+                                                                        }(
+                                                                            listRow3Item.dateStart,
+                                                                            listRow3Item.lessionId.estimateInDay,
+                                                                            dateTimeFormat(
+                                                                              'yyyy-MM-dd',
+                                                                              getCurrentTimestamp,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ))) {
+                                                                          return '${(String item1, int item2, String item3) {
+                                                                            return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays.toString();
+                                                                          }(listRow3Item.dateStart, listRow3Item.lessionId.estimateInDay, dateTimeFormat(
+                                                                                'yyyy-MM-dd',
+                                                                                getCurrentTimestamp,
+                                                                                locale: FFLocalizations.of(context).languageCode,
+                                                                              ))} ngày';
+                                                                        } else if ((String item1, int item2, String item3) {
+                                                                          return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays <=
+                                                                              0;
+                                                                        }(
+                                                                            listRow3Item.dateStart,
+                                                                            listRow3Item.lessionId.estimateInDay,
+                                                                            dateTimeFormat(
+                                                                              'yyyy-MM-dd',
+                                                                              getCurrentTimestamp,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ))) {
+                                                                          return 'Hết hạn';
+                                                                        } else {
+                                                                          return null!;
+                                                                        }
+                                                                      }();
+                                                                    } else if ((String
+                                                                                item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3,
+                                                                            int
+                                                                                item4) {
+                                                                      return (DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3).add(Duration(days: item4))))
+                                                                              .inDays <
+                                                                          0;
+                                                                    }(
+                                                                        listRow3Item
+                                                                            .dateCreated,
+                                                                        listRow3Item
+                                                                            .programId
+                                                                            .estimateInDay,
+                                                                        listRow3Item
+                                                                            .dateStart,
+                                                                        listRow3Item
+                                                                            .lessionId
+                                                                            .estimateInDay)) {
+                                                                      return () {
+                                                                        if ((String item1,
+                                                                                int item2,
+                                                                                String item3) {
+                                                                          return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays >
+                                                                              0;
+                                                                        }(
+                                                                            listRow3Item.dateCreated,
+                                                                            listRow3Item.programId.estimateInDay,
+                                                                            dateTimeFormat(
+                                                                              'yyyy-MM-dd',
+                                                                              getCurrentTimestamp,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ))) {
+                                                                          return '${(String item1, int item2, String item3) {
+                                                                            return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays.toString();
+                                                                          }(listRow3Item.dateCreated, listRow3Item.programId.estimateInDay, dateTimeFormat(
+                                                                                'yyyy-MM-dd',
+                                                                                getCurrentTimestamp,
+                                                                                locale: FFLocalizations.of(context).languageCode,
+                                                                              ))} ngày';
+                                                                        } else if ((String item1, int item2, String item3) {
+                                                                          return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays <=
+                                                                              0;
+                                                                        }(
+                                                                            listRow3Item.dateCreated,
+                                                                            listRow3Item.programId.estimateInDay,
+                                                                            dateTimeFormat(
+                                                                              'yyyy-MM-dd',
+                                                                              getCurrentTimestamp,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ))) {
+                                                                          return 'Hết hạn';
+                                                                        } else {
+                                                                          return null!;
+                                                                        }
+                                                                      }();
+                                                                    } else {
+                                                                      return null!;
+                                                                    }
+                                                                  }();
+                                                                } else if ((listRow3Item.dateStart != '') &&
+                                                                    (listRow3Item.lessionId.estimateInDay !=
+                                                                        null) &&
+                                                                    (listRow3Item.programId.estimateInDay ==
+                                                                        null)) {
+                                                                  return () {
+                                                                    if ((String item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3) {
+                                                                      return DateTime.parse(item1)
+                                                                              .add(Duration(days: item2))
+                                                                              .difference(DateTime.parse(item3))
+                                                                              .inDays >
+                                                                          0;
+                                                                    }(
+                                                                        listRow3Item
+                                                                            .dateStart,
+                                                                        listRow3Item
+                                                                            .lessionId
+                                                                            .estimateInDay,
+                                                                        dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          getCurrentTimestamp,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))) {
+                                                                      return '${(String item1, int item2, String item3) {
+                                                                        return DateTime.parse(item1)
+                                                                            .add(Duration(days: item2))
+                                                                            .difference(DateTime.parse(item3))
+                                                                            .inDays
+                                                                            .toString();
+                                                                      }(listRow3Item.dateStart, listRow3Item.lessionId.estimateInDay, dateTimeFormat(
+                                                                            'yyyy-MM-dd',
+                                                                            getCurrentTimestamp,
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          ))} ngày';
+                                                                    } else if ((String
+                                                                                item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3) {
+                                                                      return DateTime.parse(item1)
+                                                                              .add(Duration(days: item2))
+                                                                              .difference(DateTime.parse(item3))
+                                                                              .inDays <=
+                                                                          0;
+                                                                    }(
+                                                                        listRow3Item
+                                                                            .dateStart,
+                                                                        listRow3Item
+                                                                            .lessionId
+                                                                            .estimateInDay,
+                                                                        dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          getCurrentTimestamp,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))) {
+                                                                      return 'Hết hạn';
+                                                                    } else {
+                                                                      return null!;
+                                                                    }
+                                                                  }();
+                                                                } else if ((listRow3Item.dateStart != '') &&
+                                                                    (listRow3Item.lessionId.estimateInDay ==
+                                                                        null) &&
+                                                                    (listRow3Item.programId.estimateInDay !=
+                                                                        null)) {
+                                                                  return () {
+                                                                    if ((String item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3) {
+                                                                      return DateTime.parse(item1)
+                                                                              .add(Duration(days: item2))
+                                                                              .difference(DateTime.parse(item3))
+                                                                              .inDays >
+                                                                          0;
+                                                                    }(
+                                                                        listRow3Item
+                                                                            .dateCreated,
+                                                                        listRow3Item
+                                                                            .programId
+                                                                            .estimateInDay,
+                                                                        dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          getCurrentTimestamp,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))) {
+                                                                      return '${(String item1, int item2, String item3) {
+                                                                        return DateTime.parse(item1)
+                                                                            .add(Duration(days: item2))
+                                                                            .difference(DateTime.parse(item3))
+                                                                            .inDays
+                                                                            .toString();
+                                                                      }(listRow3Item.dateCreated, listRow3Item.programId.estimateInDay, dateTimeFormat(
+                                                                            'yyyy-MM-dd',
+                                                                            getCurrentTimestamp,
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          ))}ngày';
+                                                                    } else if ((String
+                                                                                item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3) {
+                                                                      return DateTime.parse(item1)
+                                                                              .add(Duration(days: item2))
+                                                                              .difference(DateTime.parse(item3))
+                                                                              .inDays <=
+                                                                          0;
+                                                                    }(
+                                                                        listRow3Item
+                                                                            .dateCreated,
+                                                                        listRow3Item
+                                                                            .programId
+                                                                            .estimateInDay,
+                                                                        dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          getCurrentTimestamp,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))) {
+                                                                      return 'Hết hạn';
+                                                                    } else {
+                                                                      return null!;
+                                                                    }
+                                                                  }();
+                                                                } else if ((listRow3Item.dateStart == '') &&
+                                                                    (listRow3Item.lessionId.estimateInDay !=
+                                                                        null) &&
+                                                                    (listRow3Item.programId.estimateInDay !=
+                                                                        null)) {
+                                                                  return () {
+                                                                    if ((String item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3) {
+                                                                      return DateTime.parse(item1)
+                                                                              .add(Duration(days: item2))
+                                                                              .difference(DateTime.parse(item3))
+                                                                              .inDays >
+                                                                          0;
+                                                                    }(
+                                                                        listRow3Item
+                                                                            .dateCreated,
+                                                                        listRow3Item
+                                                                            .programId
+                                                                            .estimateInDay,
+                                                                        dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          getCurrentTimestamp,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))) {
+                                                                      return '${(String item1, int item2, String item3) {
+                                                                        return DateTime.parse(item1)
+                                                                            .add(Duration(days: item2))
+                                                                            .difference(DateTime.parse(item3))
+                                                                            .inDays
+                                                                            .toString();
+                                                                      }(listRow3Item.dateCreated, listRow3Item.programId.estimateInDay, dateTimeFormat(
+                                                                            'yyyy-MM-dd',
+                                                                            getCurrentTimestamp,
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          ))}ngày';
+                                                                    } else if ((String
+                                                                                item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3) {
+                                                                      return DateTime.parse(item1)
+                                                                              .add(Duration(days: item2))
+                                                                              .difference(DateTime.parse(item3))
+                                                                              .inDays <=
+                                                                          0;
+                                                                    }(
+                                                                        listRow3Item
+                                                                            .dateCreated,
+                                                                        listRow3Item
+                                                                            .programId
+                                                                            .estimateInDay,
+                                                                        dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          getCurrentTimestamp,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))) {
+                                                                      return 'Hết hạn';
+                                                                    } else {
+                                                                      return null!;
+                                                                    }
+                                                                  }();
+                                                                } else if ((listRow3Item.dateStart == '') &&
+                                                                    (listRow3Item.lessionId.estimateInDay ==
+                                                                        null) &&
+                                                                    (listRow3Item.programId.estimateInDay !=
+                                                                        null)) {
+                                                                  return () {
+                                                                    if ((String item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3) {
+                                                                      return DateTime.parse(item1)
+                                                                              .add(Duration(days: item2))
+                                                                              .difference(DateTime.parse(item3))
+                                                                              .inDays >
+                                                                          0;
+                                                                    }(
+                                                                        listRow3Item
+                                                                            .dateCreated,
+                                                                        listRow3Item
+                                                                            .programId
+                                                                            .estimateInDay,
+                                                                        dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          getCurrentTimestamp,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))) {
+                                                                      return '${(String item1, int item2, String item3) {
+                                                                        return DateTime.parse(item1)
+                                                                            .add(Duration(days: item2))
+                                                                            .difference(DateTime.parse(item3))
+                                                                            .inDays
+                                                                            .toString();
+                                                                      }(listRow3Item.dateCreated, listRow3Item.programId.estimateInDay, dateTimeFormat(
+                                                                            'yyyy-MM-dd',
+                                                                            getCurrentTimestamp,
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          ))}ngày';
+                                                                    } else if ((String
+                                                                                item1,
+                                                                            int
+                                                                                item2,
+                                                                            String
+                                                                                item3) {
+                                                                      return DateTime.parse(item1)
+                                                                              .add(Duration(days: item2))
+                                                                              .difference(DateTime.parse(item3))
+                                                                              .inDays <=
+                                                                          0;
+                                                                    }(
+                                                                        listRow3Item
+                                                                            .dateCreated,
+                                                                        listRow3Item
+                                                                            .programId
+                                                                            .estimateInDay,
+                                                                        dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          getCurrentTimestamp,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))) {
+                                                                      return 'Hết hạn';
+                                                                    } else {
+                                                                      return null!;
+                                                                    }
+                                                                  }();
+                                                                } else if ((listRow3Item.dateStart == '') &&
+                                                                    (listRow3Item.lessionId.estimateInDay !=
+                                                                        null) &&
+                                                                    (listRow3Item.programId.estimateInDay ==
+                                                                        null)) {
+                                                                  return 'Không có hạn';
+                                                                } else if ((listRow3Item.dateStart != '') &&
+                                                                    (listRow3Item
+                                                                            .lessionId
+                                                                            .estimateInDay ==
+                                                                        null) &&
+                                                                    (listRow3Item
+                                                                            .programId
+                                                                            .estimateInDay ==
+                                                                        null)) {
+                                                                  return 'Không có hạn';
+                                                                } else if ((listRow3Item.dateStart == '') &&
+                                                                    (listRow3Item
+                                                                            .lessionId
+                                                                            .estimateInDay ==
+                                                                        null) &&
+                                                                    (listRow3Item
+                                                                            .programId
+                                                                            .estimateInDay ==
+                                                                        null)) {
+                                                                  return 'Không có hạn';
+                                                                } else {
+                                                                  return null!;
+                                                                }
+                                                              }(),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    fontSize:
+                                                                        10.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 4.0,
-                                                                0.0, 0.0),
-                                                    child: Text(
-                                                      listRow3Item
-                                                          .lessionId.name,
-                                                      maxLines: 2,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyLarge
-                                                          .override(
-                                                            fontFamily:
-                                                                'Nunito Sans',
-                                                            fontSize: 14.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         );

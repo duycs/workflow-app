@@ -175,7 +175,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 8.0, 12.0, 12.0),
+                                          12.0, 0.0, 12.0, 0.0),
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
@@ -245,7 +245,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 8.0, 12.0, 12.0),
+                                          12.0, 0.0, 12.0, 0.0),
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
@@ -315,7 +315,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 8.0, 12.0, 12.0),
+                                          12.0, 0.0, 12.0, 0.0),
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
@@ -348,11 +348,9 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                               ),
                             ),
                           ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 16.0),
+                          if (_model.departmentList.isNotEmpty)
+                            Align(
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
@@ -365,129 +363,134 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                   ),
                                 ),
                                 alignment: const AlignmentDirectional(-1.0, 0.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 0.0, 0.0, 0.0),
-                                      child: Text(
-                                        'Danh sách bộ phận:',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
+                                child: Visibility(
+                                  visible: _model.departmentList.isNotEmpty,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            12.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Danh sách bộ phận:',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 8.0, 12.0, 0.0),
-                                      child: Builder(
-                                        builder: (context) {
-                                          final itemDepartmentName = _model
-                                              .departmentList
-                                              .where((e) =>
-                                                  e.branchId.id == widget.id)
-                                              .toList()
-                                              .map((e) => e.name)
-                                              .toList();
-                                          return ListView.separated(
-                                            padding: EdgeInsets.zero,
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.vertical,
-                                            itemCount:
-                                                itemDepartmentName.length,
-                                            separatorBuilder: (_, __) =>
-                                                const SizedBox(height: 6.0),
-                                            itemBuilder: (context,
-                                                itemDepartmentNameIndex) {
-                                              final itemDepartmentNameItem =
-                                                  itemDepartmentName[
-                                                      itemDepartmentNameIndex];
-                                              return Container(
-                                                width: double.infinity,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20.0),
-                                                ),
-                                                alignment: const AlignmentDirectional(
-                                                    -1.0, 0.0),
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          8.0, 10.0, 9.0, 10.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Text(
-                                                        '${formatNumber(
-                                                          itemDepartmentNameIndex +
-                                                              1,
-                                                          formatType: FormatType
-                                                              .decimal,
-                                                          decimalType:
-                                                              DecimalType
-                                                                  .commaDecimal,
-                                                        )}. ',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                      Expanded(
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      8.0,
-                                                                      0.0,
-                                                                      8.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            itemDepartmentNameItem,
-                                                            maxLines: 3,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            12.0, 8.0, 12.0, 0.0),
+                                        child: Builder(
+                                          builder: (context) {
+                                            final itemDepartmentName = _model
+                                                .departmentList
+                                                .where((e) =>
+                                                    e.branchId.id == widget.id)
+                                                .toList()
+                                                .map((e) => e.name)
+                                                .toList();
+                                            return ListView.separated(
+                                              padding: EdgeInsets.zero,
+                                              shrinkWrap: true,
+                                              scrollDirection: Axis.vertical,
+                                              itemCount:
+                                                  itemDepartmentName.length,
+                                              separatorBuilder: (_, __) =>
+                                                  const SizedBox(height: 6.0),
+                                              itemBuilder: (context,
+                                                  itemDepartmentNameIndex) {
+                                                final itemDepartmentNameItem =
+                                                    itemDepartmentName[
+                                                        itemDepartmentNameIndex];
+                                                return Container(
+                                                  width: double.infinity,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20.0),
+                                                  ),
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          -1.0, 0.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 10.0,
+                                                                9.0, 10.0),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Text(
+                                                          '${formatNumber(
+                                                            itemDepartmentNameIndex +
+                                                                1,
+                                                            formatType:
+                                                                FormatType
+                                                                    .decimal,
+                                                            decimalType:
+                                                                DecimalType
+                                                                    .commaDecimal,
+                                                          )}. ',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                        Expanded(
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        8.0,
+                                                                        0.0,
+                                                                        8.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              itemDepartmentNameItem,
+                                                              maxLines: 3,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        },
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
                           Align(
                             alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
@@ -604,7 +607,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                               ),
                             ),
                           ),
-                        ],
+                        ].divide(const SizedBox(height: 4.0)),
                       ),
                     ),
                   ),

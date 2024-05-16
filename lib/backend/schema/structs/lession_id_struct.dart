@@ -19,6 +19,7 @@ class LessionIdStruct extends BaseStruct {
     String? testId,
     FileStruct? file,
     List<ProgramsIdddStruct>? programs,
+    int? estimateInDay,
   })  : _id = id,
         _name = name,
         _description = description,
@@ -31,7 +32,8 @@ class LessionIdStruct extends BaseStruct {
         _durationHours = durationHours,
         _testId = testId,
         _file = file,
-        _programs = programs;
+        _programs = programs,
+        _estimateInDay = estimateInDay;
 
   // "id" field.
   String? _id;
@@ -117,6 +119,14 @@ class LessionIdStruct extends BaseStruct {
       updateFn(_programs ??= []);
   bool hasPrograms() => _programs != null;
 
+  // "estimate_in_day" field.
+  int? _estimateInDay;
+  int get estimateInDay => _estimateInDay ?? 0;
+  set estimateInDay(int? val) => _estimateInDay = val;
+  void incrementEstimateInDay(int amount) =>
+      _estimateInDay = estimateInDay + amount;
+  bool hasEstimateInDay() => _estimateInDay != null;
+
   static LessionIdStruct fromMap(Map<String, dynamic> data) => LessionIdStruct(
         id: data['id'] as String?,
         name: data['name'] as String?,
@@ -134,6 +144,7 @@ class LessionIdStruct extends BaseStruct {
           data['programs'],
           ProgramsIdddStruct.fromMap,
         ),
+        estimateInDay: castToType<int>(data['estimate_in_day']),
       );
 
   static LessionIdStruct? maybeFromMap(dynamic data) => data is Map
@@ -154,6 +165,7 @@ class LessionIdStruct extends BaseStruct {
         'test_id': _testId,
         'file': _file?.toMap(),
         'programs': _programs?.map((e) => e.toMap()).toList(),
+        'estimate_in_day': _estimateInDay,
       }.withoutNulls;
 
   @override
@@ -210,6 +222,10 @@ class LessionIdStruct extends BaseStruct {
           _programs,
           ParamType.DataStruct,
           true,
+        ),
+        'estimate_in_day': serializeParam(
+          _estimateInDay,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -282,6 +298,11 @@ class LessionIdStruct extends BaseStruct {
           true,
           structBuilder: ProgramsIdddStruct.fromSerializableMap,
         ),
+        estimateInDay: deserializeParam(
+          data['estimate_in_day'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -303,7 +324,8 @@ class LessionIdStruct extends BaseStruct {
         durationHours == other.durationHours &&
         testId == other.testId &&
         file == other.file &&
-        listEquality.equals(programs, other.programs);
+        listEquality.equals(programs, other.programs) &&
+        estimateInDay == other.estimateInDay;
   }
 
   @override
@@ -320,7 +342,8 @@ class LessionIdStruct extends BaseStruct {
         durationHours,
         testId,
         file,
-        programs
+        programs,
+        estimateInDay
       ]);
 }
 
@@ -337,6 +360,7 @@ LessionIdStruct createLessionIdStruct({
   int? durationHours,
   String? testId,
   FileStruct? file,
+  int? estimateInDay,
 }) =>
     LessionIdStruct(
       id: id,
@@ -351,4 +375,5 @@ LessionIdStruct createLessionIdStruct({
       durationHours: durationHours,
       testId: testId,
       file: file ?? FileStruct(),
+      estimateInDay: estimateInDay,
     );

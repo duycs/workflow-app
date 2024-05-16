@@ -22,7 +22,7 @@ class DoTestWidget extends StatefulWidget {
   const DoTestWidget({
     super.key,
     required this.testId,
-    required this.lessionId,
+    this.lessionId,
     this.avatar,
     this.goodScore,
   });
@@ -134,22 +134,23 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              Align(
-                                alignment: const AlignmentDirectional(0.0, 1.0),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.network(
-                                      '${FFAppConstants.ApiBaseUrl}/assets/${widget.avatar}?access_token=${FFAppState().accessToken}',
-                                      width: double.infinity,
-                                      height: 200.0,
-                                      fit: BoxFit.cover,
-                                      alignment: const Alignment(0.0, 0.0),
+                              if (widget.avatar != null && widget.avatar != '')
+                                Align(
+                                  alignment: const AlignmentDirectional(0.0, 1.0),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.network(
+                                        '${FFAppConstants.ApiBaseUrl}/assets/${widget.avatar}?access_token=${FFAppState().accessToken}',
+                                        width: double.infinity,
+                                        height: 200.0,
+                                        fit: BoxFit.cover,
+                                        alignment: const Alignment(0.0, 0.0),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 4.0, 16.0, 0.0),
@@ -471,82 +472,109 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                         .secondary,
                                                               ),
                                                             );
-
-                                                            context.pushNamed(
-                                                              'DoTestDetail',
-                                                              queryParameters: {
-                                                                'testId':
-                                                                    serializeParam(
-                                                                  _model.testId,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'testName':
-                                                                    serializeParam(
-                                                                  _model
-                                                                      .testName,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'testTime':
-                                                                    serializeParam(
-                                                                  _model
-                                                                      .testTime,
-                                                                  ParamType.int,
-                                                                ),
-                                                                'testDescription':
-                                                                    serializeParam(
-                                                                  _model
-                                                                      .testDescription,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'percentCorect':
-                                                                    serializeParam(
-                                                                  getJsonField(
-                                                                    (_model.apiResultCaculatorScores1
-                                                                            ?.jsonBody ??
-                                                                        ''),
-                                                                    r'''$.percent_correct''',
-                                                                  ).toString(),
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'goodScore':
-                                                                    serializeParam(
-                                                                  widget
-                                                                      .goodScore,
-                                                                  ParamType.int,
-                                                                ),
-                                                                'avatar':
-                                                                    serializeParam(
-                                                                  widget.avatar,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'lessionId':
-                                                                    serializeParam(
-                                                                  widget
-                                                                      .lessionId,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                              }.withoutNulls,
-                                                              extra: <String,
-                                                                  dynamic>{
-                                                                kTransitionInfoKey:
-                                                                    const TransitionInfo(
-                                                                  hasTransition:
-                                                                      true,
-                                                                  transitionType:
-                                                                      PageTransitionType
-                                                                          .fade,
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          0),
-                                                                ),
-                                                              },
-                                                            );
+                                                            if (widget.lessionId !=
+                                                                    null &&
+                                                                widget.lessionId !=
+                                                                    '') {
+                                                              context.pushNamed(
+                                                                'DoTestDetail',
+                                                                queryParameters:
+                                                                    {
+                                                                  'testId':
+                                                                      serializeParam(
+                                                                    _model
+                                                                        .testId,
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                  'testName':
+                                                                      serializeParam(
+                                                                    _model
+                                                                        .testName,
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                  'testTime':
+                                                                      serializeParam(
+                                                                    _model
+                                                                        .testTime,
+                                                                    ParamType
+                                                                        .int,
+                                                                  ),
+                                                                  'testDescription':
+                                                                      serializeParam(
+                                                                    _model
+                                                                        .testDescription,
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                  'percentCorect':
+                                                                      serializeParam(
+                                                                    getJsonField(
+                                                                      (_model.apiResultCaculatorScores1
+                                                                              ?.jsonBody ??
+                                                                          ''),
+                                                                      r'''$.percent_correct''',
+                                                                    ).toString(),
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                  'goodScore':
+                                                                      serializeParam(
+                                                                    widget
+                                                                        .goodScore,
+                                                                    ParamType
+                                                                        .int,
+                                                                  ),
+                                                                  'avatar':
+                                                                      serializeParam(
+                                                                    widget
+                                                                        .avatar,
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                  'lessionId':
+                                                                      serializeParam(
+                                                                    widget
+                                                                        .lessionId,
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                }.withoutNulls,
+                                                                extra: <String,
+                                                                    dynamic>{
+                                                                  kTransitionInfoKey:
+                                                                      const TransitionInfo(
+                                                                    hasTransition:
+                                                                        true,
+                                                                    transitionType:
+                                                                        PageTransitionType
+                                                                            .fade,
+                                                                    duration: Duration(
+                                                                        milliseconds:
+                                                                            0),
+                                                                  ),
+                                                                },
+                                                              );
+                                                            } else {
+                                                              context.pushNamed(
+                                                                'StudyProgramListUserDraft',
+                                                                extra: <String,
+                                                                    dynamic>{
+                                                                  kTransitionInfoKey:
+                                                                      const TransitionInfo(
+                                                                    hasTransition:
+                                                                        true,
+                                                                    transitionType:
+                                                                        PageTransitionType
+                                                                            .fade,
+                                                                    duration: Duration(
+                                                                        milliseconds:
+                                                                            0),
+                                                                  ),
+                                                                },
+                                                              );
+                                                            }
 
                                                             if (shouldSetState) {
                                                               setState(() {});
@@ -653,7 +681,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                     scrollDirection: Axis.vertical,
                                     itemCount: listQuestion.length,
                                     separatorBuilder: (_, __) =>
-                                        const SizedBox(height: 16.0),
+                                        const SizedBox(height: 8.0),
                                     itemBuilder: (context, listQuestionIndex) {
                                       final listQuestionItem =
                                           listQuestion[listQuestionIndex];
@@ -1305,49 +1333,65 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                     .secondary,
                                           ),
                                         );
-
-                                        context.pushNamed(
-                                          'DoTestDetail',
-                                          queryParameters: {
-                                            'testId': serializeParam(
-                                              _model.testId,
-                                              ParamType.String,
-                                            ),
-                                            'testName': serializeParam(
-                                              _model.testName,
-                                              ParamType.String,
-                                            ),
-                                            'testTime': serializeParam(
-                                              _model.testTime,
-                                              ParamType.int,
-                                            ),
-                                            'testDescription': serializeParam(
-                                              _model.testDescription,
-                                              ParamType.String,
-                                            ),
-                                            'percentCorect': serializeParam(
-                                              getJsonField(
-                                                (_model.apiResultCaculatorScores
-                                                        ?.jsonBody ??
-                                                    ''),
-                                                r'''$.percent_correct''',
-                                              ).toString(),
-                                              ParamType.String,
-                                            ),
-                                            'goodScore': serializeParam(
-                                              widget.goodScore,
-                                              ParamType.int,
-                                            ),
-                                            'avatar': serializeParam(
-                                              widget.avatar,
-                                              ParamType.String,
-                                            ),
-                                            'lessionId': serializeParam(
-                                              widget.lessionId,
-                                              ParamType.String,
-                                            ),
-                                          }.withoutNulls,
-                                        );
+                                        if (widget.lessionId != null &&
+                                            widget.lessionId != '') {
+                                          context.pushNamed(
+                                            'DoTestDetail',
+                                            queryParameters: {
+                                              'testId': serializeParam(
+                                                _model.testId,
+                                                ParamType.String,
+                                              ),
+                                              'testName': serializeParam(
+                                                _model.testName,
+                                                ParamType.String,
+                                              ),
+                                              'testTime': serializeParam(
+                                                _model.testTime,
+                                                ParamType.int,
+                                              ),
+                                              'testDescription': serializeParam(
+                                                _model.testDescription,
+                                                ParamType.String,
+                                              ),
+                                              'percentCorect': serializeParam(
+                                                getJsonField(
+                                                  (_model.apiResultCaculatorScores
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$.percent_correct''',
+                                                ).toString(),
+                                                ParamType.String,
+                                              ),
+                                              'goodScore': serializeParam(
+                                                widget.goodScore,
+                                                ParamType.int,
+                                              ),
+                                              'avatar': serializeParam(
+                                                widget.avatar,
+                                                ParamType.String,
+                                              ),
+                                              'lessionId': serializeParam(
+                                                widget.lessionId,
+                                                ParamType.String,
+                                              ),
+                                            }.withoutNulls,
+                                          );
+                                        } else {
+                                          context.pushNamed(
+                                            'StudyProgramListUserDraft',
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  const TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType.fade,
+                                                duration:
+                                                    Duration(milliseconds: 0),
+                                              ),
+                                            },
+                                          );
+                                        }
 
                                         if (shouldSetState) setState(() {});
                                         return;

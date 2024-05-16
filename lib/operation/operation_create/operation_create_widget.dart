@@ -104,40 +104,35 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 16.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Tạo mới hành động',
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          fontSize: 20.0,
-                                          letterSpacing: 0.0,
-                                        ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Tạo mới hành động',
+                                  style: FlutterFlowTheme.of(context)
+                                      .headlineMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        fontSize: 20.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                                FlutterFlowIconButton(
+                                  borderRadius: 20.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 40.0,
+                                  icon: Icon(
+                                    Icons.cancel,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 24.0,
                                   ),
-                                  FlutterFlowIconButton(
-                                    borderRadius: 20.0,
-                                    borderWidth: 1.0,
-                                    buttonSize: 40.0,
-                                    icon: Icon(
-                                      Icons.cancel,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 24.0,
-                                    ),
-                                    onPressed: () async {
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                ],
-                              ),
+                                  onPressed: () async {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
                             ),
                             TextFormField(
                               controller: _model.textController1,
@@ -449,7 +444,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                 ),
                               ].divide(const SizedBox(width: 16.0)),
                             ),
-                          ].divide(const SizedBox(height: 24.0)),
+                          ].divide(const SizedBox(height: 12.0)),
                         ),
                       ),
                     ),
