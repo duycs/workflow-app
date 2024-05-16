@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'filter_task_list_done_widget.dart' show FilterTaskListDoneWidget;
@@ -23,18 +22,24 @@ class FilterTaskListDoneModel
       typeValueController?.value = val != null ? [val] : [];
   DateTime? datePicked1;
   DateTime? datePicked2;
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? clearFilterDoneToken;
-  // Stores action output result for [Backend Call - API (GetListTask)] action in Button widget.
-  ApiCallResponse? apiResultClearFilterDone;
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? filterDoneToken;
-  // Stores action output result for [Backend Call - API (GetListTask)] action in Button widget.
-  ApiCallResponse? apiResultFilterDone;
+  // State field(s) for created widget.
+  FocusNode? createdFocusNode;
+  TextEditingController? createdTextController;
+  String? Function(BuildContext, String?)? createdTextControllerValidator;
+  // State field(s) for workflowName widget.
+  FocusNode? workflowNameFocusNode;
+  TextEditingController? workflowNameTextController;
+  String? Function(BuildContext, String?)? workflowNameTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {}
+  void dispose() {
+    createdFocusNode?.dispose();
+    createdTextController?.dispose();
+
+    workflowNameFocusNode?.dispose();
+    workflowNameTextController?.dispose();
+  }
 }

@@ -10,19 +10,13 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'dart:convert';
 
-String truncateHtml(String html, int maxLines) {
-  int lastHtmlElementIndex = 0;
-  for (int i = 0; i < maxLines; i++) {
-    lastHtmlElementIndex = html.indexOf('<p', lastHtmlElementIndex);
-    if (lastHtmlElementIndex == -1) {
-      break;
-    }
-    lastHtmlElementIndex++;
-  }
-  return html.substring(0, lastHtmlElementIndex);
-}
+// import '/backend/schema/structs/index.dart';
+// import '/actions/actions.dart' as action_blocks;
+
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 class HtmlToDoc extends StatefulWidget {
   const HtmlToDoc({
@@ -35,77 +29,168 @@ class HtmlToDoc extends StatefulWidget {
   final double? width;
   final double? height;
   final String html;
-
   @override
   State<HtmlToDoc> createState() => _HtmlToDocState();
 }
 
 class _HtmlToDocState extends State<HtmlToDoc> {
-  bool isExpanded = false;
+  bool isExpanded = true;
+  bool canScroll = false;
+  final GlobalKey _htmlKey = GlobalKey();
+  double? _contentHeight;
+
+  ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_scrollListener);
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      if (mounted) {
+        setState(() {
+          _contentHeight = _getHeight();
+        });
+      }
+    });
+  }
+
+  double? _getHeight() {
+    final RenderBox? renderBox =
+        _htmlKey.currentContext?.findRenderObject() as RenderBox?;
+    return renderBox?.size.height;
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_scrollListener);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollListener() {
+    if (canScroll &&
+        widget.height != null &&
+        _scrollController.offset >= (widget.height! / 4)) {
+      setState(() {
+        canScroll = false; // Vô hiệu hóa cuộn khi nội dung đã cuộn đến đáy
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.html != null && widget.html!.isNotEmpty) {
-      final double lineHeight = 20;
-      final int maxLines = 4;
+    if (isExpanded) {
+      return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          double maxHeight = widget.height!;
+          double currentHeight = constraints.maxHeight;
+          // kieerm tra
+          // print(_contentHeight);
+          // print(widget.height!);
+          // print(_contentHeight != null && _contentHeight! > widget.height!);
 
-      String displayedHtml;
-      if (widget.html!.split('<p').length <= maxLines) {
-        displayedHtml = widget.html!;
-      } else {
-        displayedHtml =
-            isExpanded ? widget.html! : truncateHtml(widget.html!, maxLines);
-      }
-
-      return Column(
-        children: [
-          Container(
-            width: widget.width,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                HtmlWidget(displayedHtml),
-                if (!isExpanded && widget.html!.length > displayedHtml.length)
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          isExpanded = !isExpanded;
-                        });
-                      },
-                      child: Text(
-                        'Xem thêm',
-                        style: TextStyle(
-                          color: Colors.blue,
-                        ),
+          // Kiểm tra nếu chiều cao hiện tại vượt quá hoặc bằng maxHeight
+          // kiểm tra _contentHeight thay đổi thì set lai state
+          // if (!canScroll) {
+          //   Future.delayed(Duration.zero, () {
+          //     WidgetsBinding.instance!.addPostFrameCallback((_) {
+          //       // Nếu _contentHeight thay đổi, setState sẽ được gọi ở đây
+          //       if (_contentHeight != null &&
+          //           (_contentHeight! > widget.height!)) {
+          //         setState(() {
+          //           canScroll =
+          //               true; // Vô hiệu hóa cuộn khi nội dung đã cuộn đến đáy
+          //         });
+          //       } else {
+          //         setState(() {
+          //           canScroll =
+          //               false; // Vô hiệu hóa cuộn khi nội dung đã cuộn đến đáy
+          //         });
+          //       }
+          //     });
+          //   });
+          // }
+          // });
+          return Column(
+            children: [
+              Container(
+                constraints: BoxConstraints(maxHeight: widget.height!),
+                child: SingleChildScrollView(
+                  physics: NeverScrollableScrollPhysics(),
+                  child: HtmlWidget(
+                    widget.html,
+                    key: _htmlKey,
+                    textStyle: TextStyle(overflow: TextOverflow.ellipsis),
+                    onLoadingBuilder: (context, element, loadingProgress) {
+                      // Trong trường hợp này, chúng ta không cần trả về một widget nào
+                      // Thay vào đó, chúng ta sẽ cập nhật _contentHeight trong hàm này
+                      print(loadingProgress);
+                      if (loadingProgress! < 1) {
+                        // Hiển thị biểu tượng loading hoặc thông báo tải
+                        return CircularProgressIndicator();
+                      } else {
+                        // Tiến trình tải đã hoàn tất, hiển thị nội dung HTML
+                        if (!canScroll) {
+                          if (mounted) {
+                            setState(() {
+                              _contentHeight = _getHeight();
+                            });
+                          }
+                        }
+                        return SizedBox.shrink();
+                      }
+                    },
+                  ),
+                ),
+              ),
+              if (_contentHeight != null && _contentHeight! > widget.height!)
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      setState(() {
+                        isExpanded = !isExpanded;
+                      });
+                    },
+                    child: Text(
+                      'Xem thêm',
+                      style: TextStyle(
+                        color: Colors.blue,
                       ),
                     ),
                   ),
-                if (isExpanded)
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          isExpanded = false;
-                        });
-                      },
-                      child: Text(
-                        'Thu gọn',
-                        style: TextStyle(
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-        ],
+                ),
+              // Hiển thị nút "Xem thêm" nếu chưa đạt maxHeight
+            ],
+          );
+        },
       );
     } else {
-      return SizedBox.shrink();
+      return ClipRect(
+        child: Column(
+          children: [
+            HtmlWidget(
+              widget.html,
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {
+                  setState(() {
+                    isExpanded = !isExpanded;
+                  });
+                },
+                child: Text(
+                  'Thu nhỏ',
+                  style: TextStyle(
+                    color: Colors.blue,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
     }
   }
 }

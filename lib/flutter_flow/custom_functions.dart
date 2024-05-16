@@ -485,3 +485,8 @@ bool isTokenExpired(int lastTokenDate) {
   bool check = (lastTokenDate - currentTimetamp) > 15000;
   return check;
 }
+
+String? fileName(FFUploadedFile? file) {
+  // Return the file's name if available, otherwise return null.
+  return file?.name?.toString();
+}

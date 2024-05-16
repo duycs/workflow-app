@@ -27,6 +27,8 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
 
   String checkContent = ' ';
 
+  int? checkTime;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -48,6 +50,10 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
   FocusNode? durationHoursFocusNode;
   TextEditingController? durationHoursTextController;
   String? Function(BuildContext, String?)? durationHoursTextControllerValidator;
+  // State field(s) for estimate_in_day widget.
+  FocusNode? estimateInDayFocusNode;
+  TextEditingController? estimateInDayTextController;
+  String? Function(BuildContext, String?)? estimateInDayTextControllerValidator;
   bool isDataUploading1 = false;
   FFUploadedFile uploadedLocalFile1 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -74,6 +80,9 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
 
     durationHoursFocusNode?.dispose();
     durationHoursTextController?.dispose();
+
+    estimateInDayFocusNode?.dispose();
+    estimateInDayTextController?.dispose();
   }
 
   /// Action blocks.
@@ -133,6 +142,9 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
         'test_id':
             testIdValue != null && testIdValue != '' ? testIdValue : null,
         'file': uploadFile != '' ? uploadFile : null,
+        'estimate_in_day': estimateInDayTextController.text != ''
+            ? estimateInDayTextController.text
+            : null,
       },
       accessToken: FFAppState().accessToken,
     );

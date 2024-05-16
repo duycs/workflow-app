@@ -6,6 +6,7 @@ import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import 'department_list_widget.dart' show DepartmentListWidget;
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
   ///  Local state fields for this page.
@@ -37,10 +38,18 @@ class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in DepartmentList widget.
+  bool? tokenReloadDepartmentListList;
+  // Stores action output result for [Action Block - tokenReload] action in DepartmentList widget.
+  bool? tokenReloadDepartmentListCheck;
   // State field(s) for nameSearch widget.
   FocusNode? nameSearchFocusNode;
   TextEditingController? nameSearchTextController;
   String? Function(BuildContext, String?)? nameSearchTextControllerValidator;
+  // State field(s) for ListView widget.
+
+  PagingController<ApiPagingParams, dynamic>? listViewPagingController;
+  Function(ApiPagingParams nextPageMarker)? listViewApiCall;
 
   @override
   void initState(BuildContext context) {}
@@ -50,6 +59,8 @@ class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
     unfocusNode.dispose();
     nameSearchFocusNode?.dispose();
     nameSearchTextController?.dispose();
+
+    listViewPagingController?.dispose();
   }
 
   /// Action blocks.
@@ -124,4 +135,62 @@ class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
       }
     }
   }
+
+  /// Additional helper methods.
+  Future waitForOnePageForListView({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete =
+          (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  PagingController<ApiPagingParams, dynamic> setListViewController(
+    Function(ApiPagingParams) apiCall,
+  ) {
+    listViewApiCall = apiCall;
+    return listViewPagingController ??= _createListViewController(apiCall);
+  }
+
+  PagingController<ApiPagingParams, dynamic> _createListViewController(
+    Function(ApiPagingParams) query,
+  ) {
+    final controller = PagingController<ApiPagingParams, dynamic>(
+      firstPageKey: ApiPagingParams(
+        nextPageNumber: 0,
+        numItems: 0,
+        lastResponse: null,
+      ),
+    );
+    return controller..addPageRequestListener(listViewGetDepartmentListPage);
+  }
+
+  void listViewGetDepartmentListPage(ApiPagingParams nextPageMarker) =>
+      listViewApiCall!(nextPageMarker)
+          .then((listViewGetDepartmentListResponse) {
+        final pageItems = (DepartmentListDataStruct.maybeFromMap(
+                        listViewGetDepartmentListResponse.jsonBody)!
+                    .data ??
+                [])
+            .toList() as List;
+        final newNumItems = nextPageMarker.numItems + pageItems.length;
+        listViewPagingController?.appendPage(
+          pageItems,
+          (pageItems.isNotEmpty)
+              ? ApiPagingParams(
+                  nextPageNumber: nextPageMarker.nextPageNumber + 1,
+                  numItems: newNumItems,
+                  lastResponse: listViewGetDepartmentListResponse,
+                )
+              : null,
+        );
+      });
 }

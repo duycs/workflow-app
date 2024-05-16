@@ -16,6 +16,13 @@ class StudyProgramListStruct extends BaseStruct {
     List<StaffsTestsListStruct>? studioIdTest,
     String? organizationId,
     DepartmentsIdStruct? departments,
+    int? estimateInDay,
+    String? dateCreate,
+    String? dateCreated,
+    String? imageCover,
+    int? template,
+    String? price,
+    String? authorId,
   })  : _id = id,
         _status = status,
         _name = name,
@@ -25,7 +32,14 @@ class StudyProgramListStruct extends BaseStruct {
         _tests = tests,
         _studioIdTest = studioIdTest,
         _organizationId = organizationId,
-        _departments = departments;
+        _departments = departments,
+        _estimateInDay = estimateInDay,
+        _dateCreate = dateCreate,
+        _dateCreated = dateCreated,
+        _imageCover = imageCover,
+        _template = template,
+        _price = price,
+        _authorId = authorId;
 
   // "id" field.
   String? _id;
@@ -98,6 +112,51 @@ class StudyProgramListStruct extends BaseStruct {
       updateFn(_departments ??= DepartmentsIdStruct());
   bool hasDepartments() => _departments != null;
 
+  // "estimate_in_day" field.
+  int? _estimateInDay;
+  int get estimateInDay => _estimateInDay ?? 0;
+  set estimateInDay(int? val) => _estimateInDay = val;
+  void incrementEstimateInDay(int amount) =>
+      _estimateInDay = estimateInDay + amount;
+  bool hasEstimateInDay() => _estimateInDay != null;
+
+  // "date_create" field.
+  String? _dateCreate;
+  String get dateCreate => _dateCreate ?? '';
+  set dateCreate(String? val) => _dateCreate = val;
+  bool hasDateCreate() => _dateCreate != null;
+
+  // "date_created" field.
+  String? _dateCreated;
+  String get dateCreated => _dateCreated ?? '';
+  set dateCreated(String? val) => _dateCreated = val;
+  bool hasDateCreated() => _dateCreated != null;
+
+  // "image_cover" field.
+  String? _imageCover;
+  String get imageCover => _imageCover ?? '';
+  set imageCover(String? val) => _imageCover = val;
+  bool hasImageCover() => _imageCover != null;
+
+  // "template" field.
+  int? _template;
+  int get template => _template ?? 0;
+  set template(int? val) => _template = val;
+  void incrementTemplate(int amount) => _template = template + amount;
+  bool hasTemplate() => _template != null;
+
+  // "price" field.
+  String? _price;
+  String get price => _price ?? '';
+  set price(String? val) => _price = val;
+  bool hasPrice() => _price != null;
+
+  // "author_id" field.
+  String? _authorId;
+  String get authorId => _authorId ?? '';
+  set authorId(String? val) => _authorId = val;
+  bool hasAuthorId() => _authorId != null;
+
   static StudyProgramListStruct fromMap(Map<String, dynamic> data) =>
       StudyProgramListStruct(
         id: data['id'] as String?,
@@ -119,6 +178,13 @@ class StudyProgramListStruct extends BaseStruct {
         ),
         organizationId: data['organization_id'] as String?,
         departments: DepartmentsIdStruct.maybeFromMap(data['departments']),
+        estimateInDay: castToType<int>(data['estimate_in_day']),
+        dateCreate: data['date_create'] as String?,
+        dateCreated: data['date_created'] as String?,
+        imageCover: data['image_cover'] as String?,
+        template: castToType<int>(data['template']),
+        price: data['price'] as String?,
+        authorId: data['author_id'] as String?,
       );
 
   static StudyProgramListStruct? maybeFromMap(dynamic data) => data is Map
@@ -136,6 +202,13 @@ class StudyProgramListStruct extends BaseStruct {
         'studioIdTest': _studioIdTest?.map((e) => e.toMap()).toList(),
         'organization_id': _organizationId,
         'departments': _departments?.toMap(),
+        'estimate_in_day': _estimateInDay,
+        'date_create': _dateCreate,
+        'date_created': _dateCreated,
+        'image_cover': _imageCover,
+        'template': _template,
+        'price': _price,
+        'author_id': _authorId,
       }.withoutNulls;
 
   @override
@@ -182,6 +255,34 @@ class StudyProgramListStruct extends BaseStruct {
         'departments': serializeParam(
           _departments,
           ParamType.DataStruct,
+        ),
+        'estimate_in_day': serializeParam(
+          _estimateInDay,
+          ParamType.int,
+        ),
+        'date_create': serializeParam(
+          _dateCreate,
+          ParamType.String,
+        ),
+        'date_created': serializeParam(
+          _dateCreated,
+          ParamType.String,
+        ),
+        'image_cover': serializeParam(
+          _imageCover,
+          ParamType.String,
+        ),
+        'template': serializeParam(
+          _template,
+          ParamType.int,
+        ),
+        'price': serializeParam(
+          _price,
+          ParamType.String,
+        ),
+        'author_id': serializeParam(
+          _authorId,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -242,6 +343,41 @@ class StudyProgramListStruct extends BaseStruct {
           false,
           structBuilder: DepartmentsIdStruct.fromSerializableMap,
         ),
+        estimateInDay: deserializeParam(
+          data['estimate_in_day'],
+          ParamType.int,
+          false,
+        ),
+        dateCreate: deserializeParam(
+          data['date_create'],
+          ParamType.String,
+          false,
+        ),
+        dateCreated: deserializeParam(
+          data['date_created'],
+          ParamType.String,
+          false,
+        ),
+        imageCover: deserializeParam(
+          data['image_cover'],
+          ParamType.String,
+          false,
+        ),
+        template: deserializeParam(
+          data['template'],
+          ParamType.int,
+          false,
+        ),
+        price: deserializeParam(
+          data['price'],
+          ParamType.String,
+          false,
+        ),
+        authorId: deserializeParam(
+          data['author_id'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -260,7 +396,14 @@ class StudyProgramListStruct extends BaseStruct {
         listEquality.equals(tests, other.tests) &&
         listEquality.equals(studioIdTest, other.studioIdTest) &&
         organizationId == other.organizationId &&
-        departments == other.departments;
+        departments == other.departments &&
+        estimateInDay == other.estimateInDay &&
+        dateCreate == other.dateCreate &&
+        dateCreated == other.dateCreated &&
+        imageCover == other.imageCover &&
+        template == other.template &&
+        price == other.price &&
+        authorId == other.authorId;
   }
 
   @override
@@ -274,7 +417,14 @@ class StudyProgramListStruct extends BaseStruct {
         tests,
         studioIdTest,
         organizationId,
-        departments
+        departments,
+        estimateInDay,
+        dateCreate,
+        dateCreated,
+        imageCover,
+        template,
+        price,
+        authorId
       ]);
 }
 
@@ -286,6 +436,13 @@ StudyProgramListStruct createStudyProgramListStruct({
   int? durationHours,
   String? organizationId,
   DepartmentsIdStruct? departments,
+  int? estimateInDay,
+  String? dateCreate,
+  String? dateCreated,
+  String? imageCover,
+  int? template,
+  String? price,
+  String? authorId,
 }) =>
     StudyProgramListStruct(
       id: id,
@@ -295,4 +452,11 @@ StudyProgramListStruct createStudyProgramListStruct({
       durationHours: durationHours,
       organizationId: organizationId,
       departments: departments ?? DepartmentsIdStruct(),
+      estimateInDay: estimateInDay,
+      dateCreate: dateCreate,
+      dateCreated: dateCreated,
+      imageCover: imageCover,
+      template: template,
+      price: price,
+      authorId: authorId,
     );

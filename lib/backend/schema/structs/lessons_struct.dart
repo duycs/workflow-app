@@ -20,6 +20,7 @@ class LessonsStruct extends BaseStruct {
     List<ReactsStruct>? reacts,
     String? organizationId,
     List<ProgramsIdddStruct>? programs,
+    int? estimateInDay,
   })  : _id = id,
         _status = status,
         _name = name,
@@ -33,7 +34,8 @@ class LessonsStruct extends BaseStruct {
         _file = file,
         _reacts = reacts,
         _organizationId = organizationId,
-        _programs = programs;
+        _programs = programs,
+        _estimateInDay = estimateInDay;
 
   // "id" field.
   String? _id;
@@ -127,6 +129,14 @@ class LessonsStruct extends BaseStruct {
       updateFn(_programs ??= []);
   bool hasPrograms() => _programs != null;
 
+  // "estimate_in_day" field.
+  int? _estimateInDay;
+  int get estimateInDay => _estimateInDay ?? 0;
+  set estimateInDay(int? val) => _estimateInDay = val;
+  void incrementEstimateInDay(int amount) =>
+      _estimateInDay = estimateInDay + amount;
+  bool hasEstimateInDay() => _estimateInDay != null;
+
   static LessonsStruct fromMap(Map<String, dynamic> data) => LessonsStruct(
         id: data['id'] as String?,
         status: data['status'] as String?,
@@ -148,6 +158,7 @@ class LessonsStruct extends BaseStruct {
           data['programs'],
           ProgramsIdddStruct.fromMap,
         ),
+        estimateInDay: castToType<int>(data['estimate_in_day']),
       );
 
   static LessonsStruct? maybeFromMap(dynamic data) =>
@@ -168,6 +179,7 @@ class LessonsStruct extends BaseStruct {
         'reacts': _reacts?.map((e) => e.toMap()).toList(),
         'organization_id': _organizationId,
         'programs': _programs?.map((e) => e.toMap()).toList(),
+        'estimate_in_day': _estimateInDay,
       }.withoutNulls;
 
   @override
@@ -229,6 +241,10 @@ class LessonsStruct extends BaseStruct {
           _programs,
           ParamType.DataStruct,
           true,
+        ),
+        'estimate_in_day': serializeParam(
+          _estimateInDay,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -307,6 +323,11 @@ class LessonsStruct extends BaseStruct {
           true,
           structBuilder: ProgramsIdddStruct.fromSerializableMap,
         ),
+        estimateInDay: deserializeParam(
+          data['estimate_in_day'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -329,7 +350,8 @@ class LessonsStruct extends BaseStruct {
         file == other.file &&
         listEquality.equals(reacts, other.reacts) &&
         organizationId == other.organizationId &&
-        listEquality.equals(programs, other.programs);
+        listEquality.equals(programs, other.programs) &&
+        estimateInDay == other.estimateInDay;
   }
 
   @override
@@ -347,7 +369,8 @@ class LessonsStruct extends BaseStruct {
         file,
         reacts,
         organizationId,
-        programs
+        programs,
+        estimateInDay
       ]);
 }
 
@@ -364,6 +387,7 @@ LessonsStruct createLessonsStruct({
   int? durationHours,
   FileStruct? file,
   String? organizationId,
+  int? estimateInDay,
 }) =>
     LessonsStruct(
       id: id,
@@ -378,4 +402,5 @@ LessonsStruct createLessonsStruct({
       durationHours: durationHours,
       file: file ?? FileStruct(),
       organizationId: organizationId,
+      estimateInDay: estimateInDay,
     );

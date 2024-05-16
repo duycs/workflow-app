@@ -184,7 +184,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                                       .bodyLarge
                                       .override(
                                         fontFamily: 'Nunito Sans',
-                                        fontSize: 20.0,
+                                        fontSize: 18.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.normal,
                                       ),

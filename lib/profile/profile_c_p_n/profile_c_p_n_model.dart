@@ -15,6 +15,17 @@ class ProfileCPNModel extends FlutterFlowModel<ProfileCPNWidget> {
           Function(OrganizationListStruct) updateFn) =>
       updateFn(organizationDetail ??= OrganizationListStruct());
 
+  List<String> listImage = [];
+  void addToListImage(String item) => listImage.add(item);
+  void removeFromListImage(String item) => listImage.remove(item);
+  void removeAtIndexFromListImage(int index) => listImage.removeAt(index);
+  void insertAtIndexInListImage(int index, String item) =>
+      listImage.insert(index, item);
+  void updateListImageAtIndex(int index, Function(String) updateFn) =>
+      listImage[index] = updateFn(listImage[index]);
+
+  int loop = 3;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -51,6 +62,17 @@ class ProfileCPNModel extends FlutterFlowModel<ProfileCPNWidget> {
         organizationDetail = OrganizationListDataStruct.maybeFromMap(
                 (apiResultGetOrganization.jsonBody ?? ''))
             ?.data;
+        while ((loop <
+                OrganizationListDataStruct.maybeFromMap(
+                        (apiResultGetOrganization.jsonBody ?? ''))!
+                    .data
+                    .files
+                    .length) &&
+            (organizationDetail!.files.length > 3)) {
+          addToListImage(organizationDetail!.files[loop].directusFilesId.id);
+          loop = loop + 1;
+        }
+        loop = 3;
       }
     } else {
       FFAppState().update(() {});

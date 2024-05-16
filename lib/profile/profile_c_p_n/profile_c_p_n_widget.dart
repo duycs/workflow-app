@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/profile/contact_profile_c_p_n/contact_profile_c_p_n_widget.dart';
 import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
@@ -157,14 +158,13 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                       ),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.all(12.0),
                                             child: Container(
                                               width: double.infinity,
-                                              constraints: const BoxConstraints(
-                                                maxWidth: 800.0,
-                                              ),
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
@@ -188,7 +188,8 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                      CrossAxisAlignment
+                                                          .stretch,
                                                   children: [
                                                     Text(
                                                       _model.organizationDetail!
@@ -262,60 +263,111 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                             ),
                                                           ),
                                                         ),
-                                                        Container(
-                                                          height: 32.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .accent2,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20.0),
-                                                          ),
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        12.0,
-                                                                        8.0,
-                                                                        12.0,
-                                                                        8.0),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Icon(
-                                                                  Icons.phone,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary,
-                                                                  size: 20.0,
-                                                                ),
-                                                                Align(
-                                                                  alignment:
-                                                                      const AlignmentDirectional(
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child: Text(
-                                                                    'Liên hệ',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Nunito Sans',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).secondary,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
+                                                        InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            await showModalBottomSheet(
+                                                              isScrollControlled:
+                                                                  true,
+                                                              backgroundColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              enableDrag: false,
+                                                              context: context,
+                                                              builder:
+                                                                  (context) {
+                                                                return GestureDetector(
+                                                                  onTap: () => _model
+                                                                          .unfocusNode
+                                                                          .canRequestFocus
+                                                                      ? FocusScope.of(
+                                                                              context)
+                                                                          .requestFocus(_model
+                                                                              .unfocusNode)
+                                                                      : FocusScope.of(
+                                                                              context)
+                                                                          .unfocus(),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: MediaQuery
+                                                                        .viewInsetsOf(
+                                                                            context),
+                                                                    child:
+                                                                        ContactProfileCPNWidget(
+                                                                      contactProfile:
+                                                                          _model
+                                                                              .organizationDetail,
+                                                                    ),
                                                                   ),
-                                                                ),
-                                                              ].divide(const SizedBox(
-                                                                  width: 4.0)),
+                                                                );
+                                                              },
+                                                            ).then((value) =>
+                                                                safeSetState(
+                                                                    () {}));
+                                                          },
+                                                          child: Container(
+                                                            height: 32.0,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .accent2,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20.0),
+                                                            ),
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          12.0,
+                                                                          8.0,
+                                                                          12.0,
+                                                                          8.0),
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  Icon(
+                                                                    Icons.phone,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondary,
+                                                                    size: 20.0,
+                                                                  ),
+                                                                  Align(
+                                                                    alignment:
+                                                                        const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child: Text(
+                                                                      'Liên hệ',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Nunito Sans',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondary,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ].divide(const SizedBox(
+                                                                    width:
+                                                                        4.0)),
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
@@ -446,29 +498,6 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                         ),
                                                       ],
                                                     ),
-                                                    if ('1' == '2')
-                                                      Divider(
-                                                        height: 16.0,
-                                                        thickness: 1.0,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .alternate,
-                                                      ),
-                                                    if ('1' == '2')
-                                                      Text(
-                                                        'Rate',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
                                                     Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
@@ -574,10 +603,13 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
-                                                            fontSize: 14.0,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            fontSize: 16.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
-                                                                FontWeight.w500,
+                                                                FontWeight.w600,
                                                           ),
                                                     ),
                                                     Padding(
@@ -710,6 +742,26 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                                 0.0,
                                                                           ),
                                                                     ),
+                                                                    Text(
+                                                                      _model
+                                                                          .organizationDetail!
+                                                                          .staffs
+                                                                          .where((e) =>
+                                                                              e.userId.role ==
+                                                                              '82073000-1ba2-43a4-a55c-459d17c23b68')
+                                                                          .toList()
+                                                                          .first
+                                                                          .title,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Nunito Sans',
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                          ),
+                                                                    ),
                                                                   ].divide(const SizedBox(
                                                                       height:
                                                                           4.0)),
@@ -730,132 +782,139 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                   0.0,
                                                                   0.0),
                                                       child: Container(
-                                                        width: 360.0,
+                                                        height: 140.0,
                                                         decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                        ),
-                                                        child: Container(
-                                                          height: 110.0,
-                                                          decoration:
-                                                              const BoxDecoration(),
-                                                          child: Builder(
-                                                            builder: (context) {
-                                                              final adminBranch = _model
-                                                                      .organizationDetail
-                                                                      ?.staffs
-                                                                      .where((e) =>
-                                                                          e.userId
-                                                                              .role ==
-                                                                          'a8d33527-375b-4599-ac70-6a3fcad1de39')
-                                                                      .toList()
-                                                                      .toList() ??
-                                                                  [];
-                                                              return ListView
-                                                                  .separated(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .zero,
-                                                                primary: false,
-                                                                shrinkWrap:
-                                                                    true,
-                                                                scrollDirection:
-                                                                    Axis.horizontal,
-                                                                itemCount:
-                                                                    adminBranch
-                                                                        .length,
-                                                                separatorBuilder: (_,
-                                                                        __) =>
-                                                                    const SizedBox(
-                                                                        width:
-                                                                            8.0),
-                                                                itemBuilder:
-                                                                    (context,
-                                                                        adminBranchIndex) {
-                                                                  final adminBranchItem =
-                                                                      adminBranch[
-                                                                          adminBranchIndex];
-                                                                  return Container(
-                                                                    width:
-                                                                        120.0,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryBackground,
-                                                                      boxShadow: const [
-                                                                        BoxShadow(
-                                                                          color:
-                                                                              Color(0x34090F13),
-                                                                        )
-                                                                      ],
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
-                                                                    ),
+                                                            const BoxDecoration(),
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            final adminBranch = _model
+                                                                    .organizationDetail
+                                                                    ?.staffs
+                                                                    .where((e) =>
+                                                                        e.userId
+                                                                            .role ==
+                                                                        'a8d33527-375b-4599-ac70-6a3fcad1de39')
+                                                                    .toList()
+                                                                    .toList() ??
+                                                                [];
+                                                            return ListView
+                                                                .separated(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .zero,
+                                                              primary: false,
+                                                              shrinkWrap: true,
+                                                              scrollDirection:
+                                                                  Axis.horizontal,
+                                                              itemCount:
+                                                                  adminBranch
+                                                                      .length,
+                                                              separatorBuilder:
+                                                                  (_, __) =>
+                                                                      const SizedBox(
+                                                                          width:
+                                                                              8.0),
+                                                              itemBuilder: (context,
+                                                                  adminBranchIndex) {
+                                                                final adminBranchItem =
+                                                                    adminBranch[
+                                                                        adminBranchIndex];
+                                                                return Container(
+                                                                  width: 200.0,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                    boxShadow: const [
+                                                                      BoxShadow(
+                                                                        color: Color(
+                                                                            0x34090F13),
+                                                                      )
+                                                                    ],
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            20.0),
+                                                                  ),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding:
+                                                                        const EdgeInsets.all(
+                                                                            12.0),
                                                                     child:
-                                                                        Padding(
-                                                                      padding:
-                                                                          const EdgeInsets.all(
-                                                                              12.0),
-                                                                      child:
-                                                                          Column(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.start,
-                                                                        children: [
-                                                                          ClipRRect(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(50.0),
-                                                                            child:
-                                                                                Image.network(
-                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${adminBranchItem.userId.avatar}?access_token=${FFAppState().accessToken}',
-                                                                              width: 40.0,
-                                                                              height: 40.0,
-                                                                              fit: BoxFit.cover,
-                                                                            ),
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .start,
+                                                                      children: [
+                                                                        ClipRRect(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(50.0),
+                                                                          child:
+                                                                              Image.network(
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${adminBranchItem.userId.avatar}?access_token=${FFAppState().accessToken}',
+                                                                            width:
+                                                                                40.0,
+                                                                            height:
+                                                                                40.0,
+                                                                            fit:
+                                                                                BoxFit.cover,
                                                                           ),
-                                                                          Padding(
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              8.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Text(
+                                                                            adminBranchItem.userId.firstName,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Nunito Sans',
+                                                                                  letterSpacing: 0.0,
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                        Flexible(
+                                                                          child:
+                                                                              Padding(
                                                                             padding: const EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
-                                                                                8.0,
+                                                                                4.0,
                                                                                 0.0,
                                                                                 0.0),
                                                                             child:
                                                                                 Text(
-                                                                              adminBranchItem.userId.firstName,
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                              adminBranchItem.userId.email,
+                                                                              style: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                     fontFamily: 'Nunito Sans',
+                                                                                    color: FlutterFlowTheme.of(context).secondaryText,
                                                                                     letterSpacing: 0.0,
                                                                                   ),
                                                                             ),
                                                                           ),
-                                                                          Flexible(
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-                                                                              child: Text(
-                                                                                adminBranchItem.userId.email,
-                                                                                style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                      fontFamily: 'Nunito Sans',
-                                                                                      color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                      letterSpacing: 0.0,
-                                                                                    ),
+                                                                        ),
+                                                                        Text(
+                                                                          adminBranchItem
+                                                                              .title,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                fontFamily: 'Nunito Sans',
+                                                                                letterSpacing: 0.0,
                                                                               ),
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
+                                                                        ),
+                                                                      ],
                                                                     ),
-                                                                  );
-                                                                },
-                                                              );
-                                                            },
-                                                          ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
                                                         ),
                                                       ),
                                                     ),
@@ -875,10 +934,13 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
-                                                            fontSize: 14.0,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            fontSize: 16.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
-                                                                FontWeight.w500,
+                                                                FontWeight.w600,
                                                           ),
                                                     ),
                                                     Html(
@@ -911,18 +973,164 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                   context)
                                                               .alternate,
                                                     ),
+                                                    Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          'Tầm nhìn:',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                        ),
+                                                        Text(
+                                                          '“Trở thành biểu tượng niềm tin hàng đầu Việt Nam phục vụ cuộc sống con người“',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic,
+                                                              ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            ' Sứ mệnh:',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'Chất lượng cao cấp hàng đầu bằng chính sự trân trọng, tình yêu và trách nhiệm cao của mình với cuộc sống con người và xã hội',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'Giắ trị cốt lõi:',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'Chất lượng cao cấp hàng đầu bằng chính sự trân trọng, tình yêu và trách nhiệm cao của mình với cuộc sống con người và xã hội',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Divider(
+                                                      height: 16.0,
+                                                      thickness: 1.0,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                    ),
                                                     Text(
                                                       'Địa chỉ',
                                                       style: FlutterFlowTheme
                                                               .of(context)
-                                                          .labelMedium
+                                                          .bodyMedium
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
-                                                            fontSize: 14.0,
+                                                            fontSize: 16.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
-                                                                FontWeight.w500,
+                                                                FontWeight.w600,
                                                           ),
                                                     ),
                                                     Text(
@@ -949,6 +1157,247 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                             fontFamily:
                                                                 'Nunito Sans',
                                                             letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                    Divider(
+                                                      height: 16.0,
+                                                      thickness: 1.0,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                    ),
+                                                    Text(
+                                                      'Phương châm hoạt động',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .labelMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            fontSize: 16.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                    ),
+                                                    Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .end,
+                                                          children: [
+                                                            Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10.0,
+                                                                          10.0,
+                                                                          10.0,
+                                                                          10.0),
+                                                                  child:
+                                                                      ClipRRect(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.0),
+                                                                    child: Image
+                                                                        .network(
+                                                                      'https://picsum.photos/seed/995/600',
+                                                                      width:
+                                                                          150.0,
+                                                                      height:
+                                                                          200.0,
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            Expanded(
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            10.0,
+                                                                            10.0,
+                                                                            10.0,
+                                                                            10.0),
+                                                                    child:
+                                                                        Container(
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: const Color(
+                                                                            0xD4249643),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8.0),
+                                                                      ),
+                                                                      child:
+                                                                          Align(
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              10.0,
+                                                                              10.0,
+                                                                              10.0,
+                                                                              10.0),
+                                                                          child:
+                                                                              Text(
+                                                                            'Chất lượng cao cấp hàng đầu bằng chính sự trân trọng, tình yêu và trách nhiệm cao của mình với cuộc sống con người và xã hội,Chất lượng cao cấp hàng đầu bằng chính sự trân trọng, tình yêu và trách nhiệm cao của mình với cuộc sống con người và xã hội,',
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Nunito Sans',
+                                                                                  letterSpacing: 0.0,
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            10.0,
+                                                                            10.0,
+                                                                            10.0,
+                                                                            10.0),
+                                                                    child:
+                                                                        Container(
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: const Color(
+                                                                            0xD4249643),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8.0),
+                                                                      ),
+                                                                      child:
+                                                                          Align(
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              10.0,
+                                                                              10.0,
+                                                                              10.0,
+                                                                              10.0),
+                                                                          child:
+                                                                              Text(
+                                                                            'Chất lượng cao cấp hàng đầu bằng chính sự trân trọng, tình yêu và trách nhiệm cao của mình với cuộc sống con người và xã hội,Chất lượng cao cấp hàng đầu bằng chính sự trân trọng, tình yêu và trách nhiệm cao của mình với cuộc sống con người và xã hội,',
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Nunito Sans',
+                                                                                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                  letterSpacing: 0.0,
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10.0,
+                                                                          10.0,
+                                                                          10.0,
+                                                                          10.0),
+                                                                  child:
+                                                                      ClipRRect(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.0),
+                                                                    child: Image
+                                                                        .network(
+                                                                      'https://picsum.photos/seed/995/600',
+                                                                      width:
+                                                                          150.0,
+                                                                      height:
+                                                                          200.0,
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Divider(
+                                                      height: 16.0,
+                                                      thickness: 1.0,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                    ),
+                                                    Text(
+                                                      'Hoạt động chính',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .labelMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            fontSize: 16.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w600,
                                                           ),
                                                     ),
                                                     Padding(
@@ -986,7 +1435,9 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                 '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.video}?access_token=${FFAppState().accessToken}',
                                                             videoType: VideoType
                                                                 .network,
-                                                            height: 200.0,
+                                                            width:
+                                                                double.infinity,
+                                                            height: 220.0,
                                                             autoPlay: false,
                                                             looping: true,
                                                             showControls: true,
@@ -998,233 +1449,372 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                         ),
                                                       ),
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  16.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Expanded(
-                                                            flex: 3,
-                                                            child: InkWell(
-                                                              splashColor: Colors
-                                                                  .transparent,
-                                                              focusColor: Colors
-                                                                  .transparent,
-                                                              hoverColor: Colors
-                                                                  .transparent,
-                                                              highlightColor:
-                                                                  Colors
+                                                    if (_model.organizationDetail
+                                                                ?.files !=
+                                                            null &&
+                                                        (_model.organizationDetail
+                                                                ?.files)!
+                                                            .isNotEmpty)
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    16.0,
+                                                                    0.0,
+                                                                    12.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            if (_model
+                                                                    .organizationDetail!
+                                                                    .files.isNotEmpty)
+                                                              Expanded(
+                                                                flex: 3,
+                                                                child: InkWell(
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  focusColor: Colors
                                                                       .transparent,
-                                                              onTap: () async {
-                                                                await Navigator
-                                                                    .push(
-                                                                  context,
-                                                                  PageTransition(
-                                                                    type: PageTransitionType
-                                                                        .fade,
-                                                                    child:
-                                                                        FlutterFlowExpandedImageView(
-                                                                      image: Image
-                                                                          .network(
-                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
-                                                                        fit: BoxFit
-                                                                            .contain,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  onTap:
+                                                                      () async {
+                                                                    await Navigator
+                                                                        .push(
+                                                                      context,
+                                                                      PageTransition(
+                                                                        type: PageTransitionType
+                                                                            .fade,
+                                                                        child:
+                                                                            FlutterFlowExpandedImageView(
+                                                                          image:
+                                                                              Image.network(
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                            fit:
+                                                                                BoxFit.contain,
+                                                                          ),
+                                                                          allowRotation:
+                                                                              false,
+                                                                          tag:
+                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                          useHeroAnimation:
+                                                                              true,
+                                                                        ),
                                                                       ),
-                                                                      allowRotation:
-                                                                          false,
-                                                                      tag:
-                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
-                                                                      useHeroAnimation:
-                                                                          true,
-                                                                    ),
-                                                                  ),
-                                                                );
-                                                              },
-                                                              child: Hero(
-                                                                tag:
-                                                                    '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
-                                                                transitionOnUserGestures:
-                                                                    true,
-                                                                child:
-                                                                    ClipRRect(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
+                                                                    );
+                                                                  },
+                                                                  child: Hero(
+                                                                    tag:
+                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                    transitionOnUserGestures:
+                                                                        true,
+                                                                    child:
+                                                                        ClipRRect(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
                                                                               8.0),
-                                                                  child: Image
-                                                                      .network(
-                                                                    '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
-                                                                    width:
-                                                                        190.0,
-                                                                    height:
-                                                                        208.0,
-                                                                    fit: BoxFit
-                                                                        .cover,
+                                                                      child: Image
+                                                                          .network(
+                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                        width:
+                                                                            190.0,
+                                                                        height:
+                                                                            208.0,
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ),
-                                                          Expanded(
-                                                            flex: 2,
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
+                                                            Expanded(
+                                                              flex: 2,
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  if (_model
+                                                                          .organizationDetail!
+                                                                          .files
+                                                                          .length >=
+                                                                      2)
+                                                                    Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
                                                                           4.0),
-                                                                  child:
-                                                                      InkWell(
-                                                                    splashColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    focusColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    hoverColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    highlightColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    onTap:
-                                                                        () async {
-                                                                      await Navigator
-                                                                          .push(
-                                                                        context,
-                                                                        PageTransition(
-                                                                          type:
-                                                                              PageTransitionType.fade,
-                                                                          child:
-                                                                              FlutterFlowExpandedImageView(
-                                                                            image:
-                                                                                Image.network(
-                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
-                                                                              fit: BoxFit.contain,
-                                                                            ),
-                                                                            allowRotation:
-                                                                                false,
-                                                                            tag:
-                                                                                '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
-                                                                            useHeroAnimation:
-                                                                                true,
-                                                                          ),
-                                                                        ),
-                                                                      );
-                                                                    },
-                                                                    child: Hero(
-                                                                      tag:
-                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
-                                                                      transitionOnUserGestures:
-                                                                          true,
                                                                       child:
-                                                                          ClipRRect(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(8.0),
-                                                                        child: Image
-                                                                            .network(
-                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
-                                                                          width:
-                                                                              160.0,
-                                                                          height:
-                                                                              100.0,
-                                                                          fit: BoxFit
-                                                                              .cover,
+                                                                          InkWell(
+                                                                        splashColor:
+                                                                            Colors.transparent,
+                                                                        focusColor:
+                                                                            Colors.transparent,
+                                                                        hoverColor:
+                                                                            Colors.transparent,
+                                                                        highlightColor:
+                                                                            Colors.transparent,
+                                                                        onTap:
+                                                                            () async {
+                                                                          await Navigator
+                                                                              .push(
+                                                                            context,
+                                                                            PageTransition(
+                                                                              type: PageTransitionType.fade,
+                                                                              child: FlutterFlowExpandedImageView(
+                                                                                image: Image.network(
+                                                                                  '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files[1])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                                  fit: BoxFit.contain,
+                                                                                ),
+                                                                                allowRotation: false,
+                                                                                tag: '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files[1])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                                useHeroAnimation: true,
+                                                                              ),
+                                                                            ),
+                                                                          );
+                                                                        },
+                                                                        child:
+                                                                            Hero(
+                                                                          tag:
+                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files[1])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                          transitionOnUserGestures:
+                                                                              true,
+                                                                          child:
+                                                                              ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                            child:
+                                                                                Image.network(
+                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files[1])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                              width: 160.0,
+                                                                              height: 100.0,
+                                                                              fit: BoxFit.cover,
+                                                                            ),
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
+                                                                  if (_model
+                                                                          .organizationDetail!
+                                                                          .files
+                                                                          .length >=
+                                                                      3)
+                                                                    Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           4.0,
                                                                           0.0,
                                                                           0.0),
-                                                                  child:
-                                                                      InkWell(
-                                                                    splashColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    focusColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    hoverColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    highlightColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    onTap:
-                                                                        () async {
-                                                                      await Navigator
-                                                                          .push(
-                                                                        context,
-                                                                        PageTransition(
-                                                                          type:
-                                                                              PageTransitionType.fade,
-                                                                          child:
-                                                                              FlutterFlowExpandedImageView(
-                                                                            image:
-                                                                                Image.network(
-                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
-                                                                              fit: BoxFit.contain,
-                                                                            ),
-                                                                            allowRotation:
-                                                                                false,
-                                                                            tag:
-                                                                                '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
-                                                                            useHeroAnimation:
-                                                                                true,
-                                                                          ),
-                                                                        ),
-                                                                      );
-                                                                    },
-                                                                    child: Hero(
-                                                                      tag:
-                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
-                                                                      transitionOnUserGestures:
-                                                                          true,
                                                                       child:
-                                                                          ClipRRect(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(8.0),
-                                                                        child: Image
-                                                                            .network(
-                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.image}?access_token=${FFAppState().accessToken}',
-                                                                          width:
-                                                                              160.0,
-                                                                          height:
-                                                                              100.0,
-                                                                          fit: BoxFit
-                                                                              .cover,
+                                                                          InkWell(
+                                                                        splashColor:
+                                                                            Colors.transparent,
+                                                                        focusColor:
+                                                                            Colors.transparent,
+                                                                        hoverColor:
+                                                                            Colors.transparent,
+                                                                        highlightColor:
+                                                                            Colors.transparent,
+                                                                        onTap:
+                                                                            () async {
+                                                                          await Navigator
+                                                                              .push(
+                                                                            context,
+                                                                            PageTransition(
+                                                                              type: PageTransitionType.fade,
+                                                                              child: FlutterFlowExpandedImageView(
+                                                                                image: Image.network(
+                                                                                  '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files[2])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                                  fit: BoxFit.contain,
+                                                                                ),
+                                                                                allowRotation: false,
+                                                                                tag: '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files[2])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                                useHeroAnimation: true,
+                                                                              ),
+                                                                            ),
+                                                                          );
+                                                                        },
+                                                                        child:
+                                                                            Hero(
+                                                                          tag:
+                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files[2])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                          transitionOnUserGestures:
+                                                                              true,
+                                                                          child:
+                                                                              ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                            child:
+                                                                                Image.network(
+                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files[2])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                              width: 160.0,
+                                                                              height: 100.0,
+                                                                              fit: BoxFit.cover,
+                                                                            ),
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                ),
-                                                              ].divide(const SizedBox(
-                                                                  height: 8.0)),
+                                                                ].divide(const SizedBox(
+                                                                    height:
+                                                                        8.0)),
+                                                              ),
                                                             ),
-                                                          ),
-                                                        ].divide(const SizedBox(
-                                                            width: 8.0)),
+                                                          ].divide(const SizedBox(
+                                                              width: 8.0)),
+                                                        ),
                                                       ),
-                                                    ),
+                                                    if ((_model
+                                                                .organizationDetail!
+                                                                .files.isNotEmpty) &&
+                                                        (_model
+                                                            .organizationDetail!
+                                                            .files
+                                                            .isNotEmpty) &&
+                                                        (_model.organizationDetail!
+                                                                .files.length >
+                                                            3))
+                                                      Text(
+                                                        'Ảnh khác',
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Nunito Sans',
+                                                              fontSize: 16.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                            ),
+                                                      ),
+                                                    if ((_model
+                                                                .organizationDetail!
+                                                                .files.isNotEmpty) &&
+                                                        (_model
+                                                            .organizationDetail!
+                                                            .files
+                                                            .isNotEmpty) &&
+                                                        (_model.organizationDetail!
+                                                                .files.length >
+                                                            3))
+                                                      Container(
+                                                        width: double.infinity,
+                                                        height:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .height *
+                                                                0.5,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                        ),
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            final images =
+                                                                _model.listImage
+                                                                    .toList();
+                                                            return GridView
+                                                                .builder(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .zero,
+                                                              gridDelegate:
+                                                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                crossAxisCount:
+                                                                    3,
+                                                                crossAxisSpacing:
+                                                                    5.0,
+                                                                mainAxisSpacing:
+                                                                    5.0,
+                                                                childAspectRatio:
+                                                                    1.0,
+                                                              ),
+                                                              scrollDirection:
+                                                                  Axis.vertical,
+                                                              itemCount:
+                                                                  images.length,
+                                                              itemBuilder: (context,
+                                                                  imagesIndex) {
+                                                                final imagesItem =
+                                                                    images[
+                                                                        imagesIndex];
+                                                                return InkWell(
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  onTap:
+                                                                      () async {
+                                                                    await Navigator
+                                                                        .push(
+                                                                      context,
+                                                                      PageTransition(
+                                                                        type: PageTransitionType
+                                                                            .fade,
+                                                                        child:
+                                                                            FlutterFlowExpandedImageView(
+                                                                          image:
+                                                                              Image.network(
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/$imagesItem?access_token=${FFAppState().accessToken}',
+                                                                            fit:
+                                                                                BoxFit.contain,
+                                                                          ),
+                                                                          allowRotation:
+                                                                              false,
+                                                                          tag:
+                                                                              '${FFAppConstants.ApiBaseUrl}/assets/$imagesItem?access_token=${FFAppState().accessToken}',
+                                                                          useHeroAnimation:
+                                                                              true,
+                                                                        ),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                  child: Hero(
+                                                                    tag:
+                                                                        '${FFAppConstants.ApiBaseUrl}/assets/$imagesItem?access_token=${FFAppState().accessToken}',
+                                                                    transitionOnUserGestures:
+                                                                        true,
+                                                                    child:
+                                                                        ClipRRect(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              8.0),
+                                                                      child: Image
+                                                                          .network(
+                                                                        '${FFAppConstants.ApiBaseUrl}/assets/$imagesItem?access_token=${FFAppState().accessToken}',
+                                                                        width:
+                                                                            300.0,
+                                                                        height:
+                                                                            200.0,
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
                                                   ].divide(
                                                       const SizedBox(height: 4.0)),
                                                 ),

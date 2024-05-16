@@ -17,9 +17,11 @@ class LessonDetailWidget extends StatefulWidget {
   const LessonDetailWidget({
     super.key,
     required this.idLesson,
-  });
+    String? checkSrcoll,
+  }) : checkSrcoll = checkSrcoll ?? '0';
 
   final String? idLesson;
+  final String checkSrcoll;
 
   @override
   State<LessonDetailWidget> createState() => _LessonDetailWidgetState();
@@ -82,6 +84,15 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
               setState(() {
                 _model.checkFile = '1';
               });
+              if (widget.checkSrcoll == 'LessonsList') {
+                FFAppState().update(() {
+                  FFAppState().scrollCheck = 'LessonsList';
+                });
+              } else if (widget.checkSrcoll == 'StudyProgramList') {
+                FFAppState().update(() {
+                  FFAppState().scrollCheck = 'StudyProgramList';
+                });
+              }
             },
           ),
           title: Text(

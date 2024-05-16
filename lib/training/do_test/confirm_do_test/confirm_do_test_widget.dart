@@ -15,7 +15,7 @@ class ConfirmDoTestWidget extends StatefulWidget {
   const ConfirmDoTestWidget({
     super.key,
     required this.testId,
-    required this.lessionId,
+    this.lessionId,
     this.avatar,
   });
 
@@ -136,21 +136,23 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 8.0),
-                            child: Text(
-                              '${_model.list?.name}',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyLarge
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                          if (widget.lessionId != null &&
+                              widget.lessionId != '')
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 8.0),
+                              child: Text(
+                                '${_model.list?.name}',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
                             ),
-                          ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [

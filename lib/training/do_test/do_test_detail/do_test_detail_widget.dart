@@ -126,35 +126,40 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                 ),
                               ),
                             ),
-                            FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 30.0,
-                              borderWidth: 1.0,
-                              buttonSize: 60.0,
-                              fillColor: const Color(0x90FFFFFF),
-                              icon: Icon(
-                                Icons.arrow_back_rounded,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 30.0,
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 8.0, 0.0, 0.0),
+                              child: FlutterFlowIconButton(
+                                borderColor: Colors.transparent,
+                                borderRadius: 30.0,
+                                borderWidth: 1.0,
+                                buttonSize: 60.0,
+                                fillColor: const Color(0x90FFFFFF),
+                                icon: Icon(
+                                  Icons.arrow_back_rounded,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 30.0,
+                                ),
+                                onPressed: () async {
+                                  context.pushNamed(
+                                    'DoTestList',
+                                    queryParameters: {
+                                      'lessionId': serializeParam(
+                                        widget.lessionId,
+                                        ParamType.String,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                },
                               ),
-                              onPressed: () async {
-                                context.pushNamed(
-                                  'DoTestList',
-                                  queryParameters: {
-                                    'lessionId': serializeParam(
-                                      widget.lessionId,
-                                      ParamType.String,
-                                    ),
-                                  }.withoutNulls,
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                    ),
-                                  },
-                                );
-                              },
                             ),
                           ],
                         ),
@@ -396,7 +401,7 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                   scrollDirection: Axis.vertical,
                                   itemCount: questionList.length,
                                   separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 16.0),
+                                      const SizedBox(height: 8.0),
                                   itemBuilder: (context, questionListIndex) {
                                     final questionListItem =
                                         questionList[questionListIndex];

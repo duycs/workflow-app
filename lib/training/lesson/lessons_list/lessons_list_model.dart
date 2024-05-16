@@ -3,8 +3,10 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'dart:async';
 import 'lessons_list_widget.dart' show LessonsListWidget;
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class LessonsListModel extends FlutterFlowModel<LessonsListWidget> {
   ///  Local state fields for this page.
@@ -31,10 +33,18 @@ class LessonsListModel extends FlutterFlowModel<LessonsListWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in LessonsList widget.
+  bool? tokenReloadLessonsList;
+  // Stores action output result for [Action Block - tokenReload] action in LessonsList widget.
+  bool? tokenReloadLessonsListCheck;
   // State field(s) for nameSearch widget.
   FocusNode? nameSearchFocusNode;
   TextEditingController? nameSearchTextController;
   String? Function(BuildContext, String?)? nameSearchTextControllerValidator;
+  // State field(s) for ListView widget.
+
+  PagingController<ApiPagingParams, dynamic>? listViewPagingController;
+  Function(ApiPagingParams nextPageMarker)? listViewApiCall;
 
   @override
   void initState(BuildContext context) {}
@@ -44,6 +54,8 @@ class LessonsListModel extends FlutterFlowModel<LessonsListWidget> {
     unfocusNode.dispose();
     nameSearchFocusNode?.dispose();
     nameSearchTextController?.dispose();
+
+    listViewPagingController?.dispose();
   }
 
   /// Action blocks.
@@ -58,7 +70,7 @@ class LessonsListModel extends FlutterFlowModel<LessonsListWidget> {
         r'''$.organization_id''',
       ).toString().toString()}\"}}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}' : ' '}${(status != '') && (status != 'noData') ? ',{\"status\":{\"_icontains\":\"' : ' '}${(status != '') && (status != 'noData') ? status : ' '}${(status != '') && (status != 'noData') ? '\"}}' : ' '}${(dateStart != '') && (dateStart != 'noDate') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(dateStart != '') && (dateStart != 'noDate') ? dateStart : ' '}${(dateStart != '') && (dateStart != 'noDate') ? '\"}}' : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? ((String var1) {
           return DateTime.parse(var1).add(const Duration(days: 1)).toString();
-        }(dateEnd)) : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? 'T23:59:03.955000Z\"}}' : ' '}${programId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${programId != '' ? programId : ' '}${programId != '' ? '\"}}}}' : ' '}]}',
+        }(dateEnd)) : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? '\"}}' : ' '}${programId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${programId != '' ? programId : ' '}${programId != '' ? '\"}}}}' : ' '}]}',
     );
     if ((apiResultList.succeeded ?? true)) {
       list =
@@ -90,4 +102,61 @@ class LessonsListModel extends FlutterFlowModel<LessonsListWidget> {
       }
     }
   }
+
+  /// Additional helper methods.
+  Future waitForOnePageForListView({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete =
+          (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  PagingController<ApiPagingParams, dynamic> setListViewController(
+    Function(ApiPagingParams) apiCall,
+  ) {
+    listViewApiCall = apiCall;
+    return listViewPagingController ??= _createListViewController(apiCall);
+  }
+
+  PagingController<ApiPagingParams, dynamic> _createListViewController(
+    Function(ApiPagingParams) query,
+  ) {
+    final controller = PagingController<ApiPagingParams, dynamic>(
+      firstPageKey: ApiPagingParams(
+        nextPageNumber: 0,
+        numItems: 0,
+        lastResponse: null,
+      ),
+    );
+    return controller..addPageRequestListener(listViewGetLessonListPage);
+  }
+
+  void listViewGetLessonListPage(ApiPagingParams nextPageMarker) =>
+      listViewApiCall!(nextPageMarker).then((listViewGetLessonListResponse) {
+        final pageItems = (LessonsListDataStruct.maybeFromMap(
+                        listViewGetLessonListResponse.jsonBody)!
+                    .data ??
+                [])
+            .toList() as List;
+        final newNumItems = nextPageMarker.numItems + pageItems.length;
+        listViewPagingController?.appendPage(
+          pageItems,
+          (pageItems.isNotEmpty)
+              ? ApiPagingParams(
+                  nextPageNumber: nextPageMarker.nextPageNumber + 1,
+                  numItems: newNumItems,
+                  lastResponse: listViewGetLessonListResponse,
+                )
+              : null,
+        );
+      });
 }

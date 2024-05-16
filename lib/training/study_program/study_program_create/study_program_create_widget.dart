@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -53,6 +54,9 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
 
     _model.programDescriptionTextController ??= TextEditingController();
     _model.programDescriptionFocusNode ??= FocusNode();
+
+    _model.estimateInDayTextController ??= TextEditingController();
+    _model.estimateInDayFocusNode ??= FocusNode();
   }
 
   @override
@@ -72,7 +76,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
         padding: const EdgeInsets.all(16.0),
         child: Container(
           constraints: const BoxConstraints(
-            maxHeight: 650.0,
+            maxHeight: 750.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -121,6 +125,50 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                     ),
                   ),
                   Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Container(
+                          width: 90.0,
+                          height: 90.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            border: Border.all(
+                              color: FlutterFlowTheme.of(context).primary,
+                              width: 2.0,
+                            ),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              '',
+                              width: 100.0,
+                              height: 100.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 20.0,
+                          buttonSize: 40.0,
+                          icon: Icon(
+                            Icons.camera_alt,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
+                          ),
+                          onPressed: () {
+                            print('IconButton pressed ...');
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: SingleChildScrollView(
                       primary: false,
@@ -130,7 +178,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                         children: [
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 8.0, 0.0, 0.0),
+                                0.0, 8.0, 0.0, 8.0),
                             child: TextFormField(
                               controller: _model.programNameTextController,
                               focusNode: _model.programNameFocusNode,
@@ -208,7 +256,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                           ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 8.0, 0.0, 0.0),
+                                0.0, 8.0, 0.0, 8.0),
                             child: TextFormField(
                               controller:
                                   _model.programDescriptionTextController,
@@ -286,78 +334,252 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                   .asValidator(context),
                             ),
                           ),
-                          wrapWithModel(
-                            model: _model.testsDropdownModel,
-                            updateCallback: () => setState(() {}),
-                            updateOnChange: true,
-                            child: TestsDropdownWidget(
-                              testCallBack: (testId) async {
-                                setState(() {
-                                  _model.updateRequestDataStruct(
-                                    (e) => e..tests = [],
-                                  );
-                                });
-                                setState(() {
-                                  _model.updateRequestDataStruct(
-                                    (e) => e
-                                      ..updateTests(
-                                        (e) =>
-                                            e.add(StudyProgramListTestIdStruct(
-                                          testsId: StaffsTestsListStruct(
-                                            id: testId?.id,
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 8.0, 0.0, 8.0),
+                            child: wrapWithModel(
+                              model: _model.testsDropdownModel,
+                              updateCallback: () => setState(() {}),
+                              updateOnChange: true,
+                              child: TestsDropdownWidget(
+                                testCallBack: (testId) async {
+                                  setState(() {
+                                    _model.updateRequestDataStruct(
+                                      (e) => e..tests = [],
+                                    );
+                                  });
+                                  setState(() {
+                                    _model.updateRequestDataStruct(
+                                      (e) => e
+                                        ..updateTests(
+                                          (e) => e
+                                              .add(StudyProgramListTestIdStruct(
+                                            testsId: StaffsTestsListStruct(
+                                              id: testId?.id,
+                                            ),
+                                          )),
+                                        ),
+                                    );
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  RichText(
+                                    textScaler:
+                                        MediaQuery.of(context).textScaler,
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: 'Thời hạn học ',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                        const TextSpan(
+                                          text: '(Không bắt buộc)',
+                                          style: TextStyle(
+                                            fontSize: 13.0,
+                                            fontStyle: FontStyle.italic,
                                           ),
-                                        )),
+                                        )
+                                      ],
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
+                                  Text(
+                                    'Thời hạn học phải lớn hơn 0',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                          fontStyle: FontStyle.italic,
+                                        ),
+                                  ),
+                                ].divide(const SizedBox(height: 4.0)),
+                              ),
+                              Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 8.0, 0.0),
+                                  child: SizedBox(
+                                    width: 85.0,
+                                    child: TextFormField(
+                                      controller:
+                                          _model.estimateInDayTextController,
+                                      focusNode: _model.estimateInDayFocusNode,
+                                      onChanged: (_) => EasyDebounce.debounce(
+                                        '_model.estimateInDayTextController',
+                                        const Duration(milliseconds: 2000),
+                                        () async {
+                                          setState(() {
+                                            _model.updateRequestDataStruct(
+                                              (e) => e
+                                                ..estimateInDay =
+                                                    functions.stringToInt(_model
+                                                        .estimateInDayTextController
+                                                        .text),
+                                            );
+                                          });
+                                        },
                                       ),
-                                  );
-                                });
-                              },
-                            ),
-                          ),
-                          wrapWithModel(
-                            model: _model.lessionsDropdownModel,
-                            updateCallback: () => setState(() {}),
-                            updateOnChange: true,
-                            child: LessionsDropdownWidget(
-                              lessionsCallBack: (lessionsId) async {
-                                _model.lessionsAddListCheck =
-                                    await _model.lessionsAddList(
-                                  context,
-                                  lessionsItem: lessionsId,
-                                );
-                                if (_model.lessionsAddListCheck == true) {
-                                  setState(() {});
-                                } else {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: const Text('Bài học đã có!'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: const Text('Ok'),
+                                      autofocus: false,
+                                      textInputAction: TextInputAction.next,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            width: 1.0,
                                           ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                }
-
-                                setState(() {});
-                              },
-                            ),
-                          ),
-                          Text(
-                            'Danh sách bài học :',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
+                                          borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(0.0),
+                                            bottomRight: Radius.circular(0.0),
+                                            topLeft: Radius.circular(0.0),
+                                            topRight: Radius.circular(0.0),
+                                          ),
+                                        ),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(0.0),
+                                            bottomRight: Radius.circular(0.0),
+                                            topLeft: Radius.circular(0.0),
+                                            topRight: Radius.circular(0.0),
+                                          ),
+                                        ),
+                                        errorBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(0.0),
+                                            bottomRight: Radius.circular(0.0),
+                                            topLeft: Radius.circular(0.0),
+                                            topRight: Radius.circular(0.0),
+                                          ),
+                                        ),
+                                        focusedErrorBorder:
+                                            UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(0.0),
+                                            bottomRight: Radius.circular(0.0),
+                                            topLeft: Radius.circular(0.0),
+                                            topRight: Radius.circular(0.0),
+                                          ),
+                                        ),
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      keyboardType: TextInputType.number,
+                                      validator: _model
+                                          .estimateInDayTextControllerValidator
+                                          .asValidator(context),
+                                      inputFormatters: [
+                                        _model.estimateInDayMask
+                                      ],
+                                    ),
+                                  ),
                                 ),
+                              ),
+                              Text(
+                                'ngày',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 14.0, 0.0, 0.0),
+                            child: wrapWithModel(
+                              model: _model.lessionsDropdownModel,
+                              updateCallback: () => setState(() {}),
+                              updateOnChange: true,
+                              child: LessionsDropdownWidget(
+                                lessionsCallBack: (lessionsId) async {
+                                  _model.lessionsAddListCheck =
+                                      await _model.lessionsAddList(
+                                    context,
+                                    lessionsItem: lessionsId,
+                                  );
+                                  if (_model.lessionsAddListCheck == true) {
+                                    setState(() {});
+                                  } else {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: const Text('Bài học đã có!'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: const Text('Ok'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  }
+
+                                  setState(() {});
+                                },
+                              ),
+                            ),
                           ),
                           Builder(
                             builder: (context) {
@@ -454,7 +676,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                               );
                             },
                           ),
-                        ].divide(const SizedBox(height: 16.0)),
+                        ].divide(const SizedBox(height: 4.0)),
                       ),
                     ),
                   ),
@@ -468,6 +690,30 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                             !_model.formKey.currentState!.validate()) {
                           return;
                         }
+                        if (functions.stringToInt(
+                                _model.estimateInDayTextController.text) >
+                            0) {
+                          setState(() {});
+                        } else {
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                content: const Text('Thời hạn phải lớn hơn 0 !'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: const Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                          if (shouldSetState) setState(() {});
+                          return;
+                        }
+
                         _model.tokenReloadStudyProgramCreate =
                             await action_blocks.tokenReload(context);
                         shouldSetState = true;

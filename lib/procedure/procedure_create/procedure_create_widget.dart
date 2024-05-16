@@ -27,9 +27,12 @@ class ProcedureCreateWidget extends StatefulWidget {
   const ProcedureCreateWidget({
     super.key,
     String? checkRouter,
-  }) : checkRouter = checkRouter ?? '0';
+    String? checkScroll,
+  })  : checkRouter = checkRouter ?? '0',
+        checkScroll = checkScroll ?? '0';
 
   final String checkRouter;
+  final String checkScroll;
 
   @override
   State<ProcedureCreateWidget> createState() => _ProcedureCreateWidgetState();
@@ -110,6 +113,11 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
             ),
             onPressed: () async {
               context.pop();
+              if (widget.checkScroll == 'ProcedureList') {
+                setState(() {
+                  FFAppState().scrollCheck = 'ProcedureList';
+                });
+              }
             },
           ),
           title: Text(

@@ -21,13 +21,15 @@ class TestDetailWidget extends StatefulWidget {
     this.description,
     this.time,
     this.goodScore,
-  });
+    String? checkScroll,
+  }) : checkScroll = checkScroll ?? '0';
 
   final String? id;
   final String? name;
   final String? description;
   final String? time;
   final int? goodScore;
+  final String checkScroll;
 
   @override
   State<TestDetailWidget> createState() => _TestDetailWidgetState();
@@ -81,6 +83,15 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
             ),
             onPressed: () async {
               context.pop();
+              if (widget.checkScroll == 'StudyProgramList') {
+                FFAppState().update(() {
+                  FFAppState().scrollCheck = 'StudyProgramList';
+                });
+              } else if (widget.checkScroll == 'TestList') {
+                setState(() {
+                  FFAppState().scrollCheck = 'TestList';
+                });
+              }
             },
           ),
           title: Text(

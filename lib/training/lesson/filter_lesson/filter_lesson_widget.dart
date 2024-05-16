@@ -281,7 +281,7 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                                 _model.dateEnd != null
                                     ? dateTimeFormat(
                                         'yyyy-MM-dd',
-                                        _model.dateStart,
+                                        _model.dateEnd,
                                         locale: FFLocalizations.of(context)
                                             .languageCode,
                                       )

@@ -235,7 +235,6 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                     });
                                   },
                                   width: 300.0,
-                                  height: 56.0,
                                   textStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(

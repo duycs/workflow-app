@@ -5,6 +5,7 @@ import '/components/tests_dropdown_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'study_program_create_widget.dart' show StudyProgramCreateWidget;
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class StudyProgramCreateModel
     extends FlutterFlowModel<StudyProgramCreateWidget> {
@@ -37,6 +38,11 @@ class StudyProgramCreateModel
       programDescriptionTextControllerValidator;
   // Model for TestsDropdown component.
   late TestsDropdownModel testsDropdownModel;
+  // State field(s) for estimate_in_day widget.
+  FocusNode? estimateInDayFocusNode;
+  TextEditingController? estimateInDayTextController;
+  final estimateInDayMask = MaskTextInputFormatter(mask: '+# (###) ###-##-##');
+  String? Function(BuildContext, String?)? estimateInDayTextControllerValidator;
   // Model for LessionsDropdown component.
   late LessionsDropdownModel lessionsDropdownModel;
   // Stores action output result for [Action Block - LessionsAddList] action in LessionsDropdown widget.
@@ -62,6 +68,9 @@ class StudyProgramCreateModel
     programDescriptionTextController?.dispose();
 
     testsDropdownModel.dispose();
+    estimateInDayFocusNode?.dispose();
+    estimateInDayTextController?.dispose();
+
     lessionsDropdownModel.dispose();
   }
 

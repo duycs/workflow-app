@@ -47,6 +47,10 @@ class FilterPersonnelListModel
   bool? getListBranchToken2;
   // Stores action output result for [Backend Call - API (BranchList)] action in FilterPersonnelList widget.
   ApiCallResponse? apiResultGetListBranch2;
+  // Stores action output result for [Action Block - tokenReload] action in FilterPersonnelList widget.
+  bool? listDeparment4Token;
+  // Stores action output result for [Backend Call - API (GetDepartmentList)] action in FilterPersonnelList widget.
+  ApiCallResponse? apiResultListDeparment4;
   // State field(s) for status widget.
   FormFieldController<List<String>>? statusValueController;
   String? get statusValue => statusValueController?.value?.firstOrNull;
@@ -56,9 +60,9 @@ class FilterPersonnelListModel
   String? branchValue;
   FormFieldController<String>? branchValueController;
   // Stores action output result for [Action Block - tokenReload] action in branch widget.
-  bool? listDeparment2Token;
+  bool? listDeparment3Token;
   // Stores action output result for [Backend Call - API (GetDepartmentList)] action in branch widget.
-  ApiCallResponse? apiResultListDeparment2;
+  ApiCallResponse? apiResultListDeparment3;
   // State field(s) for department widget.
   String? departmentValue;
   FormFieldController<String>? departmentValueController;

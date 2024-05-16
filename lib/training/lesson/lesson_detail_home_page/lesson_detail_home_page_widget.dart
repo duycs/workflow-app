@@ -24,11 +24,16 @@ class LessonDetailHomePageWidget extends StatefulWidget {
     required this.listItems,
     required this.status,
     String? id,
-  }) : id = id ?? '';
+    String? checkScroll,
+    this.programId,
+  })  : id = id ?? '',
+        checkScroll = checkScroll ?? '0';
 
   final dynamic listItems;
   final String? status;
   final String id;
+  final String checkScroll;
+  final String? programId;
 
   @override
   State<LessonDetailHomePageWidget> createState() =>
@@ -54,9 +59,6 @@ class _LessonDetailHomePageWidgetState
       await _model.getHeart(context);
       setState(() {});
     });
-
-    _model.textTextController ??= TextEditingController();
-    _model.textFocusNode ??= FocusNode();
 
     _model.commentsTextController ??= TextEditingController();
     _model.commentsFocusNode ??= FocusNode();
@@ -95,6 +97,15 @@ class _LessonDetailHomePageWidgetState
             ),
             onPressed: () async {
               context.pop();
+              if (widget.checkScroll == 'LessonList_Homepage') {
+                setState(() {
+                  FFAppState().scrollCheck = 'LessonList_Homepage';
+                });
+              } else if (widget.checkScroll == 'LessonsListUser') {
+                FFAppState().update(() {
+                  FFAppState().scrollCheck = 'LessonsListUser';
+                });
+              }
             },
           ),
           title: Row(
@@ -141,6 +152,7 @@ class _LessonDetailHomePageWidgetState
                           await LessonGroup.updateStaffLessonStatusCall.call(
                         accessToken: FFAppState().accessToken,
                         id: widget.id,
+                        dateStart: getCurrentTimestamp.toString(),
                       );
                       if ((_model.apiResultUpdateStatus?.succeeded ?? true)) {
                         setState(() {
@@ -183,6 +195,34 @@ class _LessonDetailHomePageWidgetState
                           );
                         }
                       }
+                    }
+                    _model.updateStatusStaffProgram =
+                        await action_blocks.tokenReload(context);
+                    if (_model.updateStatusStaffProgram!) {
+                      _model.apiResultUpdateStaffProgramStatus =
+                          await LessonGroup.updateStaffProgramStatusCall.call(
+                        accessToken: FFAppState().accessToken,
+                        staffId: FFAppState().staffid,
+                        programId: widget.programId,
+                      );
+                      if (!(_model
+                              .apiResultUpdateStaffProgramStatus?.succeeded ??
+                          true)) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Lỗi cập nhật trạng thái đang học của Chương trình',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: const Duration(milliseconds: 4000),
+                            backgroundColor: FlutterFlowTheme.of(context).error,
+                          ),
+                        );
+                      }
+                    } else {
+                      setState(() {});
                     }
 
                     setState(() {});
@@ -283,18 +323,77 @@ class _LessonDetailHomePageWidgetState
                                   allowPlaybackSpeedMenu: false,
                                   lazyLoad: false,
                                 ),
-                              if (_model.status == 'draft')
-                                const FlutterFlowVideoPlayer(
-                                  path: '',
-                                  videoType: VideoType.network,
-                                  width: double.infinity,
-                                  height: 220.0,
-                                  autoPlay: false,
-                                  looping: true,
-                                  showControls: true,
-                                  allowFullScreen: true,
-                                  allowPlaybackSpeedMenu: false,
-                                  lazyLoad: false,
+                              if ((_model.status == 'draft') &&
+                                  (getJsonField(
+                                        widget.listItems,
+                                        r'''$.video''',
+                                      ) !=
+                                      null))
+                                Stack(
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  children: [
+                                    if ((_model.status == 'draft') &&
+                                        (getJsonField(
+                                              widget.listItems,
+                                              r'''$.video''',
+                                            ) !=
+                                            null))
+                                      Container(
+                                        width: double.infinity,
+                                        height: 220.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                    if ((_model.status == 'draft') &&
+                                        (getJsonField(
+                                              widget.listItems,
+                                              r'''$.video''',
+                                            ) !=
+                                            null))
+                                      Align(
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0),
+                                        child: FlutterFlowIconButton(
+                                          borderColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                          borderRadius: 20.0,
+                                          borderWidth: 1.0,
+                                          buttonSize: 40.0,
+                                          fillColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .lineColor,
+                                          icon: Icon(
+                                            Icons.play_circle,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 24.0,
+                                          ),
+                                          onPressed: () async {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Bắt đầu học mới xem được video',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                  ],
                                 ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
@@ -1702,28 +1801,7 @@ class _LessonDetailHomePageWidgetState
                                           setState(() {
                                             _model.checkLove = '0';
                                           });
-                                          _model.apiResultDeleteHeart =
-                                              await LessonGroup.deleteHeartCall
-                                                  .call(
-                                            accessToken:
-                                                FFAppState().accessToken,
-                                            idHeart: functions
-                                                .stringToInt(getJsonField(
-                                              _model.listStaffIdHeart
-                                                  .where((e) =>
-                                                      getJsonField(
-                                                        e,
-                                                        r'''$.reacts_id.staff_id''',
-                                                      ).toString() ==
-                                                      FFAppState().staffid)
-                                                  .toList()
-                                                  .first,
-                                              r'''$.id''',
-                                            ).toString()),
-                                          );
-                                          await _model.getHeart(context);
-                                          setState(() {});
-
+                                          await _model.deleteHeart(context);
                                           setState(() {});
                                         },
                                         child: Icon(
@@ -1743,21 +1821,7 @@ class _LessonDetailHomePageWidgetState
                                           setState(() {
                                             _model.checkLove = '1';
                                           });
-                                          _model.apiResultoan =
-                                              await LessonGroup.postHeartCall
-                                                  .call(
-                                            accessToken:
-                                                FFAppState().accessToken,
-                                            staffId: FFAppState().staffid,
-                                            status: 'love',
-                                            lessionId: getJsonField(
-                                              widget.listItems,
-                                              r'''$.id''',
-                                            ).toString(),
-                                          );
-                                          await _model.getHeart(context);
-                                          setState(() {});
-
+                                          await _model.postHeart(context);
                                           setState(() {});
                                         },
                                         child: Icon(
@@ -2115,136 +2179,6 @@ class _LessonDetailHomePageWidgetState
                                   ).toString()),
                                 ),
                               ),
-                              if ('2' == '1')
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 12.0, 16.0, 12.0),
-                                  child: Container(
-                                    width: double.infinity,
-                                    height: 50.0,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      border: Border.all(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        width: 0.1,
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          8.0, 0.0, 4.0, 0.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Icon(
-                                            Icons.edit_note,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            size: 24.0,
-                                          ),
-                                          Expanded(
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(8.0, 0.0, 8.0, 0.0),
-                                              child: SizedBox(
-                                                width: double.infinity,
-                                                child: TextFormField(
-                                                  controller:
-                                                      _model.textTextController,
-                                                  focusNode:
-                                                      _model.textFocusNode,
-                                                  autofocus: false,
-                                                  obscureText: false,
-                                                  decoration: InputDecoration(
-                                                    labelStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                    hintText: 'Ghi chú',
-                                                    hintStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                    enabledBorder:
-                                                        InputBorder.none,
-                                                    focusedBorder:
-                                                        InputBorder.none,
-                                                    errorBorder:
-                                                        InputBorder.none,
-                                                    focusedErrorBorder:
-                                                        InputBorder.none,
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                  validator: _model
-                                                      .textTextControllerValidator
-                                                      .asValidator(context),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Icon(
-                                            Icons.send_rounded,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            size: 24.0,
-                                          ),
-                                        ].divide(const SizedBox(width: 8.0)),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              if ('1' == '2')
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    if ('1' == '2')
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 16.0, 0.0),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            context.pushNamed('LessonNote');
-                                          },
-                                          child: Text(
-                                            'Xem chi tiết',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Nunito Sans',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  fontSize: 13.0,
-                                                  letterSpacing: 0.0,
-                                                  fontStyle: FontStyle.italic,
-                                                  decoration:
-                                                      TextDecoration.underline,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                  ],
-                                ),
                             ],
                           ),
                         ),

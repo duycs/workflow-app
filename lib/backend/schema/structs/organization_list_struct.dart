@@ -15,9 +15,10 @@ class OrganizationListStruct extends BaseStruct {
     String? hotline,
     String? address,
     String? video,
-    String? image,
     List<OrganizationBranchStruct>? branchs,
     List<StaffsStruct>? staffs,
+    String? image,
+    List<FileDataTypeStruct>? files,
   })  : _id = id,
         _status = status,
         _name = name,
@@ -27,9 +28,10 @@ class OrganizationListStruct extends BaseStruct {
         _hotline = hotline,
         _address = address,
         _video = video,
-        _image = image,
         _branchs = branchs,
-        _staffs = staffs;
+        _staffs = staffs,
+        _image = image,
+        _files = files;
 
   // "id" field.
   String? _id;
@@ -85,12 +87,6 @@ class OrganizationListStruct extends BaseStruct {
   set video(String? val) => _video = val;
   bool hasVideo() => _video != null;
 
-  // "image" field.
-  String? _image;
-  String get image => _image ?? '';
-  set image(String? val) => _image = val;
-  bool hasImage() => _image != null;
-
   // "branchs" field.
   List<OrganizationBranchStruct>? _branchs;
   List<OrganizationBranchStruct> get branchs => _branchs ?? const [];
@@ -107,6 +103,20 @@ class OrganizationListStruct extends BaseStruct {
       updateFn(_staffs ??= []);
   bool hasStaffs() => _staffs != null;
 
+  // "image" field.
+  String? _image;
+  String get image => _image ?? '';
+  set image(String? val) => _image = val;
+  bool hasImage() => _image != null;
+
+  // "files" field.
+  List<FileDataTypeStruct>? _files;
+  List<FileDataTypeStruct> get files => _files ?? const [];
+  set files(List<FileDataTypeStruct>? val) => _files = val;
+  void updateFiles(Function(List<FileDataTypeStruct>) updateFn) =>
+      updateFn(_files ??= []);
+  bool hasFiles() => _files != null;
+
   static OrganizationListStruct fromMap(Map<String, dynamic> data) =>
       OrganizationListStruct(
         id: data['id'] as String?,
@@ -118,7 +128,6 @@ class OrganizationListStruct extends BaseStruct {
         hotline: data['hotline'] as String?,
         address: data['address'] as String?,
         video: data['video'] as String?,
-        image: data['image'] as String?,
         branchs: getStructList(
           data['branchs'],
           OrganizationBranchStruct.fromMap,
@@ -126,6 +135,11 @@ class OrganizationListStruct extends BaseStruct {
         staffs: getStructList(
           data['staffs'],
           StaffsStruct.fromMap,
+        ),
+        image: data['image'] as String?,
+        files: getStructList(
+          data['files'],
+          FileDataTypeStruct.fromMap,
         ),
       );
 
@@ -143,9 +157,10 @@ class OrganizationListStruct extends BaseStruct {
         'hotline': _hotline,
         'address': _address,
         'video': _video,
-        'image': _image,
         'branchs': _branchs?.map((e) => e.toMap()).toList(),
         'staffs': _staffs?.map((e) => e.toMap()).toList(),
+        'image': _image,
+        'files': _files?.map((e) => e.toMap()).toList(),
       }.withoutNulls;
 
   @override
@@ -186,10 +201,6 @@ class OrganizationListStruct extends BaseStruct {
           _video,
           ParamType.String,
         ),
-        'image': serializeParam(
-          _image,
-          ParamType.String,
-        ),
         'branchs': serializeParam(
           _branchs,
           ParamType.DataStruct,
@@ -197,6 +208,15 @@ class OrganizationListStruct extends BaseStruct {
         ),
         'staffs': serializeParam(
           _staffs,
+          ParamType.DataStruct,
+          true,
+        ),
+        'image': serializeParam(
+          _image,
+          ParamType.String,
+        ),
+        'files': serializeParam(
+          _files,
           ParamType.DataStruct,
           true,
         ),
@@ -250,11 +270,6 @@ class OrganizationListStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        image: deserializeParam(
-          data['image'],
-          ParamType.String,
-          false,
-        ),
         branchs: deserializeStructParam<OrganizationBranchStruct>(
           data['branchs'],
           ParamType.DataStruct,
@@ -266,6 +281,17 @@ class OrganizationListStruct extends BaseStruct {
           ParamType.DataStruct,
           true,
           structBuilder: StaffsStruct.fromSerializableMap,
+        ),
+        image: deserializeParam(
+          data['image'],
+          ParamType.String,
+          false,
+        ),
+        files: deserializeStructParam<FileDataTypeStruct>(
+          data['files'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: FileDataTypeStruct.fromSerializableMap,
         ),
       );
 
@@ -285,9 +311,10 @@ class OrganizationListStruct extends BaseStruct {
         hotline == other.hotline &&
         address == other.address &&
         video == other.video &&
-        image == other.image &&
         listEquality.equals(branchs, other.branchs) &&
-        listEquality.equals(staffs, other.staffs);
+        listEquality.equals(staffs, other.staffs) &&
+        image == other.image &&
+        listEquality.equals(files, other.files);
   }
 
   @override
@@ -301,9 +328,10 @@ class OrganizationListStruct extends BaseStruct {
         hotline,
         address,
         video,
-        image,
         branchs,
-        staffs
+        staffs,
+        image,
+        files
       ]);
 }
 

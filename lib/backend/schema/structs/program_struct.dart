@@ -7,7 +7,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 class ProgramStruct extends BaseStruct {
   ProgramStruct({
     ProgramIdStruct? programsId,
-  }) : _programsId = programsId;
+    bool? checkPrograms,
+  })  : _programsId = programsId,
+        _checkPrograms = checkPrograms;
 
   // "programs_id" field.
   ProgramIdStruct? _programsId;
@@ -17,8 +19,15 @@ class ProgramStruct extends BaseStruct {
       updateFn(_programsId ??= ProgramIdStruct());
   bool hasProgramsId() => _programsId != null;
 
+  // "checkPrograms" field.
+  bool? _checkPrograms;
+  bool get checkPrograms => _checkPrograms ?? false;
+  set checkPrograms(bool? val) => _checkPrograms = val;
+  bool hasCheckPrograms() => _checkPrograms != null;
+
   static ProgramStruct fromMap(Map<String, dynamic> data) => ProgramStruct(
         programsId: ProgramIdStruct.maybeFromMap(data['programs_id']),
+        checkPrograms: data['checkPrograms'] as bool?,
       );
 
   static ProgramStruct? maybeFromMap(dynamic data) =>
@@ -26,6 +35,7 @@ class ProgramStruct extends BaseStruct {
 
   Map<String, dynamic> toMap() => {
         'programs_id': _programsId?.toMap(),
+        'checkPrograms': _checkPrograms,
       }.withoutNulls;
 
   @override
@@ -33,6 +43,10 @@ class ProgramStruct extends BaseStruct {
         'programs_id': serializeParam(
           _programsId,
           ParamType.DataStruct,
+        ),
+        'checkPrograms': serializeParam(
+          _checkPrograms,
+          ParamType.bool,
         ),
       }.withoutNulls;
 
@@ -44,6 +58,11 @@ class ProgramStruct extends BaseStruct {
           false,
           structBuilder: ProgramIdStruct.fromSerializableMap,
         ),
+        checkPrograms: deserializeParam(
+          data['checkPrograms'],
+          ParamType.bool,
+          false,
+        ),
       );
 
   @override
@@ -51,16 +70,20 @@ class ProgramStruct extends BaseStruct {
 
   @override
   bool operator ==(Object other) {
-    return other is ProgramStruct && programsId == other.programsId;
+    return other is ProgramStruct &&
+        programsId == other.programsId &&
+        checkPrograms == other.checkPrograms;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([programsId]);
+  int get hashCode => const ListEquality().hash([programsId, checkPrograms]);
 }
 
 ProgramStruct createProgramStruct({
   ProgramIdStruct? programsId,
+  bool? checkPrograms,
 }) =>
     ProgramStruct(
       programsId: programsId ?? ProgramIdStruct(),
+      checkPrograms: checkPrograms,
     );

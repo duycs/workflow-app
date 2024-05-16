@@ -170,6 +170,12 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
             (apiResultGetStaffId.jsonBody ?? ''),
             r'''$.organization''',
           );
+          await actions.notifiAddServer(
+            getJsonField(
+              (apiResultGetStaffId.jsonBody ?? ''),
+              r'''$.staff.id''',
+            ).toString().toString(),
+          );
 
           context.pushNamed(
             'TaskList',

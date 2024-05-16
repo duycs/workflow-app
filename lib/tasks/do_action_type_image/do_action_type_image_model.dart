@@ -4,6 +4,29 @@ import 'do_action_type_image_widget.dart' show DoActionTypeImageWidget;
 import 'package:flutter/material.dart';
 
 class DoActionTypeImageModel extends FlutterFlowModel<DoActionTypeImageWidget> {
+  ///  Local state fields for this component.
+
+  List<FFUploadedFile> imageUpload = [];
+  void addToImageUpload(FFUploadedFile item) => imageUpload.add(item);
+  void removeFromImageUpload(FFUploadedFile item) => imageUpload.remove(item);
+  void removeAtIndexFromImageUpload(int index) => imageUpload.removeAt(index);
+  void insertAtIndexInImageUpload(int index, FFUploadedFile item) =>
+      imageUpload.insert(index, item);
+  void updateImageUploadAtIndex(int index, Function(FFUploadedFile) updateFn) =>
+      imageUpload[index] = updateFn(imageUpload[index]);
+
+  List<String> listUploadImage = [];
+  void addToListUploadImage(String item) => listUploadImage.add(item);
+  void removeFromListUploadImage(String item) => listUploadImage.remove(item);
+  void removeAtIndexFromListUploadImage(int index) =>
+      listUploadImage.removeAt(index);
+  void insertAtIndexInListUploadImage(int index, String item) =>
+      listUploadImage.insert(index, item);
+  void updateListUploadImageAtIndex(int index, Function(String) updateFn) =>
+      listUploadImage[index] = updateFn(listUploadImage[index]);
+
+  int loop = 0;
+
   ///  State fields for stateful widgets in this component.
 
   bool isDataUploading = false;
@@ -12,7 +35,7 @@ class DoActionTypeImageModel extends FlutterFlowModel<DoActionTypeImageWidget> {
 
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? imageToken;
-  // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
+  // Stores action output result for [Backend Call - API (UploadListFile)] action in Button widget.
   ApiCallResponse? apiResultImage;
 
   @override

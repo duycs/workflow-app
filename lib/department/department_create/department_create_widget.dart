@@ -85,6 +85,9 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
             ),
             onPressed: () async {
               context.safePop();
+              setState(() {
+                FFAppState().scrollCheck = 'DepartmentList';
+              });
             },
           ),
           title: Row(
@@ -604,7 +607,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              'Kiểm tra lại tên, mô tả, mã bộ phận, chương trình đào tạo!',
+                              'Các trường tên, mô tả, mã bộ phận bắt buộc phải nhập!',
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
@@ -644,7 +647,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              'Kiểm tra lại tên, mô tả, mã bộ phận, chương trình đào tạo!',
+                              'Các trường tên, mô tả, mã bộ phận bắt buộc phải nhập!',
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
