@@ -244,6 +244,12 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                           onTap: () async {
                             context.pushNamed(
                               'LessonsList',
+                              queryParameters: {
+                                'checkpage': serializeParam(
+                                  widget.checkpage,
+                                  ParamType.String,
+                                ),
+                              }.withoutNulls,
                               extra: <String, dynamic>{
                                 kTransitionInfoKey: const TransitionInfo(
                                   hasTransition: true,
@@ -288,6 +294,12 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                           onTap: () async {
                             context.pushNamed(
                               'TestList',
+                              queryParameters: {
+                                'checkpage': serializeParam(
+                                  widget.checkpage,
+                                  ParamType.String,
+                                ),
+                              }.withoutNulls,
                               extra: <String, dynamic>{
                                 kTransitionInfoKey: const TransitionInfo(
                                   hasTransition: true,
@@ -590,7 +602,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                             children: [
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 0.0, 12.0, 12.0),
+                                    12.0, 0.0, 12.0, 4.0),
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -598,7 +610,8 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                 _model.checkShow != '') &&
                                             (_model.checkShow ==
                                                 dataListViewItem.id)
-                                        ? FlutterFlowTheme.of(context).alternate
+                                        ? FlutterFlowTheme.of(context)
+                                            .primaryBackground
                                         : FlutterFlowTheme.of(context)
                                             .secondaryBackground,
                                     boxShadow: const [
@@ -768,105 +781,107 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                           ),
                                                         ),
                                                       ),
-                                                      Expanded(
-                                                        flex: 1,
-                                                        child: Align(
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  1.0, 0.0),
-                                                          child: InkWell(
-                                                            splashColor: Colors
-                                                                .transparent,
-                                                            focusColor: Colors
-                                                                .transparent,
-                                                            hoverColor: Colors
-                                                                .transparent,
-                                                            highlightColor:
-                                                                Colors
-                                                                    .transparent,
-                                                            onTap: () async {
-                                                              if (_model
-                                                                      .checkShow ==
-                                                                  dataListViewItem
-                                                                      .id) {
-                                                                setState(() {
-                                                                  _model.checkShow =
-                                                                      null;
-                                                                });
-                                                              } else {
-                                                                setState(() {
-                                                                  _model.checkShow =
-                                                                      dataListViewItem
-                                                                          .id;
-                                                                });
-                                                              }
-                                                            },
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Text(
-                                                                  (_model.checkShow != null &&
-                                                                              _model.checkShow !=
-                                                                                  '') &&
-                                                                          (dataListViewItem.id ==
-                                                                              _model.checkShow)
-                                                                      ? 'Thu nhỏ'
-                                                                      : 'Xem thêm',
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .end,
-                                                                  style: FlutterFlowTheme.of(
+                                                      Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                1.0, 0.0),
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            if (_model
+                                                                    .checkShow ==
+                                                                dataListViewItem
+                                                                    .id) {
+                                                              setState(() {
+                                                                _model.checkShow =
+                                                                    null;
+                                                              });
+                                                            } else {
+                                                              setState(() {
+                                                                _model.checkShow =
+                                                                    dataListViewItem
+                                                                        .id;
+                                                              });
+                                                            }
+                                                          },
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .end,
+                                                            children: [
+                                                              Text(
+                                                                (_model.checkShow !=
+                                                                                null &&
+                                                                            _model.checkShow !=
+                                                                                '') &&
+                                                                        (dataListViewItem.id ==
+                                                                            _model.checkShow)
+                                                                    ? 'Thu nhỏ'
+                                                                    : 'Xem thêm',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .end,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                    ),
+                                                              ),
+                                                              if ((_model.checkShow !=
+                                                                          null &&
+                                                                      _model.checkShow !=
+                                                                          '') &&
+                                                                  (dataListViewItem
+                                                                          .id ==
+                                                                      _model
+                                                                          .checkShow))
+                                                                Icon(
+                                                                  Icons
+                                                                      .keyboard_arrow_up,
+                                                                  color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodySmall
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                      ),
+                                                                      .primaryText,
+                                                                  size: 14.0,
                                                                 ),
-                                                                if ((_model.checkShow !=
-                                                                            null &&
-                                                                        _model.checkShow !=
-                                                                            '') &&
-                                                                    (dataListViewItem
-                                                                            .id ==
-                                                                        _model
-                                                                            .checkShow))
-                                                                  Icon(
-                                                                    Icons
-                                                                        .keyboard_arrow_up,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText,
-                                                                    size: 14.0,
-                                                                  ),
-                                                                if (dataListViewItem
-                                                                        .id !=
-                                                                    _model
-                                                                        .checkShow)
-                                                                  Icon(
-                                                                    Icons
-                                                                        .keyboard_arrow_down_outlined,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText,
-                                                                    size: 14.0,
-                                                                  ),
-                                                              ].divide(const SizedBox(
-                                                                  width: 8.0)),
-                                                            ),
+                                                              if (dataListViewItem
+                                                                      .id !=
+                                                                  _model
+                                                                      .checkShow)
+                                                                Icon(
+                                                                  Icons
+                                                                      .keyboard_arrow_down_outlined,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  size: 14.0,
+                                                                ),
+                                                            ].divide(const SizedBox(
+                                                                width: 8.0)),
                                                           ),
                                                         ),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 16.0)),
+                                                        const SizedBox(width: 8.0)),
                                                   ),
                                                   Text(
                                                     '${'${valueOrDefault<String>(
@@ -898,6 +913,52 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment.end,
                                                     children: [
+                                                      if ((getJsonField(
+                                                                FFAppState()
+                                                                    .staffOrganization,
+                                                                r'''$.authors[0]''',
+                                                              ) !=
+                                                              null) &&
+                                                          ((dataListViewItem
+                                                                          .authorId !=
+                                                                      null &&
+                                                                  dataListViewItem.authorId !=
+                                                                      '') &&
+                                                              (dataListViewItem
+                                                                      .authorId ==
+                                                                  getJsonField(
+                                                                    FFAppState()
+                                                                        .staffOrganization,
+                                                                    r'''$.authors[0]''',
+                                                                  ))) &&
+                                                          (dataListViewItem
+                                                                  .template ==
+                                                              0) &&
+                                                          (dataListViewItem
+                                                                  .version >
+                                                              0) &&
+                                                          ('1' == '2'))
+                                                        Text(
+                                                          'Đã bán trên Market',
+                                                          textAlign:
+                                                              TextAlign.end,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 12.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic,
+                                                              ),
+                                                        ),
                                                       if ((dataListViewItem
                                                                   .template ==
                                                               0) &&
@@ -925,14 +986,23 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                         FFAppState()
                                                                             .staffOrganization,
                                                                         r'''$.authors[0]''',
-                                                                      )))))
+                                                                      )))) &&
+                                                          (dataListViewItem
+                                                                      .copyrightOrganizationId ==
+                                                                  null ||
+                                                              dataListViewItem
+                                                                      .copyrightOrganizationId ==
+                                                                  '') &&
+                                                          (dataListViewItem
+                                                                  .version ==
+                                                              0))
                                                         Padding(
                                                           padding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
+                                                                      8.0,
                                                                       0.0,
-                                                                      0.0,
-                                                                      10.0,
+                                                                      4.0,
                                                                       0.0),
                                                           child: FFButtonWidget(
                                                             onPressed:
@@ -968,33 +1038,10 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                             .id,
                                                                         price: dataListViewItem
                                                                             .price,
-                                                                        callback:
-                                                                            () async {
-                                                                          setState(
-                                                                              () {
-                                                                            _model.checkShow =
-                                                                                null;
-                                                                            _model.dataList =
-                                                                                [];
-                                                                            _model.meta =
-                                                                                null;
-                                                                            _model.isLoad =
-                                                                                false;
-                                                                            _model.nameSearch =
-                                                                                '';
-                                                                            _model.dateEndSearch =
-                                                                                '';
-                                                                            _model.dateStartSearch =
-                                                                                '';
-                                                                            _model.lessionsNameSearch =
-                                                                                '';
-                                                                          });
-                                                                          setState(() => _model
-                                                                              .listViewPagingController1
-                                                                              ?.refresh());
-                                                                          setState(
-                                                                              () {});
-                                                                        },
+                                                                        version:
+                                                                            dataListViewItem.version,
+                                                                        checkPage:
+                                                                            widget.checkpage,
                                                                       ),
                                                                     ),
                                                                   );
@@ -1003,7 +1050,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                   safeSetState(
                                                                       () {}));
                                                             },
-                                                            text: 'Marketplace',
+                                                            text: 'Market',
                                                             icon: Icon(
                                                               Icons.add,
                                                               color: FlutterFlowTheme
@@ -1013,11 +1060,11 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                             ),
                                                             options:
                                                                 FFButtonOptions(
-                                                              height: 36.0,
+                                                              height: 32.0,
                                                               padding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          8.0,
+                                                                          6.0,
                                                                           0.0,
                                                                           8.0,
                                                                           0.0),
@@ -1040,6 +1087,8 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                             'Nunito Sans',
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .secondaryBackground,
+                                                                        fontSize:
+                                                                            13.0,
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -1052,7 +1101,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                         ),
                                                       if ((dataListViewItem
                                                                   .template ==
-                                                              1) &&
+                                                              0) &&
                                                           (getJsonField(
                                                                 FFAppState()
                                                                     .staffOrganization,
@@ -1060,36 +1109,136 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                               ) !=
                                                               null) &&
                                                           ((dataListViewItem
-                                                                          .authorId !=
-                                                                      null &&
+                                                                          .authorId ==
+                                                                      null ||
                                                                   dataListViewItem
-                                                                          .authorId !=
-                                                                      '') &&
-                                                              (dataListViewItem
-                                                                      .authorId ==
-                                                                  getJsonField(
-                                                                    FFAppState()
-                                                                        .staffOrganization,
-                                                                    r'''$.authors[0]''',
-                                                                  ))))
-                                                        Text(
-                                                          'Đã bán trên Market',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontSize: 12.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontStyle:
-                                                                    FontStyle
-                                                                        .italic,
-                                                              ),
+                                                                          .authorId ==
+                                                                      '') ||
+                                                              ((dataListViewItem
+                                                                              .authorId !=
+                                                                          null &&
+                                                                      dataListViewItem
+                                                                              .authorId !=
+                                                                          '') &&
+                                                                  (dataListViewItem
+                                                                          .authorId ==
+                                                                      getJsonField(
+                                                                        FFAppState()
+                                                                            .staffOrganization,
+                                                                        r'''$.authors[0]''',
+                                                                      )))) &&
+                                                          (dataListViewItem
+                                                                      .copyrightOrganizationId ==
+                                                                  null ||
+                                                              dataListViewItem
+                                                                      .copyrightOrganizationId ==
+                                                                  '') &&
+                                                          (dataListViewItem
+                                                                  .version >
+                                                              0))
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0),
+                                                          child: FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              await showModalBottomSheet(
+                                                                isScrollControlled:
+                                                                    true,
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                enableDrag:
+                                                                    false,
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (context) {
+                                                                  return GestureDetector(
+                                                                    onTap: () => _model
+                                                                            .unfocusNode
+                                                                            .canRequestFocus
+                                                                        ? FocusScope.of(context).requestFocus(_model
+                                                                            .unfocusNode)
+                                                                        : FocusScope.of(context)
+                                                                            .unfocus(),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: MediaQuery
+                                                                          .viewInsetsOf(
+                                                                              context),
+                                                                      child:
+                                                                          AddProgramMarketWidget(
+                                                                        id: dataListViewItem
+                                                                            .id,
+                                                                        price: dataListViewItem
+                                                                            .price,
+                                                                        version:
+                                                                            dataListViewItem.version,
+                                                                        checkPage:
+                                                                            widget.checkpage,
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ).then((value) =>
+                                                                  safeSetState(
+                                                                      () {}));
+                                                            },
+                                                            text:
+                                                                'Update ver Market',
+                                                            icon: Icon(
+                                                              Icons.upgrade,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                              size: 20.0,
+                                                            ),
+                                                            options:
+                                                                FFButtonOptions(
+                                                              height: 32.0,
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          6.0,
+                                                                          0.0,
+                                                                          8.0,
+                                                                          0.0),
+                                                              iconPadding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .tertiary,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
+                                                                        fontSize:
+                                                                            13.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                          ),
                                                         ),
                                                       if ((dataListViewItem
                                                                   .template ==
@@ -1118,7 +1267,19 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                         FFAppState()
                                                                             .staffOrganization,
                                                                         r'''$.authors[0]''',
-                                                                      )))))
+                                                                      )))) &&
+                                                          (dataListViewItem
+                                                                      .copyrightOrganizationId !=
+                                                                  null &&
+                                                              dataListViewItem
+                                                                      .copyrightOrganizationId !=
+                                                                  '') &&
+                                                          (dataListViewItem
+                                                                      .copyrightOrganizationId !=
+                                                                  null &&
+                                                              dataListViewItem
+                                                                      .copyrightOrganizationId !=
+                                                                  ''))
                                                         Text(
                                                           'Mua từ Market',
                                                           style: FlutterFlowTheme
@@ -1129,7 +1290,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                     'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .secondaryText,
+                                                                    .tertiary,
                                                                 fontSize: 12.0,
                                                                 letterSpacing:
                                                                     0.0,
@@ -1169,7 +1330,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                         return Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  12.0, 0.0, 12.0, 6.0),
+                                                  16.0, 0.0, 12.0, 4.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
                                             focusColor: Colors.transparent,
@@ -1566,7 +1727,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                         return Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  12.0, 0.0, 12.0, 6.0),
+                                                  16.0, 0.0, 12.0, 4.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
                                             focusColor: Colors.transparent,

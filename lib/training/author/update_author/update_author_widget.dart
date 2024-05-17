@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -451,73 +450,6 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                             isMultiSelect: true,
                             onMultiSelectChanged: (val) =>
                                 setState(() => _model.dropDownValue = val),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 16.0, 0.0, 0.0),
-                            child: FlutterFlowChoiceChips(
-                              options: const [
-                                ChipData('Thiết kế'),
-                                ChipData('Kỹ thuật'),
-                                ChipData('Xây dựng'),
-                                ChipData('Thời trang'),
-                                ChipData('Công nghệ thông tin'),
-                                ChipData('Kinh doanh')
-                              ],
-                              onChanged: ('1' == '1')
-                                  ? null
-                                  : (val) => setState(() => _model
-                                      .choiceChipsValue = val?.firstOrNull),
-                              selectedChipStyle: ChipStyle(
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).accent1,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      letterSpacing: 0.0,
-                                    ),
-                                iconColor:
-                                    FlutterFlowTheme.of(context).primaryText,
-                                iconSize: 18.0,
-                                elevation: 0.0,
-                                borderColor:
-                                    FlutterFlowTheme.of(context).primary,
-                                borderWidth: 1.0,
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              unselectedChipStyle: ChipStyle(
-                                backgroundColor: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      letterSpacing: 0.0,
-                                    ),
-                                iconColor:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                iconSize: 18.0,
-                                elevation: 0.0,
-                                borderColor:
-                                    FlutterFlowTheme.of(context).alternate,
-                                borderWidth: 1.0,
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              chipSpacing: 12.0,
-                              rowSpacing: 12.0,
-                              multiselect: false,
-                              alignment: WrapAlignment.start,
-                              controller: _model.choiceChipsValueController ??=
-                                  FormFieldController<List<String>>(
-                                [],
-                              ),
-                              wrapped: true,
-                            ),
                           ),
                         ]
                             .divide(const SizedBox(height: 4.0))

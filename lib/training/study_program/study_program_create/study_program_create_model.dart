@@ -2,10 +2,11 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/lessions_dropdown_widget.dart';
 import '/components/tests_dropdown_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'study_program_create_widget.dart' show StudyProgramCreateWidget;
 import 'package:flutter/material.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class StudyProgramCreateModel
     extends FlutterFlowModel<StudyProgramCreateWidget> {
@@ -15,9 +16,15 @@ class StudyProgramCreateModel
   void updateRequestDataStruct(Function(StudyProgramListStruct) updateFn) =>
       updateFn(requestData ??= StudyProgramListStruct());
 
+  String uploadImage = '';
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+
   // State field(s) for ProgramName widget.
   FocusNode? programNameFocusNode;
   TextEditingController? programNameTextController;
@@ -41,7 +48,6 @@ class StudyProgramCreateModel
   // State field(s) for estimate_in_day widget.
   FocusNode? estimateInDayFocusNode;
   TextEditingController? estimateInDayTextController;
-  final estimateInDayMask = MaskTextInputFormatter(mask: '+# (###) ###-##-##');
   String? Function(BuildContext, String?)? estimateInDayTextControllerValidator;
   // Model for LessionsDropdown component.
   late LessionsDropdownModel lessionsDropdownModel;
@@ -98,6 +104,41 @@ class StudyProgramCreateModel
       return true;
     } else {
       return false;
+    }
+  }
+
+  Future uploadImagePrograms(BuildContext context) async {
+    ApiCallResponse? apiResultUploadFilePrograms;
+    bool? checkRefreshTokenBlockbn;
+
+    apiResultUploadFilePrograms = await UploadFileGroup.uploadFileCall.call(
+      accessToken: FFAppState().accessToken,
+      file: uploadedLocalFile,
+    );
+    if ((apiResultUploadFilePrograms.succeeded ?? true)) {
+      uploadImage = getJsonField(
+        (apiResultUploadFilePrograms.jsonBody ?? ''),
+        r'''$.data.id''',
+      ).toString().toString();
+    } else {
+      checkRefreshTokenBlockbn = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultUploadImage?.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlockbn!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      }
     }
   }
 }

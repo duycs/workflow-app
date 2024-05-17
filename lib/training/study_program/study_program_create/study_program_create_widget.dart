@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
@@ -142,13 +143,18 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                               width: 2.0,
                             ),
                           ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.network(
-                              '',
-                              width: 100.0,
-                              height: 100.0,
-                              fit: BoxFit.cover,
+                          child: Visibility(
+                            visible: (_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                                    false),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.memory(
+                                _model.uploadedLocalFile.bytes ??
+                                    Uint8List.fromList([]),
+                                width: 100.0,
+                                height: 100.0,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
@@ -161,8 +167,46 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                             color: FlutterFlowTheme.of(context).primaryText,
                             size: 24.0,
                           ),
-                          onPressed: () {
-                            print('IconButton pressed ...');
+                          onPressed: () async {
+                            final selectedMedia =
+                                await selectMediaWithSourceBottomSheet(
+                              context: context,
+                              allowPhoto: true,
+                            );
+                            if (selectedMedia != null &&
+                                selectedMedia.every((m) => validateFileFormat(
+                                    m.storagePath, context))) {
+                              setState(() => _model.isDataUploading = true);
+                              var selectedUploadedFiles = <FFUploadedFile>[];
+
+                              try {
+                                selectedUploadedFiles = selectedMedia
+                                    .map((m) => FFUploadedFile(
+                                          name: m.storagePath.split('/').last,
+                                          bytes: m.bytes,
+                                          height: m.dimensions?.height,
+                                          width: m.dimensions?.width,
+                                          blurHash: m.blurHash,
+                                        ))
+                                    .toList();
+                              } finally {
+                                _model.isDataUploading = false;
+                              }
+                              if (selectedUploadedFiles.length ==
+                                  selectedMedia.length) {
+                                setState(() {
+                                  _model.uploadedLocalFile =
+                                      selectedUploadedFiles.first;
+                                });
+                              } else {
+                                setState(() {});
+                                return;
+                              }
+                            }
+
+                            setState(() {
+                              _model.uploadImage = _model.uploadImage;
+                            });
                           },
                         ),
                       ],
@@ -196,6 +240,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                 },
                               ),
                               autofocus: false,
+                              textInputAction: TextInputAction.next,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Tên chương trình',
@@ -276,6 +321,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                 },
                               ),
                               autofocus: false,
+                              textInputAction: TextInputAction.next,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Mô tả',
@@ -524,9 +570,6 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                       validator: _model
                                           .estimateInDayTextControllerValidator
                                           .asValidator(context),
-                                      inputFormatters: [
-                                        _model.estimateInDayMask
-                                      ],
                                     ),
                                   ),
                                 ),

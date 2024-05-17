@@ -16,7 +16,12 @@ import 'lessons_list_model.dart';
 export 'lessons_list_model.dart';
 
 class LessonsListWidget extends StatefulWidget {
-  const LessonsListWidget({super.key});
+  const LessonsListWidget({
+    super.key,
+    this.checkpage,
+  });
+
+  final String? checkpage;
 
   @override
   State<LessonsListWidget> createState() => _LessonsListWidgetState();
@@ -146,6 +151,12 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
             onPressed: () async {
               context.pushNamed(
                 'StudyProgramList',
+                queryParameters: {
+                  'checkpage': serializeParam(
+                    widget.checkpage,
+                    ParamType.String,
+                  ),
+                }.withoutNulls,
                 extra: <String, dynamic>{
                   kTransitionInfoKey: const TransitionInfo(
                     hasTransition: true,

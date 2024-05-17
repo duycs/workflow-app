@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'rating_staf_widget.dart' show RatingStafWidget;
+import 'popup_see_more_widget.dart' show PopupSeeMoreWidget;
 import 'package:flutter/material.dart';
 
-class RatingStafModel extends FlutterFlowModel<RatingStafWidget> {
+class PopupSeeMoreModel extends FlutterFlowModel<PopupSeeMoreWidget> {
   @override
   void initState(BuildContext context) {}
 

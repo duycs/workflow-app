@@ -79,6 +79,8 @@ class TaskDetailModel extends FlutterFlowModel<TaskDetailWidget> {
   bool? apiResultx5lTokenCopy;
   // Stores action output result for [Backend Call - API (UpdateOperation)] action in Button widget.
   ApiCallResponse? apiResultx5lCopy;
+  // Stores action output result for [Backend Call - API (UpdateOperation)] action in detail_action_type_upload_file widget.
+  ApiCallResponse? apiResultUpdateoperation;
 
   @override
   void initState(BuildContext context) {}

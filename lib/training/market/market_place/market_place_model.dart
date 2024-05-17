@@ -230,7 +230,7 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
     ApiCallResponse? apiResultGetListAuthors;
     bool? checkRefreshTokenBlock3;
 
-    apiResultGetListAuthors = await GroupAuthorsGroup.listAuthorsCall.call(
+    apiResultGetListAuthors = await GroupAuthorsGroup.listAthorsSortCall.call(
       accessToken: FFAppState().accessToken,
     );
     if ((apiResultGetListAuthors.succeeded ?? true)) {

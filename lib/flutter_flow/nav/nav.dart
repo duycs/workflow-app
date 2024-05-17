@@ -417,7 +417,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'TestList',
           path: '/testList',
-          builder: (context, params) => const TestListWidget(),
+          builder: (context, params) => TestListWidget(
+            checkpage: params.getParam(
+              'checkpage',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'QuestionList',
@@ -432,7 +437,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'LessonsList',
           path: '/lessonsList',
-          builder: (context, params) => const LessonsListWidget(),
+          builder: (context, params) => LessonsListWidget(
+            checkpage: params.getParam(
+              'checkpage',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'ProcedureCreate',
@@ -832,6 +842,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             idDomain: params.getParam(
               'idDomain',
+              ParamType.String,
+            ),
+            domainToProgramListMarket: params.getParam(
+              'domainToProgramListMarket',
               ParamType.String,
             ),
           ),

@@ -15,7 +15,12 @@ import 'test_list_model.dart';
 export 'test_list_model.dart';
 
 class TestListWidget extends StatefulWidget {
-  const TestListWidget({super.key});
+  const TestListWidget({
+    super.key,
+    this.checkpage,
+  });
+
+  final String? checkpage;
 
   @override
   State<TestListWidget> createState() => _TestListWidgetState();
@@ -122,6 +127,12 @@ class _TestListWidgetState extends State<TestListWidget> {
             onPressed: () async {
               context.pushNamed(
                 'StudyProgramList',
+                queryParameters: {
+                  'checkpage': serializeParam(
+                    widget.checkpage,
+                    ParamType.String,
+                  ),
+                }.withoutNulls,
                 extra: <String, dynamic>{
                   kTransitionInfoKey: const TransitionInfo(
                     hasTransition: true,

@@ -14,13 +14,16 @@ class ProgramListMarketWidget extends StatefulWidget {
     String? price,
     String? idAuthor,
     String? idDomain,
+    String? domainToProgramListMarket,
   })  : price = price ?? '',
         idAuthor = idAuthor ?? '',
-        idDomain = idDomain ?? '';
+        idDomain = idDomain ?? '',
+        domainToProgramListMarket = domainToProgramListMarket ?? '';
 
   final String price;
   final String idAuthor;
   final String idDomain;
+  final String domainToProgramListMarket;
 
   @override
   State<ProgramListMarketWidget> createState() =>
