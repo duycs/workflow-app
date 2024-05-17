@@ -47,12 +47,12 @@ class DoActionTypeUploadFileModel
 
   ///  State fields for stateful widgets in this component.
 
+  // Stores action output result for [Action Block - tokenReload] action in IconButton widget.
+  bool? downloadFileToken;
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? downloadFileToken;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? uploadFileToken;
   // Stores action output result for [Backend Call - API (UploadListFile)] action in Button widget.

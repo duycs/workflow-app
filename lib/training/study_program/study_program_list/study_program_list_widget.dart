@@ -904,7 +904,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                           (getJsonField(
                                                                 FFAppState()
                                                                     .staffOrganization,
-                                                                r'''$.authors''',
+                                                                r'''$.authors[0]''',
                                                               ) !=
                                                               null) &&
                                                           ((dataListViewItem
@@ -1056,7 +1056,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                           (getJsonField(
                                                                 FFAppState()
                                                                     .staffOrganization,
-                                                                r'''$.authors''',
+                                                                r'''$.authors[0]''',
                                                               ) !=
                                                               null) &&
                                                           ((dataListViewItem
@@ -1103,13 +1103,13 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                           ((getJsonField(
                                                                     FFAppState()
                                                                         .staffOrganization,
-                                                                    r'''$.authors''',
+                                                                    r'''$.authors[0]''',
                                                                   ) ==
                                                                   null) ||
                                                               ((getJsonField(
                                                                         FFAppState()
                                                                             .staffOrganization,
-                                                                        r'''$.authors''',
+                                                                        r'''$.authors[0]''',
                                                                       ) !=
                                                                       null) &&
                                                                   (dataListViewItem

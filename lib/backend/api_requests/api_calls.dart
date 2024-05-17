@@ -2954,6 +2954,7 @@ class GroupAuthorsGroup {
   };
   static ListAuthorsCall listAuthorsCall = ListAuthorsCall();
   static GetOneAuthorsCall getOneAuthorsCall = GetOneAuthorsCall();
+  static ListAthorsSortCall listAthorsSortCall = ListAthorsSortCall();
 }
 
 class ListAuthorsCall {
@@ -3003,6 +3004,37 @@ class GetOneAuthorsCall {
       params: {
         'fields':
             "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count",
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ListAthorsSortCall {
+  Future<ApiCallResponse> call({
+    String? filter = '',
+    int? limit = 10,
+    int? offset = 0,
+    String? accessToken = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'ListAthorsSort',
+      apiUrl: '${GroupAuthorsGroup.baseUrl}/items/authors',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {
+        'filter': filter,
+        'fields[]': "order_count",
+        'offset': offset,
+        'limit': limit,
+        'sort': "order_count",
       },
       returnBody: true,
       encodeBodyUtf8: false,
