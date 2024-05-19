@@ -642,86 +642,92 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                         ),
                                                       ),
                                                     ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(16.0),
-                                                    child: FFButtonWidget(
-                                                      onPressed: () async {
-                                                        context.pushNamed(
-                                                          'StudyProgramList',
-                                                          queryParameters: {
-                                                            'checkpage':
-                                                                serializeParam(
-                                                              'authorProfile',
-                                                              ParamType.String,
-                                                            ),
-                                                          }.withoutNulls,
-                                                          extra: <String,
-                                                              dynamic>{
-                                                            kTransitionInfoKey:
-                                                                const TransitionInfo(
-                                                              hasTransition:
-                                                                  true,
-                                                              transitionType:
-                                                                  PageTransitionType
-                                                                      .fade,
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      0),
-                                                            ),
-                                                          },
-                                                        );
-                                                      },
-                                                      text: 'Thêm khóa học',
-                                                      icon: const Icon(
-                                                        Icons.add,
-                                                        size: 15.0,
-                                                      ),
-                                                      options: FFButtonOptions(
-                                                        height: 40.0,
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    16.0,
-                                                                    0.0,
-                                                                    16.0,
-                                                                    0.0),
-                                                        iconPadding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        elevation: 3.0,
-                                                        borderSide: const BorderSide(
-                                                          color: Colors
-                                                              .transparent,
-                                                          width: 1.0,
+                                                  if ((_model.programs
+                                                          .isNotEmpty) ||
+                                                      (_model.programs.isEmpty))
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(16.0),
+                                                      child: FFButtonWidget(
+                                                        onPressed: () async {
+                                                          context.pushNamed(
+                                                            'StudyProgramList',
+                                                            queryParameters: {
+                                                              'checkpage':
+                                                                  serializeParam(
+                                                                'authorProfile',
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                            }.withoutNulls,
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              kTransitionInfoKey:
+                                                                  const TransitionInfo(
+                                                                hasTransition:
+                                                                    true,
+                                                                transitionType:
+                                                                    PageTransitionType
+                                                                        .fade,
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        0),
+                                                              ),
+                                                            },
+                                                          );
+                                                        },
+                                                        text: 'Thêm khóa học',
+                                                        icon: const Icon(
+                                                          Icons.add,
+                                                          size: 15.0,
                                                         ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
+                                                        options:
+                                                            FFButtonOptions(
+                                                          height: 40.0,
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      16.0,
+                                                                      0.0,
+                                                                      16.0,
+                                                                      0.0),
+                                                          iconPadding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          elevation: 3.0,
+                                                          borderSide:
+                                                              const BorderSide(
+                                                            color: Colors
+                                                                .transparent,
+                                                            width: 1.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
                                                 ],
                                               ),
                                               Visibility(
@@ -1240,7 +1246,33 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                     .viewInsetsOf(
                                                                         context),
                                                                 child:
-                                                                    const UpdateAuthorWidget(),
+                                                                    UpdateAuthorWidget(
+                                                                  name: _model
+                                                                      .author!
+                                                                      .alias,
+                                                                  avatar: _model
+                                                                      .author!
+                                                                      .avatar,
+                                                                  description: _model
+                                                                      .author!
+                                                                      .description,
+                                                                  domains: _model
+                                                                      .author
+                                                                      ?.domains
+                                                                      .map((e) => e
+                                                                          .domainsId
+                                                                          .id)
+                                                                      .toList(),
+                                                                  id: _model
+                                                                      .author!
+                                                                      .id,
+                                                                  domainIds: _model
+                                                                      .author
+                                                                      ?.domains
+                                                                      .map((e) =>
+                                                                          e.id)
+                                                                      .toList(),
+                                                                ),
                                                               ),
                                                             );
                                                           },

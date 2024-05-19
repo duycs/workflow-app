@@ -35,6 +35,10 @@ class BranchUpdateModel extends FlutterFlowModel<BranchUpdateWidget> {
       return 'Vui lòng nhập mã chi nhánh';
     }
 
+    if (val.length > 50) {
+      return 'Chi nhanh không được vượt quá 50 kí tự';
+    }
+
     return null;
   }
 
@@ -47,6 +51,10 @@ class BranchUpdateModel extends FlutterFlowModel<BranchUpdateWidget> {
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Vui lòng nhập nội dung';
+    }
+
+    if (val.length > 50) {
+      return 'Mã chi nhanh không được vượt quá 50 kí tự';
     }
 
     return null;

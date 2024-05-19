@@ -14,6 +14,7 @@ import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'staff_create_model.dart';
@@ -1647,20 +1648,33 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Text(
-                                        'Email: ${_model.emailTextController.text}',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
+                                      Expanded(
+                                        child: Text(
+                                          'Email: ${_model.emailTextController.text}',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
                                       ),
-                                      Icon(
-                                        Icons.content_copy,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24.0,
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await Clipboard.setData(ClipboardData(
+                                              text: _model
+                                                  .emailTextController.text));
+                                        },
+                                        child: Icon(
+                                          Icons.content_copy,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24.0,
+                                        ),
                                       ),
                                     ].divide(const SizedBox(width: 4.0)),
                                   ),
@@ -1676,11 +1690,21 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                               letterSpacing: 0.0,
                                             ),
                                       ),
-                                      Icon(
-                                        Icons.content_copy,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24.0,
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await Clipboard.setData(
+                                              const ClipboardData(text: 'Abcd@1234'));
+                                        },
+                                        child: Icon(
+                                          Icons.content_copy,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24.0,
+                                        ),
                                       ),
                                     ].divide(const SizedBox(width: 4.0)),
                                   ),

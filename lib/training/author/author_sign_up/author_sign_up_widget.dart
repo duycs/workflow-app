@@ -149,44 +149,50 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                       width: 2.0,
                                     ),
                                   ),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      await Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.fade,
-                                          child: FlutterFlowExpandedImageView(
-                                            image: Image.memory(
+                                  child: Stack(
+                                    children: [
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType.fade,
+                                              child:
+                                                  FlutterFlowExpandedImageView(
+                                                image: Image.memory(
+                                                  _model.uploadedLocalFile
+                                                          .bytes ??
+                                                      Uint8List.fromList([]),
+                                                  fit: BoxFit.contain,
+                                                ),
+                                                allowRotation: false,
+                                                tag: 'imageTag',
+                                                useHeroAnimation: true,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        child: Hero(
+                                          tag: 'imageTag',
+                                          transitionOnUserGestures: true,
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(60.0),
+                                            child: Image.memory(
                                               _model.uploadedLocalFile.bytes ??
                                                   Uint8List.fromList([]),
-                                              fit: BoxFit.contain,
+                                              width: 100.0,
+                                              height: 100.0,
+                                              fit: BoxFit.cover,
                                             ),
-                                            allowRotation: false,
-                                            tag: 'imageTag',
-                                            useHeroAnimation: true,
                                           ),
                                         ),
-                                      );
-                                    },
-                                    child: Hero(
-                                      tag: 'imageTag',
-                                      transitionOnUserGestures: true,
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(60.0),
-                                        child: Image.memory(
-                                          _model.uploadedLocalFile.bytes ??
-                                              Uint8List.fromList([]),
-                                          width: 100.0,
-                                          height: 100.0,
-                                          fit: BoxFit.cover,
-                                        ),
                                       ),
-                                    ),
+                                    ],
                                   ),
                                 ),
                                 FlutterFlowIconButton(

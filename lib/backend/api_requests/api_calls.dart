@@ -3367,6 +3367,7 @@ class GroupAuthorsGroup {
   static GetOneAuthorsCall getOneAuthorsCall = GetOneAuthorsCall();
   static ListAthorsSortCall listAthorsSortCall = ListAthorsSortCall();
   static AuthorsSignUpCall authorsSignUpCall = AuthorsSignUpCall();
+  static AuthorsUpdateCall authorsUpdateCall = AuthorsUpdateCall();
 }
 
 class ListAuthorsCall {
@@ -3423,7 +3424,7 @@ class GetOneAuthorsCall {
       },
       params: {
         'fields':
-            "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count",
+            "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count, domains.id",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -3485,6 +3486,38 @@ class AuthorsSignUpCall {
       callName: 'AuthorsSignUp',
       apiUrl: '$baseUrl/items/authors',
       callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class AuthorsUpdateCall {
+  Future<ApiCallResponse> call({
+    dynamic requestDataJson,
+    String? id = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = GroupAuthorsGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final requestData = _serializeJson(requestDataJson);
+    final ffApiRequestBody = requestData;
+    return ApiManager.instance.makeApiCall(
+      callName: 'AuthorsUpdate',
+      apiUrl: '$baseUrl/items/authors/$id',
+      callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $accessToken',

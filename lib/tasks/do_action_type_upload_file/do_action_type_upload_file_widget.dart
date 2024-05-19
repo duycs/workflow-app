@@ -235,10 +235,14 @@ class _DoActionTypeUploadFileWidgetState
                                                           .resolve(
                                                               Directionality.of(
                                                                   context)),
-                                                  child: PopupSeeMoreWidget(
-                                                    fileName: dataItem
-                                                        .filenameDownload,
-                                                    fileId: dataItem.id,
+                                                  child: SizedBox(
+                                                    height: double.infinity,
+                                                    width: double.infinity,
+                                                    child: PopupSeeMoreWidget(
+                                                      fileName: dataItem
+                                                          .filenameDownload,
+                                                      fileId: dataItem.id,
+                                                    ),
                                                   ),
                                                 );
                                               },

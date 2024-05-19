@@ -18,6 +18,8 @@ class StudyProgramCreateModel
 
   String uploadImage = '';
 
+  int? check;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
@@ -43,6 +45,15 @@ class StudyProgramCreateModel
   TextEditingController? programDescriptionTextController;
   String? Function(BuildContext, String?)?
       programDescriptionTextControllerValidator;
+  String? _programDescriptionTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Vui lòng nhập mô tả!';
+    }
+
+    return null;
+  }
+
   // Model for TestsDropdown component.
   late TestsDropdownModel testsDropdownModel;
   // State field(s) for estimate_in_day widget.
@@ -57,10 +68,14 @@ class StudyProgramCreateModel
   bool? tokenReloadStudyProgramCreate;
   // Stores action output result for [Backend Call - API (StudyProgramCreate)] action in Button widget.
   ApiCallResponse? apiResulti4j;
+  // Stores action output result for [Backend Call - API (StudyProgramCreate)] action in Button widget.
+  ApiCallResponse? apiResulti4j1;
 
   @override
   void initState(BuildContext context) {
     programNameTextControllerValidator = _programNameTextControllerValidator;
+    programDescriptionTextControllerValidator =
+        _programDescriptionTextControllerValidator;
     testsDropdownModel = createModel(context, () => TestsDropdownModel());
     lessionsDropdownModel = createModel(context, () => LessionsDropdownModel());
   }
@@ -109,7 +124,7 @@ class StudyProgramCreateModel
 
   Future uploadImagePrograms(BuildContext context) async {
     ApiCallResponse? apiResultUploadFilePrograms;
-    bool? checkRefreshTokenBlockbn;
+    bool? checkRefreshTokenBlock;
 
     apiResultUploadFilePrograms = await UploadFileGroup.uploadFileCall.call(
       accessToken: FFAppState().accessToken,
@@ -120,12 +135,19 @@ class StudyProgramCreateModel
         (apiResultUploadFilePrograms.jsonBody ?? ''),
         r'''$.data.id''',
       ).toString().toString();
-    } else {
-      checkRefreshTokenBlockbn = await action_blocks.checkRefreshToken(
-        context,
-        jsonErrors: (apiResultUploadImage?.jsonBody ?? ''),
+      updateRequestDataStruct(
+        (e) => e
+          ..imageCover = getJsonField(
+            (apiResultUploadFilePrograms?.jsonBody ?? ''),
+            r'''$.data.id''',
+          ).toString().toString(),
       );
-      if (!checkRefreshTokenBlockbn!) {
+    } else {
+      checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultUploadFilePrograms.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -138,7 +160,11 @@ class StudyProgramCreateModel
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await uploadImagePrograms(context);
       }
+
+      return;
     }
   }
 }

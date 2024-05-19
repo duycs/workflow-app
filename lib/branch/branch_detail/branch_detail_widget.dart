@@ -385,6 +385,27 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                               ),
                                         ),
                                       ),
+                                      if ((_model.departmentList
+                                              .where((e) =>
+                                                  e.branchId.id == widget.id)
+                                              .toList()
+                                              .isNotEmpty) ==
+                                          false)
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  12.0, 8.0, 12.0, 0.0),
+                                          child: Text(
+                                            'Chưa có bộ phận nào!',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  letterSpacing: 0.0,
+                                                  fontStyle: FontStyle.italic,
+                                                ),
+                                          ),
+                                        ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             12.0, 8.0, 12.0, 0.0),

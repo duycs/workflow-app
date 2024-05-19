@@ -1070,7 +1070,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                       0.0,
                                                                       0.0),
                                                           child: Text(
-                                                            'Giắ trị cốt lõi:',
+                                                            'Giá trị cốt lõi:',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium

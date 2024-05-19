@@ -419,49 +419,83 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  RichText(
-                                    textScaler:
-                                        MediaQuery.of(context).textScaler,
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: 'Thời hạn học ',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: Text(_model
+                                                .estimateInDayTextController
+                                                .text),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: const Text('Ok'),
                                               ),
-                                        ),
-                                        const TextSpan(
-                                          text: '(Không bắt buộc)',
-                                          style: TextStyle(
-                                            fontSize: 13.0,
-                                            fontStyle: FontStyle.italic,
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: RichText(
+                                      textScaler:
+                                          MediaQuery.of(context).textScaler,
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: 'Thời hạn học ',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  letterSpacing: 0.0,
+                                                ),
                                           ),
-                                        )
-                                      ],
+                                          const TextSpan(
+                                            text: '(Không bắt buộc)',
+                                            style: TextStyle(
+                                              fontSize: 13.0,
+                                              fontStyle: FontStyle.italic,
+                                            ),
+                                          )
+                                        ],
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  if (((_model.estimateInDayTextController
+                                                      .text !=
+                                                  '') &&
+                                          (int.parse(_model
+                                                  .estimateInDayTextController
+                                                  .text) <
+                                              1)) &&
+                                      ((_model.check != null) &&
+                                          (_model.check! < 1)))
+                                    Text(
+                                      'Thời hạn học phải lớn hơn 0',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            fontSize: 12.0,
                                             letterSpacing: 0.0,
+                                            fontStyle: FontStyle.italic,
                                           ),
                                     ),
-                                  ),
-                                  Text(
-                                    'Thời hạn học phải lớn hơn 0',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          fontSize: 12.0,
-                                          letterSpacing: 0.0,
-                                          fontStyle: FontStyle.italic,
-                                        ),
-                                  ),
                                 ].divide(const SizedBox(height: 4.0)),
                               ),
                               Align(
@@ -482,11 +516,23 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                           setState(() {
                                             _model.updateRequestDataStruct(
                                               (e) => e
-                                                ..estimateInDay =
-                                                    functions.stringToInt(_model
+                                                ..estimateInDay = (_model.estimateInDayTextController
+                                                                    .text !=
+                                                                '') &&
+                                                        (int.parse(_model
+                                                                .estimateInDayTextController
+                                                                .text) >
+                                                            0)
+                                                    ? functions.stringToInt(_model
                                                         .estimateInDayTextController
-                                                        .text),
+                                                        .text)
+                                                    : null,
                                             );
+                                          });
+                                          setState(() {
+                                            _model.check = int.tryParse(_model
+                                                .estimateInDayTextController
+                                                .text);
                                           });
                                         },
                                       ),
@@ -729,34 +775,22 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                     child: FFButtonWidget(
                       onPressed: () async {
                         var shouldSetState = false;
+                        if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                                false)) {
+                          await _model.uploadImagePrograms(context);
+                          setState(() {});
+                        }
                         if (_model.formKey.currentState == null ||
                             !_model.formKey.currentState!.validate()) {
                           return;
                         }
-                        if (functions.stringToInt(
-                                _model.estimateInDayTextController.text) >
-                            0) {
-                          setState(() {});
-                        } else {
-                          await showDialog(
-                            context: context,
-                            builder: (alertDialogContext) {
-                              return AlertDialog(
-                                content: const Text('Thời hạn phải lớn hơn 0 !'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext),
-                                    child: const Text('Ok'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                          if (shouldSetState) setState(() {});
+                        if (_model.testsDropdownModel.dropDownValue == null) {
                           return;
                         }
-
+                        if (_model.lessionsDropdownModel.dropDownValue ==
+                            null) {
+                          return;
+                        }
                         _model.tokenReloadStudyProgramCreate =
                             await action_blocks.tokenReload(context);
                         shouldSetState = true;
@@ -766,48 +800,117 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                               (e) => e..status = 'published',
                             );
                           });
-                          _model.apiResulti4j = await StudyProgramGroup
-                              .studyProgramCreateCall
-                              .call(
-                            requestDataJson: _model.requestData?.toMap(),
-                            accessToken: FFAppState().accessToken,
-                          );
-                          shouldSetState = true;
-                          if ((_model.apiResulti4j?.succeeded ?? true)) {
-                            Navigator.pop(context);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Tạo mới thành công!',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                          if (_model.estimateInDayTextController.text != '') {
+                            if (int.parse(
+                                    _model.estimateInDayTextController.text) >
+                                0) {
+                              _model.apiResulti4j = await StudyProgramGroup
+                                  .studyProgramCreateCall
+                                  .call(
+                                requestDataJson: _model.requestData?.toMap(),
+                                accessToken: FFAppState().accessToken,
+                              );
+                              shouldSetState = true;
+                              if ((_model.apiResulti4j?.succeeded ?? true)) {
+                                Navigator.pop(context);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Tạo mới thành công!',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
                                   ),
-                                ),
-                                duration: const Duration(milliseconds: 4000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).secondary,
-                              ),
-                            );
-                          } else {
-                            Navigator.pop(context);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Tạo mới thất bại!',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                );
+                              } else {
+                                Navigator.pop(context);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Tạo mới thất bại!',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).error,
                                   ),
-                                ),
-                                duration: const Duration(milliseconds: 4000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).error,
-                              ),
-                            );
-                          }
+                                );
+                              }
 
-                          await widget.callBackList?.call();
+                              await widget.callBackList?.call();
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Thời hạn học bài phải lớn hơn 0!',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).error,
+                                ),
+                              );
+                            }
+                          } else {
+                            setState(() {
+                              _model.updateRequestDataStruct(
+                                (e) => e..estimateInDay = 66666,
+                              );
+                            });
+                            _model.apiResulti4j1 = await StudyProgramGroup
+                                .studyProgramCreateCall
+                                .call(
+                              requestDataJson: _model.requestData?.toMap(),
+                              accessToken: FFAppState().accessToken,
+                            );
+                            shouldSetState = true;
+                            if ((_model.apiResulti4j1?.succeeded ?? true)) {
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Tạo mới thành công!',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).secondary,
+                                ),
+                              );
+                            } else {
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Tạo mới thất bại!',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).error,
+                                ),
+                              );
+                            }
+
+                            await widget.callBackList?.call();
+                          }
                         } else {
                           setState(() {});
                           if (shouldSetState) setState(() {});
