@@ -1,6 +1,7 @@
 export '/backend/schema/util/schema_util.dart';
 
 export 'answers_list_struct.dart';
+export 'author_id_struct.dart';
 export 'author_id_market_struct.dart';
 export 'authors_list_struct.dart';
 export 'authors_list_data_struct.dart';

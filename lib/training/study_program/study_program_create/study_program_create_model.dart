@@ -71,9 +71,7 @@ class StudyProgramCreateModel
   // Stores action output result for [Backend Call - API (StudyProgramCreate)] action in Button widget.
   ApiCallResponse? apiResulti4j;
   // Stores action output result for [Backend Call - API (StudyProgramCreate)] action in Button widget.
-  ApiCallResponse? apiResulti4j12;
-  // Stores action output result for [Backend Call - API (StudyProgramCreate)] action in Button widget.
-  ApiCallResponse? apiResulti4j1;
+  ApiCallResponse? apiResultbang;
 
   @override
   void initState(BuildContext context) {

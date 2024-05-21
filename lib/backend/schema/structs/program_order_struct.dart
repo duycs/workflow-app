@@ -17,8 +17,8 @@ class ProgramOrderStruct extends BaseStruct {
     String? organizationId,
     int? totalItem,
     String? totalPrice,
-    String? customerId,
     List<ProgramOrderItemsStruct>? programOrderItems,
+    int? private,
   })  : _id = id,
         _status = status,
         _userCreated = userCreated,
@@ -30,8 +30,8 @@ class ProgramOrderStruct extends BaseStruct {
         _organizationId = organizationId,
         _totalItem = totalItem,
         _totalPrice = totalPrice,
-        _customerId = customerId,
-        _programOrderItems = programOrderItems;
+        _programOrderItems = programOrderItems,
+        _private = private;
 
   // "id" field.
   String? _id;
@@ -100,12 +100,6 @@ class ProgramOrderStruct extends BaseStruct {
   set totalPrice(String? val) => _totalPrice = val;
   bool hasTotalPrice() => _totalPrice != null;
 
-  // "customer_id" field.
-  String? _customerId;
-  String get customerId => _customerId ?? '';
-  set customerId(String? val) => _customerId = val;
-  bool hasCustomerId() => _customerId != null;
-
   // "program_order_items" field.
   List<ProgramOrderItemsStruct>? _programOrderItems;
   List<ProgramOrderItemsStruct> get programOrderItems =>
@@ -116,6 +110,13 @@ class ProgramOrderStruct extends BaseStruct {
           Function(List<ProgramOrderItemsStruct>) updateFn) =>
       updateFn(_programOrderItems ??= []);
   bool hasProgramOrderItems() => _programOrderItems != null;
+
+  // "private" field.
+  int? _private;
+  int get private => _private ?? 0;
+  set private(int? val) => _private = val;
+  void incrementPrivate(int amount) => _private = private + amount;
+  bool hasPrivate() => _private != null;
 
   static ProgramOrderStruct fromMap(Map<String, dynamic> data) =>
       ProgramOrderStruct(
@@ -130,11 +131,11 @@ class ProgramOrderStruct extends BaseStruct {
         organizationId: data['organization_id'] as String?,
         totalItem: castToType<int>(data['total_item']),
         totalPrice: data['total_price'] as String?,
-        customerId: data['customer_id'] as String?,
         programOrderItems: getStructList(
           data['program_order_items'],
           ProgramOrderItemsStruct.fromMap,
         ),
+        private: castToType<int>(data['private']),
       );
 
   static ProgramOrderStruct? maybeFromMap(dynamic data) => data is Map
@@ -153,9 +154,9 @@ class ProgramOrderStruct extends BaseStruct {
         'organization_id': _organizationId,
         'total_item': _totalItem,
         'total_price': _totalPrice,
-        'customer_id': _customerId,
         'program_order_items':
             _programOrderItems?.map((e) => e.toMap()).toList(),
+        'private': _private,
       }.withoutNulls;
 
   @override
@@ -204,14 +205,14 @@ class ProgramOrderStruct extends BaseStruct {
           _totalPrice,
           ParamType.String,
         ),
-        'customer_id': serializeParam(
-          _customerId,
-          ParamType.String,
-        ),
         'program_order_items': serializeParam(
           _programOrderItems,
           ParamType.DataStruct,
           true,
+        ),
+        'private': serializeParam(
+          _private,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -272,16 +273,16 @@ class ProgramOrderStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        customerId: deserializeParam(
-          data['customer_id'],
-          ParamType.String,
-          false,
-        ),
         programOrderItems: deserializeStructParam<ProgramOrderItemsStruct>(
           data['program_order_items'],
           ParamType.DataStruct,
           true,
           structBuilder: ProgramOrderItemsStruct.fromSerializableMap,
+        ),
+        private: deserializeParam(
+          data['private'],
+          ParamType.int,
+          false,
         ),
       );
 
@@ -303,8 +304,8 @@ class ProgramOrderStruct extends BaseStruct {
         organizationId == other.organizationId &&
         totalItem == other.totalItem &&
         totalPrice == other.totalPrice &&
-        customerId == other.customerId &&
-        listEquality.equals(programOrderItems, other.programOrderItems);
+        listEquality.equals(programOrderItems, other.programOrderItems) &&
+        private == other.private;
   }
 
   @override
@@ -320,8 +321,8 @@ class ProgramOrderStruct extends BaseStruct {
         organizationId,
         totalItem,
         totalPrice,
-        customerId,
-        programOrderItems
+        programOrderItems,
+        private
       ]);
 }
 
@@ -337,7 +338,7 @@ ProgramOrderStruct createProgramOrderStruct({
   String? organizationId,
   int? totalItem,
   String? totalPrice,
-  String? customerId,
+  int? private,
 }) =>
     ProgramOrderStruct(
       id: id,
@@ -351,5 +352,5 @@ ProgramOrderStruct createProgramOrderStruct({
       organizationId: organizationId,
       totalItem: totalItem,
       totalPrice: totalPrice,
-      customerId: customerId,
+      private: private,
     );

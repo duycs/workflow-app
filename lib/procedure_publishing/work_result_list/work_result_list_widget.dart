@@ -528,15 +528,20 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                         .tasks
                                                                         .isNotEmpty) ==
                                                                     true) &&
-                                                                (itemsItem
+                                                                (itemsItem.steps
+                                                                        .length ==
+                                                                    itemsItem
                                                                         .steps
-                                                                        .first
-                                                                        .tasks
-                                                                        .first
-                                                                        .status ==
-                                                                    'done')
+                                                                        .where((e) =>
+                                                                            (e.tasks.where((e) => ((e.status == 'done') && (e.publishedCount == itemsItem.steps.first.tasks.first.publishedCount)) == true).toList().isNotEmpty) ==
+                                                                            true)
+                                                                        .toList()
+                                                                        .length)
                                                             ? itemsItem
-                                                                .steps.length
+                                                                .steps
+                                                                .first
+                                                                .tasks
+                                                                .length
                                                                 .toString()
                                                             : '0',
                                                         style:

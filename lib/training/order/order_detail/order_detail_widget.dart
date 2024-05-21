@@ -3,13 +3,40 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/order/order_update/order_update_widget.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:provider/provider.dart';
 import 'order_detail_model.dart';
 export 'order_detail_model.dart';
 
 class OrderDetailWidget extends StatefulWidget {
-  const OrderDetailWidget({super.key});
+  const OrderDetailWidget({
+    super.key,
+    this.image,
+    required this.name,
+    this.rating,
+    this.author,
+    required this.quantity,
+    required this.status,
+    required this.price,
+    this.numLessions,
+    required this.totalPrice,
+    required this.private,
+    required this.code,
+  });
+
+  final String? image;
+  final String? name;
+  final double? rating;
+  final String? author;
+  final int? quantity;
+  final String? status;
+  final String? price;
+  final int? numLessions;
+  final String? totalPrice;
+  final String? private;
+  final String? code;
 
   @override
   State<OrderDetailWidget> createState() => _OrderDetailWidgetState();
@@ -29,15 +56,16 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
     super.initState();
     _model = createModel(context, () => OrderDetailModel());
 
-    _model.textController1 ??= TextEditingController();
+    _model.textController1 ??= TextEditingController(
+        text: formatNumber(
+      widget.numLessions,
+      formatType: FormatType.decimal,
+      decimalType: DecimalType.commaDecimal,
+    ));
     _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
-          _model.textController1?.text = '6';
-        }));
   }
 
   @override
@@ -49,6 +77,8 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Align(
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
@@ -84,7 +114,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Đơn mua OD0001',
+                        'Đơn mua ${widget.code}',
                         style: FlutterFlowTheme.of(context).bodyLarge.override(
                               fontFamily: 'Nunito Sans',
                               fontSize: 18.0,
@@ -167,7 +197,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                         child: Image.network(
-                                          'https://source.unsplash.com/random/1280x720?profile&5',
+                                          '${FFAppConstants.ApiBaseUrl}/assets/${widget.image}?access_token=${FFAppState().accessToken}',
                                           width: 44.0,
                                           height: 44.0,
                                           fit: BoxFit.cover,
@@ -186,7 +216,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Học tập mỗi ngày',
+                                          widget.name!,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyLarge
                                               .override(
@@ -199,7 +229,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 4.0, 0.0, 2.0),
                                           child: Text(
-                                            'Văn hóa nghệ thuật',
+                                            '',
                                             style: FlutterFlowTheme.of(context)
                                                 .labelSmall
                                                 .override(
@@ -257,7 +287,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                     ),
                               ),
                               Text(
-                                'Mai Anh Hoàng',
+                                widget.author!,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -287,7 +317,11 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                     ),
                               ),
                               Text(
-                                '5',
+                                formatNumber(
+                                  widget.numLessions,
+                                  formatType: FormatType.decimal,
+                                  decimalType: DecimalType.commaDecimal,
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -317,7 +351,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                     ),
                               ),
                               Text(
-                                'Draft',
+                                widget.status == 'published'
+                                    ? 'Hoàn thành'
+                                    : 'Nháp',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -347,7 +383,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                     ),
                               ),
                               Text(
-                                'Visa ****1234',
+                                'Chuyển khoản',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -388,7 +424,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Đơn giá',
+                                'Đơn giá (VND)',
                                 style: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
@@ -398,7 +434,11 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                     ),
                               ),
                               Text(
-                                '\$480.00',
+                                formatNumber(
+                                  functions.stringToInt(widget.price!),
+                                  formatType: FormatType.decimal,
+                                  decimalType: DecimalType.commaDecimal,
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -490,84 +530,87 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                             ),
                           ],
                         ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                'Chiết khấu',
-                                style: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                              ),
-                            ),
-                            Expanded(
-                              child: TextFormField(
-                                controller: _model.textController2,
-                                focusNode: _model.textFieldFocusNode2,
-                                autofocus: false,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelStyle: FlutterFlowTheme.of(context)
+                        if ('1' == '2')
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'Chiết khấu',
+                                  style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
                                         fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
                                       ),
-                                  hintStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(0.0),
-                                  ),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(0.0),
-                                  ),
-                                  errorBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(0.0),
-                                  ),
-                                  focusedErrorBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(0.0),
-                                  ),
                                 ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
-                                validator: _model.textController2Validator
-                                    .asValidator(context),
                               ),
-                            ),
-                          ],
-                        ),
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _model.textController2,
+                                  focusNode: _model.textFieldFocusNode2,
+                                  autofocus: false,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(0.0),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(0.0),
+                                    ),
+                                    errorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(0.0),
+                                    ),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(0.0),
+                                    ),
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  validator: _model.textController2Validator
+                                      .asValidator(context),
+                                ),
+                              ),
+                            ],
+                          ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
@@ -576,7 +619,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Thành tiền',
+                                'Thành tiền (VND)',
                                 style: FlutterFlowTheme.of(context)
                                     .labelLarge
                                     .override(
@@ -586,7 +629,11 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                     ),
                               ),
                               Text(
-                                '\$500.00',
+                                formatNumber(
+                                  functions.stringToInt(widget.totalPrice!),
+                                  formatType: FormatType.decimal,
+                                  decimalType: DecimalType.commaDecimal,
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .headlineSmall
                                     .override(
@@ -615,88 +662,98 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                     letterSpacing: 0.0,
                                   ),
                         ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 8.0, 0.0, 0.0),
-                          child: RichText(
-                            textScaler: MediaQuery.of(context).textScaler,
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text:
-                                      'Khóa học mua cho cá nhân sử dụng và học tập. Bạn có thể chia sẻ khóa học này cho ',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        fontSize: 14.0,
-                                        letterSpacing: 0.0,
-                                        fontStyle: FontStyle.italic,
-                                      ),
-                                ),
-                                const TextSpan(
-                                  text: '5',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
+                        if (widget.private == '1')
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 8.0, 0.0, 0.0),
+                            child: RichText(
+                              textScaler: MediaQuery.of(context).textScaler,
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text:
+                                        'Khóa học mua cho cá nhân sử dụng và học tập. Bạn có thể chia sẻ khóa học này cho ',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          fontSize: 14.0,
+                                          letterSpacing: 0.0,
+                                          fontStyle: FontStyle.italic,
+                                        ),
                                   ),
-                                ),
-                                const TextSpan(
-                                  text: ' thành viên khác của tổ chức.',
-                                  style: TextStyle(),
-                                )
-                              ],
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyLarge
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    fontStyle: FontStyle.italic,
+                                  TextSpan(
+                                    text: formatNumber(
+                                      (widget.quantity!) - 1,
+                                      formatType: FormatType.decimal,
+                                      decimalType: DecimalType.commaDecimal,
+                                    ),
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
+                                  const TextSpan(
+                                    text: ' thành viên khác của tổ chức.',
+                                    style: TextStyle(),
+                                  )
+                                ],
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 8.0, 0.0, 0.0),
-                          child: RichText(
-                            textScaler: MediaQuery.of(context).textScaler,
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text:
-                                      'Khóa học mua cho tổ chức. Tổ chức có thể chia sẻ khóa học này cho ',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        fontSize: 14.0,
-                                        letterSpacing: 0.0,
-                                        fontStyle: FontStyle.italic,
-                                      ),
-                                ),
-                                const TextSpan(
-                                  text: '5',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
+                        if (widget.private == '0')
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 8.0, 0.0, 0.0),
+                            child: RichText(
+                              textScaler: MediaQuery.of(context).textScaler,
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text:
+                                        'Khóa học mua cho tổ chức. Tổ chức có thể chia sẻ khóa học này cho ',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          fontSize: 14.0,
+                                          letterSpacing: 0.0,
+                                          fontStyle: FontStyle.italic,
+                                        ),
                                   ),
-                                ),
-                                const TextSpan(
-                                  text: ' thành viên khác của tổ chức.',
-                                  style: TextStyle(),
-                                )
-                              ],
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyLarge
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    fontStyle: FontStyle.italic,
+                                  TextSpan(
+                                    text: formatNumber(
+                                      widget.quantity,
+                                      formatType: FormatType.decimal,
+                                      decimalType: DecimalType.commaDecimal,
+                                    ),
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
+                                  const TextSpan(
+                                    text: ' thành viên khác của tổ chức.',
+                                    style: TextStyle(),
+                                  )
+                                ],
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                              ),
                             ),
                           ),
-                        ),
                       ],
                     ),
                   ),

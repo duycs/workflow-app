@@ -542,7 +542,16 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            Navigator.pop(context);
+                            context.pushNamed(
+                              'OrderList',
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: const TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 0),
+                                ),
+                              },
+                            );
                           },
                           text: 'Hủy',
                           options: FFButtonOptions(
@@ -596,7 +605,17 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                       FlutterFlowTheme.of(context).secondary,
                                 ),
                               );
-                              Navigator.pop(context);
+
+                              context.pushNamed(
+                                'OrderList',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: const TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
+                              );
                             }
 
                             setState(() {});

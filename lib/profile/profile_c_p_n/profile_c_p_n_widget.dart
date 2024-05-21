@@ -1301,14 +1301,15 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                           ),
                                                       ],
                                                     ),
-                                                    Divider(
-                                                      height: 16.0,
-                                                      thickness: 1.0,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
-                                                    ),
+                                                    if ('1' == '2')
+                                                      Divider(
+                                                        height: 16.0,
+                                                        thickness: 1.0,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                      ),
                                                     Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional

@@ -110,54 +110,51 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        floatingActionButton: Visibility(
-          visible: widget.checkpage == 'profile',
-          child: Builder(
-            builder: (context) => FloatingActionButton(
-              onPressed: () async {
-                await showDialog(
-                  context: context,
-                  builder: (dialogContext) {
-                    return Dialog(
-                      elevation: 0,
-                      insetPadding: EdgeInsets.zero,
-                      backgroundColor: Colors.transparent,
-                      alignment: const AlignmentDirectional(0.0, 1.0)
-                          .resolve(Directionality.of(context)),
-                      child: GestureDetector(
-                        onTap: () => _model.unfocusNode.canRequestFocus
-                            ? FocusScope.of(context)
-                                .requestFocus(_model.unfocusNode)
-                            : FocusScope.of(context).unfocus(),
-                        child: StudyProgramCreateWidget(
-                          callBackList: () async {
-                            setState(() {
-                              _model.checkShow = null;
-                              _model.dataList = [];
-                              _model.meta = null;
-                              _model.isLoad = false;
-                              _model.nameSearch = '';
-                              _model.dateEndSearch = '';
-                              _model.dateStartSearch = '';
-                              _model.lessionsNameSearch = '';
-                            });
-                            setState(() =>
-                                _model.listViewPagingController1?.refresh());
-                            setState(() {});
-                          },
-                        ),
+        floatingActionButton: Builder(
+          builder: (context) => FloatingActionButton(
+            onPressed: () async {
+              await showDialog(
+                context: context,
+                builder: (dialogContext) {
+                  return Dialog(
+                    elevation: 0,
+                    insetPadding: EdgeInsets.zero,
+                    backgroundColor: Colors.transparent,
+                    alignment: const AlignmentDirectional(0.0, 1.0)
+                        .resolve(Directionality.of(context)),
+                    child: GestureDetector(
+                      onTap: () => _model.unfocusNode.canRequestFocus
+                          ? FocusScope.of(context)
+                              .requestFocus(_model.unfocusNode)
+                          : FocusScope.of(context).unfocus(),
+                      child: StudyProgramCreateWidget(
+                        callBackList: () async {
+                          setState(() {
+                            _model.checkShow = null;
+                            _model.dataList = [];
+                            _model.meta = null;
+                            _model.isLoad = false;
+                            _model.nameSearch = '';
+                            _model.dateEndSearch = '';
+                            _model.dateStartSearch = '';
+                            _model.lessionsNameSearch = '';
+                          });
+                          setState(() =>
+                              _model.listViewPagingController1?.refresh());
+                          setState(() {});
+                        },
                       ),
-                    );
-                  },
-                ).then((value) => setState(() {}));
-              },
-              backgroundColor: FlutterFlowTheme.of(context).primary,
-              elevation: 8.0,
-              child: Icon(
-                Icons.add,
-                color: FlutterFlowTheme.of(context).info,
-                size: 24.0,
-              ),
+                    ),
+                  );
+                },
+              ).then((value) => setState(() {}));
+            },
+            backgroundColor: FlutterFlowTheme.of(context).primary,
+            elevation: 8.0,
+            child: Icon(
+              Icons.add,
+              color: FlutterFlowTheme.of(context).info,
+              size: 24.0,
             ),
           ),
         ),
