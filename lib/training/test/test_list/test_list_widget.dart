@@ -1280,6 +1280,9 @@ class _TestListWidgetState extends State<TestListWidget> {
                                                               mainAxisSize:
                                                                   MainAxisSize
                                                                       .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
                                                               crossAxisAlignment:
                                                                   CrossAxisAlignment
                                                                       .end,
@@ -1318,17 +1321,30 @@ class _TestListWidgetState extends State<TestListWidget> {
                                                                   ],
                                                                 ),
                                                                 Container(
-                                                                  height: 32.0,
+                                                                  height: 30.0,
                                                                   decoration:
                                                                       BoxDecoration(
+                                                                    color: listItemTestItem.status ==
+                                                                            'published'
+                                                                        ? FlutterFlowTheme.of(context)
+                                                                            .accent2
+                                                                        : FlutterFlowTheme.of(context)
+                                                                            .accent3,
                                                                     borderRadius:
                                                                         BorderRadius.circular(
-                                                                            8.0),
+                                                                            20.0),
                                                                   ),
-                                                                  child: Align(
-                                                                    alignment:
-                                                                        const AlignmentDirectional(
-                                                                            -1.0,
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            8.0,
+                                                                            0.0,
+                                                                            8.0,
                                                                             0.0),
                                                                     child: Text(
                                                                       listItemTestItem.status ==
@@ -1337,24 +1353,23 @@ class _TestListWidgetState extends State<TestListWidget> {
                                                                           : 'Không hoạt động',
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .bodySmall
+                                                                          .bodyMedium
                                                                           .override(
                                                                             fontFamily:
                                                                                 'Nunito Sans',
                                                                             color: listItemTestItem.status == 'published'
-                                                                                ? const Color(0xFF00A907)
+                                                                                ? FlutterFlowTheme.of(context).secondary
                                                                                 : FlutterFlowTheme.of(context).tertiary,
+                                                                            fontSize:
+                                                                                13.0,
                                                                             letterSpacing:
                                                                                 0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.w300,
-                                                                            fontStyle:
-                                                                                FontStyle.italic,
                                                                           ),
                                                                     ),
                                                                   ),
                                                                 ),
-                                                              ],
+                                                              ].divide(const SizedBox(
+                                                                  height: 8.0)),
                                                             ),
                                                           ],
                                                         ),

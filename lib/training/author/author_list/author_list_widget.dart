@@ -161,6 +161,11 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                         fillColor: const Color(0x15FF5963),
                         contentPadding:
                             const EdgeInsetsDirectional.fromSTEB(24.0, 8.0, 0.0, 8.0),
+                        prefixIcon: Icon(
+                          Icons.search,
+                          color: FlutterFlowTheme.of(context).secondaryText,
+                          size: 24.0,
+                        ),
                         suffixIcon: _model
                                 .searchAuthorsTextController!.text.isNotEmpty
                             ? InkWell(
@@ -209,7 +214,7 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 8.0),
                   child: Text(
-                    'Tác giả nôi tiếng',
+                    'Tác giả nổi tiếng',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,
@@ -302,7 +307,8 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                                     ),
                                   ),
                                   Text(
-                                    'Kinh doanh',
+                                    itemAuthorsSortItem
+                                        .domains.first.domainsId.name,
                                     style: FlutterFlowTheme.of(context)
                                         .labelSmall
                                         .override(
@@ -441,7 +447,14 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                                                     .fromSTEB(
                                                         12.0, 0.0, 0.0, 0.0),
                                                 child: Text(
-                                                  '100 khóa học',
+                                                  '${formatNumber(
+                                                    itemListAuthorsItem
+                                                        .orderCount,
+                                                    formatType:
+                                                        FormatType.decimal,
+                                                    decimalType: DecimalType
+                                                        .commaDecimal,
+                                                  )} lượt bán',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .labelMedium

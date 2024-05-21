@@ -833,8 +833,8 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                     fit: BoxFit
                                                                         .cover,
                                                                     image: Image
-                                                                        .asset(
-                                                                      'assets/images/28ed0c5c302810c8d5782ad064461f51.jpg',
+                                                                        .network(
+                                                                      '${FFAppConstants.ApiBaseUrl}/assets/${domainListItem.domainsId.imageCover}?access_token=${FFAppState().accessToken}',
                                                                     ).image,
                                                                   ),
                                                                   borderRadius:

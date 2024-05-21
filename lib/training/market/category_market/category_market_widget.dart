@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'category_market_model.dart';
 export 'category_market_model.dart';
 
@@ -43,6 +44,8 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -153,6 +156,11 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                         fillColor: const Color(0x15FF5963),
                         contentPadding:
                             const EdgeInsetsDirectional.fromSTEB(24.0, 8.0, 0.0, 8.0),
+                        prefixIcon: Icon(
+                          Icons.search,
+                          color: FlutterFlowTheme.of(context).secondaryText,
+                          size: 24.0,
+                        ),
                         suffixIcon: _model
                                 .searchDomainsTextController!.text.isNotEmpty
                             ? InkWell(
@@ -433,8 +441,8 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
-                                    image: Image.asset(
-                                      'assets/images/28ed0c5c302810c8d5782ad064461f51.jpg',
+                                    image: Image.network(
+                                      '${FFAppConstants.ApiBaseUrl}/assets/${itemListItem.imageCover}?access_token=${FFAppState().accessToken}',
                                     ).image,
                                   ),
                                   borderRadius: BorderRadius.circular(4.0),

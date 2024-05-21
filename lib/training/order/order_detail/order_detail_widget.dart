@@ -84,7 +84,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Mua khóa học',
+                        'Đơn mua OD0001',
                         style: FlutterFlowTheme.of(context).bodyLarge.override(
                               fontFamily: 'Nunito Sans',
                               fontSize: 18.0,

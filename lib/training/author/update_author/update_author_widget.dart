@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -53,6 +54,9 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await _model.getDomainList(context);
+      setState(() {});
+      await _model.getListAuthors(context);
+      setState(() {});
     });
 
     _model.nameTextController ??= TextEditingController(text: widget.name);
@@ -244,19 +248,6 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 0.0, 0.0),
-                          child: Text(
-                            'Tên tác giả',
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                        ),
                         Form(
                           key: _model.formKey,
                           autovalidateMode: AutovalidateMode.disabled,
@@ -264,9 +255,41 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  'Tên tác giả',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ),
                               TextFormField(
                                 controller: _model.nameTextController,
                                 focusNode: _model.nameFocusNode,
+                                onChanged: (_) => EasyDebounce.debounce(
+                                  '_model.nameTextController',
+                                  const Duration(milliseconds: 2000),
+                                  () async {
+                                    if (_model.listAuthorName
+                                            .where((e) =>
+                                                e ==
+                                                _model.nameTextController.text)
+                                            .toList().isNotEmpty) {
+                                      setState(() {
+                                        _model.checkName = true;
+                                      });
+                                    } else {
+                                      setState(() {
+                                        _model.checkName = false;
+                                      });
+                                    }
+                                  },
+                                ),
                                 autofocus: false,
                                 textCapitalization: TextCapitalization.words,
                                 obscureText: false,
@@ -346,6 +369,24 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                 validator: _model.nameTextControllerValidator
                                     .asValidator(context),
                               ),
+                              if (_model.checkName == true)
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Trùng tên tác giả. Vui lòng nhập tên khác!',
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                          fontStyle: FontStyle.italic,
+                                        ),
+                                  ),
+                                ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     8.0, 16.0, 0.0, 0.0),
@@ -581,6 +622,10 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               var shouldSetState = false;
+                              if (_model.checkName != false) {
+                                if (shouldSetState) setState(() {});
+                                return;
+                              }
                               if (_model.formKey.currentState == null ||
                                   !_model.formKey.currentState!.validate()) {
                                 return;
@@ -689,7 +734,6 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                                 .secondary,
                                       ),
                                     );
-                                    Navigator.pop(context);
 
                                     context.pushNamed(
                                       'AuthorProfile',
@@ -702,6 +746,8 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                         ),
                                       },
                                     );
+
+                                    Navigator.pop(context);
                                   }
                                 }
                               }

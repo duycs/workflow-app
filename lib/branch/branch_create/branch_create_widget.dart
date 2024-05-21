@@ -541,20 +541,7 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                             ),
                                           );
                                           await widget.callBackList?.call();
-
-                                          context.pushNamed(
-                                            'BranchList',
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  const TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType.fade,
-                                                duration:
-                                                    Duration(milliseconds: 0),
-                                              ),
-                                            },
-                                          );
+                                          Navigator.pop(context);
                                         } else {
                                           await showDialog(
                                             context: context,

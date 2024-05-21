@@ -484,7 +484,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                       ((_model.check != null) &&
                                           (_model.check! < 1)))
                                     Text(
-                                      'Thời hạn học phải lớn hơn 0',
+                                      'Thời hạn chương trình phải lớn hơn 0',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -612,6 +612,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                             fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
+                                      textAlign: TextAlign.center,
                                       keyboardType: TextInputType.number,
                                       validator: _model
                                           .estimateInDayTextControllerValidator
@@ -784,13 +785,6 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                             !_model.formKey.currentState!.validate()) {
                           return;
                         }
-                        if (_model.testsDropdownModel.dropDownValue == null) {
-                          return;
-                        }
-                        if (_model.lessionsDropdownModel.dropDownValue ==
-                            null) {
-                          return;
-                        }
                         _model.tokenReloadStudyProgramCreate =
                             await action_blocks.tokenReload(context);
                         shouldSetState = true;
@@ -850,7 +844,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                    'Thời hạn học bài phải lớn hơn 0!',
+                                    'Thời hạn chương trình phải lớn hơn 0',
                                     style: TextStyle(
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
@@ -865,9 +859,21 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                           } else {
                             setState(() {
                               _model.updateRequestDataStruct(
-                                (e) => e..estimateInDay = 66666,
+                                (e) => e..estimateInDay = null,
                               );
                             });
+                            _model.apiResulti4j12 = await StudyProgramGroup
+                                .studyProgramCreateCall
+                                .call(
+                              requestDataJson: <String, dynamic>{
+                                'name': _model.programNameTextController.text,
+                                'description': _model
+                                    .programDescriptionTextController.text,
+                                'estimate_in_day': null,
+                              },
+                              accessToken: FFAppState().accessToken,
+                            );
+                            shouldSetState = true;
                             _model.apiResulti4j1 = await StudyProgramGroup
                                 .studyProgramCreateCall
                                 .call(

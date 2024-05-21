@@ -37,6 +37,18 @@ class AuthorSignUpModel extends FlutterFlowModel<AuthorSignUpWidget> {
 
   int loop = 0;
 
+  List<String> listAuthorName = [];
+  void addToListAuthorName(String item) => listAuthorName.add(item);
+  void removeFromListAuthorName(String item) => listAuthorName.remove(item);
+  void removeAtIndexFromListAuthorName(int index) =>
+      listAuthorName.removeAt(index);
+  void insertAtIndexInListAuthorName(int index, String item) =>
+      listAuthorName.insert(index, item);
+  void updateListAuthorNameAtIndex(int index, Function(String) updateFn) =>
+      listAuthorName[index] = updateFn(listAuthorName[index]);
+
+  bool checkName = false;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
@@ -71,6 +83,8 @@ class AuthorSignUpModel extends FlutterFlowModel<AuthorSignUpWidget> {
   bool? authorsSignUp;
   // Stores action output result for [Backend Call - API (AuthorsSignUp)] action in Button widget.
   ApiCallResponse? apiResultu1j;
+  // Stores action output result for [Backend Call - API (GetStaffId)] action in Button widget.
+  ApiCallResponse? apiResultGetStaffId;
 
   @override
   void initState(BuildContext context) {
@@ -102,6 +116,31 @@ class AuthorSignUpModel extends FlutterFlowModel<AuthorSignUpWidget> {
             .data
             .toList()
             .cast<DomainsListStruct>();
+      }
+    } else {
+      return;
+    }
+  }
+
+  Future getListAuthors(BuildContext context) async {
+    bool? getListAuthors;
+    ApiCallResponse? apiResultGetListAuthors;
+
+    getListAuthors = await action_blocks.tokenReload(context);
+    if (getListAuthors!) {
+      apiResultGetListAuthors = await GroupAuthorsGroup.listAuthorsCall.call(
+        accessToken: FFAppState().accessToken,
+      );
+      if ((apiResultGetListAuthors.succeeded ?? true)) {
+        listAuthorName = (getJsonField(
+          (apiResultGetListAuthors.jsonBody ?? ''),
+          r'''$.data[:].alias''',
+          true,
+        ) as List)
+            .map<String>((s) => s.toString())
+            .toList()
+            .toList()
+            .cast<String>();
       }
     } else {
       return;

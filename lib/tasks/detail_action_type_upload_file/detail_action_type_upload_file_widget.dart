@@ -67,6 +67,7 @@ class _DetailActionTypeUploadFileWidgetState
       }
       setState(() {
         _model.loop = 0;
+        _model.listStringId = [];
       });
     });
   }
@@ -427,111 +428,147 @@ class _DetailActionTypeUploadFileWidgetState
                   );
                 },
               ),
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FFButtonWidget(
-                  onPressed: () async {
-                    final selectedFiles = await selectFiles(
-                      multiFile: false,
-                    );
-                    if (selectedFiles != null) {
-                      setState(() => _model.isDataUploading = true);
-                      var selectedUploadedFiles = <FFUploadedFile>[];
+            if (widget.dataPass?.status == 'todo')
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FFButtonWidget(
+                    onPressed: (widget.dataPass?.current == 0)
+                        ? null
+                        : () async {
+                            final selectedFiles = await selectFiles(
+                              multiFile: false,
+                            );
+                            if (selectedFiles != null) {
+                              setState(() => _model.isDataUploading = true);
+                              var selectedUploadedFiles = <FFUploadedFile>[];
 
-                      try {
-                        selectedUploadedFiles = selectedFiles
-                            .map((m) => FFUploadedFile(
-                                  name: m.storagePath.split('/').last,
-                                  bytes: m.bytes,
-                                ))
-                            .toList();
-                      } finally {
-                        _model.isDataUploading = false;
-                      }
-                      if (selectedUploadedFiles.length ==
-                          selectedFiles.length) {
-                        setState(() {
-                          _model.uploadedLocalFile =
-                              selectedUploadedFiles.first;
-                        });
-                      } else {
-                        setState(() {});
-                        return;
-                      }
-                    }
+                              try {
+                                selectedUploadedFiles = selectedFiles
+                                    .map((m) => FFUploadedFile(
+                                          name: m.storagePath.split('/').last,
+                                          bytes: m.bytes,
+                                        ))
+                                    .toList();
+                              } finally {
+                                _model.isDataUploading = false;
+                              }
+                              if (selectedUploadedFiles.length ==
+                                  selectedFiles.length) {
+                                setState(() {
+                                  _model.uploadedLocalFile =
+                                      selectedUploadedFiles.first;
+                                });
+                              } else {
+                                setState(() {});
+                                return;
+                              }
+                            }
 
-                    setState(() {
-                      _model.addToListFileUpload(_model.uploadedLocalFile);
-                    });
-                  },
-                  text: 'Upload tài liệu',
-                  icon: const Icon(
-                    Icons.attach_file,
-                    size: 20.0,
-                  ),
-                  options: FFButtonOptions(
-                    width: 140.0,
-                    height: 40.0,
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).alternate,
-                    textStyle: FlutterFlowTheme.of(context).labelLarge.override(
-                          fontFamily: 'Nunito Sans',
-                          fontSize: 14.0,
-                          letterSpacing: 0.0,
-                        ),
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).alternate,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
-                FFButtonWidget(
-                  onPressed: () async {
-                    if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
-                      _model.uploadFileToken =
-                          await action_blocks.tokenReload(context);
-                      if (_model.uploadFileToken!) {
-                        _model.apiResultUploadFile =
-                            await UploadFileGroup.uploadListFileCall.call(
-                          accessToken: FFAppState().accessToken,
-                          fileList: _model.listFileUpload,
-                        );
-                        if ((_model.apiResultUploadFile?.succeeded ?? true)) {
-                          if (_model.listFileUpload.length == 1) {
                             setState(() {
-                              _model.addToListFileId(FileIDDataTypeStruct(
-                                id: getJsonField(
-                                  (_model.apiResultUploadFile?.jsonBody ?? ''),
-                                  r'''$.data.id''',
-                                ).toString(),
-                                filenameDownload: getJsonField(
-                                  (_model.apiResultUploadFile?.jsonBody ?? ''),
-                                  r'''$.data.filename_download''',
-                                ).toString(),
-                              ));
+                              _model.addToListFileUpload(
+                                  _model.uploadedLocalFile);
                             });
-                          } else {
-                            while (_model.loop < _model.listFileUpload.length) {
-                              setState(() {
-                                _model.addToListFileId(FileIDDataTypeStruct(
-                                  id: (FileUploadStruct.maybeFromMap((_model
-                                                  .apiResultUploadFile
+                          },
+                    text: 'Upload tài liệu',
+                    icon: const Icon(
+                      Icons.attach_file,
+                      size: 20.0,
+                    ),
+                    options: FFButtonOptions(
+                      width: 140.0,
+                      height: 40.0,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      iconPadding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: FlutterFlowTheme.of(context).alternate,
+                      textStyle:
+                          FlutterFlowTheme.of(context).labelLarge.override(
+                                fontFamily: 'Nunito Sans',
+                                fontSize: 14.0,
+                                letterSpacing: 0.0,
+                              ),
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.of(context).alternate,
+                      ),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                  FFButtonWidget(
+                    onPressed: (widget.dataPass?.current == 0)
+                        ? null
+                        : () async {
+                            if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                                    false)) {
+                              _model.uploadFileToken =
+                                  await action_blocks.tokenReload(context);
+                              if (_model.uploadFileToken!) {
+                                _model.apiResultUploadFile =
+                                    await UploadFileGroup.uploadListFileCall
+                                        .call(
+                                  accessToken: FFAppState().accessToken,
+                                  fileList: _model.listFileUpload,
+                                );
+                                if ((_model.apiResultUploadFile?.succeeded ??
+                                    true)) {
+                                  if (_model.listFileUpload.length == 1) {
+                                    setState(() {
+                                      _model
+                                          .addToListFileId(FileIDDataTypeStruct(
+                                        id: getJsonField(
+                                          (_model.apiResultUploadFile
                                                   ?.jsonBody ??
-                                              ''))
-                                          ?.data[_model.loop])
-                                      ?.id,
-                                  filenameDownload:
-                                      (FileUploadStruct.maybeFromMap((_model
-                                                      .apiResultUploadFile
-                                                      ?.jsonBody ??
-                                                  ''))
-                                              ?.data[_model.loop])
-                                          ?.filenameDownload,
-                                ));
+                                              ''),
+                                          r'''$.data.id''',
+                                        ).toString(),
+                                        filenameDownload: getJsonField(
+                                          (_model.apiResultUploadFile
+                                                  ?.jsonBody ??
+                                              ''),
+                                          r'''$.data.filename_download''',
+                                        ).toString(),
+                                      ));
+                                    });
+                                  } else {
+                                    while (_model.loop <
+                                        _model.listFileUpload.length) {
+                                      setState(() {
+                                        _model.addToListFileId(
+                                            FileIDDataTypeStruct(
+                                          id: (FileUploadStruct.maybeFromMap(
+                                                      (_model.apiResultUploadFile
+                                                              ?.jsonBody ??
+                                                          ''))
+                                                  ?.data[_model.loop])
+                                              ?.id,
+                                          filenameDownload: (FileUploadStruct
+                                                      .maybeFromMap((_model
+                                                              .apiResultUploadFile
+                                                              ?.jsonBody ??
+                                                          ''))
+                                                  ?.data[_model.loop])
+                                              ?.filenameDownload,
+                                        ));
+                                      });
+                                      setState(() {
+                                        _model.loop = _model.loop + 1;
+                                      });
+                                    }
+                                    setState(() {
+                                      _model.loop = 0;
+                                    });
+                                  }
+                                }
+                              } else {
+                                setState(() {});
+                              }
+                            }
+                            while (_model.loop < _model.listFileId.length) {
+                              setState(() {
+                                _model.addToListStringId(
+                                    _model.listFileId[_model.loop].id);
                               });
                               setState(() {
                                 _model.loop = _model.loop + 1;
@@ -540,58 +577,43 @@ class _DetailActionTypeUploadFileWidgetState
                             setState(() {
                               _model.loop = 0;
                             });
-                          }
-                        }
-                      } else {
-                        setState(() {});
-                      }
-                    }
-                    while (_model.loop < _model.listFileId.length) {
-                      setState(() {
-                        _model.addToListStringId(
-                            _model.listFileId[_model.loop].id);
-                      });
-                      setState(() {
-                        _model.loop = _model.loop + 1;
-                      });
-                    }
-                    setState(() {
-                      _model.loop = 0;
-                    });
-                    await widget.callback?.call(
-                      _model.listStringId,
-                    );
-                    setState(() {
-                      _model.listFileUpload = [];
-                    });
+                            await widget.callback?.call(
+                              _model.listStringId,
+                            );
+                            setState(() {
+                              _model.listFileUpload = [];
+                              _model.listFileId = [];
+                            });
 
-                    setState(() {});
-                  },
-                  text: 'Lưu',
-                  icon: Icon(
-                    Icons.save,
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                    size: 20.0,
+                            setState(() {});
+                          },
+                    text: 'Lưu',
+                    icon: Icon(
+                      Icons.save,
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      size: 20.0,
+                    ),
+                    options: FFButtonOptions(
+                      width: 140.0,
+                      height: 40.0,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      iconPadding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: FlutterFlowTheme.of(context).primary,
+                      textStyle:
+                          FlutterFlowTheme.of(context).labelLarge.override(
+                                fontFamily: 'Nunito Sans',
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                fontSize: 14.0,
+                                letterSpacing: 0.0,
+                              ),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
                   ),
-                  options: FFButtonOptions(
-                    width: 140.0,
-                    height: 40.0,
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).primary,
-                    textStyle: FlutterFlowTheme.of(context).labelLarge.override(
-                          fontFamily: 'Nunito Sans',
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          fontSize: 14.0,
-                          letterSpacing: 0.0,
-                        ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
-              ].divide(const SizedBox(width: 8.0)),
-            ),
+                ].divide(const SizedBox(width: 8.0)),
+              ),
           ],
         ),
       ),

@@ -227,6 +227,11 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                           fillColor: const Color(0x15FF5963),
                           contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 8.0, 0.0, 8.0),
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            size: 24.0,
+                          ),
                           suffixIcon: _model
                                   .searchMarketTextController!.text.isNotEmpty
                               ? InkWell(
@@ -1024,14 +1029,20 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
                                             children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.asset(
-                                                  'assets/images/lohp-category-design-v2.jpg',
-                                                  width: 70.0,
-                                                  height: 55.0,
-                                                  fit: BoxFit.cover,
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 2.0, 0.0, 0.0),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  child: Image.network(
+                                                    '${FFAppConstants.ApiBaseUrl}/assets/${itemDomainsItem.imageCover}?access_token=${FFAppState().accessToken}',
+                                                    width: 70.0,
+                                                    height: 55.0,
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
                                               ),
                                               Expanded(

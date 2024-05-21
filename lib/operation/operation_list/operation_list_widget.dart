@@ -645,13 +645,13 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                       ),
                                                     ),
                                                     if ((itemOperationItem
-                                                                    .executeId !=
+                                                                    .flowId !=
                                                                 null &&
                                                             itemOperationItem
-                                                                    .executeId !=
+                                                                    .flowId !=
                                                                 '') &&
                                                         (itemOperationItem
-                                                                .executeId !=
+                                                                .flowId !=
                                                             'null'))
                                                       Icon(
                                                         Icons.settings_outlined,
@@ -1008,7 +1008,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                           return DateTime.parse(var1)
                                               .add(const Duration(days: 1))
                                               .toString();
-                                        }(_model.searchDateEnd)}\"}}' : ' '},{ \"execute_id\":{\"_null\": true}}]}',
+                                        }(_model.searchDateEnd)}\"}}' : ' '},{ \"flow_id\":{\"_null\": true}}]}',
                                     ),
                                   ),
                                   padding: EdgeInsets.zero,
@@ -1503,7 +1503,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                           return DateTime.parse(var1)
                                               .add(const Duration(days: 1))
                                               .toString();
-                                        }(_model.searchDateEnd)}\"}}' : ' '},{ \"execute_id\":{\"_nnull\": true}}]}',
+                                        }(_model.searchDateEnd)}\"}}' : ' '},{ \"flow_id\":{\"_nnull\": true}}]}',
                                       accessToken: FFAppState().accessToken,
                                       offset:
                                           nextPageMarker.nextPageNumber * 20,

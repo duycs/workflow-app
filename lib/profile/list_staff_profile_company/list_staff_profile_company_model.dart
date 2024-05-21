@@ -21,6 +21,8 @@ class ListStaffProfileCompanyModel
 
   String filter = '';
 
+  String checkStaff = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -56,6 +58,7 @@ class ListStaffProfileCompanyModel
             .data
             .toList()
             .cast<StaffListStruct>();
+        checkStaff = '1';
       }
     } else {
       FFAppState().update(() {});

@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_getters_setters
 
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -19,7 +18,7 @@ class ProgramOrderStruct extends BaseStruct {
     int? totalItem,
     String? totalPrice,
     String? customerId,
-    List<String>? programOrderItems,
+    List<ProgramOrderItemsStruct>? programOrderItems,
   })  : _id = id,
         _status = status,
         _userCreated = userCreated,
@@ -108,10 +107,13 @@ class ProgramOrderStruct extends BaseStruct {
   bool hasCustomerId() => _customerId != null;
 
   // "program_order_items" field.
-  List<String>? _programOrderItems;
-  List<String> get programOrderItems => _programOrderItems ?? const [];
-  set programOrderItems(List<String>? val) => _programOrderItems = val;
-  void updateProgramOrderItems(Function(List<String>) updateFn) =>
+  List<ProgramOrderItemsStruct>? _programOrderItems;
+  List<ProgramOrderItemsStruct> get programOrderItems =>
+      _programOrderItems ?? const [];
+  set programOrderItems(List<ProgramOrderItemsStruct>? val) =>
+      _programOrderItems = val;
+  void updateProgramOrderItems(
+          Function(List<ProgramOrderItemsStruct>) updateFn) =>
       updateFn(_programOrderItems ??= []);
   bool hasProgramOrderItems() => _programOrderItems != null;
 
@@ -129,7 +131,10 @@ class ProgramOrderStruct extends BaseStruct {
         totalItem: castToType<int>(data['total_item']),
         totalPrice: data['total_price'] as String?,
         customerId: data['customer_id'] as String?,
-        programOrderItems: getDataList(data['program_order_items']),
+        programOrderItems: getStructList(
+          data['program_order_items'],
+          ProgramOrderItemsStruct.fromMap,
+        ),
       );
 
   static ProgramOrderStruct? maybeFromMap(dynamic data) => data is Map
@@ -149,7 +154,8 @@ class ProgramOrderStruct extends BaseStruct {
         'total_item': _totalItem,
         'total_price': _totalPrice,
         'customer_id': _customerId,
-        'program_order_items': _programOrderItems,
+        'program_order_items':
+            _programOrderItems?.map((e) => e.toMap()).toList(),
       }.withoutNulls;
 
   @override
@@ -204,7 +210,7 @@ class ProgramOrderStruct extends BaseStruct {
         ),
         'program_order_items': serializeParam(
           _programOrderItems,
-          ParamType.String,
+          ParamType.DataStruct,
           true,
         ),
       }.withoutNulls;
@@ -271,10 +277,11 @@ class ProgramOrderStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        programOrderItems: deserializeParam<String>(
+        programOrderItems: deserializeStructParam<ProgramOrderItemsStruct>(
           data['program_order_items'],
-          ParamType.String,
+          ParamType.DataStruct,
           true,
+          structBuilder: ProgramOrderItemsStruct.fromSerializableMap,
         ),
       );
 

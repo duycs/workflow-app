@@ -608,51 +608,61 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 4.0, 0.0, 4.0),
-                                                child: Text(
+                                              if ((reportImagesItem
+                                                          .operations
+                                                          .first
+                                                          .operationsId
+                                                          .dateUpdated !=
+                                                      'null') &&
                                                   (reportImagesItem
-                                                                  .operations
-                                                                  .first
-                                                                  .operationsId
-                                                                  .dateUpdated !=
-                                                              'null') &&
-                                                          (reportImagesItem
-                                                                      .operations
-                                                                      .first
-                                                                      .operationsId
-                                                                      .dateUpdated !=
-                                                                  '')
-                                                      ? dateTimeFormat(
-                                                          'dd/MM/yyyy hh:MM',
-                                                          functions.stringToDateTime(
-                                                              reportImagesItem
-                                                                  .operations
-                                                                  .first
-                                                                  .operationsId
-                                                                  .dateUpdated),
-                                                          locale:
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .languageCode,
-                                                        )
-                                                      : ' ',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .labelSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                                              .operations
+                                                              .first
+                                                              .operationsId
+                                                              .dateUpdated !=
+                                                          ''))
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 4.0, 0.0, 4.0),
+                                                  child: Text(
+                                                    (reportImagesItem
+                                                                    .operations
+                                                                    .first
+                                                                    .operationsId
+                                                                    .dateUpdated !=
+                                                                'null') &&
+                                                            (reportImagesItem
+                                                                        .operations
+                                                                        .first
+                                                                        .operationsId
+                                                                        .dateUpdated !=
+                                                                    '')
+                                                        ? dateTimeFormat(
+                                                            'dd/MM/yyyy hh:MM',
+                                                            functions.stringToDateTime(
+                                                                reportImagesItem
+                                                                    .operations
+                                                                    .first
+                                                                    .operationsId
+                                                                    .dateUpdated),
+                                                            locale: FFLocalizations
+                                                                    .of(context)
+                                                                .languageCode,
+                                                          )
+                                                        : ' ',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
                                                 ),
-                                              ),
                                             ],
                                           ),
                                         ),

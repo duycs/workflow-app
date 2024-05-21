@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/training/order/order_create/order_create_widget.dart';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -821,8 +822,45 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                   children: [
                     Expanded(
                       child: FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            enableDrag: false,
+                            context: context,
+                            builder: (context) {
+                              return GestureDetector(
+                                onTap: () => _model.unfocusNode.canRequestFocus
+                                    ? FocusScope.of(context)
+                                        .requestFocus(_model.unfocusNode)
+                                    : FocusScope.of(context).unfocus(),
+                                child: Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: OrderCreateWidget(
+                                    image: _model.dataGetOne!.imageCover,
+                                    price: _model.dataGetOne!.price,
+                                    rating: _model.dataGetOne!.reacts.isNotEmpty
+                                        ? ((List<String> listItem) {
+                                            return listItem
+                                                    .map(int.parse)
+                                                    .reduce((value, element) =>
+                                                        value + element) /
+                                                listItem.length;
+                                          }(_model.dataGetOne!.reacts
+                                            .map((e) => e.reactsId.status)
+                                            .toList()))
+                                        : 0.0,
+                                    name: _model.dataGetOne!.name,
+                                    numOfListLessions:
+                                        _model.dataGetOne!.lessions.length,
+                                    author: _model.dataGetOne!.authorId.alias,
+                                    programId: widget.idProgram,
+                                    checkType: 'staff',
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => safeSetState(() {}));
                         },
                         text: 'Mua cho cá nhân',
                         options: FFButtonOptions(
@@ -849,8 +887,45 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                     ),
                     Expanded(
                       child: FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            enableDrag: false,
+                            context: context,
+                            builder: (context) {
+                              return GestureDetector(
+                                onTap: () => _model.unfocusNode.canRequestFocus
+                                    ? FocusScope.of(context)
+                                        .requestFocus(_model.unfocusNode)
+                                    : FocusScope.of(context).unfocus(),
+                                child: Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: OrderCreateWidget(
+                                    image: _model.dataGetOne!.imageCover,
+                                    price: _model.dataGetOne!.price,
+                                    rating: _model.dataGetOne!.reacts.isNotEmpty
+                                        ? ((List<String> listItem) {
+                                            return listItem
+                                                    .map(int.parse)
+                                                    .reduce((value, element) =>
+                                                        value + element) /
+                                                listItem.length;
+                                          }(_model.dataGetOne!.reacts
+                                            .map((e) => e.reactsId.status)
+                                            .toList()))
+                                        : 0.0,
+                                    name: _model.dataGetOne!.name,
+                                    numOfListLessions:
+                                        _model.dataGetOne!.lessions.length,
+                                    author: _model.dataGetOne!.authorId.alias,
+                                    programId: widget.idProgram,
+                                    checkType: 'organization',
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => safeSetState(() {}));
                         },
                         text: 'Mua cho tổ chức',
                         options: FFButtonOptions(

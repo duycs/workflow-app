@@ -189,7 +189,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Đưa chương trình lên market',
+                                  'Đưa khóa học lên Market',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(

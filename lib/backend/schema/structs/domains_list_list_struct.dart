@@ -13,12 +13,14 @@ class DomainsListListStruct extends BaseStruct {
     String? dateCreated,
     String? name,
     String? description,
+    String? imageCover,
   })  : _id = id,
         _status = status,
         _userCreated = userCreated,
         _dateCreated = dateCreated,
         _name = name,
-        _description = description;
+        _description = description,
+        _imageCover = imageCover;
 
   // "id" field.
   String? _id;
@@ -56,6 +58,12 @@ class DomainsListListStruct extends BaseStruct {
   set description(String? val) => _description = val;
   bool hasDescription() => _description != null;
 
+  // "image_cover" field.
+  String? _imageCover;
+  String get imageCover => _imageCover ?? '';
+  set imageCover(String? val) => _imageCover = val;
+  bool hasImageCover() => _imageCover != null;
+
   static DomainsListListStruct fromMap(Map<String, dynamic> data) =>
       DomainsListListStruct(
         id: data['id'] as String?,
@@ -64,6 +72,7 @@ class DomainsListListStruct extends BaseStruct {
         dateCreated: data['date_created'] as String?,
         name: data['name'] as String?,
         description: data['description'] as String?,
+        imageCover: data['image_cover'] as String?,
       );
 
   static DomainsListListStruct? maybeFromMap(dynamic data) => data is Map
@@ -77,6 +86,7 @@ class DomainsListListStruct extends BaseStruct {
         'date_created': _dateCreated,
         'name': _name,
         'description': _description,
+        'image_cover': _imageCover,
       }.withoutNulls;
 
   @override
@@ -103,6 +113,10 @@ class DomainsListListStruct extends BaseStruct {
         ),
         'description': serializeParam(
           _description,
+          ParamType.String,
+        ),
+        'image_cover': serializeParam(
+          _imageCover,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -139,6 +153,11 @@ class DomainsListListStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        imageCover: deserializeParam(
+          data['image_cover'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -152,12 +171,13 @@ class DomainsListListStruct extends BaseStruct {
         userCreated == other.userCreated &&
         dateCreated == other.dateCreated &&
         name == other.name &&
-        description == other.description;
+        description == other.description &&
+        imageCover == other.imageCover;
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([id, status, userCreated, dateCreated, name, description]);
+  int get hashCode => const ListEquality().hash(
+      [id, status, userCreated, dateCreated, name, description, imageCover]);
 }
 
 DomainsListListStruct createDomainsListListStruct({
@@ -167,6 +187,7 @@ DomainsListListStruct createDomainsListListStruct({
   String? dateCreated,
   String? name,
   String? description,
+  String? imageCover,
 }) =>
     DomainsListListStruct(
       id: id,
@@ -175,4 +196,5 @@ DomainsListListStruct createDomainsListListStruct({
       dateCreated: dateCreated,
       name: name,
       description: description,
+      imageCover: imageCover,
     );

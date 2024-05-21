@@ -67,6 +67,7 @@ class _DoActionTypeUploadFileWidgetState
       }
       setState(() {
         _model.loop = 0;
+        _model.fileName = [];
       });
     });
   }
@@ -590,6 +591,28 @@ class _DoActionTypeUploadFileWidgetState
                           setState(() {
                             _model.loop = 0;
                           });
+                          var confirmDialogResponse = await showDialog<bool>(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return AlertDialog(
+                                    title:
+                                        Text(_model.fileName.length.toString()),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(
+                                            alertDialogContext, false),
+                                        child: const Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(
+                                            alertDialogContext, true),
+                                        child: const Text('Confirm'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ) ??
+                              false;
                           await widget.callback?.call(
                             _model.fileName,
                           );

@@ -382,9 +382,9 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                                     padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             20.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                            12.0,
+                                                                            20.0,
+                                                                            12.0),
                                                                     child: Text(
                                                                       valueOrDefault<
                                                                           String>(
@@ -484,9 +484,9 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                                     padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             20.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                            12.0,
+                                                                            20.0,
+                                                                            12.0),
                                                                     child: Text(
                                                                       valueOrDefault<String>(
                                                                                 _model.data?.hotline,
@@ -583,9 +583,9 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                                         Padding(
                                                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           20.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
+                                                                          12.0,
+                                                                          20.0,
+                                                                          12.0),
                                                                       child:
                                                                           Text(
                                                                         'Hello World',
@@ -677,9 +677,9 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                                     padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             20.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                            12.0,
+                                                                            20.0,
+                                                                            12.0),
                                                                     child: Text(
                                                                       valueOrDefault<String>(
                                                                                 _model.data?.address,
@@ -779,7 +779,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                                   '') &&
                                                           (_model.data
                                                                   ?.description !=
-                                                              ''))
+                                                              ' '))
                                                         Column(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
@@ -851,10 +851,10 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                                 child: Padding(
                                                                   padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          10.0,
-                                                                          10.0,
-                                                                          10.0,
-                                                                          10.0),
+                                                                          20.0,
+                                                                          12.0,
+                                                                          20.0,
+                                                                          12.0),
                                                                   child: Html(
                                                                     data: _model.data?.description !=
                                                                             'undefined'
@@ -1137,9 +1137,9 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                                       ),
                                                                     ),
                                                                   if (_model
-                                                                          .data!
-                                                                          .files
-                                                                          .length >=
+                                                                          .data
+                                                                          ?.files
+                                                                          .length ==
                                                                       3)
                                                                     ClipRRect(
                                                                       borderRadius:
@@ -1170,61 +1170,70 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                         Container(
                                                           decoration:
                                                               const BoxDecoration(),
-                                                          child: Builder(
-                                                            builder: (context) {
-                                                              final listImage =
-                                                                  _model.data
-                                                                          ?.files
-                                                                          .toList() ??
-                                                                      [];
-                                                              return GridView
-                                                                  .builder(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .zero,
-                                                                gridDelegate:
-                                                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                                                  crossAxisCount:
-                                                                      2,
-                                                                  crossAxisSpacing:
-                                                                      10.0,
-                                                                  mainAxisSpacing:
-                                                                      10.0,
-                                                                  childAspectRatio:
-                                                                      1.0,
-                                                                ),
-                                                                primary: false,
-                                                                shrinkWrap:
-                                                                    true,
-                                                                scrollDirection:
-                                                                    Axis.vertical,
-                                                                itemCount:
-                                                                    listImage
-                                                                        .length,
-                                                                itemBuilder:
-                                                                    (context,
-                                                                        listImageIndex) {
-                                                                  final listImageItem =
-                                                                      listImage[
-                                                                          listImageIndex];
-                                                                  return ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                    child: Image
-                                                                        .network(
-                                                                      '${FFAppConstants.ApiBaseUrl}/assets/${listImageItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                      width:
-                                                                          300.0,
-                                                                      height:
-                                                                          200.0,
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                    ),
-                                                                  );
-                                                                },
-                                                              );
-                                                            },
+                                                          child: Visibility(
+                                                            visible: _model
+                                                                    .data!
+                                                                    .files
+                                                                    .length >
+                                                                3,
+                                                            child: Builder(
+                                                              builder:
+                                                                  (context) {
+                                                                final listImage = _model
+                                                                        .data
+                                                                        ?.files
+                                                                        .toList() ??
+                                                                    [];
+                                                                return GridView
+                                                                    .builder(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .zero,
+                                                                  gridDelegate:
+                                                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                    crossAxisCount:
+                                                                        2,
+                                                                    crossAxisSpacing:
+                                                                        10.0,
+                                                                    mainAxisSpacing:
+                                                                        10.0,
+                                                                    childAspectRatio:
+                                                                        1.0,
+                                                                  ),
+                                                                  primary:
+                                                                      false,
+                                                                  shrinkWrap:
+                                                                      true,
+                                                                  scrollDirection:
+                                                                      Axis.vertical,
+                                                                  itemCount:
+                                                                      listImage
+                                                                          .length,
+                                                                  itemBuilder:
+                                                                      (context,
+                                                                          listImageIndex) {
+                                                                    final listImageItem =
+                                                                        listImage[
+                                                                            listImageIndex];
+                                                                    return ClipRRect(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              8.0),
+                                                                      child: Image
+                                                                          .network(
+                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${listImageItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                        width:
+                                                                            300.0,
+                                                                        height:
+                                                                            200.0,
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                );
+                                                              },
+                                                            ),
                                                           ),
                                                         ),
                                                       Divider(

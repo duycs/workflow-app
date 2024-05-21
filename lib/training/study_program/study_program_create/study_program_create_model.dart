@@ -20,6 +20,8 @@ class StudyProgramCreateModel
 
   int? check;
 
+  dynamic demo;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
@@ -68,6 +70,8 @@ class StudyProgramCreateModel
   bool? tokenReloadStudyProgramCreate;
   // Stores action output result for [Backend Call - API (StudyProgramCreate)] action in Button widget.
   ApiCallResponse? apiResulti4j;
+  // Stores action output result for [Backend Call - API (StudyProgramCreate)] action in Button widget.
+  ApiCallResponse? apiResulti4j12;
   // Stores action output result for [Backend Call - API (StudyProgramCreate)] action in Button widget.
   ApiCallResponse? apiResulti4j1;
 

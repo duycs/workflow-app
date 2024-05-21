@@ -73,11 +73,16 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
             children: [
               Align(
                 alignment: const AlignmentDirectional(0.0, -1.0),
-                child: Image.network(
-                  '${FFAppConstants.ApiBaseUrl}/assets/${widget.itemAuthors?.avatar}?access_token=${FFAppState().accessToken}',
+                child: Container(
                   width: double.infinity,
                   height: 270.0,
-                  fit: BoxFit.cover,
+                  decoration: const BoxDecoration(),
+                  child: Image.network(
+                    '${FFAppConstants.ApiBaseUrl}/assets/${widget.itemAuthors?.avatar}?access_token=${FFAppState().accessToken}',
+                    width: double.infinity,
+                    height: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               Padding(
@@ -397,17 +402,26 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                         mainAxisSize:
                                                                             MainAxisSize.max,
                                                                         mainAxisAlignment:
-                                                                            MainAxisAlignment.spaceBetween,
+                                                                            MainAxisAlignment.start,
                                                                         children: [
                                                                           if (itemListProgramsMarketItem.reacts.isNotEmpty)
                                                                             RatingBarWidget(
                                                                               key: Key('Keyfuw_${itemListProgramsMarketIndex}_of_${itemListProgramsMarket.length}'),
                                                                               listReacts: itemListProgramsMarketItem.reacts,
                                                                             ),
+                                                                          if (itemListProgramsMarketItem.reacts.isEmpty)
+                                                                            Text(
+                                                                              'Chưa có đánh giá nào!',
+                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                    fontFamily: 'Nunito Sans',
+                                                                                    fontSize: 13.0,
+                                                                                    letterSpacing: 0.0,
+                                                                                  ),
+                                                                            ),
                                                                         ],
                                                                       ),
                                                                       Text(
-                                                                        'Đã bán ${itemListProgramsMarketItem.orderCount.toString()} bản',
+                                                                        'Đã bán: ${itemListProgramsMarketItem.orderCount.toString()} bản',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
@@ -684,8 +698,8 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                   fit: BoxFit
                                                                       .cover,
                                                                   image: Image
-                                                                      .asset(
-                                                                    'assets/images/28ed0c5c302810c8d5782ad064461f51.jpg',
+                                                                      .network(
+                                                                    '${FFAppConstants.ApiBaseUrl}/assets/${itemDomainsItem.domainsId.imageCover}?access_token=${FFAppState().accessToken}',
                                                                   ).image,
                                                                 ),
                                                                 borderRadius:

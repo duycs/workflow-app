@@ -17,6 +17,7 @@ class OperationsStruct extends BaseStruct {
     String? organizationId,
     String? userCreated,
     String? executeId,
+    String? flowId,
   })  : _id = id,
         _status = status,
         _name = name,
@@ -27,7 +28,8 @@ class OperationsStruct extends BaseStruct {
         _dateCreated = dateCreated,
         _organizationId = organizationId,
         _userCreated = userCreated,
-        _executeId = executeId;
+        _executeId = executeId,
+        _flowId = flowId;
 
   // "id" field.
   String? _id;
@@ -97,6 +99,12 @@ class OperationsStruct extends BaseStruct {
   set executeId(String? val) => _executeId = val;
   bool hasExecuteId() => _executeId != null;
 
+  // "flow_id" field.
+  String? _flowId;
+  String get flowId => _flowId ?? '';
+  set flowId(String? val) => _flowId = val;
+  bool hasFlowId() => _flowId != null;
+
   static OperationsStruct fromMap(Map<String, dynamic> data) =>
       OperationsStruct(
         id: data['id'] as String?,
@@ -110,6 +118,7 @@ class OperationsStruct extends BaseStruct {
         organizationId: data['organization_id'] as String?,
         userCreated: data['user_created'] as String?,
         executeId: data['execute_id'] as String?,
+        flowId: data['flow_id'] as String?,
       );
 
   static OperationsStruct? maybeFromMap(dynamic data) => data is Map
@@ -128,6 +137,7 @@ class OperationsStruct extends BaseStruct {
         'organization_id': _organizationId,
         'user_created': _userCreated,
         'execute_id': _executeId,
+        'flow_id': _flowId,
       }.withoutNulls;
 
   @override
@@ -174,6 +184,10 @@ class OperationsStruct extends BaseStruct {
         ),
         'execute_id': serializeParam(
           _executeId,
+          ParamType.String,
+        ),
+        'flow_id': serializeParam(
+          _flowId,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -236,6 +250,11 @@ class OperationsStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        flowId: deserializeParam(
+          data['flow_id'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -254,7 +273,8 @@ class OperationsStruct extends BaseStruct {
         dateCreated == other.dateCreated &&
         organizationId == other.organizationId &&
         userCreated == other.userCreated &&
-        executeId == other.executeId;
+        executeId == other.executeId &&
+        flowId == other.flowId;
   }
 
   @override
@@ -269,7 +289,8 @@ class OperationsStruct extends BaseStruct {
         dateCreated,
         organizationId,
         userCreated,
-        executeId
+        executeId,
+        flowId
       ]);
 }
 
@@ -285,6 +306,7 @@ OperationsStruct createOperationsStruct({
   String? organizationId,
   String? userCreated,
   String? executeId,
+  String? flowId,
 }) =>
     OperationsStruct(
       id: id,
@@ -298,4 +320,5 @@ OperationsStruct createOperationsStruct({
       organizationId: organizationId,
       userCreated: userCreated,
       executeId: executeId,
+      flowId: flowId,
     );

@@ -551,6 +551,9 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                   setState(() {
                                                     _model.checkPrograms = '1';
                                                   });
+                                                  setState(() {
+                                                    _model.programItems = [];
+                                                  });
                                                 },
                                                 child: Row(
                                                   mainAxisSize:
@@ -603,9 +606,24 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                               false;
                                                           if (_model
                                                                   .selectedPrograms
-                                                                  .first
-                                                                  .checkPrograms ==
-                                                              true) {
+                                                                  .where((e) =>
+                                                                      e.checkPrograms ==
+                                                                      true)
+                                                                  .toList().isNotEmpty) {
+                                                            setState(() {
+                                                              _model.programItems = widget
+                                                                  .programs!
+                                                                  .where((e) =>
+                                                                      e.checkPrograms ==
+                                                                      true)
+                                                                  .toList()
+                                                                  .map((e) => e
+                                                                      .programsId
+                                                                      .id)
+                                                                  .toList()
+                                                                  .cast<
+                                                                      String>();
+                                                            });
                                                             var confirmDialogResponse =
                                                                 await showDialog<
                                                                         bool>(
@@ -757,10 +775,6 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                               return;
                                                             }
                                                           } else {
-                                                            setState(() {
-                                                              _model.checkPrograms =
-                                                                  '0';
-                                                            });
                                                             ScaffoldMessenger
                                                                     .of(context)
                                                                 .showSnackBar(
@@ -873,8 +887,25 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                 12.0, 2.0),
                                                     child: Container(
                                                       width: double.infinity,
-                                                      decoration: const BoxDecoration(
-                                                        color: Colors.white,
+                                                      decoration: BoxDecoration(
+                                                        color: (_model.programItems
+                                                                        .where((e) =>
+                                                                            e ==
+                                                                            listItemsItem
+                                                                                .programsId.id)
+                                                                        .toList().isNotEmpty) &&
+                                                                (listItemsItem
+                                                                        .checkPrograms ==
+                                                                    false)
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondary
+                                                            : FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
                                                       ),
                                                       child: Padding(
                                                         padding:

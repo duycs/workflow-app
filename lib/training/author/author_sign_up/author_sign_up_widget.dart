@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -39,6 +40,8 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await _model.getLinkDomain(context);
+      setState(() {});
+      await _model.getListAuthors(context);
       setState(() {});
     });
 
@@ -149,50 +152,44 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                       width: 2.0,
                                     ),
                                   ),
-                                  child: Stack(
-                                    children: [
-                                      InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          await Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType.fade,
-                                              child:
-                                                  FlutterFlowExpandedImageView(
-                                                image: Image.memory(
-                                                  _model.uploadedLocalFile
-                                                          .bytes ??
-                                                      Uint8List.fromList([]),
-                                                  fit: BoxFit.contain,
-                                                ),
-                                                allowRotation: false,
-                                                tag: 'imageTag',
-                                                useHeroAnimation: true,
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                        child: Hero(
-                                          tag: 'imageTag',
-                                          transitionOnUserGestures: true,
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(60.0),
-                                            child: Image.memory(
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.fade,
+                                          child: FlutterFlowExpandedImageView(
+                                            image: Image.memory(
                                               _model.uploadedLocalFile.bytes ??
                                                   Uint8List.fromList([]),
-                                              width: 100.0,
-                                              height: 100.0,
-                                              fit: BoxFit.cover,
+                                              fit: BoxFit.contain,
                                             ),
+                                            allowRotation: false,
+                                            tag: 'imageTag',
+                                            useHeroAnimation: true,
                                           ),
                                         ),
+                                      );
+                                    },
+                                    child: Hero(
+                                      tag: 'imageTag',
+                                      transitionOnUserGestures: true,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(60.0),
+                                        child: Image.memory(
+                                          _model.uploadedLocalFile.bytes ??
+                                              Uint8List.fromList([]),
+                                          width: 90.0,
+                                          height: 0.0,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
-                                    ],
+                                    ),
                                   ),
                                 ),
                                 FlutterFlowIconButton(
@@ -266,6 +263,24 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                           TextFormField(
                             controller: _model.nameTextController,
                             focusNode: _model.nameFocusNode,
+                            onChanged: (_) => EasyDebounce.debounce(
+                              '_model.nameTextController',
+                              const Duration(milliseconds: 2000),
+                              () async {
+                                if (_model.listAuthorName
+                                        .where((e) =>
+                                            e == _model.nameTextController.text)
+                                        .toList().isNotEmpty) {
+                                  setState(() {
+                                    _model.checkName = true;
+                                  });
+                                } else {
+                                  setState(() {
+                                    _model.checkName = false;
+                                  });
+                                }
+                              },
+                            ),
                             autofocus: false,
                             textCapitalization: TextCapitalization.words,
                             obscureText: false,
@@ -339,6 +354,23 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                             validator: _model.nameTextControllerValidator
                                 .asValidator(context),
                           ),
+                          if (_model.checkName == true)
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 0.0, 0.0, 0.0),
+                              child: Text(
+                                'Trùng tên tác giả. Vui lòng nhập tên khác!',
+                                style: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: FlutterFlowTheme.of(context).error,
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                              ),
+                            ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 16.0, 0.0, 0.0),
@@ -567,6 +599,10 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                             child: FFButtonWidget(
                               onPressed: () async {
                                 var shouldSetState = false;
+                                if (_model.checkName != false) {
+                                  if (shouldSetState) setState(() {});
+                                  return;
+                                }
                                 if (_model.formKey.currentState == null ||
                                     !_model.formKey.currentState!.validate()) {
                                   return;
@@ -666,7 +702,32 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                                   .secondary,
                                         ),
                                       );
-                                      Navigator.pop(context);
+                                      _model.apiResultGetStaffId =
+                                          await UserGroup.getStaffIdCall.call(
+                                        accessToken: FFAppState().accessToken,
+                                        userId: FFAppState().user.id,
+                                      );
+                                      shouldSetState = true;
+                                      if ((_model
+                                              .apiResultGetStaffId?.succeeded ??
+                                          true)) {
+                                        setState(() {
+                                          FFAppState().staffLogin =
+                                              getJsonField(
+                                            (_model.apiResultGetStaffId
+                                                    ?.jsonBody ??
+                                                ''),
+                                            r'''$.staff''',
+                                          );
+                                          FFAppState().staffOrganization =
+                                              getJsonField(
+                                            (_model.apiResultGetStaffId
+                                                    ?.jsonBody ??
+                                                ''),
+                                            r'''$.organization''',
+                                          );
+                                        });
+                                      }
 
                                       context.pushNamed(
                                         'AuthorProfile',
@@ -679,6 +740,8 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                           ),
                                         },
                                       );
+
+                                      Navigator.pop(context);
                                     }
                                   }
                                 }

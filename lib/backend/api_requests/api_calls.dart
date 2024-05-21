@@ -496,6 +496,7 @@ class GetListUserCall {
       params: {
         'fields': "email",
         'limit': 5000,
+        'offset': 0,
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -729,6 +730,7 @@ class EmployeeLessonListCall {
         'filter': filter,
         'limit': limit,
         'offset': offset,
+        'meta': "total_count,filter_count",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -2588,6 +2590,7 @@ class GetStaffListCall {
     String? filter = '',
     int? limit = 5000,
     int? offset = 0,
+    String? sort = '-date_created',
     String? accessToken = '',
   }) async {
     final baseUrl = StaffGroup.getBaseUrl(
@@ -2604,9 +2607,9 @@ class GetStaffListCall {
       },
       params: {
         'fields':
-            "id, title, user_id.role, status,organization_id.id,organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,tasks.tasks_id.status,staff_tests.percent_correct",
+            "sort,id, title, user_id.role, status,organization_id.id,organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,tasks.tasks_id.status,staff_tests.percent_correct",
         'filter': filter,
-        'sort': "-date_created",
+        'sort': sort,
         'limit': limit,
         'offset': offset,
       },
@@ -3098,7 +3101,7 @@ class OperationListCall {
       },
       params: {
         'fields':
-            "id, status, name, description, content, date_start, date_end, deadline, estimate_in_second, operation_id, step_id, action_type, execute_id,staffs.staffs_id.id, staffs.staffs_id.user_id.email,files, files.directus_files_id.id, result,settings.id, settings.settings_id.id, settings.settings_id.name, settings.settings_id.type, settings.settings_id.key, settings.settings_id.value, settings.settings_id.description,configurations.id, configurations.configurations_id.id, configurations.configurations_id.name, configurations.configurations_id.description,organization_id,user_created,date_created",
+            "id, status, name, description, content, date_start, date_end, deadline, estimate_in_second, operation_id, step_id, action_type, execute_id,staffs.staffs_id.id, staffs.staffs_id.user_id.email,files, files.directus_files_id.id, result,settings.id, settings.settings_id.id, settings.settings_id.name, settings.settings_id.type, settings.settings_id.key, settings.settings_id.value, settings.settings_id.description,configurations.id, configurations.configurations_id.id, configurations.configurations_id.name, configurations.configurations_id.description,organization_id,user_created,date_created,flow_id",
         'filter': filter,
         'sort': "-date_created",
         'total_count': 5000,
@@ -3392,7 +3395,7 @@ class ListAuthorsCall {
       params: {
         'filter': filter,
         'fields[]':
-            "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count",
+            "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count,domains.domains_id.image_cover",
         'offset': offset,
         'limit': limit,
       },
@@ -3424,7 +3427,7 @@ class GetOneAuthorsCall {
       },
       params: {
         'fields':
-            "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count, domains.id",
+            "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count, domains.id, domains.domains_id.image_cover",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -3457,7 +3460,7 @@ class ListAthorsSortCall {
       params: {
         'filter': filter,
         'fields[]':
-            "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count",
+            "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count,domains.domains_id.image_cover",
         'offset': offset,
         'limit': "10",
         'sort': "-order_count",
@@ -3573,6 +3576,8 @@ class GetDomainsCall {
         'filter': filter,
         'limit': limit,
         'offset': offset,
+        'fields[]':
+            "image_cover,id,status,user_created,date_created,user_updated,date_updated,name,description,sort",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -3599,12 +3604,15 @@ class OrderGroup {
   static GetListOrderCall getListOrderCall = GetListOrderCall();
   static CreateOrderCall createOrderCall = CreateOrderCall();
   static UpdateOrderCall updateOrderCall = UpdateOrderCall();
+  static UpdateOrderStatusPublishedCall updateOrderStatusPublishedCall =
+      UpdateOrderStatusPublishedCall();
 }
 
 class GetListOrderCall {
   Future<ApiCallResponse> call({
     int? limit = 5000,
     int? offset = 0,
+    String? filter = '',
     String? accessToken = '',
   }) async {
     final baseUrl = OrderGroup.getBaseUrl(
@@ -3622,6 +3630,9 @@ class GetListOrderCall {
       params: {
         'limit': limit,
         'offset': offset,
+        'fields':
+            " id, status, date_created, date_updated, code, description, organization_id, total_item, total_price, program_order_items.id, program_order_items.description, program_order_items.price, program_order_items.total_item, program_order_items.total_price, program_order_items.status, program_order_items.program_id.id, program_order_items.program_id.name, program_order_items.program_id.author_id.id, program_order_items.program_id.author_id.alias, program_order_items.program_id.tags.tags_id.name, customer_id.id, customer_id.user_id.email,program_order_items.program_id.lessions",
+        'filter': filter,
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -3677,6 +3688,39 @@ class UpdateOrderCall {
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateOrder',
       apiUrl: '$baseUrl/flows/trigger/7ac31b41-de6b-4d2a-91ce-e6ff18ee6c46',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class UpdateOrderStatusPublishedCall {
+  Future<ApiCallResponse> call({
+    String? orderId = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = OrderGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "program_order_id": "$orderId"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'UpdateOrderStatusPublished',
+      apiUrl: '$baseUrl/flows/trigger/3b9cc77a-ddde-4098-a81f-b102f4daa429',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',

@@ -36,6 +36,18 @@ class UpdateAuthorModel extends FlutterFlowModel<UpdateAuthorWidget> {
           int index, Function(CreateDomainAuthorsStruct) updateFn) =>
       selectedDomainList[index] = updateFn(selectedDomainList[index]);
 
+  List<String> listAuthorName = [];
+  void addToListAuthorName(String item) => listAuthorName.add(item);
+  void removeFromListAuthorName(String item) => listAuthorName.remove(item);
+  void removeAtIndexFromListAuthorName(int index) =>
+      listAuthorName.removeAt(index);
+  void insertAtIndexInListAuthorName(int index, String item) =>
+      listAuthorName.insert(index, item);
+  void updateListAuthorNameAtIndex(int index, Function(String) updateFn) =>
+      listAuthorName[index] = updateFn(listAuthorName[index]);
+
+  bool checkName = false;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
@@ -91,6 +103,31 @@ class UpdateAuthorModel extends FlutterFlowModel<UpdateAuthorWidget> {
             .data
             .toList()
             .cast<DomainsListStruct>();
+      }
+    } else {
+      return;
+    }
+  }
+
+  Future getListAuthors(BuildContext context) async {
+    bool? getListAuthors2;
+    ApiCallResponse? apiResultGetListAuthors;
+
+    getListAuthors2 = await action_blocks.tokenReload(context);
+    if (getListAuthors2!) {
+      apiResultGetListAuthors = await GroupAuthorsGroup.listAuthorsCall.call(
+        accessToken: FFAppState().accessToken,
+      );
+      if ((apiResultGetListAuthors.succeeded ?? true)) {
+        listAuthorName = (getJsonField(
+          (apiResultGetListAuthors.jsonBody ?? ''),
+          r'''$.data[:].alias''',
+          true,
+        ) as List)
+            .map<String>((s) => s.toString())
+            .toList()
+            .toList()
+            .cast<String>();
       }
     } else {
       return;
