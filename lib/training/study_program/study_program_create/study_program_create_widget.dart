@@ -857,31 +857,35 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                               );
                             }
                           } else {
-                            setState(() {
-                              _model.updateRequestDataStruct(
-                                (e) => e..estimateInDay = null,
-                              );
-                            });
-                            _model.apiResulti4j12 = await StudyProgramGroup
+                            _model.apiResultbang = await StudyProgramGroup
                                 .studyProgramCreateCall
                                 .call(
                               requestDataJson: <String, dynamic>{
-                                'name': _model.programNameTextController.text,
-                                'description': _model
-                                    .programDescriptionTextController.text,
-                                'estimate_in_day': null,
+                                'name': _model.requestData!.name,
+                                'description': _model.requestData!.description,
+                                'estimate_in_day': null!,
+                                'tests_id': getJsonField(
+                                  <String, List<dynamic>>{
+                                    'map': _model.requestData!.tests
+                                        .take(1)
+                                        .toList(),
+                                  },
+                                  r'''$.map''',
+                                ),
+                                'lessions_id': getJsonField(
+                                  <String, List<dynamic>?>{
+                                    'map': _model.requestData?.lessions
+                                        .map((e) => e.lessionsId)
+                                        .toList(),
+                                  },
+                                  r'''$.map''',
+                                ),
+                                'image_cover': _model.requestData!.imageCover,
                               },
                               accessToken: FFAppState().accessToken,
                             );
                             shouldSetState = true;
-                            _model.apiResulti4j1 = await StudyProgramGroup
-                                .studyProgramCreateCall
-                                .call(
-                              requestDataJson: _model.requestData?.toMap(),
-                              accessToken: FFAppState().accessToken,
-                            );
-                            shouldSetState = true;
-                            if ((_model.apiResulti4j1?.succeeded ?? true)) {
+                            if ((_model.apiResultbang?.succeeded ?? true)) {
                               Navigator.pop(context);
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(

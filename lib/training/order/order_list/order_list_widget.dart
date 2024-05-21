@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/training/order/order_detail/order_detail_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'order_list_model.dart';
@@ -28,11 +27,6 @@ class _OrderListWidgetState extends State<OrderListWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => OrderListModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await _model.getListOrder(context);
-    });
 
     _model.searchTextController ??= TextEditingController();
     _model.searchFocusNode ??= FocusNode();
@@ -70,7 +64,16 @@ class _OrderListWidgetState extends State<OrderListWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.pushNamed(
+                'Profile',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 0),
+                  ),
+                },
+              );
             },
           ),
           title: Text(
@@ -209,7 +212,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                 ),
               ),
               Expanded(
-                child: PagedListView<ApiPagingParams, dynamic>(
+                child: PagedListView<ApiPagingParams, dynamic>.separated(
                   pagingController: _model.setListViewController(
                     (nextPageMarker) => OrderGroup.getListOrderCall.call(
                       accessToken: FFAppState().accessToken,
@@ -222,13 +225,14 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                       ).toString()}\"}},{\"customer_id\":{\"id\":{\"_eq\":\"${getJsonField(
                         FFAppState().staffLogin,
                         r'''$.id''',
-                      ).toString()}\"}}}]}',
+                      ).toString()}\"}}}${(_model.searchTextController.text != '') && (_model.searchTextController.text != ' ') ? ',{\"program_order_items\":{\"program_id\":{\"name\":{\"_eq\":\"${_model.searchTextController.text}\"}}}}' : ' '}]}',
                     ),
                   ),
                   padding: EdgeInsets.zero,
                   primary: false,
                   reverse: false,
                   scrollDirection: Axis.vertical,
+                  separatorBuilder: (_, __) => const SizedBox(height: 10.0),
                   builderDelegate: PagedChildBuilderDelegate<dynamic>(
                     // Customize what your widget looks like when it's loading the first page.
                     firstPageProgressIndicatorBuilder: (_) => Center(
@@ -261,53 +265,86 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                     itemBuilder: (context, _, dataListIndex) {
                       final dataListItem = _model
                           .listViewPagingController!.itemList![dataListIndex];
-                      return Container(
-                        decoration: const BoxDecoration(),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            await showModalBottomSheet(
-                              isScrollControlled: true,
-                              backgroundColor: Colors.transparent,
-                              enableDrag: false,
-                              context: context,
-                              builder: (context) {
-                                return GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: const OrderDetailWidget(),
+                      return InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            enableDrag: false,
+                            context: context,
+                            builder: (context) {
+                              return GestureDetector(
+                                onTap: () => _model.unfocusNode.canRequestFocus
+                                    ? FocusScope.of(context)
+                                        .requestFocus(_model.unfocusNode)
+                                    : FocusScope.of(context).unfocus(),
+                                child: Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: OrderDetailWidget(
+                                    image: dataListItem.programOrderItems.first
+                                        .programId.imageCover,
+                                    name: dataListItem
+                                        .programOrderItems.first.programId.name,
+                                    rating: 0.0,
+                                    author: dataListItem.programOrderItems.first
+                                        .programId.authorId.alias,
+                                    quantity: valueOrDefault<int>(
+                                      dataListItem.totalItem,
+                                      0,
+                                    ),
+                                    status: dataListItem.status,
+                                    numLessions: valueOrDefault<int>(
+                                      dataListItem.programOrderItems.first
+                                          .programId.lessions.length,
+                                      0,
+                                    ),
+                                    totalPrice: valueOrDefault<String>(
+                                      dataListItem.totalPrice,
+                                      '0',
+                                    ),
+                                    private: dataListItem.private.toString(),
+                                    code: dataListItem.code,
+                                    price: valueOrDefault<String>(
+                                      dataListItem.programOrderItems.first
+                                          .programId.price,
+                                      '0',
+                                    ),
                                   ),
-                                );
-                              },
-                            ).then((value) => safeSetState(() {}));
-                          },
+                                ),
+                              );
+                            },
+                          ).then((value) => safeSetState(() {}));
+                        },
+                        child: Container(
+                          decoration: const BoxDecoration(),
                           child: Column(
-                            mainAxisSize: MainAxisSize.max,
+                            mainAxisSize: MainAxisSize.min,
                             children: [
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     8.0, 8.0, 8.0, 8.0),
                                 child: Row(
-                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Stack(
                                       children: [
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/670/600',
-                                            width: 100.0,
-                                            height: 110.0,
-                                            fit: BoxFit.cover,
+                                        Container(
+                                          width: 100.0,
+                                          height: 110.0,
+                                          decoration: const BoxDecoration(),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            child: Image.network(
+                                              '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.programOrderItems.first.programId.imageCover}?access_token=${FFAppState().accessToken}',
+                                              width: 100.0,
+                                              height: 110.0,
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ),
                                         Padding(
@@ -324,8 +361,13 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                             ),
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
+                                                color: dataListItem.status ==
+                                                        'draft'
+                                                    ? FlutterFlowTheme.of(
+                                                            context)
+                                                        .accent3
+                                                    : FlutterFlowTheme.of(
+                                                            context)
                                                         .accent2,
                                                 borderRadius:
                                                     BorderRadius.circular(20.0),
@@ -338,19 +380,30 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                       .fromSTEB(
                                                           5.0, 2.0, 5.0, 2.0),
                                                   child: Text(
-                                                    'Hoàn tất',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondary,
-                                                          fontSize: 13.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                    dataListItem.status ==
+                                                            'draft'
+                                                        ? 'Nháp'
+                                                        : 'Hoàn tất',
+                                                    style:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Nunito Sans',
+                                                              color: dataListItem
+                                                                          .status ==
+                                                                      'draft'
+                                                                  ? FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .tertiary
+                                                                  : FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondary,
+                                                              fontSize: 13.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                            ),
                                                   ),
                                                 ),
                                               ),
@@ -527,7 +580,12 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                       .fromSTEB(
                                                           0.0, 4.0, 0.0, 0.0),
                                                   child: Text(
-                                                    'Nguyễn Hoàng Mai',
+                                                    dataListItem
+                                                        .programOrderItems
+                                                        .first
+                                                        .programId
+                                                        .authorId
+                                                        .alias,
                                                     maxLines: 2,
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -545,41 +603,52 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                   ),
                                                 ),
                                               ),
-                                              Container(
-                                                height: 32.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryBackground,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          12.0),
-                                                  border: Border.all(
+                                              Expanded(
+                                                child: Container(
+                                                  height: 32.0,
+                                                  decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .alternate,
-                                                    width: 1.0,
+                                                        .primaryBackground,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12.0),
+                                                    border: Border.all(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                      width: 1.0,
+                                                    ),
                                                   ),
-                                                ),
-                                                child: Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(8.0, 0.0,
-                                                                8.0, 0.0),
-                                                    child: Text(
-                                                      'Cá nhân',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .labelMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Nunito Sans',
-                                                            letterSpacing: 0.0,
-                                                          ),
+                                                  child: Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8.0,
+                                                                  0.0,
+                                                                  8.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        dataListItem.private ==
+                                                                0
+                                                            ? 'Tổ chức'
+                                                            : 'Cá nhân',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
                                                     ),
                                                   ),
                                                 ),

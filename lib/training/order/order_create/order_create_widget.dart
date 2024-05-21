@@ -21,7 +21,7 @@ class OrderCreateWidget extends StatefulWidget {
     required this.numOfListLessions,
     required this.author,
     required this.programId,
-    required this.checkType,
+    this.checkType,
   });
 
   final String? image;
@@ -181,16 +181,20 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                             .alternate,
                                       ),
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(2.0),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                        child: Image.network(
-                                          '${FFAppConstants.ApiBaseUrl}/assets/${widget.image}?access_token=${FFAppState().accessToken}',
-                                          width: 44.0,
-                                          height: 44.0,
-                                          fit: BoxFit.cover,
+                                    child: Visibility(
+                                      visible: widget.image != null &&
+                                          widget.image != '',
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(2.0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          child: Image.network(
+                                            '${FFAppConstants.ApiBaseUrl}/assets/${widget.image}?access_token=${FFAppState().accessToken}',
+                                            width: 44.0,
+                                            height: 44.0,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -281,7 +285,9 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     ),
                               ),
                               Text(
-                                widget.author!,
+                                widget.author != null && widget.author != ''
+                                    ? widget.author!
+                                    : ' ',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -311,10 +317,13 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     ),
                               ),
                               Text(
-                                formatNumber(
-                                  widget.numOfListLessions,
-                                  formatType: FormatType.decimal,
-                                  decimalType: DecimalType.commaDecimal,
+                                valueOrDefault<String>(
+                                  formatNumber(
+                                    widget.numOfListLessions,
+                                    formatType: FormatType.decimal,
+                                    decimalType: DecimalType.commaDecimal,
+                                  ),
+                                  '0',
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -396,10 +405,13 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     ),
                               ),
                               Text(
-                                formatNumber(
-                                  functions.stringToInt(widget.price!),
-                                  formatType: FormatType.decimal,
-                                  decimalType: DecimalType.commaDecimal,
+                                valueOrDefault<String>(
+                                  formatNumber(
+                                    functions.stringToInt(widget.price!),
+                                    formatType: FormatType.decimal,
+                                    decimalType: DecimalType.commaDecimal,
+                                  ),
+                                  '0',
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -616,10 +628,13 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     ),
                               ),
                               Text(
-                                formatNumber(
-                                  _model.total,
-                                  formatType: FormatType.decimal,
-                                  decimalType: DecimalType.commaDecimal,
+                                valueOrDefault<String>(
+                                  formatNumber(
+                                    _model.total,
+                                    formatType: FormatType.decimal,
+                                    decimalType: DecimalType.commaDecimal,
+                                  ),
+                                  '0',
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .headlineSmall
@@ -649,7 +664,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     letterSpacing: 0.0,
                                   ),
                         ),
-                        if (widget.checkType == 'staff')
+                        if (widget.checkType != 'organization')
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
@@ -670,10 +685,13 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                         ),
                                   ),
                                   TextSpan(
-                                    text: formatNumber(
-                                      (_model.number!) - 1,
-                                      formatType: FormatType.decimal,
-                                      decimalType: DecimalType.commaDecimal,
+                                    text: valueOrDefault<String>(
+                                      formatNumber(
+                                        (_model.number!) - 1,
+                                        formatType: FormatType.decimal,
+                                        decimalType: DecimalType.commaDecimal,
+                                      ),
+                                      '0',
                                     ),
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w600,
@@ -716,10 +734,13 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                         ),
                                   ),
                                   TextSpan(
-                                    text: formatNumber(
-                                      _model.number,
-                                      formatType: FormatType.decimal,
-                                      decimalType: DecimalType.commaDecimal,
+                                    text: valueOrDefault<String>(
+                                      formatNumber(
+                                        _model.number,
+                                        formatType: FormatType.decimal,
+                                        decimalType: DecimalType.commaDecimal,
+                                      ),
+                                      '0',
                                     ),
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w600,

@@ -855,7 +855,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                         _model.dataGetOne!.lessions.length,
                                     author: _model.dataGetOne!.authorId.alias,
                                     programId: widget.idProgram,
-                                    checkType: 'staff',
+                                    checkType: '',
                                   ),
                                 ),
                               );

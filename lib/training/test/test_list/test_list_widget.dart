@@ -129,7 +129,7 @@ class _TestListWidgetState extends State<TestListWidget> {
                 'StudyProgramList',
                 queryParameters: {
                   'checkpage': serializeParam(
-                    widget.checkpage,
+                    'profile',
                     ParamType.String,
                   ),
                 }.withoutNulls,

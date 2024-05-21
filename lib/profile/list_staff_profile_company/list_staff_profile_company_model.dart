@@ -5,6 +5,7 @@ import '/actions/actions.dart' as action_blocks;
 import 'list_staff_profile_company_widget.dart'
     show ListStaffProfileCompanyWidget;
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class ListStaffProfileCompanyModel
     extends FlutterFlowModel<ListStaffProfileCompanyWidget> {
@@ -30,6 +31,10 @@ class ListStaffProfileCompanyModel
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for ListView widget.
+
+  PagingController<ApiPagingParams, dynamic>? listViewPagingController2;
+  Function(ApiPagingParams nextPageMarker)? listViewApiCall2;
 
   @override
   void initState(BuildContext context) {}
@@ -39,6 +44,8 @@ class ListStaffProfileCompanyModel
     unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
+
+    listViewPagingController2?.dispose();
   }
 
   /// Action blocks.
@@ -65,4 +72,47 @@ class ListStaffProfileCompanyModel
       return;
     }
   }
+
+  /// Additional helper methods.
+  PagingController<ApiPagingParams, dynamic> setListViewController2(
+    Function(ApiPagingParams) apiCall,
+  ) {
+    listViewApiCall2 = apiCall;
+    return listViewPagingController2 ??= _createListViewController2(apiCall);
+  }
+
+  PagingController<ApiPagingParams, dynamic> _createListViewController2(
+    Function(ApiPagingParams) query,
+  ) {
+    final controller = PagingController<ApiPagingParams, dynamic>(
+      firstPageKey: ApiPagingParams(
+        nextPageNumber: 0,
+        numItems: 0,
+        lastResponse: null,
+      ),
+    );
+    return controller..addPageRequestListener(listViewGetStaffListPage2);
+  }
+
+  void listViewGetStaffListPage2(ApiPagingParams nextPageMarker) =>
+      listViewApiCall2!(nextPageMarker).then((listViewGetStaffListResponse) {
+        final pageItems = (listStaff
+                    .where((e) => e.departmentId.id == widget.id)
+                    .toList()
+                    .map((e) => e)
+                    .toList() ??
+                [])
+            .toList() as List;
+        final newNumItems = nextPageMarker.numItems + pageItems.length;
+        listViewPagingController2?.appendPage(
+          pageItems,
+          (pageItems.isNotEmpty)
+              ? ApiPagingParams(
+                  nextPageNumber: nextPageMarker.nextPageNumber + 1,
+                  numItems: newNumItems,
+                  lastResponse: listViewGetStaffListResponse,
+                )
+              : null,
+        );
+      });
 }

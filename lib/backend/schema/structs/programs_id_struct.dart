@@ -8,12 +8,16 @@ class ProgramsIdStruct extends BaseStruct {
   ProgramsIdStruct({
     String? id,
     String? name,
-    String? authorId,
     List<LessionIdStruct>? lessions,
+    String? imageCover,
+    AuthorIdStruct? authorId,
+    String? price,
   })  : _id = id,
         _name = name,
+        _lessions = lessions,
+        _imageCover = imageCover,
         _authorId = authorId,
-        _lessions = lessions;
+        _price = price;
 
   // "id" field.
   String? _id;
@@ -27,12 +31,6 @@ class ProgramsIdStruct extends BaseStruct {
   set name(String? val) => _name = val;
   bool hasName() => _name != null;
 
-  // "author_id" field.
-  String? _authorId;
-  String get authorId => _authorId ?? '';
-  set authorId(String? val) => _authorId = val;
-  bool hasAuthorId() => _authorId != null;
-
   // "lessions" field.
   List<LessionIdStruct>? _lessions;
   List<LessionIdStruct> get lessions => _lessions ?? const [];
@@ -41,15 +39,37 @@ class ProgramsIdStruct extends BaseStruct {
       updateFn(_lessions ??= []);
   bool hasLessions() => _lessions != null;
 
+  // "image_cover" field.
+  String? _imageCover;
+  String get imageCover => _imageCover ?? '';
+  set imageCover(String? val) => _imageCover = val;
+  bool hasImageCover() => _imageCover != null;
+
+  // "author_id" field.
+  AuthorIdStruct? _authorId;
+  AuthorIdStruct get authorId => _authorId ?? AuthorIdStruct();
+  set authorId(AuthorIdStruct? val) => _authorId = val;
+  void updateAuthorId(Function(AuthorIdStruct) updateFn) =>
+      updateFn(_authorId ??= AuthorIdStruct());
+  bool hasAuthorId() => _authorId != null;
+
+  // "price" field.
+  String? _price;
+  String get price => _price ?? '';
+  set price(String? val) => _price = val;
+  bool hasPrice() => _price != null;
+
   static ProgramsIdStruct fromMap(Map<String, dynamic> data) =>
       ProgramsIdStruct(
         id: data['id'] as String?,
         name: data['name'] as String?,
-        authorId: data['author_id'] as String?,
         lessions: getStructList(
           data['lessions'],
           LessionIdStruct.fromMap,
         ),
+        imageCover: data['image_cover'] as String?,
+        authorId: AuthorIdStruct.maybeFromMap(data['author_id']),
+        price: data['price'] as String?,
       );
 
   static ProgramsIdStruct? maybeFromMap(dynamic data) => data is Map
@@ -59,8 +79,10 @@ class ProgramsIdStruct extends BaseStruct {
   Map<String, dynamic> toMap() => {
         'id': _id,
         'name': _name,
-        'author_id': _authorId,
         'lessions': _lessions?.map((e) => e.toMap()).toList(),
+        'image_cover': _imageCover,
+        'author_id': _authorId?.toMap(),
+        'price': _price,
       }.withoutNulls;
 
   @override
@@ -73,14 +95,22 @@ class ProgramsIdStruct extends BaseStruct {
           _name,
           ParamType.String,
         ),
-        'author_id': serializeParam(
-          _authorId,
-          ParamType.String,
-        ),
         'lessions': serializeParam(
           _lessions,
           ParamType.DataStruct,
           true,
+        ),
+        'image_cover': serializeParam(
+          _imageCover,
+          ParamType.String,
+        ),
+        'author_id': serializeParam(
+          _authorId,
+          ParamType.DataStruct,
+        ),
+        'price': serializeParam(
+          _price,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -96,16 +126,27 @@ class ProgramsIdStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        authorId: deserializeParam(
-          data['author_id'],
-          ParamType.String,
-          false,
-        ),
         lessions: deserializeStructParam<LessionIdStruct>(
           data['lessions'],
           ParamType.DataStruct,
           true,
           structBuilder: LessionIdStruct.fromSerializableMap,
+        ),
+        imageCover: deserializeParam(
+          data['image_cover'],
+          ParamType.String,
+          false,
+        ),
+        authorId: deserializeStructParam(
+          data['author_id'],
+          ParamType.DataStruct,
+          false,
+          structBuilder: AuthorIdStruct.fromSerializableMap,
+        ),
+        price: deserializeParam(
+          data['price'],
+          ParamType.String,
+          false,
         ),
       );
 
@@ -118,21 +159,28 @@ class ProgramsIdStruct extends BaseStruct {
     return other is ProgramsIdStruct &&
         id == other.id &&
         name == other.name &&
+        listEquality.equals(lessions, other.lessions) &&
+        imageCover == other.imageCover &&
         authorId == other.authorId &&
-        listEquality.equals(lessions, other.lessions);
+        price == other.price;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([id, name, authorId, lessions]);
+  int get hashCode => const ListEquality()
+      .hash([id, name, lessions, imageCover, authorId, price]);
 }
 
 ProgramsIdStruct createProgramsIdStruct({
   String? id,
   String? name,
-  String? authorId,
+  String? imageCover,
+  AuthorIdStruct? authorId,
+  String? price,
 }) =>
     ProgramsIdStruct(
       id: id,
       name: name,
-      authorId: authorId,
+      imageCover: imageCover,
+      authorId: authorId ?? AuthorIdStruct(),
+      price: price,
     );

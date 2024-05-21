@@ -2106,151 +2106,26 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                 if (shouldSetState) setState(() {});
                                 return;
                               } else {
-                                if ((_model.roleValue ==
-                                        'a8d33527-375b-4599-ac70-6a3fcad1de39') ||
-                                    (FFAppState().user.role ==
-                                        '6a8bc644-cb2d-4a31-b11e-b86e19824725')) {
-                                  if (_model.branchValue == null ||
-                                      _model.branchValue == '') {
-                                    setState(() {
-                                      _model.checkBranch = true;
-                                    });
-                                    if (shouldSetState) setState(() {});
-                                    return;
-                                  } else {
-                                    if (_model.departmentValue == null ||
-                                        _model.departmentValue == '') {
-                                      if ((_model.roleValue ==
-                                              'a8d33527-375b-4599-ac70-6a3fcad1de39') &&
-                                          (FFAppState().user.role !=
-                                              '6a8bc644-cb2d-4a31-b11e-b86e19824725')) {
-                                        setState(() {});
-                                        _model.createBToken =
-                                            await action_blocks
-                                                .tokenReload(context);
-                                        shouldSetState = true;
-                                        if (_model.createBToken!) {
-                                          _model.apiResultCreateB =
-                                              await StaffGroup.createStaffCall
-                                                  .call(
-                                            accessToken:
-                                                FFAppState().accessToken,
-                                            requestDataJson: <String, dynamic>{
-                                              'email': _model
-                                                  .emailTextController.text,
-                                              'password': 'Abcd@1234',
-                                              'role': _model.roleValue,
-                                              'first_name': _model
-                                                  .nameTextController.text,
-                                              'last_name': _model
-                                                  .nameTextController.text,
-                                              'status': 'active',
-                                              'department_id': null,
-                                              'branch_id': _model.branchValue,
-                                              'cccd': _model
-                                                  .cccdTextController.text,
-                                              'gender':
-                                                  _model.radioButtonValue ==
-                                                          'Nam'
-                                                      ? 'male'
-                                                      : 'female',
-                                              'phone': _model
-                                                  .phoneTextController.text,
-                                              'dob': dateTimeFormat(
-                                                'yyyy-MM-dd',
-                                                _model.datePicked,
-                                                locale:
-                                                    FFLocalizations.of(context)
-                                                        .languageCode,
-                                              ),
-                                              'avatar': _model.avatarId,
-                                              'title': _model
-                                                  .titleTextTextController.text,
-                                              'sort': () {
-                                                if (_model.roleValue ==
-                                                    'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                                  return '1';
-                                                } else if (_model.roleValue ==
-                                                    '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                                  return '2';
-                                                } else {
-                                                  return '3';
-                                                }
-                                              }(),
-                                            },
-                                          );
-                                          shouldSetState = true;
-                                          if ((_model.apiResultCreateB
-                                                  ?.succeeded ??
-                                              true)) {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              SnackBar(
-                                                content: Text(
-                                                  'Tạo mới thành công!',
-                                                  style: TextStyle(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                  ),
-                                                ),
-                                                duration: const Duration(
-                                                    milliseconds: 4000),
-                                                backgroundColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondary,
-                                              ),
-                                            );
-
-                                            context.pushNamed(
-                                              'PersonnelList',
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    const TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
-                                                ),
-                                              },
-                                            );
-                                          } else {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              SnackBar(
-                                                content: Text(
-                                                  'Tạo mới thất bại!',
-                                                  style: TextStyle(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                  ),
-                                                ),
-                                                duration: const Duration(
-                                                    milliseconds: 4000),
-                                                backgroundColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                              ),
-                                            );
-                                          }
-                                        } else {
-                                          setState(() {});
-                                        }
-                                      } else {
-                                        setState(() {
-                                          _model.checkDepartment = true;
-                                        });
-                                        if (shouldSetState) setState(() {});
-                                        return;
-                                      }
-                                    } else {
-                                      _model.createOToken = await action_blocks
+                                if (_model.branchValue == null ||
+                                    _model.branchValue == '') {
+                                  setState(() {
+                                    _model.checkBranch = true;
+                                  });
+                                  if (shouldSetState) setState(() {});
+                                  return;
+                                } else {
+                                  if (_model.departmentValue == null ||
+                                      _model.departmentValue == '') {
+                                    if ((_model.roleValue ==
+                                            'a8d33527-375b-4599-ac70-6a3fcad1de39') &&
+                                        (FFAppState().user.role !=
+                                            '6a8bc644-cb2d-4a31-b11e-b86e19824725')) {
+                                      setState(() {});
+                                      _model.createBToken = await action_blocks
                                           .tokenReload(context);
                                       shouldSetState = true;
-                                      if (_model.createOToken!) {
-                                        _model.apiResultCreateO =
+                                      if (_model.createBToken!) {
+                                        _model.apiResultCreateB =
                                             await StaffGroup.createStaffCall
                                                 .call(
                                           accessToken: FFAppState().accessToken,
@@ -2264,8 +2139,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                             'last_name':
                                                 _model.nameTextController.text,
                                             'status': 'active',
-                                            'department_id':
-                                                _model.departmentValue,
+                                            'department_id': null,
                                             'branch_id': _model.branchValue,
                                             'cccd':
                                                 _model.cccdTextController.text,
@@ -2285,11 +2159,22 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                             'avatar': _model.avatarId,
                                             'title': _model
                                                 .titleTextTextController.text,
+                                            'sort': () {
+                                              if (_model.roleValue ==
+                                                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                                return '1';
+                                              } else if (_model.roleValue ==
+                                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                                return '2';
+                                              } else {
+                                                return '3';
+                                              }
+                                            }(),
                                           },
                                         );
                                         shouldSetState = true;
                                         if ((_model
-                                                .apiResultCreateO?.succeeded ??
+                                                .apiResultCreateB?.succeeded ??
                                             true)) {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
@@ -2346,107 +2231,110 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                       } else {
                                         setState(() {});
                                       }
-                                    }
-                                  }
-                                } else {
-                                  _model.createDSToken =
-                                      await action_blocks.tokenReload(context);
-                                  shouldSetState = true;
-                                  if (_model.createDSToken!) {
-                                    _model.apiResultCreateDS =
-                                        await StaffGroup.createStaffCall.call(
-                                      accessToken: FFAppState().accessToken,
-                                      requestDataJson: <String, dynamic>{
-                                        'email':
-                                            _model.emailTextController.text,
-                                        'password': 'Abcd@1234',
-                                        'role': _model.roleValue,
-                                        'first_name':
-                                            _model.nameTextController.text,
-                                        'last_name':
-                                            _model.nameTextController.text,
-                                        'status': 'active',
-                                        'department_id':
-                                            _model.selectDepartment != null
-                                                ? _model.selectDepartment?.id
-                                                : ' ',
-                                        'branch_id': getJsonField(
-                                          FFAppState().staffLogin,
-                                          r'''$.branch_id''',
-                                        ),
-                                        'cccd': _model.cccdTextController.text,
-                                        'gender':
-                                            _model.radioButtonValue == 'Nam'
-                                                ? 'male'
-                                                : 'female',
-                                        'phone':
-                                            _model.phoneTextController.text,
-                                        'dob': dateTimeFormat(
-                                          'yyyy-MM-dd',
-                                          _model.datePicked,
-                                          locale: FFLocalizations.of(context)
-                                              .languageCode,
-                                        ),
-                                        'avatar': _model.avatarId,
-                                        'title':
-                                            _model.titleTextTextController.text,
-                                      },
-                                    );
-                                    shouldSetState = true;
-                                    if ((_model.apiResultCreateDS?.succeeded ??
-                                        true)) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Tạo mới thành công!',
-                                            style: TextStyle(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                            ),
-                                          ),
-                                          duration:
-                                              const Duration(milliseconds: 4000),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondary,
-                                        ),
-                                      );
-
-                                      context.pushNamed(
-                                        'PersonnelList',
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.fade,
-                                            duration: Duration(milliseconds: 0),
-                                          ),
-                                        },
-                                      );
                                     } else {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Tạo mới thất bại!',
-                                            style: TextStyle(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                            ),
-                                          ),
-                                          duration:
-                                              const Duration(milliseconds: 4000),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .error,
-                                        ),
-                                      );
+                                      setState(() {
+                                        _model.checkDepartment = true;
+                                      });
+                                      if (shouldSetState) setState(() {});
+                                      return;
                                     }
                                   } else {
-                                    setState(() {});
+                                    _model.createOToken = await action_blocks
+                                        .tokenReload(context);
+                                    shouldSetState = true;
+                                    if (_model.createOToken!) {
+                                      _model.apiResultCreateO =
+                                          await StaffGroup.createStaffCall.call(
+                                        accessToken: FFAppState().accessToken,
+                                        requestDataJson: <String, dynamic>{
+                                          'email':
+                                              _model.emailTextController.text,
+                                          'password': 'Abcd@1234',
+                                          'role': _model.roleValue,
+                                          'first_name':
+                                              _model.nameTextController.text,
+                                          'last_name':
+                                              _model.nameTextController.text,
+                                          'status': 'active',
+                                          'department_id':
+                                              _model.departmentValue,
+                                          'branch_id': _model.branchValue,
+                                          'cccd':
+                                              _model.cccdTextController.text,
+                                          'gender':
+                                              _model.radioButtonValue == 'Nam'
+                                                  ? 'male'
+                                                  : 'female',
+                                          'phone':
+                                              _model.phoneTextController.text,
+                                          'dob': dateTimeFormat(
+                                            'yyyy-MM-dd',
+                                            _model.datePicked,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ),
+                                          'avatar': _model.avatarId,
+                                          'title': _model
+                                              .titleTextTextController.text,
+                                        },
+                                      );
+                                      shouldSetState = true;
+                                      if ((_model.apiResultCreateO?.succeeded ??
+                                          true)) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Tạo mới thành công!',
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                              ),
+                                            ),
+                                            duration:
+                                                const Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondary,
+                                          ),
+                                        );
+
+                                        context.pushNamed(
+                                          'PersonnelList',
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: const TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType:
+                                                  PageTransitionType.fade,
+                                              duration:
+                                                  Duration(milliseconds: 0),
+                                            ),
+                                          },
+                                        );
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Tạo mới thất bại!',
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                              ),
+                                            ),
+                                            duration:
+                                                const Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .error,
+                                          ),
+                                        );
+                                      }
+                                    } else {
+                                      setState(() {});
+                                    }
                                   }
                                 }
                               }

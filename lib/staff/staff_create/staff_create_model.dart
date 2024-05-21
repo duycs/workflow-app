@@ -197,10 +197,6 @@ class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
   bool? createOToken;
   // Stores action output result for [Backend Call - API (CreateStaff)] action in Button widget.
   ApiCallResponse? apiResultCreateO;
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? createDSToken;
-  // Stores action output result for [Backend Call - API (CreateStaff)] action in Button widget.
-  ApiCallResponse? apiResultCreateDS;
   // Stores action output result for [Backend Call - API (CreateStaff)] action in Button widget.
   ApiCallResponse? apiResultCreateAdminBranch;
   // Stores action output result for [Backend Call - API (CreateStaff)] action in Button widget.
