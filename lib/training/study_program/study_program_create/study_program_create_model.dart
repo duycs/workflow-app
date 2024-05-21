@@ -2,10 +2,11 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/lessions_dropdown_widget.dart';
 import '/components/tests_dropdown_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'study_program_create_widget.dart' show StudyProgramCreateWidget;
 import 'package:flutter/material.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class StudyProgramCreateModel
     extends FlutterFlowModel<StudyProgramCreateWidget> {
@@ -15,9 +16,19 @@ class StudyProgramCreateModel
   void updateRequestDataStruct(Function(StudyProgramListStruct) updateFn) =>
       updateFn(requestData ??= StudyProgramListStruct());
 
+  String uploadImage = '';
+
+  int? check;
+
+  dynamic demo;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+
   // State field(s) for ProgramName widget.
   FocusNode? programNameFocusNode;
   TextEditingController? programNameTextController;
@@ -36,12 +47,20 @@ class StudyProgramCreateModel
   TextEditingController? programDescriptionTextController;
   String? Function(BuildContext, String?)?
       programDescriptionTextControllerValidator;
+  String? _programDescriptionTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Vui lòng nhập mô tả!';
+    }
+
+    return null;
+  }
+
   // Model for TestsDropdown component.
   late TestsDropdownModel testsDropdownModel;
   // State field(s) for estimate_in_day widget.
   FocusNode? estimateInDayFocusNode;
   TextEditingController? estimateInDayTextController;
-  final estimateInDayMask = MaskTextInputFormatter(mask: '+# (###) ###-##-##');
   String? Function(BuildContext, String?)? estimateInDayTextControllerValidator;
   // Model for LessionsDropdown component.
   late LessionsDropdownModel lessionsDropdownModel;
@@ -51,10 +70,16 @@ class StudyProgramCreateModel
   bool? tokenReloadStudyProgramCreate;
   // Stores action output result for [Backend Call - API (StudyProgramCreate)] action in Button widget.
   ApiCallResponse? apiResulti4j;
+  // Stores action output result for [Backend Call - API (StudyProgramCreate)] action in Button widget.
+  ApiCallResponse? apiResulti4j12;
+  // Stores action output result for [Backend Call - API (StudyProgramCreate)] action in Button widget.
+  ApiCallResponse? apiResulti4j1;
 
   @override
   void initState(BuildContext context) {
     programNameTextControllerValidator = _programNameTextControllerValidator;
+    programDescriptionTextControllerValidator =
+        _programDescriptionTextControllerValidator;
     testsDropdownModel = createModel(context, () => TestsDropdownModel());
     lessionsDropdownModel = createModel(context, () => LessionsDropdownModel());
   }
@@ -98,6 +123,52 @@ class StudyProgramCreateModel
       return true;
     } else {
       return false;
+    }
+  }
+
+  Future uploadImagePrograms(BuildContext context) async {
+    ApiCallResponse? apiResultUploadFilePrograms;
+    bool? checkRefreshTokenBlock;
+
+    apiResultUploadFilePrograms = await UploadFileGroup.uploadFileCall.call(
+      accessToken: FFAppState().accessToken,
+      file: uploadedLocalFile,
+    );
+    if ((apiResultUploadFilePrograms.succeeded ?? true)) {
+      uploadImage = getJsonField(
+        (apiResultUploadFilePrograms.jsonBody ?? ''),
+        r'''$.data.id''',
+      ).toString().toString();
+      updateRequestDataStruct(
+        (e) => e
+          ..imageCover = getJsonField(
+            (apiResultUploadFilePrograms?.jsonBody ?? ''),
+            r'''$.data.id''',
+          ).toString().toString(),
+      );
+    } else {
+      checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultUploadFilePrograms.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await uploadImagePrograms(context);
+      }
+
+      return;
     }
   }
 }

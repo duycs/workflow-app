@@ -457,8 +457,8 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                           .toList()
                                           .length >
                                       0) &&
-                                  (itemsItem.steps.first.tasks.first.status !=
-                                      'null'),
+                                  (itemsItem.steps.first.tasks.first.status ==
+                                      'done'),
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 8.0),
@@ -519,7 +519,26 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                   0.0,
                                                                   0.0),
                                                       child: Text(
-                                                        '',
+                                                        ((itemsItem.steps
+                                                                        .isNotEmpty) ==
+                                                                    true) &&
+                                                                ((itemsItem
+                                                                        .steps
+                                                                        .first
+                                                                        .tasks
+                                                                        .isNotEmpty) ==
+                                                                    true) &&
+                                                                (itemsItem
+                                                                        .steps
+                                                                        .first
+                                                                        .tasks
+                                                                        .first
+                                                                        .status ==
+                                                                    'done')
+                                                            ? itemsItem
+                                                                .steps.length
+                                                                .toString()
+                                                            : '0',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -718,14 +737,9 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                           return Visibility(
                                                             visible: (itemsItem
                                                                         .steps
-                                                                        .where((e) => e
-                                                                            .tasks
-                                                                            .where((e) =>
-                                                                                (e.publishedCount == itemTaskDoneItem.publishedCount) &&
-                                                                                (e.status ==
-                                                                                    'done'))
-                                                                            .toList()
-                                                                            .isNotEmpty)
+                                                                        .where((e) =>
+                                                                            (e.tasks.where((e) => (e.publishedCount == itemTaskDoneItem.publishedCount) && (e.status == 'done')).toList().isNotEmpty) ==
+                                                                            true)
                                                                         .toList()
                                                                         .length ==
                                                                     itemsItem

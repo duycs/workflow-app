@@ -6,7 +6,9 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -61,6 +63,12 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
             ? widget.dataDetail?.description
             : ' ');
     _model.programDescriptionFocusNode ??= FocusNode();
+
+    _model.estimateInDayTextController ??= TextEditingController(
+        text: widget.dataDetail?.estimateInDay != null
+            ? widget.dataDetail?.estimateInDay.toString()
+            : '');
+    _model.estimateInDayFocusNode ??= FocusNode();
   }
 
   @override
@@ -137,6 +145,122 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 12.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Container(
+                                  width: 90.0,
+                                  height: 90.0,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    border: Border.all(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: Stack(
+                                    children: [
+                                      if ((_model.uploadedLocalFile.bytes
+                                                  ?.isNotEmpty ??
+                                              false))
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.memory(
+                                            _model.uploadedLocalFile.bytes ??
+                                                Uint8List.fromList([]),
+                                            width: 100.0,
+                                            height: 100.0,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      if (((_model.uploadedLocalFile.bytes
+                                                      ?.isEmpty ??
+                                                  true)) &&
+                                          (widget.dataDetail?.imageCover !=
+                                                  null &&
+                                              widget.dataDetail?.imageCover !=
+                                                  ''))
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            '${FFAppConstants.ApiBaseUrl}/assets/${widget.dataDetail?.imageCover}?access_token=${FFAppState().accessToken}',
+                                            width: 100.0,
+                                            height: 100.0,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 20.0,
+                                  buttonSize: 40.0,
+                                  icon: Icon(
+                                    Icons.camera_alt,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () async {
+                                    final selectedMedia =
+                                        await selectMediaWithSourceBottomSheet(
+                                      context: context,
+                                      allowPhoto: true,
+                                    );
+                                    if (selectedMedia != null &&
+                                        selectedMedia.every((m) =>
+                                            validateFileFormat(
+                                                m.storagePath, context))) {
+                                      setState(
+                                          () => _model.isDataUploading = true);
+                                      var selectedUploadedFiles =
+                                          <FFUploadedFile>[];
+
+                                      try {
+                                        selectedUploadedFiles = selectedMedia
+                                            .map((m) => FFUploadedFile(
+                                                  name: m.storagePath
+                                                      .split('/')
+                                                      .last,
+                                                  bytes: m.bytes,
+                                                  height: m.dimensions?.height,
+                                                  width: m.dimensions?.width,
+                                                  blurHash: m.blurHash,
+                                                ))
+                                            .toList();
+                                      } finally {
+                                        _model.isDataUploading = false;
+                                      }
+                                      if (selectedUploadedFiles.length ==
+                                          selectedMedia.length) {
+                                        setState(() {
+                                          _model.uploadedLocalFile =
+                                              selectedUploadedFiles.first;
+                                        });
+                                      } else {
+                                        setState(() {});
+                                        return;
+                                      }
+                                    }
+
+                                    setState(() {
+                                      _model.uploadImageEdit =
+                                          _model.uploadImageEdit;
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
@@ -327,6 +451,227 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                               },
                             ),
                           ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: Text(_model
+                                                .estimateInDayTextController
+                                                .text),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: const Text('Ok'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: RichText(
+                                      textScaler:
+                                          MediaQuery.of(context).textScaler,
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: 'Thời hạn học ',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                          const TextSpan(
+                                            text: '(Không bắt buộc)',
+                                            style: TextStyle(
+                                              fontSize: 13.0,
+                                              fontStyle: FontStyle.italic,
+                                            ),
+                                          )
+                                        ],
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  if (((_model.estimateInDayTextController
+                                                      .text !=
+                                                  '') &&
+                                          (int.parse(_model
+                                                  .estimateInDayTextController
+                                                  .text) <
+                                              1)) &&
+                                      ((_model.check != null) &&
+                                          (_model.check! < 1)))
+                                    Text(
+                                      'Thời hạn chương trình phải lớn hơn 0',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            fontSize: 12.0,
+                                            letterSpacing: 0.0,
+                                            fontStyle: FontStyle.italic,
+                                          ),
+                                    ),
+                                ].divide(const SizedBox(height: 4.0)),
+                              ),
+                              Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 8.0, 0.0),
+                                  child: SizedBox(
+                                    width: 85.0,
+                                    child: TextFormField(
+                                      controller:
+                                          _model.estimateInDayTextController,
+                                      focusNode: _model.estimateInDayFocusNode,
+                                      onChanged: (_) => EasyDebounce.debounce(
+                                        '_model.estimateInDayTextController',
+                                        const Duration(milliseconds: 2000),
+                                        () async {
+                                          setState(() {
+                                            _model.updateRequestDataStruct(
+                                              (e) => e
+                                                ..estimateInDay = (_model.estimateInDayTextController
+                                                                    .text !=
+                                                                '') &&
+                                                        (int.parse(_model
+                                                                .estimateInDayTextController
+                                                                .text) >
+                                                            0)
+                                                    ? functions.stringToInt(_model
+                                                        .estimateInDayTextController
+                                                        .text)
+                                                    : null,
+                                            );
+                                          });
+                                          setState(() {
+                                            _model.check = int.tryParse(_model
+                                                .estimateInDayTextController
+                                                .text);
+                                          });
+                                        },
+                                      ),
+                                      autofocus: false,
+                                      textInputAction: TextInputAction.next,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(0.0),
+                                            bottomRight: Radius.circular(0.0),
+                                            topLeft: Radius.circular(0.0),
+                                            topRight: Radius.circular(0.0),
+                                          ),
+                                        ),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(0.0),
+                                            bottomRight: Radius.circular(0.0),
+                                            topLeft: Radius.circular(0.0),
+                                            topRight: Radius.circular(0.0),
+                                          ),
+                                        ),
+                                        errorBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(0.0),
+                                            bottomRight: Radius.circular(0.0),
+                                            topLeft: Radius.circular(0.0),
+                                            topRight: Radius.circular(0.0),
+                                          ),
+                                        ),
+                                        focusedErrorBorder:
+                                            UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(0.0),
+                                            bottomRight: Radius.circular(0.0),
+                                            topLeft: Radius.circular(0.0),
+                                            topRight: Radius.circular(0.0),
+                                          ),
+                                        ),
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      textAlign: TextAlign.center,
+                                      keyboardType: TextInputType.number,
+                                      validator: _model
+                                          .estimateInDayTextControllerValidator
+                                          .asValidator(context),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                'ngày',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ],
+                          ),
                           wrapWithModel(
                             model: _model.lessionsDropdownModel,
                             updateCallback: () => setState(() {}),
@@ -479,6 +824,11 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                     child: FFButtonWidget(
                       onPressed: () async {
                         var shouldSetState = false;
+                        if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                                false)) {
+                          await _model.uploadImage(context);
+                          setState(() {});
+                        }
                         if (_model.formKey.currentState == null ||
                             !_model.formKey.currentState!.validate()) {
                           return;
@@ -488,75 +838,172 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                         shouldSetState = true;
                         if (_model.tokenStudyProgramEdit!) {
                           setState(() {});
-                          _model.apiResultuus = await StudyProgramGroup
-                              .studyProgramLessionsUpdateCall
-                              .call(
-                            accessToken: FFAppState().accessToken,
-                            id: widget.dataDetail?.id,
-                            requestDataJson: _model.requestData?.toMap(),
-                          );
-                          shouldSetState = true;
-                          if ((_model.apiResultuus?.succeeded ?? true)) {
-                            Navigator.pop(context);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Cập nhật thành công!',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                ),
-                                duration: const Duration(milliseconds: 4000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).secondary,
-                              ),
-                            );
-                          } else {
-                            Navigator.pop(context);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Lỗi chỉnh sửa chương trình!',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                ),
-                                duration: const Duration(milliseconds: 4000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).error,
-                              ),
-                            );
-                          }
-
-                          _model.apiResultSynchronizedStaffLesson =
-                              await StudyProgramGroup
-                                  .synchronizedStaffLessonCall
+                          if (_model.estimateInDayTextController.text != '') {
+                            if (int.parse(
+                                    _model.estimateInDayTextController.text) >
+                                0) {
+                              _model.apiResultuus = await StudyProgramGroup
+                                  .studyProgramLessionsUpdateCall
                                   .call(
-                            accessToken: FFAppState().accessToken,
-                            programId: widget.dataDetail?.id,
-                          );
-                          shouldSetState = true;
-                          if ((_model.apiResultSynchronizedStaffLesson
-                                  ?.succeeded ??
-                              true)) {
-                            await widget.callBackList1?.call();
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Lỗi đồng bộ bài học cho nhân viên!',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                accessToken: FFAppState().accessToken,
+                                id: widget.dataDetail?.id,
+                                requestDataJson: _model.requestData?.toMap(),
+                              );
+                              shouldSetState = true;
+                              if ((_model.apiResultuus?.succeeded ?? true)) {
+                                Navigator.pop(context);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Cập nhật thành công!',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
                                   ),
+                                );
+                              } else {
+                                Navigator.pop(context);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Lỗi chỉnh sửa chương trình!',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).error,
+                                  ),
+                                );
+                              }
+
+                              _model.apiResultSynchronizedStaffLesson =
+                                  await StudyProgramGroup
+                                      .synchronizedStaffLessonCall
+                                      .call(
+                                accessToken: FFAppState().accessToken,
+                                programId: widget.dataDetail?.id,
+                              );
+                              shouldSetState = true;
+                              if ((_model.apiResultSynchronizedStaffLesson
+                                      ?.succeeded ??
+                                  true)) {
+                                await widget.callBackList1?.call();
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Lỗi đồng bộ bài học cho nhân viên!',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).error,
+                                  ),
+                                );
+                              }
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Thời hạn chương trình phải lớn hơn 0!',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).error,
                                 ),
-                                duration: const Duration(milliseconds: 4000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).error,
-                              ),
+                              );
+                            }
+                          } else {
+                            setState(() {
+                              _model.updateRequestDataStruct(
+                                (e) => e..estimateInDay = null,
+                              );
+                            });
+                            _model.apiResultuus111 = await StudyProgramGroup
+                                .studyProgramLessionsUpdateCall
+                                .call(
+                              accessToken: FFAppState().accessToken,
+                              id: widget.dataDetail?.id,
+                              requestDataJson: _model.requestData?.toMap(),
                             );
+                            shouldSetState = true;
+                            if ((_model.apiResultuus111?.succeeded ?? true)) {
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Cập nhật thành công!',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).secondary,
+                                ),
+                              );
+                            } else {
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Lỗi chỉnh sửa chương trình!',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).error,
+                                ),
+                              );
+                            }
+
+                            _model.apiResultSynchronizedStaffLesson1 =
+                                await StudyProgramGroup
+                                    .synchronizedStaffLessonCall
+                                    .call(
+                              accessToken: FFAppState().accessToken,
+                              programId: widget.dataDetail?.id,
+                            );
+                            shouldSetState = true;
+                            if ((_model.apiResultSynchronizedStaffLesson1
+                                    ?.succeeded ??
+                                true)) {
+                              await widget.callBackList1?.call();
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Lỗi đồng bộ bài học cho nhân viên!',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).error,
+                                ),
+                              );
+                            }
                           }
                         } else {
                           setState(() {});

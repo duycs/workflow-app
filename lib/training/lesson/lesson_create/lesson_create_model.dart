@@ -121,6 +121,8 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+      } else {
+        await testList(context);
       }
     }
   }

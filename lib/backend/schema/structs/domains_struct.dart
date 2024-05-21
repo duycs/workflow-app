@@ -7,7 +7,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 class DomainsStruct extends BaseStruct {
   DomainsStruct({
     DomainsIdStruct? domainsId,
-  }) : _domainsId = domainsId;
+    int? id,
+  })  : _domainsId = domainsId,
+        _id = id;
 
   // "domains_id" field.
   DomainsIdStruct? _domainsId;
@@ -17,8 +19,16 @@ class DomainsStruct extends BaseStruct {
       updateFn(_domainsId ??= DomainsIdStruct());
   bool hasDomainsId() => _domainsId != null;
 
+  // "id" field.
+  int? _id;
+  int get id => _id ?? 0;
+  set id(int? val) => _id = val;
+  void incrementId(int amount) => _id = id + amount;
+  bool hasId() => _id != null;
+
   static DomainsStruct fromMap(Map<String, dynamic> data) => DomainsStruct(
         domainsId: DomainsIdStruct.maybeFromMap(data['domains_id']),
+        id: castToType<int>(data['id']),
       );
 
   static DomainsStruct? maybeFromMap(dynamic data) =>
@@ -26,6 +36,7 @@ class DomainsStruct extends BaseStruct {
 
   Map<String, dynamic> toMap() => {
         'domains_id': _domainsId?.toMap(),
+        'id': _id,
       }.withoutNulls;
 
   @override
@@ -33,6 +44,10 @@ class DomainsStruct extends BaseStruct {
         'domains_id': serializeParam(
           _domainsId,
           ParamType.DataStruct,
+        ),
+        'id': serializeParam(
+          _id,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -44,6 +59,11 @@ class DomainsStruct extends BaseStruct {
           false,
           structBuilder: DomainsIdStruct.fromSerializableMap,
         ),
+        id: deserializeParam(
+          data['id'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -51,16 +71,20 @@ class DomainsStruct extends BaseStruct {
 
   @override
   bool operator ==(Object other) {
-    return other is DomainsStruct && domainsId == other.domainsId;
+    return other is DomainsStruct &&
+        domainsId == other.domainsId &&
+        id == other.id;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([domainsId]);
+  int get hashCode => const ListEquality().hash([domainsId, id]);
 }
 
 DomainsStruct createDomainsStruct({
   DomainsIdStruct? domainsId,
+  int? id,
 }) =>
     DomainsStruct(
       domainsId: domainsId ?? DomainsIdStruct(),
+      id: id,
     );

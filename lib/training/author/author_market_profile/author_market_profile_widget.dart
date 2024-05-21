@@ -73,11 +73,16 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
             children: [
               Align(
                 alignment: const AlignmentDirectional(0.0, -1.0),
-                child: Image.network(
-                  '${FFAppConstants.ApiBaseUrl}/assets/${widget.itemAuthors?.avatar}?access_token=${FFAppState().accessToken}',
+                child: Container(
                   width: double.infinity,
                   height: 270.0,
-                  fit: BoxFit.cover,
+                  decoration: const BoxDecoration(),
+                  child: Image.network(
+                    '${FFAppConstants.ApiBaseUrl}/assets/${widget.itemAuthors?.avatar}?access_token=${FFAppState().accessToken}',
+                    width: double.infinity,
+                    height: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               Padding(
@@ -337,113 +342,86 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                       12.0,
                                                                       16.0,
                                                                       8.0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              Expanded(
-                                                                child: Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .spaceBetween,
-                                                                      children: [
-                                                                        RatingBarWidget(
-                                                                          key: Key(
-                                                                              'Keyfuw_${itemListProgramsMarketIndex}_of_${itemListProgramsMarket.length}'),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Text(
-                                                                      'Đã bán ${itemListProgramsMarketItem.orderCount.toString()} bản',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Nunito Sans',
-                                                                            fontSize:
-                                                                                13.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                          ),
-                                                                    ),
-                                                                    RichText(
-                                                                      textScaler:
-                                                                          MediaQuery.of(context)
-                                                                              .textScaler,
-                                                                      text:
-                                                                          TextSpan(
+                                                          child: InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              context.pushNamed(
+                                                                'ProgramMarketDetail',
+                                                                queryParameters:
+                                                                    {
+                                                                  'idProgram':
+                                                                      serializeParam(
+                                                                    itemListProgramsMarketItem
+                                                                        .id,
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                }.withoutNulls,
+                                                                extra: <String,
+                                                                    dynamic>{
+                                                                  kTransitionInfoKey:
+                                                                      const TransitionInfo(
+                                                                    hasTransition:
+                                                                        true,
+                                                                    transitionType:
+                                                                        PageTransitionType
+                                                                            .fade,
+                                                                    duration: Duration(
+                                                                        milliseconds:
+                                                                            0),
+                                                                  ),
+                                                                },
+                                                              );
+                                                            },
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Expanded(
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.start,
                                                                         children: [
-                                                                          TextSpan(
-                                                                            text:
-                                                                                formatNumber(
-                                                                              functions.stringToInt(itemListProgramsMarketItem.price),
-                                                                              formatType: FormatType.decimal,
-                                                                              decimalType: DecimalType.commaDecimal,
+                                                                          if (itemListProgramsMarketItem.reacts.isNotEmpty)
+                                                                            RatingBarWidget(
+                                                                              key: Key('Keyfuw_${itemListProgramsMarketIndex}_of_${itemListProgramsMarket.length}'),
+                                                                              listReacts: itemListProgramsMarketItem.reacts,
                                                                             ),
-                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                  fontFamily: 'Nunito Sans',
-                                                                                  fontSize: 14.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.w500,
-                                                                                  fontStyle: FontStyle.italic,
-                                                                                ),
-                                                                          ),
-                                                                          const TextSpan(
-                                                                            text:
-                                                                                'đ',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              fontSize: 12.0,
-                                                                              fontStyle: FontStyle.italic,
+                                                                          if (itemListProgramsMarketItem.reacts.isEmpty)
+                                                                            Text(
+                                                                              'Chưa có đánh giá nào!',
+                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                    fontFamily: 'Nunito Sans',
+                                                                                    fontSize: 13.0,
+                                                                                    letterSpacing: 0.0,
+                                                                                  ),
                                                                             ),
-                                                                          ),
-                                                                          const TextSpan(
-                                                                            text:
-                                                                                ' ',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                          ),
-                                                                          const TextSpan(
-                                                                            text:
-                                                                                '1.500.000',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              color: Color(0xFFFF0000),
-                                                                              fontSize: 11.0,
-                                                                              decoration: TextDecoration.lineThrough,
-                                                                              fontStyle: FontStyle.italic,
-                                                                            ),
-                                                                          ),
-                                                                          const TextSpan(
-                                                                            text:
-                                                                                'đ',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              color: Color(0xFFFF0000),
-                                                                              fontSize: 11.0,
-                                                                              decoration: TextDecoration.lineThrough,
-                                                                              fontStyle: FontStyle.italic,
-                                                                            ),
-                                                                          )
                                                                         ],
+                                                                      ),
+                                                                      Text(
+                                                                        'Đã bán: ${itemListProgramsMarketItem.orderCount.toString()} bản',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
@@ -452,74 +430,170 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                               letterSpacing: 0.0,
                                                                             ),
                                                                       ),
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          4.0),
-                                                                      child:
-                                                                          Text(
+                                                                      Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
+                                                                        children: [
+                                                                          if ((itemListProgramsMarketItem.price != '') &&
+                                                                              (itemListProgramsMarketItem.price != '0'))
+                                                                            RichText(
+                                                                              textScaler: MediaQuery.of(context).textScaler,
+                                                                              text: TextSpan(
+                                                                                children: [
+                                                                                  TextSpan(
+                                                                                    text: formatNumber(
+                                                                                      functions.stringToInt(itemListProgramsMarketItem.price),
+                                                                                      formatType: FormatType.decimal,
+                                                                                      decimalType: DecimalType.commaDecimal,
+                                                                                    ),
+                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                          fontFamily: 'Nunito Sans',
+                                                                                          fontSize: 14.0,
+                                                                                          letterSpacing: 0.0,
+                                                                                          fontWeight: FontWeight.w500,
+                                                                                          fontStyle: FontStyle.italic,
+                                                                                        ),
+                                                                                  ),
+                                                                                  const TextSpan(
+                                                                                    text: 'đ',
+                                                                                    style: TextStyle(
+                                                                                      fontSize: 12.0,
+                                                                                      fontStyle: FontStyle.italic,
+                                                                                    ),
+                                                                                  ),
+                                                                                  const TextSpan(
+                                                                                    text: ' ',
+                                                                                    style: TextStyle(
+                                                                                      fontSize: 12.0,
+                                                                                    ),
+                                                                                  ),
+                                                                                  TextSpan(
+                                                                                    text: formatNumber(
+                                                                                      double.tryParse((double.parse(itemListProgramsMarketItem.price) / 0.7).toStringAsFixed(0)),
+                                                                                      formatType: FormatType.decimal,
+                                                                                      decimalType: DecimalType.commaDecimal,
+                                                                                    ),
+                                                                                    style: const TextStyle(
+                                                                                      color: Color(0xFFFF0000),
+                                                                                      fontSize: 11.0,
+                                                                                      decoration: TextDecoration.lineThrough,
+                                                                                      fontStyle: FontStyle.italic,
+                                                                                    ),
+                                                                                  ),
+                                                                                  const TextSpan(
+                                                                                    text: 'đ',
+                                                                                    style: TextStyle(
+                                                                                      color: Color(0xFFFF0000),
+                                                                                      fontSize: 11.0,
+                                                                                      decoration: TextDecoration.lineThrough,
+                                                                                      fontStyle: FontStyle.italic,
+                                                                                    ),
+                                                                                  )
+                                                                                ],
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      fontFamily: 'Nunito Sans',
+                                                                                      fontSize: 13.0,
+                                                                                      letterSpacing: 0.0,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          if (((itemListProgramsMarketItem.price != '') && (itemListProgramsMarketItem.price == '0')) ||
+                                                                              (itemListProgramsMarketItem.price == ''))
+                                                                            Text(
+                                                                              'Miễn phí',
+                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                    fontFamily: 'Nunito Sans',
+                                                                                    color: FlutterFlowTheme.of(context).secondary,
+                                                                                    letterSpacing: 0.0,
+                                                                                    fontWeight: FontWeight.w500,
+                                                                                  ),
+                                                                            ),
+                                                                        ],
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            4.0),
+                                                                        child:
+                                                                            Text(
+                                                                          itemListProgramsMarketItem
+                                                                              .name,
+                                                                          maxLines:
+                                                                              2,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .headlineSmall
+                                                                              .override(
+                                                                                fontFamily: 'Nunito Sans',
+                                                                                fontSize: 18.0,
+                                                                                letterSpacing: 0.0,
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                      Text(
                                                                         itemListProgramsMarketItem
-                                                                            .name,
-                                                                        maxLines:
-                                                                            2,
+                                                                            .description,
                                                                         style: FlutterFlowTheme.of(context)
-                                                                            .headlineSmall
+                                                                            .labelMedium
                                                                             .override(
                                                                               fontFamily: 'Nunito Sans',
-                                                                              fontSize: 18.0,
                                                                               letterSpacing: 0.0,
                                                                             ),
                                                                       ),
-                                                                    ),
-                                                                    Text(
-                                                                      itemListProgramsMarketItem
-                                                                          .description,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Nunito Sans',
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                          ),
-                                                                    ),
-                                                                  ].divide(const SizedBox(
-                                                                      height:
-                                                                          2.0)),
+                                                                    ].divide(const SizedBox(
+                                                                        height:
+                                                                            2.0)),
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
+                                                                Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             8.0,
                                                                             0.0,
                                                                             8.0),
-                                                                child:
-                                                                    ClipRRect(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              12.0),
-                                                                  child: Image
-                                                                      .network(
-                                                                    '${FFAppConstants.ApiBaseUrl}/assets/${itemListProgramsMarketItem.imageCover}?access_token=${FFAppState().accessToken}',
-                                                                    width:
-                                                                        100.0,
-                                                                    height:
-                                                                        100.0,
-                                                                    fit: BoxFit
-                                                                        .cover,
+                                                                    child:
+                                                                        Container(
+                                                                      width:
+                                                                          100.0,
+                                                                      height:
+                                                                          100.0,
+                                                                      decoration:
+                                                                          const BoxDecoration(),
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          ClipRRect(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(12.0),
+                                                                        child: Image
+                                                                            .network(
+                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${itemListProgramsMarketItem.imageCover}?access_token=${FFAppState().accessToken}',
+                                                                          width:
+                                                                              100.0,
+                                                                          height:
+                                                                              100.0,
+                                                                          fit: BoxFit
+                                                                              .cover,
+                                                                        ),
+                                                                      ),
+                                                                    ),
                                                                   ),
                                                                 ),
-                                                              ),
-                                                            ].divide(const SizedBox(
-                                                                width: 8.0)),
+                                                              ].divide(const SizedBox(
+                                                                  width: 8.0)),
+                                                            ),
                                                           ),
                                                         );
                                                       },
@@ -624,8 +698,8 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                   fit: BoxFit
                                                                       .cover,
                                                                   image: Image
-                                                                      .asset(
-                                                                    'assets/images/28ed0c5c302810c8d5782ad064461f51.jpg',
+                                                                      .network(
+                                                                    '${FFAppConstants.ApiBaseUrl}/assets/${itemDomainsItem.domainsId.imageCover}?access_token=${FFAppState().accessToken}',
                                                                   ).image,
                                                                 ),
                                                                 borderRadius:

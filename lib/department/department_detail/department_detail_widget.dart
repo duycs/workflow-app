@@ -551,6 +551,9 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                   setState(() {
                                                     _model.checkPrograms = '1';
                                                   });
+                                                  setState(() {
+                                                    _model.programItems = [];
+                                                  });
                                                 },
                                                 child: Row(
                                                   mainAxisSize:
@@ -603,9 +606,24 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                               false;
                                                           if (_model
                                                                   .selectedPrograms
-                                                                  .first
-                                                                  .checkPrograms ==
-                                                              true) {
+                                                                  .where((e) =>
+                                                                      e.checkPrograms ==
+                                                                      true)
+                                                                  .toList().isNotEmpty) {
+                                                            setState(() {
+                                                              _model.programItems = widget
+                                                                  .programs!
+                                                                  .where((e) =>
+                                                                      e.checkPrograms ==
+                                                                      true)
+                                                                  .toList()
+                                                                  .map((e) => e
+                                                                      .programsId
+                                                                      .id)
+                                                                  .toList()
+                                                                  .cast<
+                                                                      String>();
+                                                            });
                                                             var confirmDialogResponse =
                                                                 await showDialog<
                                                                         bool>(
@@ -757,10 +775,6 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                               return;
                                                             }
                                                           } else {
-                                                            setState(() {
-                                                              _model.checkPrograms =
-                                                                  '0';
-                                                            });
                                                             ScaffoldMessenger
                                                                     .of(context)
                                                                 .showSnackBar(
@@ -873,8 +887,25 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                 12.0, 2.0),
                                                     child: Container(
                                                       width: double.infinity,
-                                                      decoration: const BoxDecoration(
-                                                        color: Colors.white,
+                                                      decoration: BoxDecoration(
+                                                        color: (_model.programItems
+                                                                        .where((e) =>
+                                                                            e ==
+                                                                            listItemsItem
+                                                                                .programsId.id)
+                                                                        .toList().isNotEmpty) &&
+                                                                (listItemsItem
+                                                                        .checkPrograms ==
+                                                                    false)
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondary
+                                                            : FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
                                                       ),
                                                       child: Padding(
                                                         padding:
@@ -889,9 +920,9 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                               MainAxisSize.max,
                                                           children: [
                                                             Expanded(
-                                                              flex: 1,
+                                                              flex: 5,
                                                               child: Text(
-                                                                '${formatNumber(
+                                                                '${'${formatNumber(
                                                                   listItemsIndex +
                                                                       1,
                                                                   formatType:
@@ -900,24 +931,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                   decimalType:
                                                                       DecimalType
                                                                           .commaDecimal,
-                                                                )}. ',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Nunito Sans',
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                            Expanded(
-                                                              flex: 5,
-                                                              child: Text(
-                                                                listItemsItem
-                                                                    .programsId
-                                                                    .name,
+                                                                )}. '} ${listItemsItem.programsId.name}',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -930,63 +944,57 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                               ),
                                                             ),
                                                             if ('1' == '2')
-                                                              Expanded(
-                                                                flex: 1,
-                                                                child: Text(
-                                                                  '3',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                      ),
-                                                                ),
+                                                              Text(
+                                                                '3',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                    ),
                                                               ),
                                                             if (_model
                                                                     .checkPrograms ==
                                                                 '1')
-                                                              Expanded(
-                                                                flex: 1,
+                                                              wrapWithModel(
+                                                                model: _model
+                                                                    .selectedProgramsModels
+                                                                    .getModel(
+                                                                  '${listItemsItem.checkPrograms.toString()}${listItemsItem.programsId.id}',
+                                                                  listItemsIndex,
+                                                                ),
+                                                                updateCallback:
+                                                                    () => setState(
+                                                                        () {}),
+                                                                updateOnChange:
+                                                                    true,
                                                                 child:
-                                                                    wrapWithModel(
-                                                                  model: _model
-                                                                      .selectedProgramsModels
-                                                                      .getModel(
-                                                                    '${listItemsItem.checkPrograms.toString()}${listItemsItem.programsId.id}',
-                                                                    listItemsIndex,
+                                                                    SelectedProgramsWidget(
+                                                                  key: Key(
+                                                                    'Keyp32_${'${listItemsItem.checkPrograms.toString()}${listItemsItem.programsId.id}'}',
                                                                   ),
-                                                                  updateCallback:
-                                                                      () => setState(
-                                                                          () {}),
-                                                                  updateOnChange:
-                                                                      true,
-                                                                  child:
-                                                                      SelectedProgramsWidget(
-                                                                    key: Key(
-                                                                      'Keyp32_${'${listItemsItem.checkPrograms.toString()}${listItemsItem.programsId.id}'}',
-                                                                    ),
-                                                                    itemCheck:
-                                                                        listItemsItem
-                                                                            .checkPrograms,
-                                                                    callBack:
-                                                                        (check) async {
-                                                                      setState(
-                                                                          () {
-                                                                        _model
-                                                                            .updateSelectedProgramsAtIndex(
-                                                                          listItemsIndex,
-                                                                          (e) => e
-                                                                            ..checkPrograms =
-                                                                                check,
-                                                                        );
-                                                                      });
-                                                                    },
-                                                                  ),
+                                                                  itemCheck:
+                                                                      listItemsItem
+                                                                          .checkPrograms,
+                                                                  callBack:
+                                                                      (check) async {
+                                                                    setState(
+                                                                        () {
+                                                                      _model
+                                                                          .updateSelectedProgramsAtIndex(
+                                                                        listItemsIndex,
+                                                                        (e) => e
+                                                                          ..checkPrograms =
+                                                                              check,
+                                                                      );
+                                                                    });
+                                                                  },
                                                                 ),
                                                               ),
                                                           ].divide(const SizedBox(

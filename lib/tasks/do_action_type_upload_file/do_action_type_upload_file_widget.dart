@@ -1,12 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import '/tasks/popup_see_more/popup_see_more_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -68,6 +67,7 @@ class _DoActionTypeUploadFileWidgetState
       }
       setState(() {
         _model.loop = 0;
+        _model.fileName = [];
       });
     });
   }
@@ -199,7 +199,60 @@ class _DoActionTypeUploadFileWidgetState
                                             ),
                                       ),
                                     ),
+                                    if ((functions.checkFileLast(
+                                                (String tail) {
+                                              return tail.split('.').last;
+                                            }(dataItem.filenameDownload)) ==
+                                            'pdf') ||
+                                        (functions.checkFileLast(
+                                                (String tail) {
+                                              return tail.split('.').last;
+                                            }(dataItem.filenameDownload)) ==
+                                            'img'))
+                                      Builder(
+                                        builder: (context) =>
+                                            FlutterFlowIconButton(
+                                          borderRadius: 20.0,
+                                          borderWidth: 1.0,
+                                          buttonSize: 40.0,
+                                          icon: Icon(
+                                            Icons.remove_red_eye,
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            size: 24.0,
+                                          ),
+                                          onPressed: () async {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: SizedBox(
+                                                    height: double.infinity,
+                                                    width: double.infinity,
+                                                    child: PopupSeeMoreWidget(
+                                                      fileName: dataItem
+                                                          .filenameDownload,
+                                                      fileId: dataItem.id,
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ).then((value) => setState(() {}));
+                                          },
+                                        ),
+                                      ),
                                     FlutterFlowIconButton(
+                                      borderColor: Colors.transparent,
                                       borderRadius: 20.0,
                                       borderWidth: 1.0,
                                       buttonSize: 40.0,
@@ -247,117 +300,6 @@ class _DoActionTypeUploadFileWidgetState
                                   ].divide(const SizedBox(width: 8.0)),
                                 ),
                               ),
-                              if ((functions.checkFileLast((String tail) {
-                                        return tail.split('.').last;
-                                      }(dataItem.filenameDownload)) ==
-                                      'pdf') &&
-                                  (_model.isShowPdf == false))
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    setState(() {
-                                      _model.isShowPdf = true;
-                                    });
-                                  },
-                                  child: Text(
-                                    '(Xem thêm)',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          fontSize: 13.0,
-                                          letterSpacing: 0.0,
-                                          fontStyle: FontStyle.italic,
-                                        ),
-                                  ),
-                                ),
-                              if ((functions.checkFileLast((String tail) {
-                                        return tail.split('.').last;
-                                      }(dataItem.filenameDownload)) ==
-                                      'pdf') &&
-                                  _model.isShowPdf)
-                                FlutterFlowPdfViewer(
-                                  networkPath:
-                                      '${FFAppConstants.ApiBaseUrl}/assets/${dataItem.id}?access_token=${FFAppState().accessToken}',
-                                  height: 300.0,
-                                  horizontalScroll: false,
-                                ),
-                              if (functions.checkFileLast((String tail) {
-                                    return tail.split('.').last;
-                                  }(dataItem.filenameDownload)) ==
-                                  'img')
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    await Navigator.push(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.fade,
-                                        child: FlutterFlowExpandedImageView(
-                                          image: Image.network(
-                                            '${FFAppConstants.ApiBaseUrl}/assets/${dataItem.id}?access_token=${FFAppState().accessToken}',
-                                            fit: BoxFit.contain,
-                                          ),
-                                          allowRotation: false,
-                                          tag:
-                                              '${FFAppConstants.ApiBaseUrl}/assets/${dataItem.id}?access_token=${FFAppState().accessToken}',
-                                          useHeroAnimation: true,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: Hero(
-                                    tag:
-                                        '${FFAppConstants.ApiBaseUrl}/assets/${dataItem.id}?access_token=${FFAppState().accessToken}',
-                                    transitionOnUserGestures: true,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.network(
-                                        '${FFAppConstants.ApiBaseUrl}/assets/${dataItem.id}?access_token=${FFAppState().accessToken}',
-                                        width: 350.0,
-                                        height: 200.0,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              if ((functions.checkFileLast((String tail) {
-                                        return tail.split('.').last;
-                                      }(dataItem.filenameDownload)) ==
-                                      'pdf') &&
-                                  _model.isShowPdf)
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    setState(() {
-                                      _model.isShowPdf = false;
-                                    });
-                                  },
-                                  child: Text(
-                                    '(Ẩn bớt)',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          fontSize: 13.0,
-                                          letterSpacing: 0.0,
-                                          fontStyle: FontStyle.italic,
-                                        ),
-                                  ),
-                                ),
                             ],
                           );
                         },
@@ -480,6 +422,7 @@ class _DoActionTypeUploadFileWidgetState
                                           alignment:
                                               const AlignmentDirectional(1.0, 0.0),
                                           child: FlutterFlowIconButton(
+                                            borderColor: Colors.transparent,
                                             borderRadius: 20.0,
                                             borderWidth: 1.0,
                                             buttonSize: 40.0,
@@ -648,6 +591,28 @@ class _DoActionTypeUploadFileWidgetState
                           setState(() {
                             _model.loop = 0;
                           });
+                          var confirmDialogResponse = await showDialog<bool>(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return AlertDialog(
+                                    title:
+                                        Text(_model.fileName.length.toString()),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(
+                                            alertDialogContext, false),
+                                        child: const Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(
+                                            alertDialogContext, true),
+                                        child: const Text('Confirm'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ) ??
+                              false;
                           await widget.callback?.call(
                             _model.fileName,
                           );

@@ -42,15 +42,13 @@ class _RatingStafWidgetState extends State<RatingStafWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return RatingBar.builder(
-      onRatingUpdate: (newValue) =>
-          setState(() => _model.ratingBarValue = newValue),
+    return RatingBarIndicator(
       itemBuilder: (context, index) => Icon(
         Icons.star_rounded,
         color: FlutterFlowTheme.of(context).tertiary,
       ),
       direction: Axis.horizontal,
-      initialRating: _model.ratingBarValue ??= widget.list!.isNotEmpty
+      rating: widget.list!.isNotEmpty
           ? ((List<String> listItem) {
               return listItem
                       .map(int.parse)
@@ -61,7 +59,6 @@ class _RatingStafWidgetState extends State<RatingStafWidget> {
       unratedColor: FlutterFlowTheme.of(context).accent3,
       itemCount: 5,
       itemSize: 11.0,
-      glowColor: FlutterFlowTheme.of(context).tertiary,
     );
   }
 }

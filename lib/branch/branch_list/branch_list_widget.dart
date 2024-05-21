@@ -127,6 +127,7 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                       callBackList: () async {
                         setState(
                             () => _model.listViewPagingController?.refresh());
+                        setState(() {});
                       },
                     ),
                   ),

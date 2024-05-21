@@ -53,7 +53,7 @@ class ProgramListMarketModel extends FlutterFlowModel<ProgramListMarketWidget> {
         } else {
           return ' ';
         }
-      }()}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${searchMarketTextController.text != '' ? searchMarketTextController.text : ' '}${searchMarketTextController.text != '' ? '\"}}' : ' '}]}',
+      }()}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${searchMarketTextController.text != '' ? searchMarketTextController.text : ' '}${searchMarketTextController.text != '' ? '\"}}' : ' '}${widget.domainToProgramListMarket != '' ? ',{\"domain_id\":{\"name\":{\"_icontains\":\"' : ' '}${widget.domainToProgramListMarket != '' ? widget.domainToProgramListMarket : ' '}${widget.domainToProgramListMarket != '' ? '\"}}}' : ' '}]}',
     );
     if ((apiResultList.succeeded ?? true)) {
       listPrograms = MarketLessonListDataStruct.maybeFromMap(

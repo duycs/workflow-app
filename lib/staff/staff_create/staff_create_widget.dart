@@ -14,6 +14,7 @@ import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'staff_create_model.dart';
@@ -1647,20 +1648,33 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Text(
-                                        'Email: ${_model.emailTextController.text}',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
+                                      Expanded(
+                                        child: Text(
+                                          'Email: ${_model.emailTextController.text}',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
                                       ),
-                                      Icon(
-                                        Icons.content_copy,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24.0,
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await Clipboard.setData(ClipboardData(
+                                              text: _model
+                                                  .emailTextController.text));
+                                        },
+                                        child: Icon(
+                                          Icons.content_copy,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24.0,
+                                        ),
                                       ),
                                     ].divide(const SizedBox(width: 4.0)),
                                   ),
@@ -1676,11 +1690,21 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                               letterSpacing: 0.0,
                                             ),
                                       ),
-                                      Icon(
-                                        Icons.content_copy,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24.0,
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await Clipboard.setData(
+                                              const ClipboardData(text: 'Abcd@1234'));
+                                        },
+                                        child: Icon(
+                                          Icons.content_copy,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24.0,
+                                        ),
                                       ),
                                     ].divide(const SizedBox(width: 4.0)),
                                   ),
@@ -2142,6 +2166,17 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                               'avatar': _model.avatarId,
                                               'title': _model
                                                   .titleTextTextController.text,
+                                              'sort': () {
+                                                if (_model.roleValue ==
+                                                    'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                                  return '1';
+                                                } else if (_model.roleValue ==
+                                                    '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                                  return '2';
+                                                } else {
+                                                  return '3';
+                                                }
+                                              }(),
                                             },
                                           );
                                           shouldSetState = true;

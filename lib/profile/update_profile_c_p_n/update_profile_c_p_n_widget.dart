@@ -1378,9 +1378,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                         ),
                                                       ),
                                                     ),
-                                                    if (_model
-                                                        .uploadedLocalFiles2
-                                                        .isNotEmpty)
+                                                    if (_model.images.isNotEmpty)
                                                       Padding(
                                                         padding:
                                                             const EdgeInsetsDirectional
@@ -1499,7 +1497,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                           mediaSource:
                                                               MediaSource
                                                                   .photoGallery,
-                                                          multiImage: true,
+                                                          multiImage: false,
                                                         );
                                                         if (selectedMedia !=
                                                                 null &&
@@ -1543,8 +1541,9 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                               selectedMedia
                                                                   .length) {
                                                             setState(() {
-                                                              _model.uploadedLocalFiles2 =
-                                                                  selectedUploadedFiles;
+                                                              _model.uploadedLocalFile2 =
+                                                                  selectedUploadedFiles
+                                                                      .first;
                                                             });
                                                           } else {
                                                             setState(() {});
@@ -1553,11 +1552,8 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                         }
 
                                                         setState(() {
-                                                          _model.images = _model
-                                                              .uploadedLocalFiles2
-                                                              .toList()
-                                                              .cast<
-                                                                  FFUploadedFile>();
+                                                          _model.addToImages(_model
+                                                              .uploadedLocalFile2);
                                                         });
                                                       },
                                                       text: 'Upload Image',

@@ -363,7 +363,9 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                     '#Kết quả tìm kiếm theo bộ lọc',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Nunito Sans',
+                          fontSize: 12.0,
                           letterSpacing: 0.0,
+                          fontStyle: FontStyle.italic,
                         ),
                   ),
                 ),

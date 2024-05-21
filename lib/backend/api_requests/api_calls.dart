@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
 
@@ -10,7 +12,10 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 /// Start GroupTemplate Group Code
 
 class GroupTemplateGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -22,7 +27,10 @@ class GroupTemplateGroup {
 /// Start ProcedurePublished Group Code
 
 class ProcedurePublishedGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -43,9 +51,13 @@ class ProcedurePublishedListCall {
     int? limit = 5000,
     String? accessToken = '',
   }) async {
+    final baseUrl = ProcedurePublishedGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'ProcedurePublishedList',
-      apiUrl: '${ProcedurePublishedGroup.baseUrl}/items/workflows',
+      apiUrl: '$baseUrl/items/workflows',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -75,13 +87,17 @@ class ProcedureTemplateUpdateLimitPublishedCall {
     int? limitPublished = 0,
     String? accessToken = '',
   }) async {
+    final baseUrl = ProcedurePublishedGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final ffApiRequestBody = '''
 {
   "limit_published": $limitPublished
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'ProcedureTemplateUpdateLimitPublished',
-      apiUrl: '${ProcedurePublishedGroup.baseUrl}/items/workflows/$id',
+      apiUrl: '$baseUrl/items/workflows/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
@@ -104,14 +120,17 @@ class ProcedurePublishedCall {
     String? workflowId = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = ProcedurePublishedGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final ffApiRequestBody = '''
 {
   "workflow_id": "$workflowId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'ProcedurePublished',
-      apiUrl:
-          '${ProcedurePublishedGroup.baseUrl}/flows/trigger/cb0b45cb-956a-410e-9f15-fd040a83a0e4',
+      apiUrl: '$baseUrl/flows/trigger/cb0b45cb-956a-410e-9f15-fd040a83a0e4',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -134,7 +153,10 @@ class ProcedurePublishedCall {
 /// Start Department Group Code
 
 class DepartmentGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -152,9 +174,13 @@ class GetDepartmentListCall {
     int? offset = 0,
     String? accessToken = '',
   }) async {
+    final baseUrl = DepartmentGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'GetDepartmentList',
-      apiUrl: '${DepartmentGroup.baseUrl}/items/departments',
+      apiUrl: '$baseUrl/items/departments',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -186,6 +212,10 @@ class PostdepartmentCall {
     dynamic programsIdJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = DepartmentGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final programsId = _serializeJson(programsIdJson, true);
     final ffApiRequestBody = '''
 {
@@ -198,7 +228,7 @@ class PostdepartmentCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Postdepartment',
-      apiUrl: '${DepartmentGroup.baseUrl}/items/departments',
+      apiUrl: '$baseUrl/items/departments',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -227,6 +257,10 @@ class PathDepartmentCall {
     String? status = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = DepartmentGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final programsId = _serializeJson(programsIdJson, true);
     final ffApiRequestBody = '''
 {
@@ -239,7 +273,7 @@ class PathDepartmentCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'PathDepartment',
-      apiUrl: '${DepartmentGroup.baseUrl}/items/departments/$departmentId',
+      apiUrl: '$baseUrl/items/departments/$departmentId',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
@@ -262,12 +296,15 @@ class UpdateProgramsCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = DepartmentGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'UpdatePrograms',
-      apiUrl:
-          '${DepartmentGroup.baseUrl}/flows/trigger/d76ea3a4-88ff-4a81-b6c8-e6f8edc20652',
+      apiUrl: '$baseUrl/flows/trigger/d76ea3a4-88ff-4a81-b6c8-e6f8edc20652',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -290,7 +327,10 @@ class UpdateProgramsCall {
 /// Start UploadFile Group Code
 
 class UploadFileGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -304,9 +344,13 @@ class UploadFileCall {
     FFUploadedFile? file,
     String? accessToken = '',
   }) async {
+    final baseUrl = UploadFileGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'UploadFile',
-      apiUrl: '${UploadFileGroup.baseUrl}/files',
+      apiUrl: '$baseUrl/files',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -330,11 +374,14 @@ class UploadListFileCall {
     List<FFUploadedFile>? fileList,
     String? accessToken = '',
   }) async {
+    final baseUrl = UploadFileGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
     final file = fileList ?? [];
 
     return ApiManager.instance.makeApiCall(
       callName: 'UploadListFile',
-      apiUrl: '${UploadFileGroup.baseUrl}/files',
+      apiUrl: '$baseUrl/files',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -358,7 +405,10 @@ class UploadListFileCall {
 /// Start User Group Code
 
 class UserGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -372,9 +422,13 @@ class UserMeCall {
   Future<ApiCallResponse> call({
     String? accessToken = '',
   }) async {
+    final baseUrl = UserGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'UserMe',
-      apiUrl: '${UserGroup.baseUrl}/users/me',
+      apiUrl: '$baseUrl/users/me',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -395,14 +449,17 @@ class GetStaffIdCall {
     String? userId = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = UserGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final ffApiRequestBody = '''
 {
 "user_id":"$userId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetStaffId',
-      apiUrl:
-          '${UserGroup.baseUrl}/flows/trigger/414ee2de-1efe-4542-98d5-436eb0107ee0',
+      apiUrl: '$baseUrl/flows/trigger/414ee2de-1efe-4542-98d5-436eb0107ee0',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -424,9 +481,13 @@ class GetListUserCall {
   Future<ApiCallResponse> call({
     String? accessToken = '',
   }) async {
+    final baseUrl = UserGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'GetListUser',
-      apiUrl: '${UserGroup.baseUrl}/users',
+      apiUrl: '$baseUrl/users',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -435,6 +496,7 @@ class GetListUserCall {
       params: {
         'fields': "email",
         'limit': 5000,
+        'offset': 0,
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -450,7 +512,7 @@ class GetListUserCall {
 /// Start Authen Group Code
 
 class AuthenGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl() => 'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
   };
@@ -465,6 +527,8 @@ class LoginCall {
     String? email = '',
     String? password = '',
   }) async {
+    final baseUrl = AuthenGroup.getBaseUrl();
+
     final ffApiRequestBody = '''
 {
   "email": "$email",
@@ -472,7 +536,7 @@ class LoginCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Login',
-      apiUrl: '${AuthenGroup.baseUrl}/auth/login',
+      apiUrl: '$baseUrl/auth/login',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -493,6 +557,8 @@ class RefreshTokenCall {
   Future<ApiCallResponse> call({
     String? refreshToken = '',
   }) async {
+    final baseUrl = AuthenGroup.getBaseUrl();
+
     final ffApiRequestBody = '''
 {
   "refresh_token": "$refreshToken",
@@ -500,7 +566,7 @@ class RefreshTokenCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'RefreshToken',
-      apiUrl: '${AuthenGroup.baseUrl}/auth/refresh',
+      apiUrl: '$baseUrl/auth/refresh',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -521,12 +587,13 @@ class CreateOrganizationUserCall {
   Future<ApiCallResponse> call({
     dynamic requestDataJson,
   }) async {
+    final baseUrl = AuthenGroup.getBaseUrl();
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'CreateOrganizationUser',
-      apiUrl:
-          '${AuthenGroup.baseUrl}/flows/trigger/c5d94aa6-ac37-4ece-bfc5-05503805ad8b',
+      apiUrl: '$baseUrl/flows/trigger/c5d94aa6-ac37-4ece-bfc5-05503805ad8b',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -548,7 +615,10 @@ class CreateOrganizationUserCall {
 /// Start Lesson Group Code
 
 class LessonGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -577,9 +647,13 @@ class GetLessonListCall {
     int? offset = 0,
     String? accessToken = '',
   }) async {
+    final baseUrl = LessonGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'GetLessonList',
-      apiUrl: '${LessonGroup.baseUrl}/items/lessions',
+      apiUrl: '$baseUrl/items/lessions',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -606,9 +680,13 @@ class GetLessionsOneCall {
     String? lessionsId = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = LessonGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'GetLessionsOne',
-      apiUrl: '${LessonGroup.baseUrl}/items/lessions/$lessionsId',
+      apiUrl: '$baseUrl/items/lessions/$lessionsId',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -634,9 +712,13 @@ class EmployeeLessonListCall {
     int? limit = 5000,
     String? accessToken = '',
   }) async {
+    final baseUrl = LessonGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'EmployeeLessonList',
-      apiUrl: '${LessonGroup.baseUrl}/items/staffs_lessions',
+      apiUrl: '$baseUrl/items/staffs_lessions',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -648,6 +730,7 @@ class EmployeeLessonListCall {
         'filter': filter,
         'limit': limit,
         'offset': offset,
+        'meta': "total_count,filter_count",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -665,6 +748,10 @@ class PostCommentCall {
     String? staffId = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = LessonGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final ffApiRequestBody = '''
 {
   "status": "published",
@@ -674,8 +761,7 @@ class PostCommentCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'PostComment',
-      apiUrl:
-          '${LessonGroup.baseUrl}/flows/trigger/c9e1d3e3-cc5d-4b86-9f77-b2f561c7496a',
+      apiUrl: '$baseUrl/flows/trigger/c9e1d3e3-cc5d-4b86-9f77-b2f561c7496a',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -698,11 +784,15 @@ class PostLessonCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = LessonGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'PostLesson',
-      apiUrl: '${LessonGroup.baseUrl}/items/lessions',
+      apiUrl: '$baseUrl/items/lessions',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -726,11 +816,15 @@ class PathLessonCall {
     String? idLesson = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = LessonGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'PathLesson',
-      apiUrl: '${LessonGroup.baseUrl}/items/lessions/$idLesson',
+      apiUrl: '$baseUrl/items/lessions/$idLesson',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
@@ -753,9 +847,13 @@ class DeleteCommentCall {
     int? id,
     String? accessToken = '',
   }) async {
+    final baseUrl = LessonGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'DeleteComment',
-      apiUrl: '${LessonGroup.baseUrl}/items/lessions_comments/$id',
+      apiUrl: '$baseUrl/items/lessions_comments/$id',
       callType: ApiCallType.DELETE,
       headers: {
         'Content-Type': 'application/json',
@@ -776,9 +874,13 @@ class ProgramsLessionsCall {
     String? filter = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = LessonGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'ProgramsLessions',
-      apiUrl: '${LessonGroup.baseUrl}/items/programs_lessions',
+      apiUrl: '$baseUrl/items/programs_lessions',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -805,6 +907,10 @@ class PostHeartCall {
     String? staffId = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = LessonGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final ffApiRequestBody = '''
 {
   "status": "$status",
@@ -813,8 +919,7 @@ class PostHeartCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'postHeart',
-      apiUrl:
-          '${LessonGroup.baseUrl}/flows/trigger/b1e1fdf3-6656-4c9e-9c58-03feeee4ed7c',
+      apiUrl: '$baseUrl/flows/trigger/b1e1fdf3-6656-4c9e-9c58-03feeee4ed7c',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -837,9 +942,13 @@ class DeleteHeartCall {
     int? idHeart,
     String? accessToken = '',
   }) async {
+    final baseUrl = LessonGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'DeleteHeart',
-      apiUrl: '${LessonGroup.baseUrl}/items/lessions_reacts/$idHeart',
+      apiUrl: '$baseUrl/items/lessions_reacts/$idHeart',
       callType: ApiCallType.DELETE,
       headers: {
         'Content-Type': 'application/json',
@@ -861,6 +970,10 @@ class UpdateStaffLessonStatusCall {
     String? dateStart = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = LessonGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final ffApiRequestBody = '''
 {
   "status": "inprogress",
@@ -868,7 +981,7 @@ class UpdateStaffLessonStatusCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateStaffLessonStatus',
-      apiUrl: '${LessonGroup.baseUrl}/items/staffs_lessions/$id',
+      apiUrl: '$baseUrl/items/staffs_lessions/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
@@ -892,6 +1005,10 @@ class UpdateStaffProgramStatusCall {
     String? programId = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = LessonGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final ffApiRequestBody = '''
 {
   "staff_id": "$staffId",
@@ -899,8 +1016,7 @@ class UpdateStaffProgramStatusCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateStaffProgramStatus',
-      apiUrl:
-          '${LessonGroup.baseUrl}/flows/trigger/8c284328-1373-4da4-98f5-b3024d3e9861',
+      apiUrl: '$baseUrl/flows/trigger/8c284328-1373-4da4-98f5-b3024d3e9861',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -923,7 +1039,10 @@ class UpdateStaffProgramStatusCall {
 /// Start StudyProgram Group Code
 
 class StudyProgramGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -940,6 +1059,7 @@ class StudyProgramGroup {
   static UpdateStudyProgramPriceCall updateStudyProgramPriceCall =
       UpdateStudyProgramPriceCall();
   static AddProgramMarketCall addProgramMarketCall = AddProgramMarketCall();
+  static DeleteProgramCall deleteProgramCall = DeleteProgramCall();
 }
 
 class StudyProgramListCall {
@@ -949,9 +1069,13 @@ class StudyProgramListCall {
     int? limit = 5000,
     String? accessToken = '',
   }) async {
+    final baseUrl = StudyProgramGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'StudyProgramList',
-      apiUrl: '${StudyProgramGroup.baseUrl}/items/programs',
+      apiUrl: '$baseUrl/items/programs',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -960,7 +1084,7 @@ class StudyProgramListCall {
       params: {
         'filter': filter,
         'fields':
-            "date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id, image_cover, template, price, author_id",
+            "date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id, image_cover, template, price, author_id, copyright_program_id, copyright_organization_id, version",
         'offset': offset,
         'limit': limit,
         'meta': "total_count,filter_count",
@@ -982,9 +1106,13 @@ class StudyProgramOneCall {
     int? limit = 5000,
     String? accessToken = '',
   }) async {
+    final baseUrl = StudyProgramGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'StudyProgramOne',
-      apiUrl: '${StudyProgramGroup.baseUrl}/items/programs',
+      apiUrl: '$baseUrl/items/programs',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -1013,11 +1141,15 @@ class StudyProgramCreateCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = StudyProgramGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'StudyProgramCreate',
-      apiUrl: '${StudyProgramGroup.baseUrl}/items/programs',
+      apiUrl: '$baseUrl/items/programs',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1041,11 +1173,15 @@ class StudyProgramLessionsUpdateCall {
     String? id = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = StudyProgramGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'StudyProgramLessionsUpdate',
-      apiUrl: '${StudyProgramGroup.baseUrl}/items/programs/$id',
+      apiUrl: '$baseUrl/items/programs/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
@@ -1068,14 +1204,17 @@ class SynchronizedStaffLessonCall {
     String? programId = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = StudyProgramGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final ffApiRequestBody = '''
 {
   "program_id": "$programId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'SynchronizedStaffLesson',
-      apiUrl:
-          '${StudyProgramGroup.baseUrl}/flows/trigger/b1888ea3-9709-4c01-821d-9573d1171060',
+      apiUrl: '$baseUrl/flows/trigger/b1888ea3-9709-4c01-821d-9573d1171060',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1100,9 +1239,13 @@ class StaffsProgramsCall {
     int? limit = 5000,
     String? accessToken = '',
   }) async {
+    final baseUrl = StudyProgramGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'StaffsPrograms',
-      apiUrl: '${StudyProgramGroup.baseUrl}/items/staffs_programs',
+      apiUrl: '$baseUrl/items/staffs_programs',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -1129,16 +1272,22 @@ class UpdateStudyProgramPriceCall {
     String? id = '',
     int? price,
     String? authorId = '',
+    int? version,
     String? accessToken = '',
   }) async {
+    final baseUrl = StudyProgramGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final ffApiRequestBody = '''
 {
   "price": $price,
-  "author_id": "$authorId"
+  "author_id": "$authorId",
+  "version": $version
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateStudyProgramPrice',
-      apiUrl: '${StudyProgramGroup.baseUrl}/items/programs/$id',
+      apiUrl: '$baseUrl/items/programs/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
@@ -1163,6 +1312,10 @@ class AddProgramMarketCall {
     String? categoryId = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = StudyProgramGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final ffApiRequestBody = '''
 {
   "program_id": "$id",
@@ -1171,8 +1324,7 @@ class AddProgramMarketCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'AddProgramMarket',
-      apiUrl:
-          '${StudyProgramGroup.baseUrl}/flows/trigger/39a06a6d-e1f8-4271-85e8-5773579b0c2c',
+      apiUrl: '$baseUrl/flows/trigger/39a06a6d-e1f8-4271-85e8-5773579b0c2c',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1190,12 +1342,42 @@ class AddProgramMarketCall {
   }
 }
 
+class DeleteProgramCall {
+  Future<ApiCallResponse> call({
+    String? id = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = StudyProgramGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'DeleteProgram',
+      apiUrl: '$baseUrl/items/programs/$id',
+      callType: ApiCallType.DELETE,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 /// End StudyProgram Group Code
 
 /// Start DoTest Group Code
 
 class DoTestGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -1216,9 +1398,13 @@ class StaffsTestsListCall {
     int? offset = 0,
     String? accessToken = '',
   }) async {
+    final baseUrl = DoTestGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'StaffsTestsList',
-      apiUrl: '${DoTestGroup.baseUrl}/items/staffs_tests',
+      apiUrl: '$baseUrl/items/staffs_tests',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -1246,9 +1432,13 @@ class StaffAnswerListCall {
     String? filter = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = DoTestGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'StaffAnswerList',
-      apiUrl: '${DoTestGroup.baseUrl}/items/staffs_answers',
+      apiUrl: '$baseUrl/items/staffs_answers',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -1273,11 +1463,15 @@ class CreateStaffTestCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = DoTestGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'CreateStaffTest',
-      apiUrl: '${DoTestGroup.baseUrl}/items/staffs_tests',
+      apiUrl: '$baseUrl/items/staffs_tests',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1300,11 +1494,15 @@ class CreateStaffAnswerCall {
     dynamic requestJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = DoTestGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final request = _serializeJson(requestJson, true);
     final ffApiRequestBody = request;
     return ApiManager.instance.makeApiCall(
       callName: 'CreateStaffAnswer',
-      apiUrl: '${DoTestGroup.baseUrl}/items/staffs_answers',
+      apiUrl: '$baseUrl/items/staffs_answers',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1327,14 +1525,17 @@ class CalculateTestScoresCall {
     String? staffTestId = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = DoTestGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final ffApiRequestBody = '''
 {
   "staff_test_id": "$staffTestId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'CalculateTestScores',
-      apiUrl:
-          '${DoTestGroup.baseUrl}/flows/trigger/44b43c13-8b8e-4032-b528-ae3be7c52a7d',
+      apiUrl: '$baseUrl/flows/trigger/44b43c13-8b8e-4032-b528-ae3be7c52a7d',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1359,11 +1560,15 @@ class CreateStaffTestsCall {
         'id,test_id.id, test_id.name, test_id.description, test_id.duration_minutes, code',
     String? accessToken = '',
   }) async {
+    final baseUrl = DoTestGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'CreateStaffTests',
-      apiUrl: '${DoTestGroup.baseUrl}/items/staffs_tests?fields=$fields',
+      apiUrl: '$baseUrl/items/staffs_tests?fields=$fields',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1386,7 +1591,10 @@ class CreateStaffTestsCall {
 /// Start Test Group Code
 
 class TestGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -1403,11 +1611,15 @@ class CreateTestCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = TestGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'CreateTest',
-      apiUrl: '${TestGroup.baseUrl}/items/tests',
+      apiUrl: '$baseUrl/items/tests',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1430,11 +1642,15 @@ class QuestionTestAddCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = TestGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'QuestionTestAdd',
-      apiUrl: '${TestGroup.baseUrl}/items/tests_questions',
+      apiUrl: '$baseUrl/items/tests_questions',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1459,9 +1675,13 @@ class TestListCall {
     int? limit = 5000,
     String? accessToken = '',
   }) async {
+    final baseUrl = TestGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'TestList',
-      apiUrl: '${TestGroup.baseUrl}/items/tests',
+      apiUrl: '$baseUrl/items/tests',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -1491,9 +1711,13 @@ class TestOneCall {
     int? limit = 5000,
     String? accessToken = '',
   }) async {
+    final baseUrl = TestGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'TestOne',
-      apiUrl: '${TestGroup.baseUrl}/items/tests/$testsId',
+      apiUrl: '$baseUrl/items/tests/$testsId',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -1521,11 +1745,15 @@ class TestUpdateCall {
     String? id = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = TestGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'TestUpdate',
-      apiUrl: '${TestGroup.baseUrl}/items/tests/$id',
+      apiUrl: '$baseUrl/items/tests/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
@@ -1548,7 +1776,10 @@ class TestUpdateCall {
 /// Start Question Group Code
 
 class QuestionGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -1566,9 +1797,13 @@ class QuestionListCall {
     int? offset = 0,
     String? accessToken = '',
   }) async {
+    final baseUrl = QuestionGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'questionList',
-      apiUrl: '${QuestionGroup.baseUrl}/items/questions',
+      apiUrl: '$baseUrl/items/questions',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -1596,9 +1831,13 @@ class QuestionListOneCall {
     String? questionId = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = QuestionGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'questionListOne',
-      apiUrl: '${QuestionGroup.baseUrl}/items/questions/$questionId',
+      apiUrl: '$baseUrl/items/questions/$questionId',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -1622,12 +1861,15 @@ class QuestionCreateCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = QuestionGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'questionCreate',
-      apiUrl:
-          '${QuestionGroup.baseUrl}/flows/trigger/ab20019b-2912-40b4-8dcf-e3b010893396',
+      apiUrl: '$baseUrl/flows/trigger/ab20019b-2912-40b4-8dcf-e3b010893396',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1650,12 +1892,15 @@ class QuestionUpdateCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = QuestionGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'questionUpdate',
-      apiUrl:
-          '${QuestionGroup.baseUrl}/flows/trigger/bd88689f-a050-44ac-b694-e2fe2c06e23c',
+      apiUrl: '$baseUrl/flows/trigger/bd88689f-a050-44ac-b694-e2fe2c06e23c',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1678,7 +1923,10 @@ class QuestionUpdateCall {
 /// Start ProcedureTemplate Group Code
 
 class ProcedureTemplateGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -1709,9 +1957,13 @@ class WorkflowsListCall {
     int? limit = 5000,
     String? accessToken = '',
   }) async {
+    final baseUrl = ProcedureTemplateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'workflowsList',
-      apiUrl: '${ProcedureTemplateGroup.baseUrl}/items/workflows',
+      apiUrl: '$baseUrl/items/workflows',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -1742,9 +1994,13 @@ class OperationsListCall {
     int? limit = 5000,
     String? accessToken = '',
   }) async {
+    final baseUrl = ProcedureTemplateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'operationsList',
-      apiUrl: '${ProcedureTemplateGroup.baseUrl}/items/operations',
+      apiUrl: '$baseUrl/items/operations',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -1772,11 +2028,15 @@ class OperationsCreateCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = ProcedureTemplateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'operationsCreate',
-      apiUrl: '${ProcedureTemplateGroup.baseUrl}/items/operations',
+      apiUrl: '$baseUrl/items/operations',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1799,11 +2059,15 @@ class WorkflowsCreateCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = ProcedureTemplateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'workflowsCreate',
-      apiUrl: '${ProcedureTemplateGroup.baseUrl}/items/workflows',
+      apiUrl: '$baseUrl/items/workflows',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1826,11 +2090,15 @@ class TasksCreateCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = ProcedureTemplateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'tasksCreate',
-      apiUrl: '${ProcedureTemplateGroup.baseUrl}/items/tasks',
+      apiUrl: '$baseUrl/items/tasks',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1855,9 +2123,13 @@ class TasksListCall {
     int? limit = 5000,
     String? accessToken = '',
   }) async {
+    final baseUrl = ProcedureTemplateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'tasksList',
-      apiUrl: '${ProcedureTemplateGroup.baseUrl}/items/tasks',
+      apiUrl: '$baseUrl/items/tasks',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -1886,11 +2158,15 @@ class StepsCreateCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = ProcedureTemplateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'stepsCreate',
-      apiUrl: '${ProcedureTemplateGroup.baseUrl}/items/steps',
+      apiUrl: '$baseUrl/items/steps',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1915,9 +2191,13 @@ class StepsListCall {
     int? limit = 5000,
     String? accessToken = '',
   }) async {
+    final baseUrl = ProcedureTemplateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'stepsList',
-      apiUrl: '${ProcedureTemplateGroup.baseUrl}/items/steps',
+      apiUrl: '$baseUrl/items/steps',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -1946,12 +2226,15 @@ class StepCreateWorkflowsCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = ProcedureTemplateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'stepCreateWorkflows',
-      apiUrl:
-          '${ProcedureTemplateGroup.baseUrl}/flows/trigger/b1ba3372-66bb-44c9-baec-c8db8c7511fe',
+      apiUrl: '$baseUrl/flows/trigger/b1ba3372-66bb-44c9-baec-c8db8c7511fe',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -1974,9 +2257,13 @@ class WorkflowsOneCall {
     String? id = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = ProcedureTemplateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'workflowsOne',
-      apiUrl: '${ProcedureTemplateGroup.baseUrl}/items/workflows/$id',
+      apiUrl: '$baseUrl/items/workflows/$id',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -2000,12 +2287,15 @@ class WorkflowUpdateCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = ProcedureTemplateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'workflowUpdate',
-      apiUrl:
-          '${ProcedureTemplateGroup.baseUrl}/flows/trigger/ebd094ca-ca35-4867-8850-4db6d65ee569',
+      apiUrl: '$baseUrl/flows/trigger/ebd094ca-ca35-4867-8850-4db6d65ee569',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -2028,12 +2318,15 @@ class StepUpdateCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = ProcedureTemplateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'stepUpdate',
-      apiUrl:
-          '${ProcedureTemplateGroup.baseUrl}/flows/trigger/ad1865a8-6611-4c50-8777-15a871f52524',
+      apiUrl: '$baseUrl/flows/trigger/ad1865a8-6611-4c50-8777-15a871f52524',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -2057,14 +2350,16 @@ class DeleteWorkflowsStepCall {
     String? workflowsId = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = ProcedureTemplateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
     final stepId = _serializeList(stepIdList);
 
     final ffApiRequestBody = '''
 {"steps":{"create":[],"update":[],"delete":$stepId}}''';
     return ApiManager.instance.makeApiCall(
       callName: 'DeleteWorkflowsStep',
-      apiUrl:
-          '${ProcedureTemplateGroup.baseUrl}/items/workflows/$workflowsId',
+      apiUrl: '$baseUrl/items/workflows/$workflowsId',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
@@ -2087,14 +2382,17 @@ class WorkflowCopyCall {
     String? workflowId = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = ProcedureTemplateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final ffApiRequestBody = '''
 {
   "workflow_id": "$workflowId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'workflowCopy',
-      apiUrl:
-          '${ProcedureTemplateGroup.baseUrl}/flows/trigger/409e0add-4b94-419e-814d-ac787810e2b8',
+      apiUrl: '$baseUrl/flows/trigger/409e0add-4b94-419e-814d-ac787810e2b8',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -2119,6 +2417,10 @@ class WorkflowMarketCall {
     String? domainId = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = ProcedureTemplateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final ffApiRequestBody = '''
 {
   "workflow_id": "$workflowId",
@@ -2127,8 +2429,7 @@ class WorkflowMarketCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'workflowMarket',
-      apiUrl:
-          '${ProcedureTemplateGroup.baseUrl}/flows/trigger/462eabbb-b130-4500-b4dd-32d4801cbdd0',
+      apiUrl: '$baseUrl/flows/trigger/462eabbb-b130-4500-b4dd-32d4801cbdd0',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -2151,7 +2452,10 @@ class WorkflowMarketCall {
 /// Start Branch Group Code
 
 class BranchGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -2168,9 +2472,13 @@ class BranchListCall {
     int? offset = 0,
     String? accessToken = '',
   }) async {
+    final baseUrl = BranchGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'BranchList',
-      apiUrl: '${BranchGroup.baseUrl}/items/branchs',
+      apiUrl: '$baseUrl/items/branchs',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -2198,11 +2506,15 @@ class BranchAddCall {
     dynamic requesDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = BranchGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requesData = _serializeJson(requesDataJson);
     final ffApiRequestBody = requesData;
     return ApiManager.instance.makeApiCall(
       callName: 'BranchAdd',
-      apiUrl: '${BranchGroup.baseUrl}/items/branchs',
+      apiUrl: '$baseUrl/items/branchs',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -2226,11 +2538,15 @@ class BranchUpdateCall {
     String? id = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = BranchGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requesData = _serializeJson(requesDataJson);
     final ffApiRequestBody = requesData;
     return ApiManager.instance.makeApiCall(
       callName: 'BranchUpdate',
-      apiUrl: '${BranchGroup.baseUrl}/items/branchs/$id',
+      apiUrl: '$baseUrl/items/branchs/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
@@ -2253,7 +2569,10 @@ class BranchUpdateCall {
 /// Start Staff Group Code
 
 class StaffGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -2271,11 +2590,16 @@ class GetStaffListCall {
     String? filter = '',
     int? limit = 5000,
     int? offset = 0,
+    String? sort = '-date_created',
     String? accessToken = '',
   }) async {
+    final baseUrl = StaffGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'GetStaffList',
-      apiUrl: '${StaffGroup.baseUrl}/items/staffs',
+      apiUrl: '$baseUrl/items/staffs',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -2283,9 +2607,9 @@ class GetStaffListCall {
       },
       params: {
         'fields':
-            "id, title, user_id.role, status,organization_id.id,organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,tasks.tasks_id.status,staff_tests.percent_correct",
+            "sort,id, title, user_id.role, status,organization_id.id,organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,tasks.tasks_id.status,staff_tests.percent_correct",
         'filter': filter,
-        'sort': "-date_created",
+        'sort': sort,
         'limit': limit,
         'offset': offset,
       },
@@ -2304,9 +2628,13 @@ class GetStaffGetOneCall {
     String? staffId = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = StaffGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'GetStaffGetOne',
-      apiUrl: '${StaffGroup.baseUrl}/items/staffs/$staffId',
+      apiUrl: '$baseUrl/items/staffs/$staffId',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -2332,12 +2660,15 @@ class CreateStaffCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = StaffGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'CreateStaff',
-      apiUrl:
-          '${StaffGroup.baseUrl}/flows/trigger/3481e773-dacc-466a-b35a-fcff84464e87',
+      apiUrl: '$baseUrl/flows/trigger/3481e773-dacc-466a-b35a-fcff84464e87',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -2361,11 +2692,15 @@ class UpdateStaffCall {
     String? id = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = StaffGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateStaff',
-      apiUrl: '${StaffGroup.baseUrl}/users/$id',
+      apiUrl: '$baseUrl/users/$id',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
@@ -2389,11 +2724,15 @@ class UpdateUserStaffCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = StaffGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateUserStaff',
-      apiUrl: '${StaffGroup.baseUrl}/items/staffs/$staffId',
+      apiUrl: '$baseUrl/items/staffs/$staffId',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
@@ -2416,12 +2755,15 @@ class UpdatePasswordCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = StaffGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'UpdatePassword',
-      apiUrl:
-          '${StaffGroup.baseUrl}/flows/trigger/a721cfaf-8453-4f0c-aff1-6839e9c8ddb1',
+      apiUrl: '$baseUrl/flows/trigger/a721cfaf-8453-4f0c-aff1-6839e9c8ddb1',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -2444,7 +2786,10 @@ class UpdatePasswordCall {
 /// Start Organization Group Code
 
 class OrganizationGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -2463,10 +2808,13 @@ class GetOneOrganizationCall {
     int? offset = 0,
     String? accessToken = '',
   }) async {
+    final baseUrl = OrganizationGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'GetOneOrganization',
-      apiUrl:
-          '${OrganizationGroup.baseUrl}/items/organizations/$organizationId',
+      apiUrl: '$baseUrl/items/organizations/$organizationId',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -2494,12 +2842,15 @@ class UpdateOrganizationCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = OrganizationGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateOrganization',
-      apiUrl:
-          '${OrganizationGroup.baseUrl}/items/organizations/$organizationId',
+      apiUrl: '$baseUrl/items/organizations/$organizationId',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
@@ -2524,10 +2875,13 @@ class GetOrganizationCall {
     int? offset = 0,
     String? accessToken = '',
   }) async {
+    final baseUrl = OrganizationGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'GetOrganization',
-      apiUrl:
-          '${OrganizationGroup.baseUrl}/items/organizations/$organizationId',
+      apiUrl: '$baseUrl/items/organizations/$organizationId',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -2554,7 +2908,10 @@ class GetOrganizationCall {
 /// Start Task Group Code
 
 class TaskGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -2572,9 +2929,13 @@ class GetListTaskCall {
     int? offset = 0,
     String? accessToken = '',
   }) async {
+    final baseUrl = TaskGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'GetListTask',
-      apiUrl: '${TaskGroup.baseUrl}/items/tasks',
+      apiUrl: '$baseUrl/items/tasks',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -2603,11 +2964,15 @@ class UpdateOperationCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = TaskGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateOperation',
-      apiUrl: '${TaskGroup.baseUrl}/items/operations/$operationId',
+      apiUrl: '$baseUrl/items/operations/$operationId',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
@@ -2632,6 +2997,10 @@ class ConfirmOperationCall {
     String? submitType = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = TaskGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final ffApiRequestBody = '''
 {
   "task_id": "$taskId",
@@ -2640,8 +3009,7 @@ class ConfirmOperationCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'ConfirmOperation',
-      apiUrl:
-          '${TaskGroup.baseUrl}/flows/trigger/f3371d44-ab81-45f4-97dd-d616ddbc2a82',
+      apiUrl: '$baseUrl/flows/trigger/f3371d44-ab81-45f4-97dd-d616ddbc2a82',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -2665,6 +3033,10 @@ class ReceiveTaskCall {
     String? workflowId = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = TaskGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final ffApiRequestBody = '''
 {
   "staff_id": "$staffId",
@@ -2672,8 +3044,7 @@ class ReceiveTaskCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'ReceiveTask',
-      apiUrl:
-          '${TaskGroup.baseUrl}/flows/trigger/cb967d02-d828-4896-85cf-f2340f9b3fb2',
+      apiUrl: '$baseUrl/flows/trigger/cb967d02-d828-4896-85cf-f2340f9b3fb2',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -2696,7 +3067,10 @@ class ReceiveTaskCall {
 /// Start Operation Group Code
 
 class OperationGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -2713,9 +3087,13 @@ class OperationListCall {
     int? offset = 0,
     String? accessToken = '',
   }) async {
+    final baseUrl = OperationGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'OperationList',
-      apiUrl: '${OperationGroup.baseUrl}/items/operations',
+      apiUrl: '$baseUrl/items/operations',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -2723,7 +3101,7 @@ class OperationListCall {
       },
       params: {
         'fields':
-            "id, status, name, description, content, date_start, date_end, deadline, estimate_in_second, operation_id, step_id, action_type, execute_id,staffs.staffs_id.id, staffs.staffs_id.user_id.email,files, files.directus_files_id.id, result,settings.id, settings.settings_id.id, settings.settings_id.name, settings.settings_id.type, settings.settings_id.key, settings.settings_id.value, settings.settings_id.description,configurations.id, configurations.configurations_id.id, configurations.configurations_id.name, configurations.configurations_id.description,organization_id,user_created,date_created",
+            "id, status, name, description, content, date_start, date_end, deadline, estimate_in_second, operation_id, step_id, action_type, execute_id,staffs.staffs_id.id, staffs.staffs_id.user_id.email,files, files.directus_files_id.id, result,settings.id, settings.settings_id.id, settings.settings_id.name, settings.settings_id.type, settings.settings_id.key, settings.settings_id.value, settings.settings_id.description,configurations.id, configurations.configurations_id.id, configurations.configurations_id.name, configurations.configurations_id.description,organization_id,user_created,date_created,flow_id",
         'filter': filter,
         'sort': "-date_created",
         'total_count': 5000,
@@ -2744,11 +3122,15 @@ class OperationAddCall {
     dynamic requestDataJson,
     String? accessToken = '',
   }) async {
+    final baseUrl = OperationGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'OperationAdd',
-      apiUrl: '${OperationGroup.baseUrl}/items/operations',
+      apiUrl: '$baseUrl/items/operations',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -2772,11 +3154,15 @@ class OperationsUpdateCall {
     String? operationId = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = OperationGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     final requestData = _serializeJson(requestDataJson);
     final ffApiRequestBody = requestData;
     return ApiManager.instance.makeApiCall(
       callName: 'OperationsUpdate',
-      apiUrl: '${OperationGroup.baseUrl}/items/operations/$operationId',
+      apiUrl: '$baseUrl/items/operations/$operationId',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',
@@ -2799,7 +3185,10 @@ class OperationsUpdateCall {
 /// Start Categories Group Code
 
 class CategoriesGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -2811,9 +3200,13 @@ class GetCategoriesListCall {
   Future<ApiCallResponse> call({
     String? accessToken = '',
   }) async {
+    final baseUrl = CategoriesGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'GetCategoriesList',
-      apiUrl: '${CategoriesGroup.baseUrl}/items/categories',
+      apiUrl: '$baseUrl/items/categories',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -2834,7 +3227,10 @@ class GetCategoriesListCall {
 /// Start Domain Group Code
 
 class DomainGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -2846,9 +3242,13 @@ class GetDomainsListCall {
   Future<ApiCallResponse> call({
     String? accessToken = '',
   }) async {
+    final baseUrl = DomainGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'GetDomainsList',
-      apiUrl: '${DomainGroup.baseUrl}/items/domains',
+      apiUrl: '$baseUrl/items/domains',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -2869,7 +3269,10 @@ class GetDomainsListCall {
 /// Start GroupMarketLesson Group Code
 
 class GroupMarketLessonGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -2886,9 +3289,13 @@ class GetListMarketLessonCall {
     int? limit = 5000,
     String? accessToken = '',
   }) async {
+    final baseUrl = GroupMarketLessonGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'GetListMarketLesson',
-      apiUrl: '${GroupMarketLessonGroup.baseUrl}/items/programs',
+      apiUrl: '$baseUrl/items/programs',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -2918,9 +3325,13 @@ class GetOneProgramsCall {
     String? filter = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = GroupMarketLessonGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'GetOnePrograms',
-      apiUrl: '${GroupMarketLessonGroup.baseUrl}/items/programs/$idPrograms',
+      apiUrl: '$baseUrl/items/programs/$idPrograms',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -2947,7 +3358,10 @@ class GetOneProgramsCall {
 /// Start GroupAuthors Group Code
 
 class GroupAuthorsGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -2955,6 +3369,8 @@ class GroupAuthorsGroup {
   static ListAuthorsCall listAuthorsCall = ListAuthorsCall();
   static GetOneAuthorsCall getOneAuthorsCall = GetOneAuthorsCall();
   static ListAthorsSortCall listAthorsSortCall = ListAthorsSortCall();
+  static AuthorsSignUpCall authorsSignUpCall = AuthorsSignUpCall();
+  static AuthorsUpdateCall authorsUpdateCall = AuthorsUpdateCall();
 }
 
 class ListAuthorsCall {
@@ -2964,9 +3380,13 @@ class ListAuthorsCall {
     int? offset = 0,
     String? accessToken = '',
   }) async {
+    final baseUrl = GroupAuthorsGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'ListAuthors',
-      apiUrl: '${GroupAuthorsGroup.baseUrl}/items/authors',
+      apiUrl: '$baseUrl/items/authors',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -2975,7 +3395,7 @@ class ListAuthorsCall {
       params: {
         'filter': filter,
         'fields[]':
-            "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count",
+            "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count,domains.domains_id.image_cover",
         'offset': offset,
         'limit': limit,
       },
@@ -2993,9 +3413,13 @@ class GetOneAuthorsCall {
     String? id = '',
     String? accessToken = '',
   }) async {
+    final baseUrl = GroupAuthorsGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'GetOneAuthors',
-      apiUrl: '${GroupAuthorsGroup.baseUrl}/items/authors/$id',
+      apiUrl: '$baseUrl/items/authors/$id',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -3003,7 +3427,7 @@ class GetOneAuthorsCall {
       },
       params: {
         'fields':
-            "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count",
+            "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count, domains.id, domains.domains_id.image_cover",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -3021,9 +3445,13 @@ class ListAthorsSortCall {
     int? offset = 0,
     String? accessToken = '',
   }) async {
+    final baseUrl = GroupAuthorsGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'ListAthorsSort',
-      apiUrl: '${GroupAuthorsGroup.baseUrl}/items/authors',
+      apiUrl: '$baseUrl/items/authors',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -3031,11 +3459,75 @@ class ListAthorsSortCall {
       },
       params: {
         'filter': filter,
-        'fields[]': "order_count",
+        'fields[]':
+            "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count,domains.domains_id.image_cover",
         'offset': offset,
-        'limit': limit,
-        'sort': "order_count",
+        'limit': "10",
+        'sort': "-order_count",
       },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class AuthorsSignUpCall {
+  Future<ApiCallResponse> call({
+    dynamic requestDataJson,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = GroupAuthorsGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final requestData = _serializeJson(requestDataJson);
+    final ffApiRequestBody = requestData;
+    return ApiManager.instance.makeApiCall(
+      callName: 'AuthorsSignUp',
+      apiUrl: '$baseUrl/items/authors',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class AuthorsUpdateCall {
+  Future<ApiCallResponse> call({
+    dynamic requestDataJson,
+    String? id = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = GroupAuthorsGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final requestData = _serializeJson(requestDataJson);
+    final ffApiRequestBody = requestData;
+    return ApiManager.instance.makeApiCall(
+      callName: 'AuthorsUpdate',
+      apiUrl: '$baseUrl/items/authors/$id',
+      callType: ApiCallType.PATCH,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -3050,7 +3542,10 @@ class ListAthorsSortCall {
 /// Start GetDomains Group Code
 
 class GetDomainsGroup {
-  static String baseUrl = 'https://workflow-api.pexnic.com';
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -3065,9 +3560,13 @@ class GetDomainsCall {
     int? offset = 0,
     String? accessToken = '',
   }) async {
+    final baseUrl = GetDomainsGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'GetDomains',
-      apiUrl: '${GetDomainsGroup.baseUrl}/items/domains',
+      apiUrl: '$baseUrl/items/domains',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -3077,6 +3576,8 @@ class GetDomainsCall {
         'filter': filter,
         'limit': limit,
         'offset': offset,
+        'fields[]':
+            "image_cover,id,status,user_created,date_created,user_updated,date_updated,name,description,sort",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -3088,6 +3589,156 @@ class GetDomainsCall {
 }
 
 /// End GetDomains Group Code
+
+/// Start Order Group Code
+
+class OrderGroup {
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
+  static Map<String, String> headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer [accessToken]',
+  };
+  static GetListOrderCall getListOrderCall = GetListOrderCall();
+  static CreateOrderCall createOrderCall = CreateOrderCall();
+  static UpdateOrderCall updateOrderCall = UpdateOrderCall();
+  static UpdateOrderStatusPublishedCall updateOrderStatusPublishedCall =
+      UpdateOrderStatusPublishedCall();
+}
+
+class GetListOrderCall {
+  Future<ApiCallResponse> call({
+    int? limit = 5000,
+    int? offset = 0,
+    String? filter = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = OrderGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetListOrder',
+      apiUrl: '$baseUrl/items/program_orders',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {
+        'limit': limit,
+        'offset': offset,
+        'fields':
+            " id, status, date_created, date_updated, code, description, organization_id, total_item, total_price, program_order_items.id, program_order_items.description, program_order_items.price, program_order_items.total_item, program_order_items.total_price, program_order_items.status, program_order_items.program_id.id, program_order_items.program_id.name, program_order_items.program_id.author_id.id, program_order_items.program_id.author_id.alias, program_order_items.program_id.tags.tags_id.name, customer_id.id, customer_id.user_id.email,program_order_items.program_id.lessions",
+        'filter': filter,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class CreateOrderCall {
+  Future<ApiCallResponse> call({
+    dynamic requestDataJson,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = OrderGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final requestData = _serializeJson(requestDataJson);
+    final ffApiRequestBody = requestData;
+    return ApiManager.instance.makeApiCall(
+      callName: 'CreateOrder',
+      apiUrl: '$baseUrl/flows/trigger/cc1419dd-4f67-4049-8d30-8e26f7d715b0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class UpdateOrderCall {
+  Future<ApiCallResponse> call({
+    dynamic requestDataJson,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = OrderGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final requestData = _serializeJson(requestDataJson);
+    final ffApiRequestBody = requestData;
+    return ApiManager.instance.makeApiCall(
+      callName: 'UpdateOrder',
+      apiUrl: '$baseUrl/flows/trigger/7ac31b41-de6b-4d2a-91ce-e6ff18ee6c46',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class UpdateOrderStatusPublishedCall {
+  Future<ApiCallResponse> call({
+    String? orderId = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = OrderGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "program_order_id": "$orderId"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'UpdateOrderStatusPublished',
+      apiUrl: '$baseUrl/flows/trigger/3b9cc77a-ddde-4098-a81f-b102f4daa429',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End Order Group Code
 
 class ApiPagingParams {
   int nextPageNumber = 0;
@@ -3110,6 +3761,9 @@ String _serializeList(List? list) {
   try {
     return json.encode(list);
   } catch (_) {
+    if (kDebugMode) {
+      print("List serialization failed. Returning empty list.");
+    }
     return '[]';
   }
 }
@@ -3119,6 +3773,9 @@ String _serializeJson(dynamic jsonVar, [bool isList = false]) {
   try {
     return json.encode(jsonVar);
   } catch (_) {
+    if (kDebugMode) {
+      print("Json serialization failed. Returning empty json.");
+    }
     return isList ? '[]' : '{}';
   }
 }

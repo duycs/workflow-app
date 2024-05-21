@@ -1796,12 +1796,109 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                               ],
                                             ),
                                           ),
-                                        DetailActionTypeUploadFileWidget(
-                                          key: Key(
-                                              'Keyyi6_${dataListIndex}_of_${dataList.length}'),
-                                          dataPass: dataListItem,
-                                          callback: (file) async {},
-                                        ),
+                                        if (dataListItem.actionType ==
+                                            'upload_file')
+                                          DetailActionTypeUploadFileWidget(
+                                            key: Key(
+                                                'Keyyi6_${dataListIndex}_of_${dataList.length}'),
+                                            dataPass: dataListItem,
+                                            callback: (file) async {
+                                              setState(() {
+                                                _model.responseData = null;
+                                              });
+                                              while (
+                                                  _model.loop < file!.length) {
+                                                setState(() {
+                                                  _model
+                                                      .updateResponseDataStruct(
+                                                    (e) => e
+                                                      ..status = 'done'
+                                                      ..updateFiles(
+                                                        (e) => e.add(
+                                                            FileDataTypeStruct(
+                                                          directusFilesId:
+                                                              FileIDDataTypeStruct(
+                                                            id: file[
+                                                                _model.loop],
+                                                          ),
+                                                        )),
+                                                      ),
+                                                  );
+                                                });
+                                                setState(() {
+                                                  _model.loop = _model.loop + 1;
+                                                });
+                                              }
+                                              setState(() {
+                                                _model.loop = 0;
+                                              });
+                                              _model.apiResultUpdateoperation =
+                                                  await TaskGroup
+                                                      .updateOperationCall
+                                                      .call(
+                                                accessToken:
+                                                    FFAppState().accessToken,
+                                                requestDataJson: _model
+                                                    .responseData
+                                                    ?.toMap(),
+                                                operationId: dataListItem
+                                                    .operations
+                                                    .first
+                                                    .operationsId
+                                                    .id,
+                                              );
+                                              if ((_model
+                                                      .apiResultUpdateoperation
+                                                      ?.succeeded ??
+                                                  true)) {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      'Update thành công',
+                                                      style: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                      ),
+                                                    ),
+                                                    duration: const Duration(
+                                                        milliseconds: 4000),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondary,
+                                                  ),
+                                                );
+                                              } else {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      'Update thất bại',
+                                                      style: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                      ),
+                                                    ),
+                                                    duration: const Duration(
+                                                        milliseconds: 4000),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .error,
+                                                  ),
+                                                );
+                                              }
+
+                                              setState(() {});
+
+                                              setState(() {});
+                                            },
+                                          ),
                                       ].divide(const SizedBox(height: 8.0)),
                                     ),
                                   ),

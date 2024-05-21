@@ -14,13 +14,16 @@ class ProgramListMarketWidget extends StatefulWidget {
     String? price,
     String? idAuthor,
     String? idDomain,
+    String? domainToProgramListMarket,
   })  : price = price ?? '',
         idAuthor = idAuthor ?? '',
-        idDomain = idDomain ?? '';
+        idDomain = idDomain ?? '',
+        domainToProgramListMarket = domainToProgramListMarket ?? '';
 
   final String price;
   final String idAuthor;
   final String idDomain;
+  final String domainToProgramListMarket;
 
   @override
   State<ProgramListMarketWidget> createState() =>
@@ -175,6 +178,12 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                               fillColor: const Color(0x15FF5963),
                               contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 8.0, 0.0, 8.0),
+                              prefixIcon: Icon(
+                                Icons.search,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 24.0,
+                              ),
                               suffixIcon: _model.searchMarketTextController!
                                       .text.isNotEmpty
                                   ? InkWell(
@@ -297,13 +306,17 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.network(
-                                      '${FFAppConstants.ApiBaseUrl}/assets/${itemProgramsItem.imageCover}?access_token=${FFAppState().accessToken}',
-                                      width: 90.0,
-                                      height: 100.0,
-                                      fit: BoxFit.cover,
+                                  Align(
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.network(
+                                        '${FFAppConstants.ApiBaseUrl}/assets/${itemProgramsItem.imageCover}?access_token=${FFAppState().accessToken}',
+                                        width: 90.0,
+                                        height: 100.0,
+                                        fit: BoxFit.cover,
+                                        alignment: const Alignment(0.0, 0.0),
+                                      ),
                                     ),
                                   ),
                                   Expanded(
@@ -351,6 +364,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Nunito Sans',
+                                                fontSize: 13.0,
                                                 letterSpacing: 0.0,
                                               ),
                                         ),

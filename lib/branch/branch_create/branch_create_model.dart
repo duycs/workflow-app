@@ -21,6 +21,10 @@ class BranchCreateModel extends FlutterFlowModel<BranchCreateWidget> {
       return 'Vui lòng nhập tên chi nhánh!';
     }
 
+    if (val.length > 50) {
+      return 'Tên chi nhanh không được vượt quá 50 ki tự';
+    }
+
     return null;
   }
 
@@ -32,6 +36,10 @@ class BranchCreateModel extends FlutterFlowModel<BranchCreateWidget> {
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Vui lòng nhập mã chi nhánh';
+    }
+
+    if (val.length > 50) {
+      return 'Mã chi nhánh không được vượt quá 50 kí tự';
     }
 
     return null;

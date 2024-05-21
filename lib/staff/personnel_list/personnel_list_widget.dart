@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -148,606 +147,276 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
           top: true,
           child: Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-            child: SingleChildScrollView(
-              primary: false,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 8.0, 0.0, 0.0),
-                          child: TextFormField(
-                            controller: _model.textController,
-                            focusNode: _model.textFieldFocusNode,
-                            onChanged: (_) => EasyDebounce.debounce(
-                              '_model.textController',
-                              const Duration(milliseconds: 500),
-                              () async {
-                                if (_model.textController.text != '') {
-                                  _model.filterToken =
-                                      await action_blocks.tokenReload(context);
-                                  if (_model.filterToken!) {
-                                    _model.apiResultFilter =
-                                        await StaffGroup.getStaffListCall.call(
-                                      accessToken: FFAppState().accessToken,
-                                      filter: () {
-                                        if (FFAppState().user.role ==
-                                            '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                                          return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffLogin,
-                                            r'''$.organization_id''',
-                                          ).toString()}\"}}},{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
-                                        } else if (FFAppState().user.role ==
-                                            'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                          return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffLogin,
-                                            r'''$.branch_id''',
-                                          ).toString()}\"}}},{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
-                                        } else if (FFAppState().user.role ==
-                                            '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                          return '{\"_and\":[{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffLogin,
-                                            r'''$.department_id''',
-                                          ).toString()}\"}}},{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
-                                        } else {
-                                          return '{\"_and\":[]}';
-                                        }
-                                      }(),
-                                    );
-                                    if ((_model.apiResultFilter?.succeeded ??
-                                        true)) {
-                                      setState(() {
-                                        _model.list =
-                                            StaffListDataStruct.maybeFromMap(
-                                                    (_model.apiResultFilter
-                                                            ?.jsonBody ??
-                                                        ''))!
-                                                .data
-                                                .toList()
-                                                .cast<StaffListStruct>();
-                                      });
-                                    }
-                                  } else {
-                                    setState(() {});
-                                  }
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
+                        child: TextFormField(
+                          controller: _model.textController,
+                          focusNode: _model.textFieldFocusNode,
+                          onChanged: (_) => EasyDebounce.debounce(
+                            '_model.textController',
+                            const Duration(milliseconds: 500),
+                            () async {
+                              if (_model.textController.text != '') {
+                                _model.filterToken =
+                                    await action_blocks.tokenReload(context);
+                                if (_model.filterToken!) {
+                                  setState(() => _model.listViewPagingController
+                                      ?.refresh());
                                 } else {
-                                  _model.getNoFilterToken =
-                                      await action_blocks.tokenReload(context);
-                                  if (_model.getNoFilterToken!) {
-                                    _model.apiResultGetNoFilter =
-                                        await StaffGroup.getStaffListCall.call(
-                                      accessToken: FFAppState().accessToken,
-                                      filter: () {
-                                        if (FFAppState().user.role ==
-                                            '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                                          return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffLogin,
-                                            r'''$.organization_id''',
-                                          ).toString()}\"}}}]}';
-                                        } else if (FFAppState().user.role ==
-                                            'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                          return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffLogin,
-                                            r'''$.branch_id''',
-                                          ).toString()}\"}}}]}';
-                                        } else if (FFAppState().user.role ==
-                                            '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                          return '{\"_and\":[{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffLogin,
-                                            r'''$.department_id''',
-                                          ).toString()}\"}}}]}';
-                                        } else {
-                                          return '{\"_and\":[]}';
-                                        }
-                                      }(),
-                                    );
-                                    if ((_model
-                                            .apiResultGetNoFilter?.succeeded ??
-                                        true)) {
-                                      setState(() {
-                                        _model.list =
-                                            StaffListDataStruct.maybeFromMap(
-                                                    (_model.apiResultGetNoFilter
-                                                            ?.jsonBody ??
-                                                        ''))!
-                                                .data
-                                                .toList()
-                                                .cast<StaffListStruct>();
-                                      });
-                                    }
-                                  } else {
-                                    setState(() {});
-                                  }
+                                  setState(() {});
                                 }
+                              } else {
+                                _model.getNoFilterToken =
+                                    await action_blocks.tokenReload(context);
+                                if (_model.getNoFilterToken!) {
+                                  setState(() => _model.listViewPagingController
+                                      ?.refresh());
+                                } else {
+                                  setState(() {});
+                                }
+                              }
 
-                                setState(() {});
-                              },
-                            ),
-                            autofocus: false,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
-                              hintText: 'Tìm kiếm...',
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              filled: true,
-                              fillColor: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 0.0, 0.0),
-                              prefixIcon: const Icon(
-                                Icons.search,
-                                size: 24.0,
-                              ),
-                              suffixIcon: _model.textController!.text.isNotEmpty
-                                  ? InkWell(
-                                      onTap: () async {
-                                        _model.textController?.clear();
-                                        if (_model.textController.text != '') {
-                                          _model.filterToken =
-                                              await action_blocks
-                                                  .tokenReload(context);
-                                          if (_model.filterToken!) {
-                                            _model.apiResultFilter =
-                                                await StaffGroup
-                                                    .getStaffListCall
-                                                    .call(
-                                              accessToken:
-                                                  FFAppState().accessToken,
-                                              filter: () {
-                                                if (FFAppState().user.role ==
-                                                    '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                                                  return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                                    FFAppState().staffLogin,
-                                                    r'''$.organization_id''',
-                                                  ).toString()}\"}}},{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
-                                                } else if (FFAppState()
-                                                        .user
-                                                        .role ==
-                                                    'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                                  return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                                    FFAppState().staffLogin,
-                                                    r'''$.branch_id''',
-                                                  ).toString()}\"}}},{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
-                                                } else if (FFAppState()
-                                                        .user
-                                                        .role ==
-                                                    '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                                  return '{\"_and\":[{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                                    FFAppState().staffLogin,
-                                                    r'''$.department_id''',
-                                                  ).toString()}\"}}},{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
-                                                } else {
-                                                  return '{\"_and\":[]}';
-                                                }
-                                              }(),
-                                            );
-                                            if ((_model.apiResultFilter
-                                                    ?.succeeded ??
-                                                true)) {
-                                              setState(() {
-                                                _model
-                                                    .list = StaffListDataStruct
-                                                        .maybeFromMap((_model
-                                                                .apiResultFilter
-                                                                ?.jsonBody ??
-                                                            ''))!
-                                                    .data
-                                                    .toList()
-                                                    .cast<StaffListStruct>();
-                                              });
-                                            }
-                                          } else {
-                                            setState(() {});
-                                          }
-                                        } else {
-                                          _model.getNoFilterToken =
-                                              await action_blocks
-                                                  .tokenReload(context);
-                                          if (_model.getNoFilterToken!) {
-                                            _model.apiResultGetNoFilter =
-                                                await StaffGroup
-                                                    .getStaffListCall
-                                                    .call(
-                                              accessToken:
-                                                  FFAppState().accessToken,
-                                              filter: () {
-                                                if (FFAppState().user.role ==
-                                                    '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                                                  return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                                    FFAppState().staffLogin,
-                                                    r'''$.organization_id''',
-                                                  ).toString()}\"}}}]}';
-                                                } else if (FFAppState()
-                                                        .user
-                                                        .role ==
-                                                    'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                                  return '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                                    FFAppState().staffLogin,
-                                                    r'''$.branch_id''',
-                                                  ).toString()}\"}}}]}';
-                                                } else if (FFAppState()
-                                                        .user
-                                                        .role ==
-                                                    '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                                  return '{\"_and\":[{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                                    FFAppState().staffLogin,
-                                                    r'''$.department_id''',
-                                                  ).toString()}\"}}}]}';
-                                                } else {
-                                                  return '{\"_and\":[]}';
-                                                }
-                                              }(),
-                                            );
-                                            if ((_model.apiResultGetNoFilter
-                                                    ?.succeeded ??
-                                                true)) {
-                                              setState(() {
-                                                _model
-                                                    .list = StaffListDataStruct
-                                                        .maybeFromMap((_model
-                                                                .apiResultGetNoFilter
-                                                                ?.jsonBody ??
-                                                            ''))!
-                                                    .data
-                                                    .toList()
-                                                    .cast<StaffListStruct>();
-                                              });
-                                            }
-                                          } else {
-                                            setState(() {});
-                                          }
-                                        }
-
-                                        setState(() {});
-                                        setState(() {});
-                                      },
-                                      child: Icon(
-                                        Icons.clear,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 18.0,
-                                      ),
-                                    )
-                                  : null,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                              setState(() {});
+                            },
+                          ),
+                          autofocus: false,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
-                            cursorColor: FlutterFlowTheme.of(context).primary,
-                            validator: _model.textControllerValidator
-                                .asValidator(context),
-                          ),
-                        ),
-                      ),
-                      Builder(
-                        builder: (context) => Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 8.0, 16.0, 0.0),
-                          child: FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 10.0,
-                            borderWidth: 1.0,
-                            buttonSize: 50.0,
-                            icon: Icon(
-                              Icons.tune_rounded,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 30.0,
-                            ),
-                            onPressed: () async {
-                              await showDialog(
-                                context: context,
-                                builder: (dialogContext) {
-                                  return Dialog(
-                                    elevation: 0,
-                                    insetPadding: EdgeInsets.zero,
-                                    backgroundColor: Colors.transparent,
-                                    alignment: const AlignmentDirectional(0.0, 0.0)
-                                        .resolve(Directionality.of(context)),
-                                    child: GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                      child: FilterPersonnelListWidget(
-                                        filterSearch:
-                                            _model.textController.text,
-                                        status: _model.statusFilter,
-                                        branch: _model.branch,
-                                        department: _model.department,
-                                        callback: (listCallback, statusCallback,
-                                            department, branch) async {
-                                          setState(() {
-                                            _model.list = listCallback!
-                                                .toList()
-                                                .cast<StaffListStruct>();
-                                            _model.statusFilter =
-                                                statusCallback!;
-                                            _model.branch = branch!;
-                                            _model.department = department!;
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ).then((value) => setState(() {}));
-                            },
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  if ((_model.textController.text != '') ||
-                      (_model.statusFilter != ''))
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
-                      child: Text(
-                        '# Kết quả tìm kiếm theo bộ lọc',
-                        style:
-                            FlutterFlowTheme.of(context).labelMedium.override(
+                            hintText: 'Tìm kiếm...',
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
                                   fontFamily: 'Nunito Sans',
-                                  fontSize: 12.0,
                                   letterSpacing: 0.0,
-                                  fontStyle: FontStyle.italic,
                                 ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).primary,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            filled: true,
+                            fillColor:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 0.0, 0.0),
+                            prefixIcon: const Icon(
+                              Icons.search,
+                              size: 24.0,
+                            ),
+                            suffixIcon: _model.textController!.text.isNotEmpty
+                                ? InkWell(
+                                    onTap: () async {
+                                      _model.textController?.clear();
+                                      if (_model.textController.text != '') {
+                                        _model.filterToken = await action_blocks
+                                            .tokenReload(context);
+                                        if (_model.filterToken!) {
+                                          setState(() => _model
+                                              .listViewPagingController
+                                              ?.refresh());
+                                        } else {
+                                          setState(() {});
+                                        }
+                                      } else {
+                                        _model.getNoFilterToken =
+                                            await action_blocks
+                                                .tokenReload(context);
+                                        if (_model.getNoFilterToken!) {
+                                          setState(() => _model
+                                              .listViewPagingController
+                                              ?.refresh());
+                                        } else {
+                                          setState(() {});
+                                        }
+                                      }
+
+                                      setState(() {});
+                                      setState(() {});
+                                    },
+                                    child: Icon(
+                                      Icons.clear,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 18.0,
+                                    ),
+                                  )
+                                : null,
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                          cursorColor: FlutterFlowTheme.of(context).primary,
+                          validator: _model.textControllerValidator
+                              .asValidator(context),
+                        ),
                       ),
                     ),
-                  PagedListView<ApiPagingParams, dynamic>.separated(
+                    Builder(
+                      builder: (context) => Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 16.0, 0.0),
+                        child: FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 10.0,
+                          borderWidth: 1.0,
+                          buttonSize: 50.0,
+                          icon: Icon(
+                            Icons.tune_rounded,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 30.0,
+                          ),
+                          onPressed: () async {
+                            await showDialog(
+                              context: context,
+                              builder: (dialogContext) {
+                                return Dialog(
+                                  elevation: 0,
+                                  insetPadding: EdgeInsets.zero,
+                                  backgroundColor: Colors.transparent,
+                                  alignment: const AlignmentDirectional(0.0, 0.0)
+                                      .resolve(Directionality.of(context)),
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: FilterPersonnelListWidget(
+                                      filterSearch: _model.textController.text,
+                                      status: _model.statusFilter,
+                                      branch: _model.branch,
+                                      department: _model.department,
+                                      callback: (statusCallback, department,
+                                          branch) async {
+                                        setState(() {
+                                          _model.statusFilter = statusCallback!;
+                                          _model.branch = branch!;
+                                          _model.department = department!;
+                                        });
+                                        setState(() => _model
+                                            .listViewPagingController
+                                            ?.refresh());
+                                      },
+                                    ),
+                                  ),
+                                );
+                              },
+                            ).then((value) => setState(() {}));
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                if ((_model.textController.text != '') ||
+                    (_model.statusFilter != '') ||
+                    (_model.branch != '') ||
+                    (_model.department != '') ||
+                    (_model.branch != ' ') ||
+                    (_model.department != ' ') ||
+                    (_model.statusFilter != ' '))
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
+                    child: Text(
+                      '# Kết quả tìm kiếm theo bộ lọc',
+                      style: FlutterFlowTheme.of(context).labelMedium.override(
+                            fontFamily: 'Nunito Sans',
+                            fontSize: 12.0,
+                            letterSpacing: 0.0,
+                            fontStyle: FontStyle.italic,
+                          ),
+                    ),
+                  ),
+                Expanded(
+                  child: PagedListView<ApiPagingParams, dynamic>.separated(
                     pagingController: _model.setListViewController(
                       (nextPageMarker) => StaffGroup.getStaffListCall.call(
-                        filter: () {
-                          if ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)!.data.length < 20) &&
-                              ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)?.data.where((e) => e.userId.role == '82073000-1ba2-43a4-a55c-459d17c23b68').toList() != null &&
-                                      (StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)?.data.where((e) => e.userId.role == '82073000-1ba2-43a4-a55c-459d17c23b68').toList())!
-                                          .isNotEmpty) ==
-                                  true)) {
-                            return '{\"_and\":[{}${(_model.textController.text != '') && (_model.textController.text != ' ') ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${() {
-                              if ((_model.statusFilter != '') &&
-                                  (_model.statusFilter == 'Hoạt động') &&
-                                  (_model.statusFilter != ' ')) {
-                                return ',{\"status\":{\"_eq\":\"active\"}}';
-                              } else if ((_model.statusFilter != '') &&
-                                  (_model.statusFilter == 'Không hoạt động') &&
-                                  (_model.statusFilter != ' ')) {
-                                return ',{\"status\":{\"_neq\":\"active\"}}';
-                              } else {
-                                return ' ';
-                              }
-                            }()}${() {
-                              if (FFAppState().user.role ==
-                                  '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                                return ',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                  FFAppState().staffLogin,
-                                  r'''$.organization_id''',
-                                ).toString()}\"}}}';
-                              } else if (FFAppState().user.role ==
-                                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                return ',{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                  FFAppState().staffLogin,
-                                  r'''$.branch_id''',
-                                ).toString()}\"}}}';
-                              } else if (FFAppState().user.role ==
-                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                return ',{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                  FFAppState().staffLogin,
-                                  r'''$.department_id''',
-                                ).toString()}\"}}}';
-                              } else {
-                                return ' ';
-                              }
-                            }()}${(_model.branch != '1') && (_model.branch != ' ') && (_model.branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branch}\"}}}' : ' '}${(_model.department != '1') && (_model.department != ' ') && (_model.department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"${_model.department}\"}}}' : ' '},{\"user_id\":{\"role\":{\"_eq\":\"a8d33527-375b-4599-ac70-6a3fcad1de39\"}}}]}';
-                          } else if ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)!.data.length < 20) &&
-                              ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)?.data.where((e) => e.userId.role == 'a8d33527-375b-4599-ac70-6a3fcad1de39').toList() != null &&
-                                      (StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)?.data.where((e) => e.userId.role == 'a8d33527-375b-4599-ac70-6a3fcad1de39').toList())!
-                                          .isNotEmpty) ==
-                                  true)) {
-                            return '{\"_and\":[{}${(_model.textController.text != '') && (_model.textController.text != ' ') ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${() {
-                              if ((_model.statusFilter != '') &&
-                                  (_model.statusFilter == 'Hoạt động') &&
-                                  (_model.statusFilter != ' ')) {
-                                return ',{\"status\":{\"_eq\":\"active\"}}';
-                              } else if ((_model.statusFilter != '') &&
-                                  (_model.statusFilter == 'Không hoạt động') &&
-                                  (_model.statusFilter != ' ')) {
-                                return ',{\"status\":{\"_neq\":\"active\"}}';
-                              } else {
-                                return ' ';
-                              }
-                            }()}${() {
-                              if (FFAppState().user.role ==
-                                  '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                                return ',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                  FFAppState().staffLogin,
-                                  r'''$.organization_id''',
-                                ).toString()}\"}}}';
-                              } else if (FFAppState().user.role ==
-                                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                return ',{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                  FFAppState().staffLogin,
-                                  r'''$.branch_id''',
-                                ).toString()}\"}}}';
-                              } else if (FFAppState().user.role ==
-                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                return ',{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                  FFAppState().staffLogin,
-                                  r'''$.department_id''',
-                                ).toString()}\"}}}';
-                              } else {
-                                return ' ';
-                              }
-                            }()}${(_model.branch != '1') && (_model.branch != ' ') && (_model.branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branch}\"}}}' : ' '}${(_model.department != '1') && (_model.department != ' ') && (_model.department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"${_model.department}\"}}}' : ' '},{\"user_id\":{\"role\":{\"_eq\":\"6a8bc644-cb2d-4a31-b11e-b86e19824725\"}}}]}';
-                          } else if ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)!.data.length < 20) &&
-                              ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)?.data.where((e) => e.userId.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725').toList() !=
-                                          null &&
-                                      (StaffListDataStruct.maybeFromMap(
-                                                  (nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)
-                                              ?.data
-                                              .where((e) => e.userId.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725')
-                                              .toList())!
-                                          .isNotEmpty) ==
-                                  true)) {
-                            return '{\"_and\":[{}${(_model.textController.text != '') && (_model.textController.text != ' ') ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${() {
-                              if ((_model.statusFilter != '') &&
-                                  (_model.statusFilter == 'Hoạt động') &&
-                                  (_model.statusFilter != ' ')) {
-                                return ',{\"status\":{\"_eq\":\"active\"}}';
-                              } else if ((_model.statusFilter != '') &&
-                                  (_model.statusFilter == 'Không hoạt động') &&
-                                  (_model.statusFilter != ' ')) {
-                                return ',{\"status\":{\"_neq\":\"active\"}}';
-                              } else {
-                                return ' ';
-                              }
-                            }()}${() {
-                              if (FFAppState().user.role ==
-                                  '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                                return ',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                  FFAppState().staffLogin,
-                                  r'''$.organization_id''',
-                                ).toString()}\"}}}';
-                              } else if (FFAppState().user.role ==
-                                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                return ',{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                  FFAppState().staffLogin,
-                                  r'''$.branch_id''',
-                                ).toString()}\"}}}';
-                              } else if (FFAppState().user.role ==
-                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                return ',{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                  FFAppState().staffLogin,
-                                  r'''$.department_id''',
-                                ).toString()}\"}}}';
-                              } else {
-                                return ' ';
-                              }
-                            }()}${(_model.branch != '1') && (_model.branch != ' ') && (_model.branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branch}\"}}}' : ' '}${(_model.department != '1') && (_model.department != ' ') && (_model.department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"${_model.department}\"}}}' : ' '},{\"user_id\":{\"role\":{\"_eq\":\"3755a98d-f064-45cd-80e4-5084ab1dd2c4\"}}}]}';
+                        filter:
+                            '{\"_and\":[{}${(_model.textController.text != '') && (_model.textController.text != ' ') ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${() {
+                          if ((_model.statusFilter != '') &&
+                              (_model.statusFilter == 'Hoạt động') &&
+                              (_model.statusFilter != ' ')) {
+                            return ',{\"status\":{\"_eq\":\"active\"}}';
+                          } else if ((_model.statusFilter != '') &&
+                              (_model.statusFilter == 'Không hoạt động') &&
+                              (_model.statusFilter != ' ')) {
+                            return ',{\"status\":{\"_neq\":\"active\"}}';
                           } else {
-                            return '{\"_and\":[{}${(_model.textController.text != '') && (_model.textController.text != ' ') ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${() {
-                              if ((_model.statusFilter != '') &&
-                                  (_model.statusFilter == 'Hoạt động') &&
-                                  (_model.statusFilter != ' ')) {
-                                return ',{\"status\":{\"_eq\":\"active\"}}';
-                              } else if ((_model.statusFilter != '') &&
-                                  (_model.statusFilter == 'Không hoạt động') &&
-                                  (_model.statusFilter != ' ')) {
-                                return ',{\"status\":{\"_neq\":\"active\"}}';
-                              } else {
-                                return ' ';
-                              }
-                            }()}${() {
-                              if (FFAppState().user.role ==
-                                  '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                                return ',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                  FFAppState().staffLogin,
-                                  r'''$.organization_id''',
-                                ).toString()}\"}}}';
-                              } else if (FFAppState().user.role ==
-                                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                return ',{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                  FFAppState().staffLogin,
-                                  r'''$.branch_id''',
-                                ).toString()}\"}}}';
-                              } else if (FFAppState().user.role ==
-                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                return ',{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                  FFAppState().staffLogin,
-                                  r'''$.department_id''',
-                                ).toString()}\"}}}';
-                              } else {
-                                return ' ';
-                              }
-                            }()}${(_model.branch != '1') && (_model.branch != ' ') && (_model.branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branch}\"}}}' : ' '}${(_model.department != '1') && (_model.department != ' ') && (_model.department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"${_model.department}\"}}}' : ' '},{\"user_id\":{\"role\":{\"_eq\":\"82073000-1ba2-43a4-a55c-459d17c23b68\"}}}]}';
+                            return ' ';
                           }
-                        }(),
+                        }()}${() {
+                          if (FFAppState().user.role ==
+                              '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                            return ',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                              FFAppState().staffLogin,
+                              r'''$.organization_id''',
+                            ).toString()}\"}}}';
+                          } else if (FFAppState().user.role ==
+                              'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                            return ',{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                              FFAppState().staffLogin,
+                              r'''$.branch_id''',
+                            ).toString()}\"}}}';
+                          } else if (FFAppState().user.role ==
+                              '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                            return ',{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                              FFAppState().staffLogin,
+                              r'''$.department_id''',
+                            ).toString()}\"}}}';
+                          } else {
+                            return ' ';
+                          }
+                        }()}${(_model.branch != '1') && (_model.branch != ' ') && (_model.branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branch}\"}}}' : ' '}${(_model.department != '1') && (_model.department != ' ') && (_model.department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"${_model.department}\"}}}' : ' '}]}',
                         accessToken: FFAppState().accessToken,
                         limit: 20,
-                        offset: (int var1, bool var2, bool var3, int var4) {
-                          return var3
-                              ? ((var4 / 20).truncate() * 20).toInt()
-                              : (var2
-                                  ? 0
-                                  : ((var4 / 20).truncate() * 20).toInt());
-                        }(
-                            nextPageMarker.nextPageNumber,
-                            ((StaffListDataStruct.maybeFromMap((nextPageMarker
-                                                    .lastResponse ??
-                                                const ApiCallResponse({}, {}, 200))
-                                            .jsonBody)!
-                                        .data
-                                        .length <
-                                    20) ==
-                                true),
-                            ((StaffListDataStruct.maybeFromMap((nextPageMarker.lastResponse ?? const ApiCallResponse({}, {}, 200)).jsonBody)
-                                            ?.data
-                                            .where((e) =>
-                                                e.userId.role ==
-                                                '3755a98d-f064-45cd-80e4-5084ab1dd2c4')
-                                            .toList() !=
-                                        null &&
-                                    (StaffListDataStruct.maybeFromMap(
-                                                (nextPageMarker.lastResponse ??
-                                                        const ApiCallResponse({}, {}, 200))
-                                                    .jsonBody)
-                                            ?.data
-                                            .where((e) => e.userId.role == '3755a98d-f064-45cd-80e4-5084ab1dd2c4')
-                                            .toList())!
-                                        .isNotEmpty) ==
-                                true),
-                            nextPageMarker.numItems),
+                        offset: nextPageMarker.nextPageNumber * 20,
+                        sort: '-sort',
                       ),
                     ),
                     padding: EdgeInsets.zero,
                     primary: false,
-                    shrinkWrap: true,
                     reverse: false,
                     scrollDirection: Axis.vertical,
                     separatorBuilder: (_, __) => const SizedBox(height: 12.0),
@@ -829,7 +498,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 8.0, 16.0, 0.0),
+                                      16.0, 8.0, 16.0, 8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
@@ -1011,53 +680,66 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                       ),
                                                     ),
                                                     Container(
-                                                      height: 32.0,
+                                                      height: 30.0,
                                                       decoration: BoxDecoration(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
+                                                        color: dataListItem
+                                                                    .status ==
+                                                                'active'
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .accent2
+                                                            : const Color(0xFFF66E71),
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(8.0),
+                                                                .circular(20.0),
                                                       ),
                                                       child: Align(
                                                         alignment:
                                                             const AlignmentDirectional(
                                                                 -1.0, 0.0),
-                                                        child: Text(
-                                                          dataListItem.status ==
-                                                                  'active'
-                                                              ? 'Hoạt động'
-                                                              : 'Không hoạt động',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodySmall
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                color: dataListItem
-                                                                            .status ==
-                                                                        'active'
-                                                                    ? FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .accent2
-                                                                    : FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .error,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w300,
-                                                                fontStyle:
-                                                                    FontStyle
-                                                                        .italic,
-                                                              ),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      0.0,
+                                                                      8.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            dataListItem.status ==
+                                                                    'active'
+                                                                ? 'Hoạt động'
+                                                                : 'Không hoạt động',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: dataListItem
+                                                                              .status ==
+                                                                          'active'
+                                                                      ? FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondary
+                                                                      : FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w300,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                ),
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
-                                                  ],
+                                                  ].divide(
+                                                      const SizedBox(height: 4.0)),
                                                 ),
                                               ],
                                             ),
@@ -1223,21 +905,21 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                             ],
                                           ),
                                         ),
-                                        if ('1' == '23')
-                                          Expanded(
-                                            flex: 1,
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Container(
-                                                  width: 50.0,
-                                                  decoration: const BoxDecoration(),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
+                                        Expanded(
+                                          flex: 1,
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                width: 50.0,
+                                                decoration: const BoxDecoration(),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    if ('1' == '123')
                                                       Flexible(
                                                         child: Text(
                                                           dataListItem.staffTests
@@ -1279,64 +961,61 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                               ),
                                                         ),
                                                       ),
-                                                      Text(
-                                                        '/',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  fontSize:
-                                                                      13.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                      Text(
-                                                        '100',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  fontSize:
-                                                                      13.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                    Text(
+                                                      '/',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                    ),
+                                                    Text(
+                                                      '100',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                    ),
+                                                  ],
                                                 ),
-                                                Text(
-                                                  'Điểm TB',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        fontSize: 12.0,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
-                                              ],
-                                            ),
+                                              ),
+                                              Text(
+                                                'Điểm TB',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      fontSize: 12.0,
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                              ),
+                                            ],
                                           ),
+                                        ),
                                       ].divide(const SizedBox(width: 16.0)),
                                     ),
                                   ),
@@ -1486,8 +1165,8 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                       },
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

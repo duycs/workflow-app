@@ -1455,6 +1455,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                   'video':
                                                       '1fdaeaf9-74e3-42e9-94b5-acb9f3996949',
                                                   'title': 'Admin tổ chức',
+                                                  'sort': '0',
                                                 },
                                               );
                                               shouldSetState = true;

@@ -16,6 +16,6 @@ Future notifiRemoveServer() async {
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
 
   OneSignal.initialize("014e851d-ca32-4c5e-840e-236166738a06");
-
+  OneSignal.User.pushSubscription.optOut();
   OneSignal.logout();
 }

@@ -21,6 +21,34 @@ class AuthorSignUpModel extends FlutterFlowModel<AuthorSignUpWidget> {
           int index, Function(DomainsListStruct) updateFn) =>
       listDomain[index] = updateFn(listDomain[index]);
 
+  List<CreateDomainAuthorsStruct> selectedDomainList = [];
+  void addToSelectedDomainList(CreateDomainAuthorsStruct item) =>
+      selectedDomainList.add(item);
+  void removeFromSelectedDomainList(CreateDomainAuthorsStruct item) =>
+      selectedDomainList.remove(item);
+  void removeAtIndexFromSelectedDomainList(int index) =>
+      selectedDomainList.removeAt(index);
+  void insertAtIndexInSelectedDomainList(
+          int index, CreateDomainAuthorsStruct item) =>
+      selectedDomainList.insert(index, item);
+  void updateSelectedDomainListAtIndex(
+          int index, Function(CreateDomainAuthorsStruct) updateFn) =>
+      selectedDomainList[index] = updateFn(selectedDomainList[index]);
+
+  int loop = 0;
+
+  List<String> listAuthorName = [];
+  void addToListAuthorName(String item) => listAuthorName.add(item);
+  void removeFromListAuthorName(String item) => listAuthorName.remove(item);
+  void removeAtIndexFromListAuthorName(int index) =>
+      listAuthorName.removeAt(index);
+  void insertAtIndexInListAuthorName(int index, String item) =>
+      listAuthorName.insert(index, item);
+  void updateListAuthorNameAtIndex(int index, Function(String) updateFn) =>
+      listAuthorName[index] = updateFn(listAuthorName[index]);
+
+  bool checkName = false;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
@@ -47,14 +75,16 @@ class AuthorSignUpModel extends FlutterFlowModel<AuthorSignUpWidget> {
   // State field(s) for DropDown widget.
   List<String>? dropDownValue;
   FormFieldController<List<String>>? dropDownValueController;
-  // State field(s) for ChoiceChips widget.
-  FormFieldController<List<String>>? choiceChipsValueController;
-  String? get choiceChipsValue =>
-      choiceChipsValueController?.value?.firstOrNull;
-  set choiceChipsValue(String? val) =>
-      choiceChipsValueController?.value = val != null ? [val] : [];
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? uploadFile;
   // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
   ApiCallResponse? apiResultUploadAvatar;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? authorsSignUp;
+  // Stores action output result for [Backend Call - API (AuthorsSignUp)] action in Button widget.
+  ApiCallResponse? apiResultu1j;
+  // Stores action output result for [Backend Call - API (GetStaffId)] action in Button widget.
+  ApiCallResponse? apiResultGetStaffId;
 
   @override
   void initState(BuildContext context) {
@@ -86,6 +116,31 @@ class AuthorSignUpModel extends FlutterFlowModel<AuthorSignUpWidget> {
             .data
             .toList()
             .cast<DomainsListStruct>();
+      }
+    } else {
+      return;
+    }
+  }
+
+  Future getListAuthors(BuildContext context) async {
+    bool? getListAuthors;
+    ApiCallResponse? apiResultGetListAuthors;
+
+    getListAuthors = await action_blocks.tokenReload(context);
+    if (getListAuthors!) {
+      apiResultGetListAuthors = await GroupAuthorsGroup.listAuthorsCall.call(
+        accessToken: FFAppState().accessToken,
+      );
+      if ((apiResultGetListAuthors.succeeded ?? true)) {
+        listAuthorName = (getJsonField(
+          (apiResultGetListAuthors.jsonBody ?? ''),
+          r'''$.data[:].alias''',
+          true,
+        ) as List)
+            .map<String>((s) => s.toString())
+            .toList()
+            .toList()
+            .cast<String>();
       }
     } else {
       return;

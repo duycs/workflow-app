@@ -382,9 +382,9 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                                     padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             20.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                            12.0,
+                                                                            20.0,
+                                                                            12.0),
                                                                     child: Text(
                                                                       valueOrDefault<
                                                                           String>(
@@ -484,9 +484,9 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                                     padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             20.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                            12.0,
+                                                                            20.0,
+                                                                            12.0),
                                                                     child: Text(
                                                                       valueOrDefault<String>(
                                                                                 _model.data?.hotline,
@@ -583,9 +583,9 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                                         Padding(
                                                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           20.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
+                                                                          12.0,
+                                                                          20.0,
+                                                                          12.0),
                                                                       child:
                                                                           Text(
                                                                         'Hello World',
@@ -677,9 +677,9 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                                     padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             20.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                            12.0,
+                                                                            20.0,
+                                                                            12.0),
                                                                     child: Text(
                                                                       valueOrDefault<String>(
                                                                                 _model.data?.address,
@@ -779,7 +779,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                                   '') &&
                                                           (_model.data
                                                                   ?.description !=
-                                                              ''))
+                                                              ' '))
                                                         Column(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
@@ -851,10 +851,10 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                                 child: Padding(
                                                                   padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          10.0,
-                                                                          10.0,
-                                                                          10.0,
-                                                                          10.0),
+                                                                          20.0,
+                                                                          12.0,
+                                                                          20.0,
+                                                                          12.0),
                                                                   child: Html(
                                                                     data: _model.data?.description !=
                                                                             'undefined'
@@ -882,6 +882,144 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .alternate,
+                                                      ),
+                                                      Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            'Tầm nhìn:',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                          ),
+                                                          Text(
+                                                            '“Trở thành biểu tượng niềm tin hàng đầu Việt Nam phục vụ cuộc sống con người“',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        4.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              ' Sứ mệnh:',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        4.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              'Chất lượng cao cấp hàng đầu bằng chính sự trân trọng, tình yêu và trách nhiệm cao của mình với cuộc sống con người và xã hội',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontStyle:
+                                                                        FontStyle
+                                                                            .italic,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        4.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              'Giá trị cốt lõi:',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        4.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              'Chất lượng cao cấp hàng đầu bằng chính sự trân trọng, tình yêu và trách nhiệm cao của mình với cuộc sống con người và xã hội',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontStyle:
+                                                                        FontStyle
+                                                                            .italic,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
                                                       Padding(
                                                         padding:
@@ -999,9 +1137,9 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                                       ),
                                                                     ),
                                                                   if (_model
-                                                                          .data!
-                                                                          .files
-                                                                          .length >=
+                                                                          .data
+                                                                          ?.files
+                                                                          .length ==
                                                                       3)
                                                                     ClipRRect(
                                                                       borderRadius:
@@ -1032,61 +1170,70 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                         Container(
                                                           decoration:
                                                               const BoxDecoration(),
-                                                          child: Builder(
-                                                            builder: (context) {
-                                                              final listImage =
-                                                                  _model.data
-                                                                          ?.files
-                                                                          .toList() ??
-                                                                      [];
-                                                              return GridView
-                                                                  .builder(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .zero,
-                                                                gridDelegate:
-                                                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                                                  crossAxisCount:
-                                                                      2,
-                                                                  crossAxisSpacing:
-                                                                      10.0,
-                                                                  mainAxisSpacing:
-                                                                      10.0,
-                                                                  childAspectRatio:
-                                                                      1.0,
-                                                                ),
-                                                                primary: false,
-                                                                shrinkWrap:
-                                                                    true,
-                                                                scrollDirection:
-                                                                    Axis.vertical,
-                                                                itemCount:
-                                                                    listImage
-                                                                        .length,
-                                                                itemBuilder:
-                                                                    (context,
-                                                                        listImageIndex) {
-                                                                  final listImageItem =
-                                                                      listImage[
-                                                                          listImageIndex];
-                                                                  return ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                    child: Image
-                                                                        .network(
-                                                                      '${FFAppConstants.ApiBaseUrl}/assets/${listImageItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                      width:
-                                                                          300.0,
-                                                                      height:
-                                                                          200.0,
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                    ),
-                                                                  );
-                                                                },
-                                                              );
-                                                            },
+                                                          child: Visibility(
+                                                            visible: _model
+                                                                    .data!
+                                                                    .files
+                                                                    .length >
+                                                                3,
+                                                            child: Builder(
+                                                              builder:
+                                                                  (context) {
+                                                                final listImage = _model
+                                                                        .data
+                                                                        ?.files
+                                                                        .toList() ??
+                                                                    [];
+                                                                return GridView
+                                                                    .builder(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .zero,
+                                                                  gridDelegate:
+                                                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                    crossAxisCount:
+                                                                        2,
+                                                                    crossAxisSpacing:
+                                                                        10.0,
+                                                                    mainAxisSpacing:
+                                                                        10.0,
+                                                                    childAspectRatio:
+                                                                        1.0,
+                                                                  ),
+                                                                  primary:
+                                                                      false,
+                                                                  shrinkWrap:
+                                                                      true,
+                                                                  scrollDirection:
+                                                                      Axis.vertical,
+                                                                  itemCount:
+                                                                      listImage
+                                                                          .length,
+                                                                  itemBuilder:
+                                                                      (context,
+                                                                          listImageIndex) {
+                                                                    final listImageItem =
+                                                                        listImage[
+                                                                            listImageIndex];
+                                                                    return ClipRRect(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              8.0),
+                                                                      child: Image
+                                                                          .network(
+                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${listImageItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                        width:
+                                                                            300.0,
+                                                                        height:
+                                                                            200.0,
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                );
+                                                              },
+                                                            ),
                                                           ),
                                                         ),
                                                       Divider(

@@ -19,12 +19,14 @@ class AddProgramMarketWidget extends StatefulWidget {
     super.key,
     required this.id,
     this.price,
-    required this.callback,
+    this.version,
+    this.checkPage,
   });
 
   final String? id;
   final String? price;
-  final Future Function()? callback;
+  final int? version;
+  final String? checkPage;
 
   @override
   State<AddProgramMarketWidget> createState() => _AddProgramMarketWidgetState();
@@ -187,7 +189,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Đưa chương trình lên market',
+                                  'Đưa khóa học lên Market',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
@@ -427,7 +429,40 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               var shouldSetState = false;
-                              if (!(_model.textController.text != '')) {
+                              if (_model.textController.text != '') {
+                                var confirmDialogResponse =
+                                    await showDialog<bool>(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              title: const Text('Xác nhận:'),
+                                              content: const Text(
+                                                  'Đưa chương trình lên Market!'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          false),
+                                                  child: const Text('Đóng'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          true),
+                                                  child: const Text('Xác nhận'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        ) ??
+                                        false;
+                                if (!confirmDialogResponse) {
+                                  if (shouldSetState) setState(() {});
+                                  return;
+                                }
+                              } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
@@ -445,6 +480,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                 if (shouldSetState) setState(() {});
                                 return;
                               }
+
                               setState(() {});
                               if ((_model.dropDownDomainValue != null &&
                                       _model.dropDownDomainValue != '') &&
@@ -468,6 +504,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                       FFAppState().staffOrganization,
                                       r'''$.authors[0]''',
                                     ).toString(),
+                                    version: (widget.version!) + 1,
                                   );
                                   shouldSetState = true;
                                   if ((_model.apiResultUpdatePrice?.succeeded ??
@@ -507,7 +544,28 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                                     .secondary,
                                           ),
                                         );
-                                        Navigator.pop(context);
+                                        await _model
+                                            .deletePreProgramVersion(context);
+                                        setState(() {});
+
+                                        context.pushNamed(
+                                          'StudyProgramList',
+                                          queryParameters: {
+                                            'checkpage': serializeParam(
+                                              widget.checkPage,
+                                              ParamType.String,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: const TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType:
+                                                  PageTransitionType.fade,
+                                              duration:
+                                                  Duration(milliseconds: 0),
+                                            ),
+                                          },
+                                        );
                                       } else {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(

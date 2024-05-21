@@ -7,7 +7,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 class EmployeeLessonListDataStruct extends BaseStruct {
   EmployeeLessonListDataStruct({
     List<EmployeeLessonListStruct>? data,
-  }) : _data = data;
+    MetaDataStruct? meta,
+  })  : _data = data,
+        _meta = meta;
 
   // "data" field.
   List<EmployeeLessonListStruct>? _data;
@@ -17,12 +19,21 @@ class EmployeeLessonListDataStruct extends BaseStruct {
       updateFn(_data ??= []);
   bool hasData() => _data != null;
 
+  // "meta" field.
+  MetaDataStruct? _meta;
+  MetaDataStruct get meta => _meta ?? MetaDataStruct();
+  set meta(MetaDataStruct? val) => _meta = val;
+  void updateMeta(Function(MetaDataStruct) updateFn) =>
+      updateFn(_meta ??= MetaDataStruct());
+  bool hasMeta() => _meta != null;
+
   static EmployeeLessonListDataStruct fromMap(Map<String, dynamic> data) =>
       EmployeeLessonListDataStruct(
         data: getStructList(
           data['data'],
           EmployeeLessonListStruct.fromMap,
         ),
+        meta: MetaDataStruct.maybeFromMap(data['meta']),
       );
 
   static EmployeeLessonListDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -31,6 +42,7 @@ class EmployeeLessonListDataStruct extends BaseStruct {
 
   Map<String, dynamic> toMap() => {
         'data': _data?.map((e) => e.toMap()).toList(),
+        'meta': _meta?.toMap(),
       }.withoutNulls;
 
   @override
@@ -39,6 +51,10 @@ class EmployeeLessonListDataStruct extends BaseStruct {
           _data,
           ParamType.DataStruct,
           true,
+        ),
+        'meta': serializeParam(
+          _meta,
+          ParamType.DataStruct,
         ),
       }.withoutNulls;
 
@@ -51,6 +67,12 @@ class EmployeeLessonListDataStruct extends BaseStruct {
           true,
           structBuilder: EmployeeLessonListStruct.fromSerializableMap,
         ),
+        meta: deserializeStructParam(
+          data['meta'],
+          ParamType.DataStruct,
+          false,
+          structBuilder: MetaDataStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -60,12 +82,17 @@ class EmployeeLessonListDataStruct extends BaseStruct {
   bool operator ==(Object other) {
     const listEquality = ListEquality();
     return other is EmployeeLessonListDataStruct &&
-        listEquality.equals(data, other.data);
+        listEquality.equals(data, other.data) &&
+        meta == other.meta;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([data]);
+  int get hashCode => const ListEquality().hash([data, meta]);
 }
 
-EmployeeLessonListDataStruct createEmployeeLessonListDataStruct() =>
-    EmployeeLessonListDataStruct();
+EmployeeLessonListDataStruct createEmployeeLessonListDataStruct({
+  MetaDataStruct? meta,
+}) =>
+    EmployeeLessonListDataStruct(
+      meta: meta ?? MetaDataStruct(),
+    );

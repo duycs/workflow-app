@@ -27,6 +27,15 @@ class DepartmentDetailModel extends FlutterFlowModel<DepartmentDetailWidget> {
 
   int? loop1 = 0;
 
+  List<String> programItems = [];
+  void addToProgramItems(String item) => programItems.add(item);
+  void removeFromProgramItems(String item) => programItems.remove(item);
+  void removeAtIndexFromProgramItems(int index) => programItems.removeAt(index);
+  void insertAtIndexInProgramItems(int index, String item) =>
+      programItems.insert(index, item);
+  void updateProgramItemsAtIndex(int index, Function(String) updateFn) =>
+      programItems[index] = updateFn(programItems[index]);
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Action Block - tokenReload] action in Button widget.

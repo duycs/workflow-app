@@ -80,7 +80,8 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
   bool isDataUploading2 = false;
-  List<FFUploadedFile> uploadedLocalFiles2 = [];
+  FFUploadedFile uploadedLocalFile2 =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
 
   bool isDataUploading3 = false;
   FFUploadedFile uploadedLocalFile3 =
@@ -130,15 +131,34 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
     bool? uploadImageToken2;
     ApiCallResponse? apiResultUploadImage2;
 
-    if (uploadedLocalFiles2.isNotEmpty) {
+    if (images.isNotEmpty) {
       uploadImageToken2 = await action_blocks.tokenReload(context);
       if (uploadImageToken2!) {
+        var confirmDialogResponse = await showDialog<bool>(
+              context: context,
+              builder: (alertDialogContext) {
+                return AlertDialog(
+                  title: Text(imageId.length.toString()),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(alertDialogContext, false),
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.pop(alertDialogContext, true),
+                      child: const Text('Confirm'),
+                    ),
+                  ],
+                );
+              },
+            ) ??
+            false;
         apiResultUploadImage2 = await UploadFileGroup.uploadListFileCall.call(
           accessToken: FFAppState().accessToken,
-          fileList: uploadedLocalFiles2,
+          fileList: images,
         );
         if ((apiResultUploadImage2.succeeded ?? true)) {
-          if (uploadedLocalFiles2.length == 1) {
+          if (imagesUpload.length == 1) {
             updateFilesStruct(
               (e) => e
                 ..updateCreate(
@@ -164,6 +184,32 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
                 .toList()
                 .toList()
                 .cast<String>();
+            confirmDialogResponse = await showDialog<bool>(
+                  context: context,
+                  builder: (alertDialogContext) {
+                    return AlertDialog(
+                      title: Text(imagesUpload.length.toString()),
+                      actions: [
+                        TextButton(
+                          onPressed: () =>
+                              Navigator.pop(alertDialogContext, false),
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () =>
+                              Navigator.pop(alertDialogContext, true),
+                          child: const Text('Confirm'),
+                        ),
+                      ],
+                    );
+                  },
+                ) ??
+                false;
+            while (loop! < imageId.length) {
+              addToImagesUpload(imageId[loop!]);
+              loop = loop! + 1;
+            }
+            loop = 0;
             while (loop! < imagesUpload.length) {
               updateFilesStruct(
                 (e) => e
@@ -182,24 +228,27 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
               loop = loop! + 1;
             }
             loop = 0;
-            while (loop! < imageId.length) {
-              updateFilesStruct(
-                (e) => e
-                  ..updateCreate(
-                    (e) => e.add(FileDataStruct(
-                      organizationsId: getJsonField(
-                        FFAppState().staffLogin,
-                        r'''$.organization_id''',
-                      ).toString().toString(),
-                      directusFilesId: FileIDDataTypeStruct(
-                        id: imageId[loop!],
-                      ),
-                    )),
-                  ),
-              );
-              loop = loop! + 1;
-            }
-            loop = 0;
+            confirmDialogResponse = await showDialog<bool>(
+                  context: context,
+                  builder: (alertDialogContext) {
+                    return AlertDialog(
+                      title: Text(imagesUpload.length.toString()),
+                      actions: [
+                        TextButton(
+                          onPressed: () =>
+                              Navigator.pop(alertDialogContext, false),
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () =>
+                              Navigator.pop(alertDialogContext, true),
+                          child: const Text('Confirm'),
+                        ),
+                      ],
+                    );
+                  },
+                ) ??
+                false;
           }
         }
       }
@@ -223,5 +272,9 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
       }
       loop = 0;
     }
+
+    imageId = [];
+    imagesUpload = [];
+    images = [];
   }
 }

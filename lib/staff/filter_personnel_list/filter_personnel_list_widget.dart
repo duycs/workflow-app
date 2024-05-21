@@ -25,7 +25,7 @@ class FilterPersonnelListWidget extends StatefulWidget {
   });
 
   final String? filterSearch;
-  final Future Function(List<StaffListStruct>? listCallback,
+  final Future Function(
       String? statusCallback, String? department, String? branch)? callback;
   final String? status;
   final String? branch;
@@ -496,7 +496,6 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                           .cast<StaffListStruct>();
                                 });
                                 await widget.callback?.call(
-                                  _model.list,
                                   '',
                                   '',
                                   '',
@@ -539,88 +538,12 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            _model.filterToken =
-                                await action_blocks.tokenReload(context);
-                            if (_model.filterToken!) {
-                              _model.apiResultFilter =
-                                  await StaffGroup.getStaffListCall.call(
-                                accessToken: FFAppState().accessToken,
-                                filter:
-                                    '{\"_and\":[{}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}${() {
-                                  if ((_model.statusValue != null &&
-                                          _model.statusValue != '') &&
-                                      (_model.statusValue == 'Hoạt động')) {
-                                    return ',{\"status\":{\"_eq\":\"active\"}}';
-                                  } else if ((_model.statusValue != null &&
-                                          _model.statusValue != '') &&
-                                      (_model.statusValue ==
-                                          'Không hoạt động')) {
-                                    return ',{\"status\":{\"_neq\":\"active\"}}';
-                                  } else {
-                                    return ' ';
-                                  }
-                                }()}${() {
-                                  if (FFAppState().user.role ==
-                                      '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                                    return ',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                      FFAppState().staffLogin,
-                                      r'''$.organization_id''',
-                                    ).toString()}\"}}}';
-                                  } else if (FFAppState().user.role ==
-                                      'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                    return ',{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                      FFAppState().staffLogin,
-                                      r'''$.branch_id''',
-                                    ).toString()}\"}}}';
-                                  } else if (FFAppState().user.role ==
-                                      '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                    return ',{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                      FFAppState().staffLogin,
-                                      r'''$.department_id''',
-                                    ).toString()}\"}}}';
-                                  } else {
-                                    return ' ';
-                                  }
-                                }()}${_model.branchValue != '1' ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branchValue}\"}}}' : ' '}${_model.departmentValue != '1' ? ',{\"department_id\":{\"id\":{\"_eq\":\"${_model.departmentValue}\"}}}' : ' '}]}',
-                              );
-                              if ((_model.apiResultFilter?.succeeded ?? true)) {
-                                setState(() {
-                                  _model.list =
-                                      StaffListDataStruct.maybeFromMap((_model
-                                                  .apiResultFilter?.jsonBody ??
-                                              ''))!
-                                          .data
-                                          .toList()
-                                          .cast<StaffListStruct>();
-                                });
-                                await widget.callback?.call(
-                                  _model.list,
-                                  _model.statusValue,
-                                  _model.departmentValue,
-                                  _model.branchValue,
-                                );
-                                Navigator.pop(context);
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Lỗi Lọc',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).error,
-                                  ),
-                                );
-                              }
-                            } else {
-                              setState(() {});
-                            }
-
-                            setState(() {});
+                            await widget.callback?.call(
+                              _model.statusValue,
+                              _model.departmentValue,
+                              _model.branchValue,
+                            );
+                            Navigator.pop(context);
                           },
                           text: 'Xác nhận',
                           options: FFButtonOptions(

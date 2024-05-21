@@ -70,10 +70,6 @@ class FilterPersonnelListModel
   bool? clearFilterToken;
   // Stores action output result for [Backend Call - API (GetStaffList)] action in Button widget.
   ApiCallResponse? apiResultClearFilter;
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? filterToken;
-  // Stores action output result for [Backend Call - API (GetStaffList)] action in Button widget.
-  ApiCallResponse? apiResultFilter;
 
   @override
   void initState(BuildContext context) {}

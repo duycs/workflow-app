@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 Future notifiAddServer(String staffId) async {
@@ -16,11 +18,17 @@ Future notifiAddServer(String staffId) async {
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
 
   OneSignal.initialize("014e851d-ca32-4c5e-840e-236166738a06");
-
   OneSignal.Notifications.requestPermission(true);
-
+  OneSignal.InAppMessages.addClickListener((event) {
+    Fluttertoast.showToast(
+      msg: '${event}',
+      gravity: ToastGravity.TOP,
+      toastLength: Toast.LENGTH_LONG,
+    );
+  });
   OneSignal.login(staffId);
   print("StaffId: " + staffId);
+  OneSignal.User.addTagWithKey("test2", "val2");
   debugPrint("StaffId: " + staffId);
   // OneSignal.User.pushSubscription.addObserver((state) {
   //   print(OneSignal.User.pushSubscription.optedIn);

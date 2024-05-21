@@ -205,6 +205,7 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
+                              maxLength: 50,
                               validator: _model
                                   .branchNameTextControllerValidator
                                   .asValidator(context),
@@ -298,6 +299,7 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
+                              maxLength: 50,
                               validator: _model
                                   .branchCodeTextControllerValidator
                                   .asValidator(context),
@@ -539,38 +541,25 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                             ),
                                           );
                                           await widget.callBackList?.call();
-
-                                          context.pushNamed(
-                                            'BranchList',
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  const TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType.fade,
-                                                duration:
-                                                    Duration(milliseconds: 0),
-                                              ),
-                                            },
-                                          );
+                                          Navigator.pop(context);
                                         } else {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                'Tạo mới không thành công',
-                                                style: TextStyle(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                              ),
-                                              duration:
-                                                  const Duration(milliseconds: 4000),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                            ),
+                                          await showDialog(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return AlertDialog(
+                                                title: const Text('Thông báo'),
+                                                content: const Text(
+                                                    'Tạo mới không thành công!'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: const Text('Ok'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
                                           );
                                         }
                                       } else {

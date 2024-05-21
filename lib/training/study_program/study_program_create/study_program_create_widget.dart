@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
@@ -142,13 +143,18 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                               width: 2.0,
                             ),
                           ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.network(
-                              '',
-                              width: 100.0,
-                              height: 100.0,
-                              fit: BoxFit.cover,
+                          child: Visibility(
+                            visible: (_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                                    false),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.memory(
+                                _model.uploadedLocalFile.bytes ??
+                                    Uint8List.fromList([]),
+                                width: 100.0,
+                                height: 100.0,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
@@ -161,8 +167,46 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                             color: FlutterFlowTheme.of(context).primaryText,
                             size: 24.0,
                           ),
-                          onPressed: () {
-                            print('IconButton pressed ...');
+                          onPressed: () async {
+                            final selectedMedia =
+                                await selectMediaWithSourceBottomSheet(
+                              context: context,
+                              allowPhoto: true,
+                            );
+                            if (selectedMedia != null &&
+                                selectedMedia.every((m) => validateFileFormat(
+                                    m.storagePath, context))) {
+                              setState(() => _model.isDataUploading = true);
+                              var selectedUploadedFiles = <FFUploadedFile>[];
+
+                              try {
+                                selectedUploadedFiles = selectedMedia
+                                    .map((m) => FFUploadedFile(
+                                          name: m.storagePath.split('/').last,
+                                          bytes: m.bytes,
+                                          height: m.dimensions?.height,
+                                          width: m.dimensions?.width,
+                                          blurHash: m.blurHash,
+                                        ))
+                                    .toList();
+                              } finally {
+                                _model.isDataUploading = false;
+                              }
+                              if (selectedUploadedFiles.length ==
+                                  selectedMedia.length) {
+                                setState(() {
+                                  _model.uploadedLocalFile =
+                                      selectedUploadedFiles.first;
+                                });
+                              } else {
+                                setState(() {});
+                                return;
+                              }
+                            }
+
+                            setState(() {
+                              _model.uploadImage = _model.uploadImage;
+                            });
                           },
                         ),
                       ],
@@ -196,6 +240,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                 },
                               ),
                               autofocus: false,
+                              textInputAction: TextInputAction.next,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Tên chương trình',
@@ -276,6 +321,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                 },
                               ),
                               autofocus: false,
+                              textInputAction: TextInputAction.next,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Mô tả',
@@ -373,49 +419,83 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  RichText(
-                                    textScaler:
-                                        MediaQuery.of(context).textScaler,
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: 'Thời hạn học ',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: Text(_model
+                                                .estimateInDayTextController
+                                                .text),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: const Text('Ok'),
                                               ),
-                                        ),
-                                        const TextSpan(
-                                          text: '(Không bắt buộc)',
-                                          style: TextStyle(
-                                            fontSize: 13.0,
-                                            fontStyle: FontStyle.italic,
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: RichText(
+                                      textScaler:
+                                          MediaQuery.of(context).textScaler,
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: 'Thời hạn học ',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  letterSpacing: 0.0,
+                                                ),
                                           ),
-                                        )
-                                      ],
+                                          const TextSpan(
+                                            text: '(Không bắt buộc)',
+                                            style: TextStyle(
+                                              fontSize: 13.0,
+                                              fontStyle: FontStyle.italic,
+                                            ),
+                                          )
+                                        ],
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  if (((_model.estimateInDayTextController
+                                                      .text !=
+                                                  '') &&
+                                          (int.parse(_model
+                                                  .estimateInDayTextController
+                                                  .text) <
+                                              1)) &&
+                                      ((_model.check != null) &&
+                                          (_model.check! < 1)))
+                                    Text(
+                                      'Thời hạn chương trình phải lớn hơn 0',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            fontSize: 12.0,
                                             letterSpacing: 0.0,
+                                            fontStyle: FontStyle.italic,
                                           ),
                                     ),
-                                  ),
-                                  Text(
-                                    'Thời hạn học phải lớn hơn 0',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          fontSize: 12.0,
-                                          letterSpacing: 0.0,
-                                          fontStyle: FontStyle.italic,
-                                        ),
-                                  ),
                                 ].divide(const SizedBox(height: 4.0)),
                               ),
                               Align(
@@ -436,11 +516,23 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                           setState(() {
                                             _model.updateRequestDataStruct(
                                               (e) => e
-                                                ..estimateInDay =
-                                                    functions.stringToInt(_model
+                                                ..estimateInDay = (_model.estimateInDayTextController
+                                                                    .text !=
+                                                                '') &&
+                                                        (int.parse(_model
+                                                                .estimateInDayTextController
+                                                                .text) >
+                                                            0)
+                                                    ? functions.stringToInt(_model
                                                         .estimateInDayTextController
-                                                        .text),
+                                                        .text)
+                                                    : null,
                                             );
+                                          });
+                                          setState(() {
+                                            _model.check = int.tryParse(_model
+                                                .estimateInDayTextController
+                                                .text);
                                           });
                                         },
                                       ),
@@ -520,13 +612,11 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                             fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
+                                      textAlign: TextAlign.center,
                                       keyboardType: TextInputType.number,
                                       validator: _model
                                           .estimateInDayTextControllerValidator
                                           .asValidator(context),
-                                      inputFormatters: [
-                                        _model.estimateInDayMask
-                                      ],
                                     ),
                                   ),
                                 ),
@@ -686,34 +776,15 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                     child: FFButtonWidget(
                       onPressed: () async {
                         var shouldSetState = false;
+                        if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                                false)) {
+                          await _model.uploadImagePrograms(context);
+                          setState(() {});
+                        }
                         if (_model.formKey.currentState == null ||
                             !_model.formKey.currentState!.validate()) {
                           return;
                         }
-                        if (functions.stringToInt(
-                                _model.estimateInDayTextController.text) >
-                            0) {
-                          setState(() {});
-                        } else {
-                          await showDialog(
-                            context: context,
-                            builder: (alertDialogContext) {
-                              return AlertDialog(
-                                content: const Text('Thời hạn phải lớn hơn 0 !'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext),
-                                    child: const Text('Ok'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                          if (shouldSetState) setState(() {});
-                          return;
-                        }
-
                         _model.tokenReloadStudyProgramCreate =
                             await action_blocks.tokenReload(context);
                         shouldSetState = true;
@@ -723,48 +794,129 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                               (e) => e..status = 'published',
                             );
                           });
-                          _model.apiResulti4j = await StudyProgramGroup
-                              .studyProgramCreateCall
-                              .call(
-                            requestDataJson: _model.requestData?.toMap(),
-                            accessToken: FFAppState().accessToken,
-                          );
-                          shouldSetState = true;
-                          if ((_model.apiResulti4j?.succeeded ?? true)) {
-                            Navigator.pop(context);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Tạo mới thành công!',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                          if (_model.estimateInDayTextController.text != '') {
+                            if (int.parse(
+                                    _model.estimateInDayTextController.text) >
+                                0) {
+                              _model.apiResulti4j = await StudyProgramGroup
+                                  .studyProgramCreateCall
+                                  .call(
+                                requestDataJson: _model.requestData?.toMap(),
+                                accessToken: FFAppState().accessToken,
+                              );
+                              shouldSetState = true;
+                              if ((_model.apiResulti4j?.succeeded ?? true)) {
+                                Navigator.pop(context);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Tạo mới thành công!',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
                                   ),
-                                ),
-                                duration: const Duration(milliseconds: 4000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).secondary,
-                              ),
-                            );
-                          } else {
-                            Navigator.pop(context);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Tạo mới thất bại!',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                );
+                              } else {
+                                Navigator.pop(context);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Tạo mới thất bại!',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).error,
                                   ),
-                                ),
-                                duration: const Duration(milliseconds: 4000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).error,
-                              ),
-                            );
-                          }
+                                );
+                              }
 
-                          await widget.callBackList?.call();
+                              await widget.callBackList?.call();
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Thời hạn chương trình phải lớn hơn 0',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).error,
+                                ),
+                              );
+                            }
+                          } else {
+                            setState(() {
+                              _model.updateRequestDataStruct(
+                                (e) => e..estimateInDay = null,
+                              );
+                            });
+                            _model.apiResulti4j12 = await StudyProgramGroup
+                                .studyProgramCreateCall
+                                .call(
+                              requestDataJson: <String, dynamic>{
+                                'name': _model.programNameTextController.text,
+                                'description': _model
+                                    .programDescriptionTextController.text,
+                                'estimate_in_day': null,
+                              },
+                              accessToken: FFAppState().accessToken,
+                            );
+                            shouldSetState = true;
+                            _model.apiResulti4j1 = await StudyProgramGroup
+                                .studyProgramCreateCall
+                                .call(
+                              requestDataJson: _model.requestData?.toMap(),
+                              accessToken: FFAppState().accessToken,
+                            );
+                            shouldSetState = true;
+                            if ((_model.apiResulti4j1?.succeeded ?? true)) {
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Tạo mới thành công!',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).secondary,
+                                ),
+                              );
+                            } else {
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Tạo mới thất bại!',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).error,
+                                ),
+                              );
+                            }
+
+                            await widget.callBackList?.call();
+                          }
                         } else {
                           setState(() {});
                           if (shouldSetState) setState(() {});

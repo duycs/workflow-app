@@ -3,11 +3,6 @@ import 'rating_staf_widget.dart' show RatingStafWidget;
 import 'package:flutter/material.dart';
 
 class RatingStafModel extends FlutterFlowModel<RatingStafWidget> {
-  ///  State fields for stateful widgets in this component.
-
-  // State field(s) for RatingBar widget.
-  double? ratingBarValue;
-
   @override
   void initState(BuildContext context) {}
 

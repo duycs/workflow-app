@@ -23,6 +23,9 @@ class StudyProgramListStruct extends BaseStruct {
     int? template,
     String? price,
     String? authorId,
+    String? copyrightProgramId,
+    String? copyrightOrganizationId,
+    int? version,
   })  : _id = id,
         _status = status,
         _name = name,
@@ -39,7 +42,10 @@ class StudyProgramListStruct extends BaseStruct {
         _imageCover = imageCover,
         _template = template,
         _price = price,
-        _authorId = authorId;
+        _authorId = authorId,
+        _copyrightProgramId = copyrightProgramId,
+        _copyrightOrganizationId = copyrightOrganizationId,
+        _version = version;
 
   // "id" field.
   String? _id;
@@ -157,6 +163,25 @@ class StudyProgramListStruct extends BaseStruct {
   set authorId(String? val) => _authorId = val;
   bool hasAuthorId() => _authorId != null;
 
+  // "copyright_program_id" field.
+  String? _copyrightProgramId;
+  String get copyrightProgramId => _copyrightProgramId ?? '';
+  set copyrightProgramId(String? val) => _copyrightProgramId = val;
+  bool hasCopyrightProgramId() => _copyrightProgramId != null;
+
+  // "copyright_organization_id" field.
+  String? _copyrightOrganizationId;
+  String get copyrightOrganizationId => _copyrightOrganizationId ?? '';
+  set copyrightOrganizationId(String? val) => _copyrightOrganizationId = val;
+  bool hasCopyrightOrganizationId() => _copyrightOrganizationId != null;
+
+  // "version" field.
+  int? _version;
+  int get version => _version ?? 0;
+  set version(int? val) => _version = val;
+  void incrementVersion(int amount) => _version = version + amount;
+  bool hasVersion() => _version != null;
+
   static StudyProgramListStruct fromMap(Map<String, dynamic> data) =>
       StudyProgramListStruct(
         id: data['id'] as String?,
@@ -185,6 +210,9 @@ class StudyProgramListStruct extends BaseStruct {
         template: castToType<int>(data['template']),
         price: data['price'] as String?,
         authorId: data['author_id'] as String?,
+        copyrightProgramId: data['copyright_program_id'] as String?,
+        copyrightOrganizationId: data['copyright_organization_id'] as String?,
+        version: castToType<int>(data['version']),
       );
 
   static StudyProgramListStruct? maybeFromMap(dynamic data) => data is Map
@@ -209,6 +237,9 @@ class StudyProgramListStruct extends BaseStruct {
         'template': _template,
         'price': _price,
         'author_id': _authorId,
+        'copyright_program_id': _copyrightProgramId,
+        'copyright_organization_id': _copyrightOrganizationId,
+        'version': _version,
       }.withoutNulls;
 
   @override
@@ -283,6 +314,18 @@ class StudyProgramListStruct extends BaseStruct {
         'author_id': serializeParam(
           _authorId,
           ParamType.String,
+        ),
+        'copyright_program_id': serializeParam(
+          _copyrightProgramId,
+          ParamType.String,
+        ),
+        'copyright_organization_id': serializeParam(
+          _copyrightOrganizationId,
+          ParamType.String,
+        ),
+        'version': serializeParam(
+          _version,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -378,6 +421,21 @@ class StudyProgramListStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        copyrightProgramId: deserializeParam(
+          data['copyright_program_id'],
+          ParamType.String,
+          false,
+        ),
+        copyrightOrganizationId: deserializeParam(
+          data['copyright_organization_id'],
+          ParamType.String,
+          false,
+        ),
+        version: deserializeParam(
+          data['version'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -403,7 +461,10 @@ class StudyProgramListStruct extends BaseStruct {
         imageCover == other.imageCover &&
         template == other.template &&
         price == other.price &&
-        authorId == other.authorId;
+        authorId == other.authorId &&
+        copyrightProgramId == other.copyrightProgramId &&
+        copyrightOrganizationId == other.copyrightOrganizationId &&
+        version == other.version;
   }
 
   @override
@@ -424,7 +485,10 @@ class StudyProgramListStruct extends BaseStruct {
         imageCover,
         template,
         price,
-        authorId
+        authorId,
+        copyrightProgramId,
+        copyrightOrganizationId,
+        version
       ]);
 }
 
@@ -443,6 +507,9 @@ StudyProgramListStruct createStudyProgramListStruct({
   int? template,
   String? price,
   String? authorId,
+  String? copyrightProgramId,
+  String? copyrightOrganizationId,
+  int? version,
 }) =>
     StudyProgramListStruct(
       id: id,
@@ -459,4 +526,7 @@ StudyProgramListStruct createStudyProgramListStruct({
       template: template,
       price: price,
       authorId: authorId,
+      copyrightProgramId: copyrightProgramId,
+      copyrightOrganizationId: copyrightOrganizationId,
+      version: version,
     );

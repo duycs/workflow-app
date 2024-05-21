@@ -358,25 +358,25 @@ class _LessonDetailHomePageWidgetState
                                         child: FlutterFlowIconButton(
                                           borderColor:
                                               FlutterFlowTheme.of(context)
-                                                  .secondary,
-                                          borderRadius: 20.0,
+                                                  .noColor,
+                                          borderRadius: 25.0,
                                           borderWidth: 1.0,
-                                          buttonSize: 40.0,
+                                          buttonSize: 50.0,
                                           fillColor:
                                               FlutterFlowTheme.of(context)
-                                                  .lineColor,
+                                                  .secondaryText,
                                           icon: Icon(
-                                            Icons.play_circle,
+                                            Icons.play_arrow,
                                             color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 24.0,
+                                                .primaryBackground,
+                                            size: 30.0,
                                           ),
                                           onPressed: () async {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               SnackBar(
                                                 content: Text(
-                                                  'Bắt đầu học mới xem được video',
+                                                  'Bắt đầu học mới xem được video!',
                                                   style: TextStyle(
                                                     color: FlutterFlowTheme.of(
                                                             context)
@@ -2167,18 +2167,25 @@ class _LessonDetailHomePageWidgetState
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 5.0, 12.0, 0.0),
-                                child: custom_widgets.HtmlToDoc(
-                                  width: double.infinity,
-                                  height: 100.0,
-                                  html: functions.formatHtml(getJsonField(
-                                    widget.listItems,
-                                    r'''$.content''',
-                                  ).toString()),
+                              if ((getJsonField(
+                                        widget.listItems,
+                                        r'''$.content''',
+                                      ) !=
+                                      null) &&
+                                  (_model.check1 == '1') &&
+                                  (_model.check2 == '1'))
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      12.0, 5.0, 12.0, 0.0),
+                                  child: custom_widgets.HtmlToDoc(
+                                    width: double.infinity,
+                                    height: 100.0,
+                                    html: functions.formatHtml(getJsonField(
+                                      widget.listItems,
+                                      r'''$.content''',
+                                    ).toString()),
+                                  ),
                                 ),
-                              ),
                             ],
                           ),
                         ),
@@ -2629,13 +2636,22 @@ class _LessonDetailHomePageWidgetState
                               ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 4.0, 0.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
+                                    0.0, 0.0, 3.0, 0.0),
+                                child: FlutterFlowIconButton(
+                                  borderColor:
+                                      FlutterFlowTheme.of(context).noColor,
+                                  borderRadius: 20.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 40.0,
+                                  fillColor:
+                                      FlutterFlowTheme.of(context).noColor,
+                                  icon: Icon(
+                                    Icons.send,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () async {
                                     if (_model.commentsTextController.text !=
                                             '') {
                                       await _model.postComment(context);
@@ -2647,12 +2663,6 @@ class _LessonDetailHomePageWidgetState
                                       setState(() {});
                                     }
                                   },
-                                  child: Icon(
-                                    Icons.send,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 24.0,
-                                  ),
                                 ),
                               ),
                             ].divide(const SizedBox(width: 6.0)),
