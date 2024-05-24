@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
+import 'interceptors.dart';
 
 export 'api_manager.dart' show ApiCallResponse;
 
@@ -55,30 +56,37 @@ class ProcedurePublishedListCall {
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'ProcedurePublishedList',
-      apiUrl: '$baseUrl/items/workflows',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'fields':
-            "steps.tasks.id, steps.tasks.name, steps.tasks.workflow_id, steps.tasks.published_count, steps.tasks.date_created, steps.number, steps.tasks.operations.operations_id.content, steps.tasks.operations.operations_id.files.directus_files_id.id, steps.tasks.operations.operations_id.result,id,name,steps.id,steps.tasks.user_created.first_name,steps.tasks.status, steps.tasks.created_user_id.first_name, steps.tasks.created_user_id.email,organization_id,steps.staffs.staffs_id.id,departments.departments_id.staffs.id,branch_id, steps.tasks.date_end,steps.departments.departments_id.staffs.id,steps.departments.departments_id.id,departments.departments_id.id,steps.tasks.created_staff_id.branch_id, steps.tasks.created_staff_id.department_id, steps.tasks.created_staff_id.user_id,steps.tasks.submit_staff_id.branch_id, steps.tasks.submit_staff_id.department_id,steps.tasks.submit_staff_id.id,steps.tasks.submit_staff_id.user_id.first_name",
-        'filter': filter,
-        'offset': offset,
-        'limit': limit,
-        'meta': "total_count,filter_count",
-        'sort': "-date_created",
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'ProcedurePublishedList',
+        apiUrl: '$baseUrl/items/workflows',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'fields':
+              "steps.tasks.id, steps.tasks.name, steps.tasks.workflow_id, steps.tasks.published_count, steps.tasks.date_created, steps.number, steps.tasks.operations.operations_id.content, steps.tasks.operations.operations_id.files.directus_files_id.id, steps.tasks.operations.operations_id.result,id,name,steps.id,steps.tasks.user_created.first_name,steps.tasks.status, steps.tasks.created_user_id.first_name, steps.tasks.created_user_id.email,organization_id,steps.staffs.staffs_id.id,departments.departments_id.staffs.id,branch_id, steps.tasks.date_end,steps.departments.departments_id.staffs.id,steps.departments.departments_id.id,departments.departments_id.id,steps.tasks.created_staff_id.branch_id, steps.tasks.created_staff_id.department_id, steps.tasks.created_staff_id.user_id,steps.tasks.submit_staff_id.branch_id, steps.tasks.submit_staff_id.department_id,steps.tasks.submit_staff_id.id,steps.tasks.submit_staff_id.user_id.first_name",
+          'filter': filter,
+          'offset': offset,
+          'limit': limit,
+          'meta': "total_count,filter_count",
+          'sort': "-date_created",
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 class ProcedureTemplateUpdateLimitPublishedCall {
@@ -178,29 +186,36 @@ class GetDepartmentListCall {
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'GetDepartmentList',
-      apiUrl: '$baseUrl/items/departments',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'fields[]':
-            "id, status, name, description, branch_id.id, branch_id.name, code,programs.programs_id.id, programs.programs_id.name, programs.programs_id.lessions.lessions_id.id, programs.programs_id.lessions.lessions_id.name,staffs.id, staffs.user_id.id, staffs.user_id.emaile,staffs.user_id.first_name,staffs.user_id.role,organization_id",
-        'filter': filter,
-        'sort': "-date_created",
-        'limit': limit,
-        'offset': offset,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'GetDepartmentList',
+        apiUrl: '$baseUrl/items/departments',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'fields[]':
+              "id, status, name, description, branch_id.id, branch_id.name, code,programs.programs_id.id, programs.programs_id.name, programs.programs_id.lessions.lessions_id.id, programs.programs_id.lessions.lessions_id.name,staffs.id, staffs.user_id.id, staffs.user_id.emaile,staffs.user_id.first_name,staffs.user_id.role,organization_id",
+          'filter': filter,
+          'sort': "-date_created",
+          'limit': limit,
+          'offset': offset,
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 class PostdepartmentCall {
@@ -651,28 +666,36 @@ class GetLessonListCall {
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'GetLessonList',
-      apiUrl: '$baseUrl/items/lessions',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'fields[]':
-            "file,file.id,file.type,duration_hours,comments.id, comments.comments_id.id, comments.comments_id.content,id, status, name, description, content, image_cover, video, date_created, date_updated,test_id,comments.comments_id.staff_id.id,comments.comments_id.staff_id,comments.comments_id.staff_id.user_id,comments.comments_id.staff_id.user_id.email,comments.comments_id.staff_id.user_id.first_name,comments.comments_id.staff_id.user_id.avatar,comments.comments_id.date_created,reacts.id, reacts.reacts_id.status,reacts.reacts_id.staff_id,file.filename_download,organization_id,programs.programs_id.id,programs.programs_id.name,estimate_in_day",
-        'filter': filter,
-        'limit': limit,
-        'offset': offset,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'GetLessonList',
+        apiUrl: '$baseUrl/items/lessions',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'fields[]':
+              "file,file.id,file.type,duration_hours,comments.id, comments.comments_id.id, comments.comments_id.content,id, status, name, description, content, image_cover, video, date_created, date_updated,test_id,comments.comments_id.staff_id.id,comments.comments_id.staff_id,comments.comments_id.staff_id.user_id,comments.comments_id.staff_id.user_id.email,comments.comments_id.staff_id.user_id.first_name,comments.comments_id.staff_id.user_id.avatar,comments.comments_id.date_created,reacts.id, reacts.reacts_id.status,reacts.reacts_id.staff_id,file.filename_download,organization_id,programs.programs_id.id,programs.programs_id.name,estimate_in_day",
+          'filter': filter,
+          'limit': limit,
+          'offset': offset,
+          'sort': "-date_created",
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 class GetLessionsOneCall {
@@ -716,29 +739,36 @@ class EmployeeLessonListCall {
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'EmployeeLessonList',
-      apiUrl: '$baseUrl/items/staffs_lessions',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'fields[]':
-            "lession_id.file.id,lession_id.file.type,id,status,progress,date_start,date_end,staff_id.id,staff_id.user_id.first_name,staff_id.user_id.last_name,lession_id.id,lession_id.name,lession_id.description,lession_id.content,lession_id.image_cover,lession_id.video,lession_id.date_updated,lession_id.comments.id,lession_id.comments.comments_id.id,lession_id.comments.comments_id.content,lession_id.status,lession_id.date_created,lession_id.test_id,lession_id.comments.comments_id.staff_id.user_id.avatar,lession_id.comments.comments_id.staff_id.user_id.first_name,lession_id.duration_hours,lession_id.comments.comments_id.date_created,lession_id.file.filename_download,lession_id.programs.programs_id.id,lession_id.programs.programs_id.name,lession_id.estimate_in_day,program_id.name, program_id.estimate_in_day,date_created, program_id.id",
-        'filter': filter,
-        'limit': limit,
-        'offset': offset,
-        'meta': "total_count,filter_count",
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'EmployeeLessonList',
+        apiUrl: '$baseUrl/items/staffs_lessions',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'fields[]':
+              "lession_id.file.id,lession_id.file.type,id,status,progress,date_start,date_end,staff_id.id,staff_id.user_id.first_name,staff_id.user_id.last_name,lession_id.id,lession_id.name,lession_id.description,lession_id.content,lession_id.image_cover,lession_id.video,lession_id.date_updated,lession_id.comments.id,lession_id.comments.comments_id.id,lession_id.comments.comments_id.content,lession_id.status,lession_id.date_created,lession_id.test_id,lession_id.comments.comments_id.staff_id.user_id.avatar,lession_id.comments.comments_id.staff_id.user_id.first_name,lession_id.duration_hours,lession_id.comments.comments_id.date_created,lession_id.file.filename_download,lession_id.programs.programs_id.id,lession_id.programs.programs_id.name,lession_id.estimate_in_day,program_id.name, program_id.estimate_in_day,date_created, program_id.id",
+          'filter': filter,
+          'limit': limit,
+          'offset': offset,
+          'meta': "total_count,filter_count",
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 class PostCommentCall {
@@ -1073,30 +1103,37 @@ class StudyProgramListCall {
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'StudyProgramList',
-      apiUrl: '$baseUrl/items/programs',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'filter': filter,
-        'fields':
-            "date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id, image_cover, template, price, author_id, copyright_program_id, copyright_organization_id, version",
-        'offset': offset,
-        'limit': limit,
-        'meta': "total_count,filter_count",
-        'sort': "-date_created",
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'StudyProgramList',
+        apiUrl: '$baseUrl/items/programs',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'filter': filter,
+          'fields':
+              "private, copyright_organization_id,template,date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id, image_cover, template, price, author_id, copyright_program_id, copyright_organization_id, version, limit_invite, invite_count",
+          'offset': offset,
+          'limit': limit,
+          'meta': "total_count,filter_count",
+          'sort': "-date_created",
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 class StudyProgramOneCall {
@@ -1243,28 +1280,35 @@ class StaffsProgramsCall {
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'StaffsPrograms',
-      apiUrl: '$baseUrl/items/staffs_programs',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'fields[]':
-            "id, status, date_created, staff_id, organization_id, progress, lession_done, lession_count, date_start, date_end, deadline,program_id.id, program_id.name, program_id.lessions.lessions_id,program_id.description,program_id.duration_hours,program_id.organization_id,program_id.estimate_in_day,program_id.date_create,program_id.lessions.lessions_id.id,program_id.lessions.lessions_id.status,program_id.lessions.lessions_id.name,program_id.lessions.lessions_id.description,program_id.lessions.lessions_id.content,program_id.lessions.lessions_id.image_cover,program_id.lessions.lessions_id.video,program_id.lessions.lessions_id.date_created,program_id.lessions.lessions_id.date_updated,program_id.lessions.lessions_id.duration_hours,program_id.lessions.lessions_id.organization_id,program_id.lessions.lessions_id.estimate_in_day,program_id.tests.tests_id.id,program_id.tests.tests_id.status,program_id.status,program_id.date_created",
-        'filter': filter,
-        'limit': limit,
-        'offset': offset,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'StaffsPrograms',
+        apiUrl: '$baseUrl/items/staffs_programs',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'fields[]':
+              "id, status, date_created, staff_id, organization_id, progress, lession_done, lession_count, date_start, date_end, deadline,program_id.id, program_id.name, program_id.lessions.lessions_id,program_id.description,program_id.duration_hours,program_id.organization_id,program_id.estimate_in_day,program_id.date_create,program_id.lessions.lessions_id.id,program_id.lessions.lessions_id.status,program_id.lessions.lessions_id.name,program_id.lessions.lessions_id.description,program_id.lessions.lessions_id.content,program_id.lessions.lessions_id.image_cover,program_id.lessions.lessions_id.video,program_id.lessions.lessions_id.date_created,program_id.lessions.lessions_id.date_updated,program_id.lessions.lessions_id.duration_hours,program_id.lessions.lessions_id.organization_id,program_id.lessions.lessions_id.estimate_in_day,program_id.tests.tests_id.id,program_id.tests.tests_id.status,program_id.status,program_id.date_created",
+          'filter': filter,
+          'limit': limit,
+          'offset': offset,
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 class UpdateStudyProgramPriceCall {
@@ -1402,29 +1446,36 @@ class StaffsTestsListCall {
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'StaffsTestsList',
-      apiUrl: '$baseUrl/items/staffs_tests',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'fields':
-            "id,status,test_id.id,test_id.name,score,date_start,date_end,total_correct,total_incorrect,test_id.duration_minutes,date_created,percent_correct,test_id.good_score,lession_id.name, lession_id.id, lession_id.image_cover,test_id.description",
-        'filter': filter,
-        'sort': "-date_created",
-        'limit': limit,
-        'offset': offset,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'StaffsTestsList',
+        apiUrl: '$baseUrl/items/staffs_tests',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'fields':
+              "id,status,test_id.id,test_id.name,score,date_start,date_end,total_correct,total_incorrect,test_id.duration_minutes,date_created,percent_correct,test_id.good_score,lession_id.name, lession_id.id, lession_id.image_cover,test_id.description",
+          'filter': filter,
+          'sort': "-date_created",
+          'limit': limit,
+          'offset': offset,
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 class StaffAnswerListCall {
@@ -1679,29 +1730,36 @@ class TestListCall {
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'TestList',
-      apiUrl: '$baseUrl/items/tests',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'fields':
-            "questions.id, questions.questions_id.answers.answers_id.id, questions.questions_id.answers.answers_id.content, questions.questions_id.answers.answers_id.correct,id, status, name, description, duration_minutes, questions.questions_id.id, questions.questions_id.content, questions.questions_id.status, questions.questions_id.content, questions.questions_id.answer_type, questions.questions_id.auto_correct,organization_id,good_score",
-        'filter': filter,
-        'limit': limit,
-        'offset': offset,
-        'sort': "-date_created",
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'TestList',
+        apiUrl: '$baseUrl/items/tests',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'fields':
+              "questions.id, questions.questions_id.answers.answers_id.id, questions.questions_id.answers.answers_id.content, questions.questions_id.answers.answers_id.correct,id, status, name, description, duration_minutes, questions.questions_id.id, questions.questions_id.content, questions.questions_id.status, questions.questions_id.content, questions.questions_id.answer_type, questions.questions_id.auto_correct,organization_id,good_score",
+          'filter': filter,
+          'limit': limit,
+          'offset': offset,
+          'sort': "-date_created",
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 class TestOneCall {
@@ -1801,29 +1859,36 @@ class QuestionListCall {
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'questionList',
-      apiUrl: '$baseUrl/items/questions',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'fields':
-            "organization_id,id, status, content, answer_type, auto_correct, date_created, date_updated,answers.id, answers.answers_id.id, answers.answers_id.content, answers.answers_id.correct",
-        'filter': filter,
-        'limit': limit,
-        'sort': "-date_created",
-        'offset': offset,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'questionList',
+        apiUrl: '$baseUrl/items/questions',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'fields':
+              "organization_id,id, status, content, answer_type, auto_correct, date_created, date_updated,answers.id, answers.answers_id.id, answers.answers_id.content, answers.answers_id.correct",
+          'filter': filter,
+          'limit': limit,
+          'sort': "-date_created",
+          'offset': offset,
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 class QuestionListOneCall {
@@ -1961,30 +2026,37 @@ class WorkflowsListCall {
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'workflowsList',
-      apiUrl: '$baseUrl/items/workflows',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'fields':
-            "domain_id,category_id,template,organization_id,id, status, name, description,user_created.id,user_created.first_name,steps.id,steps.number, steps.name, steps.operations, steps.operations.operations_id.id, steps.operations.operations_id.name,steps.staffs.id, steps.staffs.staffs_id.id, steps.staffs.staffs_id.user_id.email,steps.staffs.staffs_id.user_id.last_name,cron,steps.staffs.staffs_id",
-        'filter': filter,
-        'offset': offset,
-        'limit': limit,
-        'meta': "total_count,filter_count",
-        'sort': "-date_created",
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'workflowsList',
+        apiUrl: '$baseUrl/items/workflows',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'fields':
+              "domain_id,category_id,template,organization_id,id, status, name, description,user_created.id,user_created.first_name,steps.id,steps.number, steps.name, steps.operations, steps.operations.operations_id.id, steps.operations.operations_id.name,steps.staffs.id, steps.staffs.staffs_id.id, steps.staffs.staffs_id.user_id.email,steps.staffs.staffs_id.user_id.last_name,cron,steps.staffs.staffs_id",
+          'filter': filter,
+          'offset': offset,
+          'limit': limit,
+          'meta': "total_count,filter_count",
+          'sort': "-date_created",
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 class OperationsListCall {
@@ -2476,29 +2548,36 @@ class BranchListCall {
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'BranchList',
-      apiUrl: '$baseUrl/items/branchs',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'filter': filter,
-        'fields[]':
-            "departments.staffs.id,id, status, name, description, code,departments.id, departments.name, departments.departments_id.id, departments.departments_id.name,staffs.id,staffs.name,staffs.title, staffs.user_id.first_name,organization_id.id",
-        'offset': offset,
-        'limit': limit,
-        'sort': "-date_created",
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'BranchList',
+        apiUrl: '$baseUrl/items/branchs',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'filter': filter,
+          'fields[]':
+              "departments.staffs.id,id, status, name, description, code,departments.id, departments.name, departments.departments_id.id, departments.departments_id.name,staffs.id,staffs.name,staffs.title, staffs.user_id.first_name,organization_id.id",
+          'offset': offset,
+          'limit': limit,
+          'sort': "-date_created",
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 class BranchAddCall {
@@ -2597,29 +2676,36 @@ class GetStaffListCall {
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'GetStaffList',
-      apiUrl: '$baseUrl/items/staffs',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'fields':
-            "sort,id, title, user_id.role, status,organization_id.id,organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,tasks.tasks_id.status,staff_tests.percent_correct",
-        'filter': filter,
-        'sort': sort,
-        'limit': limit,
-        'offset': offset,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'GetStaffList',
+        apiUrl: '$baseUrl/items/staffs',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'fields':
+              "sort,id, title, user_id.role, status,organization_id.id,organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,tasks.tasks_id.status,staff_tests.percent_correct",
+          'filter': filter,
+          'sort': sort,
+          'limit': limit,
+          'offset': offset,
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 class GetStaffGetOneCall {
@@ -2927,35 +3013,43 @@ class GetListTaskCall {
     String? filter = '',
     int? limit = 5000,
     int? offset = 0,
+    String? sort = '',
     String? accessToken = '',
   }) async {
     final baseUrl = TaskGroup.getBaseUrl(
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'GetListTask',
-      apiUrl: '$baseUrl/items/tasks',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'fields':
-            "id, status, name, description, content, date_start, date_end, deadline, estimate_in_second, workflow_id.id,workflow_id.name, number, published_count, step_id, execute_type, action_type, current,staffs.id, staffs.staffs_id.id, staffs.staffs_id.user_id.id, staffs.staffs_id.user_id.first_name,operations.id, operations.operations_id.id, operations.operations_id.name, operations.operations_id.date_start, operations.operations_id.date_end, operations.operations_id.deadline, operations.operations_id.estimate_in_second, operations.operations_id.operation_id,operations.operations_id.action_type, operations.operations_id.step_id,operations.operations_id.content, operations.operations_id.result, operations.operations_id.staffs.id, operations.operations_id.staffs.staffs_id.id,  operations.operations_id.staffs.staffs_id.user_id.email,operations.operations_id.status,staffs.staffs_id.department_id.name,step_id.id,step_id.name,step_id.number, operations.operations_id.files.directus_files_id.id,operations.operations_id.files.directus_files_id.type,operations.operations_id.files.directus_files_id.filename_download,operations.operations_id.files.directus_files_id.id,operations.operations_id.files.directus_files_id.type,operations.operations_id.date_updated,workflow_id.name,staffs.staffs_id.user_id.avatar, organization_id.id, workflow_id.organization_id,submit_staff_id.id, submit_staff_id.user_id.first_name,submit_staff_id.user_id.avatar,submit_staff_id.user_id.id,submit_staff_id.branch_id,submit_staff_id.department_id,created_user_id.first_name, date_created",
-        'filter': filter,
-        'sort': "number",
-        'limit': limit,
-        'offset': offset,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'GetListTask',
+        apiUrl: '$baseUrl/items/tasks',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'fields':
+              "id, status, name, description, content, date_start, date_end, deadline, estimate_in_second, workflow_id.id,workflow_id.name, number, published_count, step_id, execute_type, action_type, current,staffs.id, staffs.staffs_id.id, staffs.staffs_id.user_id.id, staffs.staffs_id.user_id.first_name,operations.id, operations.operations_id.id, operations.operations_id.name, operations.operations_id.date_start, operations.operations_id.date_end, operations.operations_id.deadline, operations.operations_id.estimate_in_second, operations.operations_id.operation_id,operations.operations_id.action_type, operations.operations_id.step_id,operations.operations_id.content, operations.operations_id.result, operations.operations_id.staffs.id, operations.operations_id.staffs.staffs_id.id,  operations.operations_id.staffs.staffs_id.user_id.email,operations.operations_id.status,staffs.staffs_id.department_id.name,step_id.id,step_id.name,step_id.number, operations.operations_id.files.directus_files_id.id,operations.operations_id.files.directus_files_id.type,operations.operations_id.files.directus_files_id.filename_download,operations.operations_id.files.directus_files_id.id,operations.operations_id.files.directus_files_id.type,operations.operations_id.date_updated,workflow_id.name,staffs.staffs_id.user_id.avatar, organization_id.id, workflow_id.organization_id,submit_staff_id.id, submit_staff_id.user_id.first_name,submit_staff_id.user_id.avatar,submit_staff_id.user_id.id,submit_staff_id.branch_id,submit_staff_id.department_id,created_user_id.first_name, date_created",
+          'filter': filter,
+          'sort': sort,
+          'limit': limit,
+          'offset': offset,
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 class UpdateOperationCall {
@@ -3031,6 +3125,7 @@ class ReceiveTaskCall {
   Future<ApiCallResponse> call({
     String? staffId = '',
     String? workflowId = '',
+    int? publishedCount,
     String? accessToken = '',
   }) async {
     final baseUrl = TaskGroup.getBaseUrl(
@@ -3040,7 +3135,8 @@ class ReceiveTaskCall {
     final ffApiRequestBody = '''
 {
   "staff_id": "$staffId",
-  "workflow_id": "$workflowId"
+  "workflow_id": "$workflowId",
+  "published_count": $publishedCount
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'ReceiveTask',
@@ -3091,30 +3187,37 @@ class OperationListCall {
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'OperationList',
-      apiUrl: '$baseUrl/items/operations',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'fields':
-            "id, status, name, description, content, date_start, date_end, deadline, estimate_in_second, operation_id, step_id, action_type, execute_id,staffs.staffs_id.id, staffs.staffs_id.user_id.email,files, files.directus_files_id.id, result,settings.id, settings.settings_id.id, settings.settings_id.name, settings.settings_id.type, settings.settings_id.key, settings.settings_id.value, settings.settings_id.description,configurations.id, configurations.configurations_id.id, configurations.configurations_id.name, configurations.configurations_id.description,organization_id,user_created,date_created,flow_id",
-        'filter': filter,
-        'sort': "-date_created",
-        'total_count': 5000,
-        'limit': limit,
-        'offset': offset,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'OperationList',
+        apiUrl: '$baseUrl/items/operations',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'fields':
+              "id, status, name, description, content, date_start, date_end, deadline, estimate_in_second, operation_id, step_id, action_type, execute_id,staffs.staffs_id.id, staffs.staffs_id.user_id.email,files, files.directus_files_id.id, result,settings.id, settings.settings_id.id, settings.settings_id.name, settings.settings_id.type, settings.settings_id.key, settings.settings_id.value, settings.settings_id.description,configurations.id, configurations.configurations_id.id, configurations.configurations_id.name, configurations.configurations_id.description,organization_id,user_created,date_created,flow_id,user_created.first_name",
+          'filter': filter,
+          'sort': "-date_created",
+          'total_count': 5000,
+          'limit': limit,
+          'offset': offset,
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 class OperationAddCall {
@@ -3280,6 +3383,7 @@ class GroupMarketLessonGroup {
   static GetListMarketLessonCall getListMarketLessonCall =
       GetListMarketLessonCall();
   static GetOneProgramsCall getOneProgramsCall = GetOneProgramsCall();
+  static InviteStaffCall inviteStaffCall = InviteStaffCall();
 }
 
 class GetListMarketLessonCall {
@@ -3339,11 +3443,46 @@ class GetOneProgramsCall {
       },
       params: {
         'fields[]':
-            "date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id,template,domain_id,category_id,author_id,price,author_id.id,author_id.status,author_id.alias,author_id.description,author_id.domains.domains_id.id,author_id.domains.domains_id.name,domain_id.name, domain_id.id,image_cover, order_count, reacts.id, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status,category_id.name,category_id.id,author_id.avatar",
+            "private, date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id,template,domain_id,category_id,author_id,price,author_id.id,author_id.status,author_id.alias,author_id.description,author_id.domains.domains_id.id,author_id.domains.domains_id.name,domain_id.name, domain_id.id,image_cover, order_count, reacts.id, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status,category_id.name,category_id.id,author_id.avatar, limit_invite, invite_count",
         'offset': offset,
         'limit': limit,
         'filter': filter,
       },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class InviteStaffCall {
+  Future<ApiCallResponse> call({
+    String? staffId = '',
+    String? programId = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = GroupMarketLessonGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "staff_id": "$staffId",
+  "program_id": "$programId"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'InviteStaff',
+      apiUrl: '$baseUrl/flows/trigger/b86eacb0-d17b-42aa-b401-82375d97f2b3',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -3602,6 +3741,7 @@ class OrderGroup {
     'Authorization': 'Bearer [accessToken]',
   };
   static GetListOrderCall getListOrderCall = GetListOrderCall();
+  static GetOneOrderCall getOneOrderCall = GetOneOrderCall();
   static CreateOrderCall createOrderCall = CreateOrderCall();
   static UpdateOrderCall updateOrderCall = UpdateOrderCall();
   static UpdateOrderStatusPublishedCall updateOrderStatusPublishedCall =
@@ -3619,20 +3759,57 @@ class GetListOrderCall {
       accessToken: accessToken,
     );
 
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'GetListOrder',
+        apiUrl: '$baseUrl/items/program_orders',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'limit': limit,
+          'offset': offset,
+          'fields':
+              " id, status, date_created, date_updated, code, description, organization_id, total_item, total_price, program_order_items.id, program_order_items.description, program_order_items.price, program_order_items.total_item, program_order_items.total_price, program_order_items.status, program_order_items.program_id.id, program_order_items.program_id.name, program_order_items.program_id.author_id.id, program_order_items.program_id.author_id.alias, program_order_items.program_id.tags.tags_id.name, customer_id.id, customer_id.user_id.email,program_order_items.program_id.lessions,program_order_items.program_id.image_cover,program_order_items.program_id.price,private",
+          'filter': filter,
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
+    );
+  }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
+}
+
+class GetOneOrderCall {
+  Future<ApiCallResponse> call({
+    String? id = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = OrderGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
     return ApiManager.instance.makeApiCall(
-      callName: 'GetListOrder',
-      apiUrl: '$baseUrl/items/program_orders',
+      callName: 'GetOneOrder',
+      apiUrl: '$baseUrl/items/program_orders/$id',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $accessToken',
       },
       params: {
-        'limit': limit,
-        'offset': offset,
         'fields':
-            " id, status, date_created, date_updated, code, description, organization_id, total_item, total_price, program_order_items.id, program_order_items.description, program_order_items.price, program_order_items.total_item, program_order_items.total_price, program_order_items.status, program_order_items.program_id.id, program_order_items.program_id.name, program_order_items.program_id.author_id.id, program_order_items.program_id.author_id.alias, program_order_items.program_id.tags.tags_id.name, customer_id.id, customer_id.user_id.email,program_order_items.program_id.lessions,program_order_items.program_id.image_cover,program_order_items.program_id.price,privite",
-        'filter': filter,
+            " id, status, date_created, date_updated, code, description, organization_id, total_item, total_price, program_order_items.id, program_order_items.description, program_order_items.price, program_order_items.total_item, program_order_items.total_price, program_order_items.status, program_order_items.program_id.id, program_order_items.program_id.name, program_order_items.program_id.author_id.id, program_order_items.program_id.author_id.alias, program_order_items.program_id.tags.tags_id.name, customer_id.id, customer_id.user_id.email,program_order_items.program_id.lessions,program_order_items.program_id.image_cover,program_order_items.program_id.price,private",
       },
       returnBody: true,
       encodeBodyUtf8: false,

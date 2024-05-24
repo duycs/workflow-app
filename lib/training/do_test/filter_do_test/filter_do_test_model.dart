@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'filter_do_test_widget.dart' show FilterDoTestWidget;
@@ -24,10 +23,6 @@ class FilterDoTestModel extends FlutterFlowModel<FilterDoTestWidget> {
 
   DateTime? datePicked1;
   DateTime? datePicked2;
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? clearListStaffTestToken;
-  // Stores action output result for [Backend Call - API (StaffsTestsList)] action in Button widget.
-  ApiCallResponse? apiResultClearListStaffTest;
 
   @override
   void initState(BuildContext context) {}

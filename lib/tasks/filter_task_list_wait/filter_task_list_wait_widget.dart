@@ -448,7 +448,7 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                               child: TextFormField(
                                 controller: _model.createdTextController,
                                 focusNode: _model.createdFocusNode,
-                                autofocus: true,
+                                autofocus: false,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelStyle: FlutterFlowTheme.of(context)
@@ -537,7 +537,7 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
                               child: TextFormField(
                                 controller: _model.workflowNameTextController,
                                 focusNode: _model.workflowNameFocusNode,
-                                autofocus: true,
+                                autofocus: false,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelStyle: FlutterFlowTheme.of(context)

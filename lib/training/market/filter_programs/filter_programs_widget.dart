@@ -18,20 +18,40 @@ class FilterProgramsWidget extends StatefulWidget {
     String? priceMin,
     String? priceMax,
     required this.listDomain,
+    String? checkPrice,
+    String? checkPrice1,
+    String? priceMin1,
+    String? priceMax1,
+    required this.checkAuthor,
   })  : domain = domain ?? '',
         author = author ?? '',
         category = category ?? '',
         priceMin = priceMin ?? '',
-        priceMax = priceMax ?? '';
+        priceMax = priceMax ?? '',
+        checkPrice = checkPrice ?? '',
+        checkPrice1 = checkPrice1 ?? '',
+        priceMin1 = priceMin1 ?? '',
+        priceMax1 = priceMax1 ?? '';
 
-  final Future Function(String? domain, String? author, String? category,
-      String? priceMin, String? priceMax)? callBack;
+  final Future Function(
+      String? domain,
+      String? author,
+      String? category,
+      String? priceMin,
+      String? priceMax,
+      String? priceMin1,
+      String? priceMax1)? callBack;
   final String domain;
   final String author;
   final String category;
   final String priceMin;
   final String priceMax;
   final List<String>? listDomain;
+  final String checkPrice;
+  final String checkPrice1;
+  final String priceMin1;
+  final String priceMax1;
+  final String? checkAuthor;
 
   @override
   State<FilterProgramsWidget> createState() => _FilterProgramsWidgetState();
@@ -78,6 +98,20 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
             ? widget.priceMax
             : '');
     _model.priceMaxFocusNode ??= FocusNode();
+
+    _model.priceMin1TextController ??= TextEditingController(
+        text: (widget.priceMin1 != '') &&
+                (widget.priceMin1 != 'noData')
+            ? widget.priceMin1
+            : '');
+    _model.priceMin1FocusNode ??= FocusNode();
+
+    _model.priceMax1TextController ??= TextEditingController(
+        text: (widget.priceMax1 != '') &&
+                (widget.priceMax1 != 'noData')
+            ? widget.priceMax1
+            : '');
+    _model.priceMax1FocusNode ??= FocusNode();
   }
 
   @override
@@ -94,9 +128,6 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Container(
-          constraints: const BoxConstraints(
-            maxHeight: 550.0,
-          ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
             boxShadow: const [
@@ -150,388 +181,657 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                   ),
                 ),
                 Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
-                        child: FlutterFlowDropDown<String>(
-                          controller: _model.domainValueController ??=
-                              FormFieldController<String>(
-                            _model.domainValue ??= (widget.domain != '') &&
-                                    (widget.domain != 'noData')
-                                ? widget.domain
-                                : '',
+                  child: SingleChildScrollView(
+                    primary: false,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        if (widget.checkPrice != 'free1')
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 10.0),
+                            child: FlutterFlowDropDown<String>(
+                              controller: _model.domainValueController ??=
+                                  FormFieldController<String>(
+                                _model.domainValue ??= (widget.domain != '') &&
+                                        (widget.domain != 'noData')
+                                    ? widget.domain
+                                    : '',
+                              ),
+                              options: widget.listDomain!,
+                              onChanged: (val) =>
+                                  setState(() => _model.domainValue = val),
+                              width: 300.0,
+                              height: 56.0,
+                              searchHintTextStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                              searchTextStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                              hintText: 'Lĩnh vực',
+                              searchHintText: 'Tìm kiếm...',
+                              icon: Icon(
+                                Icons.keyboard_arrow_down_rounded,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 24.0,
+                              ),
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              elevation: 1.0,
+                              borderColor:
+                                  FlutterFlowTheme.of(context).alternate,
+                              borderWidth: 1.0,
+                              borderRadius: 8.0,
+                              margin: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 4.0, 16.0, 4.0),
+                              hidesUnderline: true,
+                              isOverButton: true,
+                              isSearchable: true,
+                              isMultiSelect: false,
+                            ),
                           ),
-                          options: widget.listDomain!,
-                          onChanged: (val) =>
-                              setState(() => _model.domainValue = val),
-                          width: 300.0,
-                          height: 56.0,
-                          searchHintTextStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
+                        if (widget.checkAuthor == null ||
+                            widget.checkAuthor == '')
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 10.0),
+                            child: TextFormField(
+                              controller: _model.authorTextController,
+                              focusNode: _model.authorFocusNode,
+                              autofocus: false,
+                              textInputAction: TextInputAction.next,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'Tác giả',
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                                hintStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
-                          searchTextStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
-                          textStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
-                          hintText: 'Lĩnh vực',
-                          searchHintText: 'Tìm kiếm...',
-                          icon: Icon(
-                            Icons.keyboard_arrow_down_rounded,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
+                              validator: _model.authorTextControllerValidator
+                                  .asValidator(context),
+                            ),
                           ),
-                          fillColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          elevation: 1.0,
-                          borderColor: FlutterFlowTheme.of(context).alternate,
-                          borderWidth: 1.0,
-                          borderRadius: 8.0,
-                          margin: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 4.0, 16.0, 4.0),
-                          hidesUnderline: true,
-                          isOverButton: true,
-                          isSearchable: true,
-                          isMultiSelect: false,
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 10.0),
+                          child: TextFormField(
+                            controller: _model.categoryTextController,
+                            focusNode: _model.categoryFocusNode,
+                            autofocus: false,
+                            textInputAction: TextInputAction.next,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'Danh mục',
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                ),
+                            validator: _model.categoryTextControllerValidator
+                                .asValidator(context),
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
-                        child: TextFormField(
-                          controller: _model.authorTextController,
-                          focusNode: _model.authorFocusNode,
-                          autofocus: false,
-                          textInputAction: TextInputAction.next,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'Tác giả',
-                            labelStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).primary,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
-                          validator: _model.authorTextControllerValidator
-                              .asValidator(context),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
-                        child: TextFormField(
-                          controller: _model.categoryTextController,
-                          focusNode: _model.categoryFocusNode,
-                          autofocus: false,
-                          textInputAction: TextInputAction.next,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'Danh mục',
-                            labelStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).primary,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
-                          validator: _model.categoryTextControllerValidator
-                              .asValidator(context),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-                        child: Text(
-                          'Khoảng giá',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
+                        if ((widget.checkPrice1 == 'checkPriceListList') ||
+                            (widget.checkPrice == 'free1'))
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 5.0),
+                            child: Text(
+                              'Khoảng giá',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
                                   ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                'Từ: ',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                              ),
-                              Container(
-                                width: 100.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      3.0, 0.0, 0.0, 0.0),
-                                  child: TextFormField(
-                                    controller: _model.priceMinTextController,
-                                    focusNode: _model.priceMinFocusNode,
-                                    autofocus: false,
-                                    textInputAction: TextInputAction.next,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    validator: _model
-                                        .priceMinTextControllerValidator
-                                        .asValidator(context),
-                                  ),
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                'Đến: ',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                              ),
-                              Container(
-                                width: 100.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      3.0, 0.0, 0.0, 0.0),
-                                  child: TextFormField(
-                                    controller: _model.priceMaxTextController,
-                                    focusNode: _model.priceMaxFocusNode,
-                                    autofocus: false,
-                                    textInputAction: TextInputAction.next,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
+                        if ((widget.checkPrice1 == 'checkPriceListList') ||
+                            (widget.checkPrice == 'free1'))
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 2.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'Từ: ',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
                                           .override(
                                             fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
                                           ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
+                                    ),
+                                    Container(
+                                      width: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            3.0, 0.0, 0.0, 0.0),
+                                        child: TextFormField(
+                                          controller:
+                                              _model.priceMinTextController,
+                                          focusNode: _model.priceMinFocusNode,
+                                          autofocus: false,
+                                          textInputAction: TextInputAction.next,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                          validator: _model
+                                              .priceMinTextControllerValidator
+                                              .asValidator(context),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'Đến: ',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
                                           .override(
                                             fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
                                           ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
+                                    ),
+                                    Container(
+                                      width: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
                                       ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          width: 1.0,
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            3.0, 0.0, 0.0, 0.0),
+                                        child: TextFormField(
+                                          controller:
+                                              _model.priceMaxTextController,
+                                          focusNode: _model.priceMaxFocusNode,
+                                          autofocus: false,
+                                          textInputAction: TextInputAction.next,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                          validator: _model
+                                              .priceMaxTextControllerValidator
+                                              .asValidator(context),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
                                       ),
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    validator: _model
-                                        .priceMaxTextControllerValidator
-                                        .asValidator(context),
-                                  ),
+                                  ],
                                 ),
-                              ),
-                            ],
+                              ].divide(const SizedBox(width: 20.0)),
+                            ),
                           ),
-                        ].divide(const SizedBox(width: 20.0)),
-                      ),
-                    ],
+                        if ((widget.checkPrice1 == 'checkPriceList') &&
+                            (widget.checkPrice != 'free') &&
+                            (widget.checkPrice != 'free1'))
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 5.0),
+                            child: Text(
+                              'Khoảng giá',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                            ),
+                          ),
+                        if ((widget.checkPrice1 == 'checkPriceList') &&
+                            (widget.checkPrice != 'free') &&
+                            (widget.checkPrice != 'free1'))
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 2.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'Từ: ',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
+                                    Container(
+                                      width: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            3.0, 0.0, 0.0, 0.0),
+                                        child: TextFormField(
+                                          controller:
+                                              _model.priceMin1TextController,
+                                          focusNode: _model.priceMin1FocusNode,
+                                          autofocus: false,
+                                          textInputAction: TextInputAction.next,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                          validator: _model
+                                              .priceMin1TextControllerValidator
+                                              .asValidator(context),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'Đến: ',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
+                                    Container(
+                                      width: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            3.0, 0.0, 0.0, 0.0),
+                                        child: TextFormField(
+                                          controller:
+                                              _model.priceMax1TextController,
+                                          focusNode: _model.priceMax1FocusNode,
+                                          autofocus: false,
+                                          textInputAction: TextInputAction.next,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                          validator: _model
+                                              .priceMax1TextControllerValidator
+                                              .asValidator(context),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ].divide(const SizedBox(width: 20.0)),
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
@@ -548,8 +848,12 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                               _model.categoryTextController?.clear();
                               _model.priceMinTextController?.clear();
                               _model.priceMaxTextController?.clear();
+                              _model.priceMin1TextController?.clear();
+                              _model.priceMax1TextController?.clear();
                             });
                             await widget.callBack?.call(
+                              '',
+                              '',
                               '',
                               '',
                               '',
@@ -588,25 +892,99 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            await widget.callBack?.call(
-                              _model.domainValue != null &&
-                                      _model.domainValue != ''
-                                  ? _model.domainValue
-                                  : 'noData',
-                              _model.authorTextController.text != ''
-                                  ? _model.authorTextController.text
-                                  : 'noData',
-                              _model.categoryTextController.text != ''
-                                  ? _model.categoryTextController.text
-                                  : 'noData',
-                              _model.priceMinTextController.text != ''
-                                  ? _model.priceMinTextController.text
-                                  : 'noData',
-                              _model.priceMaxTextController.text != ''
-                                  ? _model.priceMaxTextController.text
-                                  : 'noData',
-                            );
-                            Navigator.pop(context);
+                            if (_model.priceMin1TextController.text != '') {
+                              if (double.parse(
+                                      _model.priceMin1TextController.text) >
+                                  0) {
+                                await widget.callBack?.call(
+                                  _model.domainValue != null &&
+                                          _model.domainValue != ''
+                                      ? _model.domainValue
+                                      : 'noData',
+                                  _model.authorTextController.text != ''
+                                      ? _model.authorTextController.text
+                                      : 'noData',
+                                  _model.categoryTextController.text !=
+                                              ''
+                                      ? _model.categoryTextController.text
+                                      : 'noData',
+                                  _model.priceMinTextController.text !=
+                                              ''
+                                      ? _model.priceMinTextController.text
+                                      : 'noData',
+                                  _model.priceMaxTextController.text !=
+                                              ''
+                                      ? _model.priceMaxTextController.text
+                                      : 'noData',
+                                  _model.priceMin1TextController.text !=
+                                              ''
+                                      ? _model.priceMin1TextController.text
+                                      : 'noData',
+                                  _model.priceMax1TextController.text !=
+                                              ''
+                                      ? _model.priceMax1TextController.text
+                                      : 'noData',
+                                );
+                                Navigator.pop(context);
+                              } else {
+                                var confirmDialogResponse =
+                                    await showDialog<bool>(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              title: const Text('Thông báo'),
+                                              content: const Text(
+                                                  'Giá trị min phải lớn hơn 0!'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          false),
+                                                  child: const Text('Cancel'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          true),
+                                                  child: const Text('Confirm'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        ) ??
+                                        false;
+                              }
+                            } else {
+                              await widget.callBack?.call(
+                                _model.domainValue != null &&
+                                        _model.domainValue != ''
+                                    ? _model.domainValue
+                                    : 'noData',
+                                _model.authorTextController.text != ''
+                                    ? _model.authorTextController.text
+                                    : 'noData',
+                                _model.categoryTextController.text != ''
+                                    ? _model.categoryTextController.text
+                                    : 'noData',
+                                _model.priceMinTextController.text != ''
+                                    ? _model.priceMinTextController.text
+                                    : 'noData',
+                                _model.priceMaxTextController.text != ''
+                                    ? _model.priceMaxTextController.text
+                                    : 'noData',
+                                _model.priceMin1TextController.text !=
+                                            ''
+                                    ? _model.priceMin1TextController.text
+                                    : 'noData',
+                                _model.priceMax1TextController.text !=
+                                            ''
+                                    ? _model.priceMax1TextController.text
+                                    : 'noData',
+                              );
+                              Navigator.pop(context);
+                            }
                           },
                           text: 'Xác nhận',
                           options: FFButtonOptions(

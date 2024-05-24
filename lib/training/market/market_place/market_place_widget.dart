@@ -343,7 +343,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                   Icons.arrow_right,
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
-                                  size: 24.0,
+                                  size: 20.0,
                                 ),
                               ],
                             ),
@@ -583,7 +583,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                   Icons.arrow_right,
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
-                                  size: 24.0,
+                                  size: 20.0,
                                 ),
                               ],
                             ),
@@ -743,7 +743,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                                   formatType:
                                                       FormatType.decimal,
                                                   decimalType:
-                                                      DecimalType.periodDecimal,
+                                                      DecimalType.commaDecimal,
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -924,7 +924,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                   Icons.arrow_right,
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
-                                  size: 24.0,
+                                  size: 20.0,
                                 ),
                               ],
                             ),
@@ -960,8 +960,12 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                 return GridView.builder(
                                   padding: EdgeInsets.zero,
                                   gridDelegate:
-                                      const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 4,
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount:
+                                        MediaQuery.sizeOf(context).width <
+                                                kBreakpointMedium
+                                            ? 4
+                                            : 8,
                                     crossAxisSpacing: 10.0,
                                     mainAxisSpacing: 10.0,
                                     childAspectRatio: 1.0,
@@ -983,7 +987,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                           'ProgramListMarket',
                                           queryParameters: {
                                             'price': serializeParam(
-                                              '',
+                                              'free1',
                                               ParamType.String,
                                             ),
                                             'idAuthor': serializeParam(
@@ -1012,61 +1016,66 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                         );
                                       },
                                       child: Container(
+                                        width: double.infinity,
+                                        height: double.infinity,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                         ),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 2.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 2.0, 0.0, 0.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(3.0, 3.0, 3.0, 3.0),
+                                              child: Container(
+                                                width: double.infinity,
+                                                height:
+                                                    MediaQuery.sizeOf(context)
+                                                            .height *
+                                                        0.06,
+                                                decoration: const BoxDecoration(),
                                                 child: ClipRRect(
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           8.0),
                                                   child: Image.network(
                                                     '${FFAppConstants.ApiBaseUrl}/assets/${itemDomainsItem.imageCover}?access_token=${FFAppState().accessToken}',
-                                                    width: 70.0,
-                                                    height: 55.0,
+                                                    width: double.infinity,
+                                                    height: double.infinity,
                                                     fit: BoxFit.cover,
                                                   ),
                                                 ),
                                               ),
-                                              Expanded(
-                                                child: Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: Text(
-                                                    itemDomainsItem.name,
-                                                    textAlign: TextAlign.center,
-                                                    maxLines: 2,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
+                                            ),
+                                            Expanded(
+                                              child: Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        3.0, 0.0, 3.0, 3.0),
+                                                child: Text(
+                                                  itemDomainsItem.name,
+                                                  textAlign: TextAlign.center,
+                                                  maxLines: 1,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 12.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
                                                 ),
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     );
@@ -1136,7 +1145,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                   Icons.arrow_right,
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
-                                  size: 24.0,
+                                  size: 20.0,
                                 ),
                               ],
                             ),
@@ -1330,8 +1339,18 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                           listDomain: _model.listDataDomains
                                               .map((e) => e.name)
                                               .toList(),
-                                          callBack: (domain, author, category,
-                                              priceMin, priceMax) async {
+                                          checkPrice: '',
+                                          checkPrice1: 'checkPriceListList',
+                                          priceMin1: '',
+                                          priceMax1: '',
+                                          checkAuthor: '',
+                                          callBack: (domain,
+                                              author,
+                                              category,
+                                              priceMin,
+                                              priceMax,
+                                              priceMin1,
+                                              priceMax1) async {
                                             setState(() {
                                               _model.domain = domain!;
                                               _model.author = author!;

@@ -40,13 +40,13 @@ class LessonListHomepageModel
 
   String checkAPI = '';
 
+  bool isShow = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in LessonList_Homepage widget.
   bool? tokenReloadLessonListHomepage;
-  // Stores action output result for [Action Block - tokenReload] action in LessonList_Homepage widget.
-  bool? tokenReloadLessonListHomepageCheck;
   // State field(s) for nameSearch widget.
   FocusNode? nameSearchFocusNode;
   TextEditingController? nameSearchTextController;

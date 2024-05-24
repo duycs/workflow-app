@@ -65,7 +65,8 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
     _model.programDescriptionFocusNode ??= FocusNode();
 
     _model.estimateInDayTextController ??= TextEditingController(
-        text: widget.dataDetail?.estimateInDay != null
+        text: (widget.dataDetail?.estimateInDay != null) &&
+                (widget.dataDetail!.estimateInDay > 0)
             ? widget.dataDetail?.estimateInDay.toString()
             : '');
     _model.estimateInDayFocusNode ??= FocusNode();
@@ -544,7 +545,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: SizedBox(
-                                    width: 85.0,
+                                    width: 50.0,
                                     child: TextFormField(
                                       controller:
                                           _model.estimateInDayTextController,
@@ -566,7 +567,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                                                     ? functions.stringToInt(_model
                                                         .estimateInDayTextController
                                                         .text)
-                                                    : null,
+                                                    : _model.es,
                                             );
                                           });
                                           setState(() {
@@ -929,17 +930,37 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                               );
                             }
                           } else {
-                            setState(() {
-                              _model.updateRequestDataStruct(
-                                (e) => e..estimateInDay = null,
-                              );
-                            });
                             _model.apiResultuus111 = await StudyProgramGroup
                                 .studyProgramLessionsUpdateCall
                                 .call(
                               accessToken: FFAppState().accessToken,
                               id: widget.dataDetail?.id,
-                              requestDataJson: _model.requestData?.toMap(),
+                              requestDataJson: <String, dynamic>{
+                                'name': _model.requestData?.name,
+                                'description': _model.requestData?.description,
+                                'image_cover':
+                                    _model.requestData?.imageCover != null &&
+                                            _model.requestData?.imageCover != ''
+                                        ? _model.requestData?.imageCover
+                                        : null,
+                                'estimate_in_day': null,
+                                'lessions': getJsonField(
+                                  <String, List<dynamic>>{
+                                    'map': _model.requestData!.lessions
+                                        .map((e) => e.toMap())
+                                        .toList(),
+                                  },
+                                  r'''$.map''',
+                                ),
+                                'tests': getJsonField(
+                                  <String, List<dynamic>?>{
+                                    'map': _model.requestData?.tests
+                                        .map((e) => e.toMap())
+                                        .toList(),
+                                  },
+                                  r'''$.map''',
+                                ),
+                              },
                             );
                             shouldSetState = true;
                             if ((_model.apiResultuus111?.succeeded ?? true)) {

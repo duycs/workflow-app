@@ -1,7 +1,9 @@
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/training/order/order_update/order_update_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -24,6 +26,8 @@ class OrderDetailWidget extends StatefulWidget {
     required this.totalPrice,
     required this.private,
     required this.code,
+    required this.orderId,
+    required this.programId,
   });
 
   final String? image;
@@ -37,6 +41,8 @@ class OrderDetailWidget extends StatefulWidget {
   final String? totalPrice;
   final String? private;
   final String? code;
+  final String? orderId;
+  final String? programId;
 
   @override
   State<OrderDetailWidget> createState() => _OrderDetailWidgetState();
@@ -58,7 +64,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
 
     _model.textController1 ??= TextEditingController(
         text: formatNumber(
-      widget.numLessions,
+      widget.quantity,
       formatType: FormatType.decimal,
       decimalType: DecimalType.commaDecimal,
     ));
@@ -85,7 +91,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
         padding: const EdgeInsets.all(16.0),
         child: Container(
           constraints: const BoxConstraints(
-            maxHeight: 750.0,
+            maxHeight: 720.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -114,7 +120,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Đơn mua ${widget.code}',
+                        'Mã đơn ${widget.code}',
                         style: FlutterFlowTheme.of(context).bodyLarge.override(
                               fontFamily: 'Nunito Sans',
                               fontSize: 18.0,
@@ -391,6 +397,64 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
                                     ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 12.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Mua cho',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              FlutterFlowDropDown<String>(
+                                controller: _model.dropDownValueController ??=
+                                    FormFieldController<String>(
+                                  _model.dropDownValue ??=
+                                      widget.private == '0' ? '0' : '1',
+                                ),
+                                options: List<String>.from(['0', '1']),
+                                optionLabels: const ['Tổ chức', 'Cá nhân'],
+                                onChanged: (val) =>
+                                    setState(() => _model.dropDownValue = val),
+                                width: 200.0,
+                                height: 50.0,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                                icon: Icon(
+                                  Icons.keyboard_arrow_down_rounded,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 24.0,
+                                ),
+                                fillColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                elevation: 1.0,
+                                borderColor:
+                                    FlutterFlowTheme.of(context).alternate,
+                                borderWidth: 1.0,
+                                borderRadius: 4.0,
+                                margin: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 4.0, 16.0, 4.0),
+                                hidesUnderline: true,
+                                disabled: '1' == '1',
+                                isOverButton: true,
+                                isSearchable: false,
+                                isMultiSelect: false,
                               ),
                             ],
                           ),
@@ -758,93 +822,107 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                     ),
                   ),
                 ),
-                Align(
-                  alignment: const AlignmentDirectional(-1.0, 0.0),
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              Navigator.pop(context);
-                            },
-                            text: 'Đóng',
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                if (widget.status == 'draft')
+                  Align(
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                Navigator.pop(context);
+                              },
+                              text: 'Đóng',
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              await showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                enableDrag: false,
-                                context: context,
-                                builder: (context) {
-                                  return Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: const OrderUpdateWidget(),
-                                  );
-                                },
-                              ).then((value) => safeSetState(() {}));
-                            },
-                            text: 'Chỉnh sửa',
-                            icon: const Icon(
-                              Icons.edit,
-                              size: 15.0,
-                            ),
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                          Expanded(
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                await showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  enableDrag: false,
+                                  context: context,
+                                  builder: (context) {
+                                    return Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: OrderUpdateWidget(
+                                        image: widget.image,
+                                        name: widget.name!,
+                                        rating: widget.rating,
+                                        numlession: 0,
+                                        price: widget.price!,
+                                        quantity: widget.quantity!,
+                                        totalPrice: widget.totalPrice!,
+                                        author: widget.author!,
+                                        private: widget.private!,
+                                        orderId: widget.orderId!,
+                                        programId: widget.programId!,
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => safeSetState(() {}));
+                              },
+                              text: 'Chỉnh sửa',
+                              icon: const Icon(
+                                Icons.edit,
+                                size: 15.0,
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
                           ),
-                        ),
-                      ].divide(const SizedBox(width: 16.0)),
+                        ].divide(const SizedBox(width: 16.0)),
+                      ),
                     ),
                   ),
-                ),
               ].divide(const SizedBox(height: 8.0)),
             ),
           ),

@@ -1,12 +1,13 @@
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/training/order/payment/payment_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 import 'order_create_model.dart';
 export 'order_create_model.dart';
@@ -14,24 +15,29 @@ export 'order_create_model.dart';
 class OrderCreateWidget extends StatefulWidget {
   const OrderCreateWidget({
     super.key,
-    required this.image,
-    required this.price,
+    String? image,
+    String? price,
     required this.rating,
-    required this.name,
+    String? name,
     required this.numOfListLessions,
-    required this.author,
-    required this.programId,
-    this.checkType,
-  });
+    String? author,
+    String? programId,
+    String? checkType,
+  })  : image = image ?? '',
+        price = price ?? '',
+        name = name ?? '',
+        author = author ?? '',
+        programId = programId ?? '',
+        checkType = checkType ?? '';
 
-  final String? image;
-  final String? price;
+  final String image;
+  final String price;
   final double? rating;
-  final String? name;
+  final String name;
   final int? numOfListLessions;
-  final String? author;
-  final String? programId;
-  final String? checkType;
+  final String author;
+  final String programId;
+  final String checkType;
 
   @override
   State<OrderCreateWidget> createState() => _OrderCreateWidgetState();
@@ -75,7 +81,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
         padding: const EdgeInsets.all(16.0),
         child: Container(
           constraints: const BoxConstraints(
-            maxHeight: 750.0,
+            maxHeight: 730.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -182,15 +188,14 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                       ),
                                     ),
                                     child: Visibility(
-                                      visible: widget.image != null &&
-                                          widget.image != '',
+                                      visible: widget.image != '',
                                       child: Padding(
                                         padding: const EdgeInsets.all(2.0),
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(10.0),
                                           child: Image.network(
-                                            '${FFAppConstants.ApiBaseUrl}/assets/${widget.image}?access_token=${FFAppState().accessToken}',
+                                            '${FFAppConstants.ApiBaseUrl}/assets/${widget.image != '' ? widget.image : ' '}?access_token=${FFAppState().accessToken}',
                                             width: 44.0,
                                             height: 44.0,
                                             fit: BoxFit.cover,
@@ -210,7 +215,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          widget.name!,
+                                          widget.name,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyLarge
                                               .override(
@@ -235,31 +240,30 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                                 ),
                                           ),
                                         ),
-                                        if (widget.rating != 0.0)
-                                          RatingBar.builder(
-                                            onRatingUpdate: (newValue) =>
-                                                setState(() => _model
-                                                    .ratingBarValue = newValue),
-                                            itemBuilder: (context, index) =>
-                                                Icon(
-                                              Icons.star_rounded,
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Icon(
+                                              Icons.star,
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .tertiary,
+                                              size: 16.0,
                                             ),
-                                            direction: Axis.horizontal,
-                                            initialRating:
-                                                _model.ratingBarValue ??=
-                                                    widget.rating!,
-                                            unratedColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .accent3,
-                                            itemCount: 5,
-                                            itemSize: 12.0,
-                                            glowColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .tertiary,
-                                          ),
+                                            Text(
+                                              '',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 12.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                          ].divide(const SizedBox(width: 4.0)),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -285,8 +289,8 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     ),
                               ),
                               Text(
-                                widget.author != null && widget.author != ''
-                                    ? widget.author!
+                                widget.author != ''
+                                    ? widget.author
                                     : ' ',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -368,6 +372,66 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 12.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Mua cho',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              FlutterFlowDropDown<String>(
+                                controller: _model.dropDownValueController ??=
+                                    FormFieldController<String>(
+                                  _model.dropDownValue ??=
+                                      widget.checkType == 'organization'
+                                          ? '0'
+                                          : '1',
+                                ),
+                                options: List<String>.from(['0', '1']),
+                                optionLabels: const ['Tổ chức', 'Cá nhân'],
+                                onChanged: (val) =>
+                                    setState(() => _model.dropDownValue = val),
+                                width: 200.0,
+                                height: 50.0,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                                icon: Icon(
+                                  Icons.keyboard_arrow_down_rounded,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 24.0,
+                                ),
+                                fillColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                elevation: 1.0,
+                                borderColor:
+                                    FlutterFlowTheme.of(context).alternate,
+                                borderWidth: 1.0,
+                                borderRadius: 4.0,
+                                margin: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 4.0, 16.0, 4.0),
+                                hidesUnderline: true,
+                                disabled: '1' == '1',
+                                isOverButton: true,
+                                isSearchable: false,
+                                isMultiSelect: false,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 16.0, 0.0, 16.0),
                           child: Divider(
                             height: 1.0,
@@ -407,7 +471,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                               Text(
                                 valueOrDefault<String>(
                                   formatNumber(
-                                    functions.stringToInt(widget.price!),
+                                    functions.stringToInt(widget.price),
                                     formatType: FormatType.decimal,
                                     decimalType: DecimalType.commaDecimal,
                                   ),
@@ -453,13 +517,13 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     () async {
                                       setState(() {
                                         _model.total = functions
-                                                .stringToInt(widget.price!) *
+                                                .stringToInt(widget.price) *
                                             valueOrDefault<int>(
                                               int.tryParse(_model
                                                   .quantityTextController.text),
                                               0,
                                             );
-                                        _model.number = int.tryParse(
+                                        _model.number = functions.stringToInt(
                                             _model.quantityTextController.text);
                                       });
                                     },
@@ -664,7 +728,8 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     letterSpacing: 0.0,
                                   ),
                         ),
-                        if (widget.checkType != 'organization')
+                        if ((widget.checkType == 'staff') &&
+                            (widget.checkType != ''))
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
@@ -685,13 +750,17 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                         ),
                                   ),
                                   TextSpan(
-                                    text: valueOrDefault<String>(
-                                      formatNumber(
-                                        (_model.number!) - 1,
-                                        formatType: FormatType.decimal,
-                                        decimalType: DecimalType.commaDecimal,
-                                      ),
-                                      '0',
+                                    text: formatNumber(
+                                      int.parse(((_model.number != null) &&
+                                                      (_model.number != 0)
+                                                  ? functions.stringToInt(_model
+                                                      .quantityTextController
+                                                      .text)
+                                                  : 1)
+                                              .toString()) -
+                                          _model.mot,
+                                      formatType: FormatType.decimal,
+                                      decimalType: DecimalType.commaDecimal,
                                     ),
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w600,
@@ -713,7 +782,8 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                               ),
                             ),
                           ),
-                        if (widget.checkType == 'organization')
+                        if ((widget.checkType == 'organization') &&
+                            (widget.checkType != ''))
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
@@ -734,13 +804,12 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                         ),
                                   ),
                                   TextSpan(
-                                    text: valueOrDefault<String>(
-                                      formatNumber(
-                                        _model.number,
-                                        formatType: FormatType.decimal,
-                                        decimalType: DecimalType.commaDecimal,
-                                      ),
-                                      '0',
+                                    text: formatNumber(
+                                      _model.number != null
+                                          ? _model.number!
+                                          : 0,
+                                      formatType: FormatType.decimal,
+                                      decimalType: DecimalType.commaDecimal,
                                     ),
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w600,
@@ -780,6 +849,24 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                               var shouldSetState = false;
                               if (_model.formKey.currentState == null ||
                                   !_model.formKey.currentState!.validate()) {
+                                return;
+                              }
+                              if (_model.quantityTextController.text == '0') {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Số lượng phải lớn hơn 0!',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).error,
+                                  ),
+                                );
+                                if (shouldSetState) setState(() {});
                                 return;
                               }
                               _model.orderCreateDraft =
@@ -855,15 +942,11 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                   !_model.formKey.currentState!.validate()) {
                                 return;
                               }
-                              _model.orderCreateDraft2 =
-                                  await _model.orderCreate(context);
-                              shouldSetState = true;
-                              if (!(_model.orderCreateDraft2 != null &&
-                                  _model.orderCreateDraft2 != '')) {
+                              if (_model.quantityTextController.text == '0') {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
-                                      'Lỗi tạo đơn hàng!',
+                                      'Số lượng phải lớn hơn 0!',
                                       style: TextStyle(
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
@@ -877,6 +960,14 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                 if (shouldSetState) setState(() {});
                                 return;
                               }
+                              _model.orderCreateDraft2 =
+                                  await _model.orderCreate(context);
+                              shouldSetState = true;
+                              if (!(_model.orderCreateDraft2 != null &&
+                                  _model.orderCreateDraft2 != '')) {
+                                if (shouldSetState) setState(() {});
+                                return;
+                              }
                               await showModalBottomSheet(
                                 isScrollControlled: true,
                                 backgroundColor: Colors.transparent,
@@ -887,11 +978,15 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     padding: MediaQuery.viewInsetsOf(context),
                                     child: PaymentWidget(
                                       orderId: _model.orderCreateDraft2!,
+                                      private: widget.checkType == 'staff'
+                                          ? 'private1'
+                                          : 'private0',
                                     ),
                                   );
                                 },
                               ).then((value) => safeSetState(() {}));
 
+                              Navigator.pop(context);
                               if (shouldSetState) setState(() {});
                             },
                             text: 'Hoàn thành',

@@ -14,6 +14,7 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
     ProcedurePublishedUserCreatedIdStruct? createdUserId,
     String? dateEnd,
     SubmitStaffIdStruct? submitStaffId,
+    int? number,
   })  : _id = id,
         _publishedCount = publishedCount,
         _dateCreated = dateCreated,
@@ -21,7 +22,8 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
         _status = status,
         _createdUserId = createdUserId,
         _dateEnd = dateEnd,
-        _submitStaffId = submitStaffId;
+        _submitStaffId = submitStaffId,
+        _number = number;
 
   // "id" field.
   String? _id;
@@ -86,6 +88,13 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
       updateFn(_submitStaffId ??= SubmitStaffIdStruct());
   bool hasSubmitStaffId() => _submitStaffId != null;
 
+  // "number" field.
+  int? _number;
+  int get number => _number ?? 0;
+  set number(int? val) => _number = val;
+  void incrementNumber(int amount) => _number = number + amount;
+  bool hasNumber() => _number != null;
+
   static ProcedurePublishedStepTaskStruct fromMap(Map<String, dynamic> data) =>
       ProcedurePublishedStepTaskStruct(
         id: data['id'] as String?,
@@ -99,6 +108,7 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
         dateEnd: data['date_end'] as String?,
         submitStaffId:
             SubmitStaffIdStruct.maybeFromMap(data['submit_staff_id']),
+        number: castToType<int>(data['number']),
       );
 
   static ProcedurePublishedStepTaskStruct? maybeFromMap(dynamic data) => data
@@ -115,6 +125,7 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
         'created_user_id': _createdUserId?.toMap(),
         'date_end': _dateEnd,
         'submit_staff_id': _submitStaffId?.toMap(),
+        'number': _number,
       }.withoutNulls;
 
   @override
@@ -150,6 +161,10 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
         'submit_staff_id': serializeParam(
           _submitStaffId,
           ParamType.DataStruct,
+        ),
+        'number': serializeParam(
+          _number,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -201,6 +216,11 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
           false,
           structBuilder: SubmitStaffIdStruct.fromSerializableMap,
         ),
+        number: deserializeParam(
+          data['number'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -216,7 +236,8 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
         status == other.status &&
         createdUserId == other.createdUserId &&
         dateEnd == other.dateEnd &&
-        submitStaffId == other.submitStaffId;
+        submitStaffId == other.submitStaffId &&
+        number == other.number;
   }
 
   @override
@@ -228,7 +249,8 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
         status,
         createdUserId,
         dateEnd,
-        submitStaffId
+        submitStaffId,
+        number
       ]);
 }
 
@@ -241,6 +263,7 @@ ProcedurePublishedStepTaskStruct createProcedurePublishedStepTaskStruct({
   ProcedurePublishedUserCreatedIdStruct? createdUserId,
   String? dateEnd,
   SubmitStaffIdStruct? submitStaffId,
+  int? number,
 }) =>
     ProcedurePublishedStepTaskStruct(
       id: id,
@@ -251,4 +274,5 @@ ProcedurePublishedStepTaskStruct createProcedurePublishedStepTaskStruct({
       createdUserId: createdUserId ?? ProcedurePublishedUserCreatedIdStruct(),
       dateEnd: dateEnd,
       submitStaffId: submitStaffId ?? SubmitStaffIdStruct(),
+      number: number,
     );

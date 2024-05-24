@@ -246,6 +246,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                               controller: _model.textController1,
                               focusNode: _model.textFieldFocusNode1,
                               autofocus: false,
+                              textInputAction: TextInputAction.next,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Tiêu đề',
@@ -310,6 +311,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                               controller: _model.textController2,
                               focusNode: _model.textFieldFocusNode2,
                               autofocus: false,
+                              textInputAction: TextInputAction.next,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Điểm đạt',
@@ -374,6 +376,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                               controller: _model.textController3,
                               focusNode: _model.textFieldFocusNode3,
                               autofocus: false,
+                              textInputAction: TextInputAction.next,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Nội dung',
@@ -456,6 +459,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                     controller: _model.textController4,
                                     focusNode: _model.textFieldFocusNode4,
                                     autofocus: false,
+                                    textInputAction: TextInputAction.next,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelStyle: FlutterFlowTheme.of(context)
@@ -513,6 +517,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                           fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
+                                    textAlign: TextAlign.center,
                                     keyboardType: TextInputType.number,
                                     validator: _model.textController4Validator
                                         .asValidator(context),

@@ -26,6 +26,9 @@ class StudyProgramListStruct extends BaseStruct {
     String? copyrightProgramId,
     String? copyrightOrganizationId,
     int? version,
+    int? private,
+    int? limitInvite,
+    int? inviteCount,
   })  : _id = id,
         _status = status,
         _name = name,
@@ -45,7 +48,10 @@ class StudyProgramListStruct extends BaseStruct {
         _authorId = authorId,
         _copyrightProgramId = copyrightProgramId,
         _copyrightOrganizationId = copyrightOrganizationId,
-        _version = version;
+        _version = version,
+        _private = private,
+        _limitInvite = limitInvite,
+        _inviteCount = inviteCount;
 
   // "id" field.
   String? _id;
@@ -182,6 +188,27 @@ class StudyProgramListStruct extends BaseStruct {
   void incrementVersion(int amount) => _version = version + amount;
   bool hasVersion() => _version != null;
 
+  // "private" field.
+  int? _private;
+  int get private => _private ?? 0;
+  set private(int? val) => _private = val;
+  void incrementPrivate(int amount) => _private = private + amount;
+  bool hasPrivate() => _private != null;
+
+  // "limit_invite" field.
+  int? _limitInvite;
+  int get limitInvite => _limitInvite ?? 0;
+  set limitInvite(int? val) => _limitInvite = val;
+  void incrementLimitInvite(int amount) => _limitInvite = limitInvite + amount;
+  bool hasLimitInvite() => _limitInvite != null;
+
+  // "invite_count" field.
+  int? _inviteCount;
+  int get inviteCount => _inviteCount ?? 0;
+  set inviteCount(int? val) => _inviteCount = val;
+  void incrementInviteCount(int amount) => _inviteCount = inviteCount + amount;
+  bool hasInviteCount() => _inviteCount != null;
+
   static StudyProgramListStruct fromMap(Map<String, dynamic> data) =>
       StudyProgramListStruct(
         id: data['id'] as String?,
@@ -213,6 +240,9 @@ class StudyProgramListStruct extends BaseStruct {
         copyrightProgramId: data['copyright_program_id'] as String?,
         copyrightOrganizationId: data['copyright_organization_id'] as String?,
         version: castToType<int>(data['version']),
+        private: castToType<int>(data['private']),
+        limitInvite: castToType<int>(data['limit_invite']),
+        inviteCount: castToType<int>(data['invite_count']),
       );
 
   static StudyProgramListStruct? maybeFromMap(dynamic data) => data is Map
@@ -240,6 +270,9 @@ class StudyProgramListStruct extends BaseStruct {
         'copyright_program_id': _copyrightProgramId,
         'copyright_organization_id': _copyrightOrganizationId,
         'version': _version,
+        'private': _private,
+        'limit_invite': _limitInvite,
+        'invite_count': _inviteCount,
       }.withoutNulls;
 
   @override
@@ -325,6 +358,18 @@ class StudyProgramListStruct extends BaseStruct {
         ),
         'version': serializeParam(
           _version,
+          ParamType.int,
+        ),
+        'private': serializeParam(
+          _private,
+          ParamType.int,
+        ),
+        'limit_invite': serializeParam(
+          _limitInvite,
+          ParamType.int,
+        ),
+        'invite_count': serializeParam(
+          _inviteCount,
           ParamType.int,
         ),
       }.withoutNulls;
@@ -436,6 +481,21 @@ class StudyProgramListStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
+        private: deserializeParam(
+          data['private'],
+          ParamType.int,
+          false,
+        ),
+        limitInvite: deserializeParam(
+          data['limit_invite'],
+          ParamType.int,
+          false,
+        ),
+        inviteCount: deserializeParam(
+          data['invite_count'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -464,7 +524,10 @@ class StudyProgramListStruct extends BaseStruct {
         authorId == other.authorId &&
         copyrightProgramId == other.copyrightProgramId &&
         copyrightOrganizationId == other.copyrightOrganizationId &&
-        version == other.version;
+        version == other.version &&
+        private == other.private &&
+        limitInvite == other.limitInvite &&
+        inviteCount == other.inviteCount;
   }
 
   @override
@@ -488,7 +551,10 @@ class StudyProgramListStruct extends BaseStruct {
         authorId,
         copyrightProgramId,
         copyrightOrganizationId,
-        version
+        version,
+        private,
+        limitInvite,
+        inviteCount
       ]);
 }
 
@@ -510,6 +576,9 @@ StudyProgramListStruct createStudyProgramListStruct({
   String? copyrightProgramId,
   String? copyrightOrganizationId,
   int? version,
+  int? private,
+  int? limitInvite,
+  int? inviteCount,
 }) =>
     StudyProgramListStruct(
       id: id,
@@ -529,4 +598,7 @@ StudyProgramListStruct createStudyProgramListStruct({
       copyrightProgramId: copyrightProgramId,
       copyrightOrganizationId: copyrightOrganizationId,
       version: version,
+      private: private,
+      limitInvite: limitInvite,
+      inviteCount: inviteCount,
     );

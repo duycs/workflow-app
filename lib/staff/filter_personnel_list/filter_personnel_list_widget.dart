@@ -378,6 +378,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
                                 ),
                           ),
                           FlutterFlowDropDown<String>(

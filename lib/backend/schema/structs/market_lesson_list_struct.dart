@@ -23,6 +23,9 @@ class MarketLessonListStruct extends BaseStruct {
     int? orderCount,
     List<ReactsMarketStruct>? reacts,
     CategoryIdStruct? categoryId,
+    int? limitInvite,
+    int? inviteCount,
+    int? private,
   })  : _estimateInDay = estimateInDay,
         _organizationId = organizationId,
         _id = id,
@@ -39,7 +42,10 @@ class MarketLessonListStruct extends BaseStruct {
         _imageCover = imageCover,
         _orderCount = orderCount,
         _reacts = reacts,
-        _categoryId = categoryId;
+        _categoryId = categoryId,
+        _limitInvite = limitInvite,
+        _inviteCount = inviteCount,
+        _private = private;
 
   // "estimate_in_day" field.
   int? _estimateInDay;
@@ -161,6 +167,27 @@ class MarketLessonListStruct extends BaseStruct {
       updateFn(_categoryId ??= CategoryIdStruct());
   bool hasCategoryId() => _categoryId != null;
 
+  // "limit_invite" field.
+  int? _limitInvite;
+  int get limitInvite => _limitInvite ?? 0;
+  set limitInvite(int? val) => _limitInvite = val;
+  void incrementLimitInvite(int amount) => _limitInvite = limitInvite + amount;
+  bool hasLimitInvite() => _limitInvite != null;
+
+  // "invite_count" field.
+  int? _inviteCount;
+  int get inviteCount => _inviteCount ?? 0;
+  set inviteCount(int? val) => _inviteCount = val;
+  void incrementInviteCount(int amount) => _inviteCount = inviteCount + amount;
+  bool hasInviteCount() => _inviteCount != null;
+
+  // "private" field.
+  int? _private;
+  int get private => _private ?? 0;
+  set private(int? val) => _private = val;
+  void incrementPrivate(int amount) => _private = private + amount;
+  bool hasPrivate() => _private != null;
+
   static MarketLessonListStruct fromMap(Map<String, dynamic> data) =>
       MarketLessonListStruct(
         estimateInDay: castToType<int>(data['estimate_in_day']),
@@ -189,6 +216,9 @@ class MarketLessonListStruct extends BaseStruct {
           ReactsMarketStruct.fromMap,
         ),
         categoryId: CategoryIdStruct.maybeFromMap(data['category_id']),
+        limitInvite: castToType<int>(data['limit_invite']),
+        inviteCount: castToType<int>(data['invite_count']),
+        private: castToType<int>(data['private']),
       );
 
   static MarketLessonListStruct? maybeFromMap(dynamic data) => data is Map
@@ -213,6 +243,9 @@ class MarketLessonListStruct extends BaseStruct {
         'order_count': _orderCount,
         'reacts': _reacts?.map((e) => e.toMap()).toList(),
         'category_id': _categoryId?.toMap(),
+        'limit_invite': _limitInvite,
+        'invite_count': _inviteCount,
+        'private': _private,
       }.withoutNulls;
 
   @override
@@ -287,6 +320,18 @@ class MarketLessonListStruct extends BaseStruct {
         'category_id': serializeParam(
           _categoryId,
           ParamType.DataStruct,
+        ),
+        'limit_invite': serializeParam(
+          _limitInvite,
+          ParamType.int,
+        ),
+        'invite_count': serializeParam(
+          _inviteCount,
+          ParamType.int,
+        ),
+        'private': serializeParam(
+          _private,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -384,6 +429,21 @@ class MarketLessonListStruct extends BaseStruct {
           false,
           structBuilder: CategoryIdStruct.fromSerializableMap,
         ),
+        limitInvite: deserializeParam(
+          data['limit_invite'],
+          ParamType.int,
+          false,
+        ),
+        inviteCount: deserializeParam(
+          data['invite_count'],
+          ParamType.int,
+          false,
+        ),
+        private: deserializeParam(
+          data['private'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -409,7 +469,10 @@ class MarketLessonListStruct extends BaseStruct {
         imageCover == other.imageCover &&
         orderCount == other.orderCount &&
         listEquality.equals(reacts, other.reacts) &&
-        categoryId == other.categoryId;
+        categoryId == other.categoryId &&
+        limitInvite == other.limitInvite &&
+        inviteCount == other.inviteCount &&
+        private == other.private;
   }
 
   @override
@@ -430,7 +493,10 @@ class MarketLessonListStruct extends BaseStruct {
         imageCover,
         orderCount,
         reacts,
-        categoryId
+        categoryId,
+        limitInvite,
+        inviteCount,
+        private
       ]);
 }
 
@@ -449,6 +515,9 @@ MarketLessonListStruct createMarketLessonListStruct({
   String? imageCover,
   int? orderCount,
   CategoryIdStruct? categoryId,
+  int? limitInvite,
+  int? inviteCount,
+  int? private,
 }) =>
     MarketLessonListStruct(
       estimateInDay: estimateInDay,
@@ -465,4 +534,7 @@ MarketLessonListStruct createMarketLessonListStruct({
       imageCover: imageCover,
       orderCount: orderCount,
       categoryId: categoryId ?? CategoryIdStruct(),
+      limitInvite: limitInvite,
+      inviteCount: inviteCount,
+      private: private,
     );

@@ -1,13 +1,16 @@
+import '/backend/api_requests/api_calls.dart';
+import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/tasks/filter_reprot_image/filter_reprot_image_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'report_image_model.dart';
 export 'report_image_model.dart';
@@ -31,8 +34,15 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await _model.getReportImages(context);
-      setState(() {});
+      _model.reloadTokenTasksCheck = await action_blocks.tokenReload(context);
+      if (_model.reloadTokenTasksCheck!) {
+        setState(() {
+          _model.checkData = '1';
+        });
+      } else {
+        setState(() {});
+        return;
+      }
     });
 
     _model.textController ??= TextEditingController();
@@ -135,7 +145,9 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                   _model.startDate = dateStart!;
                                   _model.endDate = dateEnd!;
                                 });
-                                await _model.getReportImages(context);
+                                setState(() =>
+                                    _model.listViewPagingController?.refresh());
+                                setState(() {});
                               },
                             ),
                           ),
@@ -150,10 +162,10 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
           centerTitle: false,
           elevation: 1.0,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-            primary: false,
+        body: Visibility(
+          visible: '1' == _model.checkData,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -181,8 +193,8 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                   _model.nameSearch =
                                       _model.textController.text;
                                 });
-                                await _model.getReportImages(context);
-                                setState(() {});
+                                setState(() =>
+                                    _model.listViewPagingController?.refresh());
                                 setState(() {});
                               },
                             ),
@@ -248,8 +260,9 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                           _model.nameSearch =
                                               _model.textController.text;
                                         });
-                                        await _model.getReportImages(context);
-                                        setState(() {});
+                                        setState(() => _model
+                                            .listViewPagingController
+                                            ?.refresh());
                                         setState(() {});
                                         setState(() {});
                                       },
@@ -311,7 +324,10 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                           _model.startDate = dateStart!;
                                           _model.endDate = dateEnd!;
                                         });
-                                        await _model.getReportImages(context);
+                                        setState(() => _model
+                                            .listViewPagingController
+                                            ?.refresh());
+                                        setState(() {});
                                       },
                                     ),
                                   ),
@@ -346,21 +362,84 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                       ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                  child: Builder(
-                    builder: (context) {
-                      final reportImages = _model.reportImage.toList();
-                      return ListView.separated(
-                        padding: EdgeInsets.zero,
-                        primary: false,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: reportImages.length,
-                        separatorBuilder: (_, __) => const SizedBox(height: 8.0),
-                        itemBuilder: (context, reportImagesIndex) {
-                          final reportImagesItem =
-                              reportImages[reportImagesIndex];
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                    child: PagedListView<ApiPagingParams, dynamic>.separated(
+                      pagingController: _model.setListViewController(
+                        (nextPageMarker) => TaskGroup.getListTaskCall.call(
+                          accessToken: FFAppState().accessToken,
+                          offset: nextPageMarker.nextPageNumber * 20,
+                          limit: 20,
+                          filter:
+                              '{\"_and\":[{},{\"status\":{\"_eq\":\"done\"}}, {\"action_type\":{\"_eq\":\"image\"}}${(_model.nameProcedure != '') && (_model.nameProcedure != ' ') ? ',{\"workflow_id\":{\"name\":{\"_icontains\":\"${_model.nameProcedure}\"}}}' : ' '}${(_model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"submit_staff_id\":{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.nameSearch}\"}}}}' : ' '}${(_model.startDate != '') && (_model.endDate != ' ') ? ',{\"operations\":{\"operations_id\":{\"date_updated\":{\"_gte\":\"${_model.startDate}\"}}}}' : ' '}${(_model.endDate != '') && (_model.endDate != ' ') ? ',{\"operations\":{\"operations_id\":{\"date_updated\":{\"_lte\":\"${(String var1) {
+                                  return DateTime.parse(var1)
+                                      .add(const Duration(days: 1))
+                                      .toString();
+                                }(_model.endDate)}\"}}}}' : ' '}${() {
+                            if (FFAppState().user.role ==
+                                '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                              return ',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                FFAppState().staffLogin,
+                                r'''$.organization_id''',
+                              ).toString()}\"}}}';
+                            } else if (FFAppState().user.role ==
+                                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                              return ',{\"submit_staff_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
+                                FFAppState().staffLogin,
+                                r'''$.branch_id''',
+                              ).toString()}\"}}}';
+                            } else if (FFAppState().user.role ==
+                                '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                              return ',{\"submit_staff_id\":{\"department_id\":{\"_eq\":\"${getJsonField(
+                                FFAppState().staffLogin,
+                                r'''$.department_id''',
+                              ).toString()}\"}}}';
+                            } else {
+                              return ',{\"submit_staff_id\":{\"user_id\":{\"id\":{\"_eq\":\"${FFAppState().user.id}\"}}}}';
+                            }
+                          }()}]}',
+                        ),
+                      ),
+                      padding: EdgeInsets.zero,
+                      primary: false,
+                      reverse: false,
+                      scrollDirection: Axis.vertical,
+                      separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+                      builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                        // Customize what your widget looks like when it's loading the first page.
+                        firstPageProgressIndicatorBuilder: (_) => Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        ),
+                        // Customize what your widget looks like when it's loading another page.
+                        newPageProgressIndicatorBuilder: (_) => Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        ),
+                        noItemsFoundIndicatorBuilder: (_) => const SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: DataNotFoundWidget(),
+                        ),
+                        itemBuilder: (context, _, reportImagesIndex) {
+                          final reportImagesItem = _model
+                              .listViewPagingController!
+                              .itemList![reportImagesIndex];
                           return Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 10.0),
@@ -444,7 +523,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                             shape: BoxShape.circle,
                                           ),
                                           child: Image.network(
-                                            '${FFAppConstants.ApiBaseUrl}/assets/${reportImagesItem.staffs.isNotEmpty ? reportImagesItem.submitStaffId.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                            '${FFAppConstants.ApiBaseUrl}/assets/${reportImagesItem.staffs.length > 0 ? reportImagesItem.submitStaffId.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -467,7 +546,8 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                         0.0, 8.0, 0.0, 8.0),
                                                 child: Text(
                                                   reportImagesItem
-                                                              .staffs.isNotEmpty
+                                                              .staffs.length >
+                                                          0
                                                       ? reportImagesItem
                                                           .submitStaffId
                                                           .userId
@@ -488,7 +568,8 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                               ),
                                               Text(
                                                 reportImagesItem
-                                                            .operations.isNotEmpty
+                                                            .operations.length >
+                                                        0
                                                     ? reportImagesItem
                                                         .operations
                                                         .first
@@ -511,7 +592,10 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                     .fromSTEB(
                                                         0.0, 4.0, 0.0, 0.0),
                                                 child: Text(
-                                                  reportImagesItem
+                                                  reportImagesItem.workflowId
+                                                                  .name !=
+                                                              null &&
+                                                          reportImagesItem
                                                                   .workflowId
                                                                   .name !=
                                                               ''
@@ -541,8 +625,19 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                           .operations
                                                           .first
                                                           .operationsId
-                                                          .files.isNotEmpty) &&
+                                                          .files
+                                                          .length >
+                                                      0) &&
                                                   (reportImagesItem
+                                                              .operations
+                                                              .first
+                                                              .operationsId
+                                                              .files
+                                                              .first
+                                                              .directusFilesId
+                                                              .id !=
+                                                          null &&
+                                                      reportImagesItem
                                                               .operations
                                                               .first
                                                               .operationsId
@@ -575,14 +670,14 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                               FlutterFlowExpandedImageView(
                                                             image:
                                                                 Image.network(
-                                                              '${FFAppConstants.ApiBaseUrl}/assets/${reportImagesItem.operations.first.operationsId.files.isNotEmpty ? reportImagesItem.operations.first.operationsId.files.first.directusFilesId.id : ' '}?access_token=${FFAppState().accessToken}',
+                                                              '${FFAppConstants.ApiBaseUrl}/assets/${reportImagesItem.operations.first.operationsId.files.length > 0 ? reportImagesItem.operations.first.operationsId.files.first.directusFilesId.id : ' '}?access_token=${FFAppState().accessToken}',
                                                               fit: BoxFit
                                                                   .contain,
                                                             ),
                                                             allowRotation:
                                                                 false,
                                                             tag:
-                                                                '${FFAppConstants.ApiBaseUrl}/assets/${reportImagesItem.operations.first.operationsId.files.isNotEmpty ? reportImagesItem.operations.first.operationsId.files.first.directusFilesId.id : ' '}?access_token=${FFAppState().accessToken}',
+                                                                '${FFAppConstants.ApiBaseUrl}/assets/${reportImagesItem.operations.first.operationsId.files.length > 0 ? reportImagesItem.operations.first.operationsId.files.first.directusFilesId.id : ' '}?access_token=${FFAppState().accessToken}',
                                                             useHeroAnimation:
                                                                 true,
                                                           ),
@@ -591,7 +686,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                     },
                                                     child: Hero(
                                                       tag:
-                                                          '${FFAppConstants.ApiBaseUrl}/assets/${reportImagesItem.operations.first.operationsId.files.isNotEmpty ? reportImagesItem.operations.first.operationsId.files.first.directusFilesId.id : ' '}?access_token=${FFAppState().accessToken}',
+                                                          '${FFAppConstants.ApiBaseUrl}/assets/${reportImagesItem.operations.first.operationsId.files.length > 0 ? reportImagesItem.operations.first.operationsId.files.first.directusFilesId.id : ' '}?access_token=${FFAppState().accessToken}',
                                                       transitionOnUserGestures:
                                                           true,
                                                       child: ClipRRect(
@@ -599,7 +694,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                             BorderRadius
                                                                 .circular(8.0),
                                                         child: Image.network(
-                                                          '${FFAppConstants.ApiBaseUrl}/assets/${reportImagesItem.operations.first.operationsId.files.isNotEmpty ? reportImagesItem.operations.first.operationsId.files.first.directusFilesId.id : ' '}?access_token=${FFAppState().accessToken}',
+                                                          '${FFAppConstants.ApiBaseUrl}/assets/${reportImagesItem.operations.first.operationsId.files.length > 0 ? reportImagesItem.operations.first.operationsId.files.first.directusFilesId.id : ' '}?access_token=${FFAppState().accessToken}',
                                                           width: 300.0,
                                                           height: 150.0,
                                                           fit: BoxFit.cover,
@@ -619,6 +714,12 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                               .first
                                                               .operationsId
                                                               .dateUpdated !=
+                                                          null &&
+                                                      reportImagesItem
+                                                              .operations
+                                                              .first
+                                                              .operationsId
+                                                              .dateUpdated !=
                                                           ''))
                                                 Padding(
                                                   padding: const EdgeInsetsDirectional
@@ -632,6 +733,12 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                                     .dateUpdated !=
                                                                 'null') &&
                                                             (reportImagesItem
+                                                                        .operations
+                                                                        .first
+                                                                        .operationsId
+                                                                        .dateUpdated !=
+                                                                    null &&
+                                                                reportImagesItem
                                                                         .operations
                                                                         .first
                                                                         .operationsId
@@ -674,43 +781,10 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                             ),
                           );
                         },
-                      );
-                    },
-                  ),
-                ),
-                if ((_model.reportImage.isEmpty) &&
-                    (_model.checkData == '1'))
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 0.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.database,
-                          color: FlutterFlowTheme.of(context).alternate,
-                          size: 55.0,
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 15.0, 0.0, 0.0),
-                          child: Text(
-                            'Không có dữ liệu !',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  fontSize: 18.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
+                ),
               ],
             ),
           ),

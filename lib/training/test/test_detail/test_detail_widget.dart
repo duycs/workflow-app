@@ -83,15 +83,6 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
             ),
             onPressed: () async {
               context.pop();
-              if (widget.checkScroll == 'StudyProgramList') {
-                FFAppState().update(() {
-                  FFAppState().scrollCheck = 'StudyProgramList';
-                });
-              } else if (widget.checkScroll == 'TestList') {
-                setState(() {
-                  FFAppState().scrollCheck = 'TestList';
-                });
-              }
             },
           ),
           title: Text(

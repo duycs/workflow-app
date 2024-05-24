@@ -15,9 +15,9 @@ class OperationsStruct extends BaseStruct {
     String? actionType,
     String? dateCreated,
     String? organizationId,
-    String? userCreated,
     String? executeId,
     String? flowId,
+    UserOperationStruct? userCreated,
   })  : _id = id,
         _status = status,
         _name = name,
@@ -27,9 +27,9 @@ class OperationsStruct extends BaseStruct {
         _actionType = actionType,
         _dateCreated = dateCreated,
         _organizationId = organizationId,
-        _userCreated = userCreated,
         _executeId = executeId,
-        _flowId = flowId;
+        _flowId = flowId,
+        _userCreated = userCreated;
 
   // "id" field.
   String? _id;
@@ -87,12 +87,6 @@ class OperationsStruct extends BaseStruct {
   set organizationId(String? val) => _organizationId = val;
   bool hasOrganizationId() => _organizationId != null;
 
-  // "user_created" field.
-  String? _userCreated;
-  String get userCreated => _userCreated ?? '';
-  set userCreated(String? val) => _userCreated = val;
-  bool hasUserCreated() => _userCreated != null;
-
   // "execute_id" field.
   String? _executeId;
   String get executeId => _executeId ?? '';
@@ -105,6 +99,14 @@ class OperationsStruct extends BaseStruct {
   set flowId(String? val) => _flowId = val;
   bool hasFlowId() => _flowId != null;
 
+  // "user_created" field.
+  UserOperationStruct? _userCreated;
+  UserOperationStruct get userCreated => _userCreated ?? UserOperationStruct();
+  set userCreated(UserOperationStruct? val) => _userCreated = val;
+  void updateUserCreated(Function(UserOperationStruct) updateFn) =>
+      updateFn(_userCreated ??= UserOperationStruct());
+  bool hasUserCreated() => _userCreated != null;
+
   static OperationsStruct fromMap(Map<String, dynamic> data) =>
       OperationsStruct(
         id: data['id'] as String?,
@@ -116,9 +118,9 @@ class OperationsStruct extends BaseStruct {
         actionType: data['action_type'] as String?,
         dateCreated: data['date_created'] as String?,
         organizationId: data['organization_id'] as String?,
-        userCreated: data['user_created'] as String?,
         executeId: data['execute_id'] as String?,
         flowId: data['flow_id'] as String?,
+        userCreated: UserOperationStruct.maybeFromMap(data['user_created']),
       );
 
   static OperationsStruct? maybeFromMap(dynamic data) => data is Map
@@ -135,9 +137,9 @@ class OperationsStruct extends BaseStruct {
         'action_type': _actionType,
         'date_created': _dateCreated,
         'organization_id': _organizationId,
-        'user_created': _userCreated,
         'execute_id': _executeId,
         'flow_id': _flowId,
+        'user_created': _userCreated?.toMap(),
       }.withoutNulls;
 
   @override
@@ -178,10 +180,6 @@ class OperationsStruct extends BaseStruct {
           _organizationId,
           ParamType.String,
         ),
-        'user_created': serializeParam(
-          _userCreated,
-          ParamType.String,
-        ),
         'execute_id': serializeParam(
           _executeId,
           ParamType.String,
@@ -189,6 +187,10 @@ class OperationsStruct extends BaseStruct {
         'flow_id': serializeParam(
           _flowId,
           ParamType.String,
+        ),
+        'user_created': serializeParam(
+          _userCreated,
+          ParamType.DataStruct,
         ),
       }.withoutNulls;
 
@@ -240,11 +242,6 @@ class OperationsStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        userCreated: deserializeParam(
-          data['user_created'],
-          ParamType.String,
-          false,
-        ),
         executeId: deserializeParam(
           data['execute_id'],
           ParamType.String,
@@ -254,6 +251,12 @@ class OperationsStruct extends BaseStruct {
           data['flow_id'],
           ParamType.String,
           false,
+        ),
+        userCreated: deserializeStructParam(
+          data['user_created'],
+          ParamType.DataStruct,
+          false,
+          structBuilder: UserOperationStruct.fromSerializableMap,
         ),
       );
 
@@ -272,9 +275,9 @@ class OperationsStruct extends BaseStruct {
         actionType == other.actionType &&
         dateCreated == other.dateCreated &&
         organizationId == other.organizationId &&
-        userCreated == other.userCreated &&
         executeId == other.executeId &&
-        flowId == other.flowId;
+        flowId == other.flowId &&
+        userCreated == other.userCreated;
   }
 
   @override
@@ -288,9 +291,9 @@ class OperationsStruct extends BaseStruct {
         actionType,
         dateCreated,
         organizationId,
-        userCreated,
         executeId,
-        flowId
+        flowId,
+        userCreated
       ]);
 }
 
@@ -304,9 +307,9 @@ OperationsStruct createOperationsStruct({
   String? actionType,
   String? dateCreated,
   String? organizationId,
-  String? userCreated,
   String? executeId,
   String? flowId,
+  UserOperationStruct? userCreated,
 }) =>
     OperationsStruct(
       id: id,
@@ -318,7 +321,7 @@ OperationsStruct createOperationsStruct({
       actionType: actionType,
       dateCreated: dateCreated,
       organizationId: organizationId,
-      userCreated: userCreated,
       executeId: executeId,
       flowId: flowId,
+      userCreated: userCreated ?? UserOperationStruct(),
     );

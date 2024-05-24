@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'order_create_widget.dart' show OrderCreateWidget;
 import 'package:flutter/material.dart';
@@ -26,15 +27,26 @@ class OrderCreateModel extends FlutterFlowModel<OrderCreateWidget> {
 
   int? number;
 
+  int mot = 1;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
-  // State field(s) for RatingBar widget.
-  double? ratingBarValue;
+  // State field(s) for DropDown widget.
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
   // State field(s) for quantity widget.
   FocusNode? quantityFocusNode;
   TextEditingController? quantityTextController;
   String? Function(BuildContext, String?)? quantityTextControllerValidator;
+  String? _quantityTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Vui lòng nhập số lượng!';
+    }
+
+    return null;
+  }
+
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController2;
@@ -45,7 +57,9 @@ class OrderCreateModel extends FlutterFlowModel<OrderCreateWidget> {
   String? orderCreateDraft2;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    quantityTextControllerValidator = _quantityTextControllerValidator;
+  }
 
   @override
   void dispose() {
@@ -61,12 +75,13 @@ class OrderCreateModel extends FlutterFlowModel<OrderCreateWidget> {
     bool? reloadOrderCreate;
     ApiCallResponse? apiResultOrderCreate;
 
+    addToProgramItems(ProgramOrderItemsCreateStruct(
+      id: widget.programId,
+      totalItem: number,
+      private: widget.checkType == 'organization' ? 0 : 1,
+    ));
     reloadOrderCreate = await action_blocks.tokenReload(context);
     if (reloadOrderCreate!) {
-      addToProgramItems(ProgramOrderItemsCreateStruct(
-        id: widget.programId,
-        totalItem: number,
-      ));
       apiResultOrderCreate = await OrderGroup.createOrderCall.call(
         accessToken: FFAppState().accessToken,
         requestDataJson: <String, dynamic>{

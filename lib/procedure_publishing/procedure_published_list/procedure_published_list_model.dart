@@ -38,8 +38,6 @@ class ProcedurePublishedListModel
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in ProcedurePublishedList widget.
   bool? reloadTokenPublishedListApp;
-  // Stores action output result for [Action Block - tokenReload] action in ProcedurePublishedList widget.
-  bool? tokenReloadProcedurePublishedListCheck;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

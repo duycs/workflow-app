@@ -316,13 +316,18 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                     .secondaryText,
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleMedium
+                                                    .labelMedium
                                                     .override(
                                                       fontFamily: 'Nunito Sans',
-                                                      fontSize: 14.0,
                                                       letterSpacing: 0.0,
                                                     ),
-                                            unselectedLabelStyle: const TextStyle(),
+                                            unselectedLabelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito',
+                                                      letterSpacing: 0.0,
+                                                    ),
                                             indicatorColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primaryText,
@@ -565,7 +570,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                                   maxLines: 2,
                                                                                   style: FlutterFlowTheme.of(context).headlineSmall.override(
                                                                                         fontFamily: 'Nunito Sans',
-                                                                                        fontSize: 18.0,
+                                                                                        fontSize: 16.0,
                                                                                         letterSpacing: 0.0,
                                                                                       ),
                                                                                 ),
@@ -588,44 +593,47 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                               0.0,
                                                                               8.0),
                                                                           child:
-                                                                              InkWell(
-                                                                            splashColor:
-                                                                                Colors.transparent,
-                                                                            focusColor:
-                                                                                Colors.transparent,
-                                                                            hoverColor:
-                                                                                Colors.transparent,
-                                                                            highlightColor:
-                                                                                Colors.transparent,
-                                                                            onTap:
-                                                                                () async {
-                                                                              await Navigator.push(
-                                                                                context,
-                                                                                PageTransition(
-                                                                                  type: PageTransitionType.fade,
-                                                                                  child: FlutterFlowExpandedImageView(
-                                                                                    image: Image.network(
-                                                                                      '${FFAppConstants.ApiBaseUrl}/assets/${programListItem.imageCover}?access_token=${FFAppState().accessToken}',
-                                                                                      fit: BoxFit.contain,
-                                                                                    ),
-                                                                                    allowRotation: false,
-                                                                                    tag: '${FFAppConstants.ApiBaseUrl}/assets/${programListItem.imageCover}?access_token=${FFAppState().accessToken}',
-                                                                                    useHeroAnimation: true,
-                                                                                  ),
-                                                                                ),
-                                                                              );
-                                                                            },
+                                                                              Container(
+                                                                            width:
+                                                                                100.0,
+                                                                            height:
+                                                                                100.0,
+                                                                            decoration:
+                                                                                const BoxDecoration(),
                                                                             child:
-                                                                                Hero(
-                                                                              tag: '${FFAppConstants.ApiBaseUrl}/assets/${programListItem.imageCover}?access_token=${FFAppState().accessToken}',
-                                                                              transitionOnUserGestures: true,
-                                                                              child: ClipRRect(
-                                                                                borderRadius: BorderRadius.circular(12.0),
-                                                                                child: Image.network(
-                                                                                  '${FFAppConstants.ApiBaseUrl}/assets/${programListItem.imageCover}?access_token=${FFAppState().accessToken}',
-                                                                                  width: 100.0,
-                                                                                  height: 100.0,
-                                                                                  fit: BoxFit.cover,
+                                                                                InkWell(
+                                                                              splashColor: Colors.transparent,
+                                                                              focusColor: Colors.transparent,
+                                                                              hoverColor: Colors.transparent,
+                                                                              highlightColor: Colors.transparent,
+                                                                              onTap: () async {
+                                                                                await Navigator.push(
+                                                                                  context,
+                                                                                  PageTransition(
+                                                                                    type: PageTransitionType.fade,
+                                                                                    child: FlutterFlowExpandedImageView(
+                                                                                      image: Image.network(
+                                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${programListItem.imageCover}?access_token=${FFAppState().accessToken}',
+                                                                                        fit: BoxFit.contain,
+                                                                                      ),
+                                                                                      allowRotation: false,
+                                                                                      tag: '${FFAppConstants.ApiBaseUrl}/assets/${programListItem.imageCover}?access_token=${FFAppState().accessToken}',
+                                                                                      useHeroAnimation: true,
+                                                                                    ),
+                                                                                  ),
+                                                                                );
+                                                                              },
+                                                                              child: Hero(
+                                                                                tag: '${FFAppConstants.ApiBaseUrl}/assets/${programListItem.imageCover}?access_token=${FFAppState().accessToken}',
+                                                                                transitionOnUserGestures: true,
+                                                                                child: ClipRRect(
+                                                                                  borderRadius: BorderRadius.circular(12.0),
+                                                                                  child: Image.network(
+                                                                                    '${FFAppConstants.ApiBaseUrl}/assets/${programListItem.imageCover}?access_token=${FFAppState().accessToken}',
+                                                                                    width: double.infinity,
+                                                                                    height: double.infinity,
+                                                                                    fit: BoxFit.cover,
+                                                                                  ),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -786,7 +794,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                       {
                                                                     'price':
                                                                         serializeParam(
-                                                                      '',
+                                                                      'free1',
                                                                       ParamType
                                                                           .String,
                                                                     ),
@@ -1017,6 +1025,8 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                       .override(
                                                                         fontFamily:
                                                                             'Nunito Sans',
+                                                                        fontSize:
+                                                                            14.0,
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),

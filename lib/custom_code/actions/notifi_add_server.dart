@@ -19,13 +19,13 @@ Future notifiAddServer(String staffId) async {
 
   OneSignal.initialize("014e851d-ca32-4c5e-840e-236166738a06");
   OneSignal.Notifications.requestPermission(true);
-  OneSignal.InAppMessages.addClickListener((event) {
-    Fluttertoast.showToast(
-      msg: '${event}',
-      gravity: ToastGravity.TOP,
-      toastLength: Toast.LENGTH_LONG,
-    );
-  });
+  // OneSignal.InAppMessages.addClickListener((event) {
+  //   Fluttertoast.showToast(
+  //     msg: '${event}',
+  //     gravity: ToastGravity.TOP,
+  //     toastLength: Toast.LENGTH_LONG,
+  //   );
+  // });
   OneSignal.login(staffId);
   print("StaffId: " + staffId);
   OneSignal.User.addTagWithKey("test2", "val2");

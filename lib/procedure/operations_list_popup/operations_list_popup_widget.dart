@@ -302,12 +302,18 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                       FlutterFlowTheme.of(context)
                                           .secondaryText,
                                   labelStyle: FlutterFlowTheme.of(context)
-                                      .titleMedium
+                                      .labelMedium
                                       .override(
                                         fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
-                                  unselectedLabelStyle: const TextStyle(),
+                                  unselectedLabelStyle:
+                                      FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
                                   indicatorColor:
                                       FlutterFlowTheme.of(context).primary,
                                   padding: const EdgeInsets.all(4.0),
@@ -664,9 +670,9 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                                             padding:
                                                                 const EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        15.0,
+                                                                        10.0,
                                                                         5.0,
-                                                                        15.0,
+                                                                        10.0,
                                                                         5.0),
                                                             child: Column(
                                                               mainAxisSize:

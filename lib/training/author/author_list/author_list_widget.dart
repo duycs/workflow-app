@@ -217,7 +217,9 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                     'Tác giả nổi tiếng',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Nunito Sans',
+                          fontSize: 16.0,
                           letterSpacing: 0.0,
+                          fontWeight: FontWeight.w500,
                         ),
                   ),
                 ),
@@ -333,7 +335,9 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                     'Tất cả tác giả',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Nunito Sans',
+                          fontSize: 16.0,
                           letterSpacing: 0.0,
+                          fontWeight: FontWeight.w500,
                         ),
                   ),
                 ),
@@ -438,6 +442,7 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                                                       .override(
                                                         fontFamily:
                                                             'Nunito Sans',
+                                                        fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -461,6 +466,7 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                                                       .override(
                                                         fontFamily:
                                                             'Nunito Sans',
+                                                        fontSize: 13.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),

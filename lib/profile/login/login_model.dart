@@ -170,6 +170,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
             (apiResultGetStaffId.jsonBody ?? ''),
             r'''$.organization''',
           );
+          await actions.notifiRemoveServer();
           await actions.notifiAddServer(
             getJsonField(
               (apiResultGetStaffId.jsonBody ?? ''),

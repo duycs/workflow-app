@@ -14,10 +14,10 @@ export 'operation_create_model.dart';
 class OperationCreateWidget extends StatefulWidget {
   const OperationCreateWidget({
     super.key,
-    this.callback,
+    required this.callBack,
   });
 
-  final Future Function()? callback;
+  final Future Function()? callBack;
 
   @override
   State<OperationCreateWidget> createState() => _OperationCreateWidgetState();
@@ -554,6 +554,8 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                     if ((_model
                                             .apiResultOperationAdd?.succeeded ??
                                         true)) {
+                                      await widget.callBack?.call();
+                                      Navigator.pop(context);
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
@@ -572,8 +574,6 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                                   .secondary,
                                         ),
                                       );
-                                      await widget.callback?.call();
-                                      Navigator.pop(context);
                                     } else {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(

@@ -25,6 +25,14 @@ class FilterProgramsModel extends FlutterFlowModel<FilterProgramsWidget> {
   FocusNode? priceMaxFocusNode;
   TextEditingController? priceMaxTextController;
   String? Function(BuildContext, String?)? priceMaxTextControllerValidator;
+  // State field(s) for priceMin1 widget.
+  FocusNode? priceMin1FocusNode;
+  TextEditingController? priceMin1TextController;
+  String? Function(BuildContext, String?)? priceMin1TextControllerValidator;
+  // State field(s) for priceMax1 widget.
+  FocusNode? priceMax1FocusNode;
+  TextEditingController? priceMax1TextController;
+  String? Function(BuildContext, String?)? priceMax1TextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -42,5 +50,11 @@ class FilterProgramsModel extends FlutterFlowModel<FilterProgramsWidget> {
 
     priceMaxFocusNode?.dispose();
     priceMaxTextController?.dispose();
+
+    priceMin1FocusNode?.dispose();
+    priceMin1TextController?.dispose();
+
+    priceMax1FocusNode?.dispose();
+    priceMax1TextController?.dispose();
   }
 }

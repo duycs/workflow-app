@@ -1,13 +1,9 @@
-import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:provider/provider.dart';
 import 'filter_do_test_model.dart';
 export 'filter_do_test_model.dart';
 
@@ -62,8 +58,6 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(
@@ -323,37 +317,11 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            _model.clearListStaffTestToken =
-                                await action_blocks.tokenReload(context);
-                            if (_model.clearListStaffTestToken!) {
-                              _model.apiResultClearListStaffTest =
-                                  await DoTestGroup.staffsTestsListCall.call(
-                                accessToken: FFAppState().accessToken,
-                                filter:
-                                    '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"test_id\":{\"name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}]}',
-                              );
-                              if ((_model
-                                      .apiResultClearListStaffTest?.succeeded ??
-                                  true)) {
-                                _model.llst =
-                                    StaffsTestsListDataStruct.maybeFromMap(
-                                            (_model.apiResultClearListStaffTest
-                                                    ?.jsonBody ??
-                                                ''))!
-                                        .data
-                                        .toList()
-                                        .cast<StaffsTestsListStruct>();
-                                await widget.callback?.call(
-                                  ' ',
-                                  ' ',
-                                );
-                                Navigator.pop(context);
-                              }
-                            } else {
-                              setState(() {});
-                            }
-
-                            setState(() {});
+                            await widget.callback?.call(
+                              ' ',
+                              ' ',
+                            );
+                            Navigator.pop(context);
                           },
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(
@@ -388,6 +356,7 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
                               _model.dateStart,
                               _model.dateEnd,
                             );
+                            Navigator.pop(context);
                           },
                           text: 'Xác nhận',
                           options: FFButtonOptions(

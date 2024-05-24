@@ -1,7 +1,9 @@
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'filter_study_program_model.dart';
@@ -15,15 +17,16 @@ class FilterStudyProgramWidget extends StatefulWidget {
     required this.dateStart,
     required this.dateEnd,
     required this.callBack,
+    required this.status,
   });
 
   final String? name;
   final String? lessionsName;
   final String? dateStart;
   final String? dateEnd;
-  final Future Function(
-          String? name, String? dateStart, String? dateEnd, String? lessions)?
-      callBack;
+  final Future Function(String? name, String? dateStart, String? dateEnd,
+      String? lessions, String? status)? callBack;
+  final String? status;
 
   @override
   State<FilterStudyProgramWidget> createState() =>
@@ -324,6 +327,57 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                     ),
                   ].divide(const SizedBox(width: 8.0)),
                 ),
+                Text(
+                  'Trạng thái :',
+                  textAlign: TextAlign.start,
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Nunito Sans',
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  child: FlutterFlowDropDown<String>(
+                    controller: _model.statusValueController ??=
+                        FormFieldController<String>(
+                      _model.statusValue ??= (widget.status != null &&
+                                  widget.status != '') &&
+                              (widget.status == 'published')
+                          ? 'Hoạt động'
+                          : ((widget.status == 'draft') &&
+                                  (widget.status != null && widget.status != '')
+                              ? 'Không hoạt động'
+                              : ''),
+                    ),
+                    options: const ['Hoạt động', 'Không hoạt động'],
+                    onChanged: (val) =>
+                        setState(() => _model.statusValue = val),
+                    width: double.infinity,
+                    height: 56.0,
+                    textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Nunito Sans',
+                          letterSpacing: 0.0,
+                        ),
+                    hintText: 'Trạng thái',
+                    icon: Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      size: 24.0,
+                    ),
+                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                    elevation: 2.0,
+                    borderColor: FlutterFlowTheme.of(context).alternate,
+                    borderWidth: 2.0,
+                    borderRadius: 8.0,
+                    margin:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                    hidesUnderline: true,
+                    isOverButton: true,
+                    isSearchable: false,
+                    isMultiSelect: false,
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
                   child: TextFormField(
@@ -449,7 +503,11 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                               _model.lessionsTextController?.clear();
                               _model.nameTextController?.clear();
                             });
+                            setState(() {
+                              _model.statusValueController?.value = '';
+                            });
                             await widget.callBack?.call(
+                              '',
                               '',
                               '',
                               '',
@@ -492,6 +550,13 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                               '${_model.dateStartFilter}',
                               '${_model.dateEndFilter}',
                               _model.lessionsTextController.text,
+                              (_model.statusValue != null &&
+                                          _model.statusValue != '') &&
+                                      (_model.statusValue != ' ')
+                                  ? (_model.statusValue == 'Hoạt động'
+                                      ? 'published'
+                                      : 'draft')
+                                  : ' ',
                             );
                             Navigator.pop(context);
                           },

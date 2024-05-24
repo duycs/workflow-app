@@ -19,6 +19,8 @@ class StudyProgramEditModel extends FlutterFlowModel<StudyProgramEditWidget> {
 
   int? check;
 
+  int? es;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();

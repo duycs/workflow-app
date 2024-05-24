@@ -92,9 +92,6 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
           ),
           onPressed: () async {
             context.pop();
-            setState(() {
-              FFAppState().scrollCheck = 'DepartmentList';
-            });
           },
         ),
         title: Text(
@@ -810,7 +807,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                         text: 'Xác nhận',
                                                         options:
                                                             FFButtonOptions(
-                                                          height: 40.0,
+                                                          height: 35.0,
                                                           padding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
@@ -838,6 +835,8 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .primary,
+                                                                    fontSize:
+                                                                        14.0,
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),

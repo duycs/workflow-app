@@ -32,8 +32,6 @@ class DoTestListModel extends FlutterFlowModel<DoTestListWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in DoTestList widget.
   bool? tokenReloadDoTestList;
-  // Stores action output result for [Action Block - tokenReload] action in DoTestList widget.
-  bool? tokenReloadDoTestListCheck;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

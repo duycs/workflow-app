@@ -31,13 +31,13 @@ class LessonsListUserModel extends FlutterFlowModel<LessonsListUserWidget> {
 
   String checkAPI = '';
 
+  bool isShow = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in LessonsListUser widget.
   bool? tokenReloadLessonsListUser;
-  // Stores action output result for [Action Block - tokenReload] action in LessonsListUser widget.
-  bool? tokenReloadLessonsListUserCheck;
   // State field(s) for nameSearch widget.
   FocusNode? nameSearchFocusNode;
   TextEditingController? nameSearchTextController;

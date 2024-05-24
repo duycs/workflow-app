@@ -431,7 +431,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                 ),
                               ].divide(const SizedBox(width: 16.0)),
                             ),
-                          ].divide(const SizedBox(height: 24.0)),
+                          ].divide(const SizedBox(height: 12.0)),
                         ),
                       ),
                     ),

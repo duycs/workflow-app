@@ -22,13 +22,13 @@ class ListBranchProfileModel extends FlutterFlowModel<ListBranchProfileWidget> {
 
   String search = '';
 
+  bool isShow = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in ListBranchProfile widget.
   bool? checkTokenListBranchProfile;
-  // Stores action output result for [Action Block - tokenReload] action in ListBranchProfile widget.
-  bool? tokenReloadListBranchProfileCheck;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

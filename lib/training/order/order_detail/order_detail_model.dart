@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'order_detail_widget.dart' show OrderDetailWidget;
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,9 @@ class OrderDetailModel extends FlutterFlowModel<OrderDetailWidget> {
 
   // State field(s) for RatingBar widget.
   double? ratingBarValue;
+  // State field(s) for DropDown widget.
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;

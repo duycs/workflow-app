@@ -439,6 +439,7 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
+                            flex: 1,
                             child: FFButtonWidget(
                               onPressed: () async {
                                 setState(() {
@@ -472,6 +473,7 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
                                       fontWeight: FontWeight.normal,
                                     ),
                                 borderSide: const BorderSide(
+                                  color: Colors.transparent,
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
@@ -479,6 +481,7 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
                             ),
                           ),
                           Expanded(
+                            flex: 1,
                             child: FFButtonWidget(
                               onPressed: () async {
                                 await widget.callback?.call(

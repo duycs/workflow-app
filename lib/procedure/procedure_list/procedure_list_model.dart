@@ -35,8 +35,6 @@ class ProcedureListModel extends FlutterFlowModel<ProcedureListWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in ProcedureList widget.
   bool? checkTokenProcedureList;
-  // Stores action output result for [Action Block - tokenReload] action in ProcedureList widget.
-  bool? tokenReloadProcedureListCheck;
   // State field(s) for TextName widget.
   FocusNode? textNameFocusNode;
   TextEditingController? textNameTextController;

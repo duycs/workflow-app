@@ -257,6 +257,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                           ),
@@ -381,6 +382,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                           ),
@@ -455,6 +457,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Nunito Sans',
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
                             maxLines: 9,
@@ -473,6 +476,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                           ),
@@ -584,6 +588,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                       fontFamily: 'Nunito Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
@@ -760,6 +765,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                     .override(
                                       fontFamily: 'Nunito Sans',
                                       color: Colors.white,
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,

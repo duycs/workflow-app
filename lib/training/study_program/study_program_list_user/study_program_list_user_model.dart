@@ -3,8 +3,10 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'dart:async';
 import 'study_program_list_user_widget.dart' show StudyProgramListUserWidget;
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class StudyProgramListUserModel
     extends FlutterFlowModel<StudyProgramListUserWidget> {
@@ -32,14 +34,22 @@ class StudyProgramListUserModel
 
   String dateEnd = '';
 
+  bool isShow = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in StudyProgramListUser widget.
+  bool? tokenReloadStudyProgramListUserList;
   // State field(s) for TextFieldNameSearch widget.
   FocusNode? textFieldNameSearchFocusNode;
   TextEditingController? textFieldNameSearchTextController;
   String? Function(BuildContext, String?)?
       textFieldNameSearchTextControllerValidator;
+  // State field(s) for ListView widget.
+
+  PagingController<ApiPagingParams, dynamic>? listViewPagingController;
+  Function(ApiPagingParams nextPageMarker)? listViewApiCall;
 
   @override
   void initState(BuildContext context) {}
@@ -49,6 +59,8 @@ class StudyProgramListUserModel
     unfocusNode.dispose();
     textFieldNameSearchFocusNode?.dispose();
     textFieldNameSearchTextController?.dispose();
+
+    listViewPagingController?.dispose();
   }
 
   /// Action blocks.
@@ -97,4 +109,61 @@ class StudyProgramListUserModel
       }
     }
   }
+
+  /// Additional helper methods.
+  Future waitForOnePageForListView({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete =
+          (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  PagingController<ApiPagingParams, dynamic> setListViewController(
+    Function(ApiPagingParams) apiCall,
+  ) {
+    listViewApiCall = apiCall;
+    return listViewPagingController ??= _createListViewController(apiCall);
+  }
+
+  PagingController<ApiPagingParams, dynamic> _createListViewController(
+    Function(ApiPagingParams) query,
+  ) {
+    final controller = PagingController<ApiPagingParams, dynamic>(
+      firstPageKey: ApiPagingParams(
+        nextPageNumber: 0,
+        numItems: 0,
+        lastResponse: null,
+      ),
+    );
+    return controller..addPageRequestListener(listViewStaffsProgramsPage);
+  }
+
+  void listViewStaffsProgramsPage(ApiPagingParams nextPageMarker) =>
+      listViewApiCall!(nextPageMarker).then((listViewStaffsProgramsResponse) {
+        final pageItems = (StaffsProgramsListDataStruct.maybeFromMap(
+                        listViewStaffsProgramsResponse.jsonBody)!
+                    .data ??
+                [])
+            .toList() as List;
+        final newNumItems = nextPageMarker.numItems + pageItems.length;
+        listViewPagingController?.appendPage(
+          pageItems,
+          (pageItems.isNotEmpty)
+              ? ApiPagingParams(
+                  nextPageNumber: nextPageMarker.nextPageNumber + 1,
+                  numItems: newNumItems,
+                  lastResponse: listViewStaffsProgramsResponse,
+                )
+              : null,
+        );
+      });
 }

@@ -1070,6 +1070,12 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                               });
                                             }
                                             setState(() {});
+                                            setState(() {
+                                              _model.branchValueController
+                                                  ?.reset();
+                                              _model.departmentValueController
+                                                  ?.reset();
+                                            });
                                           },
                                           width: double.infinity,
                                           height: 56.0,
@@ -2276,6 +2282,17 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                           'avatar': _model.avatarId,
                                           'title': _model
                                               .titleTextTextController.text,
+                                          'sort': () {
+                                            if (_model.roleValue ==
+                                                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                              return '1';
+                                            } else if (_model.roleValue ==
+                                                '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                              return '2';
+                                            } else {
+                                              return '3';
+                                            }
+                                          }(),
                                         },
                                       );
                                       shouldSetState = true;

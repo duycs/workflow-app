@@ -46,8 +46,6 @@ class TaskListWaitModel extends FlutterFlowModel<TaskListWaitWidget> {
   bool? getTaskFailToken;
   // Stores action output result for [Backend Call - API (GetListTask)] action in TaskListWait widget.
   ApiCallResponse? apiResultGetTask;
-  // Stores action output result for [Action Block - tokenReload] action in TaskListWait widget.
-  bool? tokenReloadTaskListWaitCheck;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

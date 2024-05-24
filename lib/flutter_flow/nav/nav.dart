@@ -35,9 +35,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ? Builder(
               builder: (context) => Container(
                 color: Colors.transparent,
-                child: Image.asset(
-                  'assets/images/512.png',
-                  fit: BoxFit.cover,
+                child: Center(
+                  child: Image.asset(
+                    'assets/images/512.png',
+                    width: 150.0,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
             )
@@ -50,9 +53,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ? Builder(
                   builder: (context) => Container(
                     color: Colors.transparent,
-                    child: Image.asset(
-                      'assets/images/512.png',
-                      fit: BoxFit.cover,
+                    child: Center(
+                      child: Image.asset(
+                        'assets/images/512.png',
+                        width: 150.0,
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
                 )
@@ -102,6 +108,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             programId: params.getParam(
               'programId',
+              ParamType.String,
+            ),
+            checkLesson: params.getParam(
+              'checkLesson',
               ParamType.String,
             ),
           ),
@@ -924,6 +934,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Details43Receipt',
           path: '/details43Receipt',
           builder: (context, params) => const Details43ReceiptWidget(),
+        ),
+        FFRoute(
+          name: 'StudyProgramListMarket',
+          path: '/studyProgramListMarket',
+          builder: (context, params) => StudyProgramListMarketWidget(
+            checkpage: params.getParam(
+              'checkpage',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

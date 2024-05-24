@@ -35,13 +35,13 @@ class BranchListModel extends FlutterFlowModel<BranchListWidget> {
 
   String searchStatus = '';
 
+  bool isShow = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in BranchList widget.
-  bool? tokenReloadBranchListList;
-  // Stores action output result for [Action Block - tokenReload] action in BranchList widget.
-  bool? tokenReloadBranchListCheck;
+  bool? tokenReloadBracnhListList;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
@@ -84,6 +84,8 @@ class BranchListModel extends FlutterFlowModel<BranchListWidget> {
             .data
             .toList()
             .cast<BranchListStruct>();
+        codeList =
+            listBranch.map((e) => e.code).toList().toList().cast<String>();
         checkData = '1';
       }
     } else {

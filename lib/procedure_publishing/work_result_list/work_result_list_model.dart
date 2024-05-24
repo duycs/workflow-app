@@ -47,13 +47,13 @@ class WorkResultListModel extends FlutterFlowModel<WorkResultListWidget> {
   void updateCheckRemoveAtIndex(int index, Function(int) updateFn) =>
       checkRemove[index] = updateFn(checkRemove[index]);
 
+  bool isLoad = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in WorkResultList widget.
   bool? tokenReloadWorkResultListList;
-  // Stores action output result for [Action Block - tokenReload] action in WorkResultList widget.
-  bool? tokenReloadWorkResultListCheck;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

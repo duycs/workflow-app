@@ -169,3 +169,5 @@ export '/training/lesson/staffs_programs_lesson/staffs_programs_lesson_widget.da
     show StaffsProgramsLessonWidget;
 export '/details43_receipt/details43_receipt_widget.dart'
     show Details43ReceiptWidget;
+export '/training/study_program/study_program_list_market/study_program_list_market_widget.dart'
+    show StudyProgramListMarketWidget;

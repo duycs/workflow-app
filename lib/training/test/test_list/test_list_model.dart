@@ -23,13 +23,13 @@ class TestListModel extends FlutterFlowModel<TestListWidget> {
 
   String checkData = '';
 
+  bool isShow = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in TestList widget.
   bool? reloadTokenTestlistPage;
-  // Stores action output result for [Action Block - tokenReload] action in TestList widget.
-  bool? tokenReloadTestListCheck;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

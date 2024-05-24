@@ -1551,10 +1551,17 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                           }
                                                         }
 
-                                                        setState(() {
-                                                          _model.addToImages(_model
-                                                              .uploadedLocalFile2);
-                                                        });
+                                                        if ((_model
+                                                                    .uploadedLocalFile2
+                                                                    .bytes
+                                                                    ?.isNotEmpty ??
+                                                                false)) {
+                                                          setState(() {
+                                                            _model.addToImages(
+                                                                _model
+                                                                    .uploadedLocalFile2);
+                                                          });
+                                                        }
                                                       },
                                                       text: 'Upload Image',
                                                       options: FFButtonOptions(

@@ -9,8 +9,10 @@ class ProgramOrderItemsCreateStruct extends BaseStruct {
   ProgramOrderItemsCreateStruct({
     String? id,
     int? totalItem,
+    int? private,
   })  : _id = id,
-        _totalItem = totalItem;
+        _totalItem = totalItem,
+        _private = private;
 
   // "id" field.
   String? _id;
@@ -25,10 +27,18 @@ class ProgramOrderItemsCreateStruct extends BaseStruct {
   void incrementTotalItem(int amount) => _totalItem = totalItem + amount;
   bool hasTotalItem() => _totalItem != null;
 
+  // "private" field.
+  int? _private;
+  int get private => _private ?? 0;
+  set private(int? val) => _private = val;
+  void incrementPrivate(int amount) => _private = private + amount;
+  bool hasPrivate() => _private != null;
+
   static ProgramOrderItemsCreateStruct fromMap(Map<String, dynamic> data) =>
       ProgramOrderItemsCreateStruct(
         id: data['id'] as String?,
         totalItem: castToType<int>(data['total_item']),
+        private: castToType<int>(data['private']),
       );
 
   static ProgramOrderItemsCreateStruct? maybeFromMap(dynamic data) =>
@@ -39,6 +49,7 @@ class ProgramOrderItemsCreateStruct extends BaseStruct {
   Map<String, dynamic> toMap() => {
         'id': _id,
         'total_item': _totalItem,
+        'private': _private,
       }.withoutNulls;
 
   @override
@@ -49,6 +60,10 @@ class ProgramOrderItemsCreateStruct extends BaseStruct {
         ),
         'total_item': serializeParam(
           _totalItem,
+          ParamType.int,
+        ),
+        'private': serializeParam(
+          _private,
           ParamType.int,
         ),
       }.withoutNulls;
@@ -66,6 +81,11 @@ class ProgramOrderItemsCreateStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
+        private: deserializeParam(
+          data['private'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -75,18 +95,21 @@ class ProgramOrderItemsCreateStruct extends BaseStruct {
   bool operator ==(Object other) {
     return other is ProgramOrderItemsCreateStruct &&
         id == other.id &&
-        totalItem == other.totalItem;
+        totalItem == other.totalItem &&
+        private == other.private;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([id, totalItem]);
+  int get hashCode => const ListEquality().hash([id, totalItem, private]);
 }
 
 ProgramOrderItemsCreateStruct createProgramOrderItemsCreateStruct({
   String? id,
   int? totalItem,
+  int? private,
 }) =>
     ProgramOrderItemsCreateStruct(
       id: id,
       totalItem: totalItem,
+      private: private,
     );

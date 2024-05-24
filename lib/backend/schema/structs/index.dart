@@ -149,3 +149,4 @@ export 'request_workflows_create_struct.dart';
 export 'staff_tasks_data_struct.dart';
 export 'staffs_struct.dart';
 export 'user_id_staff_struct.dart';
+export 'user_operation_struct.dart';

@@ -35,13 +35,13 @@ class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
 
   String branchId = '';
 
+  bool isShow = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in DepartmentList widget.
   bool? tokenReloadDepartmentListList;
-  // Stores action output result for [Action Block - tokenReload] action in DepartmentList widget.
-  bool? tokenReloadDepartmentListCheck;
   // State field(s) for nameSearch widget.
   FocusNode? nameSearchFocusNode;
   TextEditingController? nameSearchTextController;

@@ -28,6 +28,8 @@ class PaymentModel extends FlutterFlowModel<PaymentWidget> {
   String? Function(BuildContext, String?)? textController5Validator;
   // Stores action output result for [Backend Call - API (UpdateOrderStatusPublished)] action in Button widget.
   ApiCallResponse? apiResultUpdateStatuOrder;
+  // Stores action output result for [Backend Call - API (InviteStaff)] action in Button widget.
+  ApiCallResponse? apiResultsgg;
 
   @override
   void initState(BuildContext context) {}

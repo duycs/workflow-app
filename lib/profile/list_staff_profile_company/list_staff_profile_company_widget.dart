@@ -1,10 +1,13 @@
 import '/backend/api_requests/api_calls.dart';
+import '/components/data_not_foud_row/data_not_foud_row_widget.dart';
+import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/profile/profile_staff/profile_staff_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -45,8 +48,16 @@ class _ListStaffProfileCompanyWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await _model.getLinkStaff(context);
-      setState(() {});
+      _model.reloadTokenListStaffProfileCompanyApp =
+          await action_blocks.tokenReload(context);
+      if (_model.reloadTokenListStaffProfileCompanyApp!) {
+        setState(() {
+          _model.isSShow = true;
+        });
+      } else {
+        setState(() {});
+        return;
+      }
     });
 
     _model.textController ??= TextEditingController();
@@ -86,11 +97,6 @@ class _ListStaffProfileCompanyWidgetState
             ),
             onPressed: () async {
               context.pop();
-              if (FFAppState().scrollCheck == 'ListBranchProfile') {
-                setState(() {
-                  FFAppState().scrollCheck = 'ListBranchProfile';
-                });
-              }
             },
           ),
           title: Text(
@@ -108,12 +114,12 @@ class _ListStaffProfileCompanyWidgetState
         ),
         body: SafeArea(
           top: true,
-          child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-            child: SingleChildScrollView(
-              primary: false,
+          child: Visibility(
+            visible: _model.isSShow == true,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
               child: Column(
-                mainAxisSize: MainAxisSize.max,
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
@@ -194,22 +200,12 @@ class _ListStaffProfileCompanyWidgetState
                             focusNode: _model.textFieldFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.textController',
-                              const Duration(milliseconds: 2000),
+                              const Duration(milliseconds: 500),
                               () async {
-                                if (_model.textController.text != '') {
-                                  setState(() {
-                                    _model.filter =
-                                        '{\"_and\":[{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
-                                  });
-                                  await _model.getLinkStaff(context);
-                                  setState(() {});
-                                } else {
-                                  setState(() {
-                                    _model.filter = '';
-                                  });
-                                  await _model.getLinkStaff(context);
-                                  setState(() {});
-                                }
+                                setState(() => _model.listViewPagingController1
+                                    ?.refresh());
+                                setState(() => _model.listViewPagingController2
+                                    ?.refresh());
                               },
                             ),
                             autofocus: false,
@@ -265,21 +261,12 @@ class _ListStaffProfileCompanyWidgetState
                                   ? InkWell(
                                       onTap: () async {
                                         _model.textController?.clear();
-                                        if (_model.textController.text != '') {
-                                          setState(() {
-                                            _model.filter =
-                                                '{\"_and\":[{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
-                                          });
-                                          await _model.getLinkStaff(context);
-                                          setState(() {});
-                                        } else {
-                                          setState(() {
-                                            _model.filter = '';
-                                          });
-                                          await _model.getLinkStaff(context);
-                                          setState(() {});
-                                        }
-
+                                        setState(() => _model
+                                            .listViewPagingController1
+                                            ?.refresh());
+                                        setState(() => _model
+                                            .listViewPagingController2
+                                            ?.refresh());
                                         setState(() {});
                                       },
                                       child: const Icon(
@@ -303,7 +290,7 @@ class _ListStaffProfileCompanyWidgetState
                       ],
                     ),
                   ),
-                  if (_model.filter != '')
+                  if (_model.textController.text != '')
                     Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 16.0),
@@ -318,139 +305,137 @@ class _ListStaffProfileCompanyWidgetState
                                 ),
                       ),
                     ),
-                  if ((_model.listStaff
-                              .where((e) => e.departmentId.id == widget.id)
-                              .toList().isEmpty) &&
-                      (_model.checkStaff == '1'))
-                    Align(
-                      alignment: const AlignmentDirectional(-1.0, 0.0),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 0.0, 16.0),
-                        child: Text(
-                          'Chưa có nhân viên nào',
-                          textAlign: TextAlign.start,
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: 'Nunito Sans',
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                letterSpacing: 0.0,
-                                fontStyle: FontStyle.italic,
-                              ),
-                        ),
-                      ),
-                    ),
-                  if (_model.listStaff
-                          .where((e) => e.departmentId.id == widget.id)
-                          .toList().isNotEmpty)
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Hình ảnh nhân viên',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Nunito Sans',
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                    ),
-                  if (_model.listStaff
-                          .where((e) => e.departmentId.id == widget.id)
-                          .toList().isNotEmpty)
-                    Align(
-                      alignment: const AlignmentDirectional(0.0, -1.0),
-                      child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 24.0),
-                        child: Container(
-                          width: double.infinity,
-                          height: 100.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                    child: Text(
+                      'Hình ảnh nhân viên',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Nunito Sans',
+                            letterSpacing: 0.0,
                           ),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 0.0),
-                            child: Builder(
-                              builder: (context) {
-                                final images = _model.listStaff
-                                    .where(
-                                        (e) => e.departmentId.id == widget.id)
-                                    .toList()
-                                    .map((e) => e)
-                                    .toList();
-                                return ListView.separated(
-                                  padding: EdgeInsets.zero,
-                                  primary: false,
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: images.length,
-                                  separatorBuilder: (_, __) =>
-                                      const SizedBox(width: 8.0),
-                                  itemBuilder: (context, imagesIndex) {
-                                    final imagesItem = images[imagesIndex];
-                                    return Container(
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        boxShadow: const [
-                                          BoxShadow(
-                                            blurRadius: 4.0,
-                                            color: Color(0x34090F13),
-                                            offset: Offset(
-                                              0.0,
-                                              2.0,
-                                            ),
-                                          )
-                                        ],
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      child: InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          await Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType.fade,
-                                              child:
-                                                  FlutterFlowExpandedImageView(
-                                                image: Image.network(
-                                                  '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem.userId.avatar}?access_token=${FFAppState().accessToken}',
-                                                  fit: BoxFit.contain,
-                                                ),
-                                                allowRotation: true,
-                                                tag:
-                                                    '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem.userId.avatar}?access_token=${FFAppState().accessToken}',
-                                                useHeroAnimation: true,
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                        child: Hero(
-                                          tag:
+                    ),
+                  ),
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, -1.0),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 24.0),
+                      child: Container(
+                        width: double.infinity,
+                        height: 100.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 0.0, 16.0, 0.0),
+                          child:
+                              PagedListView<ApiPagingParams, dynamic>.separated(
+                            pagingController: _model.setListViewController1(
+                              (nextPageMarker) =>
+                                  StaffGroup.getStaffListCall.call(
+                                accessToken: FFAppState().accessToken,
+                                limit: 20,
+                                offset: nextPageMarker.nextPageNumber * 20,
+                                sort: 'sort',
+                                filter:
+                                    '{\"_and\":[{}${_model.textController.text != '' ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${widget.id != null && widget.id != '' ? ',{\"department_id\":{\"id\":{\"_eq\":\"${widget.id}\"}}}' : ' '}]}',
+                              ),
+                            ),
+                            padding: EdgeInsets.zero,
+                            primary: false,
+                            reverse: false,
+                            scrollDirection: Axis.horizontal,
+                            separatorBuilder: (_, __) => const SizedBox(width: 8.0),
+                            builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                              // Customize what your widget looks like when it's loading the first page.
+                              firstPageProgressIndicatorBuilder: (_) => Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              // Customize what your widget looks like when it's loading another page.
+                              newPageProgressIndicatorBuilder: (_) => Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              noItemsFoundIndicatorBuilder: (_) => const Center(
+                                child: DataNotFoudRowWidget(),
+                              ),
+                              itemBuilder: (context, _, imagesIndex) {
+                                final imagesItem = _model
+                                    .listViewPagingController1!
+                                    .itemList![imagesIndex];
+                                return Container(
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        blurRadius: 4.0,
+                                        color: Color(0x34090F13),
+                                        offset: Offset(
+                                          0.0,
+                                          2.0,
+                                        ),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.fade,
+                                          child: FlutterFlowExpandedImageView(
+                                            image: Image.network(
                                               '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem.userId.avatar}?access_token=${FFAppState().accessToken}',
-                                          transitionOnUserGestures: true,
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            child: Image.network(
-                                              '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem.userId.avatar}?access_token=${FFAppState().accessToken}',
-                                              width: 100.0,
-                                              height: 50.0,
-                                              fit: BoxFit.cover,
+                                              fit: BoxFit.contain,
                                             ),
+                                            allowRotation: true,
+                                            tag:
+                                                '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem.userId.avatar}?access_token=${FFAppState().accessToken}',
+                                            useHeroAnimation: true,
                                           ),
                                         ),
+                                      );
+                                    },
+                                    child: Hero(
+                                      tag:
+                                          '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem.userId.avatar}?access_token=${FFAppState().accessToken}',
+                                      transitionOnUserGestures: true,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.network(
+                                          '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem.userId.avatar}?access_token=${FFAppState().accessToken}',
+                                          width: 100.0,
+                                          height: 50.0,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
-                                    );
-                                  },
+                                    ),
+                                  ),
                                 );
                               },
                             ),
@@ -458,233 +443,246 @@ class _ListStaffProfileCompanyWidgetState
                         ),
                       ),
                     ),
-                  if (_model.listStaff
-                          .where((e) => e.departmentId.id == widget.id)
-                          .toList().isNotEmpty)
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Danh sách nhân viên',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Nunito Sans',
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
-                            ),
-                      ),
-                    ),
+                  ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
-                    child: PagedListView<ApiPagingParams, dynamic>(
-                      pagingController: _model.setListViewController2(
-                        (nextPageMarker) => StaffGroup.getStaffListCall.call(
-                          accessToken: FFAppState().accessToken,
-                          limit: 20,
-                          offset: nextPageMarker.nextPageNumber * 20,
-                          sort: '-sort',
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+                    child: Text(
+                      'Danh sách nhân viên',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Nunito Sans',
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                      child: PagedListView<ApiPagingParams, dynamic>(
+                        pagingController: _model.setListViewController2(
+                          (nextPageMarker) => StaffGroup.getStaffListCall.call(
+                            accessToken: FFAppState().accessToken,
+                            limit: 20,
+                            offset: nextPageMarker.nextPageNumber * 20,
+                            sort: 'sort',
+                            filter:
+                                '{\"_and\":[{}${_model.textController.text != '' ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${widget.id != null && widget.id != '' ? ',{\"department_id\":{\"id\":{\"_eq\":\"${widget.id}\"}}}' : ' '}]}',
+                          ),
                         ),
-                      ),
-                      padding: EdgeInsets.zero,
-                      primary: false,
-                      shrinkWrap: true,
-                      reverse: false,
-                      scrollDirection: Axis.vertical,
-                      builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                        // Customize what your widget looks like when it's loading the first page.
-                        firstPageProgressIndicatorBuilder: (_) => Center(
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
+                        padding: EdgeInsets.zero,
+                        primary: false,
+                        reverse: false,
+                        scrollDirection: Axis.vertical,
+                        builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                          // Customize what your widget looks like when it's loading the first page.
+                          firstPageProgressIndicatorBuilder: (_) => Center(
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  FlutterFlowTheme.of(context).primary,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        // Customize what your widget looks like when it's loading another page.
-                        newPageProgressIndicatorBuilder: (_) => Center(
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
+                          // Customize what your widget looks like when it's loading another page.
+                          newPageProgressIndicatorBuilder: (_) => Center(
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  FlutterFlowTheme.of(context).primary,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-
-                        itemBuilder: (context, _, listStaff1Index) {
-                          final listStaff1Item = _model
-                              .listViewPagingController2!
-                              .itemList![listStaff1Index];
-                          return Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 8.0),
-                            child: Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    blurRadius: 1.0,
-                                    color: Color(0x32000000),
-                                    offset: Offset(
-                                      0.0,
-                                      1.0,
-                                    ),
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 8.0, 8.0, 8.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(26.0),
-                                      child: Image.network(
-                                        '${FFAppConstants.ApiBaseUrl}/assets/${listStaff1Item.userId.avatar}?access_token=${FFAppState().accessToken}',
-                                        width: 36.0,
-                                        height: 36.0,
-                                        fit: BoxFit.cover,
+                          noItemsFoundIndicatorBuilder: (_) => const SizedBox(
+                            width: double.infinity,
+                            child: DataNotFoundWidget(),
+                          ),
+                          itemBuilder: (context, _, listStaff1Index) {
+                            final listStaff1Item = _model
+                                .listViewPagingController2!
+                                .itemList![listStaff1Index];
+                            return Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 8.0),
+                              child: Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      blurRadius: 1.0,
+                                      color: Color(0x32000000),
+                                      offset: Offset(
+                                        0.0,
+                                        1.0,
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            12.0, 0.0, 0.0, 0.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              listStaff1Item.userId.firstName,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 4.0, 0.0, 0.0),
-                                              child: Text(
-                                                listStaff1Item.title,
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 8.0, 8.0, 8.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(26.0),
+                                        child: Image.network(
+                                          '${FFAppConstants.ApiBaseUrl}/assets/${listStaff1Item.userId.avatar}?access_token=${FFAppState().accessToken}',
+                                          width: 36.0,
+                                          height: 36.0,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  12.0, 0.0, 0.0, 0.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                listStaff1Item.userId.firstName,
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .labelMedium
+                                                        .bodyMedium
                                                         .override(
                                                           fontFamily:
                                                               'Nunito Sans',
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
                                                         ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Builder(
-                                      builder: (context) => FFButtonWidget(
-                                        onPressed: () async {
-                                          await showDialog(
-                                            barrierDismissible: false,
-                                            context: context,
-                                            builder: (dialogContext) {
-                                              return Dialog(
-                                                elevation: 0,
-                                                insetPadding: EdgeInsets.zero,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                alignment: const AlignmentDirectional(
-                                                        0.0, 0.0)
-                                                    .resolve(Directionality.of(
-                                                        context)),
-                                                child: GestureDetector(
-                                                  onTap: () => _model
-                                                          .unfocusNode
-                                                          .canRequestFocus
-                                                      ? FocusScope.of(context)
-                                                          .requestFocus(_model
-                                                              .unfocusNode)
-                                                      : FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child: ProfileStaffWidget(
-                                                    name: listStaff1Item
-                                                        .userId.firstName,
-                                                    gender:
-                                                        listStaff1Item.gender,
-                                                    phone: listStaff1Item.phone,
-                                                    role: listStaff1Item.title,
-                                                    image: listStaff1Item
-                                                        .userId.avatar,
-                                                    email: listStaff1Item
-                                                        .userId.email,
-                                                    branch: listStaff1Item
-                                                        .branchId.name,
-                                                    bophan: listStaff1Item
-                                                        .departmentId.name,
-                                                    ngaySinh:
-                                                        listStaff1Item.dob,
-                                                  ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 4.0, 0.0, 0.0),
+                                                child: Text(
+                                                  listStaff1Item.title,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                                 ),
-                                              );
-                                            },
-                                          ).then((value) => setState(() {}));
-                                        },
-                                        text: 'Xem',
-                                        options: FFButtonOptions(
-                                          width: 70.0,
-                                          height: 36.0,
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Outfit',
-                                                    color: Colors.white,
-                                                    fontSize: 14.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                          elevation: 2.0,
-                                          borderSide: const BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
+                                              ),
+                                            ],
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                      Builder(
+                                        builder: (context) => FFButtonWidget(
+                                          onPressed: () async {
+                                            await showDialog(
+                                              barrierDismissible: false,
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: ProfileStaffWidget(
+                                                      name: listStaff1Item
+                                                          .userId.firstName,
+                                                      gender:
+                                                          listStaff1Item.gender,
+                                                      phone:
+                                                          listStaff1Item.phone,
+                                                      role:
+                                                          listStaff1Item.title,
+                                                      image: listStaff1Item
+                                                          .userId.avatar,
+                                                      email: listStaff1Item
+                                                          .userId.email,
+                                                      branch: listStaff1Item
+                                                          .branchId.name,
+                                                      bophan: listStaff1Item
+                                                          .departmentId.name,
+                                                      ngaySinh:
+                                                          listStaff1Item.dob,
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ).then((value) => setState(() {}));
+                                          },
+                                          text: 'Xem',
+                                          options: FFButtonOptions(
+                                            width: 70.0,
+                                            height: 36.0,
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            iconPadding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Outfit',
+                                                      color: Colors.white,
+                                                      fontSize: 14.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                    ),
+                                            elevation: 2.0,
+                                            borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ),

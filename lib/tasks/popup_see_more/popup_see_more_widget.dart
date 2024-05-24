@@ -56,9 +56,6 @@ class _PopupSeeMoreWidgetState extends State<PopupSeeMoreWidget> {
         children: [
           Container(
             width: double.infinity,
-            constraints: BoxConstraints(
-              maxHeight: MediaQuery.sizeOf(context).height * 0.7,
-            ),
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
             ),

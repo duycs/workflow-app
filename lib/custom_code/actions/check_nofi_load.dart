@@ -22,20 +22,20 @@ Future checkNofiLoad() async {
 
   Future<Map<String, String>> tagsFuture = OneSignal.User.getTags();
   // Đợi Future hoàn thành và xử lý kết quả
-  tagsFuture.then((tags) {
-    // Lấy giá trị của tag 'contents' và 'data'
-    var demo = tags['contents'];
-    var demo2 = tags['data'];
-    var check = tags['test2'];
+  // tagsFuture.then((tags) {
+  //   // Lấy giá trị của tag 'contents' và 'data'
+  //   var demo = tags['contents'];
+  //   var demo2 = tags['data'];
+  //   var check = tags['test2'];
 
-    // Hiển thị giá trị trong toast
-    Fluttertoast.showToast(
-      msg:
-          '${demo.toString()} ${demo2.toString()} ${tags} ${tagsFuture} ${check.toString()}',
-      gravity: ToastGravity.TOP,
-      toastLength: Toast.LENGTH_LONG,
-    );
-  });
+  //   // Hiển thị giá trị trong toast
+  //   Fluttertoast.showToast(
+  //     msg:
+  //         '${demo.toString()} ${demo2.toString()} ${tags} ${tagsFuture} ${check.toString()}',
+  //     gravity: ToastGravity.TOP,
+  //     toastLength: Toast.LENGTH_LONG,
+  //   );
+  // });
   // // Xác định hàm xử lý khi có thông báo được nhận
   // OneSignal.shared
   //     .setNotificationReceivedHandler((OSNotification notification) {

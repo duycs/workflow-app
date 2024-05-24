@@ -86,11 +86,6 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
             ),
             onPressed: () async {
               context.pop();
-              if (widget.checkScroll == 'TestList') {
-                setState(() {
-                  FFAppState().scrollCheck = 'TestList';
-                });
-              }
             },
           ),
           title: Row(

@@ -113,11 +113,6 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
             ),
             onPressed: () async {
               context.pop();
-              if (widget.checkScroll == 'ProcedureList') {
-                setState(() {
-                  FFAppState().scrollCheck = 'ProcedureList';
-                });
-              }
             },
           ),
           title: Text(
@@ -709,12 +704,15 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                   labelColor: FlutterFlowTheme.of(context).primaryText,
                   unselectedLabelColor:
                       FlutterFlowTheme.of(context).secondaryText,
-                  labelStyle: FlutterFlowTheme.of(context).titleMedium.override(
+                  labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
                         fontFamily: 'Nunito Sans',
-                        fontSize: 14.0,
                         letterSpacing: 0.0,
                       ),
-                  unselectedLabelStyle: const TextStyle(),
+                  unselectedLabelStyle:
+                      FlutterFlowTheme.of(context).labelMedium.override(
+                            fontFamily: 'Nunito Sans',
+                            letterSpacing: 0.0,
+                          ),
                   indicatorColor: FlutterFlowTheme.of(context).primary,
                   padding: const EdgeInsets.all(4.0),
                   tabs: const [

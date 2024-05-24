@@ -47,7 +47,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
           await ProcedureTemplateGroup.workflowsListCall.call(
         accessToken: FFAppState().accessToken,
         filter: (FFAppState().user.role ==
-                    '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                    'a8d33527-375b-4599-ac70-6a3fcad1de39') ||
                 (FFAppState().user.role ==
                     '82073000-1ba2-43a4-a55c-459d17c23b68')
             ? '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
@@ -920,6 +920,12 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                             .staffIdStepOne[_model.loop]
                                             .staffsId
                                             .id,
+                                        publishedCount: getJsonField(
+                                          (_model.apiResultProcedurepublished
+                                                  ?.jsonBody ??
+                                              ''),
+                                          r'''$.workflow.published_count''',
+                                        ),
                                       );
                                       shouldSetState = true;
                                       if (!(_model

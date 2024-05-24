@@ -723,6 +723,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                   _model.dataGetOne?.lessions.toList() ?? [];
                               return ListView.separated(
                                 padding: EdgeInsets.zero,
+                                primary: false,
                                 shrinkWrap: true,
                                 scrollDirection: Axis.vertical,
                                 itemCount: listLessons.length,
@@ -855,7 +856,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                         _model.dataGetOne!.lessions.length,
                                     author: _model.dataGetOne!.authorId.alias,
                                     programId: widget.idProgram,
-                                    checkType: '',
+                                    checkType: 'staff',
                                   ),
                                 ),
                               );

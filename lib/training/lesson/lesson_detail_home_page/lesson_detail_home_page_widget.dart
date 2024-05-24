@@ -26,14 +26,17 @@ class LessonDetailHomePageWidget extends StatefulWidget {
     String? id,
     String? checkScroll,
     this.programId,
+    String? checkLesson,
   })  : id = id ?? '',
-        checkScroll = checkScroll ?? '0';
+        checkScroll = checkScroll ?? '0',
+        checkLesson = checkLesson ?? '';
 
   final dynamic listItems;
   final String? status;
   final String id;
   final String checkScroll;
   final String? programId;
+  final String checkLesson;
 
   @override
   State<LessonDetailHomePageWidget> createState() =>
@@ -97,15 +100,6 @@ class _LessonDetailHomePageWidgetState
             ),
             onPressed: () async {
               context.pop();
-              if (widget.checkScroll == 'LessonList_Homepage') {
-                setState(() {
-                  FFAppState().scrollCheck = 'LessonList_Homepage';
-                });
-              } else if (widget.checkScroll == 'LessonsListUser') {
-                FFAppState().update(() {
-                  FFAppState().scrollCheck = 'LessonsListUser';
-                });
-              }
             },
           ),
           title: Row(
@@ -1780,7 +1774,7 @@ class _LessonDetailHomePageWidgetState
                         ),
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
-                            12.0, 4.0, 12.0, 4.0),
+                            12.0, 4.0, 12.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1928,12 +1922,13 @@ class _LessonDetailHomePageWidgetState
                           (_model.status != 'draft'))
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              12.0, 16.0, 12.0, 0.0),
+                              12.0, 12.0, 12.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              if (_model.status == 'inprogress')
+                              if ((_model.status == 'inprogress') &&
+                                  (widget.checkLesson != 'closeTest'))
                                 Expanded(
                                   child: Align(
                                     alignment: const AlignmentDirectional(0.0, 0.0),
@@ -2049,106 +2044,112 @@ class _LessonDetailHomePageWidgetState
                                     ),
                                   ),
                                 ),
-                              Expanded(
-                                child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      context.pushNamed(
-                                        'DoTestList',
-                                        queryParameters: {
-                                          'lessionId': serializeParam(
-                                            getJsonField(
-                                              widget.listItems,
-                                              r'''$.id''',
-                                            ).toString(),
-                                            ParamType.String,
-                                          ),
-                                        }.withoutNulls,
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.fade,
-                                            duration: Duration(milliseconds: 0),
-                                          ),
-                                        },
-                                      );
-                                    },
-                                    child: Container(
-                                      height: 45.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        boxShadow: const [
-                                          BoxShadow(
-                                            color: Color(0x33000000),
-                                          )
-                                        ],
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                      ),
-                                      child: Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 0.0, 16.0, 0.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Icon(
-                                                    Icons
-                                                        .question_answer_outlined,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    size: 20.0,
-                                                  ),
-                                                  Text(
-                                                    'Bài đã thi',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                ].divide(const SizedBox(width: 4.0)),
-                                              ),
-                                              Icon(
-                                                Icons.chevron_right_rounded,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                size: 24.0,
-                                              ),
-                                            ],
+                              if (widget.checkLesson != 'closeTest')
+                                Expanded(
+                                  child: Align(
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.pushNamed(
+                                          'DoTestList',
+                                          queryParameters: {
+                                            'lessionId': serializeParam(
+                                              getJsonField(
+                                                widget.listItems,
+                                                r'''$.id''',
+                                              ).toString(),
+                                              ParamType.String,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: const TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType:
+                                                  PageTransitionType.fade,
+                                              duration:
+                                                  Duration(milliseconds: 0),
+                                            ),
+                                          },
+                                        );
+                                      },
+                                      child: Container(
+                                        height: 45.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              color: Color(0x33000000),
+                                            )
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                        ),
+                                        child: Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 0.0, 16.0, 0.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Icon(
+                                                      Icons
+                                                          .question_answer_outlined,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      size: 20.0,
+                                                    ),
+                                                    Text(
+                                                      'Bài đã thi',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .labelMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ].divide(
+                                                      const SizedBox(width: 4.0)),
+                                                ),
+                                                Icon(
+                                                  Icons.chevron_right_rounded,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  size: 24.0,
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
                             ].divide(const SizedBox(width: 24.0)),
                           ),
                         ),
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
-                            12.0, 16.0, 0.0, 0.0),
+                            12.0, 12.0, 0.0, 0.0),
                         child: Text(
                           'Nội dung bài học',
                           style:
@@ -2159,21 +2160,32 @@ class _LessonDetailHomePageWidgetState
                                   ),
                         ),
                       ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
-                        child: SingleChildScrollView(
+                      if ((widget.listItems != null) &&
+                          (getJsonField(
+                                widget.listItems,
+                                r'''$.content''',
+                              ) !=
+                              null) &&
+                          (_model.check1 == '1') &&
+                          (_model.check2 == '1'))
+                        SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              if ((getJsonField(
+                              if ((widget.listItems != null) &&
+                                  (getJsonField(
                                         widget.listItems,
                                         r'''$.content''',
                                       ) !=
                                       null) &&
                                   (_model.check1 == '1') &&
-                                  (_model.check2 == '1'))
+                                  (_model.check2 == '1') &&
+                                  (functions.formatHtml(getJsonField(
+                                            widget.listItems,
+                                            r'''$.content''',
+                                          ).toString()) !=
+                                          ''))
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       12.0, 5.0, 12.0, 0.0),
@@ -2189,7 +2201,6 @@ class _LessonDetailHomePageWidgetState
                             ],
                           ),
                         ),
-                      ),
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 16.0),

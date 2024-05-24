@@ -229,6 +229,12 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                         onTap: () async {
                           context.pushNamed(
                             'ProgramListMarket',
+                            queryParameters: {
+                              'price': serializeParam(
+                                'free1',
+                                ParamType.String,
+                              ),
+                            }.withoutNulls,
                             extra: <String, dynamic>{
                               kTransitionInfoKey: const TransitionInfo(
                                 hasTransition: true,
@@ -412,7 +418,7 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                                   'ProgramListMarket',
                                   queryParameters: {
                                     'price': serializeParam(
-                                      '',
+                                      'free1',
                                       ParamType.String,
                                     ),
                                     'idAuthor': serializeParam(
