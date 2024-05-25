@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/training/market/filter_programs/filter_programs_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -44,6 +45,8 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await _model.getProgramsList(context);
       setState(() {});
+      await _model.getListDomains(context);
+      setState(() {});
     });
 
     _model.searchMarketTextController ??= TextEditingController();
@@ -85,14 +88,37 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
               context.pop();
             },
           ),
-          title: Text(
-            'Danh sách khóa học',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Nunito Sans',
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 18.0,
-                  letterSpacing: 0.0,
-                ),
+          title: InkWell(
+            splashColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () async {
+              await showDialog(
+                context: context,
+                builder: (alertDialogContext) {
+                  return AlertDialog(
+                    title: Text(widget.idDomain),
+                    content: Text(widget.idAuthor),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(alertDialogContext),
+                        child: const Text('Ok'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+            child: Text(
+              'Danh sách khóa học',
+              style: FlutterFlowTheme.of(context).headlineMedium.override(
+                    fontFamily: 'Nunito Sans',
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    fontSize: 18.0,
+                    letterSpacing: 0.0,
+                  ),
+            ),
           ),
           actions: const [],
           centerTitle: false,
@@ -220,25 +246,88 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                       ),
                       Align(
                         alignment: const AlignmentDirectional(0.0, 0.0),
-                        child: FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 10.0,
-                          borderWidth: 1.0,
-                          buttonSize: 50.0,
-                          icon: Icon(
-                            Icons.tune_rounded,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 30.0,
+                        child: Builder(
+                          builder: (context) => FlutterFlowIconButton(
+                            borderColor: Colors.transparent,
+                            borderRadius: 10.0,
+                            borderWidth: 1.0,
+                            buttonSize: 50.0,
+                            icon: Icon(
+                              Icons.tune_rounded,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 30.0,
+                            ),
+                            onPressed: () async {
+                              await showDialog(
+                                context: context,
+                                builder: (dialogContext) {
+                                  return Dialog(
+                                    elevation: 0,
+                                    insetPadding: EdgeInsets.zero,
+                                    backgroundColor: Colors.transparent,
+                                    alignment: const AlignmentDirectional(0.0, 0.0)
+                                        .resolve(Directionality.of(context)),
+                                    child: GestureDetector(
+                                      onTap: () => _model
+                                              .unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                      child: FilterProgramsWidget(
+                                        domain: _model.domain,
+                                        author: _model.author,
+                                        category: _model.category,
+                                        listDomain: _model.listDataDomain
+                                            .map((e) => e.name)
+                                            .toList(),
+                                        checkPrice: widget.price,
+                                        checkPrice1: 'checkPriceList',
+                                        priceMin1: _model.priceMin,
+                                        priceMax1: _model.priceMax,
+                                        priceMin: _model.priceMinDomain,
+                                        priceMax: _model.priceMaxDomain,
+                                        checkAuthor: widget.idAuthor,
+                                        callBack: (domain,
+                                            author,
+                                            category,
+                                            priceMin,
+                                            priceMax,
+                                            priceMin1,
+                                            priceMax1) async {
+                                          setState(() {
+                                            _model.domain = domain!;
+                                            _model.author = author!;
+                                            _model.category = category!;
+                                            _model.priceMin = priceMin1!;
+                                            _model.priceMax = priceMax1!;
+                                            _model.priceMinDomain = priceMin!;
+                                            _model.priceMaxDomain = priceMax!;
+                                          });
+                                          await _model.getProgramsList(context);
+                                        },
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ).then((value) => setState(() {}));
+                            },
                           ),
-                          onPressed: () {
-                            print('IconButton pressed ...');
-                          },
                         ),
                       ),
                     ],
                   ),
                 ),
-                if (_model.searchMarketTextController.text != '')
+                if ((_model.searchMarketTextController.text != '') ||
+                    ((_model.domain != '') &&
+                        (_model.domain != 'noData')) ||
+                    ((_model.author != '') &&
+                        (_model.author != 'noData')) ||
+                    ((_model.category != '') &&
+                        (_model.category != 'noData')) ||
+                    ((_model.priceMin != '') &&
+                        (_model.priceMin != 'noData')) ||
+                    ((_model.priceMax != '') &&
+                        (_model.priceMax != 'noData')))
                   Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 4.0),
@@ -258,27 +347,18 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                   child: Builder(
                     builder: (context) {
                       final itemPrograms = _model.listPrograms.toList();
-                      return ListView.separated(
+                      return ListView.builder(
                         padding: EdgeInsets.zero,
                         primary: false,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount: itemPrograms.length,
-                        separatorBuilder: (_, __) => const SizedBox(height: 16.0),
                         itemBuilder: (context, itemProgramsIndex) {
                           final itemProgramsItem =
                               itemPrograms[itemProgramsIndex];
-                          return Visibility(
-                            visible: (((widget.idAuthor ==
-                                                itemProgramsItem.authorId.id) &&
-                                            (widget.idAuthor != '')) &&
-                                        ((widget.idDomain ==
-                                                itemProgramsItem.domainId.id) &&
-                                            (widget.idDomain != ''))) ||
-                                    ((widget.idAuthor == '') &&
-                                        (widget.idDomain == ''))
-                                ? true
-                                : false,
+                          return Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 16.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,

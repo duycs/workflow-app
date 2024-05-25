@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/lessions_dropdown_widget.dart';
 import '/components/tests_dropdown_widget.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -12,6 +13,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'study_program_edit_model.dart';
 export 'study_program_edit_model.dart';
@@ -30,8 +32,11 @@ class StudyProgramEditWidget extends StatefulWidget {
   State<StudyProgramEditWidget> createState() => _StudyProgramEditWidgetState();
 }
 
-class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
+class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
+    with TickerProviderStateMixin {
   late StudyProgramEditModel _model;
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void setState(VoidCallback callback) {
@@ -65,10 +70,40 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
     _model.programDescriptionFocusNode ??= FocusNode();
 
     _model.estimateInDayTextController ??= TextEditingController(
-        text: widget.dataDetail?.estimateInDay != null
+        text: (widget.dataDetail?.estimateInDay != null) &&
+                (widget.dataDetail!.estimateInDay > 0)
             ? widget.dataDetail?.estimateInDay.toString()
             : '');
     _model.estimateInDayFocusNode ??= FocusNode();
+
+    animationsMap.addAll({
+      'containerOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          VisibilityEffect(duration: 1.ms),
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: const Offset(0.0, 60.0),
+            end: const Offset(0.0, 0.0),
+          ),
+        ],
+      ),
+    });
+    setupAnimations(
+      animationsMap.values.where((anim) =>
+          anim.trigger == AnimationTrigger.onActionTrigger ||
+          !anim.applyInitialState),
+      this,
+    );
   }
 
   @override
@@ -544,7 +579,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: SizedBox(
-                                    width: 85.0,
+                                    width: 50.0,
                                     child: TextFormField(
                                       controller:
                                           _model.estimateInDayTextController,
@@ -566,7 +601,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                                                     ? functions.stringToInt(_model
                                                         .estimateInDayTextController
                                                         .text)
-                                                    : null,
+                                                    : _model.es,
                                             );
                                           });
                                           setState(() {
@@ -814,6 +849,79 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                                 );
                               },
                             ),
+                          Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              borderRadius: BorderRadius.circular(8.0),
+                              border: Border.all(
+                                color: FlutterFlowTheme.of(context).alternate,
+                                width: 1.0,
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        12.0, 0.0, 0.0, 0.0),
+                                    child: Icon(
+                                      Icons.power_settings_new_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: SwitchListTile.adaptive(
+                                      value: _model.switchListTileValue ??=
+                                          widget.dataDetail?.status ==
+                                                  'published'
+                                              ? true
+                                              : false,
+                                      onChanged: ('1' == '1')
+                                          ? null
+                                          : (newValue) async {
+                                              setState(() =>
+                                                  _model.switchListTileValue =
+                                                      newValue);
+                                            },
+                                      title: Text(
+                                        'Trạng thái hoạt động',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      tileColor: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      activeColor: ('1' == '1')
+                                          ? FlutterFlowTheme.of(context)
+                                              .secondaryBackground
+                                          : FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                      activeTrackColor: ('1' == '1')
+                                          ? FlutterFlowTheme.of(context).primary
+                                          : FlutterFlowTheme.of(context)
+                                              .primary,
+                                      dense: false,
+                                      controlAffinity:
+                                          ListTileControlAffinity.trailing,
+                                      contentPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              12.0, 0.0, 4.0, 0.0),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ).animateOnPageLoad(
+                              animationsMap['containerOnPageLoadAnimation']!),
                         ].divide(const SizedBox(height: 16.0)),
                       ),
                     ),
@@ -929,17 +1037,40 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget> {
                               );
                             }
                           } else {
-                            setState(() {
-                              _model.updateRequestDataStruct(
-                                (e) => e..estimateInDay = null,
-                              );
-                            });
                             _model.apiResultuus111 = await StudyProgramGroup
                                 .studyProgramLessionsUpdateCall
                                 .call(
                               accessToken: FFAppState().accessToken,
                               id: widget.dataDetail?.id,
-                              requestDataJson: _model.requestData?.toMap(),
+                              requestDataJson: <String, dynamic>{
+                                'name': _model.requestData?.name,
+                                'description': _model.requestData?.description,
+                                'image_cover':
+                                    _model.requestData?.imageCover != null &&
+                                            _model.requestData?.imageCover != ''
+                                        ? _model.requestData?.imageCover
+                                        : null,
+                                'estimate_in_day': null,
+                                'lessions': getJsonField(
+                                  <String, List<dynamic>>{
+                                    'map': _model.requestData!.lessions
+                                        .map((e) => e.toMap())
+                                        .toList(),
+                                  },
+                                  r'''$.map''',
+                                ),
+                                'tests': getJsonField(
+                                  <String, List<dynamic>?>{
+                                    'map': _model.requestData?.tests
+                                        .map((e) => e.toMap())
+                                        .toList(),
+                                  },
+                                  r'''$.map''',
+                                ),
+                                'status': _model.switchListTileValue == true
+                                    ? 'published'
+                                    : 'draft',
+                              },
                             );
                             shouldSetState = true;
                             if ((_model.apiResultuus111?.succeeded ?? true)) {

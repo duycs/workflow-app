@@ -85,9 +85,6 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
             ),
             onPressed: () async {
               context.safePop();
-              setState(() {
-                FFAppState().scrollCheck = 'DepartmentList';
-              });
             },
           ),
           title: Row(

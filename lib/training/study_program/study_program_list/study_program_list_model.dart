@@ -37,13 +37,15 @@ class StudyProgramListModel extends FlutterFlowModel<StudyProgramListWidget> {
 
   String? lessionsNameSearch = '';
 
+  String status = ' ';
+
+  bool isShow = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in StudyProgramList widget.
   bool? tokenReloadStudyProgramList;
-  // Stores action output result for [Action Block - tokenReload] action in StudyProgramList widget.
-  bool? tokenReloadStudyProgramListCheck;
   // State field(s) for TextFieldNameSearch widget.
   FocusNode? textFieldNameSearchFocusNode;
   TextEditingController? textFieldNameSearchTextController;

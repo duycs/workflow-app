@@ -429,9 +429,10 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
-                                            title: Text(_model
-                                                .estimateInDayTextController
-                                                .text),
+                                            title:
+                                                Text(_model.requestData!.name),
+                                            content: Text(_model
+                                                .requestData!.description),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
@@ -504,7 +505,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: SizedBox(
-                                    width: 85.0,
+                                    width: 50.0,
                                     child: TextFormField(
                                       controller:
                                           _model.estimateInDayTextController,
@@ -860,29 +861,34 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                             _model.apiResultbang = await StudyProgramGroup
                                 .studyProgramCreateCall
                                 .call(
+                              accessToken: FFAppState().accessToken,
                               requestDataJson: <String, dynamic>{
-                                'name': _model.requestData!.name,
-                                'description': _model.requestData!.description,
-                                'estimate_in_day': null!,
-                                'tests_id': getJsonField(
+                                'name': _model.programNameTextController.text,
+                                'description': _model
+                                    .programDescriptionTextController.text,
+                                'image_cover':
+                                    _model.requestData?.imageCover != null &&
+                                            _model.requestData?.imageCover != ''
+                                        ? _model.requestData?.imageCover
+                                        : null,
+                                'estimate_in_day': null,
+                                'lessions': getJsonField(
+                                  <String, List<dynamic>>{
+                                    'map': _model.requestData!.lessions
+                                        .map((e) => e.toMap())
+                                        .toList(),
+                                  },
+                                  r'''$.map''',
+                                ),
+                                'tests': getJsonField(
                                   <String, List<dynamic>>{
                                     'map': _model.requestData!.tests
-                                        .take(1)
+                                        .map((e) => e.toMap())
                                         .toList(),
                                   },
                                   r'''$.map''',
                                 ),
-                                'lessions_id': getJsonField(
-                                  <String, List<dynamic>?>{
-                                    'map': _model.requestData?.lessions
-                                        .map((e) => e.lessionsId)
-                                        .toList(),
-                                  },
-                                  r'''$.map''',
-                                ),
-                                'image_cover': _model.requestData!.imageCover,
                               },
-                              accessToken: FFAppState().accessToken,
                             );
                             shouldSetState = true;
                             if ((_model.apiResultbang?.succeeded ?? true)) {

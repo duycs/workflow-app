@@ -5,13 +5,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/training/lesson/filter_lesson_user/filter_lesson_user_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
-import 'package:shake/shake.dart';
 import 'lessons_list_user_model.dart';
 export 'lessons_list_user_model.dart';
 
@@ -26,8 +24,6 @@ class _LessonsListUserWidgetState extends State<LessonsListUserWidget> {
   late LessonsListUserModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  late ShakeDetector shakeDetector;
-  var shakeActionInProgress = false;
 
   @override
   void initState() {
@@ -36,46 +32,17 @@ class _LessonsListUserWidgetState extends State<LessonsListUserWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        FFAppState().scrollCheck = 'LessonsListUser';
-      });
       _model.tokenReloadLessonsListUser =
           await action_blocks.tokenReload(context);
       if (_model.tokenReloadLessonsListUser!) {
-        setState(() {});
+        setState(() {
+          _model.isShow = true;
+        });
       } else {
         FFAppState().update(() {});
         return;
       }
-
-      while (FFAppState().scrollCheck == 'LessonsListUser') {
-        _model.tokenReloadLessonsListUserCheck =
-            await action_blocks.tokenReload(context);
-        if (_model.tokenReloadLessonsListUserCheck == true) {
-          await Future.delayed(const Duration(milliseconds: 1000));
-        } else {
-          break;
-        }
-      }
     });
-
-    // On shake action.
-    shakeDetector = ShakeDetector.autoStart(
-      onPhoneShake: () async {
-        if (shakeActionInProgress) {
-          return;
-        }
-        shakeActionInProgress = true;
-        try {
-          setState(() {
-            FFAppState().scrollCheck = '';
-          });
-        } finally {
-          shakeActionInProgress = false;
-        }
-      },
-      shakeThresholdGravity: 1.5,
-    );
 
     _model.nameSearchTextController ??= TextEditingController();
     _model.nameSearchFocusNode ??= FocusNode();
@@ -85,7 +52,6 @@ class _LessonsListUserWidgetState extends State<LessonsListUserWidget> {
   void dispose() {
     _model.dispose();
 
-    shakeDetector.stopListening();
     super.dispose();
   }
 
@@ -124,10 +90,6 @@ class _LessonsListUserWidgetState extends State<LessonsListUserWidget> {
                   ),
                 },
               );
-
-              setState(() {
-                FFAppState().scrollCheck = '';
-              });
             },
           ),
           title: Text(
@@ -145,432 +107,441 @@ class _LessonsListUserWidgetState extends State<LessonsListUserWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: TextFormField(
-                            controller: _model.nameSearchTextController,
-                            focusNode: _model.nameSearchFocusNode,
-                            onChanged: (_) => EasyDebounce.debounce(
-                              '_model.nameSearchTextController',
-                              const Duration(milliseconds: 500),
-                              () async {
-                                setState(() =>
-                                    _model.listViewPagingController?.refresh());
-                                setState(() {});
-                              },
+          child: Visibility(
+            visible: _model.isShow == true,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: TextFormField(
+                              controller: _model.nameSearchTextController,
+                              focusNode: _model.nameSearchFocusNode,
+                              onChanged: (_) => EasyDebounce.debounce(
+                                '_model.nameSearchTextController',
+                                const Duration(milliseconds: 500),
+                                () async {
+                                  setState(() => _model.listViewPagingController
+                                      ?.refresh());
+                                  setState(() {});
+                                },
+                              ),
+                              autofocus: false,
+                              textInputAction: TextInputAction.search,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                                hintText: 'Tìm kiếm...',
+                                hintStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                filled: true,
+                                fillColor: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 0.0, 0.0, 0.0),
+                                prefixIcon: const Icon(
+                                  Icons.search,
+                                  size: 24.0,
+                                ),
+                                suffixIcon: _model.nameSearchTextController!
+                                        .text.isNotEmpty
+                                    ? InkWell(
+                                        onTap: () async {
+                                          _model.nameSearchTextController
+                                              ?.clear();
+                                          setState(() => _model
+                                              .listViewPagingController
+                                              ?.refresh());
+                                          setState(() {});
+                                          setState(() {});
+                                        },
+                                        child: Icon(
+                                          Icons.clear,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 18.0,
+                                        ),
+                                      )
+                                    : null,
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                              cursorColor: FlutterFlowTheme.of(context).primary,
+                              validator: _model
+                                  .nameSearchTextControllerValidator
+                                  .asValidator(context),
                             ),
-                            autofocus: false,
-                            textInputAction: TextInputAction.search,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
-                              hintText: 'Tìm kiếm...',
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              filled: true,
-                              fillColor: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 0.0, 0.0),
-                              prefixIcon: const Icon(
-                                Icons.search,
-                                size: 24.0,
-                              ),
-                              suffixIcon: _model
-                                      .nameSearchTextController!.text.isNotEmpty
-                                  ? InkWell(
-                                      onTap: () async {
-                                        _model.nameSearchTextController
-                                            ?.clear();
+                          ),
+                        ),
+                        FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 10.0,
+                          borderWidth: 1.0,
+                          buttonSize: 50.0,
+                          icon: Icon(
+                            Icons.tune_rounded,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 30.0,
+                          ),
+                          onPressed: () async {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              enableDrag: false,
+                              context: context,
+                              builder: (context) {
+                                return GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: FilterLessonUserWidget(
+                                      dateStart: _model.dateStartSearch,
+                                      dateEnd: _model.dateEndStartSearch,
+                                      callBack: (dateStart, dateEnd) async {
+                                        setState(() {
+                                          _model.dateStartSearch = dateStart!;
+                                          _model.dateEndStartSearch = dateEnd!;
+                                        });
                                         setState(() => _model
                                             .listViewPagingController
                                             ?.refresh());
-                                        setState(() {});
-                                        setState(() {});
                                       },
-                                      child: Icon(
-                                        Icons.clear,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 18.0,
-                                      ),
-                                    )
-                                  : null,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                            cursorColor: FlutterFlowTheme.of(context).primary,
-                            validator: _model.nameSearchTextControllerValidator
-                                .asValidator(context),
-                          ),
-                        ),
-                      ),
-                      FlutterFlowIconButton(
-                        borderColor: Colors.transparent,
-                        borderRadius: 10.0,
-                        borderWidth: 1.0,
-                        buttonSize: 50.0,
-                        icon: Icon(
-                          Icons.tune_rounded,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          size: 30.0,
-                        ),
-                        onPressed: () async {
-                          await showModalBottomSheet(
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            enableDrag: false,
-                            context: context,
-                            builder: (context) {
-                              return GestureDetector(
-                                onTap: () => _model.unfocusNode.canRequestFocus
-                                    ? FocusScope.of(context)
-                                        .requestFocus(_model.unfocusNode)
-                                    : FocusScope.of(context).unfocus(),
-                                child: Padding(
-                                  padding: MediaQuery.viewInsetsOf(context),
-                                  child: FilterLessonUserWidget(
-                                    dateStart: _model.dateStartSearch,
-                                    dateEnd: _model.dateEndStartSearch,
-                                    callBack: (dateStart, dateEnd) async {
-                                      setState(() {
-                                        _model.dateStartSearch = dateStart!;
-                                        _model.dateEndStartSearch = dateEnd!;
-                                      });
-                                      setState(() => _model
-                                          .listViewPagingController
-                                          ?.refresh());
-                                    },
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                          ).then((value) => safeSetState(() {}));
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                if ((_model.dateStartSearch != '') ||
-                    (_model.dateEndStartSearch != '') ||
-                    (_model.nameSearchTextController.text != ''))
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
-                    child: Text(
-                      '#Kết quả tìm kiếm theo bộ lọc',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Nunito Sans',
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            fontSize: 12.0,
-                            letterSpacing: 0.0,
-                            fontStyle: FontStyle.italic,
-                          ),
-                    ),
-                  ),
-                Expanded(
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 44.0),
-                    child: PagedListView<ApiPagingParams, dynamic>.separated(
-                      pagingController: _model.setListViewController(
-                        (nextPageMarker) =>
-                            LessonGroup.employeeLessonListCall.call(
-                          accessToken: FFAppState().accessToken,
-                          filter:
-                              '{\"_and\":[${'{\"staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                            FFAppState().staffLogin,
-                            r'''$.id''',
-                          ).toString()}\"}}},{\"status\":{\"_eq\":\"done\"}}'}${_model.nameSearchTextController.text != '' ? ', {\"lession_id\":{\"name\":{\"_icontains\":\"${_model.nameSearchTextController.text}\"}}}' : ' '}${(_model.dateStartSearch != '') && (_model.dateStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_gte\":\"${_model.dateStartSearch}\"}}}' : '  '}${(_model.dateEndStartSearch != '') && (_model.dateEndStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_lte\":\"${(String var1) {
-                                  return DateTime.parse(var1)
-                                      .add(const Duration(days: 1))
-                                      .toString();
-                                }(_model.dateEndStartSearch)}\"}}}' : ' '}]}',
-                          limit: 20,
-                          offset: nextPageMarker.nextPageNumber * 20,
-                        ),
-                      ),
-                      padding: EdgeInsets.zero,
-                      primary: false,
-                      reverse: false,
-                      scrollDirection: Axis.vertical,
-                      separatorBuilder: (_, __) => const SizedBox(height: 12.0),
-                      builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                        // Customize what your widget looks like when it's loading the first page.
-                        firstPageProgressIndicatorBuilder: (_) => Center(
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
-                              ),
-                            ),
-                          ),
-                        ),
-                        // Customize what your widget looks like when it's loading another page.
-                        newPageProgressIndicatorBuilder: (_) => Center(
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
-                              ),
-                            ),
-                          ),
-                        ),
-                        noItemsFoundIndicatorBuilder: (_) => const Center(
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: DataNotFoundWidget(),
-                          ),
-                        ),
-                        itemBuilder: (context, _, itemLessonStaffIndex) {
-                          final itemLessonStaffItem = _model
-                              .listViewPagingController!
-                              .itemList![itemLessonStaffIndex];
-                          return Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed(
-                                  'LessonDetail_HomePage',
-                                  queryParameters: {
-                                    'listItems': serializeParam(
-                                      itemLessonStaffItem.lessionId.toMap(),
-                                      ParamType.JSON,
-                                    ),
-                                    'status': serializeParam(
-                                      itemLessonStaffItem.status,
-                                      ParamType.String,
-                                    ),
-                                    'checkScroll': serializeParam(
-                                      'LessonsListUser',
-                                      ParamType.String,
-                                    ),
-                                  }.withoutNulls,
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                    ),
-                                  },
                                 );
-
-                                FFAppState().update(() {
-                                  FFAppState().scrollCheck = '';
-                                });
                               },
-                              child: Container(
-                                width: 220.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  border: Border.all(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    width: 1.0,
-                                  ),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Image.network(
-                                          '${FFAppConstants.ApiBaseUrl}/assets/${'${itemLessonStaffItem.lessionId.imageCover}'}?access_token=${FFAppState().accessToken}',
-                                          width: 100.0,
-                                          height: 100.0,
-                                          fit: BoxFit.cover,
-                                          alignment: const Alignment(0.0, 0.0),
-                                        ),
-                                      ),
-                                      Flexible(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 8.0, 0.0, 0.0),
-                                              child: Text(
-                                                itemLessonStaffItem
-                                                    .lessionId.name,
-                                                maxLines: 2,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 14.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 4.0, 0.0, 4.0),
-                                              child: Text(
-                                                itemLessonStaffItem
-                                                    .lessionId.description,
-                                                maxLines: 2,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodySmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 13.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 4.0, 0.0, 4.0),
-                                              child: Text(
-                                                '',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodySmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Icon(
-                                                  Icons.timelapse_outlined,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 20.0,
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      itemLessonStaffItem
-                                                          .lessionId
-                                                          .durationHours
-                                                          .toString(),
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodySmall
-                                                          .override(
-                                                            fontFamily:
-                                                                'Nunito Sans',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                    Text(
-                                                      'phút',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodySmall
-                                                          .override(
-                                                            fontFamily:
-                                                                'Nunito Sans',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                  ].divide(
-                                                      const SizedBox(width: 2.0)),
-                                                ),
-                                              ].divide(const SizedBox(width: 4.0)),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ].divide(const SizedBox(width: 8.0)),
-                                  ),
+                            ).then((value) => safeSetState(() {}));
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  if ((_model.dateStartSearch != '') ||
+                      (_model.dateEndStartSearch != '') ||
+                      (_model.nameSearchTextController.text != ''))
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                      child: Text(
+                        '#Kết quả tìm kiếm theo bộ lọc',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Nunito Sans',
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              fontSize: 12.0,
+                              letterSpacing: 0.0,
+                              fontStyle: FontStyle.italic,
+                            ),
+                      ),
+                    ),
+                  Expanded(
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 44.0),
+                      child: PagedListView<ApiPagingParams, dynamic>.separated(
+                        pagingController: _model.setListViewController(
+                          (nextPageMarker) =>
+                              LessonGroup.employeeLessonListCall.call(
+                            accessToken: FFAppState().accessToken,
+                            filter:
+                                '{\"_and\":[${'{\"staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                              FFAppState().staffLogin,
+                              r'''$.id''',
+                            ).toString()}\"}}},{\"status\":{\"_eq\":\"done\"}}'}${_model.nameSearchTextController.text != '' ? ', {\"lession_id\":{\"name\":{\"_icontains\":\"${_model.nameSearchTextController.text}\"}}}' : ' '}${(_model.dateStartSearch != '') && (_model.dateStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_gte\":\"${_model.dateStartSearch}\"}}}' : '  '}${(_model.dateEndStartSearch != '') && (_model.dateEndStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_lte\":\"${(String var1) {
+                                    return DateTime.parse(var1)
+                                        .add(const Duration(days: 1))
+                                        .toString();
+                                  }(_model.dateEndStartSearch)}\"}}}' : ' '}]}',
+                            limit: 20,
+                            offset: nextPageMarker.nextPageNumber * 20,
+                          ),
+                        ),
+                        padding: EdgeInsets.zero,
+                        primary: false,
+                        reverse: false,
+                        scrollDirection: Axis.vertical,
+                        separatorBuilder: (_, __) => const SizedBox(height: 12.0),
+                        builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                          // Customize what your widget looks like when it's loading the first page.
+                          firstPageProgressIndicatorBuilder: (_) => Center(
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  FlutterFlowTheme.of(context).primary,
                                 ),
                               ),
                             ),
-                          );
-                        },
+                          ),
+                          // Customize what your widget looks like when it's loading another page.
+                          newPageProgressIndicatorBuilder: (_) => Center(
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  FlutterFlowTheme.of(context).primary,
+                                ),
+                              ),
+                            ),
+                          ),
+                          noItemsFoundIndicatorBuilder: (_) => const Center(
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: DataNotFoundWidget(),
+                            ),
+                          ),
+                          itemBuilder: (context, _, itemLessonStaffIndex) {
+                            final itemLessonStaffItem = _model
+                                .listViewPagingController!
+                                .itemList![itemLessonStaffIndex];
+                            return Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'LessonDetail_HomePage',
+                                    queryParameters: {
+                                      'listItems': serializeParam(
+                                        itemLessonStaffItem.lessionId.toMap(),
+                                        ParamType.JSON,
+                                      ),
+                                      'status': serializeParam(
+                                        itemLessonStaffItem.status,
+                                        ParamType.String,
+                                      ),
+                                      'checkScroll': serializeParam(
+                                        'LessonsListUser',
+                                        ParamType.String,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  width: 220.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            '${FFAppConstants.ApiBaseUrl}/assets/${'${itemLessonStaffItem.lessionId.imageCover}'}?access_token=${FFAppState().accessToken}',
+                                            width: 100.0,
+                                            height: 100.0,
+                                            fit: BoxFit.cover,
+                                            alignment: const Alignment(0.0, 0.0),
+                                          ),
+                                        ),
+                                        Flexible(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 8.0, 0.0, 0.0),
+                                                child: Text(
+                                                  itemLessonStaffItem
+                                                      .lessionId.name,
+                                                  maxLines: 2,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 4.0, 0.0, 4.0),
+                                                child: Text(
+                                                  itemLessonStaffItem
+                                                      .lessionId.description,
+                                                  maxLines: 2,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodySmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 13.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 4.0, 0.0, 4.0),
+                                                child: Text(
+                                                  '',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodySmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Icon(
+                                                    Icons.timelapse_outlined,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    size: 20.0,
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        itemLessonStaffItem
+                                                            .lessionId
+                                                            .durationHours
+                                                            .toString(),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                      Text(
+                                                        'phút',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                    ].divide(
+                                                        const SizedBox(width: 2.0)),
+                                                  ),
+                                                ].divide(const SizedBox(width: 4.0)),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ].divide(const SizedBox(width: 8.0)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ].divide(const SizedBox(height: 8.0)),
+                ].divide(const SizedBox(height: 8.0)),
+              ),
             ),
           ),
         ),

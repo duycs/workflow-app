@@ -225,6 +225,12 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
 
         context.pushNamed(
           'LessonsList',
+          queryParameters: {
+            'checkpage': serializeParam(
+              widget.checkPage,
+              ParamType.String,
+            ),
+          }.withoutNulls,
           extra: <String, dynamic>{
             kTransitionInfoKey: const TransitionInfo(
               hasTransition: true,
@@ -340,6 +346,12 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
 
         context.pushNamed(
           'LessonsList',
+          queryParameters: {
+            'checkpage': serializeParam(
+              widget.checkPage,
+              ParamType.String,
+            ),
+          }.withoutNulls,
           extra: <String, dynamic>{
             kTransitionInfoKey: const TransitionInfo(
               hasTransition: true,

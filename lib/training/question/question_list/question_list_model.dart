@@ -32,8 +32,6 @@ class QuestionListModel extends FlutterFlowModel<QuestionListWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in QuestionList widget.
   bool? tokenReloadQuestionList;
-  // Stores action output result for [Action Block - tokenReload] action in QuestionList widget.
-  bool? tokenReloadQuestionListCheck;
   // State field(s) for questionName widget.
   FocusNode? questionNameFocusNode;
   TextEditingController? questionNameTextController;

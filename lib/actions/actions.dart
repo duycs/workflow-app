@@ -107,9 +107,6 @@ Future<bool?> tokenReload(BuildContext context) async {
     );
   } else {
     await action_blocks.clearSession(context);
-    FFAppState().update(() {
-      FFAppState().scrollCheck = '';
-    });
 
     context.pushNamed(
       'Login',

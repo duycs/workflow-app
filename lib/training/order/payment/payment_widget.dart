@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/training/order/after_payment/after_payment_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'payment_model.dart';
@@ -13,9 +14,11 @@ class PaymentWidget extends StatefulWidget {
   const PaymentWidget({
     super.key,
     required this.orderId,
+    required this.private,
   });
 
   final String? orderId;
+  final String? private;
 
   @override
   State<PaymentWidget> createState() => _PaymentWidgetState();
@@ -190,8 +193,8 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                             child: Image.asset(
                               'assets/images/licensed-image.jpg',
-                              width: 200.0,
-                              height: 200.0,
+                              width: 180.0,
+                              height: 180.0,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -523,6 +526,9 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                         ),
                         borderRadius: BorderRadius.circular(8.0),
                       ),
+                      suffixIcon: const Icon(
+                        Icons.content_copy,
+                      ),
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Nunito Sans',
@@ -583,12 +589,14 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
+                            var shouldSetState = false;
                             _model.apiResultUpdateStatuOrder = await OrderGroup
                                 .updateOrderStatusPublishedCall
                                 .call(
                               accessToken: FFAppState().accessToken,
                               orderId: widget.orderId,
                             );
+                            shouldSetState = true;
                             if ((_model.apiResultUpdateStatuOrder?.succeeded ??
                                 true)) {
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -605,20 +613,58 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                       FlutterFlowTheme.of(context).secondary,
                                 ),
                               );
-
-                              context.pushNamed(
-                                'OrderList',
-                                extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
-                                    hasTransition: true,
-                                    transitionType: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 0),
-                                  ),
+                              if (getJsonField(
+                                    (_model.apiResultUpdateStatuOrder
+                                            ?.jsonBody ??
+                                        ''),
+                                    r'''$.programs[0].private''',
+                                  ) ==
+                                  getJsonField(
+                                    <String, int>{
+                                      'map': 1,
+                                    },
+                                    r'''$.map''',
+                                  )) {
+                                _model.apiResultsgg =
+                                    await GroupMarketLessonGroup.inviteStaffCall
+                                        .call(
+                                  accessToken: FFAppState().accessToken,
+                                  programId: getJsonField(
+                                    (_model.apiResultUpdateStatuOrder
+                                            ?.jsonBody ??
+                                        ''),
+                                    r'''$.programs[0].id''',
+                                  ).toString(),
+                                  staffId: FFAppState().staffid,
+                                );
+                                shouldSetState = true;
+                                if (!(_model.apiResultsgg?.succeeded ?? true)) {
+                                  if (shouldSetState) setState(() {});
+                                  return;
+                                }
+                              }
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                enableDrag: false,
+                                context: context,
+                                builder: (context) {
+                                  return Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: AfterPaymentWidget(
+                                      programId: getJsonField(
+                                        (_model.apiResultUpdateStatuOrder
+                                                ?.jsonBody ??
+                                            ''),
+                                        r'''$.programs[0].id''',
+                                      ).toString(),
+                                      private: widget.private!,
+                                    ),
+                                  );
                                 },
-                              );
+                              ).then((value) => safeSetState(() {}));
                             }
-
-                            setState(() {});
+                            if (shouldSetState) setState(() {});
                           },
                           text: 'Tôi đã thanh toán',
                           options: FFButtonOptions(

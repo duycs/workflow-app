@@ -274,13 +274,18 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                     .secondaryText,
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleMedium
+                                                    .labelMedium
                                                     .override(
-                                                      fontFamily: 'Nunito Sans',
-                                                      fontSize: 14.0,
+                                                      fontFamily: 'Nunito',
                                                       letterSpacing: 0.0,
                                                     ),
-                                            unselectedLabelStyle: const TextStyle(),
+                                            unselectedLabelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito',
+                                                      letterSpacing: 0.0,
+                                                    ),
                                             indicatorColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primaryText,
@@ -506,6 +511,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     fontFamily: 'Nunito Sans',
                                                                                     color: FlutterFlowTheme.of(context).secondary,
+                                                                                    fontSize: 13.0,
                                                                                     letterSpacing: 0.0,
                                                                                     fontWeight: FontWeight.w500,
                                                                                   ),
@@ -528,7 +534,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                               .headlineSmall
                                                                               .override(
                                                                                 fontFamily: 'Nunito Sans',
-                                                                                fontSize: 18.0,
+                                                                                fontSize: 16.0,
                                                                                 letterSpacing: 0.0,
                                                                               ),
                                                                         ),
@@ -581,9 +587,9 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                             .network(
                                                                           '${FFAppConstants.ApiBaseUrl}/assets/${itemListProgramsMarketItem.imageCover}?access_token=${FFAppState().accessToken}',
                                                                           width:
-                                                                              100.0,
+                                                                              double.infinity,
                                                                           height:
-                                                                              100.0,
+                                                                              double.infinity,
                                                                           fit: BoxFit
                                                                               .cover,
                                                                         ),
@@ -653,7 +659,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                     {
                                                                   'price':
                                                                       serializeParam(
-                                                                    ' ',
+                                                                    'free1',
                                                                     ParamType
                                                                         .String,
                                                                   ),
@@ -833,6 +839,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
+                                                                fontSize: 14.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
@@ -858,13 +865,8 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                         ),
                                                       ),
                                                       child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    8.0,
-                                                                    16.0,
-                                                                    8.0,
-                                                                    16.0),
+                                                        padding: const EdgeInsets.all(
+                                                            16.0),
                                                         child: Text(
                                                           widget.itemAuthors!
                                                               .description,

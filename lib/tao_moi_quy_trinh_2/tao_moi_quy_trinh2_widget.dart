@@ -3,7 +3,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/procedure/procedure_setting/procedure_setting_widget.dart';
+import '/training/procedure_setting/procedure_setting_widget.dart';
 import 'package:flutter/material.dart';
 import 'tao_moi_quy_trinh2_model.dart';
 export 'tao_moi_quy_trinh2_model.dart';

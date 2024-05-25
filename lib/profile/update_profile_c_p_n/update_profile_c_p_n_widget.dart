@@ -1551,10 +1551,17 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                           }
                                                         }
 
-                                                        setState(() {
-                                                          _model.addToImages(_model
-                                                              .uploadedLocalFile2);
-                                                        });
+                                                        if ((_model
+                                                                    .uploadedLocalFile2
+                                                                    .bytes
+                                                                    ?.isNotEmpty ??
+                                                                false)) {
+                                                          setState(() {
+                                                            _model.addToImages(
+                                                                _model
+                                                                    .uploadedLocalFile2);
+                                                          });
+                                                        }
                                                       },
                                                       text: 'Upload Image',
                                                       options: FFButtonOptions(
@@ -1641,49 +1648,6 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                             fontSize: 14.0,
                                                             letterSpacing: 0.0,
                                                           ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  8.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Container(
-                                                        width: double.infinity,
-                                                        height: 140.0,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryBackground,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                          border: Border.all(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .alternate,
-                                                          ),
-                                                        ),
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Text(
-                                                          'Đang cập nhật',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
-                                                      ),
                                                     ),
                                                   ].divide(
                                                       const SizedBox(height: 4.0)),

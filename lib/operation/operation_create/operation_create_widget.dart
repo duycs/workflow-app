@@ -14,10 +14,10 @@ export 'operation_create_model.dart';
 class OperationCreateWidget extends StatefulWidget {
   const OperationCreateWidget({
     super.key,
-    this.callback,
+    required this.callBack,
   });
 
-  final Future Function()? callback;
+  final Future Function()? callBack;
 
   @override
   State<OperationCreateWidget> createState() => _OperationCreateWidgetState();
@@ -497,6 +497,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               var shouldSetState = false;
+                              setState(() {});
                               if (_model.dropDownValue != null &&
                                   _model.dropDownValue != '') {
                                 setState(() {
@@ -513,7 +514,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                         return AlertDialog(
                                           title: const Text('Xác nhận'),
                                           content:
-                                              const Text('Bạn chắn chắc muốn lưu'),
+                                              const Text('Bạn chắc chắn muốn lưu?'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
@@ -554,11 +555,13 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                     if ((_model
                                             .apiResultOperationAdd?.succeeded ??
                                         true)) {
+                                      await Future.delayed(
+                                          const Duration(milliseconds: 2000));
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
                                           content: Text(
-                                            'Tạo mới thành công!',
+                                            'Tạo mới thành công',
                                             style: TextStyle(
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -572,27 +575,8 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                                   .secondary,
                                         ),
                                       );
-                                      await widget.callback?.call();
+                                      await widget.callBack?.call();
                                       Navigator.pop(context);
-                                    } else {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Tạo mới không thành công!',
-                                            style: TextStyle(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                            ),
-                                          ),
-                                          duration:
-                                              const Duration(milliseconds: 4000),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondary,
-                                        ),
-                                      );
                                     }
                                   } else {
                                     setState(() {});

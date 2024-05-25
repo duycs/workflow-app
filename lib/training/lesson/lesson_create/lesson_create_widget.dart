@@ -18,9 +18,11 @@ class LessonCreateWidget extends StatefulWidget {
   const LessonCreateWidget({
     super.key,
     String? checkScroll,
+    required this.checkPage,
   }) : checkScroll = checkScroll ?? '0';
 
   final String checkScroll;
+  final String? checkPage;
 
   @override
   State<LessonCreateWidget> createState() => _LessonCreateWidgetState();
@@ -86,11 +88,6 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
             ),
             onPressed: () async {
               context.pop();
-              if (widget.checkScroll == 'LessonsList') {
-                FFAppState().update(() {
-                  FFAppState().scrollCheck = 'LessonsList';
-                });
-              }
             },
           ),
           title: Text(
@@ -294,7 +291,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                           ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 8.0, 0.0, 0.0),
+                              0.0, 8.0, 0.0, 0.0),
                           child: Text(
                             'Bài thi',
                             style: FlutterFlowTheme.of(context)
@@ -465,23 +462,33 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Expanded(
-                                flex: 2,
-                                child: Text(
-                                  'Thời hạn học bài: ',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
+                              Text(
+                                'Thời hạn học bài',
+                                style: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              Text(
+                                '(không bắt buộc): ',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                      fontStyle: FontStyle.italic,
+                                    ),
                               ),
                               Expanded(
                                 flex: 1,
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 0.0, 8.0, 0.0),
+                                      5.0, 0.0, 5.0, 0.0),
                                   child: TextFormField(
                                     controller:
                                         _model.estimateInDayTextController,
@@ -567,7 +574,6 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                 ),
                               ),
                               Expanded(
-                                flex: 3,
                                 child: Text(
                                   'ngày',
                                   style: FlutterFlowTheme.of(context)
@@ -600,16 +606,6 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                   fontStyle: FontStyle.italic,
                                 ),
                           ),
-                        Text(
-                          '*Không bắt buộc',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Nunito Sans',
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.0,
-                                    fontStyle: FontStyle.italic,
-                                  ),
-                        ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
@@ -1116,6 +1112,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
                                 ),
                           ),
                         ),

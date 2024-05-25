@@ -58,25 +58,6 @@ class _DetailActionTypeImageWidgetState
       setState(() {
         _model.loop = 0;
       });
-      var confirmDialogResponse = await showDialog<bool>(
-            context: context,
-            builder: (alertDialogContext) {
-              return AlertDialog(
-                title: Text(_model.imagesList.length.toString()),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                    child: const Text('Cancel'),
-                  ),
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                    child: const Text('Confirm'),
-                  ),
-                ],
-              );
-            },
-          ) ??
-          false;
     });
   }
 
@@ -93,42 +74,116 @@ class _DetailActionTypeImageWidgetState
 
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-      child: SingleChildScrollView(
-        primary: false,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            if ((widget.image?.status == 'done') &&
-                (widget.image!.operations.first.operationsId.files.isNotEmpty))
-              Builder(
-                builder: (context) {
-                  final data = widget.image?.operations.toList() ?? [];
-                  return ListView.builder(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemCount: data.length,
-                    itemBuilder: (context, dataIndex) {
-                      final dataItem = data[dataIndex];
-                      return Builder(
-                        builder: (context) {
-                          final dataGrid = dataItem.operationsId.files.toList();
-                          return GridView.builder(
-                            padding: EdgeInsets.zero,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 12.0,
-                              mainAxisSpacing: 10.0,
-                              childAspectRatio: 1.0,
-                            ),
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: dataGrid.length,
-                            itemBuilder: (context, dataGridIndex) {
-                              final dataGridItem = dataGrid[dataGridIndex];
-                              return InkWell(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          if ((widget.image?.status == 'done') &&
+              (widget.image!.operations.first.operationsId.files.isNotEmpty))
+            Builder(
+              builder: (context) {
+                final data = widget.image?.operations.toList() ?? [];
+                return ListView.builder(
+                  padding: EdgeInsets.zero,
+                  primary: false,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  itemCount: data.length,
+                  itemBuilder: (context, dataIndex) {
+                    final dataItem = data[dataIndex];
+                    return Builder(
+                      builder: (context) {
+                        final dataGrid = dataItem.operationsId.files.toList();
+                        return GridView.builder(
+                          padding: EdgeInsets.zero,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 12.0,
+                            mainAxisSpacing: 10.0,
+                            childAspectRatio: 1.0,
+                          ),
+                          primary: false,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: dataGrid.length,
+                          itemBuilder: (context, dataGridIndex) {
+                            final dataGridItem = dataGrid[dataGridIndex];
+                            return InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                await Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.fade,
+                                    child: FlutterFlowExpandedImageView(
+                                      image: Image.network(
+                                        '${FFAppConstants.ApiBaseUrl}/assets/${dataGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                        fit: BoxFit.contain,
+                                      ),
+                                      allowRotation: false,
+                                      tag:
+                                          '${FFAppConstants.ApiBaseUrl}/assets/${dataGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                      useHeroAnimation: true,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Hero(
+                                tag:
+                                    '${FFAppConstants.ApiBaseUrl}/assets/${dataGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                transitionOnUserGestures: true,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.network(
+                                    '${FFAppConstants.ApiBaseUrl}/assets/${dataGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    );
+                  },
+                );
+              },
+            ),
+          Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              if ((widget.image?.status == 'todo') &&
+                  (widget.image?.current == 1))
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Builder(
+                    builder: (context) {
+                      final dataTodoItem = _model.imagesList.toList();
+                      return GridView.builder(
+                        padding: EdgeInsets.zero,
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 12.0,
+                          mainAxisSpacing: 10.0,
+                          childAspectRatio: 1.0,
+                        ),
+                        primary: false,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: dataTodoItem.length,
+                        itemBuilder: (context, dataTodoItemIndex) {
+                          final dataTodoItemItem =
+                              dataTodoItem[dataTodoItemIndex];
+                          return Stack(
+                            alignment: const AlignmentDirectional(1.0, -1.0),
+                            children: [
+                              InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
                                 hoverColor: Colors.transparent,
@@ -140,12 +195,12 @@ class _DetailActionTypeImageWidgetState
                                       type: PageTransitionType.fade,
                                       child: FlutterFlowExpandedImageView(
                                         image: Image.network(
-                                          '${FFAppConstants.ApiBaseUrl}/assets/${dataGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                          '${FFAppConstants.ApiBaseUrl}/assets/$dataTodoItemItem?access_token=${FFAppState().accessToken}',
                                           fit: BoxFit.contain,
                                         ),
                                         allowRotation: false,
                                         tag:
-                                            '${FFAppConstants.ApiBaseUrl}/assets/${dataGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                            '${FFAppConstants.ApiBaseUrl}/assets/$dataTodoItemItem?access_token=${FFAppState().accessToken}',
                                         useHeroAnimation: true,
                                       ),
                                     ),
@@ -153,210 +208,134 @@ class _DetailActionTypeImageWidgetState
                                 },
                                 child: Hero(
                                   tag:
-                                      '${FFAppConstants.ApiBaseUrl}/assets/${dataGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                      '${FFAppConstants.ApiBaseUrl}/assets/$dataTodoItemItem?access_token=${FFAppState().accessToken}',
                                   transitionOnUserGestures: true,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Image.network(
-                                      '${FFAppConstants.ApiBaseUrl}/assets/${dataGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                      '${FFAppConstants.ApiBaseUrl}/assets/$dataTodoItemItem?access_token=${FFAppState().accessToken}',
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
-                              );
-                            },
+                              ),
+                              FlutterFlowIconButton(
+                                borderColor:
+                                    FlutterFlowTheme.of(context).primaryText,
+                                borderRadius: 20.0,
+                                borderWidth: 1.0,
+                                buttonSize: 40.0,
+                                fillColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                icon: Icon(
+                                  Icons.close,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 24.0,
+                                ),
+                                onPressed: () async {
+                                  setState(() {
+                                    _model.removeAtIndexFromImagesList(
+                                        dataTodoItemIndex);
+                                  });
+                                },
+                              ),
+                            ],
                           );
                         },
                       );
                     },
-                  );
-                },
-              ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                if ((widget.image?.status == 'todo') &&
-                    (widget.image?.current == 1))
-                  Container(
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: Builder(
-                      builder: (context) {
-                        final dataTodoItem = _model.imagesList.toList();
-                        return GridView.builder(
-                          padding: EdgeInsets.zero,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 12.0,
-                            mainAxisSpacing: 10.0,
-                            childAspectRatio: 1.0,
-                          ),
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: dataTodoItem.length,
-                          itemBuilder: (context, dataTodoItemIndex) {
-                            final dataTodoItemItem =
-                                dataTodoItem[dataTodoItemIndex];
-                            return Stack(
-                              alignment: const AlignmentDirectional(1.0, -1.0),
-                              children: [
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    await Navigator.push(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.fade,
-                                        child: FlutterFlowExpandedImageView(
-                                          image: Image.network(
-                                            '${FFAppConstants.ApiBaseUrl}/assets/$dataTodoItemItem?access_token=${FFAppState().accessToken}',
-                                            fit: BoxFit.contain,
-                                          ),
-                                          allowRotation: false,
-                                          tag:
-                                              '${FFAppConstants.ApiBaseUrl}/assets/$dataTodoItemItem?access_token=${FFAppState().accessToken}',
-                                          useHeroAnimation: true,
+                  ),
+                ),
+              if (_model.images.isNotEmpty)
+                Container(
+                  decoration: const BoxDecoration(),
+                  child: Builder(
+                    builder: (context) {
+                      final imageUpload = _model.images.toList();
+                      return GridView.builder(
+                        padding: EdgeInsets.zero,
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 12.0,
+                          mainAxisSpacing: 10.0,
+                          childAspectRatio: 1.0,
+                        ),
+                        primary: false,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: imageUpload.length,
+                        itemBuilder: (context, imageUploadIndex) {
+                          final imageUploadItem = imageUpload[imageUploadIndex];
+                          return Stack(
+                            alignment: const AlignmentDirectional(1.0, -1.0),
+                            children: [
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  await Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.fade,
+                                      child: FlutterFlowExpandedImageView(
+                                        image: Image.memory(
+                                          imageUploadItem.bytes ??
+                                              Uint8List.fromList([]),
+                                          fit: BoxFit.contain,
                                         ),
+                                        allowRotation: false,
+                                        tag: 'imageTag3',
+                                        useHeroAnimation: true,
                                       ),
-                                    );
-                                  },
-                                  child: Hero(
-                                    tag:
-                                        '${FFAppConstants.ApiBaseUrl}/assets/$dataTodoItemItem?access_token=${FFAppState().accessToken}',
-                                    transitionOnUserGestures: true,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.network(
-                                        '${FFAppConstants.ApiBaseUrl}/assets/$dataTodoItemItem?access_token=${FFAppState().accessToken}',
-                                        fit: BoxFit.cover,
-                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Hero(
+                                  tag: 'imageTag3',
+                                  transitionOnUserGestures: true,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.memory(
+                                      imageUploadItem.bytes ??
+                                          Uint8List.fromList([]),
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
-                                FlutterFlowIconButton(
-                                  borderColor:
+                              ),
+                              FlutterFlowIconButton(
+                                borderColor:
+                                    FlutterFlowTheme.of(context).primaryText,
+                                borderRadius: 20.0,
+                                borderWidth: 1.0,
+                                buttonSize: 40.0,
+                                fillColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                icon: Icon(
+                                  Icons.close,
+                                  color:
                                       FlutterFlowTheme.of(context).primaryText,
-                                  borderRadius: 20.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 40.0,
-                                  fillColor: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  icon: Icon(
-                                    Icons.close,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 24.0,
-                                  ),
-                                  onPressed: () async {
-                                    setState(() {
-                                      _model.removeAtIndexFromImagesList(
-                                          dataTodoItemIndex);
-                                    });
-                                  },
+                                  size: 24.0,
                                 ),
-                              ],
-                            );
-                          },
-                        );
-                      },
-                    ),
+                                onPressed: () async {
+                                  setState(() {
+                                    _model.removeAtIndexFromImages(
+                                        imageUploadIndex);
+                                  });
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
                   ),
-                if (_model.images.isNotEmpty)
-                  Container(
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                    ),
-                    child: Builder(
-                      builder: (context) {
-                        final imageUpload = _model.images.toList();
-                        return GridView.builder(
-                          padding: EdgeInsets.zero,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 12.0,
-                            mainAxisSpacing: 10.0,
-                            childAspectRatio: 1.0,
-                          ),
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: imageUpload.length,
-                          itemBuilder: (context, imageUploadIndex) {
-                            final imageUploadItem =
-                                imageUpload[imageUploadIndex];
-                            return Stack(
-                              alignment: const AlignmentDirectional(1.0, -1.0),
-                              children: [
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    await Navigator.push(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.fade,
-                                        child: FlutterFlowExpandedImageView(
-                                          image: Image.memory(
-                                            imageUploadItem.bytes ??
-                                                Uint8List.fromList([]),
-                                            fit: BoxFit.contain,
-                                          ),
-                                          allowRotation: false,
-                                          tag: 'imageTag3',
-                                          useHeroAnimation: true,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: Hero(
-                                    tag: 'imageTag3',
-                                    transitionOnUserGestures: true,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.memory(
-                                        imageUploadItem.bytes ??
-                                            Uint8List.fromList([]),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                FlutterFlowIconButton(
-                                  borderColor:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  borderRadius: 20.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 40.0,
-                                  fillColor: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  icon: Icon(
-                                    Icons.close,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 24.0,
-                                  ),
-                                  onPressed: () async {
-                                    setState(() {
-                                      _model.removeAtIndexFromImages(
-                                          imageUploadIndex);
-                                    });
-                                  },
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      },
-                    ),
-                  ),
+                ),
+              if ((widget.image?.status == 'todo') &&
+                  (widget.image?.current == 1))
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -397,9 +376,12 @@ class _DetailActionTypeImageWidgetState
                           }
                         }
 
-                        setState(() {
-                          _model.addToImages(_model.uploadedLocalFile);
-                        });
+                        if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                                false)) {
+                          setState(() {
+                            _model.addToImages(_model.uploadedLocalFile);
+                          });
+                        }
                       },
                       text: 'Chụp ảnh',
                       icon: Icon(
@@ -533,46 +515,43 @@ class _DetailActionTypeImageWidgetState
                     ),
                   ],
                 ),
-              ].divide(const SizedBox(height: 8.0)),
-            ),
-            if ((widget.image?.status == 'todo') &&
-                (widget.image?.current == 0))
-              FFButtonWidget(
-                onPressed: ('1' == '1')
-                    ? null
-                    : () {
-                        print('Button pressed ...');
-                      },
-                text: 'Chụp ảnh',
-                icon: Icon(
-                  Icons.camera_alt,
-                  color: FlutterFlowTheme.of(context).secondaryText,
-                  size: 15.0,
-                ),
-                options: FFButtonOptions(
-                  width: 150.0,
-                  height: 40.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                  iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).alternate,
-                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Nunito Sans',
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        fontSize: 14.0,
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.normal,
-                      ),
-                  elevation: 3.0,
-                  borderSide: const BorderSide(
-                    color: Colors.transparent,
-                    width: 1.0,
-                  ),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
+            ].divide(const SizedBox(height: 8.0)),
+          ),
+          if ((widget.image?.status == 'todo') && (widget.image?.current == 0))
+            FFButtonWidget(
+              onPressed: ('1' == '1')
+                  ? null
+                  : () {
+                      print('Button pressed ...');
+                    },
+              text: 'Chụp ảnh',
+              icon: Icon(
+                Icons.camera_alt,
+                color: FlutterFlowTheme.of(context).secondaryText,
+                size: 15.0,
               ),
-          ].divide(const SizedBox(height: 6.0)),
-        ),
+              options: FFButtonOptions(
+                width: 150.0,
+                height: 40.0,
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                color: FlutterFlowTheme.of(context).alternate,
+                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                      fontFamily: 'Nunito Sans',
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      fontSize: 14.0,
+                      letterSpacing: 0.0,
+                      fontWeight: FontWeight.normal,
+                    ),
+                elevation: 3.0,
+                borderSide: const BorderSide(
+                  color: Colors.transparent,
+                  width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+        ].divide(const SizedBox(height: 6.0)),
       ),
     );
   }

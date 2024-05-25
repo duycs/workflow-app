@@ -257,7 +257,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                             children: [
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 0.0, 0.0, 0.0),
+                                    8.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   'Tên tác giả',
                                   style: FlutterFlowTheme.of(context)
@@ -265,6 +265,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                       .override(
                                         fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                 ),
                               ),
@@ -362,6 +363,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                     .bodyLarge
                                     .override(
                                       fontFamily: 'Nunito Sans',
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
                                 cursorColor:
@@ -389,7 +391,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                 ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 16.0, 0.0, 0.0),
+                                    8.0, 16.0, 0.0, 3.0),
                                 child: Text(
                                   'Giới thiệu về tôi',
                                   style: FlutterFlowTheme.of(context)
@@ -397,6 +399,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                       .override(
                                         fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                 ),
                               ),
@@ -476,6 +479,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                     .bodyLarge
                                     .override(
                                       fontFamily: 'Nunito Sans',
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
                                 maxLines: 9,
@@ -488,7 +492,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                               ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 16.0, 0.0, 0.0),
+                                    8.0, 16.0, 0.0, 3.0),
                                 child: Text(
                                   'Lĩnh vực chính',
                                   style: FlutterFlowTheme.of(context)
@@ -496,6 +500,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                       .override(
                                         fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                 ),
                               ),
@@ -607,6 +612,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                     fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
@@ -766,6 +772,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     color: Colors.white,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,

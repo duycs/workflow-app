@@ -13,12 +13,12 @@ export 'branch_create_model.dart';
 class BranchCreateWidget extends StatefulWidget {
   const BranchCreateWidget({
     super.key,
-    this.callBackList,
     this.listCode,
+    required this.callBack,
   });
 
-  final Future Function()? callBackList;
   final List<String>? listCode;
+  final Future Function()? callBack;
 
   @override
   State<BranchCreateWidget> createState() => _BranchCreateWidgetState();
@@ -107,7 +107,7 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                           children: [
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 28.0),
+                                  0.0, 0.0, 0.0, 16.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
@@ -225,7 +225,7 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                               focusNode: _model.branchCodeFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.branchCodeTextController',
-                                const Duration(milliseconds: 2000),
+                                const Duration(milliseconds: 500),
                                 () async {
                                   if ((widget.listCode!).toList().contains(
                                       _model.branchCodeTextController.text)) {
@@ -452,6 +452,7 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                 ? null
                                 : () async {
                                     var shouldSetState = false;
+                                    setState(() {});
                                     if (_model.formKey.currentState == null ||
                                         !_model.formKey.currentState!
                                             .validate()) {
@@ -522,11 +523,13 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                         if ((_model.apiResultCreateBranch
                                                 ?.succeeded ??
                                             true)) {
+                                          await Future.delayed(const Duration(
+                                              milliseconds: 2000));
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             SnackBar(
                                               content: Text(
-                                                'Tạo mới thành công',
+                                                'Tạo mới thành công!',
                                                 style: TextStyle(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -540,9 +543,11 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                                       .secondary,
                                             ),
                                           );
-                                          await widget.callBackList?.call();
+                                          await widget.callBack?.call();
                                           Navigator.pop(context);
                                         } else {
+                                          await widget.callBack?.call();
+                                          Navigator.pop(context);
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {

@@ -16,6 +16,7 @@ class FilterReprotImageWidget extends StatefulWidget {
     String? dateStart,
     String? dateEnd,
     this.callBack,
+    this.nameTask,
   })  : name = name ?? '',
         nameProcedure = nameProcedure ?? '',
         dateStart = dateStart ?? '',
@@ -26,7 +27,8 @@ class FilterReprotImageWidget extends StatefulWidget {
   final String dateStart;
   final String dateEnd;
   final Future Function(String? name, String? nameProcedure, String? dateStart,
-      String? dateEnd)? callBack;
+      String? dateEnd, String nameTask)? callBack;
+  final String? nameTask;
 
   @override
   State<FilterReprotImageWidget> createState() =>
@@ -59,11 +61,17 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
         text: widget.name != '' ? widget.name : '');
     _model.nameStaffFocusNode ??= FocusNode();
 
-    _model.tenquytrinhTextController ??= TextEditingController(
+    _model.tenquytrinhTextController1 ??= TextEditingController(
         text: widget.nameProcedure != ''
             ? widget.nameProcedure
             : '');
-    _model.tenquytrinhFocusNode ??= FocusNode();
+    _model.tenquytrinhFocusNode1 ??= FocusNode();
+
+    _model.tenquytrinhTextController2 ??= TextEditingController(
+        text: widget.nameTask != null && widget.nameTask != ''
+            ? widget.nameTask
+            : '');
+    _model.tenquytrinhFocusNode2 ??= FocusNode();
   }
 
   @override
@@ -407,8 +415,8 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
                     child: TextFormField(
-                      controller: _model.tenquytrinhTextController,
-                      focusNode: _model.tenquytrinhFocusNode,
+                      controller: _model.tenquytrinhTextController1,
+                      focusNode: _model.tenquytrinhFocusNode1,
                       autofocus: false,
                       obscureText: false,
                       decoration: InputDecoration(
@@ -456,7 +464,64 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                             fontFamily: 'Nunito Sans',
                             letterSpacing: 0.0,
                           ),
-                      validator: _model.tenquytrinhTextControllerValidator
+                      validator: _model.tenquytrinhTextController1Validator
+                          .asValidator(context),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                    child: TextFormField(
+                      controller: _model.tenquytrinhTextController2,
+                      focusNode: _model.tenquytrinhFocusNode2,
+                      autofocus: false,
+                      obscureText: false,
+                      decoration: InputDecoration(
+                        labelText: 'Nhập tên công việc',
+                        labelStyle:
+                            FlutterFlowTheme.of(context).labelMedium.override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                ),
+                        hintStyle:
+                            FlutterFlowTheme.of(context).labelMedium.override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).alternate,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).primary,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).error,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).error,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Nunito Sans',
+                            letterSpacing: 0.0,
+                          ),
+                      validator: _model.tenquytrinhTextController2Validator
                           .asValidator(context),
                     ),
                   ),
@@ -472,9 +537,10 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                             onPressed: () async {
                               setState(() {
                                 _model.nameStaffTextController?.clear();
-                                _model.tenquytrinhTextController?.clear();
+                                _model.tenquytrinhTextController1?.clear();
                               });
                               await widget.callBack?.call(
+                                '',
                                 '',
                                 '',
                                 '',
@@ -514,9 +580,10 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                             onPressed: () async {
                               await widget.callBack?.call(
                                 _model.nameStaffTextController.text,
-                                _model.tenquytrinhTextController.text,
+                                _model.tenquytrinhTextController1.text,
                                 _model.dateStart,
                                 _model.dateEnd,
+                                _model.tenquytrinhTextController2.text,
                               );
                               Navigator.pop(context);
                             },

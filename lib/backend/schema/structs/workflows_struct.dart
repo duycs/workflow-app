@@ -17,6 +17,7 @@ class WorkflowsStruct extends BaseStruct {
     String? domainId,
     String? categoryId,
     int? template,
+    String? type,
   })  : _id = id,
         _status = status,
         _name = name,
@@ -27,7 +28,8 @@ class WorkflowsStruct extends BaseStruct {
         _number = number,
         _domainId = domainId,
         _categoryId = categoryId,
-        _template = template;
+        _template = template,
+        _type = type;
 
   // "id" field.
   String? _id;
@@ -101,6 +103,12 @@ class WorkflowsStruct extends BaseStruct {
   void incrementTemplate(int amount) => _template = template + amount;
   bool hasTemplate() => _template != null;
 
+  // "type" field.
+  String? _type;
+  String get type => _type ?? '';
+  set type(String? val) => _type = val;
+  bool hasType() => _type != null;
+
   static WorkflowsStruct fromMap(Map<String, dynamic> data) => WorkflowsStruct(
         id: data['id'] as String?,
         status: data['status'] as String?,
@@ -116,6 +124,7 @@ class WorkflowsStruct extends BaseStruct {
         domainId: data['domain_id'] as String?,
         categoryId: data['category_id'] as String?,
         template: castToType<int>(data['template']),
+        type: data['type'] as String?,
       );
 
   static WorkflowsStruct? maybeFromMap(dynamic data) => data is Map
@@ -134,6 +143,7 @@ class WorkflowsStruct extends BaseStruct {
         'domain_id': _domainId,
         'category_id': _categoryId,
         'template': _template,
+        'type': _type,
       }.withoutNulls;
 
   @override
@@ -182,6 +192,10 @@ class WorkflowsStruct extends BaseStruct {
         'template': serializeParam(
           _template,
           ParamType.int,
+        ),
+        'type': serializeParam(
+          _type,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -244,6 +258,11 @@ class WorkflowsStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
+        type: deserializeParam(
+          data['type'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -263,7 +282,8 @@ class WorkflowsStruct extends BaseStruct {
         number == other.number &&
         domainId == other.domainId &&
         categoryId == other.categoryId &&
-        template == other.template;
+        template == other.template &&
+        type == other.type;
   }
 
   @override
@@ -278,7 +298,8 @@ class WorkflowsStruct extends BaseStruct {
         number,
         domainId,
         categoryId,
-        template
+        template,
+        type
       ]);
 }
 
@@ -293,6 +314,7 @@ WorkflowsStruct createWorkflowsStruct({
   String? domainId,
   String? categoryId,
   int? template,
+  String? type,
 }) =>
     WorkflowsStruct(
       id: id,
@@ -305,4 +327,5 @@ WorkflowsStruct createWorkflowsStruct({
       domainId: domainId,
       categoryId: categoryId,
       template: template,
+      type: type,
     );

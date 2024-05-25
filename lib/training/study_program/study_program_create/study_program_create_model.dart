@@ -20,8 +20,6 @@ class StudyProgramCreateModel
 
   int? check;
 
-  dynamic demo;
-
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();

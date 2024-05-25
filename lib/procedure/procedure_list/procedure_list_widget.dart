@@ -6,13 +6,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/procedure/add_workflow_market/add_workflow_market_widget.dart';
 import '/procedure/procedure_work_filter/procedure_work_filter_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
-import 'package:shake/shake.dart';
 import 'procedure_list_model.dart';
 export 'procedure_list_model.dart';
 
@@ -27,8 +25,6 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
   late ProcedureListModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  late ShakeDetector shakeDetector;
-  var shakeActionInProgress = false;
 
   @override
   void initState() {
@@ -37,43 +33,14 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        FFAppState().scrollCheck = 'ProcedureList';
-      });
       _model.checkTokenProcedureList = await action_blocks.tokenReload(context);
       if (_model.checkTokenProcedureList!) {
-        while (FFAppState().scrollCheck == 'ProcedureList') {
-          _model.tokenReloadProcedureListCheck =
-              await action_blocks.tokenReload(context);
-          if (_model.tokenReloadProcedureListCheck == true) {
-            await Future.delayed(const Duration(milliseconds: 12000));
-          } else {
-            break;
-          }
-        }
+        setState(() {});
       } else {
         setState(() {});
         return;
       }
     });
-
-    // On shake action.
-    shakeDetector = ShakeDetector.autoStart(
-      onPhoneShake: () async {
-        if (shakeActionInProgress) {
-          return;
-        }
-        shakeActionInProgress = true;
-        try {
-          setState(() {
-            FFAppState().scrollCheck = '';
-          });
-        } finally {
-          shakeActionInProgress = false;
-        }
-      },
-      shakeThresholdGravity: 1.5,
-    );
 
     _model.textNameTextController ??= TextEditingController();
     _model.textNameFocusNode ??= FocusNode();
@@ -83,7 +50,6 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
   void dispose() {
     _model.dispose();
 
-    shakeDetector.stopListening();
     super.dispose();
   }
 
@@ -116,10 +82,6 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                 ),
               },
             );
-
-            setState(() {
-              FFAppState().scrollCheck = '';
-            });
           },
           backgroundColor: FlutterFlowTheme.of(context).primary,
           elevation: 8.0,
@@ -153,10 +115,6 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                   ),
                 },
               );
-
-              setState(() {
-                FFAppState().scrollCheck = '';
-              });
             },
           ),
           title: Text(
@@ -464,10 +422,6 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                   ),
                                 },
                               );
-
-                              setState(() {
-                                FFAppState().scrollCheck = '';
-                              });
                             },
                             child: Container(
                               width: double.infinity,

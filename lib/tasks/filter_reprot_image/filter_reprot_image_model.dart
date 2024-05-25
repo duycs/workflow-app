@@ -18,9 +18,13 @@ class FilterReprotImageModel extends FlutterFlowModel<FilterReprotImageWidget> {
   TextEditingController? nameStaffTextController;
   String? Function(BuildContext, String?)? nameStaffTextControllerValidator;
   // State field(s) for tenquytrinh widget.
-  FocusNode? tenquytrinhFocusNode;
-  TextEditingController? tenquytrinhTextController;
-  String? Function(BuildContext, String?)? tenquytrinhTextControllerValidator;
+  FocusNode? tenquytrinhFocusNode1;
+  TextEditingController? tenquytrinhTextController1;
+  String? Function(BuildContext, String?)? tenquytrinhTextController1Validator;
+  // State field(s) for tenquytrinh widget.
+  FocusNode? tenquytrinhFocusNode2;
+  TextEditingController? tenquytrinhTextController2;
+  String? Function(BuildContext, String?)? tenquytrinhTextController2Validator;
 
   @override
   void initState(BuildContext context) {}
@@ -30,7 +34,10 @@ class FilterReprotImageModel extends FlutterFlowModel<FilterReprotImageWidget> {
     nameStaffFocusNode?.dispose();
     nameStaffTextController?.dispose();
 
-    tenquytrinhFocusNode?.dispose();
-    tenquytrinhTextController?.dispose();
+    tenquytrinhFocusNode1?.dispose();
+    tenquytrinhTextController1?.dispose();
+
+    tenquytrinhFocusNode2?.dispose();
+    tenquytrinhTextController2?.dispose();
   }
 }

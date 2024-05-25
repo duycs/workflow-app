@@ -4,8 +4,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'dart:async';
 import 'process_template_list_widget.dart' show ProcessTemplateListWidget;
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class ProcessTemplateListModel
     extends FlutterFlowModel<ProcessTemplateListWidget> {
@@ -62,8 +64,6 @@ class ProcessTemplateListModel
 
   // Stores action output result for [Action Block - tokenReload] action in ProcessTemplateList widget.
   bool? tokenReloadProcessTemplateList;
-  // Stores action output result for [Backend Call - API (workflowsList)] action in ProcessTemplateList widget.
-  ApiCallResponse? apiResultListData;
   // Stores action output result for [Backend Call - API (GetCategoriesList)] action in ProcessTemplateList widget.
   ApiCallResponse? apiResultx0q;
   // Stores action output result for [Backend Call - API (GetDomainsList)] action in ProcessTemplateList widget.
@@ -81,6 +81,10 @@ class ProcessTemplateListModel
       choiceChipsValueController?.value?.firstOrNull;
   set choiceChipsValue(String? val) =>
       choiceChipsValueController?.value = val != null ? [val] : [];
+  // State field(s) for GridView widget.
+
+  PagingController<ApiPagingParams, dynamic>? gridViewPagingController;
+  Function(ApiPagingParams nextPageMarker)? gridViewApiCall;
 
   @override
   void initState(BuildContext context) {}
@@ -89,6 +93,8 @@ class ProcessTemplateListModel
   void dispose() {
     textNameFocusNode?.dispose();
     textNameTextController?.dispose();
+
+    gridViewPagingController?.dispose();
   }
 
   /// Action blocks.
@@ -130,4 +136,61 @@ class ProcessTemplateListModel
       return;
     }
   }
+
+  /// Additional helper methods.
+  Future waitForOnePageForGridView({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete =
+          (gridViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  PagingController<ApiPagingParams, dynamic> setGridViewController(
+    Function(ApiPagingParams) apiCall,
+  ) {
+    gridViewApiCall = apiCall;
+    return gridViewPagingController ??= _createGridViewController(apiCall);
+  }
+
+  PagingController<ApiPagingParams, dynamic> _createGridViewController(
+    Function(ApiPagingParams) query,
+  ) {
+    final controller = PagingController<ApiPagingParams, dynamic>(
+      firstPageKey: ApiPagingParams(
+        nextPageNumber: 0,
+        numItems: 0,
+        lastResponse: null,
+      ),
+    );
+    return controller..addPageRequestListener(gridViewWorkflowsListPage);
+  }
+
+  void gridViewWorkflowsListPage(ApiPagingParams nextPageMarker) =>
+      gridViewApiCall!(nextPageMarker).then((gridViewWorkflowsListResponse) {
+        final pageItems = (WorkflowsListDataStruct.maybeFromMap(
+                        gridViewWorkflowsListResponse.jsonBody)!
+                    .data ??
+                [])
+            .toList() as List;
+        final newNumItems = nextPageMarker.numItems + pageItems.length;
+        gridViewPagingController?.appendPage(
+          pageItems,
+          (pageItems.isNotEmpty)
+              ? ApiPagingParams(
+                  nextPageNumber: nextPageMarker.nextPageNumber + 1,
+                  numItems: newNumItems,
+                  lastResponse: gridViewWorkflowsListResponse,
+                )
+              : null,
+        );
+      });
 }

@@ -149,12 +149,6 @@ class FFAppState extends ChangeNotifier {
     _dataTimeStartToken = value;
     prefs.setInt('ff_dataTimeStartToken', value);
   }
-
-  String _scrollCheck = '';
-  String get scrollCheck => _scrollCheck;
-  set scrollCheck(String value) {
-    _scrollCheck = value;
-  }
 }
 
 void _safeInit(Function() initializeField) {

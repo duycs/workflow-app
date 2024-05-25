@@ -402,6 +402,16 @@ int totalLimitPublished(
   // return count;
 }
 
+List<ProcedurePublishedStepTaskStruct> sortArrayStepWorkflowResuftWoflow(
+    List<ProcedurePublishedStepTaskStruct> data) {
+  if (data.length > 0) {
+    data.sort((a, b) => a.number.compareTo(b.number));
+    return data;
+  } else {
+    return data;
+  }
+}
+
 List<WorkflowsStepCreateStruct> sortArrayStepList(
     List<WorkflowsStepCreateStruct> data) {
   if (data.length > 0) {
@@ -489,4 +499,28 @@ bool isTokenExpired(int lastTokenDate) {
 String? fileName(FFUploadedFile? file) {
   // Return the file's name if available, otherwise return null.
   return file?.name?.toString();
+}
+
+int totaResultWorkflow(ProcedurePublishedListStruct data) {
+  int doneTasks = data.steps
+          ?.where((step) =>
+              (step.tasks ?? []).every((task) => task.status == "done"))
+          .toList()
+          .length ??
+      0;
+  return doneTasks;
+}
+
+double? newCaculator(List<dynamic>? list) {
+  if (list is List<dynamic>) {
+    double totalPercentCorrect = 0.0;
+    for (var item in list) {
+      if (item is Map && item.containsKey('percent_correct')) {
+        totalPercentCorrect +=
+            double.tryParse(item['percent_correct'].toString()) ?? 0.0;
+      }
+    }
+    return totalPercentCorrect;
+  }
+  return null;
 }

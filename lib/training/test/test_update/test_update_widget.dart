@@ -4,11 +4,10 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/upload_data.dart';
+import '/training/radio_group_tests_add/radio_group_tests_add_widget.dart';
 import '/training/test/checkbox_groups_test_add/checkbox_groups_test_add_widget.dart';
 import '/training/test/question_create_test/question_create_test_widget.dart';
 import '/training/test/question_test/question_test_widget.dart';
-import '/training/test/radio_group_tests_add/radio_group_tests_add_widget.dart';
 import '/training/test/test_long_text_add/test_long_text_add_widget.dart';
 import '/training/test/test_number_add/test_number_add_widget.dart';
 import '/actions/actions.dart' as action_blocks;
@@ -132,459 +131,381 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Form(
-            key: _model.formKey,
-            autovalidateMode: AutovalidateMode.disabled,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: SingleChildScrollView(
-                      primary: false,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Stack(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.memory(
-                                  _model.uploadedLocalFile.bytes ??
-                                      Uint8List.fromList([]),
-                                  width: 200.0,
-                                  height: 110.0,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              FFButtonWidget(
-                                onPressed: () async {
-                                  final selectedMedia =
-                                      await selectMediaWithSourceBottomSheet(
-                                    context: context,
-                                    allowPhoto: true,
-                                  );
-                                  if (selectedMedia != null &&
-                                      selectedMedia.every((m) =>
-                                          validateFileFormat(
-                                              m.storagePath, context))) {
-                                    setState(
-                                        () => _model.isDataUploading = true);
-                                    var selectedUploadedFiles =
-                                        <FFUploadedFile>[];
-
-                                    try {
-                                      selectedUploadedFiles = selectedMedia
-                                          .map((m) => FFUploadedFile(
-                                                name: m.storagePath
-                                                    .split('/')
-                                                    .last,
-                                                bytes: m.bytes,
-                                                height: m.dimensions?.height,
-                                                width: m.dimensions?.width,
-                                                blurHash: m.blurHash,
-                                              ))
-                                          .toList();
-                                    } finally {
-                                      _model.isDataUploading = false;
-                                    }
-                                    if (selectedUploadedFiles.length ==
-                                        selectedMedia.length) {
-                                      setState(() {
-                                        _model.uploadedLocalFile =
-                                            selectedUploadedFiles.first;
-                                      });
-                                    } else {
-                                      setState(() {});
-                                      return;
-                                    }
-                                  }
-
-                                  setState(() {
-                                    _model.uploadImage = _model.uploadImage
-                                        .toList()
-                                        .cast<dynamic>();
-                                  });
-                                },
-                                text: 'Up ảnh đại diện',
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
+          child: SizedBox(
+            width: double.infinity,
+            child: Form(
+              key: _model.formKey,
+              autovalidateMode: AutovalidateMode.disabled,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: SingleChildScrollView(
+                        primary: false,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 8.0, 0.0, 0.0),
+                              child: TextFormField(
+                                controller: _model.textController1,
+                                focusNode: _model.textFieldFocusNode1,
+                                autofocus: false,
+                                textInputAction: TextInputAction.next,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelText: 'Tiêu đề',
+                                  labelStyle: FlutterFlowTheme.of(context)
+                                      .labelLarge
                                       .override(
                                         fontFamily: 'Nunito Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        fontSize: 13.0,
                                         letterSpacing: 0.0,
-                                        fontWeight: FontWeight.normal,
                                       ),
-                                  elevation: 3.0,
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 8.0, 0.0, 0.0),
-                            child: TextFormField(
-                              controller: _model.textController1,
-                              focusNode: _model.textFieldFocusNode1,
-                              autofocus: false,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                labelText: 'Tiêu đề',
-                                labelStyle: FlutterFlowTheme.of(context)
-                                    .labelLarge
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
-                                alignLabelWithHint: false,
-                                hintText: ' ',
-                                hintStyle: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    width: 0.5,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    width: 0.5,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 0.5,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 0.5,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
-                              validator: _model.textController1Validator
-                                  .asValidator(context),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 8.0, 0.0, 0.0),
-                            child: TextFormField(
-                              controller: _model.textController2,
-                              focusNode: _model.textFieldFocusNode2,
-                              autofocus: false,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                labelText: 'Điểm đạt',
-                                labelStyle: FlutterFlowTheme.of(context)
-                                    .labelLarge
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
-                                alignLabelWithHint: false,
-                                hintText: ' ',
-                                hintStyle: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    width: 0.5,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    width: 0.5,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 0.5,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 0.5,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
-                              keyboardType: TextInputType.number,
-                              validator: _model.textController2Validator
-                                  .asValidator(context),
-                            ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1.0, -1.0),
-                            child: TextFormField(
-                              controller: _model.textController3,
-                              focusNode: _model.textFieldFocusNode3,
-                              autofocus: false,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                labelText: 'Nội dung',
-                                labelStyle: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
-                                hintText: ' ',
-                                hintStyle: FlutterFlowTheme.of(context)
-                                    .labelLarge
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    width: 0.5,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    width: 0.5,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 0.5,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 0.5,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyLarge
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                  ),
-                              maxLines: 5,
-                              validator: _model.textController3Validator
-                                  .asValidator(context),
-                            ),
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  'Thời gian: ',
-                                  style: FlutterFlowTheme.of(context)
+                                  alignLabelWithHint: false,
+                                  hintText: ' ',
+                                  hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
                                         fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 0.0, 8.0, 0.0),
-                                  child: TextFormField(
-                                    controller: _model.textController4,
-                                    focusNode: _model.textFieldFocusNode4,
-                                    autofocus: false,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      enabledBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(0.0),
-                                      ),
-                                      focusedBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(0.0),
-                                      ),
-                                      errorBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(0.0),
-                                      ),
-                                      focusedErrorBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(0.0),
-                                      ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      width: 0.5,
                                     ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 0.5,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 0.5,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 0.5,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                                validator: _model.textController1Validator
+                                    .asValidator(context),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 8.0, 0.0, 0.0),
+                              child: TextFormField(
+                                controller: _model.textController2,
+                                focusNode: _model.textFieldFocusNode2,
+                                autofocus: false,
+                                textInputAction: TextInputAction.next,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelText: 'Điểm đạt',
+                                  labelStyle: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  alignLabelWithHint: false,
+                                  hintText: ' ',
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      width: 0.5,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 0.5,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 0.5,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 0.5,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                                keyboardType: TextInputType.number,
+                                validator: _model.textController2Validator
+                                    .asValidator(context),
+                              ),
+                            ),
+                            Align(
+                              alignment: const AlignmentDirectional(-1.0, -1.0),
+                              child: TextFormField(
+                                controller: _model.textController3,
+                                focusNode: _model.textFieldFocusNode3,
+                                autofocus: false,
+                                textInputAction: TextInputAction.next,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelText: 'Nội dung',
+                                  labelStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  hintText: ' ',
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      width: 0.5,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 0.5,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 0.5,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 0.5,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                                maxLines: 5,
+                                validator: _model.textController3Validator
+                                    .asValidator(context),
+                              ),
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    'Thời gian: ',
                                     style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                        .labelMedium
                                         .override(
                                           fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
-                                    keyboardType: TextInputType.number,
-                                    validator: _model.textController4Validator
-                                        .asValidator(context),
                                   ),
                                 ),
-                              ),
-                              Expanded(
-                                child: Text(
-                                  'phút',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                            ].divide(const SizedBox(width: 4.0)),
-                          ),
-                          wrapWithModel(
-                            model: _model.questionTestModel,
-                            updateCallback: () => setState(() {}),
-                            updateOnChange: true,
-                            child: QuestionTestWidget(
-                              callBack: (item) async {
-                                if (_model.questionItem
-                                    .map((e) => e.id)
-                                    .toList()
-                                    .contains((_model
-                                        .questionTestModel.questionValue!))) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'Câu hỏi đã được chọn. Vui lòng chọn lại!',
-                                        style: TextStyle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 0.0, 8.0, 0.0),
+                                    child: TextFormField(
+                                      controller: _model.textController4,
+                                      focusNode: _model.textFieldFocusNode4,
+                                      autofocus: false,
+                                      textInputAction: TextInputAction.next,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(0.0),
+                                        ),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(0.0),
+                                        ),
+                                        errorBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(0.0),
+                                        ),
+                                        focusedErrorBorder:
+                                            UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(0.0),
                                         ),
                                       ),
-                                      duration: const Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context).error,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      textAlign: TextAlign.center,
+                                      keyboardType: TextInputType.number,
+                                      validator: _model.textController4Validator
+                                          .asValidator(context),
                                     ),
-                                  );
-                                } else {
-                                  setState(() {
-                                    _model.addToQuestionItem(item!);
-                                  });
-                                }
-                              },
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    'phút',
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
-                          ),
-                          Builder(
-                            builder: (context) {
-                              final questionList = _model.questionItem.toList();
-                              return ListView.separated(
-                                padding: EdgeInsets.zero,
-                                primary: false,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                itemCount: questionList.length,
-                                separatorBuilder: (_, __) =>
-                                    const SizedBox(height: 8.0),
-                                itemBuilder: (context, questionListIndex) {
-                                  final questionListItem =
-                                      questionList[questionListIndex];
-                                  return Container(
-                                    decoration: const BoxDecoration(),
-                                    child: Column(
+                            wrapWithModel(
+                              model: _model.questionTestModel,
+                              updateCallback: () => setState(() {}),
+                              updateOnChange: true,
+                              child: QuestionTestWidget(
+                                callBack: (item) async {
+                                  if (_model.questionItem
+                                      .map((e) => e.id)
+                                      .toList()
+                                      .contains((_model
+                                          .questionTestModel.questionValue!))) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Câu hỏi đã được chọn. Vui lòng chọn lại!',
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
+                                        ),
+                                        duration: const Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context).error,
+                                      ),
+                                    );
+                                  } else {
+                                    setState(() {
+                                      _model.addToQuestionItem(item!);
+                                    });
+                                  }
+                                },
+                              ),
+                            ),
+                            Builder(
+                              builder: (context) {
+                                final questionList =
+                                    _model.questionItem.toList();
+                                return ListView.separated(
+                                  padding: EdgeInsets.zero,
+                                  primary: false,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: questionList.length,
+                                  separatorBuilder: (_, __) =>
+                                      const SizedBox(height: 8.0),
+                                  itemBuilder: (context, questionListIndex) {
+                                    final questionListItem =
+                                        questionList[questionListIndex];
+                                    return Column(
                                       mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
                                       children: [
                                         Container(
+                                          width: double.infinity,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryBackground,
@@ -595,9 +516,11 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                             padding: const EdgeInsets.all(8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  '${(questionListIndex + 1).toString()}.',
+                                                  '${(questionListIndex + 1).toString()}:',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -661,275 +584,236 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                                 final answersListItem =
                                                     answersList[
                                                         answersListIndex];
-                                                return Container(
-                                                  width: double.infinity,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                  ),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      if (questionListItem
-                                                              .answerType ==
-                                                          'text')
-                                                        TestLongTextAddWidget(
+                                                return Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment
+                                                          .stretch,
+                                                  children: [
+                                                    if (questionListItem
+                                                            .answerType ==
+                                                        'text')
+                                                      TestLongTextAddWidget(
+                                                        key: Key(
+                                                            'Keyqye_${answersListIndex}_of_${answersList.length}'),
+                                                        answersId:
+                                                            answersListItem,
+                                                      ),
+                                                    if (questionListItem
+                                                            .answerType ==
+                                                        'number')
+                                                      TestNumberAddWidget(
+                                                        key: Key(
+                                                            'Keyt8h_${answersListIndex}_of_${answersList.length}'),
+                                                        answersId:
+                                                            answersListItem,
+                                                      ),
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                      ),
+                                                      child: Visibility(
+                                                        visible: questionListItem
+                                                                .answerType ==
+                                                            'checkbox',
+                                                        child:
+                                                            CheckboxGroupsTestAddWidget(
                                                           key: Key(
-                                                              'Keyqye_${answersListIndex}_of_${answersList.length}'),
-                                                          answersId:
+                                                              'Keytv5_${answersListIndex}_of_${answersList.length}'),
+                                                          parameter1:
                                                               answersListItem,
                                                         ),
-                                                      if (questionListItem
-                                                              .answerType ==
-                                                          'number')
-                                                        TestNumberAddWidget(
-                                                          key: Key(
-                                                              'Keyt8h_${answersListIndex}_of_${answersList.length}'),
-                                                          answersId:
-                                                              answersListItem,
-                                                        ),
-                                                      Container(
-                                                        width: double.infinity,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                        ),
-                                                        child: Visibility(
-                                                          visible: questionListItem
-                                                                  .answerType ==
-                                                              'checkbox',
-                                                          child:
-                                                              CheckboxGroupsTestAddWidget(
-                                                            key: Key(
-                                                                'Keytv5_${answersListIndex}_of_${answersList.length}'),
-                                                            parameter1:
-                                                                answersListItem,
-                                                          ),
-                                                        ),
                                                       ),
-                                                      Container(
-                                                        width: double.infinity,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                        ),
-                                                        child: Visibility(
-                                                          visible: questionListItem
-                                                                  .answerType ==
-                                                              'radio',
-                                                          child:
-                                                              RadioGroupTestsAddWidget(
-                                                            key: Key(
-                                                                'Key10i_${answersListIndex}_of_${answersList.length}'),
-                                                            parameter1:
-                                                                answersListItem,
-                                                          ),
-                                                        ),
+                                                    ),
+                                                    if (questionListItem
+                                                            .answerType ==
+                                                        'radio')
+                                                      RadioGroupTestsAddWidget(
+                                                        key: Key(
+                                                            'Key10i_${answersListIndex}_of_${answersList.length}'),
+                                                        parameter1:
+                                                            answersListItem,
                                                       ),
-                                                    ],
-                                                  ),
+                                                  ],
                                                 );
                                               },
                                             );
                                           },
                                         ),
                                       ],
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                        ].divide(const SizedBox(height: 16.0)),
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ].divide(const SizedBox(height: 16.0)),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            await showModalBottomSheet(
-                              isScrollControlled: true,
-                              backgroundColor: Colors.transparent,
-                              enableDrag: false,
-                              context: context,
-                              builder: (context) {
-                                return GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: QuestionCreateTestWidget(
-                                      callBackList: (idQuestion) async {
-                                        _model.apiResultAddQuestion =
-                                            await QuestionGroup
-                                                .questionListOneCall
-                                                .call(
-                                          questionId: idQuestion,
-                                          accessToken: FFAppState().accessToken,
-                                        );
-                                        if ((_model.apiResultAddQuestion
-                                                ?.succeeded ??
-                                            true)) {
-                                          setState(() {
-                                            _model.addToQuestionItem(
-                                                QuestsionOneDataStruct
-                                                        .maybeFromMap((_model
-                                                                .apiResultAddQuestion
-                                                                ?.jsonBody ??
-                                                            ''))!
-                                                    .data);
-                                          });
-                                        }
-                                      },
-                                    ),
-                                  ),
-                                );
-                              },
-                            ).then((value) => safeSetState(() {}));
-
-                            setState(() {});
-                          },
-                          text: 'Câu hỏi mới',
-                          icon: const Icon(
-                            Icons.add,
-                            size: 15.0,
-                          ),
-                          options: FFButtonOptions(
-                            width: double.infinity,
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).secondary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          showLoadingIndicator: false,
-                        ),
-                      ),
-                      Expanded(
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            var shouldSetState = false;
-                            if (_model.formKey.currentState == null ||
-                                !_model.formKey.currentState!.validate()) {
-                              return;
-                            }
-                            var confirmDialogResponse = await showDialog<bool>(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: const Text('Xác nhận'),
-                                      content: const Text('Bạn chắc chắn muốn lưu!'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () => Navigator.pop(
-                                              alertDialogContext, false),
-                                          child: const Text('Hủy'),
-                                        ),
-                                        TextButton(
-                                          onPressed: () => Navigator.pop(
-                                              alertDialogContext, true),
-                                          child: const Text('Xác nhận'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                ) ??
-                                false;
-                            if (confirmDialogResponse) {
-                              while (_model.loop < _model.questionItem.length) {
-                                setState(() {
-                                  _model.addToQuestionIdAdd(<String, dynamic>{
-                                    'questions_id': <String, String>{
-                                      'id': _model.questionItem[_model.loop].id,
-                                    },
-                                  });
-                                  _model.loop = _model.loop + 1;
-                                });
-                              }
-                              setState(() {
-                                _model.loop = 0;
-                              });
-                              _model.apiResultCreateTest =
-                                  await TestGroup.testUpdateCall.call(
-                                id: widget.id,
-                                accessToken: FFAppState().accessToken,
-                                requestDataJson: <String, dynamic>{
-                                  'status': 'published',
-                                  'name': _model.textController1.text,
-                                  'description': _model.textController3.text,
-                                  'duration_minutes':
-                                      _model.textController4.text,
-                                  'questions': getJsonField(
-                                    <String, List<dynamic>>{
-                                      'map': _model.questionIdAdd,
-                                    },
-                                    r'''$.map''',
-                                  ),
-                                  'good_score': _model.textController2.text,
-                                },
-                              );
-                              shouldSetState = true;
-                              if ((_model.apiResultCreateTest?.succeeded ??
-                                  true)) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Chỉnh sửa bài thi thành công',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                enableDrag: false,
+                                context: context,
+                                builder: (context) {
+                                  return GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: QuestionCreateTestWidget(
+                                        callBackList: (idQuestion) async {
+                                          _model.apiResultAddQuestion =
+                                              await QuestionGroup
+                                                  .questionListOneCall
+                                                  .call(
+                                            questionId: idQuestion,
+                                            accessToken:
+                                                FFAppState().accessToken,
+                                          );
+                                          if ((_model.apiResultAddQuestion
+                                                  ?.succeeded ??
+                                              true)) {
+                                            setState(() {
+                                              _model.addToQuestionItem(
+                                                  QuestsionOneDataStruct
+                                                          .maybeFromMap((_model
+                                                                  .apiResultAddQuestion
+                                                                  ?.jsonBody ??
+                                                              ''))!
+                                                      .data);
+                                            });
+                                          }
+                                        },
                                       ),
                                     ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).secondary,
+                                  );
+                                },
+                              ).then((value) => safeSetState(() {}));
+
+                              setState(() {});
+                            },
+                            text: 'Câu hỏi mới',
+                            icon: const Icon(
+                              Icons.add,
+                              size: 15.0,
+                            ),
+                            options: FFButtonOptions(
+                              width: double.infinity,
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).secondary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
                                   ),
-                                );
-                              } else {
-                                _model.checkRefreshTokenBlock2 =
-                                    await action_blocks.checkRefreshToken(
-                                  context,
-                                  jsonErrors:
-                                      (_model.apiResultCreateTest?.jsonBody ??
-                                          ''),
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            showLoadingIndicator: false,
+                          ),
+                        ),
+                        Expanded(
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              var shouldSetState = false;
+                              if (_model.formKey.currentState == null ||
+                                  !_model.formKey.currentState!.validate()) {
+                                return;
+                              }
+                              var confirmDialogResponse =
+                                  await showDialog<bool>(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: const Text('Xác nhận'),
+                                            content:
+                                                const Text('Bạn chắc chắn muốn lưu!'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, false),
+                                                child: const Text('Hủy'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, true),
+                                                child: const Text('Xác nhận'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ) ??
+                                      false;
+                              if (confirmDialogResponse) {
+                                while (
+                                    _model.loop < _model.questionItem.length) {
+                                  setState(() {
+                                    _model.addToQuestionIdAdd(<String, dynamic>{
+                                      'questions_id': <String, String>{
+                                        'id':
+                                            _model.questionItem[_model.loop].id,
+                                      },
+                                    });
+                                    _model.loop = _model.loop + 1;
+                                  });
+                                }
+                                setState(() {
+                                  _model.loop = 0;
+                                });
+                                _model.apiResultCreateTest =
+                                    await TestGroup.testUpdateCall.call(
+                                  id: widget.id,
+                                  accessToken: FFAppState().accessToken,
+                                  requestDataJson: <String, dynamic>{
+                                    'status': 'published',
+                                    'name': _model.textController1.text,
+                                    'description': _model.textController3.text,
+                                    'duration_minutes':
+                                        _model.textController4.text,
+                                    'questions': getJsonField(
+                                      <String, List<dynamic>>{
+                                        'map': _model.questionIdAdd,
+                                      },
+                                      r'''$.map''',
+                                    ),
+                                    'good_score': _model.textController2.text,
+                                  },
                                 );
                                 shouldSetState = true;
-                                if (!_model.checkRefreshTokenBlock2!) {
+                                if ((_model.apiResultCreateTest?.succeeded ??
+                                    true)) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        FFAppConstants.ErrorLoadData,
+                                        'Chỉnh sửa bài thi thành công',
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -937,62 +821,88 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                       ),
                                       duration: const Duration(milliseconds: 4000),
                                       backgroundColor:
-                                          FlutterFlowTheme.of(context).error,
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
                                     ),
                                   );
+                                } else {
+                                  _model.checkRefreshTokenBlock2 =
+                                      await action_blocks.checkRefreshToken(
+                                    context,
+                                    jsonErrors:
+                                        (_model.apiResultCreateTest?.jsonBody ??
+                                            ''),
+                                  );
+                                  shouldSetState = true;
+                                  if (!_model.checkRefreshTokenBlock2!) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          FFAppConstants.ErrorLoadData,
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
+                                        ),
+                                        duration: const Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context).error,
+                                      ),
+                                    );
+                                  }
                                 }
+
+                                context.pushNamed(
+                                  'TestList',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
+                              } else {
+                                if (shouldSetState) setState(() {});
+                                return;
                               }
 
-                              context.pushNamed(
-                                'TestList',
-                                extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
-                                    hasTransition: true,
-                                    transitionType: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 0),
-                                  ),
-                                },
-                              );
-                            } else {
                               if (shouldSetState) setState(() {});
-                              return;
-                            }
-
-                            if (shouldSetState) setState(() {});
-                          },
-                          text: 'Lưu',
-                          icon: const Icon(
-                            Icons.save,
-                            size: 15.0,
-                          ),
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  color: Colors.white,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
+                            },
+                            text: 'Lưu',
+                            icon: const Icon(
+                              Icons.save,
+                              size: 15.0,
                             ),
-                            borderRadius: BorderRadius.circular(8.0),
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: Colors.white,
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                           ),
                         ),
-                      ),
-                    ].divide(const SizedBox(width: 16.0)),
+                      ].divide(const SizedBox(width: 16.0)),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

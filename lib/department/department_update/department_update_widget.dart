@@ -490,13 +490,13 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 buttonPosition: RadioButtonPosition.left,
-                                direction: Axis.vertical,
+                                direction: Axis.horizontal,
                                 radioButtonColor:
                                     FlutterFlowTheme.of(context).primary,
                                 inactiveRadioButtonColor:
                                     FlutterFlowTheme.of(context).secondaryText,
                                 toggleable: false,
-                                horizontalAlignment: WrapAlignment.start,
+                                horizontalAlignment: WrapAlignment.spaceBetween,
                                 verticalAlignment: WrapCrossAlignment.start,
                               ),
                             ],

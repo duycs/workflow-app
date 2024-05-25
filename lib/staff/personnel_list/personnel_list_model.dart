@@ -35,6 +35,8 @@ class PersonnelListModel extends FlutterFlowModel<PersonnelListWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in PersonnelList widget.
+  bool? getStaffListToken;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

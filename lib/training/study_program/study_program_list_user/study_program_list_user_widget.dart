@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -6,9 +7,11 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/do_test/confirm_do_test/confirm_do_test_widget.dart';
 import '/training/lesson/certificate/certificate_widget.dart';
 import '/training/study_program/filter_study_program_user_copy/filter_study_program_user_copy_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'study_program_list_user_model.dart';
 export 'study_program_list_user_model.dart';
@@ -34,8 +37,16 @@ class _StudyProgramListUserWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await _model.getStaffsProgramsList(context);
-      setState(() {});
+      _model.tokenReloadStudyProgramListUserList =
+          await action_blocks.tokenReload(context);
+      if (_model.tokenReloadStudyProgramListUserList!) {
+        setState(() {
+          _model.isShow = true;
+        });
+      } else {
+        setState(() {});
+        return;
+      }
     });
 
     _model.textFieldNameSearchTextController ??= TextEditingController();
@@ -74,16 +85,7 @@ class _StudyProgramListUserWidgetState
               size: 30.0,
             ),
             onPressed: () async {
-              context.pushNamed(
-                'Profile',
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                  ),
-                },
-              );
+              context.safePop();
             },
           ),
           title: Row(
@@ -105,10 +107,10 @@ class _StudyProgramListUserWidgetState
           centerTitle: true,
           elevation: 1.0,
         ),
-        body: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 24.0),
-          child: SingleChildScrollView(
-            primary: false,
+        body: Visibility(
+          visible: _model.isShow == true,
+          child: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 24.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -125,8 +127,8 @@ class _StudyProgramListUserWidgetState
                             '_model.textFieldNameSearchTextController',
                             const Duration(milliseconds: 500),
                             () async {
-                              await _model.getStaffsProgramsList(context);
-                              setState(() {});
+                              setState(() =>
+                                  _model.listViewPagingController?.refresh());
                             },
                           ),
                           autofocus: false,
@@ -191,9 +193,9 @@ class _StudyProgramListUserWidgetState
                                     onTap: () async {
                                       _model.textFieldNameSearchTextController
                                           ?.clear();
-                                      await _model
-                                          .getStaffsProgramsList(context);
-                                      setState(() {});
+                                      setState(() => _model
+                                          .listViewPagingController
+                                          ?.refresh());
                                       setState(() {});
                                     },
                                     child: Icon(
@@ -266,8 +268,9 @@ class _StudyProgramListUserWidgetState
                                                 .languageCode,
                                           );
                                         });
-                                        await _model
-                                            .getStaffsProgramsList(context);
+                                        setState(() => _model
+                                            .listViewPagingController
+                                            ?.refresh());
                                       },
                                     ),
                                   ),
@@ -303,30 +306,69 @@ class _StudyProgramListUserWidgetState
                       ),
                     ),
                   ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                  child: Builder(
-                    builder: (context) {
-                      final itemProgramIdTilte =
-                          _model.staffsProgramsList.toList();
-                      if (itemProgramIdTilte.isEmpty) {
-                        return const Center(
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                    child: PagedListView<ApiPagingParams, dynamic>.separated(
+                      pagingController: _model.setListViewController(
+                        (nextPageMarker) =>
+                            StudyProgramGroup.staffsProgramsCall.call(
+                          accessToken: FFAppState().accessToken,
+                          limit: 20,
+                          offset: nextPageMarker.nextPageNumber * 20,
+                          filter: '{\"_and\":[ {\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffLogin,
+                            r'''$.organization_id''',
+                          ).toString()}\"}}},{\"staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffLogin,
+                            r'''$.id''',
+                          ).toString()}\"}}}${(_model.dateStart != '') && (_model.dateStart != 'noData') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noData') ? _model.dateStart : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noData') ? '\"}}' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ((String var1) {
+                              return DateTime.parse(var1)
+                                  .add(const Duration(days: 1))
+                                  .toString();
+                            }(_model.dateEnd)) : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? '\"}}' : ' '}${_model.textFieldNameSearchTextController.text != '' ? ',{\"program_id\":{\"name\":{\"_icontains\":\"' : ' '}${_model.textFieldNameSearchTextController.text != '' ? _model.textFieldNameSearchTextController.text : ' '}${_model.textFieldNameSearchTextController.text != '' ? '\"}}}' : ' '}${(_model.lessonName != '') && (_model.lessonName != 'noData') ? ',{\"program_id\":{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"' : ' '}${(_model.lessonName != '') && (_model.lessonName != 'noData') ? _model.lessonName : ' '}${(_model.lessonName != '') && (_model.lessonName != 'noData') ? '\"}}}}}' : ' '},{\"program_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
+                        ),
+                      ),
+                      padding: EdgeInsets.zero,
+                      primary: false,
+                      reverse: false,
+                      scrollDirection: Axis.vertical,
+                      separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                      builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                        // Customize what your widget looks like when it's loading the first page.
+                        firstPageProgressIndicatorBuilder: (_) => Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        ),
+                        // Customize what your widget looks like when it's loading another page.
+                        newPageProgressIndicatorBuilder: (_) => Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        ),
+                        noItemsFoundIndicatorBuilder: (_) => const Center(
                           child: SizedBox(
                             width: double.infinity,
                             child: DataNotFoundWidget(),
                           ),
-                        );
-                      }
-                      return ListView.separated(
-                        padding: EdgeInsets.zero,
-                        primary: false,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: itemProgramIdTilte.length,
-                        separatorBuilder: (_, __) => const SizedBox(height: 10.0),
-                        itemBuilder: (context, itemProgramIdTilteIndex) {
-                          final itemProgramIdTilteItem =
-                              itemProgramIdTilte[itemProgramIdTilteIndex];
+                        ),
+                        itemBuilder: (context, _, itemProgramIdTilteIndex) {
+                          final itemProgramIdTilteItem = _model
+                              .listViewPagingController!
+                              .itemList![itemProgramIdTilteIndex];
                           return Container(
                             decoration: const BoxDecoration(),
                             child: Column(
@@ -373,7 +415,7 @@ class _StudyProgramListUserWidgetState
                                       ),
                                       child: Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 12.0, 5.0, 12.0),
+                                            6.0, 12.0, 6.0, 12.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
@@ -385,64 +427,37 @@ class _StudyProgramListUserWidgetState
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    await showDialog(
-                                                      context: context,
-                                                      builder:
-                                                          (alertDialogContext) {
-                                                        return AlertDialog(
-                                                          title: Text(
-                                                              itemProgramIdTilteItem
-                                                                  .programId
-                                                                  .lessions
-                                                                  .where((e) =>
-                                                                      e.lessionsId
-                                                                          .status ==
-                                                                      'draft')
-                                                                  .toList()
-                                                                  .length
-                                                                  .toString()),
-                                                          content:
-                                                              const Text('draff'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: const Text('Ok'),
-                                                            ),
-                                                          ],
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                  child: Text(
-                                                    '#${(itemProgramIdTilteIndex + 1).toString()} ${itemProgramIdTilteItem.programId.name != '' ? itemProgramIdTilteItem.programId.name : ''} ${itemProgramIdTilteItem.programId.lessions.isNotEmpty ? '(${itemProgramIdTilteItem.programId.lessions.length.toString()} bài học)' : ''}',
-                                                    maxLines: 2,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 14.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                  ),
+                                                Text(
+                                                  '#${(itemProgramIdTilteIndex + 1).toString()} ${itemProgramIdTilteItem.programId.name != null && itemProgramIdTilteItem.programId.name != '' ? itemProgramIdTilteItem.programId.name : ''} ${itemProgramIdTilteItem.programId.lessions.length > 0 ? '(${formatNumber(
+                                                      itemProgramIdTilteItem
+                                                          .programId.lessions
+                                                          .where((e) =>
+                                                              e.lessionsId
+                                                                  .status ==
+                                                              'published')
+                                                          .toList()
+                                                          .length,
+                                                      formatType:
+                                                          FormatType.decimal,
+                                                      decimalType: DecimalType
+                                                          .commaDecimal,
+                                                    )} bài học)' : ''}',
+                                                  maxLines: 2,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
                                                 ),
                                                 Align(
                                                   alignment:
@@ -515,7 +530,7 @@ class _StudyProgramListUserWidgetState
                                                             if ((itemProgramIdTilteItem
                                                                         .programId
                                                                         .estimateInDay ==
-                                                                    null) &&
+                                                                    null) ||
                                                                 (itemProgramIdTilteItem
                                                                         .programId
                                                                         .estimateInDay ==
@@ -527,35 +542,46 @@ class _StudyProgramListUserWidgetState
                                                                     null) &&
                                                                 (itemProgramIdTilteItem
                                                                         .programId
-                                                                        .estimateInDay <=
-                                                                    0)) {
-                                                              return 'Hết hạn';
-                                                            } else if ((itemProgramIdTilteItem
-                                                                        .programId
-                                                                        .estimateInDay !=
-                                                                    null) &&
-                                                                (itemProgramIdTilteItem
-                                                                        .programId
                                                                         .estimateInDay >
                                                                     0)) {
-                                                              return '${(String item1, int item2, String item3) {
+                                                              return ((String item1,
+                                                                          int item2,
+                                                                          String
+                                                                              item3) {
                                                                 return DateTime.parse(
-                                                                        item1)
-                                                                    .add(Duration(
-                                                                        days:
-                                                                            item2))
-                                                                    .difference(
-                                                                        DateTime.parse(
-                                                                            item3))
-                                                                    .inDays
-                                                                    .toString();
-                                                              }(itemProgramIdTilteItem.programId.dateCreated, itemProgramIdTilteItem.programId.estimateInDay, dateTimeFormat(
-                                                                    'yyyy-MM-dd',
-                                                                    getCurrentTimestamp,
-                                                                    locale: FFLocalizations.of(
-                                                                            context)
-                                                                        .languageCode,
-                                                                  ))} ngày';
+                                                                            item1)
+                                                                        .add(Duration(
+                                                                            days:
+                                                                                item2))
+                                                                        .difference(
+                                                                            DateTime.parse(item3))
+                                                                        .inDays >
+                                                                    0;
+                                                              }(
+                                                                      itemProgramIdTilteItem
+                                                                          .dateCreated,
+                                                                      itemProgramIdTilteItem
+                                                                          .programId
+                                                                          .estimateInDay,
+                                                                      getCurrentTimestamp
+                                                                          .toString())
+                                                                  ? '${(String item1, int item2, String item3) {
+                                                                      return DateTime.parse(
+                                                                              item1)
+                                                                          .add(Duration(
+                                                                              days:
+                                                                                  item2))
+                                                                          .difference(
+                                                                              DateTime.parse(item3))
+                                                                          .inDays
+                                                                          .toString();
+                                                                    }(itemProgramIdTilteItem.dateCreated, itemProgramIdTilteItem.programId.estimateInDay, dateTimeFormat(
+                                                                        'yyyy-MM-dd',
+                                                                        getCurrentTimestamp,
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      ))} ngày'
+                                                                  : 'Hết hạn');
                                                             } else {
                                                               return '  ';
                                                             }
@@ -704,7 +730,7 @@ class _StudyProgramListUserWidgetState
                                                         ),
                                                       if (itemProgramIdTilteItem
                                                               .status ==
-                                                          'Done')
+                                                          'done')
                                                         Builder(
                                                           builder: (context) =>
                                                               Padding(
@@ -888,6 +914,8 @@ class _StudyProgramListUserWidgetState
                                                                             .checkOpen)
                                                                 ? 'Thu nhỏ'
                                                                 : 'Xem thêm',
+                                                            textAlign:
+                                                                TextAlign.end,
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodySmall
@@ -978,11 +1006,6 @@ class _StudyProgramListUserWidgetState
                                                   context.pushNamed(
                                                     'Staffs_programs_lesson',
                                                     queryParameters: {
-                                                      'checkScroll':
-                                                          serializeParam(
-                                                        '',
-                                                        ParamType.String,
-                                                      ),
                                                       'programsId':
                                                           serializeParam(
                                                         itemProgramIdTilteItem
@@ -1032,7 +1055,7 @@ class _StudyProgramListUserWidgetState
                                                               BoxDecoration(
                                                             color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .tertiary,
+                                                                .noColor,
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
@@ -1138,12 +1161,6 @@ class _StudyProgramListUserWidgetState
                                                             context.pushNamed(
                                                               'Staffs_programs_lesson',
                                                               queryParameters: {
-                                                                'checkScroll':
-                                                                    serializeParam(
-                                                                  '',
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
                                                                 'programsId':
                                                                     serializeParam(
                                                                   itemProgramIdTilteItem
@@ -1194,8 +1211,8 @@ class _StudyProgramListUserWidgetState
                             ),
                           );
                         },
-                      );
-                    },
+                      ),
+                    ),
                   ),
                 ),
               ],

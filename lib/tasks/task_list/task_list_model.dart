@@ -74,10 +74,6 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in TaskList widget.
   bool? caculatorTotalToken;
-  // Stores action output result for [Backend Call - API (GetListTask)] action in TaskList widget.
-  ApiCallResponse? apiResultGetTaskList;
-  // Stores action output result for [Action Block - tokenReload] action in TaskList widget.
-  bool? tokenReloadTaskListCheck;
   // State field(s) for TextFieldName widget.
   FocusNode? textFieldNameFocusNode;
   TextEditingController? textFieldNameTextController;
@@ -87,10 +83,6 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
   PagingController<ApiPagingParams, dynamic>? listViewPagingController1;
   Function(ApiPagingParams nextPageMarker)? listViewApiCall1;
 
-  // Stores action output result for [Action Block - tokenReload] action in Icon widget.
-  bool? updateoperation22Token;
-  // Stores action output result for [Backend Call - API (UpdateOperation)] action in Icon widget.
-  ApiCallResponse? apiResultUpdateoperation22;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? confirmOperationCopy2Token;
   // Stores action output result for [Backend Call - API (ConfirmOperation)] action in Button widget.
@@ -106,10 +98,14 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
   // Models for do_action_type_upload_file dynamic component.
   late FlutterFlowDynamicModels<DoActionTypeUploadFileModel>
       doActionTypeUploadFileModels;
+  // Stores action output result for [Action Block - tokenReload] action in do_action_type_upload_file widget.
+  bool? apiResultUpdateoperationToken;
   // Stores action output result for [Backend Call - API (UpdateOperation)] action in do_action_type_upload_file widget.
   ApiCallResponse? apiResultUpdateoperation;
+  // Stores action output result for [Action Block - tokenReload] action in do_action_type_image widget.
+  bool? updateoperationToken;
   // Stores action output result for [Backend Call - API (UpdateOperation)] action in do_action_type_image widget.
-  ApiCallResponse? apiResultUpdateoperationCopyCopy;
+  ApiCallResponse? apiResultUpdateoperation2;
   // Stores action output result for [Action Block - tokenReload] action in do_action_type_approve widget.
   bool? confirmOperationCopyToken;
   // Stores action output result for [Backend Call - API (ConfirmOperation)] action in do_action_type_approve widget.
@@ -118,6 +114,10 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
   bool? updateoperationCopyCopyCopyCopyToken;
   // Stores action output result for [Backend Call - API (UpdateOperation)] action in do_action_type_to_do_list widget.
   ApiCallResponse? apiResultUpdateoperationCopyCopyCopyCopy;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? updateoperation22Token;
+  // Stores action output result for [Backend Call - API (UpdateOperation)] action in Button widget.
+  ApiCallResponse? apiResultUpdateoperation22;
   // Model for navBar component.
   late NavBarModel navBarModel;
 
@@ -159,6 +159,50 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
       }
     } else {
       FFAppState().update(() {});
+    }
+  }
+
+  Future getNumberTask(BuildContext context) async {
+    ApiCallResponse? apiResultGetTaskList;
+
+    apiResultGetTaskList = await TaskGroup.getListTaskCall.call(
+      accessToken: FFAppState().accessToken,
+      filter:
+          '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffLogin,
+        r'''$.id''',
+      ).toString().toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffLogin,
+        r'''$.organization_id''',
+      ).toString().toString()}\"}}}]}',
+    );
+    if ((apiResultGetTaskList.succeeded ?? true)) {
+      totalDone = TaskListDataStruct.maybeFromMap(
+              (apiResultGetTaskList.jsonBody ?? ''))
+          ?.data
+          .where((e) =>
+              (e.status == 'done') &&
+              (e.submitStaffId.id ==
+                  getJsonField(
+                    FFAppState().staffLogin,
+                    r'''$.id''',
+                  )))
+          .toList()
+          .length;
+      totalWait = TaskListDataStruct.maybeFromMap(
+              (apiResultGetTaskList.jsonBody ?? ''))!
+          .data
+          .where(
+              (e) => (e.status == 'todo') && (e.current.toString() == '0'))
+          .toList()
+          .length;
+      totalTodo = TaskListDataStruct.maybeFromMap(
+              (apiResultGetTaskList.jsonBody ?? ''))!
+          .data
+          .where(
+              (e) => (e.status == 'todo') && (e.current.toString() == '1'))
+          .toList()
+          .length;
     }
   }
 

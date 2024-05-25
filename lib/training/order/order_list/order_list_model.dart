@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'dart:async';
 import 'order_list_widget.dart' show OrderListWidget;
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -19,9 +20,27 @@ class OrderListModel extends FlutterFlowModel<OrderListWidget> {
           int index, Function(ProgramOrderStruct) updateFn) =>
       listData[index] = updateFn(listData[index]);
 
+  String statusFilter = '';
+
+  String privateFilter = '';
+
+  String codeFilter = '';
+
+  String nameFilter = '';
+
+  String authorFilter = '';
+
+  String dateStartFilter = '';
+
+  String dateEndFilter = '';
+
+  bool isLoad = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in OrderList widget.
+  bool? tokenReloadOrderList;
   // State field(s) for search widget.
   FocusNode? searchFocusNode;
   TextEditingController? searchTextController;
@@ -66,6 +85,22 @@ class OrderListModel extends FlutterFlowModel<OrderListWidget> {
   }
 
   /// Additional helper methods.
+  Future waitForOnePageForListView({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete =
+          (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
   PagingController<ApiPagingParams, dynamic> setListViewController(
     Function(ApiPagingParams) apiCall,
   ) {
@@ -90,7 +125,9 @@ class OrderListModel extends FlutterFlowModel<OrderListWidget> {
       listViewApiCall!(nextPageMarker).then((listViewGetListOrderResponse) {
         final pageItems = (ProgramOrderDataStruct.maybeFromMap(
                         listViewGetListOrderResponse.jsonBody)!
-                    .data ??
+                    .data
+                    .where((e) => e.status == 'published')
+                    .toList() ??
                 [])
             .toList() as List;
         final newNumItems = nextPageMarker.numItems + pageItems.length;

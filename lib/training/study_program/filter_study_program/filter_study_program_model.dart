@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'filter_study_program_widget.dart' show FilterStudyProgramWidget;
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,9 @@ class FilterStudyProgramModel
 
   DateTime? datePicked1;
   DateTime? datePicked2;
+  // State field(s) for status widget.
+  String? statusValue;
+  FormFieldController<String>? statusValueController;
   // State field(s) for lessions widget.
   FocusNode? lessionsFocusNode;
   TextEditingController? lessionsTextController;

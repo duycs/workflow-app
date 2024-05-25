@@ -51,41 +51,32 @@ class _RadioGroupTestsWidgetState extends State<RadioGroupTestsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Align(
-          alignment: const AlignmentDirectional(-1.0, 0.0),
-          child: FlutterFlowRadioButton(
-            options:
-                _model.detail.map((e) => e.answersId.content).toList().toList(),
-            onChanged: ('1' == '1') ? null : (val) => setState(() {}),
-            controller: _model.radioButtonValueController ??=
-                FormFieldController<String>(
-                    widget.parameter1?.answersId.correct == 1
-                        ? widget.parameter1!.answersId.content
-                        : ' '),
-            optionHeight: 32.0,
-            textStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                  fontFamily: 'Nunito Sans',
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  letterSpacing: 0.0,
-                ),
-            selectedTextStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                  fontFamily: 'Nunito Sans',
-                  letterSpacing: 0.0,
-                ),
-            buttonPosition: RadioButtonPosition.left,
-            direction: Axis.vertical,
-            radioButtonColor: FlutterFlowTheme.of(context).primary,
-            inactiveRadioButtonColor: FlutterFlowTheme.of(context).primary,
-            toggleable: false,
-            horizontalAlignment: WrapAlignment.start,
-            verticalAlignment: WrapCrossAlignment.start,
+    return FlutterFlowRadioButton(
+      options: _model.detail.map((e) => e.answersId.content).toList().toList(),
+      onChanged: ('1' == '1') ? null : (val) => setState(() {}),
+      controller: _model.radioButtonValueController ??=
+          FormFieldController<String>(widget.parameter1?.answersId.correct == 1
+              ? widget.parameter1!.answersId.content
+              : ' '),
+      optionHeight: 42.0,
+      optionWidth: MediaQuery.sizeOf(context).width * 1.2,
+      textStyle: FlutterFlowTheme.of(context).labelMedium.override(
+            fontFamily: 'Nunito Sans',
+            color: FlutterFlowTheme.of(context).primaryText,
+            letterSpacing: 0.0,
           ),
-        ),
-      ],
+      selectedTextStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+            fontFamily: 'Nunito Sans',
+            letterSpacing: 0.0,
+          ),
+      textPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+      buttonPosition: RadioButtonPosition.left,
+      direction: Axis.horizontal,
+      radioButtonColor: FlutterFlowTheme.of(context).primary,
+      inactiveRadioButtonColor: FlutterFlowTheme.of(context).primary,
+      toggleable: true,
+      horizontalAlignment: WrapAlignment.start,
+      verticalAlignment: WrapCrossAlignment.start,
     );
   }
 }

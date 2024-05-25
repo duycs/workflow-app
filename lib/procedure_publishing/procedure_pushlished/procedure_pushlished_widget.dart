@@ -47,7 +47,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
           await ProcedureTemplateGroup.workflowsListCall.call(
         accessToken: FFAppState().accessToken,
         filter: (FFAppState().user.role ==
-                    '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                    'a8d33527-375b-4599-ac70-6a3fcad1de39') ||
                 (FFAppState().user.role ==
                     '82073000-1ba2-43a4-a55c-459d17c23b68')
             ? '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
@@ -263,24 +263,23 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                   isMultiSelect: false,
                                 ),
                               ),
-                            Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 16.0),
-                                child: Container(
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    borderRadius: BorderRadius.circular(5.0),
-                                    border: Border.all(
-                                      color:
-                                          FlutterFlowTheme.of(context).noColor,
+                            if (_model.workflowList.isEmpty)
+                              Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 16.0),
+                                  child: Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.of(context)
+                                            .noColor,
+                                      ),
                                     ),
-                                  ),
-                                  child: Visibility(
-                                    visible: _model.workflowList.isEmpty,
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -363,7 +362,6 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                   ),
                                 ),
                               ),
-                            ),
                             if (_model.workflowSelected?.cron != null &&
                                 _model.workflowSelected?.cron != '')
                               Padding(
@@ -910,43 +908,54 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                   if ((_model.apiResultProcedurepublished
                                           ?.succeeded ??
                                       true)) {
-                                    while (_model.loop <
-                                        _model.staffIdStepOne.length) {
-                                      _model.apiResultReciveTask =
-                                          await TaskGroup.receiveTaskCall.call(
-                                        accessToken: FFAppState().accessToken,
-                                        workflowId: _model.workflowSelected?.id,
-                                        staffId: _model
-                                            .staffIdStepOne[_model.loop]
-                                            .staffsId
-                                            .id,
-                                      );
-                                      shouldSetState = true;
-                                      if (!(_model
-                                              .apiResultReciveTask?.succeeded ??
-                                          true)) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Lỗi nhận task!',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                              ),
-                                            ),
-                                            duration:
-                                                const Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .error,
+                                    if (_model.workflowSelected?.type !=
+                                        'instant') {
+                                      while (_model.loop <
+                                          _model.staffIdStepOne.length) {
+                                        _model.apiResultReciveTask =
+                                            await TaskGroup.receiveTaskCall
+                                                .call(
+                                          accessToken: FFAppState().accessToken,
+                                          workflowId:
+                                              _model.workflowSelected?.id,
+                                          staffId: _model
+                                              .staffIdStepOne[_model.loop]
+                                              .staffsId
+                                              .id,
+                                          publishedCount: getJsonField(
+                                            (_model.apiResultProcedurepublished
+                                                    ?.jsonBody ??
+                                                ''),
+                                            r'''$.workflow.published_count''',
                                           ),
                                         );
+                                        shouldSetState = true;
+                                        if (!(_model.apiResultReciveTask
+                                                ?.succeeded ??
+                                            true)) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Lỗi nhận task!',
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                ),
+                                              ),
+                                              duration:
+                                                  const Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
+                                            ),
+                                          );
+                                        }
+                                        setState(() {
+                                          _model.loop = _model.loop + 1;
+                                        });
                                       }
-                                      setState(() {
-                                        _model.loop = _model.loop + 1;
-                                      });
                                     }
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(

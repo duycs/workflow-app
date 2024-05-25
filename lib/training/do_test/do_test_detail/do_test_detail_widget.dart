@@ -112,16 +112,21 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                           children: [
                             Align(
                               alignment: const AlignmentDirectional(0.0, 1.0),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.network(
-                                    '${FFAppConstants.ApiBaseUrl}/assets/${widget.avatar}?access_token=${FFAppState().accessToken}',
-                                    width: double.infinity,
-                                    height: 200.0,
-                                    fit: BoxFit.cover,
-                                    alignment: const Alignment(0.0, 0.0),
+                              child: Container(
+                                width: double.infinity,
+                                height: 200.0,
+                                decoration: const BoxDecoration(),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.network(
+                                      '${FFAppConstants.ApiBaseUrl}/assets/${widget.avatar}?access_token=${FFAppState().accessToken}',
+                                      width: double.infinity,
+                                      height: 200.0,
+                                      fit: BoxFit.cover,
+                                      alignment: const Alignment(0.0, 0.0),
+                                    ),
                                   ),
                                 ),
                               ),

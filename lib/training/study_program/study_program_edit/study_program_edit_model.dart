@@ -19,6 +19,8 @@ class StudyProgramEditModel extends FlutterFlowModel<StudyProgramEditWidget> {
 
   int? check;
 
+  int? es;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
@@ -63,6 +65,8 @@ class StudyProgramEditModel extends FlutterFlowModel<StudyProgramEditWidget> {
   late LessionsDropdownModel lessionsDropdownModel;
   // Stores action output result for [Action Block - addList] action in LessionsDropdown widget.
   bool? updateLessionItem;
+  // State field(s) for SwitchListTile widget.
+  bool? switchListTileValue;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? tokenStudyProgramEdit;
   // Stores action output result for [Backend Call - API (StudyProgramLessionsUpdate)] action in Button widget.

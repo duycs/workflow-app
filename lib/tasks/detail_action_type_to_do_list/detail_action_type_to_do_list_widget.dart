@@ -75,17 +75,17 @@ class _DetailActionTypeToDoListWidgetState
                             context: context,
                             builder: (alertDialogContext) {
                               return AlertDialog(
-                                title: const Text('Bạn chắc không?'),
+                                title: const Text('Xác nhận đã thực hiện?'),
                                 actions: [
                                   TextButton(
                                     onPressed: () => Navigator.pop(
                                         alertDialogContext, false),
-                                    child: const Text('Không'),
+                                    child: const Text('Đóng'),
                                   ),
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.pop(alertDialogContext, true),
-                                    child: const Text('Có'),
+                                    child: const Text('Xác nhận'),
                                   ),
                                 ],
                               );

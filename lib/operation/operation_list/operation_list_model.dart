@@ -45,8 +45,6 @@ class OperationListModel extends FlutterFlowModel<OperationListWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in OperationList widget.
   bool? tokenReloadOperationListList;
-  // Stores action output result for [Action Block - tokenReload] action in OperationList widget.
-  bool? tokenReloadOperationListCheck;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

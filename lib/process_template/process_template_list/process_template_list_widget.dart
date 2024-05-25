@@ -13,6 +13,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'process_template_list_model.dart';
 export 'process_template_list_model.dart';
@@ -41,34 +42,6 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
       _model.tokenReloadProcessTemplateList =
           await action_blocks.tokenReload(context);
       if (_model.tokenReloadProcessTemplateList!) {
-        _model.apiResultListData =
-            await ProcedureTemplateGroup.workflowsListCall.call(
-          accessToken: FFAppState().accessToken,
-          filter: '{\"_and\":[{\"template\":{\"_eq\":\"1\"}}]}',
-        );
-        if ((_model.apiResultListData?.succeeded ?? true)) {
-          setState(() {
-            _model.dataList = WorkflowsListDataStruct.maybeFromMap(
-                    (_model.apiResultListData?.jsonBody ?? ''))!
-                .data
-                .toList()
-                .cast<WorkflowsStruct>();
-          });
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'Lỗi tải dữ liệu!',
-                style: TextStyle(
-                  color: FlutterFlowTheme.of(context).primaryText,
-                ),
-              ),
-              duration: const Duration(milliseconds: 4000),
-              backgroundColor: FlutterFlowTheme.of(context).error,
-            ),
-          );
-        }
-
         _model.apiResultx0q = await CategoriesGroup.getCategoriesListCall.call(
           accessToken: FFAppState().accessToken,
         );
@@ -217,7 +190,8 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                           setState(() {
                             _model.domainSearch = dom!.toList().cast<String>();
                           });
-                          await _model.callSearchList(context);
+                          setState(
+                              () => _model.gridViewPagingController?.refresh());
                           setState(() {});
                         },
                       ),
@@ -252,9 +226,9 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                         '_model.textNameTextController',
                         const Duration(milliseconds: 500),
                         () async {
-                          await _model.callSearchList(context);
                           setState(() {});
-                          setState(() {});
+                          setState(
+                              () => _model.gridViewPagingController?.refresh());
                         },
                       ),
                       autofocus: false,
@@ -307,24 +281,24 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                         prefixIcon: const Icon(
                           Icons.search,
                         ),
-                        suffixIcon:
-                            _model.textNameTextController!.text.isNotEmpty
-                                ? InkWell(
-                                    onTap: () async {
-                                      _model.textNameTextController?.clear();
-                                      await _model.callSearchList(context);
-                                      setState(() {});
-                                      setState(() {});
-                                      setState(() {});
-                                    },
-                                    child: Icon(
-                                      Icons.clear,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 20.0,
-                                    ),
-                                  )
-                                : null,
+                        suffixIcon: _model
+                                .textNameTextController!.text.isNotEmpty
+                            ? InkWell(
+                                onTap: () async {
+                                  _model.textNameTextController?.clear();
+                                  setState(() {});
+                                  setState(() => _model.gridViewPagingController
+                                      ?.refresh());
+                                  setState(() {});
+                                },
+                                child: Icon(
+                                  Icons.clear,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 20.0,
+                                ),
+                              )
+                            : null,
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Nunito Sans',
@@ -424,8 +398,8 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                         setState(() {
                           _model.loop = 0;
                         });
-                        await _model.callSearchList(context);
-                        setState(() {});
+                        setState(
+                            () => _model.gridViewPagingController?.refresh());
                       },
                       selectedChipStyle: ChipStyle(
                         backgroundColor: FlutterFlowTheme.of(context).secondary,
@@ -476,7 +450,10 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                     .addToEnd(const SizedBox(width: 16.0)),
               ),
             ),
-            if ('1' == '23')
+            if ('${_model.domainSearch.isNotEmpty ? (List<String> strings) {
+                    return strings.map((str) => '"$str"').join(',');
+                  }(_model.domainSearch.toList()) : ' '}${(_model.categoryId != '') && (_model.categoryId != '1') && (_model.categoryId != ' ') ? _model.categoryId : ' '}${_model.textNameTextController.text != '' ? _model.textNameTextController.text : ' '}' !=
+                '   ')
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 12.0),
                 child: Text(
@@ -493,257 +470,315 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
             Expanded(
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(15.0, 5.0, 15.0, 0.0),
-                child: Builder(
-                  builder: (context) {
-                    final listGrid = _model.dataList.toList();
-                    if (listGrid.isEmpty) {
-                      return const Center(
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: DataNotFoundWidget(),
+                child: PagedGridView<ApiPagingParams, dynamic>(
+                  pagingController: _model.setGridViewController(
+                    (nextPageMarker) =>
+                        ProcedureTemplateGroup.workflowsListCall.call(
+                      offset: nextPageMarker.nextPageNumber * 20,
+                      limit: 20,
+                      accessToken: FFAppState().accessToken,
+                      filter: '{\"_and\":[{\"template\":{\"_eq\":\"1\"}}${_model.domainSearch.isNotEmpty ? ',{\"domain_id\":{\"_in\":[${(List<String> strings) {
+                          return strings.map((str) => '"$str"').join(',');
+                        }(_model.domainSearch.toList())}]}}' : ' '}${(_model.categoryId != '') && (_model.categoryId != '1') && (_model.categoryId != ' ') ? ',{\"category_id\":{\"_eq\":\"${_model.categoryId}\"}}' : ' '}${_model.textNameTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.textNameTextController.text}\"}}' : ' '}]}',
+                    ),
+                  ),
+                  padding: EdgeInsets.zero,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount:
+                        MediaQuery.sizeOf(context).width < kBreakpointMedium
+                            ? 2
+                            : 3,
+                    crossAxisSpacing: 15.0,
+                    mainAxisSpacing: 25.0,
+                    childAspectRatio: 1.0,
+                  ),
+                  scrollDirection: Axis.vertical,
+                  builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                    // Customize what your widget looks like when it's loading the first page.
+                    firstPageProgressIndicatorBuilder: (_) => Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
+                          ),
                         ),
-                      );
-                    }
-                    return GridView.builder(
-                      padding: EdgeInsets.zero,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount:
-                            MediaQuery.sizeOf(context).width < kBreakpointMedium
-                                ? 2
-                                : 3,
-                        crossAxisSpacing: 15.0,
-                        mainAxisSpacing: 25.0,
-                        childAspectRatio: 1.0,
                       ),
-                      scrollDirection: Axis.vertical,
-                      itemCount: listGrid.length,
-                      itemBuilder: (context, listGridIndex) {
-                        final listGridItem = listGrid[listGridIndex];
-                        return InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            context.pushNamed(
-                              'ProcessTemplateDetail',
-                              queryParameters: {
-                                'id': serializeParam(
-                                  listGridItem.id,
-                                  ParamType.String,
-                                ),
-                              }.withoutNulls,
-                              extra: <String, dynamic>{
-                                kTransitionInfoKey: const TransitionInfo(
-                                  hasTransition: true,
-                                  transitionType: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                ),
-                              },
-                            );
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            height: 50.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              boxShadow: const [
-                                BoxShadow(
-                                  blurRadius: 4.0,
-                                  color: Color(0x33000000),
-                                  offset: Offset(
-                                    0.0,
-                                    2.0,
-                                  ),
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(10.0),
-                              border: Border.all(
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
+                    ),
+                    // Customize what your widget looks like when it's loading another page.
+                    newPageProgressIndicatorBuilder: (_) => Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
+                          ),
+                        ),
+                      ),
+                    ),
+                    noItemsFoundIndicatorBuilder: (_) => const Center(
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: DataNotFoundWidget(),
+                      ),
+                    ),
+                    itemBuilder: (context, _, listGridIndex) {
+                      final listGridItem = _model
+                          .gridViewPagingController!.itemList![listGridIndex];
+                      return InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed(
+                            'ProcessTemplateDetail',
+                            queryParameters: {
+                              'id': serializeParam(
+                                listGridItem.id,
+                                ParamType.String,
                               ),
+                            }.withoutNulls,
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: const TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
+                          );
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            boxShadow: const [
+                              BoxShadow(
+                                blurRadius: 4.0,
+                                color: Color(0x33000000),
+                                offset: Offset(
+                                  0.0,
+                                  2.0,
+                                ),
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(10.0),
+                            border: Border.all(
+                              color: FlutterFlowTheme.of(context).secondaryText,
                             ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: double.infinity,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                      child: Visibility(
-                                        visible: listGridItem.steps.length < 0,
-                                        child: Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    5.0, 0.0, 5.0, 0.0),
-                                            child: SingleChildScrollView(
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Container(
-                                                    width: functions
-                                                        .stringToInt(
-                                                            (int var1) {
-                                                          return var1 != 0
-                                                              ? (25 / var1)
-                                                                  .round()
-                                                                  .toString()
-                                                              : 0.toString();
-                                                        }(listGridItem.steps.length))
-                                                        .toDouble(),
-                                                    height: functions
-                                                        .stringToInt(
-                                                            (int var1) {
-                                                          return var1 != 0
-                                                              ? (25 / var1)
-                                                                  .round()
-                                                                  .toString()
-                                                              : 0.toString();
-                                                        }(listGridItem.steps.length))
-                                                        .toDouble(),
-                                                    decoration: BoxDecoration(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                      shape: BoxShape.circle,
-                                                      border: Border.all(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                      ),
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                                    child: Visibility(
+                                      visible: listGridItem.steps.length > 0,
+                                      child: Align(
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  5.0, 0.0, 5.0, 0.0),
+                                          child: SingleChildScrollView(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  width: functions
+                                                      .stringToInt(
+                                                          (int var1) {
+                                                        return var1 != 0
+                                                            ? (25 / var1)
+                                                                .round()
+                                                                .toString()
+                                                            : 0.toString();
+                                                      }(listGridItem.steps.length))
+                                                      .toDouble(),
+                                                  height: functions
+                                                      .stringToInt(
+                                                          (int var1) {
+                                                        return var1 != 0
+                                                            ? (25 / var1)
+                                                                .round()
+                                                                .toString()
+                                                            : 0.toString();
+                                                      }(listGridItem.steps.length))
+                                                      .toDouble(),
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    shape: BoxShape.circle,
+                                                    border: Border.all(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
                                                     ),
                                                   ),
-                                                  Builder(
-                                                    builder: (context) {
-                                                      final listStep =
-                                                          listGridItem.steps
-                                                              .toList();
-                                                      return ListView.builder(
-                                                        padding:
-                                                            EdgeInsets.zero,
-                                                        primary: false,
-                                                        shrinkWrap: true,
-                                                        scrollDirection:
-                                                            Axis.vertical,
-                                                        itemCount:
-                                                            listStep.length,
-                                                        itemBuilder: (context,
-                                                            listStepIndex) {
-                                                          final listStepItem =
-                                                              listStep[
-                                                                  listStepIndex];
-                                                          return Container(
-                                                            decoration:
-                                                                const BoxDecoration(),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .stretch,
-                                                              children: [
-                                                                Row(
+                                                ),
+                                                Builder(
+                                                  builder: (context) {
+                                                    final listStep =
+                                                        listGridItem.steps
+                                                            .toList();
+                                                    return ListView.builder(
+                                                      padding: EdgeInsets.zero,
+                                                      primary: false,
+                                                      shrinkWrap: true,
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      itemCount:
+                                                          listStep.length,
+                                                      itemBuilder: (context,
+                                                          listStepIndex) {
+                                                        final listStepItem =
+                                                            listStep[
+                                                                listStepIndex];
+                                                        return Container(
+                                                          decoration:
+                                                              const BoxDecoration(),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .stretch,
+                                                            children: [
+                                                              Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Container(
+                                                                    width: 1.0,
+                                                                    height: functions
+                                                                        .stringToInt((int var1) {
+                                                                          return var1 != 0
+                                                                              ? (num.parse((30 / var1.round()).toStringAsFixed(0))).toString()
+                                                                              : 0.toString();
+                                                                        }(listGridItem.steps.length))
+                                                                        .toDouble(),
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              Align(
+                                                                alignment:
+                                                                    const AlignmentDirectional(
+                                                                        0.0,
+                                                                        0.0),
+                                                                child: Row(
                                                                   mainAxisSize:
                                                                       MainAxisSize
-                                                                          .max,
+                                                                          .min,
                                                                   mainAxisAlignment:
                                                                       MainAxisAlignment
                                                                           .center,
                                                                   children: [
                                                                     Container(
-                                                                      width:
-                                                                          1.0,
+                                                                      width: functions
+                                                                          .stringToInt((int var1, double var2) {
+                                                                            return var1 != 1 && var1 != 0
+                                                                                ? (num.parse((((var2 / 2).round()) / var1.round()).toStringAsFixed(0))).toString()
+                                                                                : var1 == 0
+                                                                                    ? 0.toString()
+                                                                                    : (var2 / 3).round().toString();
+                                                                          }(listGridItem.steps.length, MediaQuery.sizeOf(context).width))
+                                                                          .toDouble(),
                                                                       height: functions
                                                                           .stringToInt((int var1) {
                                                                             return var1 != 0
-                                                                                ? (num.parse((30 / var1.round()).toStringAsFixed(0))).toString()
+                                                                                ? (num.parse((40 / var1.round()).toStringAsFixed(0))).toString()
                                                                                 : 0.toString();
                                                                           }(listGridItem.steps.length))
                                                                           .toDouble(),
+                                                                      constraints:
+                                                                          const BoxConstraints(
+                                                                        maxWidth:
+                                                                            double.infinity,
+                                                                        maxHeight:
+                                                                            double.infinity,
+                                                                      ),
                                                                       decoration:
                                                                           BoxDecoration(
                                                                         color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                Align(
-                                                                  alignment:
-                                                                      const AlignmentDirectional(
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .min,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Container(
-                                                                        width: functions
-                                                                            .stringToInt((int var1, double var2) {
-                                                                              return var1 != 1 && var1 != 0
-                                                                                  ? (num.parse((((var2 / 2).round()) / var1.round()).toStringAsFixed(0))).toString()
-                                                                                  : var1 == 0
-                                                                                      ? 0.toString()
-                                                                                      : (var2 / 3).round().toString();
-                                                                            }(listGridItem.steps.length, MediaQuery.sizeOf(context).width))
-                                                                            .toDouble(),
-                                                                        height: functions
-                                                                            .stringToInt((int var1) {
-                                                                              return var1 != 0 ? (num.parse((40 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                            }(listGridItem.steps.length))
-                                                                            .toDouble(),
-                                                                        constraints:
-                                                                            const BoxConstraints(
-                                                                          maxWidth:
-                                                                              double.infinity,
-                                                                          maxHeight:
-                                                                              double.infinity,
-                                                                        ),
-                                                                        decoration:
-                                                                            BoxDecoration(
+                                                                            .primaryBackground,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(2.0),
+                                                                        shape: BoxShape
+                                                                            .rectangle,
+                                                                        border:
+                                                                            Border.all(
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).primaryBackground,
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(2.0),
-                                                                          shape:
-                                                                              BoxShape.rectangle,
-                                                                          border:
-                                                                              Border.all(
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryText,
-                                                                          ),
+                                                                              FlutterFlowTheme.of(context).primaryText,
                                                                         ),
-                                                                        alignment: const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.min,
-                                                                          children: [
-                                                                            Padding(
+                                                                      ),
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        children: [
+                                                                          Padding(
+                                                                            padding:
+                                                                                EdgeInsets.all(valueOrDefault<double>(
+                                                                              functions
+                                                                                  .stringToInt((int var1) {
+                                                                                    return var1 != 0 ? (num.parse((8 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
+                                                                                  }(listGridItem.steps.length))
+                                                                                  .toDouble(),
+                                                                              0.0,
+                                                                            )),
+                                                                            child:
+                                                                                Text(
+                                                                              '${(listStepIndex + 1).toString()}.',
+                                                                              maxLines: 2,
+                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                    fontFamily: 'Nunito Sans',
+                                                                                    fontSize: functions
+                                                                                        .stringToInt((int var1) {
+                                                                                          return var1 != 0 ? (num.parse((14 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
+                                                                                        }(listGridItem.steps.length))
+                                                                                        .toDouble(),
+                                                                                    letterSpacing: 0.0,
+                                                                                  ),
+                                                                            ),
+                                                                          ),
+                                                                          Expanded(
+                                                                            child:
+                                                                                Padding(
                                                                               padding: EdgeInsets.all(valueOrDefault<double>(
                                                                                 functions
                                                                                     .stringToInt((int var1) {
@@ -753,7 +788,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                                 0.0,
                                                                               )),
                                                                               child: Text(
-                                                                                '${(listStepIndex + 1).toString()}.',
+                                                                                listStepItem.name != null && listStepItem.name != '' ? listStepItem.name : ' ',
                                                                                 maxLines: 2,
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       fontFamily: 'Nunito Sans',
@@ -766,109 +801,82 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                                     ),
                                                                               ),
                                                                             ),
-                                                                            Expanded(
-                                                                              child: Padding(
-                                                                                padding: EdgeInsets.all(valueOrDefault<double>(
-                                                                                  functions
-                                                                                      .stringToInt((int var1) {
-                                                                                        return var1 != 0 ? (num.parse((8 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                                      }(listGridItem.steps.length))
-                                                                                      .toDouble(),
-                                                                                  0.0,
-                                                                                )),
-                                                                                child: Text(
-                                                                                  'Tên bước',
-                                                                                  maxLines: 2,
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Nunito Sans',
-                                                                                        fontSize: functions
-                                                                                            .stringToInt((int var1) {
-                                                                                              return var1 != 0 ? (num.parse((14 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                                            }(listGridItem.steps.length))
-                                                                                            .toDouble(),
-                                                                                        letterSpacing: 0.0,
-                                                                                      ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ],
-                                                                        ),
+                                                                          ),
+                                                                        ],
                                                                       ),
-                                                                    ],
-                                                                  ),
+                                                                    ),
+                                                                  ],
                                                                 ),
-                                                              ],
-                                                            ),
-                                                          );
-                                                        },
-                                                      );
-                                                    },
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Container(
-                                                        width: 1.0,
-                                                        height: functions
-                                                            .stringToInt(
-                                                                (int var1) {
-                                                              return var1 != 0
-                                                                  ? (30 / var1)
-                                                                      .round()
-                                                                      .toString()
-                                                                  : 0.toString();
-                                                            }(listGridItem.steps.length))
-                                                            .toDouble(),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Container(
-                                                    width: functions
-                                                        .stringToInt(
-                                                            (int var1) {
-                                                          return var1 != 0
-                                                              ? (25 / var1)
-                                                                  .round()
-                                                                  .toString()
-                                                              : 0.toString();
-                                                        }(listGridItem.steps.length))
-                                                        .toDouble(),
-                                                    height: functions
-                                                        .stringToInt(
-                                                            (int var1) {
-                                                          return var1 != 0
-                                                              ? (25 / var1)
-                                                                  .round()
-                                                                  .toString()
-                                                              : 0.toString();
-                                                        }(listGridItem.steps.length))
-                                                        .toDouble(),
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      shape: BoxShape.circle,
-                                                      border: Border.all(
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Container(
+                                                      width: 1.0,
+                                                      height: functions
+                                                          .stringToInt(
+                                                              (int var1) {
+                                                            return var1 != 0
+                                                                ? (30 / var1)
+                                                                    .round()
+                                                                    .toString()
+                                                                : 0.toString();
+                                                          }(listGridItem.steps.length))
+                                                          .toDouble(),
+                                                      decoration: BoxDecoration(
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
                                                       ),
                                                     ),
+                                                  ],
+                                                ),
+                                                Container(
+                                                  width: functions
+                                                      .stringToInt(
+                                                          (int var1) {
+                                                        return var1 != 0
+                                                            ? (25 / var1)
+                                                                .round()
+                                                                .toString()
+                                                            : 0.toString();
+                                                      }(listGridItem.steps.length))
+                                                      .toDouble(),
+                                                  height: functions
+                                                      .stringToInt(
+                                                          (int var1) {
+                                                        return var1 != 0
+                                                            ? (25 / var1)
+                                                                .round()
+                                                                .toString()
+                                                            : 0.toString();
+                                                      }(listGridItem.steps.length))
+                                                      .toDouble(),
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    shape: BoxShape.circle,
+                                                    border: Border.all(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ),
@@ -876,40 +884,42 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                     ),
                                   ),
                                 ),
-                                Divider(
-                                  height: 1.0,
-                                  thickness: 1.0,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 4.0, 0.0, 4.0),
-                                  child: Text(
-                                    listGridItem.name.maybeHandleOverflow(
-                                      maxChars: 25,
-                                      replacement: '…',
-                                    ),
-                                    textAlign: TextAlign.center,
-                                    maxLines: 1,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          fontSize: 14.0,
-                                          letterSpacing: 0.0,
+                              ),
+                              Divider(
+                                height: 1.0,
+                                thickness: 1.0,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 4.0, 0.0, 4.0),
+                                child: Text(
+                                  listGridItem.name != null &&
+                                          listGridItem.name != ''
+                                      ? listGridItem.name
+                                      : ' '.maybeHandleOverflow(
+                                          maxChars: 25,
+                                          replacement: '…',
                                         ),
-                                  ),
+                                  textAlign: TextAlign.center,
+                                  maxLines: 1,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        letterSpacing: 0.0,
+                                      ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        );
-                      },
-                    );
-                  },
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
             ),

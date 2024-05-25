@@ -104,6 +104,8 @@ class LessonListsHomepageModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in LessonLists_Homepage widget.
+  bool? tokenReloadLessonListsHomepageList;
   // State field(s) for nameSearch widget.
   FocusNode? nameSearchFocusNode;
   TextEditingController? nameSearchTextController;

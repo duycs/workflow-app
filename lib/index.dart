@@ -64,7 +64,7 @@ export '/training_rank/training_rank_detail/training_rank_detail_widget.dart'
     show TrainingRankDetailWidget;
 export '/training/lesson/lesson_create/lesson_create_widget.dart'
     show LessonCreateWidget;
-export '/training_rank/training_rank_update/training_rank_update_widget.dart'
+export '/training/training_rank_update/training_rank_update_widget.dart'
     show TrainingRankUpdateWidget;
 export '/training/lesson/lesson_update/lesson_update_widget.dart'
     show LessonUpdateWidget;
@@ -169,3 +169,5 @@ export '/training/lesson/staffs_programs_lesson/staffs_programs_lesson_widget.da
     show StaffsProgramsLessonWidget;
 export '/details43_receipt/details43_receipt_widget.dart'
     show Details43ReceiptWidget;
+export '/training/study_program/study_program_list_market/study_program_list_market_widget.dart'
+    show StudyProgramListMarketWidget;
