@@ -680,6 +680,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                     .staffs[_model.loop])
                                                                 ?.staffsId
                                                                 .id,
+                                                            publishedCount:
+                                                                dataListItem
+                                                                    .publishedCount,
                                                           );
                                                           shouldSetState =
                                                               true;
@@ -743,6 +746,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                 .accessToken,
                                                         filter:
                                                             '{\"_and\":[{\"workflow_id\":{\"_eq\":\"${widget.workflowId}\"}},{\"published_count\":{\"_eq\":\"${widget.publishedCount?.toString()}\"}}]}',
+                                                        sort: 'number',
                                                       );
                                                       shouldSetState = true;
                                                       if ((_model

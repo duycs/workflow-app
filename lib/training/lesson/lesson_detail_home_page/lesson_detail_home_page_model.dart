@@ -48,10 +48,6 @@ class LessonDetailHomePageModel
 
   String status = 'inprogress';
 
-  String check1 = '';
-
-  String check2 = '';
-
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -139,7 +135,6 @@ class LessonDetailHomePageModel
         (apiResultGetCommment.jsonBody ?? ''),
         r'''$.data[0].test_id''',
       ).toString().toString();
-      check1 = '1';
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
@@ -207,7 +202,6 @@ class LessonDetailHomePageModel
       )!
           .toList()
           .cast<dynamic>();
-      check2 = '1';
     } else {
       checkRefreshTokenBlock1 = await action_blocks.checkRefreshToken(
         context,

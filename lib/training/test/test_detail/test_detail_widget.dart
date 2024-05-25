@@ -349,7 +349,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                                 CrossAxisAlignment.center,
                                             children: [
                                               Text(
-                                                '${(questionListIndex + 1).toString()}.',
+                                                '${(questionListIndex + 1).toString()}:',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .labelMedium

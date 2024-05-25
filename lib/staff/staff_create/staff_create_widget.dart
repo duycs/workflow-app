@@ -780,6 +780,19 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                     children: [
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 0.0, 0.0, 4.0),
+                                        child: Text(
+                                          'Ngày sinh',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             30.0, 0.0, 20.0, 4.0),
                                         child: InkWell(
                                           splashColor: Colors.transparent,
@@ -914,7 +927,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      40.0, 0.0, 0.0, 10.0),
+                                      20.0, 0.0, 0.0, 4.0),
                                   child: Text(
                                     'Giới tính',
                                     style: FlutterFlowTheme.of(context)
@@ -971,6 +984,19 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 0.0, 0.0, 4.0),
+                                        child: Text(
+                                          'Quyền',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             20.0, 0.0, 20.0, 4.0),
@@ -1147,6 +1173,19 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                     children: [
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 0.0, 0.0, 4.0),
+                                        child: Text(
+                                          'Chức vụ gợi ý',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             20.0, 0.0, 20.0, 4.0),
                                         child: FlutterFlowDropDown<String>(
                                           controller:
@@ -1249,7 +1288,20 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 20.0, 20.0, 4.0),
+                                            20.0, 16.0, 0.0, 4.0),
+                                        child: Text(
+                                          'Chức vụ tùy chỉnh:',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 4.0, 20.0, 4.0),
                                         child: TextFormField(
                                           controller:
                                               _model.titleTextTextController,
@@ -1280,7 +1332,6 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                               TextCapitalization.words,
                                           obscureText: false,
                                           decoration: InputDecoration(
-                                            labelText: 'Chức vụ',
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyLarge
@@ -1378,6 +1429,20 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  20.0, 0.0, 0.0, 4.0),
+                                          child: Text(
+                                            'Chi nhánh',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ),
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
@@ -1524,6 +1589,20 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
+                                                  20.0, 0.0, 0.0, 4.0),
+                                          child: Text(
+                                            'Bộ phận',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 0.0, 20.0, 4.0),
                                           child: FlutterFlowDropDown<String>(
                                             controller: _model
@@ -1613,7 +1692,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .error,
-                                                    fontSize: 10.0,
+                                                    fontSize: 12.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                             ),
@@ -1654,16 +1733,14 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Expanded(
-                                        child: Text(
-                                          'Email: ${_model.emailTextController.text}',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
+                                      Text(
+                                        'Email: ${_model.emailTextController.text}',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
                                       ),
                                       InkWell(
                                         splashColor: Colors.transparent,

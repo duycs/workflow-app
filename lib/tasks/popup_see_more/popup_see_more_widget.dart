@@ -49,115 +49,109 @@ class _PopupSeeMoreWidgetState extends State<PopupSeeMoreWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(16.0, 100.0, 16.0, 0.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    FlutterFlowIconButton(
-                      borderRadius: 20.0,
-                      borderWidth: 1.0,
-                      buttonSize: 40.0,
-                      icon: Icon(
-                        Icons.close,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 24.0,
-                      ),
-                      onPressed: () async {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                  child: Text(
-                    valueOrDefault<String>(
-                      widget.fileName,
-                      'Loading',
-                    ),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Nunito Sans',
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.w500,
-                          fontStyle: FontStyle.italic,
+    return Align(
+      alignment: const AlignmentDirectional(0.0, -1.0),
+      child: Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FlutterFlowIconButton(
+                        borderRadius: 20.0,
+                        borderWidth: 1.0,
+                        buttonSize: 40.0,
+                        icon: Icon(
+                          Icons.close,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 24.0,
                         ),
+                        onPressed: () async {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
                   ),
-                ),
-                if (functions.checkFileLast((String tail) {
-                      return tail.split('.').last;
-                    }(widget.fileName!)) ==
-                    'pdf')
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                    child: FlutterFlowPdfViewer(
-                      networkPath:
-                          '${FFAppConstants.ApiBaseUrl}/assets/${widget.fileId}?access_token=${FFAppState().accessToken}',
-                      height: 300.0,
-                      horizontalScroll: false,
+                  if (functions.checkFileLast((String tail) {
+                        return tail.split('.').last;
+                      }(widget.fileName!)) ==
+                      'pdf')
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 16.0),
+                      child: FlutterFlowPdfViewer(
+                        networkPath:
+                            '${FFAppConstants.ApiBaseUrl}/assets/${widget.fileId}?access_token=${FFAppState().accessToken}',
+                        width: double.infinity,
+                        height: 300.0,
+                        horizontalScroll: false,
+                      ),
                     ),
-                  ),
-                if (functions.checkFileLast((String tail) {
-                      return tail.split('.').last;
-                    }(widget.fileName!)) ==
-                    'img')
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        await Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.fade,
-                            child: FlutterFlowExpandedImageView(
-                              image: Image.network(
-                                '${FFAppConstants.ApiBaseUrl}/assets/${widget.fileId}?access_token=${FFAppState().accessToken}',
-                                fit: BoxFit.contain,
-                              ),
-                              allowRotation: false,
-                              tag:
+                  if (functions.checkFileLast((String tail) {
+                        return tail.split('.').last;
+                      }(widget.fileName!)) ==
+                      'img')
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 16.0),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.network(
                                   '${FFAppConstants.ApiBaseUrl}/assets/${widget.fileId}?access_token=${FFAppState().accessToken}',
-                              useHeroAnimation: true,
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: false,
+                                tag:
+                                    '${FFAppConstants.ApiBaseUrl}/assets/${widget.fileId}?access_token=${FFAppState().accessToken}',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag:
+                              '${FFAppConstants.ApiBaseUrl}/assets/${widget.fileId}?access_token=${FFAppState().accessToken}',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              '${FFAppConstants.ApiBaseUrl}/assets/${widget.fileId}?access_token=${FFAppState().accessToken}',
+                              width: double.infinity,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                        );
-                      },
-                      child: Hero(
-                        tag:
-                            '${FFAppConstants.ApiBaseUrl}/assets/${widget.fileId}?access_token=${FFAppState().accessToken}',
-                        transitionOnUserGestures: true,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.network(
-                            '${FFAppConstants.ApiBaseUrl}/assets/${widget.fileId}?access_token=${FFAppState().accessToken}',
-                            fit: BoxFit.cover,
-                          ),
                         ),
                       ),
                     ),
-                  ),
-              ].divide(const SizedBox(height: 8.0)),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

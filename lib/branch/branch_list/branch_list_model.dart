@@ -40,8 +40,6 @@ class BranchListModel extends FlutterFlowModel<BranchListWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Action Block - tokenReload] action in BranchList widget.
-  bool? tokenReloadBracnhListList;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

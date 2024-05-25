@@ -847,27 +847,98 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                       ].divide(
                                                           const SizedBox(width: 8.0)),
                                                     ),
-                                                    Text(
-                                                      '${'${valueOrDefault<String>(
-                                                        dataListViewItem
-                                                            .lessions.length
-                                                            .toString(),
-                                                        '0',
-                                                      )} bài học'} - ${'${valueOrDefault<String>(
-                                                        dataListViewItem
-                                                            .tests.length
-                                                            .toString(),
-                                                        '0',
-                                                      )} bài thi'}',
-                                                      maxLines: 2,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Nunito Sans',
-                                                            letterSpacing: 0.0,
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  8.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            '${'${valueOrDefault<String>(
+                                                              dataListViewItem
+                                                                  .lessions
+                                                                  .length
+                                                                  .toString(),
+                                                              '0',
+                                                            )} bài học'} - ${'${valueOrDefault<String>(
+                                                              dataListViewItem
+                                                                  .tests.length
+                                                                  .toString(),
+                                                              '0',
+                                                            )} bài thi'}',
+                                                            maxLines: 2,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
                                                           ),
+                                                          Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: dataListViewItem
+                                                                          .status ==
+                                                                      'published'
+                                                                  ? FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .accent2
+                                                                  : FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .accent3,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20.0),
+                                                            ),
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          5.0,
+                                                                          2.0,
+                                                                          5.0,
+                                                                          2.0),
+                                                              child: Text(
+                                                                dataListViewItem
+                                                                            .status ==
+                                                                        'published'
+                                                                    ? 'Hoạt động'
+                                                                    : 'Không hoạt động',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      color: dataListViewItem.status ==
+                                                                              'published'
+                                                                          ? FlutterFlowTheme.of(context)
+                                                                              .secondary
+                                                                          : FlutterFlowTheme.of(context)
+                                                                              .tertiary,
+                                                                      fontSize:
+                                                                          13.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                     Row(
                                                       mainAxisSize:
@@ -1700,6 +1771,10 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                     'checkSrcoll':
                                                         serializeParam(
                                                       'StudyProgramList',
+                                                      ParamType.String,
+                                                    ),
+                                                    'checkPage': serializeParam(
+                                                      widget.checkpage,
                                                       ParamType.String,
                                                     ),
                                                   }.withoutNulls,

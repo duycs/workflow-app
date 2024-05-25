@@ -125,7 +125,9 @@ class OrderListModel extends FlutterFlowModel<OrderListWidget> {
       listViewApiCall!(nextPageMarker).then((listViewGetListOrderResponse) {
         final pageItems = (ProgramOrderDataStruct.maybeFromMap(
                         listViewGetListOrderResponse.jsonBody)!
-                    .data ??
+                    .data
+                    .where((e) => e.status == 'published')
+                    .toList() ??
                 [])
             .toList() as List;
         final newNumItems = nextPageMarker.numItems + pageItems.length;

@@ -54,9 +54,10 @@ class _RadioGroupTestsAddWidgetState extends State<RadioGroupTestsAddWidget> {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Align(
-          alignment: const AlignmentDirectional(-1.0, 0.0),
+        Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
           child: FlutterFlowRadioButton(
             options:
                 _model.detail.map((e) => e.answersId.content).toList().toList(),
@@ -66,7 +67,8 @@ class _RadioGroupTestsAddWidgetState extends State<RadioGroupTestsAddWidget> {
                     widget.parameter1?.answersId.correct == 1
                         ? widget.parameter1!.answersId.content
                         : ' '),
-            optionHeight: 32.0,
+            optionHeight: 42.0,
+            optionWidth: MediaQuery.sizeOf(context).width * 1.0,
             textStyle: FlutterFlowTheme.of(context).labelMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
@@ -77,7 +79,7 @@ class _RadioGroupTestsAddWidgetState extends State<RadioGroupTestsAddWidget> {
                   letterSpacing: 0.0,
                 ),
             buttonPosition: RadioButtonPosition.left,
-            direction: Axis.vertical,
+            direction: Axis.horizontal,
             radioButtonColor: FlutterFlowTheme.of(context).primary,
             inactiveRadioButtonColor:
                 FlutterFlowTheme.of(context).secondaryText,

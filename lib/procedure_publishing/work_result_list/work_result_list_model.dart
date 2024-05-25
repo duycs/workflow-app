@@ -177,7 +177,9 @@ class WorkResultListModel extends FlutterFlowModel<WorkResultListWidget> {
           .then((listViewProcedurePublishedListResponse) {
         final pageItems = (ProcedurePublishedListDataStruct.maybeFromMap(
                         listViewProcedurePublishedListResponse.jsonBody)!
-                    .data ??
+                    .data
+                    .where((e) => e.steps.isNotEmpty)
+                    .toList() ??
                 [])
             .toList() as List;
         final newNumItems = nextPageMarker.numItems + pageItems.length;

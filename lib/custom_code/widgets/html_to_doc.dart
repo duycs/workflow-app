@@ -38,14 +38,19 @@ class _HtmlToDocState extends State<HtmlToDoc> {
   bool canScroll = false;
   final GlobalKey _htmlKey = GlobalKey();
   double? _contentHeight;
-
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     _scrollController.addListener(_scrollListener);
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _updateContentHeight();
+    });
+  }
+
+  void _updateContentHeight() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
         setState(() {
           _contentHeight = _getHeight();
@@ -82,63 +87,37 @@ class _HtmlToDocState extends State<HtmlToDoc> {
     if (isExpanded) {
       return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          double maxHeight = widget.height!;
-          double currentHeight = constraints.maxHeight;
-          // kieerm tra
-          // print(_contentHeight);
-          // print(widget.height!);
-          // print(_contentHeight != null && _contentHeight! > widget.height!);
-
-          // Kiểm tra nếu chiều cao hiện tại vượt quá hoặc bằng maxHeight
-          // kiểm tra _contentHeight thay đổi thì set lai state
-          // if (!canScroll) {
-          //   Future.delayed(Duration.zero, () {
-          //     WidgetsBinding.instance!.addPostFrameCallback((_) {
-          //       // Nếu _contentHeight thay đổi, setState sẽ được gọi ở đây
-          //       if (_contentHeight != null &&
-          //           (_contentHeight! > widget.height!)) {
-          //         setState(() {
-          //           canScroll =
-          //               true; // Vô hiệu hóa cuộn khi nội dung đã cuộn đến đáy
-          //         });
-          //       } else {
-          //         setState(() {
-          //           canScroll =
-          //               false; // Vô hiệu hóa cuộn khi nội dung đã cuộn đến đáy
-          //         });
-          //       }
-          //     });
-          //   });
-          // }
-          // });
           return Column(
             children: [
               Container(
                 constraints: BoxConstraints(maxHeight: widget.height!),
                 child: SingleChildScrollView(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: canScroll
+                      ? AlwaysScrollableScrollPhysics()
+                      : NeverScrollableScrollPhysics(),
                   child: HtmlWidget(
                     widget.html,
                     key: _htmlKey,
-                    textStyle: TextStyle(overflow: TextOverflow.ellipsis),
                     onLoadingBuilder: (context, element, loadingProgress) {
-                      // Trong trường hợp này, chúng ta không cần trả về một widget nào
-                      // Thay vào đó, chúng ta sẽ cập nhật _contentHeight trong hàm này
-                      print(loadingProgress);
-                      if (loadingProgress! < 1) {
-                        // Hiển thị biểu tượng loading hoặc thông báo tải
-                        return CircularProgressIndicator();
-                      } else {
-                        // Tiến trình tải đã hoàn tất, hiển thị nội dung HTML
-                        if (!canScroll) {
-                          if (mounted) {
-                            setState(() {
-                              _contentHeight = _getHeight();
-                            });
-                          }
-                        }
+                      if (loadingProgress == null || loadingProgress == 1) {
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          _updateContentHeight();
+                        });
                         return SizedBox.shrink();
+                      } else {
+                        return CircularProgressIndicator();
                       }
+                    },
+                    onTapImage: (image) {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        _updateContentHeight();
+                      });
+                    },
+                    onTapUrl: (url) {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        _updateContentHeight();
+                      });
+                      return true;
                     },
                   ),
                 ),
@@ -160,7 +139,6 @@ class _HtmlToDocState extends State<HtmlToDoc> {
                     ),
                   ),
                 ),
-              // Hiển thị nút "Xem thêm" nếu chưa đạt maxHeight
             ],
           );
         },

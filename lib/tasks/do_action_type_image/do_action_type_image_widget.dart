@@ -44,6 +44,9 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setState(() {
+        _model.listUploadImage = [];
+      });
       while (_model.loop <
           widget.image!.operations.first.operationsId.files.length) {
         setState(() {

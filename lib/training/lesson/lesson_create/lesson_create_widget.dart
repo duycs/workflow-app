@@ -18,9 +18,11 @@ class LessonCreateWidget extends StatefulWidget {
   const LessonCreateWidget({
     super.key,
     String? checkScroll,
+    required this.checkPage,
   }) : checkScroll = checkScroll ?? '0';
 
   final String checkScroll;
+  final String? checkPage;
 
   @override
   State<LessonCreateWidget> createState() => _LessonCreateWidgetState();
@@ -461,12 +463,25 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                'Thời hạn học bài(không bắt buộc): ',
+                                'Thời hạn học bài',
                                 style: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
                                       fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
+                                    ),
+                              ),
+                              Text(
+                                '(không bắt buộc): ',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                      fontStyle: FontStyle.italic,
                                     ),
                               ),
                               Expanded(

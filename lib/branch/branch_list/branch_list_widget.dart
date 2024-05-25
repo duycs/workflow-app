@@ -5,7 +5,6 @@ import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -33,18 +32,11 @@ class _BranchListWidgetState extends State<BranchListWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.tokenReloadBracnhListList =
-          await action_blocks.tokenReload(context);
-      if (_model.tokenReloadBracnhListList!) {
-        await _model.getLinkBranch(context);
-        setState(() {});
-        setState(() {
-          _model.isShow = true;
-        });
-      } else {
-        FFAppState().update(() {});
-        return;
-      }
+      await _model.getLinkBranch(context);
+      setState(() {});
+      setState(() {
+        _model.isShow = true;
+      });
     });
 
     _model.textController ??= TextEditingController();
@@ -79,7 +71,7 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                     elevation: 0,
                     insetPadding: EdgeInsets.zero,
                     backgroundColor: Colors.transparent,
-                    alignment: const AlignmentDirectional(0.0, 0.0)
+                    alignment: const AlignmentDirectional(0.0, 1.0)
                         .resolve(Directionality.of(context)),
                     child: GestureDetector(
                       onTap: () => _model.unfocusNode.canRequestFocus
@@ -92,12 +84,17 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                           setState(() {
                             _model.filter = '';
                             _model.searchStatus = '';
+                            _model.isShow = false;
                           });
                           setState(() {
                             _model.textController?.clear();
                           });
                           setState(
                               () => _model.listViewPagingController?.refresh());
+                          await _model.getLinkBranch(context);
+                          setState(() {
+                            _model.isShow = true;
+                          });
                           setState(() {});
                         },
                       ),
@@ -403,6 +400,7 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                           noItemsFoundIndicatorBuilder: (_) => const Center(
                             child: SizedBox(
                               width: double.infinity,
+                              height: double.infinity,
                               child: DataNotFoundWidget(),
                             ),
                           ),

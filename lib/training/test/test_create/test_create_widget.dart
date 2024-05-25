@@ -4,11 +4,10 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/upload_data.dart';
+import '/training/radio_group_tests_add/radio_group_tests_add_widget.dart';
 import '/training/test/checkbox_groups_test_add/checkbox_groups_test_add_widget.dart';
 import '/training/test/question_create_test/question_create_test_widget.dart';
 import '/training/test/question_test/question_test_widget.dart';
-import '/training/test/radio_group_tests_add/radio_group_tests_add_widget.dart';
 import '/training/test/test_long_text_add/test_long_text_add_widget.dart';
 import '/training/test/test_number_add/test_number_add_widget.dart';
 import '/actions/actions.dart' as action_blocks;
@@ -114,6 +113,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
             autovalidateMode: AutovalidateMode.disabled,
             child: Column(
               mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
                   child: Padding(
@@ -122,100 +122,8 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                       primary: false,
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          Stack(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.memory(
-                                  _model.uploadedLocalFile.bytes ??
-                                      Uint8List.fromList([]),
-                                  width: 200.0,
-                                  height: 110.0,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              FFButtonWidget(
-                                onPressed: () async {
-                                  final selectedMedia =
-                                      await selectMediaWithSourceBottomSheet(
-                                    context: context,
-                                    allowPhoto: true,
-                                  );
-                                  if (selectedMedia != null &&
-                                      selectedMedia.every((m) =>
-                                          validateFileFormat(
-                                              m.storagePath, context))) {
-                                    setState(
-                                        () => _model.isDataUploading = true);
-                                    var selectedUploadedFiles =
-                                        <FFUploadedFile>[];
-
-                                    try {
-                                      selectedUploadedFiles = selectedMedia
-                                          .map((m) => FFUploadedFile(
-                                                name: m.storagePath
-                                                    .split('/')
-                                                    .last,
-                                                bytes: m.bytes,
-                                                height: m.dimensions?.height,
-                                                width: m.dimensions?.width,
-                                                blurHash: m.blurHash,
-                                              ))
-                                          .toList();
-                                    } finally {
-                                      _model.isDataUploading = false;
-                                    }
-                                    if (selectedUploadedFiles.length ==
-                                        selectedMedia.length) {
-                                      setState(() {
-                                        _model.uploadedLocalFile =
-                                            selectedUploadedFiles.first;
-                                      });
-                                    } else {
-                                      setState(() {});
-                                      return;
-                                    }
-                                  }
-
-                                  setState(() {
-                                    _model.uploadImage = _model.uploadImage
-                                        .toList()
-                                        .cast<dynamic>();
-                                  });
-                                },
-                                text: 'Up ảnh đại diện',
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        fontSize: 13.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              ),
-                            ],
-                          ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
@@ -564,25 +472,41 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                 itemBuilder: (context, questionListIndex) {
                                   final questionListItem =
                                       questionList[questionListIndex];
-                                  return Container(
-                                    decoration: const BoxDecoration(),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Text(
-                                                  '${(questionListIndex + 1).toString()}.',
+                                  return Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                '${(questionListIndex + 1).toString()}:',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  questionListItem.content,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -590,142 +514,105 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                                         fontFamily:
                                                             'Nunito Sans',
                                                         letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.normal,
                                                       ),
                                                 ),
-                                                Expanded(
-                                                  child: Text(
-                                                    questionListItem.content,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
+                                              ),
+                                              FlutterFlowIconButton(
+                                                borderRadius: 20.0,
+                                                borderWidth: 1.0,
+                                                buttonSize: 40.0,
+                                                icon: Icon(
+                                                  Icons.delete_outline,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .error,
+                                                  size: 24.0,
                                                 ),
-                                                FlutterFlowIconButton(
-                                                  borderRadius: 20.0,
-                                                  borderWidth: 1.0,
-                                                  buttonSize: 40.0,
-                                                  icon: Icon(
-                                                    Icons.delete_outline,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
-                                                    size: 24.0,
-                                                  ),
-                                                  onPressed: () async {
-                                                    setState(() {
-                                                      _model
-                                                          .removeAtIndexFromQuestionItem(
-                                                              questionListIndex);
-                                                    });
-                                                  },
-                                                ),
-                                              ].divide(const SizedBox(width: 8.0)),
-                                            ),
+                                                onPressed: () async {
+                                                  setState(() {
+                                                    _model
+                                                        .removeAtIndexFromQuestionItem(
+                                                            questionListIndex);
+                                                  });
+                                                },
+                                              ),
+                                            ].divide(const SizedBox(width: 8.0)),
                                           ),
                                         ),
-                                        Builder(
-                                          builder: (context) {
-                                            final answersList = questionListItem
-                                                .answers
-                                                .toList();
-                                            return ListView.builder(
-                                              padding: EdgeInsets.zero,
-                                              primary: false,
-                                              shrinkWrap: true,
-                                              scrollDirection: Axis.vertical,
-                                              itemCount: answersList.length,
-                                              itemBuilder:
-                                                  (context, answersListIndex) {
-                                                final answersListItem =
-                                                    answersList[
-                                                        answersListIndex];
-                                                return Container(
-                                                  width: double.infinity,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                  ),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      if (questionListItem
+                                      ),
+                                      Builder(
+                                        builder: (context) {
+                                          final answersList =
+                                              questionListItem.answers.toList();
+                                          return ListView.builder(
+                                            padding: EdgeInsets.zero,
+                                            primary: false,
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.vertical,
+                                            itemCount: answersList.length,
+                                            itemBuilder:
+                                                (context, answersListIndex) {
+                                              final answersListItem =
+                                                  answersList[answersListIndex];
+                                              return Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.stretch,
+                                                children: [
+                                                  if (questionListItem
+                                                          .answerType ==
+                                                      'text')
+                                                    TestLongTextAddWidget(
+                                                      key: Key(
+                                                          'Keyi8c_${answersListIndex}_of_${answersList.length}'),
+                                                      answersId:
+                                                          answersListItem,
+                                                    ),
+                                                  if (questionListItem
+                                                          .answerType ==
+                                                      'number')
+                                                    TestNumberAddWidget(
+                                                      key: Key(
+                                                          'Keyomh_${answersListIndex}_of_${answersList.length}'),
+                                                      answersId:
+                                                          answersListItem,
+                                                    ),
+                                                  Container(
+                                                    width: double.infinity,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                    ),
+                                                    child: Visibility(
+                                                      visible: questionListItem
                                                               .answerType ==
-                                                          'text')
-                                                        TestLongTextAddWidget(
-                                                          key: Key(
-                                                              'Keyi8c_${answersListIndex}_of_${answersList.length}'),
-                                                          answersId:
-                                                              answersListItem,
-                                                        ),
-                                                      if (questionListItem
-                                                              .answerType ==
-                                                          'number')
-                                                        TestNumberAddWidget(
-                                                          key: Key(
-                                                              'Keyomh_${answersListIndex}_of_${answersList.length}'),
-                                                          answersId:
-                                                              answersListItem,
-                                                        ),
-                                                      Container(
-                                                        width: double.infinity,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                        ),
-                                                        child: Visibility(
-                                                          visible: questionListItem
-                                                                  .answerType ==
-                                                              'checkbox',
-                                                          child:
-                                                              CheckboxGroupsTestAddWidget(
-                                                            key: Key(
-                                                                'Keyn1r_${answersListIndex}_of_${answersList.length}'),
-                                                            parameter1:
-                                                                answersListItem,
-                                                          ),
-                                                        ),
+                                                          'checkbox',
+                                                      child:
+                                                          CheckboxGroupsTestAddWidget(
+                                                        key: Key(
+                                                            'Keyn1r_${answersListIndex}_of_${answersList.length}'),
+                                                        parameter1:
+                                                            answersListItem,
                                                       ),
-                                                      Container(
-                                                        width: double.infinity,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                        ),
-                                                        child: Visibility(
-                                                          visible: questionListItem
-                                                                  .answerType ==
-                                                              'radio',
-                                                          child:
-                                                              RadioGroupTestsAddWidget(
-                                                            key: Key(
-                                                                'Keykfi_${answersListIndex}_of_${answersList.length}'),
-                                                            parameter1:
-                                                                answersListItem,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
+                                                    ),
                                                   ),
-                                                );
-                                              },
-                                            );
-                                          },
-                                        ),
-                                      ],
-                                    ),
+                                                  if (questionListItem
+                                                          .answerType ==
+                                                      'radio')
+                                                    RadioGroupTestsAddWidget(
+                                                      key: Key(
+                                                          'Keykfi_${answersListIndex}_of_${answersList.length}'),
+                                                      parameter1:
+                                                          answersListItem,
+                                                    ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
+                                    ],
                                   );
                                 },
                               );

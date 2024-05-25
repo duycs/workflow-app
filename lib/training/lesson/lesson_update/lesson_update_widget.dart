@@ -20,9 +20,11 @@ class LessonUpdateWidget extends StatefulWidget {
   const LessonUpdateWidget({
     super.key,
     required this.items,
+    this.checkPage,
   });
 
   final dynamic items;
+  final String? checkPage;
 
   @override
   State<LessonUpdateWidget> createState() => _LessonUpdateWidgetState();
@@ -502,13 +504,24 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                'Thời hạn học bài(không bắt buộc): ',
+                                'Thời hạn học bài',
                                 style: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
                                       fontFamily: 'Nunito Sans',
                                       fontSize: 14.0,
                                       letterSpacing: 0.0,
+                                    ),
+                              ),
+                              Text(
+                                '(không bắt buộc): ',
+                                style: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                      fontStyle: FontStyle.italic,
                                     ),
                               ),
                               Expanded(

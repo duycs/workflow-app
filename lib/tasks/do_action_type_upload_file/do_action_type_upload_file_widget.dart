@@ -47,6 +47,9 @@ class _DoActionTypeUploadFileWidgetState
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setState(() {
+        _model.listFileId = [];
+      });
       while (_model.loop <
           widget.dataPass!.operations.first.operationsId.files.length) {
         setState(() {
@@ -238,42 +241,33 @@ class _DoActionTypeUploadFileWidgetState
                                       },
                                     ),
                                   ),
-                                if ((functions.checkFileLast((String tail) {
-                                          return tail.split('.').last;
-                                        }(dataItem.filenameDownload)) ==
-                                        'pdf') ||
-                                    (functions.checkFileLast((String tail) {
-                                          return tail.split('.').last;
-                                        }(dataItem.filenameDownload)) ==
-                                        'img'))
-                                  FlutterFlowIconButton(
-                                    borderColor: Colors.transparent,
-                                    borderRadius: 20.0,
-                                    borderWidth: 1.0,
-                                    buttonSize: 40.0,
-                                    icon: Icon(
-                                      Icons.download_sharp,
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      size: 24.0,
-                                    ),
-                                    onPressed: () async {
-                                      _model.downloadFileToken =
-                                          await action_blocks
-                                              .tokenReload(context);
-                                      if (_model.downloadFileToken!) {
-                                        await actions.downloadFile(
-                                          '${FFAppConstants.ApiBaseUrl}/assets/${dataItem.id}?access_token=${FFAppState().accessToken}',
-                                          widget.dataPass!.name,
-                                          dataItem.filenameDownload,
-                                        );
-                                      } else {
-                                        setState(() {});
-                                      }
-
-                                      setState(() {});
-                                    },
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 20.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 40.0,
+                                  icon: Icon(
+                                    Icons.download_sharp,
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    size: 24.0,
                                   ),
+                                  onPressed: () async {
+                                    _model.downloadFileToken =
+                                        await action_blocks
+                                            .tokenReload(context);
+                                    if (_model.downloadFileToken!) {
+                                      await actions.downloadFile(
+                                        '${FFAppConstants.ApiBaseUrl}/assets/${dataItem.id}?access_token=${FFAppState().accessToken}',
+                                        widget.dataPass!.name,
+                                        dataItem.filenameDownload,
+                                      );
+                                    } else {
+                                      setState(() {});
+                                    }
+
+                                    setState(() {});
+                                  },
+                                ),
                                 FlutterFlowIconButton(
                                   borderColor: Colors.transparent,
                                   borderRadius: 20.0,

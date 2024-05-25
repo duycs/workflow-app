@@ -1489,7 +1489,9 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   r'''$.id''',
                                 ).toString(),
                                 requestDataJson: <String, dynamic>{
-                                  'status': 'active',
+                                  'status': _model.switchListTileValue == true
+                                      ? 'active'
+                                      : 'draff',
                                   'cccd': _model.cccdTextController.text,
                                   'gender': _model.radioButtonValue == 'Nam'
                                       ? 'male'

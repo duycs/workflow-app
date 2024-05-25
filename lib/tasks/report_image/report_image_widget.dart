@@ -138,7 +138,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                               dateStart: _model.startDate,
                               dateEnd: _model.endDate,
                               callBack: (name, nameProcedure, dateStart,
-                                  dateEnd) async {
+                                  dateEnd, nameTask) async {
                                 setState(() {
                                   _model.nameSearch = name!;
                                   _model.nameProcedure = nameProcedure!;
@@ -187,7 +187,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                             focusNode: _model.textFieldFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.textController',
-                              const Duration(milliseconds: 2000),
+                              const Duration(milliseconds: 500),
                               () async {
                                 setState(() {
                                   _model.nameSearch =
@@ -316,13 +316,15 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                       nameProcedure: _model.nameProcedure,
                                       dateStart: _model.startDate,
                                       dateEnd: _model.endDate,
+                                      nameTask: _model.nameTask,
                                       callBack: (name, nameProcedure, dateStart,
-                                          dateEnd) async {
+                                          dateEnd, nameTask) async {
                                         setState(() {
                                           _model.nameSearch = name!;
                                           _model.nameProcedure = nameProcedure!;
                                           _model.startDate = dateStart!;
                                           _model.endDate = dateEnd!;
+                                          _model.nameTask = nameTask;
                                         });
                                         setState(() => _model
                                             .listViewPagingController
@@ -398,7 +400,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                             } else {
                               return ',{\"submit_staff_id\":{\"user_id\":{\"id\":{\"_eq\":\"${FFAppState().user.id}\"}}}}';
                             }
-                          }()}]}',
+                          }()}${(_model.nameTask != '') && (_model.nameTask != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameTask}\"}}' : ''}]}',
                         ),
                       ),
                       padding: EdgeInsets.zero,

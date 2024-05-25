@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/staff/filter_personnel_list/filter_personnel_list_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -955,50 +956,40 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
-                                                      if ((dataListItem
-                                                                  .staffTests
-                                                                  .length !=
-                                                              null) &&
-                                                          (dataListItem
-                                                                  .staffTests
-                                                                  .length >
-                                                              0))
-                                                        Flexible(
-                                                          child: Text(
-                                                            (dataListItem.staffTests
-                                                                            .length !=
-                                                                        null) &&
-                                                                    (dataListItem
-                                                                            .staffTests
-                                                                            .length >
-                                                                        0)
-                                                                ? (List<String> var1, int var2) {
-                                                                    return ((var1.map(double.parse).reduce((a, b) =>
-                                                                                a +
-                                                                                b)) /
-                                                                            var2)
-                                                                        .toStringAsFixed(
-                                                                            2);
-                                                                  }(dataListItem.staffTests.map((e) => e.percentCorrect).toList(), dataListItem.staffTests.length)
-                                                                : '0',
-                                                            textAlign:
-                                                                TextAlign.start,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  fontSize:
-                                                                      13.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                          ),
+                                                      Flexible(
+                                                        child: Text(
+                                                          (dataListItem.staffTests
+                                                                          .length !=
+                                                                      null) &&
+                                                                  (dataListItem
+                                                                          .staffTests
+                                                                          .length >
+                                                                      0)
+                                                              ? functions
+                                                                  .newCaculator(dataListItem
+                                                                      .staffTests
+                                                                      .map((e) =>
+                                                                          e.toMap())
+                                                                      .toList())
+                                                                  .toString()
+                                                              : '0',
+                                                          textAlign:
+                                                              TextAlign.start,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
                                                         ),
+                                                      ),
                                                       Text(
                                                         '/',
                                                         style:
@@ -1206,17 +1197,6 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                         ].divide(const SizedBox(width: 12.0)),
                                       ),
                                     ),
-                                  Text(
-                                    dataListItem.staffTests.length > 0
-                                        ? '${dataListItem.staffTests.first.percentCorrect}${dataListItem.staffTests.last.percentCorrect}'
-                                        : '00',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
                                 ],
                               ),
                             ),

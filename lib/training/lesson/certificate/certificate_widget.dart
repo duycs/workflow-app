@@ -162,6 +162,7 @@ class _CertificateWidgetState extends State<CertificateWidget>
                               FFAppState().staffDepartment,
                               r'''$.name''',
                             ).toString()}',
+                            textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -195,6 +196,7 @@ class _CertificateWidgetState extends State<CertificateWidget>
                               FFAppState().staffOrganization,
                               r'''$.name''',
                             ).toString()}',
+                            textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(

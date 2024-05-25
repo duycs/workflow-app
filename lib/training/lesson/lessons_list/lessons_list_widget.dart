@@ -79,6 +79,10 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                   'LessonsList',
                   ParamType.String,
                 ),
+                'checkPage': serializeParam(
+                  widget.checkpage,
+                  ParamType.String,
+                ),
               }.withoutNulls,
               extra: <String, dynamic>{
                 kTransitionInfoKey: const TransitionInfo(
@@ -336,7 +340,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                       (_model.dateEnd != ''))
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 5.0, 16.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 5.0, 24.0, 0.0),
                       child: Text(
                         '#Kết quả tìm kiếm theo bộ lọc',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -427,6 +431,10 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                       ),
                                       'checkSrcoll': serializeParam(
                                         'LessonsList',
+                                        ParamType.String,
+                                      ),
+                                      'checkPage': serializeParam(
+                                        widget.checkpage,
                                         ParamType.String,
                                       ),
                                     }.withoutNulls,

@@ -251,6 +251,7 @@ class StaffsProgramsLessonModel
           .data
           .toList()
           .cast<EmployeeLessonListStruct>();
+      status = staffsLessionsListOne.first.status;
     } else {
       checkRefreshTokenBlock2 = await action_blocks.checkRefreshToken(
         context,

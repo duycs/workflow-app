@@ -50,10 +50,6 @@ class TestUpdateModel extends FlutterFlowModel<TestUpdateWidget> {
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
-
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;

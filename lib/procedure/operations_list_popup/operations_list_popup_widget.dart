@@ -51,10 +51,10 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
         _model.apiResult9q7 = await OperationGroup.operationListCall.call(
           accessToken: FFAppState().accessToken,
           filter:
-              '{\"_and\":[{}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
+              '{\"_or\": [{ \"flow_id\":{\"_nnull\": true}},{ \"organization_id\":{\"_eq\": \"${getJsonField(
             FFAppState().staffLogin,
             r'''$.organization_id''',
-          ).toString().toString()}\"}}'}]}',
+          ).toString().toString()}\"}}]}',
         );
         if ((_model.apiResult9q7?.succeeded ?? true)) {
           setState(() {
@@ -347,8 +347,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                                 final operationsListNew = _model
                                                     .operationList
                                                     .where((e) =>
-                                                        (e.executeId ==
-                                                                '') &&
+                                                        (e.flowId == '') &&
                                                         (e.name
                                                             .toLowerCase()
                                                             .contains(_model
@@ -485,17 +484,14 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                                                         ),
                                                                         Text(
                                                                           () {
-                                                                            if (operationsListNewItem.actionType ==
-                                                                                'submit_text') {
+                                                                            if ((operationsListNewItem.actionType == 'submit_text') &&
+                                                                                (operationsListNewItem.actionType == 'submit')) {
                                                                               return 'Nhập văn bản';
-                                                                            } else if (operationsListNewItem.actionType ==
-                                                                                'image') {
+                                                                            } else if (operationsListNewItem.actionType == 'image') {
                                                                               return 'Chụp ảnh';
-                                                                            } else if (operationsListNewItem.actionType ==
-                                                                                'upload_file') {
+                                                                            } else if (operationsListNewItem.actionType == 'upload_file') {
                                                                               return 'Upload file';
-                                                                            } else if (operationsListNewItem.actionType ==
-                                                                                'to_do_list') {
+                                                                            } else if (operationsListNewItem.actionType == 'to_do_list') {
                                                                               return 'Checklist công việc';
                                                                             } else {
                                                                               return 'Phê duyệt';
@@ -526,8 +522,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                           ),
                                         if ((_model.operationList
                                                     .where((e) =>
-                                                        (e.executeId ==
-                                                                '') &&
+                                                        (e.flowId == '') &&
                                                         (e.name
                                                             .toLowerCase()
                                                             .contains(_model
@@ -595,10 +590,8 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                                 final operationsListDefault = _model
                                                     .operationList
                                                     .where((e) =>
-                                                        (e.executeId !=
-                                                                '') &&
-                                                        (e.executeId !=
-                                                            'null') &&
+                                                        (e.flowId != '') &&
+                                                        (e.flowId != 'null') &&
                                                         (e.name.contains(_model
                                                             .textNameTextController
                                                             .text)))
@@ -717,8 +710,9 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                                                       ),
                                                                       Text(
                                                                         () {
-                                                                          if (operationsListDefaultItem.actionType ==
-                                                                              'submit_text') {
+                                                                          if ((operationsListDefaultItem.actionType == 'submit_text') &&
+                                                                              (operationsListDefaultItem.actionType ==
+                                                                                  'submit')) {
                                                                             return 'Nhập văn bản';
                                                                           } else if (operationsListDefaultItem.actionType ==
                                                                               'image') {
@@ -757,10 +751,8 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                           ),
                                         if ((_model.operationList
                                                     .where((e) =>
-                                                        (e.executeId !=
-                                                                '') &&
-                                                        (e.executeId !=
-                                                            'null') &&
+                                                        (e.flowId != '') &&
+                                                        (e.flowId != 'null') &&
                                                         (e.name.contains(_model
                                                             .textNameTextController
                                                             .text)))

@@ -958,7 +958,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                         options:
                                             List<String>.from(['0', '1', '2']),
                                         optionLabels: const [
-                                          'Tất cả',
+                                          'Tất cả phòng ban',
                                           'Phòng ban',
                                           'Nhân viên'
                                         ],

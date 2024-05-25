@@ -53,61 +53,75 @@ class _SelectDoTestWidgetState extends State<SelectDoTestWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return FlutterFlowRadioButton(
-      options: _model.detail.map((e) => e.content).toList().toList(),
-      onChanged: ('1' == '1') ? null : (val) => setState(() {}),
-      controller: _model.radioButtonValueController ??=
-          FormFieldController<String>(widget.listAnswer!.answersId.content),
-      optionHeight: 32.0,
-      textStyle: FlutterFlowTheme.of(context).labelMedium.override(
-            fontFamily: 'Nunito Sans',
-            color: valueOrDefault<Color>(
-              () {
-                if ((widget.listQuestion?.id ==
-                        widget.listAnswer?.answersId.id) &&
-                    (widget.listQuestion?.correct == 1)) {
-                  return FlutterFlowTheme.of(context).primary;
-                } else if ((widget.listQuestion?.id ==
-                        widget.listAnswer?.answersId.id) &&
-                    (widget.listQuestion?.correct != 1)) {
-                  return FlutterFlowTheme.of(context).error;
-                } else if (widget.listQuestion?.correct == 1) {
-                  return FlutterFlowTheme.of(context).primary;
-                } else {
-                  return FlutterFlowTheme.of(context).secondaryText;
-                }
-              }(),
-              FlutterFlowTheme.of(context).noColor,
+    return Container(
+      decoration: const BoxDecoration(),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Expanded(
+            child: FlutterFlowRadioButton(
+              options: _model.detail.map((e) => e.content).toList().toList(),
+              onChanged: ('1' == '1') ? null : (val) => setState(() {}),
+              controller: _model.radioButtonValueController ??=
+                  FormFieldController<String>(
+                      widget.listAnswer!.answersId.content),
+              optionHeight: 120.0,
+              optionWidth: MediaQuery.sizeOf(context).width * 1.0,
+              textStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                    fontFamily: 'Nunito Sans',
+                    color: valueOrDefault<Color>(
+                      () {
+                        if ((widget.listQuestion?.id ==
+                                widget.listAnswer?.answersId.id) &&
+                            (widget.listQuestion?.correct == 1)) {
+                          return FlutterFlowTheme.of(context).primary;
+                        } else if ((widget.listQuestion?.id ==
+                                widget.listAnswer?.answersId.id) &&
+                            (widget.listQuestion?.correct != 1)) {
+                          return FlutterFlowTheme.of(context).error;
+                        } else if (widget.listQuestion?.correct == 1) {
+                          return FlutterFlowTheme.of(context).primary;
+                        } else {
+                          return FlutterFlowTheme.of(context).secondaryText;
+                        }
+                      }(),
+                      FlutterFlowTheme.of(context).noColor,
+                    ),
+                    letterSpacing: 0.0,
+                  ),
+              selectedTextStyle:
+                  FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Nunito Sans',
+                        color: valueOrDefault<Color>(
+                          () {
+                            if ((widget.listQuestion?.id ==
+                                    widget.listAnswer?.answersId.id) &&
+                                (widget.listQuestion?.correct == 1)) {
+                              return FlutterFlowTheme.of(context).primary;
+                            } else if ((widget.listQuestion?.id ==
+                                    widget.listAnswer?.answersId.id) &&
+                                (widget.listQuestion?.correct != 1)) {
+                              return FlutterFlowTheme.of(context).error;
+                            } else {
+                              return FlutterFlowTheme.of(context).secondaryText;
+                            }
+                          }(),
+                          FlutterFlowTheme.of(context).noColor,
+                        ),
+                        letterSpacing: 0.0,
+                      ),
+              buttonPosition: RadioButtonPosition.left,
+              direction: Axis.horizontal,
+              radioButtonColor: FlutterFlowTheme.of(context).primary,
+              inactiveRadioButtonColor:
+                  FlutterFlowTheme.of(context).secondaryText,
+              toggleable: false,
+              horizontalAlignment: WrapAlignment.start,
+              verticalAlignment: WrapCrossAlignment.start,
             ),
-            letterSpacing: 0.0,
           ),
-      selectedTextStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-            fontFamily: 'Nunito Sans',
-            color: valueOrDefault<Color>(
-              () {
-                if ((widget.listQuestion?.id ==
-                        widget.listAnswer?.answersId.id) &&
-                    (widget.listQuestion?.correct == 1)) {
-                  return FlutterFlowTheme.of(context).primary;
-                } else if ((widget.listQuestion?.id ==
-                        widget.listAnswer?.answersId.id) &&
-                    (widget.listQuestion?.correct != 1)) {
-                  return FlutterFlowTheme.of(context).error;
-                } else {
-                  return FlutterFlowTheme.of(context).secondaryText;
-                }
-              }(),
-              FlutterFlowTheme.of(context).noColor,
-            ),
-            letterSpacing: 0.0,
-          ),
-      buttonPosition: RadioButtonPosition.left,
-      direction: Axis.vertical,
-      radioButtonColor: FlutterFlowTheme.of(context).primary,
-      inactiveRadioButtonColor: FlutterFlowTheme.of(context).secondaryText,
-      toggleable: false,
-      horizontalAlignment: WrapAlignment.start,
-      verticalAlignment: WrapCrossAlignment.start,
+        ],
+      ),
     );
   }
 }

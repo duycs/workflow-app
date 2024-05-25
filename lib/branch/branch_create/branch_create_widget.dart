@@ -452,6 +452,7 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                 ? null
                                 : () async {
                                     var shouldSetState = false;
+                                    setState(() {});
                                     if (_model.formKey.currentState == null ||
                                         !_model.formKey.currentState!
                                             .validate()) {
@@ -522,12 +523,13 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                         if ((_model.apiResultCreateBranch
                                                 ?.succeeded ??
                                             true)) {
-                                          await widget.callBack?.call();
+                                          await Future.delayed(const Duration(
+                                              milliseconds: 2000));
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             SnackBar(
                                               content: Text(
-                                                'Tạo mới thành công',
+                                                'Tạo mới thành công!',
                                                 style: TextStyle(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -541,8 +543,11 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                                       .secondary,
                                             ),
                                           );
+                                          await widget.callBack?.call();
                                           Navigator.pop(context);
                                         } else {
+                                          await widget.callBack?.call();
+                                          Navigator.pop(context);
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {

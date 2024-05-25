@@ -237,61 +237,53 @@ class _DetailActionTypeUploadFileWidgetState
                                         },
                                       ),
                                     ),
-                                  if ((functions
-                                              .checkFileLast((String tail) {
-                                            return tail.split('.').last;
-                                          }(dataFileItem.filenameDownload)) ==
-                                          'pdf') ||
-                                      (functions
-                                              .checkFileLast((String tail) {
-                                            return tail.split('.').last;
-                                          }(dataFileItem.filenameDownload)) ==
-                                          'img'))
-                                    FlutterFlowIconButton(
-                                      borderColor: Colors.transparent,
-                                      borderRadius: 20.0,
-                                      borderWidth: 1.0,
-                                      buttonSize: 40.0,
-                                      icon: Icon(
-                                        Icons.download_sharp,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 24.0,
-                                      ),
-                                      onPressed: () async {
-                                        _model.downloadFileToken =
-                                            await action_blocks
-                                                .tokenReload(context);
-                                        if (_model.downloadFileToken!) {
-                                          await actions.downloadFile(
-                                            '${FFAppConstants.ApiBaseUrl}/assets/${dataFileItem.id}?access_token=${FFAppState().accessToken}',
-                                            widget.dataPass!.name,
-                                            dataFileItem.filenameDownload,
-                                          );
-                                        } else {
-                                          setState(() {});
-                                        }
-
-                                        setState(() {});
-                                      },
-                                    ),
                                   FlutterFlowIconButton(
                                     borderColor: Colors.transparent,
                                     borderRadius: 20.0,
                                     borderWidth: 1.0,
                                     buttonSize: 40.0,
                                     icon: Icon(
-                                      Icons.close,
-                                      color: FlutterFlowTheme.of(context).error,
+                                      Icons.download_sharp,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
                                       size: 24.0,
                                     ),
                                     onPressed: () async {
-                                      setState(() {
-                                        _model.removeAtIndexFromListFileId(
-                                            dataFileIndex);
-                                      });
+                                      _model.downloadFileToken =
+                                          await action_blocks
+                                              .tokenReload(context);
+                                      if (_model.downloadFileToken!) {
+                                        await actions.downloadFile(
+                                          '${FFAppConstants.ApiBaseUrl}/assets/${dataFileItem.id}?access_token=${FFAppState().accessToken}',
+                                          widget.dataPass!.name,
+                                          dataFileItem.filenameDownload,
+                                        );
+                                      } else {
+                                        setState(() {});
+                                      }
+
+                                      setState(() {});
                                     },
                                   ),
+                                  if (widget.dataPass?.status != 'done')
+                                    FlutterFlowIconButton(
+                                      borderColor: Colors.transparent,
+                                      borderRadius: 20.0,
+                                      borderWidth: 1.0,
+                                      buttonSize: 40.0,
+                                      icon: Icon(
+                                        Icons.close,
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        size: 24.0,
+                                      ),
+                                      onPressed: () async {
+                                        setState(() {
+                                          _model.removeAtIndexFromListFileId(
+                                              dataFileIndex);
+                                        });
+                                      },
+                                    ),
                                 ].divide(const SizedBox(width: 8.0)),
                               ),
                             ),

@@ -2165,9 +2165,7 @@ class _LessonDetailHomePageWidgetState
                                 widget.listItems,
                                 r'''$.content''',
                               ) !=
-                              null) &&
-                          (_model.check1 == '1') &&
-                          (_model.check2 == '1'))
+                              null))
                         SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -2179,8 +2177,6 @@ class _LessonDetailHomePageWidgetState
                                         r'''$.content''',
                                       ) !=
                                       null) &&
-                                  (_model.check1 == '1') &&
-                                  (_model.check2 == '1') &&
                                   (functions.formatHtml(getJsonField(
                                             widget.listItems,
                                             r'''$.content''',

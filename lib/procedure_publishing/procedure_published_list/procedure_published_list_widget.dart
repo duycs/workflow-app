@@ -457,8 +457,12 @@ class _ProcedurePublishedListWidgetState
                                         .itemList![itemsIndex];
                                     return Visibility(
                                       visible: (itemsItem.steps.isNotEmpty) &&
-                                          (itemsItem
-                                              .steps.first.tasks.isNotEmpty),
+                                          (itemsItem.steps
+                                              .where((e) => e.number == 1)
+                                              .toList()
+                                              .first
+                                              .tasks
+                                              .isNotEmpty),
                                       child: Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 8.0),
@@ -513,11 +517,18 @@ class _ProcedurePublishedListWidgetState
                                                                       .isNotEmpty) &&
                                                                   (itemsItem
                                                                       .steps
+                                                                      .where((e) =>
+                                                                          e.number ==
+                                                                          1)
+                                                                      .toList()
                                                                       .first
                                                                       .tasks
                                                                       .isNotEmpty)
-                                                              ? itemsItem
-                                                                  .steps
+                                                              ? itemsItem.steps
+                                                                  .where((e) =>
+                                                                      e.number ==
+                                                                      1)
+                                                                  .toList()
                                                                   .first
                                                                   .tasks
                                                                   .length
@@ -547,8 +558,13 @@ class _ProcedurePublishedListWidgetState
                                                   expanded: Visibility(
                                                     visible: (itemsItem.steps
                                                             .isNotEmpty) &&
-                                                        (itemsItem.steps.first
-                                                            .tasks.isNotEmpty),
+                                                        (itemsItem.steps
+                                                            .where((e) =>
+                                                                e.number == 1)
+                                                            .toList()
+                                                            .first
+                                                            .tasks
+                                                            .isNotEmpty),
                                                     child: Builder(
                                                       builder: (context) {
                                                         final itemPublishedList =

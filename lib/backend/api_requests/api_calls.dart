@@ -2037,7 +2037,7 @@ class WorkflowsListCall {
         },
         params: {
           'fields':
-              "domain_id,category_id,template,organization_id,id, status, name, description,user_created.id,user_created.first_name,steps.id,steps.number, steps.name, steps.operations, steps.operations.operations_id.id, steps.operations.operations_id.name,steps.staffs.id, steps.staffs.staffs_id.id, steps.staffs.staffs_id.user_id.email,steps.staffs.staffs_id.user_id.last_name,cron,steps.staffs.staffs_id",
+              "type, domain_id,category_id,template,organization_id,id, status, name, description,user_created.id,user_created.first_name,steps.id,steps.number, steps.name, steps.operations, steps.operations.operations_id.id, steps.operations.operations_id.name,steps.staffs.id, steps.staffs.staffs_id.id, steps.staffs.staffs_id.user_id.email,steps.staffs.staffs_id.user_id.last_name,cron,steps.staffs.staffs_id",
           'filter': filter,
           'offset': offset,
           'limit': limit,

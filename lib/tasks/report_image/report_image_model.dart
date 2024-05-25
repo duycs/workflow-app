@@ -29,6 +29,8 @@ class ReportImageModel extends FlutterFlowModel<ReportImageWidget> {
 
   String checkData = '';
 
+  String nameTask = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

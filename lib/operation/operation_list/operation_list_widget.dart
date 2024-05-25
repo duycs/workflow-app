@@ -1505,14 +1505,14 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                             BoxDecoration(
                                                           color: itemUserCreatedItem
                                                                       .status ==
-                                                                  'done'
+                                                                  'draft'
                                                               ? FlutterFlowTheme
                                                                       .of(
                                                                           context)
-                                                                  .accent2
+                                                                  .accent3
                                                               : FlutterFlowTheme
                                                                       .of(context)
-                                                                  .accent3,
+                                                                  .accent2,
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
@@ -1532,9 +1532,9 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                           child: Text(
                                                             itemUserCreatedItem
                                                                         .status ==
-                                                                    'done'
-                                                                ? 'Hoạt động'
-                                                                : 'Không hoạt động',
+                                                                    'draft'
+                                                                ? 'Không hoạt động'
+                                                                : 'Hoạt động',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
@@ -1543,13 +1543,13 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                       'Nunito Sans',
                                                                   color: itemUserCreatedItem
                                                                               .status ==
-                                                                          'done'
+                                                                          'draft'
                                                                       ? FlutterFlowTheme.of(
                                                                               context)
-                                                                          .secondary
+                                                                          .tertiary
                                                                       : FlutterFlowTheme.of(
                                                                               context)
-                                                                          .tertiary,
+                                                                          .secondary,
                                                                   fontSize:
                                                                       13.0,
                                                                   letterSpacing:
@@ -1973,14 +1973,14 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                             BoxDecoration(
                                                           color: itemDefaultItem
                                                                       .status ==
-                                                                  'done'
+                                                                  'draft'
                                                               ? FlutterFlowTheme
                                                                       .of(
                                                                           context)
-                                                                  .accent2
+                                                                  .accent3
                                                               : FlutterFlowTheme
                                                                       .of(context)
-                                                                  .accent3,
+                                                                  .accent2,
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
@@ -2000,9 +2000,9 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                           child: Text(
                                                             itemDefaultItem
                                                                         .status ==
-                                                                    'done'
-                                                                ? 'Hoạt động'
-                                                                : 'Không hoạt động',
+                                                                    'draft'
+                                                                ? 'Không hoạt động'
+                                                                : 'Hoạt động',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
@@ -2011,13 +2011,13 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                       'Nunito Sans',
                                                                   color: itemDefaultItem
                                                                               .status ==
-                                                                          'done'
+                                                                          'draft'
                                                                       ? FlutterFlowTheme.of(
                                                                               context)
-                                                                          .secondary
+                                                                          .tertiary
                                                                       : FlutterFlowTheme.of(
                                                                               context)
-                                                                          .tertiary,
+                                                                          .secondary,
                                                                   fontSize:
                                                                       13.0,
                                                                   letterSpacing:

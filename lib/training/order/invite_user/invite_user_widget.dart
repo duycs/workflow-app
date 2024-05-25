@@ -798,7 +798,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                                     return staffListItem.title;
                                                   } else if (staffListItem
                                                           .userId.role ==
-                                                      '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                                                      'a8d33527-375b-4599-ac70-6a3fcad1de39') {
                                                     return 'CN: ${staffListItem.branchId.name} (${staffListItem.title})';
                                                   } else if (staffListItem
                                                           .userId.role ==
@@ -808,17 +808,20 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                                     return 'BP: ${staffListItem.departmentId.name} (${staffListItem.title}) - CN: ${staffListItem.branchId.name}';
                                                   }
                                                 }(),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 12.0,
-                                                          letterSpacing: 0.0,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                        ),
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      fontSize: 12.0,
+                                                      letterSpacing: 0.0,
+                                                      fontStyle:
+                                                          FontStyle.italic,
+                                                    ),
                                               ),
                                             ],
                                           ),
@@ -1154,6 +1157,8 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                     context: context,
                                     builder: (alertDialogContext) {
                                       return AlertDialog(
+                                        title: const Text(
+                                            'Chia sẻ khóa học thành công!'),
                                         content: const Text(
                                             'Bạn đã hết lượt chia sẻ khoá học. Đi đến khóa học đã mua'),
                                         actions: [

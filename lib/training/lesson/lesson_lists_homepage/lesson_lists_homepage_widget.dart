@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/components/data_not_foud_row/data_not_foud_row_widget.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/components/nav_bar_widget.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -12,6 +13,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
@@ -26,12 +28,15 @@ class LessonListsHomepageWidget extends StatefulWidget {
       _LessonListsHomepageWidgetState();
 }
 
-class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
+class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
+    with TickerProviderStateMixin {
   late LessonListsHomepageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   late StreamSubscription<bool> _keyboardVisibilitySubscription;
   bool _isKeyboardVisible = false;
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -76,6 +81,22 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
 
     _model.nameSearchTextController ??= TextEditingController();
     _model.nameSearchFocusNode ??= FocusNode();
+
+    animationsMap.addAll({
+      'textOnPageLoadAnimation': AnimationInfo(
+        loop: true,
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          TiltEffect(
+            curve: Curves.easeInOut,
+            delay: 550.0.ms,
+            duration: 600.0.ms,
+            begin: const Offset(0, 0),
+            end: const Offset(0, 0.349),
+          ),
+        ],
+      ),
+    });
   }
 
   @override
@@ -619,7 +640,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                       .name,
                                                                   textAlign:
                                                                       TextAlign
-                                                                          .center,
+                                                                          .start,
                                                                   maxLines: 2,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
@@ -950,7 +971,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                   }(),
                                                                   textAlign:
                                                                       TextAlign
-                                                                          .end,
+                                                                          .start,
                                                                   maxLines: 2,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
@@ -1335,7 +1356,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                       .name,
                                                                   textAlign:
                                                                       TextAlign
-                                                                          .center,
+                                                                          .start,
                                                                   maxLines: 2,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
@@ -1666,7 +1687,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                   }(),
                                                                   textAlign:
                                                                       TextAlign
-                                                                          .end,
+                                                                          .start,
                                                                   maxLines: 2,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
@@ -2477,7 +2498,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                     .name,
                                                                 textAlign:
                                                                     TextAlign
-                                                                        .center,
+                                                                        .start,
                                                                 maxLines: 2,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
@@ -2899,7 +2920,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                                 }(),
                                                                 textAlign:
                                                                     TextAlign
-                                                                        .end,
+                                                                        .start,
                                                                 maxLines: 2,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
@@ -3506,6 +3527,32 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                       ),
                                   ],
                                 ),
+                              ),
+                            if (_model.isLoad != true)
+                              Container(
+                                width: double.infinity,
+                                height: MediaQuery.sizeOf(context).height * 0.7,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                ),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: Text(
+                                  'Đang tải dữ liệu...',
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        fontSize: 18.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
+                                        fontStyle: FontStyle.italic,
+                                      ),
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation']!),
                               ),
                           ],
                         ),

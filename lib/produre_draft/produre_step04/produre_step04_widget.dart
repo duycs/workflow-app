@@ -2,7 +2,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/procedure/procedure_setting/procedure_setting_widget.dart';
+import '/training/procedure_setting/procedure_setting_widget.dart';
 import 'package:flutter/material.dart';
 import 'produre_step04_model.dart';
 export 'produre_step04_model.dart';

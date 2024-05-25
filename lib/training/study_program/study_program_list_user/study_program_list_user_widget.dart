@@ -730,7 +730,7 @@ class _StudyProgramListUserWidgetState
                                                         ),
                                                       if (itemProgramIdTilteItem
                                                               .status ==
-                                                          'Done')
+                                                          'done')
                                                         Builder(
                                                           builder: (context) =>
                                                               Padding(
@@ -1006,11 +1006,6 @@ class _StudyProgramListUserWidgetState
                                                   context.pushNamed(
                                                     'Staffs_programs_lesson',
                                                     queryParameters: {
-                                                      'checkScroll':
-                                                          serializeParam(
-                                                        '',
-                                                        ParamType.String,
-                                                      ),
                                                       'programsId':
                                                           serializeParam(
                                                         itemProgramIdTilteItem
@@ -1060,7 +1055,7 @@ class _StudyProgramListUserWidgetState
                                                               BoxDecoration(
                                                             color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .tertiary,
+                                                                .noColor,
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
@@ -1166,12 +1161,6 @@ class _StudyProgramListUserWidgetState
                                                             context.pushNamed(
                                                               'Staffs_programs_lesson',
                                                               queryParameters: {
-                                                                'checkScroll':
-                                                                    serializeParam(
-                                                                  '',
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
                                                                 'programsId':
                                                                     serializeParam(
                                                                   itemProgramIdTilteItem

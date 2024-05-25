@@ -18,10 +18,12 @@ class LessonDetailWidget extends StatefulWidget {
     super.key,
     required this.idLesson,
     String? checkSrcoll,
+    this.checkPage,
   }) : checkSrcoll = checkSrcoll ?? '0';
 
   final String? idLesson;
   final String checkSrcoll;
+  final String? checkPage;
 
   @override
   State<LessonDetailWidget> createState() => _LessonDetailWidgetState();
@@ -2073,6 +2075,10 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                       'items': serializeParam(
                         _model.listDetail,
                         ParamType.JSON,
+                      ),
+                      'checkPage': serializeParam(
+                        widget.checkPage,
+                        ParamType.String,
                       ),
                     }.withoutNulls,
                     extra: <String, dynamic>{

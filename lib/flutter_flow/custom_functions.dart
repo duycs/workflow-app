@@ -510,3 +510,17 @@ int totaResultWorkflow(ProcedurePublishedListStruct data) {
       0;
   return doneTasks;
 }
+
+double? newCaculator(List<dynamic>? list) {
+  if (list is List<dynamic>) {
+    double totalPercentCorrect = 0.0;
+    for (var item in list) {
+      if (item is Map && item.containsKey('percent_correct')) {
+        totalPercentCorrect +=
+            double.tryParse(item['percent_correct'].toString()) ?? 0.0;
+      }
+    }
+    return totalPercentCorrect;
+  }
+  return null;
+}

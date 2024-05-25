@@ -470,20 +470,6 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                     .where((e) =>
                                                         (e.tasks
                                                                 .where((e) =>
-                                                                    e.publishedCount ==
-                                                                    e
-                                                                        .publishedCount)
-                                                                .toList()
-                                                                .length >
-                                                            0) ==
-                                                        true)
-                                                    .toList()
-                                                    .length >
-                                                0) &&
-                                            (itemsItem.steps
-                                                    .where((e) =>
-                                                        (e.tasks
-                                                                .where((e) =>
                                                                     e.status ==
                                                                     'done')
                                                                 .toList()

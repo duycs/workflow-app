@@ -57,10 +57,10 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
   PagingController<ApiPagingParams, dynamic>? listViewPagingController1;
   Function(ApiPagingParams nextPageMarker)? listViewApiCall1;
 
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? downloadfileToken;
   // Stores action output result for [Action Block - tokenReload] action in IconButton widget.
   bool? downloadFileToken;
+  // Stores action output result for [Action Block - tokenReload] action in IconButton widget.
+  bool? downloadIamgeToken;
   // Model for navBar component.
   late NavBarModel navBarModel;
 

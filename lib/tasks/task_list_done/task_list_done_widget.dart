@@ -1430,7 +1430,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                               Padding(
                                                 padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
-                                                        8.0, 4.0, 8.0, 0.0),
+                                                        8.0, 4.0, 8.0, 8.0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -1496,104 +1496,6 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                     );
                                                   },
                                                 ),
-                                              ),
-                                            if ((dataListItem.status ==
-                                                    'done') &&
-                                                (dataListItem.actionType ==
-                                                    'upload_file'))
-                                              Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Align(
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: FFButtonWidget(
-                                                      onPressed: () async {
-                                                        if (dataListItem
-                                                                .operations
-                                                                .first
-                                                                .operationsId
-                                                                .files
-                                                                .length >
-                                                            0) {
-                                                          _model.downloadfileToken =
-                                                              await action_blocks
-                                                                  .tokenReload(
-                                                                      context);
-                                                          if (_model
-                                                              .downloadfileToken!) {
-                                                            await actions
-                                                                .downloadFile(
-                                                              '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.operations.first.operationsId.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                              dataListItem.name,
-                                                              dataListItem
-                                                                  .operations
-                                                                  .first
-                                                                  .operationsId
-                                                                  .files
-                                                                  .first
-                                                                  .directusFilesId
-                                                                  .filenameDownload,
-                                                            );
-                                                          } else {
-                                                            setState(() {});
-                                                          }
-                                                        }
-
-                                                        setState(() {});
-                                                      },
-                                                      text: 'Tải tài liệu',
-                                                      icon: const Icon(
-                                                        Icons.download_rounded,
-                                                        size: 15.0,
-                                                      ),
-                                                      options: FFButtonOptions(
-                                                        height: 40.0,
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    16.0,
-                                                                    0.0,
-                                                                    16.0,
-                                                                    0.0),
-                                                        iconPadding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .alternate,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .alternate,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ].divide(const SizedBox(height: 8.0)),
                                               ),
                                             if (dataListItem.actionType ==
                                                 'upload_file')
@@ -1825,54 +1727,46 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                           },
                                                                         ),
                                                                       ),
-                                                                    if ((functions.checkFileLast((String
-                                                                                tail) {
-                                                                              return tail.split('.').last;
-                                                                            }(fileItemsItem
-                                                                                .directusFilesId.filenameDownload)) ==
-                                                                            'pdf') ||
-                                                                        (functions.checkFileLast((String
-                                                                                tail) {
-                                                                              return tail.split('.').last;
-                                                                            }(fileItemsItem.directusFilesId.filenameDownload)) ==
-                                                                            'img'))
-                                                                      FlutterFlowIconButton(
-                                                                        borderColor:
-                                                                            Colors.transparent,
-                                                                        borderRadius:
-                                                                            20.0,
-                                                                        borderWidth:
-                                                                            1.0,
-                                                                        buttonSize:
-                                                                            40.0,
-                                                                        icon:
-                                                                            Icon(
-                                                                          Icons
-                                                                              .download_sharp,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primary,
-                                                                          size:
-                                                                              24.0,
-                                                                        ),
-                                                                        onPressed:
-                                                                            () async {
-                                                                          _model.downloadFileToken =
-                                                                              await action_blocks.tokenReload(context);
-                                                                          if (_model
-                                                                              .downloadfileToken!) {
-                                                                            await actions.downloadFile(
-                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${fileItemsItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                              dataListItem.name,
-                                                                              fileItemsItem.directusFilesId.filenameDownload,
-                                                                            );
-                                                                          } else {
-                                                                            setState(() {});
-                                                                          }
-
+                                                                    FlutterFlowIconButton(
+                                                                      borderColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      borderRadius:
+                                                                          20.0,
+                                                                      borderWidth:
+                                                                          1.0,
+                                                                      buttonSize:
+                                                                          40.0,
+                                                                      icon:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .download_sharp,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                        size:
+                                                                            24.0,
+                                                                      ),
+                                                                      onPressed:
+                                                                          () async {
+                                                                        _model.downloadFileToken =
+                                                                            await action_blocks.tokenReload(context);
+                                                                        if (_model
+                                                                            .downloadFileToken!) {
+                                                                          await actions
+                                                                              .downloadFile(
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${fileItemsItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                            dataListItem.name,
+                                                                            fileItemsItem.directusFilesId.filenameDownload,
+                                                                          );
+                                                                        } else {
                                                                           setState(
                                                                               () {});
-                                                                        },
-                                                                      ),
+                                                                        }
+
+                                                                        setState(
+                                                                            () {});
+                                                                      },
+                                                                    ),
                                                                   ].divide(const SizedBox(
                                                                       width:
                                                                           8.0)),
@@ -1946,65 +1840,113 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                 final listImageGridItem =
                                                                     listImageGrid[
                                                                         listImageGridIndex];
-                                                                return InkWell(
-                                                                  splashColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  focusColor: Colors
-                                                                      .transparent,
-                                                                  hoverColor: Colors
-                                                                      .transparent,
-                                                                  highlightColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  onTap:
-                                                                      () async {
-                                                                    await Navigator
-                                                                        .push(
-                                                                      context,
-                                                                      PageTransition(
-                                                                        type: PageTransitionType
-                                                                            .fade,
+                                                                return Stack(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          1.0,
+                                                                          -1.0),
+                                                                  children: [
+                                                                    InkWell(
+                                                                      splashColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      focusColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      hoverColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      highlightColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      onTap:
+                                                                          () async {
+                                                                        await Navigator
+                                                                            .push(
+                                                                          context,
+                                                                          PageTransition(
+                                                                            type:
+                                                                                PageTransitionType.fade,
+                                                                            child:
+                                                                                FlutterFlowExpandedImageView(
+                                                                              image: Image.network(
+                                                                                '${FFAppConstants.ApiBaseUrl}/assets/${listImageGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                                fit: BoxFit.contain,
+                                                                              ),
+                                                                              allowRotation: false,
+                                                                              tag: '${FFAppConstants.ApiBaseUrl}/assets/${listImageGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                              useHeroAnimation: true,
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      },
+                                                                      child:
+                                                                          Hero(
+                                                                        tag:
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${listImageGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                        transitionOnUserGestures:
+                                                                            true,
                                                                         child:
-                                                                            FlutterFlowExpandedImageView(
-                                                                          image:
+                                                                            ClipRRect(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(8.0),
+                                                                          child:
                                                                               Image.network(
                                                                             '${FFAppConstants.ApiBaseUrl}/assets/${listImageGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                            width:
+                                                                                300.0,
+                                                                            height:
+                                                                                200.0,
                                                                             fit:
-                                                                                BoxFit.contain,
+                                                                                BoxFit.cover,
                                                                           ),
-                                                                          allowRotation:
-                                                                              false,
-                                                                          tag:
-                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${listImageGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                          useHeroAnimation:
-                                                                              true,
                                                                         ),
                                                                       ),
-                                                                    );
-                                                                  },
-                                                                  child: Hero(
-                                                                    tag:
-                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${listImageGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                    transitionOnUserGestures:
-                                                                        true,
-                                                                    child:
-                                                                        ClipRRect(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                      child: Image
-                                                                          .network(
-                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${listImageGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                        width:
-                                                                            300.0,
-                                                                        height:
-                                                                            200.0,
-                                                                        fit: BoxFit
-                                                                            .cover,
-                                                                      ),
                                                                     ),
-                                                                  ),
+                                                                    FlutterFlowIconButton(
+                                                                      borderColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .primaryText,
+                                                                      borderRadius:
+                                                                          20.0,
+                                                                      borderWidth:
+                                                                          1.0,
+                                                                      buttonSize:
+                                                                          40.0,
+                                                                      fillColor:
+                                                                          const Color(
+                                                                              0xF3E0E3E7),
+                                                                      icon:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .download_sharp,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryText,
+                                                                        size:
+                                                                            24.0,
+                                                                      ),
+                                                                      onPressed:
+                                                                          () async {
+                                                                        _model.downloadIamgeToken =
+                                                                            await action_blocks.tokenReload(context);
+                                                                        if (_model
+                                                                            .downloadIamgeToken!) {
+                                                                          await actions
+                                                                              .downloadFile(
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${listImageGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                            dataListItem.name,
+                                                                            listImageGridItem.directusFilesId.filenameDownload,
+                                                                          );
+                                                                        } else {
+                                                                          setState(
+                                                                              () {});
+                                                                        }
+
+                                                                        setState(
+                                                                            () {});
+                                                                      },
+                                                                    ),
+                                                                  ],
                                                                 );
                                                               },
                                                             );

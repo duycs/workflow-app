@@ -64,7 +64,7 @@ export '/training_rank/training_rank_detail/training_rank_detail_widget.dart'
     show TrainingRankDetailWidget;
 export '/training/lesson/lesson_create/lesson_create_widget.dart'
     show LessonCreateWidget;
-export '/training_rank/training_rank_update/training_rank_update_widget.dart'
+export '/training/training_rank_update/training_rank_update_widget.dart'
     show TrainingRankUpdateWidget;
 export '/training/lesson/lesson_update/lesson_update_widget.dart'
     show LessonUpdateWidget;
