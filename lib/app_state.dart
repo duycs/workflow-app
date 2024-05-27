@@ -149,6 +149,12 @@ class FFAppState extends ChangeNotifier {
     _dataTimeStartToken = value;
     prefs.setInt('ff_dataTimeStartToken', value);
   }
+
+  String _alertCheck = '';
+  String get alertCheck => _alertCheck;
+  set alertCheck(String value) {
+    _alertCheck = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
