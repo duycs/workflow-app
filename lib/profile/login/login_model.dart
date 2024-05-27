@@ -177,17 +177,30 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
               r'''$.staff.id''',
             ).toString().toString(),
           );
-
-          context.pushNamed(
-            'TaskList',
-            extra: <String, dynamic>{
-              kTransitionInfoKey: const TransitionInfo(
-                hasTransition: true,
-                transitionType: PageTransitionType.fade,
-                duration: Duration(milliseconds: 0),
-              ),
-            },
-          );
+          await actions.checkNofiLoad();
+          if (FFAppState().alertCheck == 'Task mới') {
+            context.pushNamed(
+              'ProcedurePublishedList',
+              extra: <String, dynamic>{
+                kTransitionInfoKey: const TransitionInfo(
+                  hasTransition: true,
+                  transitionType: PageTransitionType.fade,
+                  duration: Duration(milliseconds: 0),
+                ),
+              },
+            );
+          } else {
+            context.pushNamed(
+              'TaskList',
+              extra: <String, dynamic>{
+                kTransitionInfoKey: const TransitionInfo(
+                  hasTransition: true,
+                  transitionType: PageTransitionType.fade,
+                  duration: Duration(milliseconds: 0),
+                ),
+              },
+            );
+          }
         } else {
           return;
         }

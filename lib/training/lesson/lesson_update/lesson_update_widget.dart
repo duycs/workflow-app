@@ -150,7 +150,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: SingleChildScrollView(
                     primary: false,
                     child: Column(
@@ -159,7 +159,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                       children: [
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 8.0, 0.0, 0.0),
+                              0.0, 16.0, 0.0, 0.0),
                           child: TextFormField(
                             controller: _model.nameTextController,
                             focusNode: _model.nameFocusNode,

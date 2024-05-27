@@ -167,7 +167,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                                           ? widget.item!.description
                                           : ' ',
                                       textAlign: TextAlign.start,
-                                      maxLines: 3,
+                                      maxLines: 5,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
