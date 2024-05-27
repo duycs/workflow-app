@@ -549,32 +549,22 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                       final listAnswerRadioItem =
                                                           listAnswerRadio[
                                                               listAnswerRadioIndex];
-                                                      return Container(
-                                                        width: double.infinity,
-                                                        constraints:
-                                                            const BoxConstraints(
-                                                          maxHeight: 200.0,
-                                                        ),
-                                                        decoration:
-                                                            const BoxDecoration(),
-                                                        child:
-                                                            SelectDoTestWidget(
-                                                          key: Key(
-                                                              'Keyw3b_${listAnswerRadioIndex}_of_${listAnswerRadio.length}'),
-                                                          listQuestion:
-                                                              listAnswerRadioItem
-                                                                  .answersId,
-                                                          listAnswer: questionListItem
-                                                                      .answers.isNotEmpty
-                                                              ? questionListItem
-                                                                  .answers.first
-                                                              : AnswersListStruct(
-                                                                  answersId:
-                                                                      TestAnswersIdStruct(
-                                                                    id: '1',
-                                                                  ),
+                                                      return SelectDoTestWidget(
+                                                        key: Key(
+                                                            'Key3b8_${listAnswerRadioIndex}_of_${listAnswerRadio.length}'),
+                                                        listQuestion:
+                                                            listAnswerRadioItem
+                                                                .answersId,
+                                                        listAnswer: questionListItem
+                                                                    .answers.isNotEmpty
+                                                            ? questionListItem
+                                                                .answers.first
+                                                            : AnswersListStruct(
+                                                                answersId:
+                                                                    TestAnswersIdStruct(
+                                                                  id: '1',
                                                                 ),
-                                                        ),
+                                                              ),
                                                       );
                                                     },
                                                   );

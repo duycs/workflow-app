@@ -14,6 +14,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:share/share.dart';
 
 Future<void> downloadFile(
   String url,
@@ -79,6 +80,8 @@ Future<void> downloadFile(
     // Ghi log đường dẫn lưu tệp
     print("File saved at: $path");
     Fluttertoast.showToast(msg: "Tệp đã được tải xuống thành công: $path");
+    // Chia sẻ tệp với người dùng
+    Share.shareFiles([path], text: "Tệp của bạn đã được tải xuống");
   } catch (e) {
     Fluttertoast.showToast(msg: "Lỗi khi tải xuống tệp: ${e.toString()}");
     print("Error downloading file: ${e.toString()}");

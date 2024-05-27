@@ -67,7 +67,7 @@ class _RadioGroupTestsAddWidgetState extends State<RadioGroupTestsAddWidget> {
                     widget.parameter1?.answersId.correct == 1
                         ? widget.parameter1!.answersId.content
                         : ' '),
-            optionHeight: 42.0,
+            optionHeight: 72.0,
             optionWidth: MediaQuery.sizeOf(context).width * 1.0,
             textStyle: FlutterFlowTheme.of(context).labelMedium.override(
                   fontFamily: 'Nunito Sans',
