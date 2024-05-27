@@ -158,7 +158,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 2.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 4.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -340,7 +340,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                       (_model.dateEnd != ''))
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 5.0, 24.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 24.0, 4.0),
                       child: Text(
                         '#Kết quả tìm kiếm theo bộ lọc',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -353,323 +353,315 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                       ),
                     ),
                   Expanded(
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 44.0),
-                      child: PagedListView<ApiPagingParams, dynamic>.separated(
-                        pagingController: _model.setListViewController(
-                          (nextPageMarker) =>
-                              LessonGroup.getLessonListCall.call(
-                            accessToken: FFAppState().accessToken,
-                            filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
-                              FFAppState().staffLogin,
-                              r'''$.organization_id''',
-                            ).toString()}\"}}${_model.nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${_model.nameSearchTextController.text != '' ? _model.nameSearchTextController.text : ' '}${_model.nameSearchTextController.text != '' ? '\"}}' : ' '}${(_model.status != '') && (_model.status != 'noData') ? ',{\"status\":{\"_icontains\":\"' : ' '}${(_model.status != '') && (_model.status != 'noData') ? _model.status : ' '}${(_model.status != '') && (_model.status != 'noData') ? '\"}}' : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noDate') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noDate') ? _model.dateStart : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noDate') ? '\"}}' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ((String var1) {
-                                return DateTime.parse(var1)
-                                    .add(const Duration(days: 1))
-                                    .toString();
-                              }(_model.dateEnd)) : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? '\"}}' : ' '}${_model.programId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${_model.programId != '' ? _model.programId : ' '}${_model.programId != '' ? '\"}}}}' : ' '}]}',
-                            offset: nextPageMarker.nextPageNumber * 20,
-                            limit: 20,
+                    child: PagedListView<ApiPagingParams, dynamic>.separated(
+                      pagingController: _model.setListViewController(
+                        (nextPageMarker) => LessonGroup.getLessonListCall.call(
+                          accessToken: FFAppState().accessToken,
+                          filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffLogin,
+                            r'''$.organization_id''',
+                          ).toString()}\"}}${_model.nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${_model.nameSearchTextController.text != '' ? _model.nameSearchTextController.text : ' '}${_model.nameSearchTextController.text != '' ? '\"}}' : ' '}${(_model.status != '') && (_model.status != 'noData') ? ',{\"status\":{\"_icontains\":\"' : ' '}${(_model.status != '') && (_model.status != 'noData') ? _model.status : ' '}${(_model.status != '') && (_model.status != 'noData') ? '\"}}' : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noDate') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noDate') ? _model.dateStart : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noDate') ? '\"}}' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ((String var1) {
+                              return DateTime.parse(var1)
+                                  .add(const Duration(days: 1))
+                                  .toString();
+                            }(_model.dateEnd)) : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? '\"}}' : ' '}${_model.programId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${_model.programId != '' ? _model.programId : ' '}${_model.programId != '' ? '\"}}}}' : ' '}]}',
+                          offset: nextPageMarker.nextPageNumber * 20,
+                          limit: 20,
+                        ),
+                      ),
+                      padding: EdgeInsets.zero,
+                      primary: false,
+                      reverse: false,
+                      scrollDirection: Axis.vertical,
+                      separatorBuilder: (_, __) => const SizedBox(height: 12.0),
+                      builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                        // Customize what your widget looks like when it's loading the first page.
+                        firstPageProgressIndicatorBuilder: (_) => Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
                           ),
                         ),
-                        padding: EdgeInsets.zero,
-                        primary: false,
-                        reverse: false,
-                        scrollDirection: Axis.vertical,
-                        separatorBuilder: (_, __) => const SizedBox(height: 12.0),
-                        builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                          // Customize what your widget looks like when it's loading the first page.
-                          firstPageProgressIndicatorBuilder: (_) => Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
-                                ),
+                        // Customize what your widget looks like when it's loading another page.
+                        newPageProgressIndicatorBuilder: (_) => Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
                               ),
                             ),
                           ),
-                          // Customize what your widget looks like when it's loading another page.
-                          newPageProgressIndicatorBuilder: (_) => Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
-                                ),
-                              ),
-                            ),
+                        ),
+                        noItemsFoundIndicatorBuilder: (_) => const Center(
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: DataNotFoundWidget(),
                           ),
-                          noItemsFoundIndicatorBuilder: (_) => const Center(
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: DataNotFoundWidget(),
-                            ),
-                          ),
-                          itemBuilder: (context, _, listItemsIndex) {
-                            final listItemsItem = _model
-                                .listViewPagingController!
-                                .itemList![listItemsIndex];
-                            return Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 16.0, 0.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed(
-                                    'LessonDetail',
-                                    queryParameters: {
-                                      'idLesson': serializeParam(
-                                        listItemsItem.id,
-                                        ParamType.String,
-                                      ),
-                                      'checkSrcoll': serializeParam(
-                                        'LessonsList',
-                                        ParamType.String,
-                                      ),
-                                      'checkPage': serializeParam(
-                                        widget.checkpage,
-                                        ParamType.String,
-                                      ),
-                                    }.withoutNulls,
-                                    extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
-                                        hasTransition: true,
-                                        transitionType: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                      ),
-                                    },
-                                  );
-                                },
-                                child: Container(
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      width: 1.0,
+                        ),
+                        itemBuilder: (context, _, listItemsIndex) {
+                          final listItemsItem = _model.listViewPagingController!
+                              .itemList![listItemsIndex];
+                          return Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed(
+                                  'LessonDetail',
+                                  queryParameters: {
+                                    'idLesson': serializeParam(
+                                      listItemsItem.id,
+                                      ParamType.String,
                                     ),
+                                    'checkSrcoll': serializeParam(
+                                      'LessonsList',
+                                      ParamType.String,
+                                    ),
+                                    'checkPage': serializeParam(
+                                      widget.checkpage,
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  border: Border.all(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    width: 1.0,
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(3.0),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                            child: Image.network(
-                                              '${FFAppConstants.ApiBaseUrl}/assets/${listItemsItem.imageCover}?access_token=${FFAppState().accessToken}',
-                                              width: 100.0,
-                                              height: 100.0,
-                                              fit: BoxFit.cover,
-                                              alignment: const Alignment(0.0, 0.0),
-                                            ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(3.0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          child: Image.network(
+                                            '${FFAppConstants.ApiBaseUrl}/assets/${listItemsItem.imageCover}?access_token=${FFAppState().accessToken}',
+                                            width: 100.0,
+                                            height: 100.0,
+                                            fit: BoxFit.cover,
+                                            alignment: const Alignment(0.0, 0.0),
                                           ),
                                         ),
-                                        Expanded(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                listItemsItem.name,
-                                                maxLines: 1,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 14.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                              ),
-                                              Text(
-                                                listItemsItem.description,
-                                                textAlign: TextAlign.start,
-                                                maxLines: 2,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodySmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 13.0,
-                                                          letterSpacing: 0.0,
-                                                          lineHeight: 1.0,
-                                                        ),
-                                              ),
-                                              Text(
-                                                '',
-                                                textAlign: TextAlign.start,
-                                                maxLines: 2,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodySmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 13.0,
-                                                          letterSpacing: 0.0,
-                                                          lineHeight: 1.0,
-                                                        ),
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  SingleChildScrollView(
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      3.0,
-                                                                      0.0),
-                                                          child: Icon(
-                                                            Icons
-                                                                .timelapse_outlined,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryText,
-                                                            size: 20.0,
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          listItemsItem
-                                                              .durationHours
-                                                              .toString(),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodySmall
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          'phút',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodySmall
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
-                                                      ].divide(
-                                                          const SizedBox(width: 2.0)),
-                                                    ),
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              listItemsItem.name,
+                                              maxLines: 1,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyLarge
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    fontSize: 14.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w500,
                                                   ),
-                                                  Align(
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            1.0, 0.0),
-                                                    child: Container(
-                                                      height: 30.0,
-                                                      decoration: BoxDecoration(
-                                                        color: listItemsItem
-                                                                    .status ==
-                                                                'published'
-                                                            ? FlutterFlowTheme
-                                                                    .of(context)
-                                                                .accent2
-                                                            : FlutterFlowTheme
-                                                                    .of(context)
-                                                                .accent3,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(20.0),
+                                            ),
+                                            Text(
+                                              listItemsItem.description,
+                                              textAlign: TextAlign.start,
+                                              maxLines: 2,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodySmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 13.0,
+                                                        letterSpacing: 0.0,
+                                                        lineHeight: 1.0,
                                                       ),
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Padding(
+                                            ),
+                                            Text(
+                                              '',
+                                              textAlign: TextAlign.start,
+                                              maxLines: 2,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodySmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 13.0,
+                                                        letterSpacing: 0.0,
+                                                        lineHeight: 1.0,
+                                                      ),
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                SingleChildScrollView(
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Padding(
                                                         padding:
                                                             const EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    8.0,
                                                                     0.0,
-                                                                    8.0,
+                                                                    0.0,
+                                                                    3.0,
                                                                     0.0),
-                                                        child: Text(
-                                                          listItemsItem
-                                                                      .status ==
-                                                                  'published'
-                                                              ? 'Hoạt động'
-                                                              : 'Không hoạt động',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: FlutterFlowTheme
+                                                        child: Icon(
+                                                          Icons
+                                                              .timelapse_outlined,
+                                                          color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                color: listItemsItem
-                                                                            .status ==
-                                                                        'published'
-                                                                    ? FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondary
-                                                                    : FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .tertiary,
-                                                                fontSize: 13.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
+                                                              .secondaryText,
+                                                          size: 20.0,
                                                         ),
+                                                      ),
+                                                      Text(
+                                                        listItemsItem
+                                                            .durationHours
+                                                            .toString(),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                      Text(
+                                                        'phút',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                    ].divide(
+                                                        const SizedBox(width: 2.0)),
+                                                  ),
+                                                ),
+                                                Align(
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          1.0, 0.0),
+                                                  child: Container(
+                                                    height: 30.0,
+                                                    decoration: BoxDecoration(
+                                                      color: listItemsItem
+                                                                  .status ==
+                                                              'published'
+                                                          ? FlutterFlowTheme.of(
+                                                                  context)
+                                                              .accent2
+                                                          : FlutterFlowTheme.of(
+                                                                  context)
+                                                              .accent3,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20.0),
+                                                    ),
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8.0,
+                                                                  0.0,
+                                                                  8.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        listItemsItem.status ==
+                                                                'published'
+                                                            ? 'Hoạt động'
+                                                            : 'Không hoạt động',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Nunito Sans',
+                                                              color: listItemsItem
+                                                                          .status ==
+                                                                      'published'
+                                                                  ? FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondary
+                                                                  : FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .tertiary,
+                                                              fontSize: 13.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                            ),
                                                       ),
                                                     ),
                                                   ),
-                                                ].divide(const SizedBox(width: 4.0)),
-                                              ),
-                                            ].divide(const SizedBox(height: 6.0)),
-                                          ),
+                                                ),
+                                              ].divide(const SizedBox(width: 4.0)),
+                                            ),
+                                          ].divide(const SizedBox(height: 6.0)),
                                         ),
-                                      ].divide(const SizedBox(width: 8.0)),
-                                    ),
+                                      ),
+                                    ].divide(const SizedBox(width: 8.0)),
                                   ),
                                 ),
                               ),
-                            );
-                          },
-                        ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),

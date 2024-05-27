@@ -291,252 +291,241 @@ class _LessonsListUserWidgetState extends State<LessonsListUserWidget> {
                       ),
                     ),
                   Expanded(
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 44.0),
-                      child: PagedListView<ApiPagingParams, dynamic>.separated(
-                        pagingController: _model.setListViewController(
-                          (nextPageMarker) =>
-                              LessonGroup.employeeLessonListCall.call(
-                            accessToken: FFAppState().accessToken,
-                            filter:
-                                '{\"_and\":[${'{\"staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                              FFAppState().staffLogin,
-                              r'''$.id''',
-                            ).toString()}\"}}},{\"status\":{\"_eq\":\"done\"}}'}${_model.nameSearchTextController.text != '' ? ', {\"lession_id\":{\"name\":{\"_icontains\":\"${_model.nameSearchTextController.text}\"}}}' : ' '}${(_model.dateStartSearch != '') && (_model.dateStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_gte\":\"${_model.dateStartSearch}\"}}}' : '  '}${(_model.dateEndStartSearch != '') && (_model.dateEndStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_lte\":\"${(String var1) {
-                                    return DateTime.parse(var1)
-                                        .add(const Duration(days: 1))
-                                        .toString();
-                                  }(_model.dateEndStartSearch)}\"}}}' : ' '}]}',
-                            limit: 20,
-                            offset: nextPageMarker.nextPageNumber * 20,
+                    child: PagedListView<ApiPagingParams, dynamic>.separated(
+                      pagingController: _model.setListViewController(
+                        (nextPageMarker) =>
+                            LessonGroup.employeeLessonListCall.call(
+                          accessToken: FFAppState().accessToken,
+                          filter:
+                              '{\"_and\":[${'{\"staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffLogin,
+                            r'''$.id''',
+                          ).toString()}\"}}},{\"status\":{\"_eq\":\"done\"}}'}${_model.nameSearchTextController.text != '' ? ', {\"lession_id\":{\"name\":{\"_icontains\":\"${_model.nameSearchTextController.text}\"}}}' : ' '}${(_model.dateStartSearch != '') && (_model.dateStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_gte\":\"${_model.dateStartSearch}\"}}}' : '  '}${(_model.dateEndStartSearch != '') && (_model.dateEndStartSearch != ' ') ? ',{\"lession_id\":{\"date_created\":{\"_lte\":\"${(String var1) {
+                                  return DateTime.parse(var1)
+                                      .add(const Duration(days: 1))
+                                      .toString();
+                                }(_model.dateEndStartSearch)}\"}}}' : ' '}]}',
+                          limit: 20,
+                          offset: nextPageMarker.nextPageNumber * 20,
+                        ),
+                      ),
+                      padding: EdgeInsets.zero,
+                      primary: false,
+                      reverse: false,
+                      scrollDirection: Axis.vertical,
+                      separatorBuilder: (_, __) => const SizedBox(height: 12.0),
+                      builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                        // Customize what your widget looks like when it's loading the first page.
+                        firstPageProgressIndicatorBuilder: (_) => Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
                           ),
                         ),
-                        padding: EdgeInsets.zero,
-                        primary: false,
-                        reverse: false,
-                        scrollDirection: Axis.vertical,
-                        separatorBuilder: (_, __) => const SizedBox(height: 12.0),
-                        builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                          // Customize what your widget looks like when it's loading the first page.
-                          firstPageProgressIndicatorBuilder: (_) => Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
-                                ),
+                        // Customize what your widget looks like when it's loading another page.
+                        newPageProgressIndicatorBuilder: (_) => Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
                               ),
                             ),
                           ),
-                          // Customize what your widget looks like when it's loading another page.
-                          newPageProgressIndicatorBuilder: (_) => Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
-                                ),
-                              ),
-                            ),
+                        ),
+                        noItemsFoundIndicatorBuilder: (_) => const Center(
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: DataNotFoundWidget(),
                           ),
-                          noItemsFoundIndicatorBuilder: (_) => const Center(
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: DataNotFoundWidget(),
-                            ),
-                          ),
-                          itemBuilder: (context, _, itemLessonStaffIndex) {
-                            final itemLessonStaffItem = _model
-                                .listViewPagingController!
-                                .itemList![itemLessonStaffIndex];
-                            return Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 16.0, 0.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed(
-                                    'LessonDetail_HomePage',
-                                    queryParameters: {
-                                      'listItems': serializeParam(
-                                        itemLessonStaffItem.lessionId.toMap(),
-                                        ParamType.JSON,
-                                      ),
-                                      'status': serializeParam(
-                                        itemLessonStaffItem.status,
-                                        ParamType.String,
-                                      ),
-                                      'checkScroll': serializeParam(
-                                        'LessonsListUser',
-                                        ParamType.String,
-                                      ),
-                                    }.withoutNulls,
-                                    extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
-                                        hasTransition: true,
-                                        transitionType: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                      ),
-                                    },
-                                  );
-                                },
-                                child: Container(
-                                  width: 220.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      width: 1.0,
+                        ),
+                        itemBuilder: (context, _, itemLessonStaffIndex) {
+                          final itemLessonStaffItem = _model
+                              .listViewPagingController!
+                              .itemList![itemLessonStaffIndex];
+                          return Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed(
+                                  'LessonDetail_HomePage',
+                                  queryParameters: {
+                                    'listItems': serializeParam(
+                                      itemLessonStaffItem.lessionId.toMap(),
+                                      ParamType.JSON,
                                     ),
+                                    'status': serializeParam(
+                                      itemLessonStaffItem.status,
+                                      ParamType.String,
+                                    ),
+                                    'checkScroll': serializeParam(
+                                      'LessonsListUser',
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
+                              },
+                              child: Container(
+                                width: 220.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  border: Border.all(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    width: 1.0,
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            '${FFAppConstants.ApiBaseUrl}/assets/${'${itemLessonStaffItem.lessionId.imageCover}'}?access_token=${FFAppState().accessToken}',
-                                            width: 100.0,
-                                            height: 100.0,
-                                            fit: BoxFit.cover,
-                                            alignment: const Alignment(0.0, 0.0),
-                                          ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.network(
+                                          '${FFAppConstants.ApiBaseUrl}/assets/${'${itemLessonStaffItem.lessionId.imageCover}'}?access_token=${FFAppState().accessToken}',
+                                          width: 100.0,
+                                          height: 100.0,
+                                          fit: BoxFit.cover,
+                                          alignment: const Alignment(0.0, 0.0),
                                         ),
-                                        Flexible(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 8.0, 0.0, 0.0),
-                                                child: Text(
-                                                  itemLessonStaffItem
-                                                      .lessionId.name,
-                                                  maxLines: 2,
-                                                  style: FlutterFlowTheme.of(
+                                      ),
+                                      Flexible(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                              child: Text(
+                                                itemLessonStaffItem
+                                                    .lessionId.name,
+                                                maxLines: 2,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          fontSize: 14.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 4.0, 0.0, 4.0),
+                                              child: Text(
+                                                itemLessonStaffItem
+                                                    .lessionId.description,
+                                                maxLines: 2,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodySmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          fontSize: 13.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 4.0, 0.0, 4.0),
+                                              child: Text(
+                                                '',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodySmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Icon(
+                                                  Icons.timelapse_outlined,
+                                                  color: FlutterFlowTheme.of(
                                                           context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        fontSize: 14.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
+                                                      .secondaryText,
+                                                  size: 20.0,
                                                 ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 4.0, 0.0, 4.0),
-                                                child: Text(
-                                                  itemLessonStaffItem
-                                                      .lessionId.description,
-                                                  maxLines: 2,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodySmall
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        fontSize: 13.0,
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Text(
+                                                      itemLessonStaffItem
+                                                          .lessionId
+                                                          .durationHours
+                                                          .toString(),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodySmall
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                    Text(
+                                                      'phút',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodySmall
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ].divide(
+                                                      const SizedBox(width: 2.0)),
                                                 ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 4.0, 0.0, 4.0),
-                                                child: Text(
-                                                  '',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodySmall
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Icon(
-                                                    Icons.timelapse_outlined,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    size: 20.0,
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Text(
-                                                        itemLessonStaffItem
-                                                            .lessionId
-                                                            .durationHours
-                                                            .toString(),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodySmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                      Text(
-                                                        'phút',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodySmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                    ].divide(
-                                                        const SizedBox(width: 2.0)),
-                                                  ),
-                                                ].divide(const SizedBox(width: 4.0)),
-                                              ),
-                                            ],
-                                          ),
+                                              ].divide(const SizedBox(width: 4.0)),
+                                            ),
+                                          ],
                                         ),
-                                      ].divide(const SizedBox(width: 8.0)),
-                                    ),
+                                      ),
+                                    ].divide(const SizedBox(width: 8.0)),
                                   ),
                                 ),
                               ),
-                            );
-                          },
-                        ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),

@@ -298,7 +298,7 @@ class _StudyProgramRankWidgetState extends State<StudyProgramRankWidget> {
                 color: FlutterFlowTheme.of(context).alternate,
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                 child: ListView(
                   padding: EdgeInsets.zero,
                   shrinkWrap: true,
