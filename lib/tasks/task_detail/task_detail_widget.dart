@@ -169,7 +169,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
           elevation: 1.0,
         ),
         body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -177,183 +177,192 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 if (_model.isLoad)
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.manage_accounts_outlined,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
-                            ),
-                            Text(
-                              'Người tạo: ',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
-                            Expanded(
-                              child: Text(
-                                _model.list.first.createdUserId
-                                                .firstName !=
-                                            ''
-                                    ? _model.list.first.createdUserId.firstName
-                                    : ' ',
-                                textAlign: TextAlign.end,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                              ),
-                            ),
-                          ].divide(const SizedBox(width: 8.0)),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Icon(
-                              Icons.date_range_outlined,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
-                            ),
-                            Text(
-                              'Ngày tạo:',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
-                            Expanded(
-                              child: Text(
-                                dateTimeFormat(
-                                  'HH:mm dd/MM/yyyy',
-                                  functions.stringToDateTime(
-                                      _model.list.first.dateCreated),
-                                  locale:
-                                      FFLocalizations.of(context).languageCode,
-                                ),
-                                textAlign: TextAlign.end,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                              ),
-                            ),
-                          ].divide(const SizedBox(width: 8.0)),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 16.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 2.0, 4.0, 0.0),
-                              child: Icon(
-                                Icons.settings_sharp,
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 2.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.manage_accounts_outlined,
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 size: 24.0,
                               ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 2.0, 0.0, 0.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Text(
-                                      _model.list.first.workflowId.name,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                    Text(
-                                      'Chạy lần thứ: ${widget.publishedCount?.toString()}',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            fontSize: 13.0,
-                                            letterSpacing: 0.0,
-                                            fontStyle: FontStyle.italic,
-                                          ),
-                                    ),
-                                  ].divide(const SizedBox(height: 2.0)),
-                                ),
-                              ),
-                            ),
-                            CircularPercentIndicator(
-                              percent: _model.list.isNotEmpty
-                                  ? (double.parse((_model.list
-                                              .where((e) => e.status == 'done')
-                                              .toList()
-                                              .length /
-                                          _model.list.length)
-                                      .toStringAsFixed(1)))
-                                  : 0.0,
-                              radius: 20.0,
-                              lineWidth: 6.0,
-                              animation: true,
-                              animateFromLastPercent: true,
-                              progressColor:
-                                  FlutterFlowTheme.of(context).primary,
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).alternate,
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 22.0, 0.0, 0.0),
-                              child: Text(
-                                '${_model.list.where((e) => e.status == 'done').toList().length.toString()}/${_model.list.length.toString()}',
+                              Text(
+                                'Người tạo: ',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Nunito Sans',
                                       letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
+                                      fontWeight: FontWeight.w500,
                                     ),
                               ),
-                            ),
-                          ].divide(const SizedBox(width: 4.0)),
+                              Expanded(
+                                child: Text(
+                                  _model.list.first.createdUserId
+                                                  .firstName !=
+                                              ''
+                                      ? _model
+                                          .list.first.createdUserId.firstName
+                                      : ' ',
+                                  textAlign: TextAlign.end,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ),
+                            ].divide(const SizedBox(width: 8.0)),
+                          ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 2.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Icon(
+                                Icons.date_range_outlined,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                              Text(
+                                'Ngày tạo:',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  dateTimeFormat(
+                                    'HH:mm dd/MM/yyyy',
+                                    functions.stringToDateTime(
+                                        _model.list.first.dateCreated),
+                                    locale: FFLocalizations.of(context)
+                                        .languageCode,
+                                  ),
+                                  textAlign: TextAlign.end,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ),
+                            ].divide(const SizedBox(width: 8.0)),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 4.0, 0.0, 16.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 2.0, 4.0, 0.0),
+                                child: Icon(
+                                  Icons.settings_sharp,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 24.0,
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 2.0, 0.0, 0.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      Text(
+                                        _model.list.first.workflowId.name,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      Text(
+                                        'Chạy lần thứ: ${widget.publishedCount?.toString()}',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              fontSize: 13.0,
+                                              letterSpacing: 0.0,
+                                              fontStyle: FontStyle.italic,
+                                            ),
+                                      ),
+                                    ].divide(const SizedBox(height: 2.0)),
+                                  ),
+                                ),
+                              ),
+                              CircularPercentIndicator(
+                                percent: _model.list.isNotEmpty
+                                    ? (double.parse((_model.list
+                                                .where(
+                                                    (e) => e.status == 'done')
+                                                .toList()
+                                                .length /
+                                            _model.list.length)
+                                        .toStringAsFixed(1)))
+                                    : 0.0,
+                                radius: 20.0,
+                                lineWidth: 6.0,
+                                animation: true,
+                                animateFromLastPercent: true,
+                                progressColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).alternate,
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 22.0, 0.0, 0.0),
+                                child: Text(
+                                  '${_model.list.where((e) => e.status == 'done').toList().length.toString()}/${_model.list.length.toString()}',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ),
+                            ].divide(const SizedBox(width: 4.0)),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 if (_model.list.isNotEmpty)
                   Builder(

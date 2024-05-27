@@ -135,311 +135,299 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    primary: false,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+            padding: const EdgeInsets.all(16.0),
+            child: SingleChildScrollView(
+              primary: false,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 12.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Chọn hành động',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyLarge
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      fontSize: 20.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                              ),
-                              FlutterFlowIconButton(
-                                borderRadius: 20.0,
-                                borderWidth: 1.0,
-                                buttonSize: 40.0,
-                                icon: Icon(
-                                  Icons.close,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 24.0,
+                        Text(
+                          'Chọn hành động',
+                          style:
+                              FlutterFlowTheme.of(context).bodyLarge.override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 20.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                        ),
+                        FlutterFlowIconButton(
+                          borderRadius: 20.0,
+                          borderWidth: 1.0,
+                          buttonSize: 40.0,
+                          icon: Icon(
+                            Icons.close,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
+                          ),
+                          onPressed: () async {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: _model.textNameTextController,
+                            focusNode: _model.textNameFocusNode,
+                            onChanged: (_) => EasyDebounce.debounce(
+                              '_model.textNameTextController',
+                              const Duration(milliseconds: 2000),
+                              () => setState(() {}),
+                            ),
+                            autofocus: false,
+                            textInputAction: TextInputAction.search,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                              hintText: 'Tìm kiếm ...',
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 1.0,
                                 ),
-                                onPressed: () async {
-                                  Navigator.pop(context);
-                                },
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 0.0, 0.0),
+                              prefixIcon: const Icon(
+                                Icons.search_rounded,
+                              ),
+                              suffixIcon: _model
+                                      .textNameTextController!.text.isNotEmpty
+                                  ? InkWell(
+                                      onTap: () async {
+                                        _model.textNameTextController?.clear();
+                                        setState(() {});
+                                      },
+                                      child: const Icon(
+                                        Icons.clear,
+                                        size: 22,
+                                      ),
+                                    )
+                                  : null,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                ),
+                            validator: _model.textNameTextControllerValidator
+                                .asValidator(context),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    constraints: BoxConstraints(
+                      maxHeight: MediaQuery.sizeOf(context).height * 0.8,
+                    ),
+                    decoration: const BoxDecoration(),
+                    child: Column(
+                      children: [
+                        Align(
+                          alignment: const Alignment(0.0, 0),
+                          child: TabBar(
+                            labelColor:
+                                FlutterFlowTheme.of(context).primaryText,
+                            unselectedLabelColor:
+                                FlutterFlowTheme.of(context).secondaryText,
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                ),
+                            unselectedLabelStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                ),
+                            indicatorColor:
+                                FlutterFlowTheme.of(context).primary,
+                            padding: const EdgeInsets.all(4.0),
+                            tabs: const [
+                              Tab(
+                                text: 'Tạo mới',
+                              ),
+                              Tab(
+                                text: 'Mặc định',
                               ),
                             ],
+                            controller: _model.tabBarController,
+                            onTap: (i) async {
+                              [() async {}, () async {}][i]();
+                            },
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 12.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        Expanded(
+                          child: TabBarView(
+                            controller: _model.tabBarController,
                             children: [
-                              Expanded(
-                                child: TextFormField(
-                                  controller: _model.textNameTextController,
-                                  focusNode: _model.textNameFocusNode,
-                                  onChanged: (_) => EasyDebounce.debounce(
-                                    '_model.textNameTextController',
-                                    const Duration(milliseconds: 2000),
-                                    () => setState(() {}),
-                                  ),
-                                  autofocus: false,
-                                  textInputAction: TextInputAction.search,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    hintText: 'Tìm kiếm ...',
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    contentPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 0.0, 0.0, 0.0),
-                                    prefixIcon: const Icon(
-                                      Icons.search_rounded,
-                                    ),
-                                    suffixIcon: _model.textNameTextController!
-                                            .text.isNotEmpty
-                                        ? InkWell(
-                                            onTap: () async {
-                                              _model.textNameTextController
-                                                  ?.clear();
-                                              setState(() {});
-                                            },
-                                            child: const Icon(
-                                              Icons.clear,
-                                              size: 22,
-                                            ),
-                                          )
-                                        : null,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  validator: _model
-                                      .textNameTextControllerValidator
-                                      .asValidator(context),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Divider(
-                          height: 1.0,
-                          thickness: 1.0,
-                          color: FlutterFlowTheme.of(context).alternate,
-                        ),
-                        Container(
-                          constraints: BoxConstraints(
-                            maxHeight: MediaQuery.sizeOf(context).height * 0.8,
-                          ),
-                          decoration: const BoxDecoration(),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: const Alignment(0.0, 0),
-                                child: TabBar(
-                                  labelColor:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  unselectedLabelColor:
-                                      FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                  labelStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  unselectedLabelStyle:
-                                      FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            letterSpacing: 0.0,
-                                          ),
-                                  indicatorColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  padding: const EdgeInsets.all(4.0),
-                                  tabs: const [
-                                    Tab(
-                                      text: 'Tạo mới',
-                                    ),
-                                    Tab(
-                                      text: 'Mặc định',
-                                    ),
-                                  ],
-                                  controller: _model.tabBarController,
-                                  onTap: (i) async {
-                                    [() async {}, () async {}][i]();
-                                  },
-                                ),
-                              ),
-                              Expanded(
-                                child: TabBarView(
-                                  controller: _model.tabBarController,
-                                  children: [
-                                    Stack(
-                                      children: [
-                                        if (_model.isLoad == true)
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 0.0, 10.0, 0.0),
-                                            child: Builder(
-                                              builder: (context) {
-                                                final operationsListNew = _model
-                                                    .operationList
-                                                    .where((e) =>
-                                                        (e.flowId == '') &&
-                                                        (e.name
-                                                            .toLowerCase()
-                                                            .contains(_model
-                                                                .textNameTextController
-                                                                .text
-                                                                .toLowerCase())))
-                                                    .toList();
-                                                return ListView.builder(
-                                                  padding: EdgeInsets.zero,
-                                                  primary: false,
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount:
-                                                      operationsListNew.length,
-                                                  itemBuilder: (context,
-                                                      operationsListNewIndex) {
-                                                    final operationsListNewItem =
-                                                        operationsListNew[
-                                                            operationsListNewIndex];
-                                                    return Align(
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              -1.0, 0.0),
+                              Stack(
+                                children: [
+                                  if (_model.isLoad == true)
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          10.0, 0.0, 10.0, 0.0),
+                                      child: Builder(
+                                        builder: (context) {
+                                          final operationsListNew = _model
+                                              .operationList
+                                              .where((e) =>
+                                                  (e.flowId == '') &&
+                                                  (e.name
+                                                      .toLowerCase()
+                                                      .contains(_model
+                                                          .textNameTextController
+                                                          .text
+                                                          .toLowerCase())))
+                                              .toList();
+                                          return ListView.builder(
+                                            padding: EdgeInsets.zero,
+                                            primary: false,
+                                            scrollDirection: Axis.vertical,
+                                            itemCount: operationsListNew.length,
+                                            itemBuilder: (context,
+                                                operationsListNewIndex) {
+                                              final operationsListNewItem =
+                                                  operationsListNew[
+                                                      operationsListNewIndex];
+                                              return Align(
+                                                alignment: const AlignmentDirectional(
+                                                    -1.0, 0.0),
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 5.0, 0.0, 5.0),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      await widget.callBack
+                                                          ?.call(
+                                                        operationsListNewItem,
+                                                      );
+                                                      Navigator.pop(context);
+                                                    },
+                                                    child: Container(
+                                                      width: double.infinity,
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        boxShadow: const [
+                                                          BoxShadow(
+                                                            blurRadius: 1.0,
+                                                            color: Color(
+                                                                0x33000000),
+                                                          )
+                                                        ],
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5.0),
+                                                      ),
                                                       child: Padding(
                                                         padding:
                                                             const EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    0.0,
+                                                                    10.0,
                                                                     5.0,
-                                                                    0.0,
+                                                                    10.0,
                                                                     5.0),
-                                                        child: InkWell(
-                                                          splashColor: Colors
-                                                              .transparent,
-                                                          focusColor: Colors
-                                                              .transparent,
-                                                          hoverColor: Colors
-                                                              .transparent,
-                                                          highlightColor: Colors
-                                                              .transparent,
-                                                          onTap: () async {
-                                                            await widget
-                                                                .callBack
-                                                                ?.call(
-                                                              operationsListNewItem,
-                                                            );
-                                                            Navigator.pop(
-                                                                context);
-                                                          },
-                                                          child: Container(
-                                                            width:
-                                                                double.infinity,
-                                                            height: 50.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                              boxShadow: const [
-                                                                BoxShadow(
-                                                                  blurRadius:
-                                                                      4.0,
-                                                                  color: Color(
-                                                                      0x33000000),
-                                                                  offset:
-                                                                      Offset(
-                                                                    0.0,
-                                                                    2.0,
-                                                                  ),
-                                                                  spreadRadius:
-                                                                      1.0,
-                                                                )
-                                                              ],
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Align(
+                                                              alignment:
+                                                                  const AlignmentDirectional(
+                                                                      -1.0,
+                                                                      0.0),
+                                                              child: Text(
+                                                                '${(operationsListNewIndex + 1).toString()}. ${operationsListNewItem.name}',
+                                                                maxLines: 2,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
                                                             ),
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10.0,
-                                                                          5.0,
-                                                                          10.0,
-                                                                          5.0),
-                                                              child: Column(
+                                                            SingleChildScrollView(
+                                                              scrollDirection:
+                                                                  Axis.horizontal,
+                                                              child: Row(
                                                                 mainAxisSize:
                                                                     MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
+                                                                        .min,
                                                                 children: [
                                                                   Align(
                                                                     alignment:
@@ -447,9 +435,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                                                             -1.0,
                                                                             0.0),
                                                                     child: Text(
-                                                                      '${(operationsListNewIndex + 1).toString()}. ${operationsListNewItem.name}',
-                                                                      maxLines:
-                                                                          2,
+                                                                      'Kiểu hành động : ',
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodyMedium
@@ -461,226 +447,215 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                                                           ),
                                                                     ),
                                                                   ),
-                                                                  SingleChildScrollView(
-                                                                    scrollDirection:
-                                                                        Axis.horizontal,
-                                                                    child: Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .min,
-                                                                      children: [
-                                                                        Align(
-                                                                          alignment: const AlignmentDirectional(
-                                                                              -1.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Text(
-                                                                            'Kiểu hành động : ',
-                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                  fontFamily: 'Nunito Sans',
-                                                                                  letterSpacing: 0.0,
-                                                                                ),
-                                                                          ),
+                                                                  Text(
+                                                                    () {
+                                                                      if ((operationsListNewItem.actionType ==
+                                                                              'submit_text') &&
+                                                                          (operationsListNewItem.actionType ==
+                                                                              'submit')) {
+                                                                        return 'Nhập văn bản';
+                                                                      } else if (operationsListNewItem
+                                                                              .actionType ==
+                                                                          'image') {
+                                                                        return 'Chụp ảnh';
+                                                                      } else if (operationsListNewItem
+                                                                              .actionType ==
+                                                                          'upload_file') {
+                                                                        return 'Upload file';
+                                                                      } else if (operationsListNewItem
+                                                                              .actionType ==
+                                                                          'to_do_list') {
+                                                                        return 'Checklist công việc';
+                                                                      } else {
+                                                                        return 'Phê duyệt';
+                                                                      }
+                                                                    }(),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Nunito Sans',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primary,
+                                                                          letterSpacing:
+                                                                              0.0,
                                                                         ),
-                                                                        Text(
-                                                                          () {
-                                                                            if ((operationsListNewItem.actionType == 'submit_text') &&
-                                                                                (operationsListNewItem.actionType == 'submit')) {
-                                                                              return 'Nhập văn bản';
-                                                                            } else if (operationsListNewItem.actionType == 'image') {
-                                                                              return 'Chụp ảnh';
-                                                                            } else if (operationsListNewItem.actionType == 'upload_file') {
-                                                                              return 'Upload file';
-                                                                            } else if (operationsListNewItem.actionType == 'to_do_list') {
-                                                                              return 'Checklist công việc';
-                                                                            } else {
-                                                                              return 'Phê duyệt';
-                                                                            }
-                                                                          }(),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .override(
-                                                                                fontFamily: 'Nunito Sans',
-                                                                                color: FlutterFlowTheme.of(context).primary,
-                                                                                letterSpacing: 0.0,
-                                                                              ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
                                                                   ),
                                                                 ],
                                                               ),
                                                             ),
-                                                          ),
+                                                          ],
                                                         ),
                                                       ),
-                                                    );
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        if ((_model.operationList
-                                                    .where((e) =>
-                                                        (e.flowId == '') &&
-                                                        (e.name
-                                                            .toLowerCase()
-                                                            .contains(_model
-                                                                .textNameTextController
-                                                                .text
-                                                                .toLowerCase())))
-                                                    .toList().isEmpty) &&
-                                            (_model.isLoad == true))
-                                          Align(
-                                            alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 100.0, 0.0, 50.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  FaIcon(
-                                                    FontAwesomeIcons.database,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .alternate,
-                                                    size: 55.0,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 15.0,
-                                                                0.0, 0.0),
-                                                    child: Text(
-                                                      'Không có dữ liệu !',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Nunito Sans',
-                                                            fontSize: 18.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
                                                     ),
                                                   ),
-                                                ],
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  if ((_model.operationList
+                                              .where((e) =>
+                                                  (e.flowId == '') &&
+                                                  (e.name
+                                                      .toLowerCase()
+                                                      .contains(_model
+                                                          .textNameTextController
+                                                          .text
+                                                          .toLowerCase())))
+                                              .toList().isEmpty) &&
+                                      (_model.isLoad == true))
+                                    Align(
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 100.0, 0.0, 50.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            FaIcon(
+                                              FontAwesomeIcons.database,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              size: 55.0,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 15.0, 0.0, 0.0),
+                                              child: Text(
+                                                'Không có dữ liệu !',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          fontSize: 18.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
                                               ),
                                             ),
-                                          ),
-                                      ],
+                                          ],
+                                        ),
+                                      ),
                                     ),
-                                    Stack(
-                                      children: [
-                                        if (_model.isLoad == true)
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 0.0, 10.0, 0.0),
-                                            child: Builder(
-                                              builder: (context) {
-                                                final operationsListDefault = _model
-                                                    .operationList
-                                                    .where((e) =>
-                                                        (e.flowId != '') &&
-                                                        (e.flowId != 'null') &&
-                                                        (e.name.contains(_model
-                                                            .textNameTextController
-                                                            .text)))
-                                                    .toList();
-                                                return ListView.builder(
-                                                  padding: EdgeInsets.zero,
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount:
-                                                      operationsListDefault
-                                                          .length,
-                                                  itemBuilder: (context,
-                                                      operationsListDefaultIndex) {
-                                                    final operationsListDefaultItem =
-                                                        operationsListDefault[
-                                                            operationsListDefaultIndex];
-                                                    return Padding(
+                                ],
+                              ),
+                              Stack(
+                                children: [
+                                  if (_model.isLoad == true)
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          10.0, 0.0, 10.0, 0.0),
+                                      child: Builder(
+                                        builder: (context) {
+                                          final operationsListDefault = _model
+                                              .operationList
+                                              .where((e) =>
+                                                  (e.flowId != '') &&
+                                                  (e.flowId != 'null') &&
+                                                  (e.name.contains(_model
+                                                      .textNameTextController
+                                                      .text)))
+                                              .toList();
+                                          return ListView.builder(
+                                            padding: EdgeInsets.zero,
+                                            scrollDirection: Axis.vertical,
+                                            itemCount:
+                                                operationsListDefault.length,
+                                            itemBuilder: (context,
+                                                operationsListDefaultIndex) {
+                                              final operationsListDefaultItem =
+                                                  operationsListDefault[
+                                                      operationsListDefaultIndex];
+                                              return Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 5.0, 0.0, 5.0),
+                                                child: InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    await widget.callBack?.call(
+                                                      operationsListDefaultItem,
+                                                    );
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      boxShadow: const [
+                                                        BoxShadow(
+                                                          blurRadius: 1.0,
+                                                          color:
+                                                              Color(0x33000000),
+                                                        )
+                                                      ],
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5.0),
+                                                    ),
+                                                    child: Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  0.0,
+                                                                  10.0,
                                                                   5.0,
-                                                                  0.0,
+                                                                  10.0,
                                                                   5.0),
-                                                      child: InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
-                                                        onTap: () async {
-                                                          await widget.callBack
-                                                              ?.call(
-                                                            operationsListDefaultItem,
-                                                          );
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        child: Container(
-                                                          width: 100.0,
-                                                          height: 50.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            '${(operationsListDefaultIndex + 1).toString()}. ${operationsListDefaultItem.name}',
+                                                            maxLines: 2,
+                                                            style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .secondaryBackground,
-                                                            boxShadow: const [
-                                                              BoxShadow(
-                                                                blurRadius: 4.0,
-                                                                color: Color(
-                                                                    0x33000000),
-                                                                offset: Offset(
-                                                                  0.0,
-                                                                  2.0,
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
                                                                 ),
-                                                                spreadRadius:
-                                                                    1.0,
-                                                              )
-                                                            ],
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        5.0),
                                                           ),
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10.0,
-                                                                        5.0,
-                                                                        10.0,
-                                                                        5.0),
-                                                            child: Column(
+                                                          SingleChildScrollView(
+                                                            scrollDirection:
+                                                                Axis.horizontal,
+                                                            child: Row(
                                                               mainAxisSize:
                                                                   MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
+                                                                      .min,
                                                               children: [
                                                                 Text(
-                                                                  '${(operationsListDefaultIndex + 1).toString()}. ${operationsListDefaultItem.name}',
-                                                                  maxLines: 2,
+                                                                  'Kiểu hành động : ',
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -691,122 +666,107 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                                                             0.0,
                                                                       ),
                                                                 ),
-                                                                SingleChildScrollView(
-                                                                  scrollDirection:
-                                                                      Axis.horizontal,
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .min,
-                                                                    children: [
-                                                                      Text(
-                                                                        'Kiểu hành động : ',
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Nunito Sans',
-                                                                              letterSpacing: 0.0,
-                                                                            ),
+                                                                Text(
+                                                                  () {
+                                                                    if ((operationsListDefaultItem.actionType ==
+                                                                            'submit_text') &&
+                                                                        (operationsListDefaultItem.actionType ==
+                                                                            'submit')) {
+                                                                      return 'Nhập văn bản';
+                                                                    } else if (operationsListDefaultItem
+                                                                            .actionType ==
+                                                                        'image') {
+                                                                      return 'Chụp ảnh';
+                                                                    } else if (operationsListDefaultItem
+                                                                            .actionType ==
+                                                                        'upload_file') {
+                                                                      return 'Upload file';
+                                                                    } else if (operationsListDefaultItem
+                                                                            .actionType ==
+                                                                        'to_do_list') {
+                                                                      return 'Checklist công việc';
+                                                                    } else {
+                                                                      return 'Phê duyệt';
+                                                                    }
+                                                                  }(),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                        letterSpacing:
+                                                                            0.0,
                                                                       ),
-                                                                      Text(
-                                                                        () {
-                                                                          if ((operationsListDefaultItem.actionType == 'submit_text') &&
-                                                                              (operationsListDefaultItem.actionType ==
-                                                                                  'submit')) {
-                                                                            return 'Nhập văn bản';
-                                                                          } else if (operationsListDefaultItem.actionType ==
-                                                                              'image') {
-                                                                            return 'Chụp ảnh';
-                                                                          } else if (operationsListDefaultItem.actionType ==
-                                                                              'upload_file') {
-                                                                            return 'Upload file';
-                                                                          } else if (operationsListDefaultItem.actionType ==
-                                                                              'to_do_list') {
-                                                                            return 'Checklist công việc';
-                                                                          } else {
-                                                                            return 'Phê duyệt';
-                                                                          }
-                                                                        }(),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Nunito Sans',
-                                                                              color: FlutterFlowTheme.of(context).primary,
-                                                                              letterSpacing: 0.0,
-                                                                            ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
                                                                 ),
                                                               ],
                                                             ),
                                                           ),
-                                                        ),
+                                                        ],
                                                       ),
-                                                    );
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        if ((_model.operationList
-                                                    .where((e) =>
-                                                        (e.flowId != '') &&
-                                                        (e.flowId != 'null') &&
-                                                        (e.name.contains(_model
-                                                            .textNameTextController
-                                                            .text)))
-                                                    .toList().isEmpty) &&
-                                            (_model.isLoad == true))
-                                          Align(
-                                            alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 100.0, 0.0, 50.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  FaIcon(
-                                                    FontAwesomeIcons.database,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .alternate,
-                                                    size: 55.0,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 15.0,
-                                                                0.0, 0.0),
-                                                    child: Text(
-                                                      'Không có dữ liệu !',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Nunito Sans',
-                                                            fontSize: 18.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
                                                     ),
                                                   ),
-                                                ],
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  if ((_model.operationList
+                                              .where((e) =>
+                                                  (e.flowId != '') &&
+                                                  (e.flowId != 'null') &&
+                                                  (e.name.contains(_model
+                                                      .textNameTextController
+                                                      .text)))
+                                              .toList().isEmpty) &&
+                                      (_model.isLoad == true))
+                                    Align(
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 100.0, 0.0, 50.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            FaIcon(
+                                              FontAwesomeIcons.database,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              size: 55.0,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 15.0, 0.0, 0.0),
+                                              child: Text(
+                                                'Không có dữ liệu !',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          fontSize: 18.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
                                               ),
                                             ),
-                                          ),
-                                      ],
+                                          ],
+                                        ),
+                                      ),
                                     ),
-                                  ],
-                                ),
+                                ],
                               ),
                             ],
                           ),
@@ -814,8 +774,8 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                       ],
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

@@ -567,20 +567,20 @@ class _ProcedurePublishedListWidgetState
                                                             .isNotEmpty),
                                                     child: Builder(
                                                       builder: (context) {
-                                                        final itemPublishedList =
-                                                            (getJsonField(
-                                                                  itemsItem
-                                                                      .toMap(),
-                                                                  r'''$.steps[0].tasks''',
-                                                                  true,
-                                                                )
-                                                                        ?.toList()
-                                                                        .map<ProcedurePublishedStepTaskStruct?>(
-                                                                            ProcedurePublishedStepTaskStruct.maybeFromMap)
-                                                                        .toList() as Iterable<ProcedurePublishedStepTaskStruct?>)
-                                                                    .withoutNulls
-                                                                    .toList() ??
-                                                                [];
+                                                        final itemPublishedList = itemsItem
+                                                            .steps
+                                                            .where((e) =>
+                                                                e.number == 1)
+                                                            .toList()
+                                                            .map((e) =>
+                                                                ProcedurePublishedStepTaskStruct
+                                                                    .maybeFromMap(
+                                                                        getJsonField(
+                                                                  e.toMap(),
+                                                                  r'''$[0].tasks''',
+                                                                )))
+                                                            .withoutNulls
+                                                            .toList();
                                                         return Column(
                                                           mainAxisSize:
                                                               MainAxisSize.min,
