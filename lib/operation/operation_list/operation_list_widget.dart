@@ -845,7 +845,8 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                                     .secondaryText,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w300,
+                                                                        .normal,
+                                                                fontSize: 14.0,
                                                                 fontStyle:
                                                                     FontStyle
                                                                         .italic,

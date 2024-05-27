@@ -1123,7 +1123,8 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsets.all(16.0),
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 16.0, 0.0),
                                 child: SingleChildScrollView(
                                   primary: false,
                                   child: Column(
@@ -1133,7 +1134,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                     children: [
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 16.0),
+                                            0.0, 16.0, 0.0, 16.0),
                                         child: Container(
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)

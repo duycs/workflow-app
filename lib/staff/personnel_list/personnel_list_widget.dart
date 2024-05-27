@@ -378,7 +378,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                           (_model.department != ' ')))
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 8.0),
                       child: Text(
                         '# Kết quả tìm kiếm theo bộ lọc',
                         style:

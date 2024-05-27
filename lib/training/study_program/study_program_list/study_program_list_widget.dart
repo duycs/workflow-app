@@ -105,6 +105,9 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                             _model.dateStartSearch = '';
                             _model.lessionsNameSearch = '';
                           });
+                          setState(() {
+                            _model.textFieldNameSearchTextController?.clear();
+                          });
                           setState(() =>
                               _model.listViewPagingController1?.refresh());
                           setState(() {});

@@ -760,9 +760,20 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                               ),
                                                             ),
                                                           ),
-                                                          if (_model
-                                                                  .organizationDetail!
-                                                                  .branchs.isNotEmpty)
+                                                          if (((_model.organizationDetail
+                                                                              ?.staffs !=
+                                                                          null &&
+                                                                      (_model.organizationDetail
+                                                                              ?.staffs)!
+                                                                          .isNotEmpty) ==
+                                                                  true) &&
+                                                              (_model.organizationDetail!
+                                                                      .staffs
+                                                                      .where((e) =>
+                                                                          e.userId
+                                                                              .role ==
+                                                                          'a8d33527-375b-4599-ac70-6a3fcad1de39')
+                                                                      .toList().isNotEmpty))
                                                             Padding(
                                                               padding:
                                                                   const EdgeInsetsDirectional

@@ -354,7 +354,7 @@ class _ProcedurePublishedListWidgetState
                               (_model.searchUserCreated != ''))
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 10.0, 0.0, 0.0),
+                                  16.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 '#Kết quả hiển thị theo bộ lọc',
                                 style: FlutterFlowTheme.of(context)
@@ -370,7 +370,7 @@ class _ProcedurePublishedListWidgetState
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 10.0, 16.0, 16.0),
+                                  16.0, 0.0, 16.0, 0.0),
                               child: PagedListView<ApiPagingParams, dynamic>(
                                 pagingController: _model.setListViewController(
                                   (nextPageMarker) => ProcedurePublishedGroup
@@ -567,20 +567,20 @@ class _ProcedurePublishedListWidgetState
                                                             .isNotEmpty),
                                                     child: Builder(
                                                       builder: (context) {
-                                                        final itemPublishedList = itemsItem
-                                                            .steps
-                                                            .where((e) =>
-                                                                e.number == 1)
-                                                            .toList()
-                                                            .map((e) =>
-                                                                ProcedurePublishedStepTaskStruct
-                                                                    .maybeFromMap(
-                                                                        getJsonField(
-                                                                  e.toMap(),
-                                                                  r'''$[0].tasks''',
-                                                                )))
-                                                            .withoutNulls
-                                                            .toList();
+                                                        final itemPublishedList =
+                                                            (getJsonField(
+                                                                  itemsItem
+                                                                      .toMap(),
+                                                                  r'''$.steps[0].tasks''',
+                                                                  true,
+                                                                )
+                                                                        ?.toList()
+                                                                        .map<ProcedurePublishedStepTaskStruct?>(
+                                                                            ProcedurePublishedStepTaskStruct.maybeFromMap)
+                                                                        .toList() as Iterable<ProcedurePublishedStepTaskStruct?>)
+                                                                    .withoutNulls
+                                                                    .toList() ??
+                                                                [];
                                                         return Column(
                                                           mainAxisSize:
                                                               MainAxisSize.min,
@@ -815,7 +815,7 @@ class _ProcedurePublishedListWidgetState
                               ),
                             ),
                           ),
-                        ],
+                        ].divide(const SizedBox(height: 8.0)),
                       ),
                     ),
                   ],

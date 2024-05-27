@@ -307,556 +307,801 @@ class _StudyProgramListUserWidgetState
                     ),
                   ),
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                    child: PagedListView<ApiPagingParams, dynamic>.separated(
-                      pagingController: _model.setListViewController(
-                        (nextPageMarker) =>
-                            StudyProgramGroup.staffsProgramsCall.call(
-                          accessToken: FFAppState().accessToken,
-                          limit: 20,
-                          offset: nextPageMarker.nextPageNumber * 20,
-                          filter: '{\"_and\":[ {\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                            FFAppState().staffLogin,
-                            r'''$.organization_id''',
-                          ).toString()}\"}}},{\"staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                            FFAppState().staffLogin,
-                            r'''$.id''',
-                          ).toString()}\"}}}${(_model.dateStart != '') && (_model.dateStart != 'noData') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noData') ? _model.dateStart : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noData') ? '\"}}' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ((String var1) {
-                              return DateTime.parse(var1)
-                                  .add(const Duration(days: 1))
-                                  .toString();
-                            }(_model.dateEnd)) : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? '\"}}' : ' '}${_model.textFieldNameSearchTextController.text != '' ? ',{\"program_id\":{\"name\":{\"_icontains\":\"' : ' '}${_model.textFieldNameSearchTextController.text != '' ? _model.textFieldNameSearchTextController.text : ' '}${_model.textFieldNameSearchTextController.text != '' ? '\"}}}' : ' '}${(_model.lessonName != '') && (_model.lessonName != 'noData') ? ',{\"program_id\":{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"' : ' '}${(_model.lessonName != '') && (_model.lessonName != 'noData') ? _model.lessonName : ' '}${(_model.lessonName != '') && (_model.lessonName != 'noData') ? '\"}}}}}' : ' '},{\"program_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
+                  child: PagedListView<ApiPagingParams, dynamic>.separated(
+                    pagingController: _model.setListViewController(
+                      (nextPageMarker) =>
+                          StudyProgramGroup.staffsProgramsCall.call(
+                        accessToken: FFAppState().accessToken,
+                        limit: 20,
+                        offset: nextPageMarker.nextPageNumber * 20,
+                        filter: '{\"_and\":[ {\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                          FFAppState().staffLogin,
+                          r'''$.organization_id''',
+                        ).toString()}\"}}},{\"staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                          FFAppState().staffLogin,
+                          r'''$.id''',
+                        ).toString()}\"}}}${(_model.dateStart != '') && (_model.dateStart != 'noData') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noData') ? _model.dateStart : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noData') ? '\"}}' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ((String var1) {
+                            return DateTime.parse(var1)
+                                .add(const Duration(days: 1))
+                                .toString();
+                          }(_model.dateEnd)) : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? '\"}}' : ' '}${_model.textFieldNameSearchTextController.text != '' ? ',{\"program_id\":{\"name\":{\"_icontains\":\"' : ' '}${_model.textFieldNameSearchTextController.text != '' ? _model.textFieldNameSearchTextController.text : ' '}${_model.textFieldNameSearchTextController.text != '' ? '\"}}}' : ' '}${(_model.lessonName != '') && (_model.lessonName != 'noData') ? ',{\"program_id\":{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"' : ' '}${(_model.lessonName != '') && (_model.lessonName != 'noData') ? _model.lessonName : ' '}${(_model.lessonName != '') && (_model.lessonName != 'noData') ? '\"}}}}}' : ' '},{\"program_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
+                      ),
+                    ),
+                    padding: EdgeInsets.zero,
+                    primary: false,
+                    reverse: false,
+                    scrollDirection: Axis.vertical,
+                    separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                    builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                      // Customize what your widget looks like when it's loading the first page.
+                      firstPageProgressIndicatorBuilder: (_) => Center(
+                        child: SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
+                            ),
+                          ),
                         ),
                       ),
-                      padding: EdgeInsets.zero,
-                      primary: false,
-                      reverse: false,
-                      scrollDirection: Axis.vertical,
-                      separatorBuilder: (_, __) => const SizedBox(height: 10.0),
-                      builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                        // Customize what your widget looks like when it's loading the first page.
-                        firstPageProgressIndicatorBuilder: (_) => Center(
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
-                              ),
+                      // Customize what your widget looks like when it's loading another page.
+                      newPageProgressIndicatorBuilder: (_) => Center(
+                        child: SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
                             ),
                           ),
                         ),
-                        // Customize what your widget looks like when it's loading another page.
-                        newPageProgressIndicatorBuilder: (_) => Center(
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
-                              ),
-                            ),
-                          ),
+                      ),
+                      noItemsFoundIndicatorBuilder: (_) => const Center(
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: DataNotFoundWidget(),
                         ),
-                        noItemsFoundIndicatorBuilder: (_) => const Center(
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: DataNotFoundWidget(),
-                          ),
-                        ),
-                        itemBuilder: (context, _, itemProgramIdTilteIndex) {
-                          final itemProgramIdTilteItem = _model
-                              .listViewPagingController!
-                              .itemList![itemProgramIdTilteIndex];
-                          return Container(
-                            decoration: const BoxDecoration(),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      12.0, 0.0, 12.0, 12.0),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      if (_model.checkOpen ==
-                                          itemProgramIdTilteItem.programId.id) {
-                                        setState(() {
-                                          _model.checkOpen = '';
-                                        });
-                                      } else {
-                                        setState(() {
-                                          _model.checkOpen =
-                                              itemProgramIdTilteItem
-                                                  .programId.id;
-                                        });
-                                      }
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        boxShadow: const [
-                                          BoxShadow(
-                                            blurRadius: 4.0,
-                                            color: Color(0x33000000),
-                                            offset: Offset(
-                                              0.0,
-                                              2.0,
-                                            ),
-                                          )
-                                        ],
-                                        borderRadius:
-                                            BorderRadius.circular(5.0),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            6.0, 12.0, 6.0, 12.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
+                      ),
+                      itemBuilder: (context, _, itemProgramIdTilteIndex) {
+                        final itemProgramIdTilteItem = _model
+                            .listViewPagingController!
+                            .itemList![itemProgramIdTilteIndex];
+                        return Container(
+                          decoration: const BoxDecoration(),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    12.0, 0.0, 12.0, 12.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    if (_model.checkOpen ==
+                                        itemProgramIdTilteItem.programId.id) {
+                                      setState(() {
+                                        _model.checkOpen = '';
+                                      });
+                                    } else {
+                                      setState(() {
+                                        _model.checkOpen =
+                                            itemProgramIdTilteItem.programId.id;
+                                      });
+                                    }
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          blurRadius: 4.0,
+                                          color: Color(0x33000000),
+                                          offset: Offset(
+                                            0.0,
+                                            2.0,
+                                          ),
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          6.0, 12.0, 6.0, 12.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                '#${(itemProgramIdTilteIndex + 1).toString()} ${itemProgramIdTilteItem.programId.name != null && itemProgramIdTilteItem.programId.name != '' ? itemProgramIdTilteItem.programId.name : ''} ${itemProgramIdTilteItem.programId.lessions.length > 0 ? '(${formatNumber(
+                                                    itemProgramIdTilteItem
+                                                        .programId.lessions
+                                                        .where((e) =>
+                                                            e.lessionsId
+                                                                .status ==
+                                                            'published')
+                                                        .toList()
+                                                        .length,
+                                                    formatType:
+                                                        FormatType.decimal,
+                                                    decimalType: DecimalType
+                                                        .commaDecimal,
+                                                  )} bài học)' : ''}',
+                                                maxLines: 2,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      fontSize: 14.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                              ),
+                                              Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Container(
+                                                  height: 25.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                  ),
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(5.0, 0.0,
+                                                                5.0, 0.0),
+                                                    child: Text(
+                                                      () {
+                                                        if ((itemProgramIdTilteItem
+                                                                    .programId
+                                                                    .estimateInDay ==
+                                                                null) ||
+                                                            (itemProgramIdTilteItem
+                                                                    .programId
+                                                                    .estimateInDay ==
+                                                                0)) {
+                                                          return 'Không có hạn';
+                                                        } else if ((itemProgramIdTilteItem
+                                                                    .programId
+                                                                    .estimateInDay !=
+                                                                null) &&
+                                                            (itemProgramIdTilteItem
+                                                                    .programId
+                                                                    .estimateInDay >
+                                                                0)) {
+                                                          return ((String item1,
+                                                                      int item2,
+                                                                      String
+                                                                          item3) {
+                                                            return DateTime.parse(
+                                                                        item1)
+                                                                    .add(Duration(
+                                                                        days:
+                                                                            item2))
+                                                                    .difference(
+                                                                        DateTime.parse(
+                                                                            item3))
+                                                                    .inDays >
+                                                                0;
+                                                          }(
+                                                                  itemProgramIdTilteItem
+                                                                      .dateCreated,
+                                                                  itemProgramIdTilteItem
+                                                                      .programId
+                                                                      .estimateInDay,
+                                                                  getCurrentTimestamp
+                                                                      .toString())
+                                                              ? '${(String item1, int item2, String item3) {
+                                                                  return DateTime.parse(
+                                                                          item1)
+                                                                      .add(Duration(
+                                                                          days:
+                                                                              item2))
+                                                                      .difference(
+                                                                          DateTime.parse(
+                                                                              item3))
+                                                                      .inDays
+                                                                      .toString();
+                                                                }(itemProgramIdTilteItem.dateCreated, itemProgramIdTilteItem.programId.estimateInDay, dateTimeFormat(
+                                                                    'yyyy-MM-dd',
+                                                                    getCurrentTimestamp,
+                                                                    locale: FFLocalizations.of(
+                                                                            context)
+                                                                        .languageCode,
+                                                                  ))} ngày'
+                                                              : 'Hết hạn');
+                                                        } else {
+                                                          return '  ';
+                                                        }
+                                                      }(),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            fontSize: 12.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 3.0, 0.0, 0.0),
+                                            child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
-                                                  '#${(itemProgramIdTilteIndex + 1).toString()} ${itemProgramIdTilteItem.programId.name != null && itemProgramIdTilteItem.programId.name != '' ? itemProgramIdTilteItem.programId.name : ''} ${itemProgramIdTilteItem.programId.lessions.length > 0 ? '(${formatNumber(
-                                                      itemProgramIdTilteItem
-                                                          .programId.lessions
-                                                          .where((e) =>
-                                                              e.lessionsId
-                                                                  .status ==
-                                                              'published')
-                                                          .toList()
-                                                          .length,
-                                                      formatType:
-                                                          FormatType.decimal,
-                                                      decimalType: DecimalType
-                                                          .commaDecimal,
-                                                    )} bài học)' : ''}',
-                                                  maxLines: 2,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    if ('1' == '2')
+                                                      Builder(
+                                                        builder: (context) =>
+                                                            Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      3.0,
+                                                                      0.0),
+                                                          child: FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              await showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (dialogContext) {
+                                                                  return Dialog(
+                                                                    elevation:
+                                                                        0,
+                                                                    insetPadding:
+                                                                        EdgeInsets
+                                                                            .zero,
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0)
+                                                                        .resolve(
+                                                                            Directionality.of(context)),
+                                                                    child:
+                                                                        GestureDetector(
+                                                                      onTap: () => _model
+                                                                              .unfocusNode
+                                                                              .canRequestFocus
+                                                                          ? FocusScope.of(context).requestFocus(_model
+                                                                              .unfocusNode)
+                                                                          : FocusScope.of(context)
+                                                                              .unfocus(),
+                                                                      child:
+                                                                          ConfirmDoTestWidget(
+                                                                        testId: itemProgramIdTilteItem
+                                                                            .programId
+                                                                            .tests
+                                                                            .first
+                                                                            .testsId
+                                                                            .id,
+                                                                        lessionId:
+                                                                            null,
+                                                                        avatar:
+                                                                            '',
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ).then((value) =>
+                                                                  setState(
+                                                                      () {}));
+                                                            },
+                                                            text:
+                                                                'Bài thi tổng kết chương',
+                                                            options:
+                                                                FFButtonOptions(
+                                                              height: 25.0,
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          8.0,
+                                                                          0.0),
+                                                              iconPadding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            12.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                      ),
+                                                              elevation: 3.0,
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 1.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    if (itemProgramIdTilteItem
+                                                            .status ==
+                                                        'done')
+                                                      Builder(
+                                                        builder: (context) =>
+                                                            Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      3.0,
+                                                                      0.0),
+                                                          child: FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              await showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (dialogContext) {
+                                                                  return Dialog(
+                                                                    elevation:
+                                                                        0,
+                                                                    insetPadding:
+                                                                        EdgeInsets
+                                                                            .zero,
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0)
+                                                                        .resolve(
+                                                                            Directionality.of(context)),
+                                                                    child:
+                                                                        GestureDetector(
+                                                                      onTap: () => _model
+                                                                              .unfocusNode
+                                                                              .canRequestFocus
+                                                                          ? FocusScope.of(context).requestFocus(_model
+                                                                              .unfocusNode)
+                                                                          : FocusScope.of(context)
+                                                                              .unfocus(),
+                                                                      child:
+                                                                          SizedBox(
+                                                                        height: MediaQuery.sizeOf(context).height *
+                                                                            0.6,
+                                                                        width: MediaQuery.sizeOf(context).width *
+                                                                            0.9,
+                                                                        child:
+                                                                            CertificateWidget(
+                                                                          program: itemProgramIdTilteItem
+                                                                              .programId
+                                                                              .name,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ).then((value) =>
+                                                                  setState(
+                                                                      () {}));
+                                                            },
+                                                            text: 'Chứng chỉ',
+                                                            options:
+                                                                FFButtonOptions(
+                                                              height: 25.0,
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          8.0,
+                                                                          0.0),
+                                                              iconPadding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            12.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                      ),
+                                                              elevation: 3.0,
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 1.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                            showLoadingIndicator:
+                                                                false,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    FlutterFlowIconButton(
+                                                      borderColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .noColor,
+                                                      borderRadius: 20.0,
+                                                      borderWidth: 1.0,
+                                                      buttonSize: 40.0,
+                                                      fillColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .noColor,
+                                                      icon: Icon(
+                                                        Icons
+                                                            .golf_course_outlined,
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 14.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
+                                                        size: 24.0,
                                                       ),
+                                                      onPressed: () async {
+                                                        context.pushNamed(
+                                                          'StudyProgramRank',
+                                                          extra: <String,
+                                                              dynamic>{
+                                                            kTransitionInfoKey:
+                                                                const TransitionInfo(
+                                                              hasTransition:
+                                                                  true,
+                                                              transitionType:
+                                                                  PageTransitionType
+                                                                      .fade,
+                                                              duration: Duration(
+                                                                  milliseconds:
+                                                                      0),
+                                                            ),
+                                                          },
+                                                        );
+                                                      },
+                                                    ),
+                                                  ],
                                                 ),
                                                 Align(
                                                   alignment:
                                                       const AlignmentDirectional(
                                                           0.0, 0.0),
-                                                  child: InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      await showDialog(
-                                                        context: context,
-                                                        builder:
-                                                            (alertDialogContext) {
-                                                          return AlertDialog(
-                                                            title: Text(itemProgramIdTilteItem
-                                                                .programId
-                                                                .lessions
-                                                                .where((e) =>
-                                                                    e.lessionsId
-                                                                        .status ==
-                                                                    'inprogress')
-                                                                .toList()
-                                                                .length
-                                                                .toString()),
-                                                            content: const Text(
-                                                                'inprogress'),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext),
-                                                                child:
-                                                                    const Text('Ok'),
-                                                              ),
-                                                            ],
-                                                          );
-                                                        },
-                                                      );
-                                                    },
-                                                    child: Container(
-                                                      height: 25.0,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .alternate,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10.0),
-                                                      ),
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    5.0,
-                                                                    0.0,
-                                                                    5.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          () {
-                                                            if ((itemProgramIdTilteItem
-                                                                        .programId
-                                                                        .estimateInDay ==
-                                                                    null) ||
-                                                                (itemProgramIdTilteItem
-                                                                        .programId
-                                                                        .estimateInDay ==
-                                                                    0)) {
-                                                              return 'Không có hạn';
-                                                            } else if ((itemProgramIdTilteItem
-                                                                        .programId
-                                                                        .estimateInDay !=
-                                                                    null) &&
-                                                                (itemProgramIdTilteItem
-                                                                        .programId
-                                                                        .estimateInDay >
-                                                                    0)) {
-                                                              return ((String item1,
-                                                                          int item2,
-                                                                          String
-                                                                              item3) {
-                                                                return DateTime.parse(
-                                                                            item1)
-                                                                        .add(Duration(
-                                                                            days:
-                                                                                item2))
-                                                                        .difference(
-                                                                            DateTime.parse(item3))
-                                                                        .inDays >
-                                                                    0;
-                                                              }(
-                                                                      itemProgramIdTilteItem
-                                                                          .dateCreated,
-                                                                      itemProgramIdTilteItem
+                                                  child: Container(
+                                                    width: 75.0,
+                                                    decoration: const BoxDecoration(),
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Text(
+                                                          (_model.checkOpen !=
+                                                                          null &&
+                                                                      _model.checkOpen !=
+                                                                          '') &&
+                                                                  (itemProgramIdTilteItem
                                                                           .programId
-                                                                          .estimateInDay,
-                                                                      getCurrentTimestamp
-                                                                          .toString())
-                                                                  ? '${(String item1, int item2, String item3) {
-                                                                      return DateTime.parse(
-                                                                              item1)
-                                                                          .add(Duration(
-                                                                              days:
-                                                                                  item2))
-                                                                          .difference(
-                                                                              DateTime.parse(item3))
-                                                                          .inDays
-                                                                          .toString();
-                                                                    }(itemProgramIdTilteItem.dateCreated, itemProgramIdTilteItem.programId.estimateInDay, dateTimeFormat(
-                                                                        'yyyy-MM-dd',
-                                                                        getCurrentTimestamp,
-                                                                        locale:
-                                                                            FFLocalizations.of(context).languageCode,
-                                                                      ))} ngày'
-                                                                  : 'Hết hạn');
-                                                            } else {
-                                                              return '  ';
-                                                            }
-                                                          }(),
+                                                                          .id ==
+                                                                      _model
+                                                                          .checkOpen)
+                                                              ? 'Thu nhỏ'
+                                                              : 'Xem thêm',
+                                                          textAlign:
+                                                              TextAlign.end,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodyMedium
+                                                              .bodySmall
                                                               .override(
                                                                 fontFamily:
                                                                     'Nunito Sans',
-                                                                fontSize: 12.0,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
                                                                 letterSpacing:
                                                                     0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
                                                               ),
                                                         ),
-                                                      ),
+                                                        if ((_model.checkOpen !=
+                                                                    null &&
+                                                                _model.checkOpen !=
+                                                                    '') &&
+                                                            (itemProgramIdTilteItem
+                                                                    .programId
+                                                                    .id ==
+                                                                _model
+                                                                    .checkOpen))
+                                                          Icon(
+                                                            Icons
+                                                                .keyboard_arrow_up,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            size: 14.0,
+                                                          ),
+                                                        if (itemProgramIdTilteItem
+                                                                .programId.id !=
+                                                            _model.checkOpen)
+                                                          Icon(
+                                                            Icons
+                                                                .keyboard_arrow_down_outlined,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            size: 14.0,
+                                                          ),
+                                                      ],
                                                     ),
                                                   ),
                                                 ),
-                                              ],
+                                              ].divide(const SizedBox(width: 8.0)),
                                             ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 3.0, 0.0, 0.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Row(
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              if (itemProgramIdTilteItem.programId.id ==
+                                  _model.checkOpen)
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      12.0, 0.0, 12.0, 0.0),
+                                  child: Builder(
+                                    builder: (context) {
+                                      final dataLesson = itemProgramIdTilteItem
+                                          .programId.lessions
+                                          .toList();
+                                      return Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children:
+                                            List.generate(dataLesson.length,
+                                                (dataLessonIndex) {
+                                          final dataLessonItem =
+                                              dataLesson[dataLessonIndex];
+                                          return Visibility(
+                                            visible: dataLessonItem
+                                                    .lessionsId.status ==
+                                                'published',
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                context.pushNamed(
+                                                  'Staffs_programs_lesson',
+                                                  queryParameters: {
+                                                    'programsId':
+                                                        serializeParam(
+                                                      itemProgramIdTilteItem
+                                                          .programId.id,
+                                                      ParamType.String,
+                                                    ),
+                                                    'lessionId': serializeParam(
+                                                      dataLessonItem
+                                                          .lessionsId.id,
+                                                      ParamType.String,
+                                                    ),
+                                                  }.withoutNulls,
+                                                  extra: <String, dynamic>{
+                                                    kTransitionInfoKey:
+                                                        const TransitionInfo(
+                                                      hasTransition: true,
+                                                      transitionType:
+                                                          PageTransitionType
+                                                              .fade,
+                                                      duration: Duration(
+                                                          milliseconds: 0),
+                                                    ),
+                                                  },
+                                                );
+                                              },
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .alternate,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(6.0),
+                                                  child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
-                                                      if ('1' == '2')
-                                                        Builder(
-                                                          builder: (context) =>
-                                                              Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        3.0,
-                                                                        0.0),
-                                                            child:
-                                                                FFButtonWidget(
-                                                              onPressed:
-                                                                  () async {
-                                                                await showDialog(
-                                                                  context:
-                                                                      context,
-                                                                  builder:
-                                                                      (dialogContext) {
-                                                                    return Dialog(
-                                                                      elevation:
-                                                                          0,
-                                                                      insetPadding:
-                                                                          EdgeInsets
-                                                                              .zero,
-                                                                      backgroundColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      alignment: const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0)
-                                                                          .resolve(
-                                                                              Directionality.of(context)),
-                                                                      child:
-                                                                          GestureDetector(
-                                                                        onTap: () => _model.unfocusNode.canRequestFocus
-                                                                            ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                                                                            : FocusScope.of(context).unfocus(),
-                                                                        child:
-                                                                            ConfirmDoTestWidget(
-                                                                          testId: itemProgramIdTilteItem
-                                                                              .programId
-                                                                              .tests
-                                                                              .first
-                                                                              .testsId
-                                                                              .id,
-                                                                          lessionId:
-                                                                              null,
-                                                                          avatar:
-                                                                              '',
-                                                                        ),
-                                                                      ),
-                                                                    );
-                                                                  },
-                                                                ).then((value) =>
-                                                                    setState(
-                                                                        () {}));
-                                                              },
-                                                              text:
-                                                                  'Bài thi tổng kết chương',
-                                                              options:
-                                                                  FFButtonOptions(
-                                                                height: 25.0,
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            8.0,
-                                                                            0.0,
-                                                                            8.0,
-                                                                            0.0),
-                                                                iconPadding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                                textStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Nunito Sans',
-                                                                      color: Colors
-                                                                          .white,
-                                                                      fontSize:
-                                                                          12.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .normal,
-                                                                    ),
-                                                                elevation: 3.0,
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                  color: Colors
-                                                                      .transparent,
-                                                                  width: 1.0,
-                                                                ),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10.0),
-                                                              ),
-                                                            ),
+                                                      Container(
+                                                        width: 30.0,
+                                                        height: 30.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .noColor,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      0.0),
+                                                        ),
+                                                        child: ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                          child: Image.network(
+                                                            '${FFAppConstants.ApiBaseUrl}/assets/${dataLessonItem.lessionsId.imageCover}?access_token=${FFAppState().accessToken}',
+                                                            width:
+                                                                double.infinity,
+                                                            height:
+                                                                double.infinity,
+                                                            fit: BoxFit.cover,
                                                           ),
                                                         ),
-                                                      if (itemProgramIdTilteItem
-                                                              .status ==
-                                                          'done')
-                                                        Builder(
-                                                          builder: (context) =>
-                                                              Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        3.0,
-                                                                        0.0),
-                                                            child:
-                                                                FFButtonWidget(
-                                                              onPressed:
-                                                                  () async {
-                                                                await showDialog(
-                                                                  context:
-                                                                      context,
-                                                                  builder:
-                                                                      (dialogContext) {
-                                                                    return Dialog(
-                                                                      elevation:
-                                                                          0,
-                                                                      insetPadding:
-                                                                          EdgeInsets
-                                                                              .zero,
-                                                                      backgroundColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      alignment: const AlignmentDirectional(
+                                                      ),
+                                                      Expanded(
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Flexible(
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                    dataLessonItem
+                                                                        .lessionsId
+                                                                        .name,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Nunito Sans',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryText,
+                                                                          fontSize:
+                                                                              14.0,
+                                                                          letterSpacing:
                                                                               0.0,
-                                                                              0.0)
-                                                                          .resolve(
-                                                                              Directionality.of(context)),
-                                                                      child:
-                                                                          GestureDetector(
-                                                                        onTap: () => _model.unfocusNode.canRequestFocus
-                                                                            ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                                                                            : FocusScope.of(context).unfocus(),
-                                                                        child:
-                                                                            SizedBox(
-                                                                          height:
-                                                                              MediaQuery.sizeOf(context).height * 0.6,
-                                                                          width:
-                                                                              MediaQuery.sizeOf(context).width * 0.9,
-                                                                          child:
-                                                                              CertificateWidget(
-                                                                            program:
-                                                                                itemProgramIdTilteItem.programId.name,
-                                                                          ),
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
                                                                         ),
-                                                                      ),
-                                                                    );
-                                                                  },
-                                                                ).then((value) =>
-                                                                    setState(
-                                                                        () {}));
-                                                              },
-                                                              text: 'Chứng chỉ',
-                                                              options:
-                                                                  FFButtonOptions(
-                                                                height: 25.0,
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            8.0,
-                                                                            0.0,
-                                                                            8.0,
-                                                                            0.0),
-                                                                iconPadding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                                textStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Nunito Sans',
-                                                                      color: Colors
-                                                                          .white,
-                                                                      fontSize:
-                                                                          12.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .normal,
-                                                                    ),
-                                                                elevation: 3.0,
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                  color: Colors
-                                                                      .transparent,
-                                                                  width: 1.0,
-                                                                ),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0),
+                                                                  ),
+                                                                  Text(
+                                                                    dataLessonItem
+                                                                        .lessionsId
+                                                                        .dateCreated,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodySmall
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Nunito Sans',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryText,
+                                                                          fontSize:
+                                                                              12.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.normal,
+                                                                        ),
+                                                                  ),
+                                                                ],
                                                               ),
-                                                              showLoadingIndicator:
-                                                                  false,
                                                             ),
-                                                          ),
+                                                          ],
                                                         ),
+                                                      ),
                                                       FlutterFlowIconButton(
-                                                        borderColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .noColor,
                                                         borderRadius: 20.0,
                                                         borderWidth: 1.0,
                                                         buttonSize: 40.0,
-                                                        fillColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .noColor,
                                                         icon: Icon(
                                                           Icons
-                                                              .golf_course_outlined,
+                                                              .keyboard_arrow_right,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryText,
@@ -864,7 +1109,25 @@ class _StudyProgramListUserWidgetState
                                                         ),
                                                         onPressed: () async {
                                                           context.pushNamed(
-                                                            'StudyProgramRank',
+                                                            'Staffs_programs_lesson',
+                                                            queryParameters: {
+                                                              'programsId':
+                                                                  serializeParam(
+                                                                itemProgramIdTilteItem
+                                                                    .programId
+                                                                    .id,
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'lessionId':
+                                                                  serializeParam(
+                                                                dataLessonItem
+                                                                    .lessionsId
+                                                                    .id,
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                            }.withoutNulls,
                                                             extra: <String,
                                                                 dynamic>{
                                                               kTransitionInfoKey:
@@ -882,340 +1145,26 @@ class _StudyProgramListUserWidgetState
                                                           );
                                                         },
                                                       ),
-                                                    ],
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: Container(
-                                                      width: 75.0,
-                                                      decoration:
-                                                          const BoxDecoration(),
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Text(
-                                                            (_model.checkOpen !=
-                                                                            null &&
-                                                                        _model.checkOpen !=
-                                                                            '') &&
-                                                                    (itemProgramIdTilteItem
-                                                                            .programId
-                                                                            .id ==
-                                                                        _model
-                                                                            .checkOpen)
-                                                                ? 'Thu nhỏ'
-                                                                : 'Xem thêm',
-                                                            textAlign:
-                                                                TextAlign.end,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodySmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                          ),
-                                                          if ((_model.checkOpen !=
-                                                                      null &&
-                                                                  _model.checkOpen !=
-                                                                      '') &&
-                                                              (itemProgramIdTilteItem
-                                                                      .programId
-                                                                      .id ==
-                                                                  _model
-                                                                      .checkOpen))
-                                                            Icon(
-                                                              Icons
-                                                                  .keyboard_arrow_up,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryText,
-                                                              size: 14.0,
-                                                            ),
-                                                          if (itemProgramIdTilteItem
-                                                                  .programId
-                                                                  .id !=
-                                                              _model.checkOpen)
-                                                            Icon(
-                                                              Icons
-                                                                  .keyboard_arrow_down_outlined,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryText,
-                                                              size: 14.0,
-                                                            ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ].divide(const SizedBox(width: 8.0)),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                if (itemProgramIdTilteItem.programId.id ==
-                                    _model.checkOpen)
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 0.0, 12.0, 0.0),
-                                    child: Builder(
-                                      builder: (context) {
-                                        final dataLesson =
-                                            itemProgramIdTilteItem
-                                                .programId.lessions
-                                                .toList();
-                                        return Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children:
-                                              List.generate(dataLesson.length,
-                                                  (dataLessonIndex) {
-                                            final dataLessonItem =
-                                                dataLesson[dataLessonIndex];
-                                            return Visibility(
-                                              visible: dataLessonItem
-                                                      .lessionsId.status ==
-                                                  'published',
-                                              child: InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                    'Staffs_programs_lesson',
-                                                    queryParameters: {
-                                                      'programsId':
-                                                          serializeParam(
-                                                        itemProgramIdTilteItem
-                                                            .programId.id,
-                                                        ParamType.String,
-                                                      ),
-                                                      'lessionId':
-                                                          serializeParam(
-                                                        dataLessonItem
-                                                            .lessionsId.id,
-                                                        ParamType.String,
-                                                      ),
-                                                    }.withoutNulls,
-                                                    extra: <String, dynamic>{
-                                                      kTransitionInfoKey:
-                                                          const TransitionInfo(
-                                                        hasTransition: true,
-                                                        transitionType:
-                                                            PageTransitionType
-                                                                .fade,
-                                                        duration: Duration(
-                                                            milliseconds: 0),
-                                                      ),
-                                                    },
-                                                  );
-                                                },
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .alternate,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(6.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Container(
-                                                          width: 30.0,
-                                                          height: 30.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .noColor,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        0.0),
-                                                          ),
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
-                                                            child:
-                                                                Image.network(
-                                                              '${FFAppConstants.ApiBaseUrl}/assets/${dataLessonItem.lessionsId.imageCover}?access_token=${FFAppState().accessToken}',
-                                                              width: double
-                                                                  .infinity,
-                                                              height: double
-                                                                  .infinity,
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Expanded(
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              Flexible(
-                                                                child: Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Text(
-                                                                      dataLessonItem
-                                                                          .lessionsId
-                                                                          .name,
-                                                                      maxLines:
-                                                                          2,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleSmall
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Nunito Sans',
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryText,
-                                                                            fontSize:
-                                                                                14.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.w500,
-                                                                          ),
-                                                                    ),
-                                                                    Text(
-                                                                      dataLessonItem
-                                                                          .lessionsId
-                                                                          .dateCreated,
-                                                                      maxLines:
-                                                                          2,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodySmall
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Nunito Sans',
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryText,
-                                                                            fontSize:
-                                                                                12.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.normal,
-                                                                          ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        FlutterFlowIconButton(
-                                                          borderRadius: 20.0,
-                                                          borderWidth: 1.0,
-                                                          buttonSize: 40.0,
-                                                          icon: Icon(
-                                                            Icons
-                                                                .keyboard_arrow_right,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText,
-                                                            size: 24.0,
-                                                          ),
-                                                          onPressed: () async {
-                                                            context.pushNamed(
-                                                              'Staffs_programs_lesson',
-                                                              queryParameters: {
-                                                                'programsId':
-                                                                    serializeParam(
-                                                                  itemProgramIdTilteItem
-                                                                      .programId
-                                                                      .id,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'lessionId':
-                                                                    serializeParam(
-                                                                  dataLessonItem
-                                                                      .lessionsId
-                                                                      .id,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                              }.withoutNulls,
-                                                              extra: <String,
-                                                                  dynamic>{
-                                                                kTransitionInfoKey:
-                                                                    const TransitionInfo(
-                                                                  hasTransition:
-                                                                      true,
-                                                                  transitionType:
-                                                                      PageTransitionType
-                                                                          .fade,
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          0),
-                                                                ),
-                                                              },
-                                                            );
-                                                          },
-                                                        ),
-                                                      ].divide(
-                                                          const SizedBox(width: 8.0)),
-                                                    ),
+                                                    ].divide(
+                                                        const SizedBox(width: 8.0)),
                                                   ),
                                                 ),
                                               ),
-                                            );
-                                          }).divide(const SizedBox(height: 8.0)),
-                                        );
-                                      },
-                                    ),
+                                            ),
+                                          );
+                                        }).divide(const SizedBox(height: 8.0)),
+                                      );
+                                    },
                                   ),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
+                                ),
+                            ],
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),
-              ],
+              ].divide(const SizedBox(height: 8.0)),
             ),
           ),
         ),
