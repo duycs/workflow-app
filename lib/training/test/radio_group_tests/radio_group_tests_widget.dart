@@ -58,11 +58,15 @@ class _RadioGroupTestsWidgetState extends State<RadioGroupTestsWidget> {
           FormFieldController<String>(widget.parameter1?.answersId.correct == 1
               ? widget.parameter1!.answersId.content
               : ' '),
-      optionHeight: 42.0,
+      optionHeight: 72.0,
       optionWidth: MediaQuery.sizeOf(context).width * 1.0,
       textStyle: FlutterFlowTheme.of(context).labelMedium.override(
             fontFamily: 'Nunito Sans',
             color: FlutterFlowTheme.of(context).primaryText,
+            letterSpacing: 0.0,
+          ),
+      selectedTextStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+            fontFamily: 'Nunito Sans',
             letterSpacing: 0.0,
           ),
       textPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),

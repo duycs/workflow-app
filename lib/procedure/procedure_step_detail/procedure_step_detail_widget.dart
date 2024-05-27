@@ -151,19 +151,33 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                                 print('IconButton pressed ...');
                               },
                             ),
-                            Text(
-                              (widget.item?.description != null &&
-                                          widget.item?.description != '') &&
-                                      ('${widget.item?.description}' != 'null')
-                                  ? widget.item!.description
-                                  : ' ',
-                              maxLines: 2,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
+                            Expanded(
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      (widget.item?.description != null &&
+                                                  widget.item?.description !=
+                                                      '') &&
+                                              ('${widget.item?.description}' !=
+                                                  'null')
+                                          ? widget.item!.description
+                                          : ' ',
+                                      textAlign: TextAlign.start,
+                                      maxLines: 3,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ],
                         ),
