@@ -21,6 +21,20 @@ Future checkNofiLoad() async {
   OneSignal.initialize("014e851d-ca32-4c5e-840e-236166738a06");
 
   Future<Map<String, String>> tagsFuture = OneSignal.User.getTags();
+
+  WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    OneSignal.Notifications.addClickListener((event) {
+      // lấy thông báo
+      String alert = event.notification.rawPayload?["alert"];
+      print("#alert: $alert");
+      // if (alert != null) {
+      //   context.goNamed("ProcedurePublishedList");
+      // }
+      FFAppState().update(() {
+        FFAppState().alertCheck = alert;
+      });
+    });
+  });
   // Đợi Future hoàn thành và xử lý kết quả
   // tagsFuture.then((tags) {
   //   // Lấy giá trị của tag 'contents' và 'data'

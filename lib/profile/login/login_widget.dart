@@ -104,9 +104,12 @@ class _LoginWidgetState extends State<LoginWidget> {
             return;
           }
 
-          context.pushNamed('TaskList');
-
           await actions.checkNofiLoad();
+          if (FFAppState().alertCheck == 'Task mới') {
+            context.pushNamed('TaskList');
+          } else {
+            context.pushNamed('TaskList');
+          }
         } else {
           setState(() {
             _model.isLoad = true;
