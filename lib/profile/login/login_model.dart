@@ -177,17 +177,26 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
             ).toString().toString(),
           );
           await actions.checkNofiLoad();
+          FFAppState().update(() {});
           if ((FFAppState().alertCheck != '') &&
-              (FFAppState().alertCheck == 'Task mới')) {
+              (FFAppState().alertCheck == '2')) {
+            context.pushNamed('TaskListWait');
+          } else if ((FFAppState().alertCheck != '') &&
+              (FFAppState().alertCheck == '3')) {
+            context.pushNamed('StudyProgramListUser');
+          } else if ((FFAppState().alertCheck != '') &&
+              (FFAppState().alertCheck == '4')) {
+            context.pushNamed('StudyProgramListUser');
+          } else if ((FFAppState().alertCheck != '') &&
+              (FFAppState().alertCheck == '5')) {
             context.pushNamed(
-              'ProcedurePublishedList',
-              extra: <String, dynamic>{
-                kTransitionInfoKey: const TransitionInfo(
-                  hasTransition: true,
-                  transitionType: PageTransitionType.fade,
-                  duration: Duration(milliseconds: 0),
+              'LessonDetail',
+              queryParameters: {
+                'idLesson': serializeParam(
+                  FFAppState().idCheck,
+                  ParamType.String,
                 ),
-              },
+              }.withoutNulls,
             );
           } else {
             context.pushNamed(

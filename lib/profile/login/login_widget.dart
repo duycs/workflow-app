@@ -29,6 +29,10 @@ class _LoginWidgetState extends State<LoginWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setState(() {
+        FFAppState().idCheck = '';
+        FFAppState().alertCheck = '';
+      });
       _model.checkEmailWf = await actions.checkLoginSharePreferences(
         'wf_email',
         'wf_token',

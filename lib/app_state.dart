@@ -155,6 +155,12 @@ class FFAppState extends ChangeNotifier {
   set alertCheck(String value) {
     _alertCheck = value;
   }
+
+  String _idCheck = '';
+  String get idCheck => _idCheck;
+  set idCheck(String value) {
+    _idCheck = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

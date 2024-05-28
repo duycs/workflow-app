@@ -18,7 +18,7 @@ Future notifiAddServer(String staffId) async {
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
 
   OneSignal.initialize("014e851d-ca32-4c5e-840e-236166738a06");
-  OneSignal.Notifications.requestPermission(true);
+  await OneSignal.Notifications.requestPermission(true);
   // OneSignal.InAppMessages.addClickListener((event) {
   //   Fluttertoast.showToast(
   //     msg: '${event}',
@@ -26,10 +26,8 @@ Future notifiAddServer(String staffId) async {
   //     toastLength: Toast.LENGTH_LONG,
   //   );
   // });
-  OneSignal.login(staffId);
+  await OneSignal.login(staffId);
   print("StaffId: " + staffId);
-  OneSignal.User.addTagWithKey("test2", "val2");
-  debugPrint("StaffId: " + staffId);
   // OneSignal.User.pushSubscription.addObserver((state) {
   //   print(OneSignal.User.pushSubscription.optedIn);
   //   print(OneSignal.User.pushSubscription.id);

@@ -25,13 +25,16 @@ Future checkNofiLoad() async {
   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
     OneSignal.Notifications.addClickListener((event) {
       // lấy thông báo
-      String alert = event.notification.rawPayload?["alert"];
-      print("#alert: $alert");
+      var additionalData = event.notification.additionalData;
+      print("additionalData: $additionalData");
+      var payload = NotiPayload.fromJson(additionalData ?? {});
+      print("payload.scrren: ${payload.screen}");
       // if (alert != null) {
       //   context.goNamed("ProcedurePublishedList");
       // }
       FFAppState().update(() {
-        FFAppState().alertCheck = alert;
+        FFAppState().alertCheck = payload.screen;
+        FFAppState().idCheck = payload.data.id;
       });
     });
   });
@@ -78,4 +81,25 @@ Future checkNofiLoad() async {
   //   // Xử lý khi thông báo được mở, ví dụ: mở một trang web liên kết
   //   // launch(result.notification.url);
   // });
+}
+
+class NotiPayload {
+  final String screen;
+  final NotiData data;
+
+  NotiPayload(this.screen, this.data);
+
+  factory NotiPayload.fromJson(Map json) {
+    return NotiPayload(json['screen'], NotiData.fromJson(json['data']));
+  }
+}
+
+class NotiData {
+  final String id;
+
+  NotiData(this.id);
+
+  factory NotiData.fromJson(Map json) {
+    return NotiData(json?['id']);
+  }
 }
