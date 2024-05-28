@@ -738,7 +738,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                       autovalidateMode: AutovalidateMode.disabled,
                       child: Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
-                            10.0, 16.0, 10.0, 16.0),
+                            10.0, 0.0, 10.0, 0.0),
                         child: SingleChildScrollView(
                           primary: false,
                           child: Column(
@@ -747,7 +747,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                             children: [
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 16.0),
+                                    0.0, 8.0, 0.0, 16.0),
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).accent4,

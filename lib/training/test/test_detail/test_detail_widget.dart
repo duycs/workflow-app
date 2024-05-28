@@ -4,7 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/test/checkbox_groups_test/checkbox_groups_test_widget.dart';
-import '/training/test/radio_group_tests/radio_group_tests_widget.dart';
+import '/training/test/radio_buton_detail/radio_buton_detail_widget.dart';
 import '/training/test/test_long_text/test_long_text_widget.dart';
 import '/training/test/test_number/test_number_widget.dart';
 import 'package:flutter/material.dart';
@@ -427,16 +427,20 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                                   ),
                                                   Container(
                                                     width: double.infinity,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                    ),
                                                     child: Visibility(
                                                       visible: questionListItem
                                                               .questionsId
                                                               .answerType ==
                                                           'radio',
                                                       child:
-                                                          RadioGroupTestsWidget(
+                                                          RadioButonDetailWidget(
                                                         key: Key(
-                                                            'Key14i_${answersIndex}_of_${answers.length}'),
+                                                            'Keyh3q_${answersIndex}_of_${answers.length}'),
                                                         parameter1: answersItem,
                                                       ),
                                                     ),

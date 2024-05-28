@@ -7,7 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/test/checkbox_groups_test_add/checkbox_groups_test_add_widget.dart';
 import '/training/test/question_create_test/question_create_test_widget.dart';
 import '/training/test/question_test/question_test_widget.dart';
-import '/training/test/radio_group_tests_add/radio_group_tests_add_widget.dart';
+import '/training/test/radio_button_add/radio_button_add_widget.dart';
 import '/training/test/test_long_text_add/test_long_text_add_widget.dart';
 import '/training/test/test_number_add/test_number_add_widget.dart';
 import '/actions/actions.dart' as action_blocks;
@@ -142,7 +142,8 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       child: SingleChildScrollView(
                         primary: false,
                         child: Column(
@@ -151,7 +152,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                           children: [
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 8.0, 0.0, 0.0),
+                                  0.0, 16.0, 0.0, 0.0),
                               child: TextFormField(
                                 controller: _model.textController1,
                                 focusNode: _model.textFieldFocusNode1,
@@ -628,15 +629,26 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                                         ),
                                                       ),
                                                     ),
-                                                    if (questionListItem
-                                                            .answerType ==
-                                                        'radio')
-                                                      RadioGroupTestsAddWidget(
-                                                        key: Key(
-                                                            'Key10i_${answersListIndex}_of_${answersList.length}'),
-                                                        parameter1:
-                                                            answersListItem,
+                                                    Container(
+                                                      width: double.infinity,
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
                                                       ),
+                                                      child: Visibility(
+                                                        visible: questionListItem
+                                                                .answerType ==
+                                                            'radio',
+                                                        child:
+                                                            RadioButtonAddWidget(
+                                                          key: Key(
+                                                              'Keyw3l_${answersListIndex}_of_${answersList.length}'),
+                                                          parameter1:
+                                                              answersListItem,
+                                                        ),
+                                                      ),
+                                                    ),
                                                   ],
                                                 );
                                               },

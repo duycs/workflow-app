@@ -313,7 +313,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                       Builder(
                         builder: (context) => Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 8.0, 16.0, 0.0),
+                              0.0, 8.0, 0.0, 0.0),
                           child: FlutterFlowIconButton(
                             borderColor: Colors.transparent,
                             borderRadius: 10.0,
@@ -378,7 +378,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                           (_model.department != ' ')))
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 8.0),
                       child: Text(
                         '# Kết quả tìm kiếm theo bộ lọc',
                         style:
@@ -523,6 +523,8 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                         16.0, 8.0, 16.0, 8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         Container(
                                           width: 44.0,
@@ -778,52 +780,6 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                             ],
                                           ),
                                         ),
-                                        if (responsiveVisibility(
-                                          context: context,
-                                          phone: false,
-                                        ))
-                                          Expanded(
-                                            flex: 2,
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 0.0, 12.0, 0.0),
-                                              child: Text(
-                                                '5 mins ago',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                        if (responsiveVisibility(
-                                          context: context,
-                                          phone: false,
-                                          tablet: false,
-                                        ))
-                                          Expanded(
-                                            flex: 3,
-                                            child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  -1.0, 0.0),
-                                              child: Text(
-                                                'Head of Design',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
                                       ],
                                     ),
                                   ),

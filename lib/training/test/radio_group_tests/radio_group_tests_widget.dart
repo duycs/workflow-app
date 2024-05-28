@@ -58,7 +58,7 @@ class _RadioGroupTestsWidgetState extends State<RadioGroupTestsWidget> {
           FormFieldController<String>(widget.parameter1?.answersId.correct == 1
               ? widget.parameter1!.answersId.content
               : ' '),
-      optionHeight: 72.0,
+      optionHeight: 32.0,
       optionWidth: MediaQuery.sizeOf(context).width * 1.0,
       textStyle: FlutterFlowTheme.of(context).labelMedium.override(
             fontFamily: 'Nunito Sans',

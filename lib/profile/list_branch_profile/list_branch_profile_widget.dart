@@ -107,144 +107,132 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 12.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: TextFormField(
-                            controller: _model.textController,
-                            focusNode: _model.textFieldFocusNode,
-                            onChanged: (_) => EasyDebounce.debounce(
-                              '_model.textController',
-                              const Duration(milliseconds: 500),
-                              () async {
-                                if (_model.textController.text != '') {
-                                  setState(() {
-                                    _model.search = _model.textController.text;
-                                  });
-                                  setState(() => _model
-                                      .listViewPagingController1
-                                      ?.refresh());
-                                } else {
-                                  setState(() {
-                                    _model.search = '';
-                                  });
-                                  setState(() => _model
-                                      .listViewPagingController1
-                                      ?.refresh());
-                                }
-                              },
-                            ),
-                            autofocus: false,
-                            textInputAction: TextInputAction.search,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
-                              hintText: 'Tìm kiếm...',
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              filled: true,
-                              fillColor: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 0.0, 0.0),
-                              prefixIcon: const Icon(
-                                Icons.search,
-                                size: 24.0,
-                              ),
-                              suffixIcon: _model.textController!.text.isNotEmpty
-                                  ? InkWell(
-                                      onTap: () async {
-                                        _model.textController?.clear();
-                                        if (_model.textController.text != '') {
-                                          setState(() {
-                                            _model.search =
-                                                _model.textController.text;
-                                          });
-                                          setState(() => _model
-                                              .listViewPagingController1
-                                              ?.refresh());
-                                        } else {
-                                          setState(() {
-                                            _model.search = '';
-                                          });
-                                          setState(() => _model
-                                              .listViewPagingController1
-                                              ?.refresh());
-                                        }
-
-                                        setState(() {});
-                                      },
-                                      child: const Icon(
-                                        Icons.clear,
-                                        color: Color(0xFF757575),
-                                        size: 18.0,
-                                      ),
-                                    )
-                                  : null,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          controller: _model.textController,
+                          focusNode: _model.textFieldFocusNode,
+                          onChanged: (_) => EasyDebounce.debounce(
+                            '_model.textController',
+                            const Duration(milliseconds: 500),
+                            () async {
+                              if (_model.textController.text != '') {
+                                setState(() {
+                                  _model.search = _model.textController.text;
+                                });
+                                setState(() => _model.listViewPagingController1
+                                    ?.refresh());
+                              } else {
+                                setState(() {
+                                  _model.search = '';
+                                });
+                                setState(() => _model.listViewPagingController1
+                                    ?.refresh());
+                              }
+                            },
+                          ),
+                          autofocus: false,
+                          textInputAction: TextInputAction.search,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
-                            validator: _model.textControllerValidator
-                                .asValidator(context),
+                            hintText: 'Tìm kiếm...',
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).primary,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            filled: true,
+                            fillColor:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 0.0, 0.0),
+                            prefixIcon: const Icon(
+                              Icons.search,
+                              size: 24.0,
+                            ),
+                            suffixIcon: _model.textController!.text.isNotEmpty
+                                ? InkWell(
+                                    onTap: () async {
+                                      _model.textController?.clear();
+                                      if (_model.textController.text != '') {
+                                        setState(() {
+                                          _model.search =
+                                              _model.textController.text;
+                                        });
+                                        setState(() => _model
+                                            .listViewPagingController1
+                                            ?.refresh());
+                                      } else {
+                                        setState(() {
+                                          _model.search = '';
+                                        });
+                                        setState(() => _model
+                                            .listViewPagingController1
+                                            ?.refresh());
+                                      }
+
+                                      setState(() {});
+                                    },
+                                    child: const Icon(
+                                      Icons.clear,
+                                      color: Color(0xFF757575),
+                                      size: 18.0,
+                                    ),
+                                  )
+                                : null,
                           ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                          validator: _model.textControllerValidator
+                              .asValidator(context),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                   if (_model.search != '')
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 16.0),
-                      child: Text(
-                        '#Kết quả hiển thị theo bộ lọc',
-                        style:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Nunito Sans',
-                                  fontSize: 13.0,
-                                  letterSpacing: 0.0,
-                                  fontStyle: FontStyle.italic,
-                                ),
-                      ),
+                    Text(
+                      '#Kết quả hiển thị theo bộ lọc',
+                      style: FlutterFlowTheme.of(context).labelMedium.override(
+                            fontFamily: 'Nunito Sans',
+                            fontSize: 13.0,
+                            letterSpacing: 0.0,
+                            fontStyle: FontStyle.italic,
+                          ),
                     ),
                   Expanded(
                     child: Align(
@@ -655,7 +643,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                       ),
                     ),
                   ),
-                ],
+                ].divide(const SizedBox(height: 8.0)),
               ),
             ),
           ),

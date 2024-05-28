@@ -106,7 +106,19 @@ Future<bool?> tokenReload(BuildContext context) async {
       ).toString().toString(),
     );
   } else {
-    await action_blocks.clearSession(context);
+    FFAppState().update(() {
+      FFAppState().accessToken = '';
+      FFAppState().refreshToken = '';
+      FFAppState().user = UserStruct();
+      FFAppState().expires = 0;
+    });
+    await actions.clearInfoUser(
+      'wf_email',
+    );
+    await actions.clearInfoUser(
+      'wf_token',
+    );
+    await actions.notifiRemoveServer();
 
     context.pushNamed(
       'Login',

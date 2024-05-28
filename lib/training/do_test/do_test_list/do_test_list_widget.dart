@@ -333,7 +333,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                 }())
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     child: Text(
                       '#Kết quả tìm kiếm theo bộ lọc',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -844,7 +844,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                       ),
                     ),
                   ),
-              ],
+              ].divide(const SizedBox(height: 8.0)),
             ),
           ),
         ),

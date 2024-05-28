@@ -138,7 +138,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 10.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -322,7 +322,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
               if ('${(_model.searchName != null && _model.searchName != '') && (_model.searchName != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.searchName}\"}}' : ' '}${(_model.dateStart != null && _model.dateStart != '') && (_model.dateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"${_model.dateStart}\"}}' : ' '}${(_model.dateEnd != null && _model.dateEnd != '') && (_model.dateEnd != ' ') ? ',{\"date_created\":{\"_lte\":\"${_model.dateEnd}\"}}' : ' '}${(_model.staffsId != null && _model.staffsId != '') && (_model.staffsId != ' ') ? ',{\"steps\":{\"staffs\":{\"staffs_id\":{\"_eq\":\"${_model.staffsId}\"}}}}' : ' '}' !=
                   '    ')
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 4.0, 0.0, 4.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
                   child: Text(
                     '#Kết quả hiển thị theo bộ lọc',
                     textAlign: TextAlign.start,
@@ -335,256 +335,249 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                   ),
                 ),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
-                  child: PagedListView<ApiPagingParams, dynamic>.separated(
-                    pagingController: _model.setListViewController(
-                      (nextPageMarker) =>
-                          ProcedureTemplateGroup.workflowsListCall.call(
-                        accessToken: FFAppState().accessToken,
-                        offset: nextPageMarker.nextPageNumber * 20,
-                        limit: 20,
-                        filter: '{\"_and\":[{},{\"template\":{\"_neq\":\"1\"}}${(_model.searchName != null && _model.searchName != '') && (_model.searchName != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.searchName}\"}}' : ' '}${(_model.dateStart != null && _model.dateStart != '') && (_model.dateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"${_model.dateStart}\"}}' : ' '}${(_model.dateEnd != null && _model.dateEnd != '') && (_model.dateEnd != ' ') ? ',{\"date_created\":{\"_lte\":\"${(String var1) {
-                            return DateTime.parse(var1)
-                                .add(const Duration(days: 1))
-                                .toString();
-                          }(_model.dateEnd!)}\"}}' : ' '}${(_model.staffsId != null && _model.staffsId != '') && (_model.staffsId != ' ') ? ',{\"steps\":{\"staffs\":{\"staffs_id\":{\"_eq\":\"${_model.staffsId}\"}}}}' : ' '},{\"organization_id\":{\"_eq\":\"${getJsonField(
-                          FFAppState().staffLogin,
-                          r'''$.organization_id''',
-                        ).toString()}\"}}]}',
+                child: PagedListView<ApiPagingParams, dynamic>.separated(
+                  pagingController: _model.setListViewController(
+                    (nextPageMarker) =>
+                        ProcedureTemplateGroup.workflowsListCall.call(
+                      accessToken: FFAppState().accessToken,
+                      offset: nextPageMarker.nextPageNumber * 20,
+                      limit: 20,
+                      filter: '{\"_and\":[{},{\"template\":{\"_neq\":\"1\"}}${(_model.searchName != null && _model.searchName != '') && (_model.searchName != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.searchName}\"}}' : ' '}${(_model.dateStart != null && _model.dateStart != '') && (_model.dateStart != ' ') ? ',{\"date_created\":{\"_gte\":\"${_model.dateStart}\"}}' : ' '}${(_model.dateEnd != null && _model.dateEnd != '') && (_model.dateEnd != ' ') ? ',{\"date_created\":{\"_lte\":\"${(String var1) {
+                          return DateTime.parse(var1)
+                              .add(const Duration(days: 1))
+                              .toString();
+                        }(_model.dateEnd!)}\"}}' : ' '}${(_model.staffsId != null && _model.staffsId != '') && (_model.staffsId != ' ') ? ',{\"steps\":{\"staffs\":{\"staffs_id\":{\"_eq\":\"${_model.staffsId}\"}}}}' : ' '},{\"organization_id\":{\"_eq\":\"${getJsonField(
+                        FFAppState().staffLogin,
+                        r'''$.organization_id''',
+                      ).toString()}\"}}]}',
+                    ),
+                  ),
+                  padding: EdgeInsets.zero,
+                  primary: false,
+                  reverse: false,
+                  scrollDirection: Axis.vertical,
+                  separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                  builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                    // Customize what your widget looks like when it's loading the first page.
+                    firstPageProgressIndicatorBuilder: (_) => Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
+                          ),
+                        ),
                       ),
                     ),
-                    padding: EdgeInsets.zero,
-                    primary: false,
-                    reverse: false,
-                    scrollDirection: Axis.vertical,
-                    separatorBuilder: (_, __) => const SizedBox(height: 10.0),
-                    builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                      // Customize what your widget looks like when it's loading the first page.
-                      firstPageProgressIndicatorBuilder: (_) => Center(
-                        child: SizedBox(
-                          width: 50.0,
-                          height: 50.0,
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              FlutterFlowTheme.of(context).primary,
-                            ),
+                    // Customize what your widget looks like when it's loading another page.
+                    newPageProgressIndicatorBuilder: (_) => Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
                           ),
                         ),
                       ),
-                      // Customize what your widget looks like when it's loading another page.
-                      newPageProgressIndicatorBuilder: (_) => Center(
-                        child: SizedBox(
-                          width: 50.0,
-                          height: 50.0,
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              FlutterFlowTheme.of(context).primary,
+                    ),
+                    noItemsFoundIndicatorBuilder: (_) => const Center(
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: DataNotFoundWidget(),
+                      ),
+                    ),
+                    itemBuilder: (context, _, listViewIndex) {
+                      final listViewItem = _model
+                          .listViewPagingController!.itemList![listViewIndex];
+                      return Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed(
+                              'ProcedureDetail',
+                              queryParameters: {
+                                'workflowsId': serializeParam(
+                                  listViewItem.id,
+                                  ParamType.String,
+                                ),
+                                'checkScroll': serializeParam(
+                                  'ProcedureList',
+                                  ParamType.String,
+                                ),
+                              }.withoutNulls,
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: const TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 0),
+                                ),
+                              },
+                            );
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            constraints: const BoxConstraints(
+                              maxWidth: 570.0,
                             ),
-                          ),
-                        ),
-                      ),
-                      noItemsFoundIndicatorBuilder: (_) => const Center(
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: DataNotFoundWidget(),
-                        ),
-                      ),
-                      itemBuilder: (context, _, listViewIndex) {
-                        final listViewItem = _model
-                            .listViewPagingController!.itemList![listViewIndex];
-                        return Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 0.0, 16.0, 0.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              context.pushNamed(
-                                'ProcedureDetail',
-                                queryParameters: {
-                                  'workflowsId': serializeParam(
-                                    listViewItem.id,
-                                    ParamType.String,
-                                  ),
-                                  'checkScroll': serializeParam(
-                                    'ProcedureList',
-                                    ParamType.String,
-                                  ),
-                                }.withoutNulls,
-                                extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
-                                    hasTransition: true,
-                                    transitionType: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 0),
-                                  ),
-                                },
-                              );
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              constraints: const BoxConstraints(
-                                maxWidth: 570.0,
-                              ),
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 12.0, 12.0, 16.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 8.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Expanded(
-                                            child: Text(
-                                              listViewItem.name != null &&
-                                                      listViewItem.name != ''
-                                                  ? listViewItem.name
-                                                  : ' ',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyLarge
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    fontSize: 14.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                            ),
-                                          ),
-                                          FlutterFlowIconButton(
-                                            borderColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .noColor,
-                                            borderRadius: 20.0,
-                                            borderWidth: 1.0,
-                                            buttonSize: 40.0,
-                                            fillColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .noColor,
-                                            icon: const Icon(
-                                              Icons.add_business_outlined,
-                                              color: Color(0xFFBD0127),
-                                              size: 24.0,
-                                            ),
-                                            onPressed: () async {
-                                              await showModalBottomSheet(
-                                                isScrollControlled: true,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                enableDrag: false,
-                                                context: context,
-                                                builder: (context) {
-                                                  return GestureDetector(
-                                                    onTap: () => _model
-                                                            .unfocusNode
-                                                            .canRequestFocus
-                                                        ? FocusScope.of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode)
-                                                        : FocusScope.of(context)
-                                                            .unfocus(),
-                                                    child: Padding(
-                                                      padding: MediaQuery
-                                                          .viewInsetsOf(
-                                                              context),
-                                                      child:
-                                                          AddWorkflowMarketWidget(
-                                                        id: listViewItem.id,
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              ).then((value) =>
-                                                  safeSetState(() {}));
-                                            },
-                                          ),
-                                        ].divide(const SizedBox(width: 4.0)),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 4.0),
-                                      child: Text(
-                                        listViewItem.userCreated.firstName !=
-                                                    null &&
-                                                listViewItem.userCreated
-                                                        .firstName !=
-                                                    ''
-                                            ? listViewItem.userCreated.firstName
-                                            : ' ',
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                    ),
-                                    RichText(
-                                      textScaler:
-                                          MediaQuery.of(context).textScaler,
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: listViewItem.steps.length > 0
-                                                ? listViewItem.steps.length.toString()
-                                                : '0',
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 12.0, 12.0, 16.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            listViewItem.name != null &&
+                                                    listViewItem.name != ''
+                                                ? listViewItem.name
+                                                : ' ',
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
+                                                .bodyLarge
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  fontSize: 16.0,
+                                                  fontSize: 14.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                           ),
-                                          const TextSpan(
-                                            text: ' Bước',
-                                            style: TextStyle(),
-                                          )
-                                        ],
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
+                                        ),
+                                        FlutterFlowIconButton(
+                                          borderColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .noColor,
+                                          borderRadius: 20.0,
+                                          borderWidth: 1.0,
+                                          buttonSize: 40.0,
+                                          fillColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .noColor,
+                                          icon: const Icon(
+                                            Icons.add_business_outlined,
+                                            color: Color(0xFFBD0127),
+                                            size: 24.0,
+                                          ),
+                                          onPressed: () async {
+                                            await showModalBottomSheet(
+                                              isScrollControlled: true,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              enableDrag: false,
+                                              context: context,
+                                              builder: (context) {
+                                                return GestureDetector(
+                                                  onTap: () => _model
+                                                          .unfocusNode
+                                                          .canRequestFocus
+                                                      ? FocusScope.of(context)
+                                                          .requestFocus(_model
+                                                              .unfocusNode)
+                                                      : FocusScope.of(context)
+                                                          .unfocus(),
+                                                  child: Padding(
+                                                    padding:
+                                                        MediaQuery.viewInsetsOf(
+                                                            context),
+                                                    child:
+                                                        AddWorkflowMarketWidget(
+                                                      id: listViewItem.id,
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ).then(
+                                                (value) => safeSetState(() {}));
+                                          },
+                                        ),
+                                      ].divide(const SizedBox(width: 4.0)),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 4.0),
+                                    child: Text(
+                                      listViewItem.userCreated.firstName !=
+                                                  null &&
+                                              listViewItem
+                                                      .userCreated.firstName !=
+                                                  ''
+                                          ? listViewItem.userCreated.firstName
+                                          : ' ',
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                    ),
+                                  ),
+                                  RichText(
+                                    textScaler:
+                                        MediaQuery.of(context).textScaler,
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: listViewItem.steps.length > 0
+                                              ? listViewItem.steps.length.toString()
+                                              : '0',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                        const TextSpan(
+                                          text: ' Bước',
+                                          style: TextStyle(),
+                                        )
+                                      ],
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
-                        );
-                      },
-                    ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
-            ],
+            ].divide(const SizedBox(height: 8.0)),
           ),
         ),
       ),

@@ -1317,14 +1317,18 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                             ),
                           if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
                                   false))
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(60.0),
-                              child: Image.memory(
-                                _model.uploadedLocalFile.bytes ??
-                                    Uint8List.fromList([]),
-                                width: 120.0,
-                                height: 120.0,
-                                fit: BoxFit.cover,
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 8.0, 0.0, 0.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(60.0),
+                                child: Image.memory(
+                                  _model.uploadedLocalFile.bytes ??
+                                      Uint8List.fromList([]),
+                                  width: 120.0,
+                                  height: 120.0,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           FlutterFlowIconButton(

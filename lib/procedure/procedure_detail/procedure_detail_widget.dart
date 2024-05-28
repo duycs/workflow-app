@@ -269,7 +269,8 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                               children: [
                                 Expanded(
                                   child: Padding(
-                                    padding: const EdgeInsets.all(16.0),
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 16.0, 0.0),
                                     child: SingleChildScrollView(
                                       primary: false,
                                       child: Column(
@@ -280,7 +281,7 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                           Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 16.0),
+                                                    0.0, 16.0, 0.0, 16.0),
                                             child: Container(
                                               decoration: BoxDecoration(
                                                 color:

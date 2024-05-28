@@ -7,7 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/test/checkbox_groups_test_add/checkbox_groups_test_add_widget.dart';
 import '/training/test/question_create_test/question_create_test_widget.dart';
 import '/training/test/question_test/question_test_widget.dart';
-import '/training/test/radio_group_tests_add/radio_group_tests_add_widget.dart';
+import '/training/test/radio_button_add/radio_button_add_widget.dart';
 import '/training/test/test_long_text_add/test_long_text_add_widget.dart';
 import '/training/test/test_number_add/test_number_add_widget.dart';
 import '/actions/actions.dart' as action_blocks;
@@ -597,15 +597,26 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                                       ),
                                                     ),
                                                   ),
-                                                  if (questionListItem
-                                                          .answerType ==
-                                                      'radio')
-                                                    RadioGroupTestsAddWidget(
-                                                      key: Key(
-                                                          'Keykfi_${answersListIndex}_of_${answersList.length}'),
-                                                      parameter1:
-                                                          answersListItem,
+                                                  Container(
+                                                    width: double.infinity,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
                                                     ),
+                                                    child: Visibility(
+                                                      visible: questionListItem
+                                                              .answerType ==
+                                                          'radio',
+                                                      child:
+                                                          RadioButtonAddWidget(
+                                                        key: Key(
+                                                            'Key3sc_${answersListIndex}_of_${answersList.length}'),
+                                                        parameter1:
+                                                            answersListItem,
+                                                      ),
+                                                    ),
+                                                  ),
                                                 ],
                                               );
                                             },

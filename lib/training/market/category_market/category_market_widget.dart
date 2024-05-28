@@ -365,7 +365,7 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 16.0, 8.0),
                           child: Text(
-                            'Marrketing',
+                            'Marketing',
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -459,8 +459,8 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                                     Align(
                                       alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Container(
-                                        width: 180.0,
-                                        height: 180.0,
+                                        width: double.infinity,
+                                        height: double.infinity,
                                         decoration: BoxDecoration(
                                           gradient: LinearGradient(
                                             colors: [

@@ -355,7 +355,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                       (_model.userCreated != ''))
                                     Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 10.0, 0.0, 0.0),
+                                          16.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         '#Kết quả hiển thị theo bộ lọc',
                                         style: FlutterFlowTheme.of(context)
@@ -373,7 +373,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 10.0, 16.0, 0.0),
+                                    16.0, 0.0, 16.0, 0.0),
                                 child: PagedListView<ApiPagingParams, dynamic>(
                                   pagingController:
                                       _model.setListViewController(
@@ -1195,7 +1195,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                 ),
                               ),
                             ),
-                          ],
+                          ].divide(const SizedBox(height: 8.0)),
                         ),
                       ),
                     ],

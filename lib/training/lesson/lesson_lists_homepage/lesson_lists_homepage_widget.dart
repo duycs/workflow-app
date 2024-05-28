@@ -426,7 +426,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                             0.0, 8.0, 0.0, 4.0),
                                         child: Container(
                                           width: double.infinity,
-                                          height: 130.0,
+                                          height: 160.0,
                                           decoration: const BoxDecoration(),
                                           child: Visibility(
                                             visible: (FFAppState().staffid !=
@@ -577,8 +577,8 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                         );
                                                       },
                                                       child: Container(
-                                                        width: 105.0,
-                                                        height: 130.0,
+                                                        width: 125.0,
+                                                        height: 160.0,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme
@@ -607,7 +607,12 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                 CrossAxisAlignment
                                                                     .start,
                                                             children: [
-                                                              Expanded(
+                                                              Container(
+                                                                width: double
+                                                                    .infinity,
+                                                                height: 65.0,
+                                                                decoration:
+                                                                    const BoxDecoration(),
                                                                 child:
                                                                     ClipRRect(
                                                                   borderRadius:
@@ -1132,7 +1137,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                             0.0, 8.0, 0.0, 4.0),
                                         child: Container(
                                           width: double.infinity,
-                                          height: 130.0,
+                                          height: 160.0,
                                           decoration: const BoxDecoration(),
                                           child: Visibility(
                                             visible: (FFAppState().staffid !=
@@ -1294,7 +1299,8 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                         );
                                                       },
                                                       child: Container(
-                                                        width: 105.0,
+                                                        width: 125.0,
+                                                        height: 160.0,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme
@@ -1323,7 +1329,12 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                 CrossAxisAlignment
                                                                     .start,
                                                             children: [
-                                                              Expanded(
+                                                              Container(
+                                                                width: double
+                                                                    .infinity,
+                                                                height: 65.0,
+                                                                decoration:
+                                                                    const BoxDecoration(),
                                                                 child:
                                                                     ClipRRect(
                                                                   borderRadius:
@@ -2296,7 +2307,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                             0.0, 8.0, 0.0, 4.0),
                                         child: Container(
                                           width: double.infinity,
-                                          height: 130.0,
+                                          height: 148.0,
                                           decoration: const BoxDecoration(),
                                           child: Visibility(
                                             visible: (FFAppState().staffid !=
@@ -2441,7 +2452,8 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                       );
                                                     },
                                                     child: Container(
-                                                      width: 105.0,
+                                                      width: 125.0,
+                                                      height: 160.0,
                                                       decoration: BoxDecoration(
                                                         color: FlutterFlowTheme
                                                                 .of(context)
@@ -2466,7 +2478,12 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: [
-                                                            Expanded(
+                                                            Container(
+                                                              width: double
+                                                                  .infinity,
+                                                              height: 65.0,
+                                                              decoration:
+                                                                  const BoxDecoration(),
                                                               child: ClipRRect(
                                                                 borderRadius:
                                                                     BorderRadius

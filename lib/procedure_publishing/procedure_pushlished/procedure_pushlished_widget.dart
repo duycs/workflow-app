@@ -897,7 +897,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                 shouldSetState = true;
                                 if ((_model.apiResultUpdateLimit?.succeeded ??
                                     true)) {
-                                  _model.apiResultProcedurepublished =
+                                  _model.apiResultProcedurePublished =
                                       await ProcedurePublishedGroup
                                           .procedurePublishedCall
                                           .call(
@@ -905,7 +905,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                     workflowId: _model.workflowSelected?.id,
                                   );
                                   shouldSetState = true;
-                                  if ((_model.apiResultProcedurepublished
+                                  if ((_model.apiResultProcedurePublished
                                           ?.succeeded ??
                                       true)) {
                                     if (_model.workflowSelected?.type !=
@@ -923,10 +923,10 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                               .staffsId
                                               .id,
                                           publishedCount: getJsonField(
-                                            (_model.apiResultProcedurepublished
+                                            (_model.apiResultProcedurePublished
                                                     ?.jsonBody ??
                                                 ''),
-                                            r'''$.workflow.published_count''',
+                                            r'''$.workflow[0].published_count''',
                                           ),
                                         );
                                         shouldSetState = true;
