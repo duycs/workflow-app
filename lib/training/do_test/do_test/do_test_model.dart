@@ -90,9 +90,19 @@ class DoTestModel extends FlutterFlowModel<DoTestWidget> {
   ApiCallResponse? apiResultCaculatorScores1;
   // State field(s) for Checkbox widget.
 
-  Map<AnswersListStruct, bool> checkboxValueMap = {};
-  List<AnswersListStruct> get checkboxCheckedItems =>
-      checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
+  Map<AnswersListStruct, bool> checkboxValueMap1 = {};
+  List<AnswersListStruct> get checkboxCheckedItems1 => checkboxValueMap1.entries
+      .where((e) => e.value)
+      .map((e) => e.key)
+      .toList();
+
+  // State field(s) for Checkbox widget.
+
+  Map<AnswersListStruct, bool> checkboxValueMap2 = {};
+  List<AnswersListStruct> get checkboxCheckedItems2 => checkboxValueMap2.entries
+      .where((e) => e.value)
+      .map((e) => e.key)
+      .toList();
 
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? createStaffTestToken;
