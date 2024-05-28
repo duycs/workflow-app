@@ -125,8 +125,6 @@ export '/training/lesson/lessons_list_user/lessons_list_user_widget.dart'
 export '/profile/profile_user/profile_user_widget.dart' show ProfileUserWidget;
 export '/profile/update_profile_user/update_profile_user_widget.dart'
     show UpdateProfileUserWidget;
-export '/produre_draft/procedure_published_list_copy/procedure_published_list_copy_widget.dart'
-    show ProcedurePublishedListCopyWidget;
 export '/profile/edit_password/edit_password_widget.dart'
     show EditPasswordWidget;
 export '/tasks/task_detail/task_detail_widget.dart' show TaskDetailWidget;
@@ -134,8 +132,6 @@ export '/process_template/process_template_list/process_template_list_widget.dar
     show ProcessTemplateListWidget;
 export '/process_template/process_template_detail/process_template_detail_widget.dart'
     show ProcessTemplateDetailWidget;
-export '/produre_draft/procedure_published_list_copy2/procedure_published_list_copy2_widget.dart'
-    show ProcedurePublishedListCopy2Widget;
 export '/procedure_publishing/work_result_list/work_result_list_widget.dart'
     show WorkResultListWidget;
 export '/procedure_publishing/work_result_detail/work_result_detail_widget.dart'

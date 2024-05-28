@@ -424,15 +424,6 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        '#${(detailViewIndex + 1).toString()}',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
                                       Expanded(
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
@@ -441,27 +432,133 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      12.0, 0.0, 0.0, 0.0),
-                                              child: Text(
-                                                detailViewItem.content,
-                                                maxLines: 2,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  '${(detailViewIndex + 1).toString()}. ',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(12.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      detailViewItem.content,
+                                                      maxLines: 2,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Builder(
+                                                  builder: (context) =>
+                                                      FlutterFlowIconButton(
+                                                    borderRadius: 20.0,
+                                                    borderWidth: 1.0,
+                                                    buttonSize: 40.0,
+                                                    icon: Icon(
+                                                      Icons.more_vert,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      size: 24.0,
+                                                    ),
+                                                    onPressed: () async {
+                                                      await showAlignedDialog(
+                                                        context: context,
+                                                        isGlobal: false,
+                                                        avoidOverflow: true,
+                                                        targetAnchor:
+                                                            const AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                        followerAnchor:
+                                                            const AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                        builder:
+                                                            (dialogContext) {
+                                                          return Material(
+                                                            color: Colors
+                                                                .transparent,
+                                                            child:
+                                                                GestureDetector(
+                                                              onTap: () => _model
+                                                                      .unfocusNode
+                                                                      .canRequestFocus
+                                                                  ? FocusScope.of(
+                                                                          context)
+                                                                      .requestFocus(
+                                                                          _model
+                                                                              .unfocusNode)
+                                                                  : FocusScope.of(
+                                                                          context)
+                                                                      .unfocus(),
+                                                              child: SizedBox(
+                                                                height: 150.0,
+                                                                child:
+                                                                    QuestionMenuWidget(
+                                                                  item:
+                                                                      detailViewItem,
+                                                                  callBackRequest:
+                                                                      () async {
+                                                                    setState(
+                                                                        () {
+                                                                      _model.nameSearch =
+                                                                          ' ';
+                                                                      _model.status =
+                                                                          ' ';
+                                                                    });
+                                                                    setState(
+                                                                        () {
+                                                                      _model
+                                                                          .questionNameTextController
+                                                                          ?.clear();
+                                                                    });
+                                                                    setState(() => _model
+                                                                        .listViewPagingController
+                                                                        ?.refresh());
+                                                                    setState(
+                                                                        () {});
+                                                                  },
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ).then((value) =>
+                                                          setState(() {}));
+                                                    },
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                             Padding(
                                               padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      12.0, 8.0, 0.0, 0.0),
+                                                  .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Text(
                                                 '# ${() {
                                                   if (detailViewItem
@@ -496,168 +593,84 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                                     ),
                                               ),
                                             ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 4.0, 0.0, 0.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Padding(
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  dateTimeFormat(
+                                                    'dd-MM-yyyy',
+                                                    functions.stringToDateTime(
+                                                        detailViewItem
+                                                            .dateCreated),
+                                                    locale: FFLocalizations.of(
+                                                            context)
+                                                        .languageCode,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 13.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                                Container(
+                                                  height: 30.0,
+                                                  decoration: BoxDecoration(
+                                                    color:
+                                                        '${detailViewItem.status}' ==
+                                                                'published'
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .accent2
+                                                            : FlutterFlowTheme
+                                                                    .of(context)
+                                                                .accent3,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20.0),
+                                                  ),
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Padding(
                                                     padding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(12.0, 0.0,
-                                                                0.0, 0.0),
+                                                            .fromSTEB(8.0, 0.0,
+                                                                8.0, 0.0),
                                                     child: Text(
-                                                      dateTimeFormat(
-                                                        'dd-MM-yyyy',
-                                                        functions
-                                                            .stringToDateTime(
-                                                                detailViewItem
-                                                                    .dateCreated),
-                                                        locale:
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .languageCode,
-                                                      ),
+                                                      '${detailViewItem.status}' ==
+                                                              'published'
+                                                          ? 'Hoạt động'
+                                                          : 'Không hoạt động',
                                                       style: FlutterFlowTheme
                                                               .of(context)
-                                                          .labelSmall
+                                                          .bodyMedium
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
+                                                            color: '${detailViewItem.status}' ==
+                                                                    'published'
+                                                                ? FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .tertiary,
                                                             fontSize: 13.0,
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
                                                   ),
-                                                  Container(
-                                                    height: 30.0,
-                                                    decoration: BoxDecoration(
-                                                      color: '${detailViewItem.status}' ==
-                                                              'published'
-                                                          ? FlutterFlowTheme.of(
-                                                                  context)
-                                                              .accent2
-                                                          : FlutterFlowTheme.of(
-                                                                  context)
-                                                              .accent3,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.0),
-                                                    ),
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8.0,
-                                                                  0.0,
-                                                                  8.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        '${detailViewItem.status}' ==
-                                                                'published'
-                                                            ? 'Hoạt động'
-                                                            : 'Không hoạt động',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Nunito Sans',
-                                                              color: '${detailViewItem.status}' ==
-                                                                      'published'
-                                                                  ? FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary
-                                                                  : FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .tertiary,
-                                                              fontSize: 13.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                            ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
                                           ],
-                                        ),
-                                      ),
-                                      Builder(
-                                        builder: (context) =>
-                                            FlutterFlowIconButton(
-                                          borderRadius: 20.0,
-                                          borderWidth: 1.0,
-                                          buttonSize: 40.0,
-                                          icon: Icon(
-                                            Icons.more_vert,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 24.0,
-                                          ),
-                                          onPressed: () async {
-                                            await showAlignedDialog(
-                                              context: context,
-                                              isGlobal: false,
-                                              avoidOverflow: true,
-                                              targetAnchor:
-                                                  const AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
-                                              followerAnchor:
-                                                  const AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
-                                              builder: (dialogContext) {
-                                                return Material(
-                                                  color: Colors.transparent,
-                                                  child: GestureDetector(
-                                                    onTap: () => _model
-                                                            .unfocusNode
-                                                            .canRequestFocus
-                                                        ? FocusScope.of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode)
-                                                        : FocusScope.of(context)
-                                                            .unfocus(),
-                                                    child: SizedBox(
-                                                      height: 150.0,
-                                                      child: QuestionMenuWidget(
-                                                        item: detailViewItem,
-                                                        callBackRequest:
-                                                            () async {
-                                                          setState(() {
-                                                            _model.nameSearch =
-                                                                ' ';
-                                                            _model.status = ' ';
-                                                          });
-                                                          setState(() {
-                                                            _model
-                                                                .questionNameTextController
-                                                                ?.clear();
-                                                          });
-                                                          setState(() => _model
-                                                              .listViewPagingController
-                                                              ?.refresh());
-                                                          setState(() {});
-                                                        },
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            ).then((value) => setState(() {}));
-                                          },
                                         ),
                                       ),
                                     ],

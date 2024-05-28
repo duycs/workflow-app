@@ -80,7 +80,7 @@ class _SelectListQuestionWidgetState extends State<SelectListQuestionWidget> {
       controller: _model.radioButtonValueController ??=
           FormFieldController<String>(null),
       optionHeight: 32.0,
-      optionWidth: MediaQuery.sizeOf(context).width * 1.0,
+      optionWidth: double.infinity,
       textStyle: FlutterFlowTheme.of(context).labelMedium.override(
             fontFamily: 'Nunito Sans',
             letterSpacing: 0.0,
@@ -90,7 +90,7 @@ class _SelectListQuestionWidgetState extends State<SelectListQuestionWidget> {
             letterSpacing: 0.0,
           ),
       buttonPosition: RadioButtonPosition.left,
-      direction: Axis.vertical,
+      direction: Axis.horizontal,
       radioButtonColor: FlutterFlowTheme.of(context).primary,
       inactiveRadioButtonColor: FlutterFlowTheme.of(context).secondaryText,
       toggleable: false,

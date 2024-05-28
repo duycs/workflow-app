@@ -2307,7 +2307,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                             0.0, 8.0, 0.0, 4.0),
                                         child: Container(
                                           width: double.infinity,
-                                          height: 160.0,
+                                          height: 148.0,
                                           decoration: const BoxDecoration(),
                                           child: Visibility(
                                             visible: (FFAppState().staffid !=

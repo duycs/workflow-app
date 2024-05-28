@@ -67,7 +67,7 @@ class ProcedurePushlishedModel
   // Stores action output result for [Backend Call - API (ProcedureTemplateUpdateLimitPublished)] action in Button widget.
   ApiCallResponse? apiResultUpdateLimit;
   // Stores action output result for [Backend Call - API (ProcedurePublished)] action in Button widget.
-  ApiCallResponse? apiResultProcedurepublished;
+  ApiCallResponse? apiResultProcedurePublished;
   // Stores action output result for [Backend Call - API (ReceiveTask)] action in Button widget.
   ApiCallResponse? apiResultReciveTask;
 

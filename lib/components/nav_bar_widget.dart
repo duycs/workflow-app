@@ -106,7 +106,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
-                              Icons.check_circle_outline_sharp,
+                              Icons.rule,
                               color: widget.selectedPageIndex == 1
                                   ? FlutterFlowTheme.of(context)
                                       .secondaryBackground
@@ -151,9 +151,12 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: widget.selectedPageIndex == 3
-                          ? FlutterFlowTheme.of(context).primary
-                          : FlutterFlowTheme.of(context).secondaryBackground,
+                      color: valueOrDefault<Color>(
+                        widget.selectedPageIndex == 3
+                            ? FlutterFlowTheme.of(context).primary
+                            : FlutterFlowTheme.of(context).secondaryBackground,
+                        FlutterFlowTheme.of(context).primary,
+                      ),
                       borderRadius: BorderRadius.circular(24.0),
                     ),
                     child: Opacity(
@@ -166,10 +169,15 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                           children: [
                             Icon(
                               Icons.work_outline,
-                              color: widget.selectedPageIndex == 3
-                                  ? FlutterFlowTheme.of(context)
-                                      .secondaryBackground
-                                  : FlutterFlowTheme.of(context).secondaryText,
+                              color: valueOrDefault<Color>(
+                                widget.selectedPageIndex == 3
+                                    ? FlutterFlowTheme.of(context)
+                                        .secondaryBackground
+                                    : FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
                               size: 24.0,
                             ),
                             if (widget.selectedPageIndex == 3)
@@ -224,7 +232,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
-                              Icons.rule,
+                              Icons.check_circle_outlined,
                               color: widget.selectedPageIndex == 5
                                   ? FlutterFlowTheme.of(context)
                                       .secondaryBackground

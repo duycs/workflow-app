@@ -509,7 +509,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                         0.0,
                                                                         8.0,
                                                                         0.0,
-                                                                        10.0),
+                                                                        8.0),
                                                             child: Row(
                                                               mainAxisSize:
                                                                   MainAxisSize
@@ -591,19 +591,20 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                               ],
                                                             ),
                                                           ),
-                                                          Divider(
-                                                            height: 16.0,
-                                                            thickness: 1.0,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .alternate,
-                                                          ),
+                                                          if ('1' == '2')
+                                                            Divider(
+                                                              height: 16.0,
+                                                              thickness: 1.0,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .alternate,
+                                                            ),
                                                           Padding(
                                                             padding:
                                                                 const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
-                                                                        10.0,
+                                                                        0.0,
                                                                         0.0,
                                                                         6.0),
                                                             child: Text(
@@ -706,23 +707,22 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                               .start,
                                                                       children:
                                                                           [
-                                                                        Text(
-                                                                          _model
-                                                                              .organizationDetail!
-                                                                              .staffs
-                                                                              .where((e) => e.userId.role == '82073000-1ba2-43a4-a55c-459d17c23b68')
-                                                                              .toList()
-                                                                              .first
-                                                                              .userId
-                                                                              .firstName,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyLarge
-                                                                              .override(
-                                                                                fontFamily: 'Nunito Sans',
-                                                                                fontSize: 14.0,
-                                                                                letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.w500,
-                                                                              ),
+                                                                        Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              2.0),
+                                                                          child:
+                                                                              Text(
+                                                                            _model.organizationDetail!.staffs.where((e) => e.userId.role == '82073000-1ba2-43a4-a55c-459d17c23b68').toList().first.userId.firstName,
+                                                                            style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                  fontFamily: 'Nunito Sans',
+                                                                                  fontSize: 14.0,
+                                                                                  letterSpacing: 0.0,
+                                                                                  fontWeight: FontWeight.w500,
+                                                                                ),
+                                                                          ),
                                                                         ),
                                                                         Text(
                                                                           _model
@@ -751,7 +751,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                                 ),
                                                                           ),
                                                                       ].divide(const SizedBox(
-                                                                              height: 4.0)),
+                                                                              height: 1.0)),
                                                                     ),
                                                                   ),
                                                                 ].divide(const SizedBox(
@@ -843,7 +843,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                             ),
                                                                             child:
                                                                                 Padding(
-                                                                              padding: const EdgeInsets.all(12.0),
+                                                                              padding: const EdgeInsets.all(8.0),
                                                                               child: Column(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -858,9 +858,10 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                                     ),
                                                                                   ),
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                                     child: Text(
                                                                                       adminBranchItem.userId.firstName,
+                                                                                      textAlign: TextAlign.center,
                                                                                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                             fontFamily: 'Nunito Sans',
                                                                                             letterSpacing: 0.0,
@@ -869,7 +870,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                                   ),
                                                                                   Flexible(
                                                                                     child: Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 2.0),
                                                                                       child: Text(
                                                                                         adminBranchItem.userId.email,
                                                                                         style: FlutterFlowTheme.of(context).labelSmall.override(
@@ -883,6 +884,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                                   if ((adminBranchItem.title != '') && (adminBranchItem.title != 'null'))
                                                                                     Text(
                                                                                       adminBranchItem.title,
+                                                                                      textAlign: TextAlign.center,
                                                                                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                             fontFamily: 'Nunito Sans',
                                                                                             letterSpacing: 0.0,
@@ -1028,204 +1030,6 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                     .of(context)
                                                                 .alternate,
                                                           ),
-                                                          if ('1' == '2')
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0,
-                                                                          10.0),
-                                                              child: Text(
-                                                                'Phương châm hoạt động',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Nunito Sans',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                      fontSize:
-                                                                          16.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              if ('1' == '2')
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          4.0),
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .end,
-                                                                    children: [
-                                                                      Column(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        children: [
-                                                                          Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                                10.0,
-                                                                                10.0,
-                                                                                10.0,
-                                                                                10.0),
-                                                                            child:
-                                                                                ClipRRect(
-                                                                              borderRadius: BorderRadius.circular(8.0),
-                                                                              child: Image.network(
-                                                                                'https://picsum.photos/seed/995/600',
-                                                                                width: 150.0,
-                                                                                height: 200.0,
-                                                                                fit: BoxFit.cover,
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                      Expanded(
-                                                                        child:
-                                                                            Column(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
-                                                                              child: Container(
-                                                                                decoration: BoxDecoration(
-                                                                                  color: const Color(0xD4249643),
-                                                                                  borderRadius: BorderRadius.circular(8.0),
-                                                                                ),
-                                                                                child: Align(
-                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                                  child: Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
-                                                                                    child: Text(
-                                                                                      'Chất lượng cao cấp hàng đầu bằng chính sự trân trọng, tình yêu và trách nhiệm cao của mình với cuộc sống con người và xã hội,Chất lượng cao cấp hàng đầu bằng chính sự trân trọng, tình yêu và trách nhiệm cao của mình với cuộc sống con người và xã hội,',
-                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                            fontFamily: 'Nunito Sans',
-                                                                                            letterSpacing: 0.0,
-                                                                                          ),
-                                                                                    ),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              if ('1' == '2')
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          8.0),
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      Expanded(
-                                                                        child:
-                                                                            Column(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
-                                                                              child: Container(
-                                                                                decoration: BoxDecoration(
-                                                                                  color: const Color(0xD4249643),
-                                                                                  borderRadius: BorderRadius.circular(8.0),
-                                                                                ),
-                                                                                child: Align(
-                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                                  child: Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
-                                                                                    child: Text(
-                                                                                      'Chất lượng cao cấp hàng đầu bằng chính sự trân trọng, tình yêu và trách nhiệm cao của mình với cuộc sống con người và xã hội,Chất lượng cao cấp hàng đầu bằng chính sự trân trọng, tình yêu và trách nhiệm cao của mình với cuộc sống con người và xã hội,',
-                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                            fontFamily: 'Nunito Sans',
-                                                                                            color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                                            letterSpacing: 0.0,
-                                                                                          ),
-                                                                                    ),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                      Column(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        children: [
-                                                                          Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                                10.0,
-                                                                                10.0,
-                                                                                10.0,
-                                                                                10.0),
-                                                                            child:
-                                                                                ClipRRect(
-                                                                              borderRadius: BorderRadius.circular(8.0),
-                                                                              child: Image.network(
-                                                                                'https://picsum.photos/seed/995/600',
-                                                                                width: 150.0,
-                                                                                height: 200.0,
-                                                                                fit: BoxFit.cover,
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                            ],
-                                                          ),
-                                                          if ('1' == '2')
-                                                            Divider(
-                                                              height: 16.0,
-                                                              thickness: 1.0,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .alternate,
-                                                            ),
                                                           Padding(
                                                             padding:
                                                                 const EdgeInsetsDirectional

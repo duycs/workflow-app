@@ -10,9 +10,7 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'dart:convert';
-
 import 'package:e_workflow/backend/api_requests/api_calls.dart';
-
 import '/backend/api_requests/api_interceptor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

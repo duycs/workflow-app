@@ -551,7 +551,7 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                               listAnswerRadioIndex];
                                                       return SelectDoTestWidget(
                                                         key: Key(
-                                                            'Key3b8_${listAnswerRadioIndex}_of_${listAnswerRadio.length}'),
+                                                            'Key6bu_${listAnswerRadioIndex}_of_${listAnswerRadio.length}'),
                                                         listQuestion:
                                                             listAnswerRadioItem
                                                                 .answersId,

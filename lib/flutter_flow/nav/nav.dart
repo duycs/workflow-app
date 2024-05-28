@@ -764,11 +764,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'ProcedurePublishedListCopy',
-          path: '/procedurePublishedListCopy',
-          builder: (context, params) => const ProcedurePublishedListCopyWidget(),
-        ),
-        FFRoute(
           name: 'EditPassword',
           path: '/editPassword',
           builder: (context, params) => const EditPasswordWidget(),
@@ -805,11 +800,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
-        ),
-        FFRoute(
-          name: 'ProcedurePublishedListCopy2',
-          path: '/procedurePublishedListCopy2',
-          builder: (context, params) => const ProcedurePublishedListCopy2Widget(),
         ),
         FFRoute(
           name: 'WorkResultList',
