@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import '/training/do_test/long_text_list_question/long_text_list_question_widget.dart';
 import '/training/do_test/number_list_question/number_list_question_widget.dart';
+import '/training/do_test/one_select_question/one_select_question_widget.dart';
 import '/training/do_test/select_list_question/select_list_question_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -1013,7 +1014,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                   ),
                                                 if (listQuestionItem.questionsId
                                                         .answerType ==
-                                                    'radio')
+                                                    'q1')
                                                   SelectListQuestionWidget(
                                                     key: Key(
                                                         'Keyias_${listQuestionIndex}_of_${listQuestion.length}'),
@@ -1106,6 +1107,15 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                         );
                                                       });
                                                     },
+                                                  ),
+                                                if (listQuestionItem.questionsId
+                                                        .answerType ==
+                                                    'radio')
+                                                  OneSelectQuestionWidget(
+                                                    key: Key(
+                                                        'Key8p0_${listQuestionIndex}_of_${listQuestion.length}'),
+                                                    callback: (answerId,
+                                                        correct) async {},
                                                   ),
                                               ].divide(const SizedBox(height: 4.0)),
                                             ),

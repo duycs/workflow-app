@@ -170,7 +170,6 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
             (apiResultGetStaffId.jsonBody ?? ''),
             r'''$.organization''',
           );
-          await actions.notifiRemoveServer();
           await actions.notifiAddServer(
             getJsonField(
               (apiResultGetStaffId.jsonBody ?? ''),
@@ -178,7 +177,8 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
             ).toString().toString(),
           );
           await actions.checkNofiLoad();
-          if (FFAppState().alertCheck == 'Task mới') {
+          if ((FFAppState().alertCheck != '') &&
+              (FFAppState().alertCheck == 'Task mới')) {
             context.pushNamed(
               'ProcedurePublishedList',
               extra: <String, dynamic>{

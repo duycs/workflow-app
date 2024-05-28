@@ -530,7 +530,7 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                               ),
                                             ),
                                             if (questionListItem.answerType ==
-                                                'radio')
+                                                '1')
                                               Builder(
                                                 builder: (context) {
                                                   final listAnswerRadio =
@@ -664,8 +664,10 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                   ),
                                               ].divide(const SizedBox(height: 8.0)),
                                             ),
-                                            if (questionListItem.answerType ==
-                                                'checkbox')
+                                            if ((questionListItem.answerType ==
+                                                    'checkbox') ||
+                                                (questionListItem.answerType ==
+                                                    'radio'))
                                               Builder(
                                                 builder: (context) {
                                                   final listAnswer2 =

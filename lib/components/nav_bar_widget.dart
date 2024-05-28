@@ -155,7 +155,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                         widget.selectedPageIndex == 3
                             ? FlutterFlowTheme.of(context).primary
                             : FlutterFlowTheme.of(context).secondaryBackground,
-                        FlutterFlowTheme.of(context).primary,
+                        FlutterFlowTheme.of(context).secondaryBackground,
                       ),
                       borderRadius: BorderRadius.circular(24.0),
                     ),
@@ -175,8 +175,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                         .secondaryBackground
                                     : FlutterFlowTheme.of(context)
                                         .secondaryText,
-                                FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                                FlutterFlowTheme.of(context).secondaryText,
                               ),
                               size: 24.0,
                             ),
@@ -341,9 +340,12 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: widget.selectedPageIndex == 4
-                          ? FlutterFlowTheme.of(context).primary
-                          : FlutterFlowTheme.of(context).secondaryBackground,
+                      color: valueOrDefault<Color>(
+                        widget.selectedPageIndex == 4
+                            ? FlutterFlowTheme.of(context).primary
+                            : FlutterFlowTheme.of(context).secondaryBackground,
+                        FlutterFlowTheme.of(context).primary,
+                      ),
                       borderRadius: BorderRadius.circular(24.0),
                     ),
                     child: Opacity(
@@ -356,10 +358,15 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                           children: [
                             Icon(
                               Icons.location_city,
-                              color: widget.selectedPageIndex == 4
-                                  ? FlutterFlowTheme.of(context)
-                                      .secondaryBackground
-                                  : FlutterFlowTheme.of(context).secondaryText,
+                              color: valueOrDefault<Color>(
+                                widget.selectedPageIndex == 4
+                                    ? FlutterFlowTheme.of(context)
+                                        .secondaryBackground
+                                    : FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
                               size: 24.0,
                             ),
                             if (widget.selectedPageIndex == 4)
@@ -400,9 +407,12 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: widget.selectedPageIndex == 2
-                          ? FlutterFlowTheme.of(context).primary
-                          : FlutterFlowTheme.of(context).secondaryBackground,
+                      color: valueOrDefault<Color>(
+                        widget.selectedPageIndex == 2
+                            ? FlutterFlowTheme.of(context).primary
+                            : FlutterFlowTheme.of(context).secondaryBackground,
+                        FlutterFlowTheme.of(context).secondaryBackground,
+                      ),
                       borderRadius: BorderRadius.circular(24.0),
                     ),
                     child: Opacity(
@@ -415,10 +425,14 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                           children: [
                             Icon(
                               Icons.person_outline,
-                              color: widget.selectedPageIndex == 2
-                                  ? FlutterFlowTheme.of(context)
-                                      .secondaryBackground
-                                  : FlutterFlowTheme.of(context).secondaryText,
+                              color: valueOrDefault<Color>(
+                                widget.selectedPageIndex == 2
+                                    ? FlutterFlowTheme.of(context)
+                                        .secondaryBackground
+                                    : FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                FlutterFlowTheme.of(context).secondaryText,
+                              ),
                               size: 24.0,
                             ),
                             if (widget.selectedPageIndex == 2)
