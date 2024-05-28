@@ -33,6 +33,8 @@ class ProcedurePublishedListModel
 
   String checkData = '';
 
+  bool isLoad = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

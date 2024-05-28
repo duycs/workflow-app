@@ -162,10 +162,10 @@ class _TaskListCkPopupWidgetState extends State<TaskListCkPopupWidget> {
                       ),
                       child: SizedBox(
                         width: double.infinity,
-                        height: MediaQuery.sizeOf(context).height * 1.0,
+                        height: MediaQuery.sizeOf(context).height * 0.9,
                         child: custom_widgets.CKEditorUpdate(
                           width: double.infinity,
-                          height: MediaQuery.sizeOf(context).height * 1.0,
+                          height: MediaQuery.sizeOf(context).height * 0.9,
                           initialData: widget.item!,
                           action: (data) async {
                             setState(() {

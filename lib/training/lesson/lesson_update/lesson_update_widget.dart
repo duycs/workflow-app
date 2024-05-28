@@ -1346,6 +1346,64 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                 ),
                           ),
                         ),
+                        if ('1' == '2')
+                          Container(
+                            width: double.infinity,
+                            height: 45.0,
+                            decoration: const BoxDecoration(),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: Container(
+                              width: 180.0,
+                              height: double.infinity,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                borderRadius: BorderRadius.circular(10.0),
+                                border: Border.all(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                ),
+                              ),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    FlutterFlowIconButton(
+                                      borderColor:
+                                          FlutterFlowTheme.of(context).noColor,
+                                      borderRadius: 20.0,
+                                      borderWidth: 1.0,
+                                      buttonSize: 40.0,
+                                      fillColor:
+                                          FlutterFlowTheme.of(context).noColor,
+                                      icon: Icon(
+                                        Icons.edit_note_sharp,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 24.0,
+                                      ),
+                                      onPressed: () {
+                                        print('IconButton pressed ...');
+                                      },
+                                    ),
+                                    Text(
+                                      'Nhập nội dung',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 3.0, 0.0, 0.0),

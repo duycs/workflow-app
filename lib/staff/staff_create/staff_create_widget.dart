@@ -1751,6 +1751,24 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                           await Clipboard.setData(ClipboardData(
                                               text: _model
                                                   .emailTextController.text));
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Copy thành công!',
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                ),
+                                              ),
+                                              duration:
+                                                  const Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                            ),
+                                          );
                                         },
                                         child: Icon(
                                           Icons.content_copy,
@@ -1781,6 +1799,24 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         onTap: () async {
                                           await Clipboard.setData(
                                               const ClipboardData(text: 'Abcd@1234'));
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Copy thành công!',
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                ),
+                                              ),
+                                              duration:
+                                                  const Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                            ),
+                                          );
                                         },
                                         child: Icon(
                                           Icons.content_copy,

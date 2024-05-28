@@ -1481,10 +1481,6 @@ class _LessonDetailHomePageWidgetState
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               4.0),
-                                                      hoverColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .accent1,
                                                     ),
                                                   ),
                                               ].divide(const SizedBox(width: 5.0)),

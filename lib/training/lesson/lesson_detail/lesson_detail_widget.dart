@@ -2020,32 +2020,32 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                     ].divide(
                                                         const SizedBox(width: 16.0)),
                                                   ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Text(
-                                                        'Thích',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                      const Icon(
-                                                        Icons.favorite,
-                                                        color:
-                                                            Color(0xFFFF0202),
-                                                        size: 20.0,
-                                                      ),
-                                                    ].divide(
-                                                        const SizedBox(width: 2.0)),
-                                                  ),
+                                                  if ('1' == '2')
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Text(
+                                                          'Thích',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelSmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                        const Icon(
+                                                          Icons.favorite,
+                                                          color:
+                                                              Color(0xFFFF0202),
+                                                          size: 20.0,
+                                                        ),
+                                                      ].divide(
+                                                          const SizedBox(width: 2.0)),
+                                                    ),
                                                 ].divide(const SizedBox(width: 10.0)),
                                               ),
                                             ),

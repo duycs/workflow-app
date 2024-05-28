@@ -132,15 +132,6 @@ class _ContactProfileCPNWidgetState extends State<ContactProfileCPNWidget> {
                             color: FlutterFlowTheme.of(context).tertiary,
                           ),
                           Text(
-                            'Hãy liên lạc cho bộ phận chăm sóc khách hàng của chúng tôi ngay bây giờ để được tư vấn miễn phí:',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                          Text(
                             widget.contactProfile!.name,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium

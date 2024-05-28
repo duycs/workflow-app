@@ -555,11 +555,9 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                               true) &&
                                                                           (itemsItem.steps.where((e) => (e.tasks.where((e) => e.status == 'done').toList().length > 0) == true).toList().length >
                                                                               0)
-                                                                      ? itemsItem
-                                                                          .steps
-                                                                          .first
-                                                                          .tasks
-                                                                          .length
+                                                                      ? functions
+                                                                          .totaResultWorkflow(
+                                                                              itemsItem)
                                                                           .toString()
                                                                       : '0',
                                                                   style: FlutterFlowTheme.of(

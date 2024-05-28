@@ -39,6 +39,8 @@ class TaskListWaitModel extends FlutterFlowModel<TaskListWaitWidget> {
 
   String workflowNameFilter = '';
 
+  bool isLoad = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
