@@ -27,7 +27,7 @@ void checkNofiLoad(BuildContext context) async {
       print("additionalData: $additionalData");
       var payload =
           NotiPayload.fromJson(additionalData ?? {});
-      print("payload.scrren: ${payload.screen}");
+      print("payload.screen: ${payload.screen}");
       // if (alert != null) {
       //   context.goNamed("ProcedurePublishedList");
       // }
@@ -77,7 +77,7 @@ void checkNofiLoad(BuildContext context) async {
       }
 
       FFAppState().update(() {
-        FFAppState().alertCheck = payload.screen;
+        FFAppState().alertCheck = payload.screen.toString();
         FFAppState().idCheck = payload.data.id;
       });
     });
