@@ -17,6 +17,7 @@ void checkNofiLoad(BuildContext context) async {
 
   Future<Map<String, String>> tagsFuture =
       OneSignal.User.getTags();
+  print('context moi moi moii moinmoi');
 
   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
     OneSignal.Notifications.addClickListener((event) {
@@ -52,7 +53,7 @@ void checkNofiLoad(BuildContext context) async {
               'LessonDetail',
               queryParameters: {
                 'idLesson': serializeParam(
-                  FFAppState().idCheck,
+                  payload.data.id,
                   ParamType.String,
                 ),
               }.withoutNulls,

@@ -137,8 +137,10 @@ class _LoginWidgetState extends State<LoginWidget> {
               );
             });
             actions.checkNofiLoad(context);
-
             context.pushNamed('TaskList');
+            // if(FFAppState().idCheck == null && FFAppState().idCheck.length < 1){
+            //   context.pushNamed('TaskList');
+            // }
           } else {
             return;
           }
