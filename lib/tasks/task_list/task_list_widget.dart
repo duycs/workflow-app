@@ -2080,6 +2080,40 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                         _model.responseData =
                                                             null;
                                                       });
+                                                      var confirmDialogResponse =
+                                                          await showDialog<
+                                                                  bool>(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (alertDialogContext) {
+                                                                  return AlertDialog(
+                                                                    title: Text(
+                                                                        file!
+                                                                            .first),
+                                                                    content: Text(file
+                                                                        .length
+                                                                        .toString()),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed: () => Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            false),
+                                                                        child: const Text(
+                                                                            'Cancel'),
+                                                                      ),
+                                                                      TextButton(
+                                                                        onPressed: () => Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            true),
+                                                                        child: const Text(
+                                                                            'Confirm'),
+                                                                      ),
+                                                                    ],
+                                                                  );
+                                                                },
+                                                              ) ??
+                                                              false;
                                                       while (_model.loop <
                                                           file!.length) {
                                                         setState(() {
@@ -2108,6 +2142,40 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                       setState(() {
                                                         _model.loop = 0;
                                                       });
+                                                      confirmDialogResponse =
+                                                          await showDialog<
+                                                                  bool>(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (alertDialogContext) {
+                                                                  return AlertDialog(
+                                                                    title: Text((_model
+                                                                            .responseData!
+                                                                            .toMap())
+                                                                        .toString()),
+                                                                    content: const Text(
+                                                                        'sdafsdfsd'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed: () => Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            false),
+                                                                        child: const Text(
+                                                                            'Cancel'),
+                                                                      ),
+                                                                      TextButton(
+                                                                        onPressed: () => Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            true),
+                                                                        child: const Text(
+                                                                            'Confirm'),
+                                                                      ),
+                                                                    ],
+                                                                  );
+                                                                },
+                                                              ) ??
+                                                              false;
                                                       _model.apiResultUpdateoperationToken =
                                                           await action_blocks
                                                               .tokenReload(

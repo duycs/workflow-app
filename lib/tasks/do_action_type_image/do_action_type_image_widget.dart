@@ -415,53 +415,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                     } else {
                       setState(() {});
                     }
-                  } else {
-                    var confirmDialogResponse = await showDialog<bool>(
-                          context: context,
-                          builder: (alertDialogContext) {
-                            return AlertDialog(
-                              title: Text(
-                                  _model.listUploadImage.length.toString()),
-                              actions: [
-                                TextButton(
-                                  onPressed: () =>
-                                      Navigator.pop(alertDialogContext, false),
-                                  child: const Text('Cancel'),
-                                ),
-                                TextButton(
-                                  onPressed: () =>
-                                      Navigator.pop(alertDialogContext, true),
-                                  child: const Text('Confirm'),
-                                ),
-                              ],
-                            );
-                          },
-                        ) ??
-                        false;
                   }
-
-                  var confirmDialogResponse = await showDialog<bool>(
-                        context: context,
-                        builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title:
-                                Text(_model.listUploadImage.length.toString()),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext, false),
-                                child: const Text('Cancel'),
-                              ),
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext, true),
-                                child: const Text('Confirm'),
-                              ),
-                            ],
-                          );
-                        },
-                      ) ??
-                      false;
                   await widget.callback?.call(
                     _model.listUploadImage,
                   );

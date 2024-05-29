@@ -105,12 +105,8 @@ class _LoginWidgetState extends State<LoginWidget> {
               );
             });
             await actions.checkNofiLoad();
-            await Future.delayed(const Duration(milliseconds: 3000));
-            if (FFAppState().alertCheck == '4') {
-              context.pushNamed('ProcedureList');
-            } else {
-              context.pushNamed('TaskList');
-            }
+
+            context.pushNamed('TaskList');
           } else {
             return;
           }

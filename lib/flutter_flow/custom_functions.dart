@@ -515,9 +515,11 @@ String? fileName(FFUploadedFile? file) {
 
 int totaResultWorkflow(ProcedurePublishedListStruct data) {
   var count = 0;
-  if (data.steps.isEmpty) {
-    for (var group in data.steps) {
-      var groups = {group};
+  //if (data.steps.isEmpty) {
+  for (var group in data.steps) {
+    var groups = {group};
+    if (groups.isEmpty) {
+    } else {
       var allTasks = groups.expand((step) => step.tasks ?? []).toList();
 
       var lenghtStep = groups.length;
@@ -532,6 +534,7 @@ int totaResultWorkflow(ProcedurePublishedListStruct data) {
         }
       }
     }
+    // }
   }
   print("$count");
   return count;
