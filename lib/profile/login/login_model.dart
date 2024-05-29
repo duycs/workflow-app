@@ -176,7 +176,6 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
               r'''$.staff.id''',
             ).toString().toString(),
           );
-          await actions.checkNofiLoad();
 
           context.pushNamed(
             'TaskList',
