@@ -105,8 +105,11 @@ class _LoginWidgetState extends State<LoginWidget> {
               );
             });
             await actions.checkNofiLoad();
-
-            context.pushNamed('TaskList');
+            if (FFAppState().alertCheck == '4') {
+              context.pushNamed('ProcedureList');
+            } else {
+              context.pushNamed('TaskList');
+            }
           } else {
             return;
           }
