@@ -20,12 +20,12 @@ Future checkNofiLoad() async {
 
   Future<Map<String, String>> tagsFuture = OneSignal.User.getTags();
 
-  await WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+  WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
     OneSignal.Notifications.addClickListener((event) {
       // lấy thông báo
-      var additionalData = await event.notification.additionalData;
+      var additionalData = event.notification.additionalData;
       print("additionalData: $additionalData");
-      var payload = await NotiPayload.fromJson(additionalData ?? {});
+      var payload = NotiPayload.fromJson(additionalData ?? {});
       print("payload.scrren: ${payload.screen}");
       // if (alert != null) {
       //   context.goNamed("ProcedurePublishedList");
@@ -75,7 +75,7 @@ Future checkNofiLoad() async {
       //     }
       // }
 
-      await FFAppState().update(() {
+      FFAppState().update(() {
         FFAppState().alertCheck = payload.screen;
         FFAppState().idCheck = payload.data.id;
       });
