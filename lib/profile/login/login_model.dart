@@ -176,41 +176,18 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
               r'''$.staff.id''',
             ).toString().toString(),
           );
-          await actions.checkNofiLoad(
-            context,
+          await actions.checkNofiLoad();
+
+          context.pushNamed(
+            'TaskList',
+            extra: <String, dynamic>{
+              kTransitionInfoKey: const TransitionInfo(
+                hasTransition: true,
+                transitionType: PageTransitionType.fade,
+                duration: Duration(milliseconds: 0),
+              ),
+            },
           );
-          if ((FFAppState().alertCheck != '') &&
-              (FFAppState().alertCheck == '2')) {
-            context.pushNamed('TaskListWait');
-          } else if ((FFAppState().alertCheck != '') &&
-              (FFAppState().alertCheck == '3')) {
-            context.pushNamed('StudyProgramListUser');
-          } else if ((FFAppState().alertCheck != '') &&
-              (FFAppState().alertCheck == '4')) {
-            context.pushNamed('StudyProgramListUser');
-          } else if ((FFAppState().alertCheck != '') &&
-              (FFAppState().alertCheck == '5')) {
-            context.pushNamed(
-              'LessonDetail',
-              queryParameters: {
-                'idLesson': serializeParam(
-                  FFAppState().idCheck,
-                  ParamType.String,
-                ),
-              }.withoutNulls,
-            );
-          } else {
-            context.pushNamed(
-              'TaskList',
-              extra: <String, dynamic>{
-                kTransitionInfoKey: const TransitionInfo(
-                  hasTransition: true,
-                  transitionType: PageTransitionType.fade,
-                  duration: Duration(milliseconds: 0),
-                ),
-              },
-            );
-          }
         } else {
           return;
         }

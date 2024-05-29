@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
-Future<void> checkNofiLoad(BuildContext context) async {
+Future checkNofiLoad() async {
   // Add your function code here!
 
   OneSignal.initialize("014e851d-ca32-4c5e-840e-236166738a06");
@@ -30,54 +30,55 @@ Future<void> checkNofiLoad(BuildContext context) async {
       // if (alert != null) {
       //   context.goNamed("ProcedurePublishedList");
       // }
-      switch (payload.screen) {
-        case "2":
-          {
-            context.pushNamed('TaskListWait');
-            return;
-          }
-        case "3":
-          {
-            context.pushNamed('StudyProgramListUser');
-            return;
-          }
-        case "4":
-          {
-            context.pushNamed('StudyProgramListUser');
-            return;
-          }
-        case "5":
-          {
-            context.pushNamed(
-              'LessonDetail',
-              queryParameters: {
-                'idLesson': serializeParam(
-                  FFAppState().idCheck,
-                  ParamType.String,
-                ),
-              }.withoutNulls,
-            );
-            return;
-          }
-        default:
-          {
-            context.pushNamed(
-              'TaskList',
-              extra: <String, dynamic>{
-                kTransitionInfoKey: const TransitionInfo(
-                  hasTransition: true,
-                  transitionType: PageTransitionType.fade,
-                  duration: Duration(milliseconds: 0),
-                ),
-              },
-            );
-            return;
-          }
-      }
-      // FFAppState().update(() {
-      //   FFAppState().alertCheck = payload.screen;
-      //   FFAppState().idCheck = payload.data.id;
-      // });
+      // switch (payload.screen) {
+      //   case "2":
+      //     {
+      //       context.pushNamed('TaskListWait');
+      //       return;
+      //     }
+      //   case "3":
+      //     {
+      //       context.pushNamed('StudyProgramListUser');
+      //       return;
+      //     }
+      //   case "4":
+      //     {
+      //       context.pushNamed('StudyProgramListUser');
+      //       return;
+      //     }
+      //   case "5":
+      //     {
+      //       context.pushNamed(
+      //         'LessonDetail',
+      //         queryParameters: {
+      //           'idLesson': serializeParam(
+      //             FFAppState().idCheck,
+      //             ParamType.String,
+      //           ),
+      //         }.withoutNulls,
+      //       );
+      //       return;
+      //     }
+      //   default:
+      //     {
+      //       context.pushNamed(
+      //         'TaskList',
+      //         extra: <String, dynamic>{
+      //           kTransitionInfoKey: const TransitionInfo(
+      //             hasTransition: true,
+      //             transitionType: PageTransitionType.fade,
+      //             duration: Duration(milliseconds: 0),
+      //           ),
+      //         },
+      //       );
+      //       return;
+      //     }
+      // }
+
+      FFAppState().update(() {
+        FFAppState().alertCheck = payload.screen;
+        FFAppState().idCheck = payload.data.id;
+      });
     });
   });
 }
