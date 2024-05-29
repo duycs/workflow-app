@@ -9,6 +9,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'invite_user_model.dart';
 export 'invite_user_model.dart';
 
@@ -906,21 +907,23 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                     await showDialog(
                                       context: context,
                                       builder: (alertDialogContext) {
-                                        return AlertDialog(
-                                          content: Text((_model.program!
-                                                          .limitInvite -
-                                                      _model.program!
-                                                          .inviteCount) >
-                                                  0
-                                              ? 'Bạn chỉ được phép chia sẻ tối đa ${(_model.program!.limitInvite - _model.program!.inviteCount).toString()} lượt'
-                                              : 'Đã quá giới hạn chia sẻ khóa học!'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: const Text('Ok'),
-                                            ),
-                                          ],
+                                        return WebViewAware(
+                                          child: AlertDialog(
+                                            content: Text((_model.program!
+                                                            .limitInvite -
+                                                        _model.program!
+                                                            .inviteCount) >
+                                                    0
+                                                ? 'Bạn chỉ được phép chia sẻ tối đa ${(_model.program!.limitInvite - _model.program!.inviteCount).toString()} lượt'
+                                                : 'Đã quá giới hạn chia sẻ khóa học!'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: const Text('Ok'),
+                                              ),
+                                            ],
+                                          ),
                                         );
                                       },
                                     );
@@ -951,17 +954,19 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                content: Text(
-                                                    'Nhân viên ${_model.selectedStaffList[_model.loop!].userId.firstName} đã được mời'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: const Text('Ok'),
-                                                  ),
-                                                ],
+                                              return WebViewAware(
+                                                child: AlertDialog(
+                                                  content: Text(
+                                                      'Nhân viên ${_model.selectedStaffList[_model.loop!].userId.firstName} đã được mời'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: const Text('Ok'),
+                                                    ),
+                                                  ],
+                                                ),
                                               );
                                             },
                                           );
@@ -975,17 +980,19 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                content:
-                                                    const Text('Quá giới hạn mời'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: const Text('Ok'),
-                                                  ),
-                                                ],
+                                              return WebViewAware(
+                                                child: AlertDialog(
+                                                  content:
+                                                      const Text('Quá giới hạn mời'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: const Text('Ok'),
+                                                    ),
+                                                  ],
+                                                ),
                                               );
                                             },
                                           );
@@ -1025,21 +1032,23 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                     await showDialog(
                                       context: context,
                                       builder: (alertDialogContext) {
-                                        return AlertDialog(
-                                          content: Text((_model.program!
-                                                          .limitInvite -
-                                                      _model.program!
-                                                          .inviteCount) >
-                                                  0
-                                              ? 'Bạn chỉ được phép chia sẻ tối đa ${(_model.program!.limitInvite - _model.program!.inviteCount).toString()} lượt'
-                                              : 'Đã quá giới hạn chia sẻ khóa học!'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: const Text('Ok'),
-                                            ),
-                                          ],
+                                        return WebViewAware(
+                                          child: AlertDialog(
+                                            content: Text((_model.program!
+                                                            .limitInvite -
+                                                        _model.program!
+                                                            .inviteCount) >
+                                                    0
+                                                ? 'Bạn chỉ được phép chia sẻ tối đa ${(_model.program!.limitInvite - _model.program!.inviteCount).toString()} lượt'
+                                                : 'Đã quá giới hạn chia sẻ khóa học!'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: const Text('Ok'),
+                                              ),
+                                            ],
+                                          ),
                                         );
                                       },
                                     );
@@ -1070,17 +1079,19 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                content: Text(
-                                                    'Nhân viên ${_model.selectedStaffList[_model.loop!].userId.firstName} đã được mời'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: const Text('Ok'),
-                                                  ),
-                                                ],
+                                              return WebViewAware(
+                                                child: AlertDialog(
+                                                  content: Text(
+                                                      'Nhân viên ${_model.selectedStaffList[_model.loop!].userId.firstName} đã được mời'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: const Text('Ok'),
+                                                    ),
+                                                  ],
+                                                ),
                                               );
                                             },
                                           );
@@ -1094,17 +1105,19 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                content:
-                                                    const Text('Quá giới hạn mời'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: const Text('Ok'),
-                                                  ),
-                                                ],
+                                              return WebViewAware(
+                                                child: AlertDialog(
+                                                  content:
+                                                      const Text('Quá giới hạn mời'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: const Text('Ok'),
+                                                    ),
+                                                  ],
+                                                ),
                                               );
                                             },
                                           );
@@ -1156,18 +1169,20 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: const Text(
-                                            'Chia sẻ khóa học thành công!'),
-                                        content: const Text(
-                                            'Bạn đã hết lượt chia sẻ khoá học. Đi đến khóa học đã mua'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: const Text('Ok'),
-                                          ),
-                                        ],
+                                      return WebViewAware(
+                                        child: AlertDialog(
+                                          title: const Text(
+                                              'Chia sẻ khóa học thành công!'),
+                                          content: const Text(
+                                              'Bạn đã hết lượt chia sẻ khoá học. Đi đến khóa học đã mua'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: const Text('Ok'),
+                                            ),
+                                          ],
+                                        ),
                                       );
                                     },
                                   );
@@ -1204,11 +1219,14 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                       backgroundColor: Colors.transparent,
                                       alignment: const AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: AfterInviteWidget(
-                                        programId: widget.programId!,
-                                        checkPage: _model.program?.private == 1
-                                            ? 'private1'
-                                            : 'private0',
+                                      child: WebViewAware(
+                                        child: AfterInviteWidget(
+                                          programId: widget.programId!,
+                                          checkPage:
+                                              _model.program?.private == 1
+                                                  ? 'private1'
+                                                  : 'private0',
+                                        ),
                                       ),
                                     );
                                   },
@@ -1217,15 +1235,18 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      content: const Text('Vui lòng chọn nhân viên'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
+                                    return WebViewAware(
+                                      child: AlertDialog(
+                                        content:
+                                            const Text('Vui lòng chọn nhân viên'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
+                                      ),
                                     );
                                   },
                                 );

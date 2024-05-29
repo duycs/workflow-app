@@ -12,6 +12,7 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'update_author_model.dart';
 export 'update_author_model.dart';
 
@@ -640,22 +641,28 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                   await showDialog<bool>(
                                         context: context,
                                         builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: const Text('Xác nhận'),
-                                            content: const Text(
-                                                'Cập nhật thông tin tác giả!'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, false),
-                                                child: const Text('Hủy'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, true),
-                                                child: const Text('Xác nhận'),
-                                              ),
-                                            ],
+                                          return WebViewAware(
+                                            child: AlertDialog(
+                                              title: const Text('Xác nhận'),
+                                              content: const Text(
+                                                  'Cập nhật thông tin tác giả!'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          false),
+                                                  child: const Text('Hủy'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          true),
+                                                  child: const Text('Xác nhận'),
+                                                ),
+                                              ],
+                                            ),
                                           );
                                         },
                                       ) ??

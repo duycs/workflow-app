@@ -13,6 +13,7 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'study_program_create_model.dart';
 export 'study_program_create_model.dart';
 
@@ -428,18 +429,21 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                       await showDialog(
                                         context: context,
                                         builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title:
-                                                Text(_model.requestData!.name),
-                                            content: Text(_model
-                                                .requestData!.description),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: const Text('Ok'),
-                                              ),
-                                            ],
+                                          return WebViewAware(
+                                            child: AlertDialog(
+                                              title: Text(
+                                                  _model.requestData!.name),
+                                              content: Text(_model
+                                                  .requestData!.description),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: const Text('Ok'),
+                                                ),
+                                              ],
+                                            ),
                                           );
                                         },
                                       );
@@ -653,15 +657,17 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                     await showDialog(
                                       context: context,
                                       builder: (alertDialogContext) {
-                                        return AlertDialog(
-                                          title: const Text('Bài học đã có!'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: const Text('Ok'),
-                                            ),
-                                          ],
+                                        return WebViewAware(
+                                          child: AlertDialog(
+                                            title: const Text('Bài học đã có!'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: const Text('Ok'),
+                                              ),
+                                            ],
+                                          ),
                                         );
                                       },
                                     );

@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/procedure_setting/procedure_setting_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'tao_moi_quy_trinh2_model.dart';
 export 'tao_moi_quy_trinh2_model.dart';
 
@@ -159,13 +160,16 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                           enableDrag: false,
                                           context: context,
                                           builder: (context) {
-                                            return Padding(
-                                              padding: MediaQuery.viewInsetsOf(
-                                                  context),
-                                              child: SizedBox(
-                                                height: 600.0,
-                                                child: ProcedureSettingWidget(
-                                                  callBack: (cron) async {},
+                                            return WebViewAware(
+                                              child: Padding(
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
+                                                child: SizedBox(
+                                                  height: 600.0,
+                                                  child: ProcedureSettingWidget(
+                                                    callBack: (cron) async {},
+                                                  ),
                                                 ),
                                               ),
                                             );
@@ -409,12 +413,14 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                     enableDrag: false,
                                     context: context,
                                     builder: (context) {
-                                      return Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: const SizedBox(
-                                          height: 600.0,
-                                          child: NhapWidget(),
+                                      return WebViewAware(
+                                        child: Padding(
+                                          padding:
+                                              MediaQuery.viewInsetsOf(context),
+                                          child: const SizedBox(
+                                            height: 600.0,
+                                            child: NhapWidget(),
+                                          ),
                                         ),
                                       );
                                     },

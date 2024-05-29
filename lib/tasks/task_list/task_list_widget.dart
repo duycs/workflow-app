@@ -24,6 +24,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'task_list_model.dart';
 export 'task_list_model.dart';
 
@@ -62,18 +63,20 @@ class _TaskListWidgetState extends State<TaskListWidget> {
             enableDrag: false,
             context: context,
             builder: (context) {
-              return GestureDetector(
-                onTap: () => _model.unfocusNode.canRequestFocus
-                    ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                    : FocusScope.of(context).unfocus(),
-                child: Padding(
-                  padding: MediaQuery.viewInsetsOf(context),
-                  child: ProcedurePushlishedWidget(
-                    callback: () async {
-                      await _model.getTaskToDo(context);
-                      await _model.getTaskToDo(context);
-                      await _model.getTaskToDo(context);
-                    },
+              return WebViewAware(
+                child: GestureDetector(
+                  onTap: () => _model.unfocusNode.canRequestFocus
+                      ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                      : FocusScope.of(context).unfocus(),
+                  child: Padding(
+                    padding: MediaQuery.viewInsetsOf(context),
+                    child: ProcedurePushlishedWidget(
+                      callback: () async {
+                        await _model.getTaskToDo(context);
+                        await _model.getTaskToDo(context);
+                        await _model.getTaskToDo(context);
+                      },
+                    ),
                   ),
                 ),
               );
@@ -139,20 +142,22 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                   enableDrag: false,
                   context: context,
                   builder: (context) {
-                    return GestureDetector(
-                      onTap: () => _model.unfocusNode.canRequestFocus
-                          ? FocusScope.of(context)
-                              .requestFocus(_model.unfocusNode)
-                          : FocusScope.of(context).unfocus(),
-                      child: Padding(
-                        padding: MediaQuery.viewInsetsOf(context),
-                        child: ProcedurePushlishedWidget(
-                          callback: () async {
-                            await _model.getTaskToDo(context);
-                            await _model.getNumberTask(context);
-                            setState(() =>
-                                _model.listViewPagingController1?.refresh());
-                          },
+                    return WebViewAware(
+                      child: GestureDetector(
+                        onTap: () => _model.unfocusNode.canRequestFocus
+                            ? FocusScope.of(context)
+                                .requestFocus(_model.unfocusNode)
+                            : FocusScope.of(context).unfocus(),
+                        child: Padding(
+                          padding: MediaQuery.viewInsetsOf(context),
+                          child: ProcedurePushlishedWidget(
+                            callback: () async {
+                              await _model.getTaskToDo(context);
+                              await _model.getNumberTask(context);
+                              setState(() =>
+                                  _model.listViewPagingController1?.refresh());
+                            },
+                          ),
                         ),
                       ),
                     );
@@ -419,46 +424,51 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: GestureDetector(
-                                                onTap: () => _model.unfocusNode
-                                                        .canRequestFocus
-                                                    ? FocusScope.of(context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode)
-                                                    : FocusScope.of(context)
-                                                        .unfocus(),
-                                                child: FilterTaskListWidget(
-                                                  filterSearch: _model
-                                                      .textFieldNameTextController
-                                                      .text,
-                                                  dateStart:
-                                                      _model.dateStartFilter,
-                                                  dateEnd: _model.dateEndFilter,
-                                                  type: _model.typeFilter,
-                                                  created: _model.createdFilter,
-                                                  workflowName:
-                                                      _model.workflowNameFilter,
-                                                  callback: (dateStartCallback,
-                                                      dateEndCallback,
-                                                      typeCallback,
-                                                      createdCallback,
-                                                      workflowNameCallback) async {
-                                                    setState(() {
-                                                      _model.dateStartFilter =
-                                                          dateStartCallback;
-                                                      _model.dateEndFilter =
-                                                          dateEndCallback;
-                                                      _model.typeFilter =
-                                                          typeCallback;
-                                                      _model.createdFilter =
-                                                          createdCallback!;
-                                                      _model.workflowNameFilter =
-                                                          workflowNameCallback!;
-                                                    });
-                                                    setState(() => _model
-                                                        .listViewPagingController1
-                                                        ?.refresh());
-                                                  },
+                                              child: WebViewAware(
+                                                child: GestureDetector(
+                                                  onTap: () => _model
+                                                          .unfocusNode
+                                                          .canRequestFocus
+                                                      ? FocusScope.of(context)
+                                                          .requestFocus(_model
+                                                              .unfocusNode)
+                                                      : FocusScope.of(context)
+                                                          .unfocus(),
+                                                  child: FilterTaskListWidget(
+                                                    filterSearch: _model
+                                                        .textFieldNameTextController
+                                                        .text,
+                                                    dateStart:
+                                                        _model.dateStartFilter,
+                                                    dateEnd:
+                                                        _model.dateEndFilter,
+                                                    type: _model.typeFilter,
+                                                    created:
+                                                        _model.createdFilter,
+                                                    workflowName: _model
+                                                        .workflowNameFilter,
+                                                    callback: (dateStartCallback,
+                                                        dateEndCallback,
+                                                        typeCallback,
+                                                        createdCallback,
+                                                        workflowNameCallback) async {
+                                                      setState(() {
+                                                        _model.dateStartFilter =
+                                                            dateStartCallback;
+                                                        _model.dateEndFilter =
+                                                            dateEndCallback;
+                                                        _model.typeFilter =
+                                                            typeCallback;
+                                                        _model.createdFilter =
+                                                            createdCallback!;
+                                                        _model.workflowNameFilter =
+                                                            workflowNameCallback!;
+                                                      });
+                                                      setState(() => _model
+                                                          .listViewPagingController1
+                                                          ?.refresh());
+                                                    },
+                                                  ),
                                                 ),
                                               ),
                                             );
@@ -993,23 +1003,22 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                         context,
                                                                     builder:
                                                                         (alertDialogContext) {
-                                                                      return AlertDialog(
-                                                                        content:
-                                                                            const Text('Xác nhận hoàn thành task!'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext, false),
-                                                                            child:
-                                                                                const Text('Đóng'),
-                                                                          ),
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext, true),
-                                                                            child:
-                                                                                const Text('Xác nhận'),
-                                                                          ),
-                                                                        ],
+                                                                      return WebViewAware(
+                                                                        child:
+                                                                            AlertDialog(
+                                                                          content:
+                                                                              const Text('Xác nhận hoàn thành task!'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                              child: const Text('Đóng'),
+                                                                            ),
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                              child: const Text('Xác nhận'),
+                                                                            ),
+                                                                          ],
+                                                                        ),
                                                                       );
                                                                     },
                                                                   ) ??
@@ -2080,102 +2089,47 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                         _model.responseData =
                                                             null;
                                                       });
-                                                      var confirmDialogResponse =
-                                                          await showDialog<
-                                                                  bool>(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        file!
-                                                                            .first),
-                                                                    content: Text(file
-                                                                        .length
-                                                                        .toString()),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed: () => Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            false),
-                                                                        child: const Text(
-                                                                            'Cancel'),
-                                                                      ),
-                                                                      TextButton(
-                                                                        onPressed: () => Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            true),
-                                                                        child: const Text(
-                                                                            'Confirm'),
-                                                                      ),
-                                                                    ],
-                                                                  );
-                                                                },
-                                                              ) ??
-                                                              false;
-                                                      while (_model.loop <
-                                                          file!.length) {
+                                                      if (file.isEmpty) {
                                                         setState(() {
                                                           _model
                                                               .updateResponseDataStruct(
                                                             (e) => e
                                                               ..status = 'done'
-                                                              ..updateFiles(
-                                                                (e) => e.add(
-                                                                    FileDataTypeStruct(
-                                                                  directusFilesId:
-                                                                      FileIDDataTypeStruct(
-                                                                    id: file[
-                                                                        _model
-                                                                            .loop],
-                                                                  ),
-                                                                )),
-                                                              ),
+                                                              ..files = [],
                                                           );
                                                         });
+                                                      } else {
+                                                        while (_model.loop <
+                                                            file!.length) {
+                                                          setState(() {
+                                                            _model
+                                                                .updateResponseDataStruct(
+                                                              (e) => e
+                                                                ..status =
+                                                                    'done'
+                                                                ..updateFiles(
+                                                                  (e) => e.add(
+                                                                      FileDataTypeStruct(
+                                                                    directusFilesId:
+                                                                        FileIDDataTypeStruct(
+                                                                      id: file[
+                                                                          _model
+                                                                              .loop],
+                                                                    ),
+                                                                  )),
+                                                                ),
+                                                            );
+                                                          });
+                                                          setState(() {
+                                                            _model.loop =
+                                                                _model.loop + 1;
+                                                          });
+                                                        }
                                                         setState(() {
-                                                          _model.loop =
-                                                              _model.loop + 1;
+                                                          _model.loop = 0;
                                                         });
                                                       }
-                                                      setState(() {
-                                                        _model.loop = 0;
-                                                      });
-                                                      confirmDialogResponse =
-                                                          await showDialog<
-                                                                  bool>(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: Text((_model
-                                                                            .responseData!
-                                                                            .toMap())
-                                                                        .toString()),
-                                                                    content: const Text(
-                                                                        'sdafsdfsd'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed: () => Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            false),
-                                                                        child: const Text(
-                                                                            'Cancel'),
-                                                                      ),
-                                                                      TextButton(
-                                                                        onPressed: () => Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            true),
-                                                                        child: const Text(
-                                                                            'Confirm'),
-                                                                      ),
-                                                                    ],
-                                                                  );
-                                                                },
-                                                              ) ??
-                                                              false;
+
                                                       _model.apiResultUpdateoperationToken =
                                                           await action_blocks
                                                               .tokenReload(
@@ -2277,34 +2231,46 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                       _model.responseData =
                                                           null;
                                                     });
-                                                    while (_model.loop <
-                                                        images!.length) {
+                                                    if (images.isEmpty) {
                                                       setState(() {
                                                         _model
                                                             .updateResponseDataStruct(
                                                           (e) => e
-                                                            ..status = 'done'
-                                                            ..updateFiles(
-                                                              (e) => e.add(
-                                                                  FileDataTypeStruct(
-                                                                directusFilesId:
-                                                                    FileIDDataTypeStruct(
-                                                                  id: images[
-                                                                      _model
-                                                                          .loop],
-                                                                ),
-                                                              )),
-                                                            ),
+                                                            ..status = 'draft'
+                                                            ..files = [],
                                                         );
                                                       });
+                                                    } else {
+                                                      while (_model.loop <
+                                                          images!.length) {
+                                                        setState(() {
+                                                          _model
+                                                              .updateResponseDataStruct(
+                                                            (e) => e
+                                                              ..status = 'done'
+                                                              ..updateFiles(
+                                                                (e) => e.add(
+                                                                    FileDataTypeStruct(
+                                                                  directusFilesId:
+                                                                      FileIDDataTypeStruct(
+                                                                    id: images[
+                                                                        _model
+                                                                            .loop],
+                                                                  ),
+                                                                )),
+                                                              ),
+                                                          );
+                                                        });
+                                                        setState(() {
+                                                          _model.loop =
+                                                              _model.loop + 1;
+                                                        });
+                                                      }
                                                       setState(() {
-                                                        _model.loop =
-                                                            _model.loop + 1;
+                                                        _model.loop = 0;
                                                       });
                                                     }
-                                                    setState(() {
-                                                      _model.loop = 0;
-                                                    });
+
                                                     _model.updateoperationToken =
                                                         await action_blocks
                                                             .tokenReload(
@@ -2676,72 +2642,65 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                         Directionality.of(
                                                                             context)),
                                                                 child:
-                                                                    GestureDetector(
-                                                                  onTap: () => _model
-                                                                          .unfocusNode
-                                                                          .canRequestFocus
-                                                                      ? FocusScope.of(
-                                                                              context)
-                                                                          .requestFocus(_model
-                                                                              .unfocusNode)
-                                                                      : FocusScope.of(
-                                                                              context)
-                                                                          .unfocus(),
+                                                                    WebViewAware(
                                                                   child:
-                                                                      TaskListCkPopupWidget(
-                                                                    item: dataListItem
-                                                                        .operations
-                                                                        .first
-                                                                        .operationsId
-                                                                        .result,
-                                                                    action:
-                                                                        (ckString) async {
-                                                                      _model.updateoperation22Token =
-                                                                          await action_blocks
-                                                                              .tokenReload(context);
-                                                                      if (_model
-                                                                          .updateoperation22Token!) {
-                                                                        _model.apiResultUpdateoperation22 = await TaskGroup
-                                                                            .updateOperationCall
-                                                                            .call(
-                                                                          accessToken:
-                                                                              FFAppState().accessToken,
-                                                                          requestDataJson: <String,
-                                                                              dynamic>{
-                                                                            'status':
-                                                                                'done',
-                                                                            'result':
-                                                                                ckString,
-                                                                          },
-                                                                          operationId: dataListItem
-                                                                              .operations
-                                                                              .first
-                                                                              .operationsId
-                                                                              .id,
-                                                                        );
-                                                                        if (!(_model.apiResultUpdateoperation22?.succeeded ??
-                                                                            true)) {
-                                                                          ScaffoldMessenger.of(context)
-                                                                              .showSnackBar(
-                                                                            SnackBar(
-                                                                              content: Text(
-                                                                                'Lưu thất bại!',
-                                                                                style: TextStyle(
-                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                ),
-                                                                              ),
-                                                                              duration: const Duration(milliseconds: 4000),
-                                                                              backgroundColor: FlutterFlowTheme.of(context).error,
-                                                                            ),
+                                                                      GestureDetector(
+                                                                    onTap: () => _model
+                                                                            .unfocusNode
+                                                                            .canRequestFocus
+                                                                        ? FocusScope.of(context).requestFocus(_model
+                                                                            .unfocusNode)
+                                                                        : FocusScope.of(context)
+                                                                            .unfocus(),
+                                                                    child:
+                                                                        TaskListCkPopupWidget(
+                                                                      item: dataListItem
+                                                                          .operations
+                                                                          .first
+                                                                          .operationsId
+                                                                          .result,
+                                                                      action:
+                                                                          (ckString) async {
+                                                                        _model.updateoperation22Token =
+                                                                            await action_blocks.tokenReload(context);
+                                                                        if (_model
+                                                                            .updateoperation22Token!) {
+                                                                          _model.apiResultUpdateoperation22 = await TaskGroup
+                                                                              .updateOperationCall
+                                                                              .call(
+                                                                            accessToken:
+                                                                                FFAppState().accessToken,
+                                                                            requestDataJson: <String,
+                                                                                dynamic>{
+                                                                              'status': 'done',
+                                                                              'result': ckString,
+                                                                            },
+                                                                            operationId:
+                                                                                dataListItem.operations.first.operationsId.id,
                                                                           );
+                                                                          if (!(_model.apiResultUpdateoperation22?.succeeded ??
+                                                                              true)) {
+                                                                            ScaffoldMessenger.of(context).showSnackBar(
+                                                                              SnackBar(
+                                                                                content: Text(
+                                                                                  'Lưu thất bại!',
+                                                                                  style: TextStyle(
+                                                                                    color: FlutterFlowTheme.of(context).primaryText,
+                                                                                  ),
+                                                                                ),
+                                                                                duration: const Duration(milliseconds: 4000),
+                                                                                backgroundColor: FlutterFlowTheme.of(context).error,
+                                                                              ),
+                                                                            );
+                                                                          }
+                                                                          setState(
+                                                                              () {});
+                                                                        } else {
+                                                                          setState(
+                                                                              () {});
                                                                         }
-                                                                        setState(
-                                                                            () {});
-                                                                      } else {
-                                                                        setState(
-                                                                            () {});
-                                                                      }
-                                                                    },
+                                                                      },
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               );

@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'list_staff_profile_company_model.dart';
 export 'list_staff_profile_company_model.dart';
 
@@ -609,34 +610,38 @@ class _ListStaffProfileCompanyWidgetState
                                                           .resolve(
                                                               Directionality.of(
                                                                   context)),
-                                                  child: GestureDetector(
-                                                    onTap: () => _model
-                                                            .unfocusNode
-                                                            .canRequestFocus
-                                                        ? FocusScope.of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode)
-                                                        : FocusScope.of(context)
-                                                            .unfocus(),
-                                                    child: ProfileStaffWidget(
-                                                      name: listStaff1Item
-                                                          .userId.firstName,
-                                                      gender:
-                                                          listStaff1Item.gender,
-                                                      phone:
-                                                          listStaff1Item.phone,
-                                                      role:
-                                                          listStaff1Item.title,
-                                                      image: listStaff1Item
-                                                          .userId.avatar,
-                                                      email: listStaff1Item
-                                                          .userId.email,
-                                                      branch: listStaff1Item
-                                                          .branchId.name,
-                                                      bophan: listStaff1Item
-                                                          .departmentId.name,
-                                                      ngaySinh:
-                                                          listStaff1Item.dob,
+                                                  child: WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () => _model
+                                                              .unfocusNode
+                                                              .canRequestFocus
+                                                          ? FocusScope.of(
+                                                                  context)
+                                                              .requestFocus(_model
+                                                                  .unfocusNode)
+                                                          : FocusScope.of(
+                                                                  context)
+                                                              .unfocus(),
+                                                      child: ProfileStaffWidget(
+                                                        name: listStaff1Item
+                                                            .userId.firstName,
+                                                        gender: listStaff1Item
+                                                            .gender,
+                                                        phone: listStaff1Item
+                                                            .phone,
+                                                        role: listStaff1Item
+                                                            .title,
+                                                        image: listStaff1Item
+                                                            .userId.avatar,
+                                                        email: listStaff1Item
+                                                            .userId.email,
+                                                        branch: listStaff1Item
+                                                            .branchId.name,
+                                                        bophan: listStaff1Item
+                                                            .departmentId.name,
+                                                        ngaySinh:
+                                                            listStaff1Item.dob,
+                                                      ),
                                                     ),
                                                   ),
                                                 );

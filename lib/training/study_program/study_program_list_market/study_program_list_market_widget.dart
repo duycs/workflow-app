@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'study_program_list_market_model.dart';
 export 'study_program_list_market_model.dart';
 
@@ -268,40 +269,44 @@ class _StudyProgramListMarketWidgetState
                                   backgroundColor: Colors.transparent,
                                   alignment: const AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: FilterStudyProgramMarketWidget(
-                                      name: _model.nameSearch!,
-                                      lessionsName: _model.lessionsNameSearch!,
-                                      dateStart: _model.dateStartSearch!,
-                                      dateEnd: _model.dateEndSearch!,
-                                      callBack: (name, dateStart, dateEnd,
-                                          lessions) async {
-                                        setState(() {
-                                          _model
-                                              .textFieldNameSearchTextController
-                                              ?.clear();
-                                        });
-                                        setState(() {
-                                          _model.nameSearch = name;
-                                          _model.dateEndSearch = dateEnd;
-                                          _model.dateStartSearch = dateStart;
-                                          _model.lessionsNameSearch = lessions;
-                                        });
-                                        setState(() => _model
-                                            .listViewPagingController1
-                                            ?.refresh());
-                                        setState(() {
-                                          _model
-                                              .textFieldNameSearchTextController
-                                              ?.text = name!;
-                                        });
-                                        setState(() {});
-                                      },
+                                  child: WebViewAware(
+                                    child: GestureDetector(
+                                      onTap: () => _model
+                                              .unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                      child: FilterStudyProgramMarketWidget(
+                                        name: _model.nameSearch!,
+                                        lessionsName:
+                                            _model.lessionsNameSearch!,
+                                        dateStart: _model.dateStartSearch!,
+                                        dateEnd: _model.dateEndSearch!,
+                                        callBack: (name, dateStart, dateEnd,
+                                            lessions) async {
+                                          setState(() {
+                                            _model
+                                                .textFieldNameSearchTextController
+                                                ?.clear();
+                                          });
+                                          setState(() {
+                                            _model.nameSearch = name;
+                                            _model.dateEndSearch = dateEnd;
+                                            _model.dateStartSearch = dateStart;
+                                            _model.lessionsNameSearch =
+                                                lessions;
+                                          });
+                                          setState(() => _model
+                                              .listViewPagingController1
+                                              ?.refresh());
+                                          setState(() {
+                                            _model
+                                                .textFieldNameSearchTextController
+                                                ?.text = name!;
+                                          });
+                                          setState(() {});
+                                        },
+                                      ),
                                     ),
                                   ),
                                 );
@@ -739,23 +744,25 @@ class _StudyProgramListMarketWidgetState
                                                                     context,
                                                                 builder:
                                                                     (context) {
-                                                                  return GestureDetector(
-                                                                    onTap: () => _model
-                                                                            .unfocusNode
-                                                                            .canRequestFocus
-                                                                        ? FocusScope.of(context).requestFocus(_model
-                                                                            .unfocusNode)
-                                                                        : FocusScope.of(context)
-                                                                            .unfocus(),
+                                                                  return WebViewAware(
                                                                     child:
-                                                                        Padding(
-                                                                      padding: MediaQuery
-                                                                          .viewInsetsOf(
-                                                                              context),
+                                                                        GestureDetector(
+                                                                      onTap: () => _model
+                                                                              .unfocusNode
+                                                                              .canRequestFocus
+                                                                          ? FocusScope.of(context).requestFocus(_model
+                                                                              .unfocusNode)
+                                                                          : FocusScope.of(context)
+                                                                              .unfocus(),
                                                                       child:
-                                                                          InviteUserWidget(
-                                                                        programId:
-                                                                            dataListViewItem.id,
+                                                                          Padding(
+                                                                        padding:
+                                                                            MediaQuery.viewInsetsOf(context),
+                                                                        child:
+                                                                            InviteUserWidget(
+                                                                          programId:
+                                                                              dataListViewItem.id,
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   );

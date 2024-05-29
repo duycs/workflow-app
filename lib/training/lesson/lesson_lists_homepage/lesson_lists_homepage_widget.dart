@@ -17,6 +17,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'lesson_lists_homepage_model.dart';
 export 'lesson_lists_homepage_model.dart';
 
@@ -3184,72 +3185,76 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                 .resolve(
                                                                     Directionality.of(
                                                                         context)),
-                                                        child: GestureDetector(
-                                                          onTap: () => _model
-                                                                  .unfocusNode
-                                                                  .canRequestFocus
-                                                              ? FocusScope.of(
-                                                                      context)
-                                                                  .requestFocus(
-                                                                      _model
-                                                                          .unfocusNode)
-                                                              : FocusScope.of(
-                                                                      context)
-                                                                  .unfocus(),
+                                                        child: WebViewAware(
                                                           child:
-                                                              FilterLessonHomePageWidget(
-                                                            status:
-                                                                _model.status,
-                                                            dateStart: _model
-                                                                .dateStartList,
-                                                            dateEnd: _model
-                                                                .dateEndList,
-                                                            lessonFavoriteStatus:
-                                                                _model
-                                                                    .lessonFavoriteStatusList,
-                                                            statusLoveFilter:
-                                                                '',
-                                                            statusDateToday: '',
-                                                            statusDateHistory:
-                                                                '',
-                                                            programsId: _model
-                                                                .programsAllId,
-                                                            checkPrograms:
-                                                                'programs',
-                                                            callBack: (status,
-                                                                dateStart,
-                                                                dateEnd,
-                                                                lessonStatus,
-                                                                lessonFavoriteStatus,
-                                                                programsId) async {
-                                                              setState(() {
-                                                                _model.status =
-                                                                    status!;
-                                                                _model.dateStartList =
-                                                                    dateTimeFormat(
-                                                                  'yyyy-MM-dd',
+                                                              GestureDetector(
+                                                            onTap: () => _model
+                                                                    .unfocusNode
+                                                                    .canRequestFocus
+                                                                ? FocusScope.of(
+                                                                        context)
+                                                                    .requestFocus(
+                                                                        _model
+                                                                            .unfocusNode)
+                                                                : FocusScope.of(
+                                                                        context)
+                                                                    .unfocus(),
+                                                            child:
+                                                                FilterLessonHomePageWidget(
+                                                              status:
+                                                                  _model.status,
+                                                              dateStart: _model
+                                                                  .dateStartList,
+                                                              dateEnd: _model
+                                                                  .dateEndList,
+                                                              lessonFavoriteStatus:
+                                                                  _model
+                                                                      .lessonFavoriteStatusList,
+                                                              statusLoveFilter:
+                                                                  '',
+                                                              statusDateToday:
+                                                                  '',
+                                                              statusDateHistory:
+                                                                  '',
+                                                              programsId: _model
+                                                                  .programsAllId,
+                                                              checkPrograms:
+                                                                  'programs',
+                                                              callBack: (status,
                                                                   dateStart,
-                                                                  locale: FFLocalizations.of(
-                                                                          context)
-                                                                      .languageCode,
-                                                                );
-                                                                _model.dateEndList =
-                                                                    dateTimeFormat(
-                                                                  'yyyy-MM-dd',
                                                                   dateEnd,
-                                                                  locale: FFLocalizations.of(
-                                                                          context)
-                                                                      .languageCode,
-                                                                );
-                                                                _model.lessonFavoriteStatusList =
-                                                                    lessonFavoriteStatus!;
-                                                                _model.programsAllId =
-                                                                    programsId!;
-                                                              });
-                                                              setState(() => _model
-                                                                  .listViewPagingController4
-                                                                  ?.refresh());
-                                                            },
+                                                                  lessonStatus,
+                                                                  lessonFavoriteStatus,
+                                                                  programsId) async {
+                                                                setState(() {
+                                                                  _model.status =
+                                                                      status!;
+                                                                  _model.dateStartList =
+                                                                      dateTimeFormat(
+                                                                    'yyyy-MM-dd',
+                                                                    dateStart,
+                                                                    locale: FFLocalizations.of(
+                                                                            context)
+                                                                        .languageCode,
+                                                                  );
+                                                                  _model.dateEndList =
+                                                                      dateTimeFormat(
+                                                                    'yyyy-MM-dd',
+                                                                    dateEnd,
+                                                                    locale: FFLocalizations.of(
+                                                                            context)
+                                                                        .languageCode,
+                                                                  );
+                                                                  _model.lessonFavoriteStatusList =
+                                                                      lessonFavoriteStatus!;
+                                                                  _model.programsAllId =
+                                                                      programsId!;
+                                                                });
+                                                                setState(() => _model
+                                                                    .listViewPagingController4
+                                                                    ?.refresh());
+                                                              },
+                                                            ),
                                                           ),
                                                         ),
                                                       );

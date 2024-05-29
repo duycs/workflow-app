@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'order_update_model.dart';
 export 'order_update_model.dart';
 
@@ -939,13 +940,15 @@ class _OrderUpdateWidgetState extends State<OrderUpdateWidget> {
                                 enableDrag: false,
                                 context: context,
                                 builder: (context) {
-                                  return Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: PaymentWidget(
-                                      orderId: widget.orderId!,
-                                      private: _model.dropDownValue == '1'
-                                          ? 'private1'
-                                          : 'private0',
+                                  return WebViewAware(
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: PaymentWidget(
+                                        orderId: widget.orderId!,
+                                        private: _model.dropDownValue == '1'
+                                            ? 'private1'
+                                            : 'private0',
+                                      ),
                                     ),
                                   );
                                 },

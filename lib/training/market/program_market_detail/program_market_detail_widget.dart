@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'program_market_detail_model.dart';
 export 'program_market_detail_model.dart';
 
@@ -830,33 +831,37 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                             enableDrag: false,
                             context: context,
                             builder: (context) {
-                              return GestureDetector(
-                                onTap: () => _model.unfocusNode.canRequestFocus
-                                    ? FocusScope.of(context)
-                                        .requestFocus(_model.unfocusNode)
-                                    : FocusScope.of(context).unfocus(),
-                                child: Padding(
-                                  padding: MediaQuery.viewInsetsOf(context),
-                                  child: OrderCreateWidget(
-                                    image: _model.dataGetOne!.imageCover,
-                                    price: _model.dataGetOne!.price,
-                                    rating: _model.dataGetOne!.reacts.isNotEmpty
-                                        ? ((List<String> listItem) {
-                                            return listItem
-                                                    .map(int.parse)
-                                                    .reduce((value, element) =>
-                                                        value + element) /
-                                                listItem.length;
-                                          }(_model.dataGetOne!.reacts
-                                            .map((e) => e.reactsId.status)
-                                            .toList()))
-                                        : 0.0,
-                                    name: _model.dataGetOne!.name,
-                                    numOfListLessions:
-                                        _model.dataGetOne!.lessions.length,
-                                    author: _model.dataGetOne!.authorId.alias,
-                                    programId: widget.idProgram,
-                                    checkType: 'staff',
+                              return WebViewAware(
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: OrderCreateWidget(
+                                      image: _model.dataGetOne!.imageCover,
+                                      price: _model.dataGetOne!.price,
+                                      rating: _model.dataGetOne!.reacts.isNotEmpty
+                                          ? ((List<String> listItem) {
+                                              return listItem
+                                                      .map(int.parse)
+                                                      .reduce(
+                                                          (value, element) =>
+                                                              value + element) /
+                                                  listItem.length;
+                                            }(_model.dataGetOne!.reacts
+                                              .map((e) => e.reactsId.status)
+                                              .toList()))
+                                          : 0.0,
+                                      name: _model.dataGetOne!.name,
+                                      numOfListLessions:
+                                          _model.dataGetOne!.lessions.length,
+                                      author: _model.dataGetOne!.authorId.alias,
+                                      programId: widget.idProgram,
+                                      checkType: 'staff',
+                                    ),
                                   ),
                                 ),
                               );
@@ -895,33 +900,37 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                             enableDrag: false,
                             context: context,
                             builder: (context) {
-                              return GestureDetector(
-                                onTap: () => _model.unfocusNode.canRequestFocus
-                                    ? FocusScope.of(context)
-                                        .requestFocus(_model.unfocusNode)
-                                    : FocusScope.of(context).unfocus(),
-                                child: Padding(
-                                  padding: MediaQuery.viewInsetsOf(context),
-                                  child: OrderCreateWidget(
-                                    image: _model.dataGetOne!.imageCover,
-                                    price: _model.dataGetOne!.price,
-                                    rating: _model.dataGetOne!.reacts.isNotEmpty
-                                        ? ((List<String> listItem) {
-                                            return listItem
-                                                    .map(int.parse)
-                                                    .reduce((value, element) =>
-                                                        value + element) /
-                                                listItem.length;
-                                          }(_model.dataGetOne!.reacts
-                                            .map((e) => e.reactsId.status)
-                                            .toList()))
-                                        : 0.0,
-                                    name: _model.dataGetOne!.name,
-                                    numOfListLessions:
-                                        _model.dataGetOne!.lessions.length,
-                                    author: _model.dataGetOne!.authorId.alias,
-                                    programId: widget.idProgram,
-                                    checkType: 'organization',
+                              return WebViewAware(
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: OrderCreateWidget(
+                                      image: _model.dataGetOne!.imageCover,
+                                      price: _model.dataGetOne!.price,
+                                      rating: _model.dataGetOne!.reacts.isNotEmpty
+                                          ? ((List<String> listItem) {
+                                              return listItem
+                                                      .map(int.parse)
+                                                      .reduce(
+                                                          (value, element) =>
+                                                              value + element) /
+                                                  listItem.length;
+                                            }(_model.dataGetOne!.reacts
+                                              .map((e) => e.reactsId.status)
+                                              .toList()))
+                                          : 0.0,
+                                      name: _model.dataGetOne!.name,
+                                      numOfListLessions:
+                                          _model.dataGetOne!.lessions.length,
+                                      author: _model.dataGetOne!.authorId.alias,
+                                      programId: widget.idProgram,
+                                      checkType: 'organization',
+                                    ),
                                   ),
                                 ),
                               );

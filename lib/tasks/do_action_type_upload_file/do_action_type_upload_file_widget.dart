@@ -12,6 +12,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'do_action_type_upload_file_model.dart';
 export 'do_action_type_upload_file_model.dart';
 
@@ -258,13 +259,15 @@ class _DoActionTypeUploadFileWidgetState
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: SizedBox(
-                                                height: double.infinity,
-                                                width: double.infinity,
-                                                child: PopupSeeMoreWidget(
-                                                  fileName:
-                                                      dataItem.filenameDownload,
-                                                  fileId: dataItem.id,
+                                              child: WebViewAware(
+                                                child: SizedBox(
+                                                  height: double.infinity,
+                                                  width: double.infinity,
+                                                  child: PopupSeeMoreWidget(
+                                                    fileName: dataItem
+                                                        .filenameDownload,
+                                                    fileId: dataItem.id,
+                                                  ),
                                                 ),
                                               ),
                                             );

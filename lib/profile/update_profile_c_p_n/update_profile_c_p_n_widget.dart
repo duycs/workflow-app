@@ -7,12 +7,14 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import '/profile/update_profile_ck_popup/update_profile_ck_popup_widget.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'update_profile_c_p_n_model.dart';
 export 'update_profile_c_p_n_model.dart';
 
@@ -888,6 +890,69 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                               .w500,
                                                                     ),
                                                               ),
+                                                              Expanded(
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          1.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      Builder(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            InkWell(
+                                                                      splashColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      focusColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      hoverColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      highlightColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      onTap:
+                                                                          () async {
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: WebViewAware(
+                                                                                child: UpdateProfileCkPopupWidget(
+                                                                                  initData: (_model.description2 != '') && (_model.description2 != '') ? _model.description2 : widget.data!.description,
+                                                                                  action: (ckString) async {
+                                                                                    setState(() {
+                                                                                      _model.description2 = ckString!;
+                                                                                    });
+                                                                                  },
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        ).then((value) =>
+                                                                            setState(() {}));
+                                                                      },
+                                                                      child:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .edit_note_sharp,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                        size:
+                                                                            24.0,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
                                                             ].divide(const SizedBox(
                                                                 width: 8.0)),
                                                           ),
@@ -898,51 +963,40 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       children: [
-                                                        SizedBox(
-                                                          width:
-                                                              double.infinity,
-                                                          height: 300.0,
-                                                          child: custom_widgets
-                                                              .CKEditor(
-                                                            width:
-                                                                double.infinity,
-                                                            height: 300.0,
-                                                            initialData: () {
-                                                              if ((widget.data?.description !=
-                                                                          null &&
-                                                                      widget.data
-                                                                              ?.description !=
-                                                                          '') &&
-                                                                  (widget.data
-                                                                          ?.description !=
-                                                                      'undefined')) {
-                                                                return widget
-                                                                    .data!
-                                                                    .description;
-                                                              } else if ((widget
-                                                                              .data
-                                                                              ?.description !=
-                                                                          null &&
-                                                                      widget.data
-                                                                              ?.description !=
-                                                                          '') &&
-                                                                  (widget.data
-                                                                          ?.description ==
-                                                                      'undefined')) {
-                                                                return ' ';
-                                                              } else {
-                                                                return ' ';
-                                                              }
-                                                            }(),
-                                                            action:
-                                                                (data) async {
-                                                              setState(() {
-                                                                _model.description2 =
-                                                                    data;
-                                                              });
-                                                            },
+                                                        if ((widget.data
+                                                                        ?.description !=
+                                                                    null &&
+                                                                widget.data
+                                                                        ?.description !=
+                                                                    '') &&
+                                                            (widget.data
+                                                                    ?.description !=
+                                                                'undefined') &&
+                                                            (widget.data
+                                                                    ?.description !=
+                                                                '') &&
+                                                            ((_model.description2 ==
+                                                                        '') ||
+                                                                (_model.description2 ==
+                                                                    '')))
+                                                          Html(
+                                                            data: widget.data!
+                                                                .description,
+                                                            onLinkTap: (url, _,
+                                                                    __, ___) =>
+                                                                launchURL(url!),
                                                           ),
-                                                        ),
+                                                        if ((_model.description2 !=
+                                                                    '') &&
+                                                            (_model.description2 !=
+                                                                ''))
+                                                          Html(
+                                                            data: _model
+                                                                .description2,
+                                                            onLinkTap: (url, _,
+                                                                    __, ___) =>
+                                                                launchURL(url!),
+                                                          ),
                                                       ].divide(const SizedBox(
                                                           height: 20.0)),
                                                     ),

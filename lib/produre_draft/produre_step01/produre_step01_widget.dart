@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/procedure_setting/procedure_setting_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'produre_step01_model.dart';
 export 'produre_step01_model.dart';
 
@@ -160,16 +161,18 @@ class _ProdureStep01WidgetState extends State<ProdureStep01Widget> {
                                                 enableDrag: false,
                                                 context: context,
                                                 builder: (context) {
-                                                  return Padding(
-                                                    padding:
-                                                        MediaQuery.viewInsetsOf(
-                                                            context),
-                                                    child: SizedBox(
-                                                      height: 900.0,
-                                                      child:
-                                                          ProcedureSettingWidget(
-                                                        callBack:
-                                                            (cron) async {},
+                                                  return WebViewAware(
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child: SizedBox(
+                                                        height: 900.0,
+                                                        child:
+                                                            ProcedureSettingWidget(
+                                                          callBack:
+                                                              (cron) async {},
+                                                        ),
                                                       ),
                                                     ),
                                                   );

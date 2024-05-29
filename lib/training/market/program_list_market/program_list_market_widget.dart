@@ -6,6 +6,7 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'program_list_market_model.dart';
 export 'program_list_market_model.dart';
 
@@ -97,15 +98,17 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
               await showDialog(
                 context: context,
                 builder: (alertDialogContext) {
-                  return AlertDialog(
-                    title: Text(widget.idDomain),
-                    content: Text(widget.idAuthor),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(alertDialogContext),
-                        child: const Text('Ok'),
-                      ),
-                    ],
+                  return WebViewAware(
+                    child: AlertDialog(
+                      title: Text(widget.idDomain),
+                      content: Text(widget.idAuthor),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(alertDialogContext),
+                          child: const Text('Ok'),
+                        ),
+                      ],
+                    ),
                   );
                 },
               );
@@ -267,44 +270,48 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                     backgroundColor: Colors.transparent,
                                     alignment: const AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
-                                    child: GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                      child: FilterProgramsWidget(
-                                        domain: _model.domain,
-                                        author: _model.author,
-                                        category: _model.category,
-                                        listDomain: _model.listDataDomain
-                                            .map((e) => e.name)
-                                            .toList(),
-                                        checkPrice: widget.price,
-                                        checkPrice1: 'checkPriceList',
-                                        priceMin1: _model.priceMin,
-                                        priceMax1: _model.priceMax,
-                                        priceMin: _model.priceMinDomain,
-                                        priceMax: _model.priceMaxDomain,
-                                        checkAuthor: widget.idAuthor,
-                                        callBack: (domain,
-                                            author,
-                                            category,
-                                            priceMin,
-                                            priceMax,
-                                            priceMin1,
-                                            priceMax1) async {
-                                          setState(() {
-                                            _model.domain = domain!;
-                                            _model.author = author!;
-                                            _model.category = category!;
-                                            _model.priceMin = priceMin1!;
-                                            _model.priceMax = priceMax1!;
-                                            _model.priceMinDomain = priceMin!;
-                                            _model.priceMaxDomain = priceMax!;
-                                          });
-                                          await _model.getProgramsList(context);
-                                        },
+                                    child: WebViewAware(
+                                      child: GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: FilterProgramsWidget(
+                                          domain: _model.domain,
+                                          author: _model.author,
+                                          category: _model.category,
+                                          listDomain: _model.listDataDomain
+                                              .map((e) => e.name)
+                                              .toList(),
+                                          checkPrice: widget.price,
+                                          checkPrice1: 'checkPriceList',
+                                          priceMin1: _model.priceMin,
+                                          priceMax1: _model.priceMax,
+                                          priceMin: _model.priceMinDomain,
+                                          priceMax: _model.priceMaxDomain,
+                                          checkAuthor: widget.idAuthor,
+                                          callBack: (domain,
+                                              author,
+                                              category,
+                                              priceMin,
+                                              priceMax,
+                                              priceMin1,
+                                              priceMax1) async {
+                                            setState(() {
+                                              _model.domain = domain!;
+                                              _model.author = author!;
+                                              _model.category = category!;
+                                              _model.priceMin = priceMin1!;
+                                              _model.priceMax = priceMax1!;
+                                              _model.priceMinDomain = priceMin!;
+                                              _model.priceMaxDomain = priceMax!;
+                                            });
+                                            await _model
+                                                .getProgramsList(context);
+                                          },
+                                        ),
                                       ),
                                     ),
                                   );

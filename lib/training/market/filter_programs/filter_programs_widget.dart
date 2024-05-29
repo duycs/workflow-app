@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'filter_programs_model.dart';
 export 'filter_programs_model.dart';
 
@@ -931,26 +932,28 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                     await showDialog<bool>(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              title: const Text('Thông báo'),
-                                              content: const Text(
-                                                  'Giá trị min phải lớn hơn 0!'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext,
-                                                          false),
-                                                  child: const Text('Cancel'),
-                                                ),
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext,
-                                                          true),
-                                                  child: const Text('Confirm'),
-                                                ),
-                                              ],
+                                            return WebViewAware(
+                                              child: AlertDialog(
+                                                title: const Text('Thông báo'),
+                                                content: const Text(
+                                                    'Giá trị min phải lớn hơn 0!'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext,
+                                                            false),
+                                                    child: const Text('Cancel'),
+                                                  ),
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext,
+                                                            true),
+                                                    child: const Text('Confirm'),
+                                                  ),
+                                                ],
+                                              ),
                                             );
                                           },
                                         ) ??

@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'process_template_detail_model.dart';
 export 'process_template_detail_model.dart';
 
@@ -144,21 +145,23 @@ class _ProcessTemplateDetailWidgetState
                       var confirmDialogResponse = await showDialog<bool>(
                             context: context,
                             builder: (alertDialogContext) {
-                              return AlertDialog(
-                                content: const Text(
-                                    'Bạn có chắc chắn thêm vào quy trình!'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(
-                                        alertDialogContext, false),
-                                    child: const Text('Không'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext, true),
-                                    child: const Text('Có'),
-                                  ),
-                                ],
+                              return WebViewAware(
+                                child: AlertDialog(
+                                  content: const Text(
+                                      'Bạn có chắc chắn thêm vào quy trình!'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, false),
+                                      child: const Text('Không'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, true),
+                                      child: const Text('Có'),
+                                    ),
+                                  ],
+                                ),
                               );
                             },
                           ) ??
@@ -387,23 +390,25 @@ class _ProcessTemplateDetailWidgetState
                                               enableDrag: false,
                                               context: context,
                                               builder: (context) {
-                                                return GestureDetector(
-                                                  onTap: () => _model
-                                                          .unfocusNode
-                                                          .canRequestFocus
-                                                      ? FocusScope.of(context)
-                                                          .requestFocus(_model
-                                                              .unfocusNode)
-                                                      : FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child: Padding(
-                                                    padding:
-                                                        MediaQuery.viewInsetsOf(
-                                                            context),
-                                                    child:
-                                                        ProcedureStepDetailWidget(
-                                                      item: listViewItem,
-                                                      check: true,
+                                                return WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child:
+                                                          ProcedureStepDetailWidget(
+                                                        item: listViewItem,
+                                                        check: true,
+                                                      ),
                                                     ),
                                                   ),
                                                 );

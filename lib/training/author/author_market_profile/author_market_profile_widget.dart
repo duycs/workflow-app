@@ -110,6 +110,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Align(
                         alignment: const AlignmentDirectional(0.0, 1.0),
@@ -118,7 +119,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                               0.0, 200.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
-                            height: 800.0,
+                            height: MediaQuery.sizeOf(context).height * 1.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -144,117 +145,87 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                   0.0, 12.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 16.0, 0.0),
+                                    child: Text(
+                                      widget.itemAuthors!.alias,
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineSmall
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
                                       children: [
+                                        FlutterFlowIconButton(
+                                          borderColor: Colors.transparent,
+                                          borderRadius: 20.0,
+                                          borderWidth: 1.0,
+                                          buttonSize: 40.0,
+                                          icon: Icon(
+                                            Icons.style_sharp,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            size: 24.0,
+                                          ),
+                                          onPressed: () {
+                                            print('IconButton pressed ...');
+                                          },
+                                        ),
                                         Expanded(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                widget.itemAuthors!.alias,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 18.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  FlutterFlowIconButton(
-                                                    borderColor:
-                                                        Colors.transparent,
-                                                    borderRadius: 20.0,
-                                                    borderWidth: 1.0,
-                                                    buttonSize: 40.0,
-                                                    icon: Icon(
-                                                      Icons.style_sharp,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      size: 24.0,
-                                                    ),
-                                                    onPressed: () {
-                                                      print(
-                                                          'IconButton pressed ...');
-                                                    },
-                                                  ),
-                                                  Expanded(
-                                                    child: Text(
-                                                      '${_model.listDataProgramsMarket.length.toString()} khóa học',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                    ),
-                                                  ),
-                                                  FlutterFlowIconButton(
-                                                    borderColor:
-                                                        Colors.transparent,
-                                                    borderRadius: 20.0,
-                                                    borderWidth: 1.0,
-                                                    buttonSize: 40.0,
-                                                    icon: Icon(
-                                                      Icons.qr_code_rounded,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondary,
-                                                      size: 24.0,
-                                                    ),
-                                                    onPressed: () {
-                                                      print(
-                                                          'IconButton pressed ...');
-                                                    },
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                28.0, 0.0),
-                                                    child: Text(
-                                                      '${widget.itemAuthors?.orderCount.toString()} lượt bán',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondary,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
+                                          child: Text(
+                                            '${_model.listDataProgramsMarket.length.toString()} khóa học',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ),
+                                        FlutterFlowIconButton(
+                                          borderColor: Colors.transparent,
+                                          borderRadius: 20.0,
+                                          borderWidth: 1.0,
+                                          buttonSize: 40.0,
+                                          icon: Icon(
+                                            Icons.qr_code_rounded,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                            size: 24.0,
+                                          ),
+                                          onPressed: () {
+                                            print('IconButton pressed ...');
+                                          },
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 28.0, 0.0),
+                                          child: Text(
+                                            '${widget.itemAuthors?.orderCount.toString()} lượt bán',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondary,
+                                                  letterSpacing: 0.0,
+                                                ),
                                           ),
                                         ),
                                       ],
@@ -324,18 +295,16 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                         _model
                                                             .listDataProgramsMarket
                                                             .toList();
-                                                    return ListView.separated(
-                                                      padding: EdgeInsets.zero,
-                                                      scrollDirection:
-                                                          Axis.vertical,
-                                                      itemCount:
+                                                    return Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      children: List.generate(
                                                           itemListProgramsMarket
                                                               .length,
-                                                      separatorBuilder: (_,
-                                                              __) =>
-                                                          const SizedBox(height: 8.0),
-                                                      itemBuilder: (context,
-                                                          itemListProgramsMarketIndex) {
+                                                          (itemListProgramsMarketIndex) {
                                                         final itemListProgramsMarketItem =
                                                             itemListProgramsMarket[
                                                                 itemListProgramsMarketIndex];
@@ -602,7 +571,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                             ),
                                                           ),
                                                         );
-                                                      },
+                                                      }),
                                                     );
                                                   },
                                                 ),

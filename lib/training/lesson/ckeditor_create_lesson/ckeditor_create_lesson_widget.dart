@@ -1,8 +1,10 @@
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'ckeditor_create_lesson_model.dart';
 export 'ckeditor_create_lesson_model.dart';
 
@@ -52,135 +54,145 @@ class _CkeditorCreateLessonWidgetState
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Align(
-                alignment: const AlignmentDirectional(1.0, -1.0),
-                child: FFButtonWidget(
-                  onPressed: () async {
-                    await widget.callBack?.call(
-                      widget.output != null && widget.output != ''
-                          ? widget.output
-                          : '',
-                      _model.check,
-                    );
-                    Navigator.pop(context);
-                  },
-                  text: 'Lưu',
-                  options: FFButtonOptions(
-                    height: 40.0,
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).primary,
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Nunito Sans',
-                          color: Colors.white,
-                          letterSpacing: 0.0,
-                        ),
-                    elevation: 3.0,
-                    borderSide: const BorderSide(
-                      color: Colors.transparent,
-                      width: 1.0,
+      child: SingleChildScrollView(
+        primary: false,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).primaryBackground,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  FlutterFlowIconButton(
+                    borderColor: FlutterFlowTheme.of(context).noColor,
+                    borderRadius: 20.0,
+                    borderWidth: 1.0,
+                    buttonSize: 40.0,
+                    fillColor: FlutterFlowTheme.of(context).noColor,
+                    icon: Icon(
+                      Icons.chevron_left,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 30.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    onPressed: () async {
+                      Navigator.pop(context);
+                    },
                   ),
-                ),
-              ),
-              FFButtonWidget(
-                onPressed: () async {
-                  Navigator.pop(context);
-                },
-                text: 'Đóng',
-                icon: const Icon(
-                  Icons.close_sharp,
-                  size: 15.0,
-                ),
-                options: FFButtonOptions(
-                  height: 40.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                  iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
-                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Nunito Sans',
-                        color: Colors.white,
-                        letterSpacing: 0.0,
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).noColor,
                       ),
-                  elevation: 3.0,
-                  borderSide: const BorderSide(
-                    color: Colors.transparent,
-                    width: 1.0,
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: Text(
+                        'Nội dung bài học',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Nunito Sans',
+                              fontSize: 20.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
+                  Align(
+                    alignment: const AlignmentDirectional(1.0, -1.0),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 2.0, 0.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          if (_model.check != '') {
+                            await widget.callBack?.call(
+                              widget.output != null && widget.output != ''
+                                  ? widget.output
+                                  : '',
+                              _model.check,
+                            );
+                            Navigator.pop(context);
+                          } else {
+                            var confirmDialogResponse = await showDialog<bool>(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return WebViewAware(
+                                      child: AlertDialog(
+                                        title: const Text('Thông báo!'),
+                                        content: const Text('Bạn chưa nhập nội dung'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext, false),
+                                            child: const Text('Cancel'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext, true),
+                                            child: const Text('Confirm'),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                ) ??
+                                false;
+                          }
+                        },
+                        text: 'Lưu',
+                        options: FFButtonOptions(
+                          height: 35.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: Colors.white,
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 3.0, 0.0, 0.0),
-            child: SizedBox(
-              width: MediaQuery.sizeOf(context).width * 1.0,
-              height: MediaQuery.sizeOf(context).height * 0.9,
-              child: custom_widgets.CKEditor(
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 3.0, 0.0, 0.0),
+              child: SizedBox(
                 width: MediaQuery.sizeOf(context).width * 1.0,
                 height: MediaQuery.sizeOf(context).height * 0.9,
-                initialData: widget.output != null && widget.output != ''
-                    ? widget.output!
-                    : '',
-                action: (data) async {
-                  setState(() {
-                    _model.check = data;
-                  });
-                },
+                child: custom_widgets.CKEditor(
+                  width: MediaQuery.sizeOf(context).width * 1.0,
+                  height: MediaQuery.sizeOf(context).height * 0.9,
+                  initialData: widget.output != null && widget.output != ''
+                      ? widget.output!
+                      : '',
+                  action: (data) async {
+                    setState(() {
+                      _model.check = data;
+                    });
+                  },
+                ),
               ),
             ),
-          ),
-          FFButtonWidget(
-            onPressed: () async {
-              await showDialog(
-                context: context,
-                builder: (alertDialogContext) {
-                  return AlertDialog(
-                    title: Text(_model.check),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(alertDialogContext),
-                        child: const Text('Ok'),
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
-            text: 'Hoàn tất5555',
-            options: FFButtonOptions(
-              height: 40.0,
-              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-              iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-              color: FlutterFlowTheme.of(context).primary,
-              textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                    fontFamily: 'Nunito Sans',
-                    color: Colors.white,
-                    letterSpacing: 0.0,
-                  ),
-              elevation: 3.0,
-              borderSide: const BorderSide(
-                color: Colors.transparent,
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -17,6 +17,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'work_result_list_model.dart';
 export 'work_result_list_model.dart';
 
@@ -292,46 +293,50 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                         enableDrag: false,
                                         context: context,
                                         builder: (context) {
-                                          return GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
-                                                    .unfocus(),
-                                            child: Padding(
-                                              padding: MediaQuery.viewInsetsOf(
-                                                  context),
-                                              child: FilterWorkResultWidget(
-                                                name: _model.nameSearch,
-                                                dateStart: _model.dateStart,
-                                                dateEnd: _model.dateEnd,
-                                                userCreated: _model.userCreated,
-                                                callBack: (name,
-                                                    dateStart,
-                                                    dateEnd,
-                                                    userCreated) async {
-                                                  setState(() {
-                                                    _model.nameSearch = name!;
-                                                    _model.dateStart =
-                                                        dateStart!;
-                                                    _model.dateEnd = dateEnd!;
-                                                    _model.userCreated =
-                                                        userCreated!;
-                                                  });
-                                                  setState(() {
-                                                    _model.textController
-                                                        ?.clear();
-                                                  });
-                                                  setState(() => _model
-                                                      .listViewPagingController
-                                                      ?.refresh());
-                                                  setState(() {
-                                                    _model.textController
-                                                        ?.text = name!;
-                                                  });
-                                                },
+                                          return WebViewAware(
+                                            child: GestureDetector(
+                                              onTap: () => _model.unfocusNode
+                                                      .canRequestFocus
+                                                  ? FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode)
+                                                  : FocusScope.of(context)
+                                                      .unfocus(),
+                                              child: Padding(
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
+                                                child: FilterWorkResultWidget(
+                                                  name: _model.nameSearch,
+                                                  dateStart: _model.dateStart,
+                                                  dateEnd: _model.dateEnd,
+                                                  userCreated:
+                                                      _model.userCreated,
+                                                  callBack: (name,
+                                                      dateStart,
+                                                      dateEnd,
+                                                      userCreated) async {
+                                                    setState(() {
+                                                      _model.nameSearch = name!;
+                                                      _model.dateStart =
+                                                          dateStart!;
+                                                      _model.dateEnd = dateEnd!;
+                                                      _model.userCreated =
+                                                          userCreated!;
+                                                    });
+                                                    setState(() {
+                                                      _model.textController
+                                                          ?.clear();
+                                                    });
+                                                    setState(() => _model
+                                                        .listViewPagingController
+                                                        ?.refresh());
+                                                    setState(() {
+                                                      _model.textController
+                                                          ?.text = name!;
+                                                    });
+                                                  },
+                                                ),
                                               ),
                                             ),
                                           );
@@ -550,16 +555,17 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                             0.0,
                                                                             0.0),
                                                                 child: Text(
-                                                                  ((itemsItem.steps.isNotEmpty) == true) &&
-                                                                          ((itemsItem.steps.first.tasks.isNotEmpty) ==
-                                                                              true) &&
-                                                                          (itemsItem.steps.where((e) => (e.tasks.where((e) => e.status == 'done').toList().length > 0) == true).toList().length >
-                                                                              0)
-                                                                      ? functions
-                                                                          .totaResultWorkflow(
-                                                                              itemsItem)
-                                                                          .toString()
-                                                                      : '0',
+                                                                  formatNumber(
+                                                                    functions.countJobDone(
+                                                                        itemsItem
+                                                                            .toMap()),
+                                                                    formatType:
+                                                                        FormatType
+                                                                            .decimal,
+                                                                    decimalType:
+                                                                        DecimalType
+                                                                            .commaDecimal,
+                                                                  ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyLarge

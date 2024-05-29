@@ -14,6 +14,7 @@ import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'test_update_model.dart';
 export 'test_update_model.dart';
 
@@ -352,7 +353,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                             Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Flexible(
                                   child: Text(
@@ -365,10 +366,11 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                         ),
                                   ),
                                 ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 0.0, 8.0, 0.0),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 8.0, 0.0),
+                                  child: SizedBox(
+                                    width: 50.0,
                                     child: TextFormField(
                                       controller: _model.textController4,
                                       focusNode: _model.textFieldFocusNode4,
@@ -518,7 +520,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                                  CrossAxisAlignment.center,
                                               children: [
                                                 Text(
                                                   '${(questionListIndex + 1).toString()}:',
@@ -680,38 +682,41 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                 enableDrag: false,
                                 context: context,
                                 builder: (context) {
-                                  return GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: Padding(
-                                      padding: MediaQuery.viewInsetsOf(context),
-                                      child: QuestionCreateTestWidget(
-                                        callBackList: (idQuestion) async {
-                                          _model.apiResultAddQuestion =
-                                              await QuestionGroup
-                                                  .questionListOneCall
-                                                  .call(
-                                            questionId: idQuestion,
-                                            accessToken:
-                                                FFAppState().accessToken,
-                                          );
-                                          if ((_model.apiResultAddQuestion
-                                                  ?.succeeded ??
-                                              true)) {
-                                            setState(() {
-                                              _model.addToQuestionItem(
-                                                  QuestsionOneDataStruct
-                                                          .maybeFromMap((_model
-                                                                  .apiResultAddQuestion
-                                                                  ?.jsonBody ??
-                                                              ''))!
-                                                      .data);
-                                            });
-                                          }
-                                        },
+                                  return WebViewAware(
+                                    child: GestureDetector(
+                                      onTap: () => _model
+                                              .unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                      child: Padding(
+                                        padding:
+                                            MediaQuery.viewInsetsOf(context),
+                                        child: QuestionCreateTestWidget(
+                                          callBackList: (idQuestion) async {
+                                            _model.apiResultAddQuestion =
+                                                await QuestionGroup
+                                                    .questionListOneCall
+                                                    .call(
+                                              questionId: idQuestion,
+                                              accessToken:
+                                                  FFAppState().accessToken,
+                                            );
+                                            if ((_model.apiResultAddQuestion
+                                                    ?.succeeded ??
+                                                true)) {
+                                              setState(() {
+                                                _model.addToQuestionItem(
+                                                    QuestsionOneDataStruct
+                                                            .maybeFromMap((_model
+                                                                    .apiResultAddQuestion
+                                                                    ?.jsonBody ??
+                                                                ''))!
+                                                        .data);
+                                              });
+                                            }
+                                          },
+                                        ),
                                       ),
                                     ),
                                   );
@@ -760,30 +765,32 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                   !_model.formKey.currentState!.validate()) {
                                 return;
                               }
-                              var confirmDialogResponse =
-                                  await showDialog<bool>(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: const Text('Xác nhận'),
-                                            content:
-                                                const Text('Bạn chắc chắn muốn lưu!'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, false),
-                                                child: const Text('Hủy'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, true),
-                                                child: const Text('Xác nhận'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ) ??
-                                      false;
+                              var confirmDialogResponse = await showDialog<
+                                      bool>(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return WebViewAware(
+                                        child: AlertDialog(
+                                          title: const Text('Xác nhận'),
+                                          content:
+                                              const Text('Bạn chắc chắn muốn lưu!'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext, false),
+                                              child: const Text('Hủy'),
+                                            ),
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext, true),
+                                              child: const Text('Xác nhận'),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  ) ??
+                                  false;
                               if (confirmDialogResponse) {
                                 while (
                                     _model.loop < _model.questionItem.length) {

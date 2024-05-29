@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'staffs_programs_lesson_model.dart';
 export 'staffs_programs_lesson_model.dart';
 
@@ -137,20 +138,22 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                     var confirmDialogResponse = await showDialog<bool>(
                           context: context,
                           builder: (alertDialogContext) {
-                            return AlertDialog(
-                              content: const Text('Bắt đầu bài học!'),
-                              actions: [
-                                TextButton(
-                                  onPressed: () =>
-                                      Navigator.pop(alertDialogContext, false),
-                                  child: const Text('Đóng'),
-                                ),
-                                TextButton(
-                                  onPressed: () =>
-                                      Navigator.pop(alertDialogContext, true),
-                                  child: const Text('Xác nhận'),
-                                ),
-                              ],
+                            return WebViewAware(
+                              child: AlertDialog(
+                                content: const Text('Bắt đầu bài học!'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(
+                                        alertDialogContext, false),
+                                    child: const Text('Đóng'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext, true),
+                                    child: const Text('Xác nhận'),
+                                  ),
+                                ],
+                              ),
                             );
                           },
                         ) ??
@@ -357,22 +360,24 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                               await showDialog(
                                                 context: context,
                                                 builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    title: Text((_model
-                                                            .staffsLessionsListOne
-                                                            .first
-                                                            .lessionId
-                                                            .file
-                                                            .toMap())
-                                                        .toString()),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: const Text('Ok'),
-                                                      ),
-                                                    ],
+                                                  return WebViewAware(
+                                                    child: AlertDialog(
+                                                      title: Text((_model
+                                                              .staffsLessionsListOne
+                                                              .first
+                                                              .lessionId
+                                                              .file
+                                                              .toMap())
+                                                          .toString()),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child: const Text('Ok'),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   );
                                                 },
                                               );
@@ -1879,27 +1884,32 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                           .resolve(
                                                               Directionality.of(
                                                                   context)),
-                                                  child: GestureDetector(
-                                                    onTap: () => _model
-                                                            .unfocusNode
-                                                            .canRequestFocus
-                                                        ? FocusScope.of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode)
-                                                        : FocusScope.of(context)
-                                                            .unfocus(),
-                                                    child: ConfirmDoTestWidget(
-                                                      testId: _model.testId,
-                                                      lessionId: _model
-                                                          .staffsLessionsListOne
-                                                          .first
-                                                          .lessionId
-                                                          .id,
-                                                      avatar: _model
-                                                          .staffsLessionsListOne
-                                                          .first
-                                                          .lessionId
-                                                          .imageCover,
+                                                  child: WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () => _model
+                                                              .unfocusNode
+                                                              .canRequestFocus
+                                                          ? FocusScope.of(
+                                                                  context)
+                                                              .requestFocus(_model
+                                                                  .unfocusNode)
+                                                          : FocusScope.of(
+                                                                  context)
+                                                              .unfocus(),
+                                                      child:
+                                                          ConfirmDoTestWidget(
+                                                        testId: _model.testId,
+                                                        lessionId: _model
+                                                            .staffsLessionsListOne
+                                                            .first
+                                                            .lessionId
+                                                            .id,
+                                                        avatar: _model
+                                                            .staffsLessionsListOne
+                                                            .first
+                                                            .lessionId
+                                                            .imageCover,
+                                                      ),
                                                     ),
                                                   ),
                                                 );
@@ -2331,20 +2341,22 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                             color:
                                                                                 Colors.transparent,
                                                                             child:
-                                                                                GestureDetector(
-                                                                              onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
-                                                                              child: SizedBox(
-                                                                                height: 100.0,
-                                                                                width: 200.0,
-                                                                                child: MenuDeleteWidget(
-                                                                                  id: getJsonField(
-                                                                                    listItemsItem,
-                                                                                    r'''$.id''',
+                                                                                WebViewAware(
+                                                                              child: GestureDetector(
+                                                                                onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                child: SizedBox(
+                                                                                  height: 100.0,
+                                                                                  width: 200.0,
+                                                                                  child: MenuDeleteWidget(
+                                                                                    id: getJsonField(
+                                                                                      listItemsItem,
+                                                                                      r'''$.id''',
+                                                                                    ),
+                                                                                    afterDeleteAction: () async {
+                                                                                      await _model.getComments(context);
+                                                                                      setState(() {});
+                                                                                    },
                                                                                   ),
-                                                                                  afterDeleteAction: () async {
-                                                                                    await _model.getComments(context);
-                                                                                    setState(() {});
-                                                                                  },
                                                                                 ),
                                                                               ),
                                                                             ),

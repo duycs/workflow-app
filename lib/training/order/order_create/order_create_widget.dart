@@ -9,6 +9,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'order_create_model.dart';
 export 'order_create_model.dart';
 
@@ -974,13 +975,15 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                 enableDrag: false,
                                 context: context,
                                 builder: (context) {
-                                  return Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: PaymentWidget(
-                                      orderId: _model.orderCreateDraft2!,
-                                      private: widget.checkType == 'staff'
-                                          ? 'private1'
-                                          : 'private0',
+                                  return WebViewAware(
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: PaymentWidget(
+                                        orderId: _model.orderCreateDraft2!,
+                                        private: widget.checkType == 'staff'
+                                            ? 'private1'
+                                            : 'private0',
+                                      ),
                                     ),
                                   );
                                 },

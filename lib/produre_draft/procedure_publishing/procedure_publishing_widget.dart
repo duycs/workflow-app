@@ -9,6 +9,7 @@ import '/procedure/procedure_step_menu/procedure_step_menu_widget.dart';
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'procedure_publishing_model.dart';
 export 'procedure_publishing_model.dart';
 
@@ -1171,28 +1172,33 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                               color: Colors
                                                                   .transparent,
                                                               child:
-                                                                  GestureDetector(
-                                                                onTap: () => _model
-                                                                        .unfocusNode
-                                                                        .canRequestFocus
-                                                                    ? FocusScope.of(
-                                                                            context)
-                                                                        .requestFocus(_model
-                                                                            .unfocusNode)
-                                                                    : FocusScope.of(
-                                                                            context)
-                                                                        .unfocus(),
+                                                                  WebViewAware(
                                                                 child:
-                                                                    SizedBox(
-                                                                  height: 150.0,
-                                                                  width: 250.0,
+                                                                    GestureDetector(
+                                                                  onTap: () => _model
+                                                                          .unfocusNode
+                                                                          .canRequestFocus
+                                                                      ? FocusScope.of(
+                                                                              context)
+                                                                          .requestFocus(_model
+                                                                              .unfocusNode)
+                                                                      : FocusScope.of(
+                                                                              context)
+                                                                          .unfocus(),
                                                                   child:
-                                                                      ProcedureStepMenuWidget(
-                                                                    callBack:
-                                                                        (upStep,
-                                                                            idItem) async {},
-                                                                    callBackDelete:
-                                                                        () async {},
+                                                                      SizedBox(
+                                                                    height:
+                                                                        150.0,
+                                                                    width:
+                                                                        250.0,
+                                                                    child:
+                                                                        ProcedureStepMenuWidget(
+                                                                      callBack:
+                                                                          (upStep,
+                                                                              idItem) async {},
+                                                                      callBackDelete:
+                                                                          () async {},
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -1338,28 +1344,33 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                               color: Colors
                                                                   .transparent,
                                                               child:
-                                                                  GestureDetector(
-                                                                onTap: () => _model
-                                                                        .unfocusNode
-                                                                        .canRequestFocus
-                                                                    ? FocusScope.of(
-                                                                            context)
-                                                                        .requestFocus(_model
-                                                                            .unfocusNode)
-                                                                    : FocusScope.of(
-                                                                            context)
-                                                                        .unfocus(),
+                                                                  WebViewAware(
                                                                 child:
-                                                                    SizedBox(
-                                                                  height: 150.0,
-                                                                  width: 250.0,
+                                                                    GestureDetector(
+                                                                  onTap: () => _model
+                                                                          .unfocusNode
+                                                                          .canRequestFocus
+                                                                      ? FocusScope.of(
+                                                                              context)
+                                                                          .requestFocus(_model
+                                                                              .unfocusNode)
+                                                                      : FocusScope.of(
+                                                                              context)
+                                                                          .unfocus(),
                                                                   child:
-                                                                      ProcedureStepMenuWidget(
-                                                                    callBack:
-                                                                        (upStep,
-                                                                            idItem) async {},
-                                                                    callBackDelete:
-                                                                        () async {},
+                                                                      SizedBox(
+                                                                    height:
+                                                                        150.0,
+                                                                    width:
+                                                                        250.0,
+                                                                    child:
+                                                                        ProcedureStepMenuWidget(
+                                                                      callBack:
+                                                                          (upStep,
+                                                                              idItem) async {},
+                                                                      callBackDelete:
+                                                                          () async {},
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -1505,28 +1516,33 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                               color: Colors
                                                                   .transparent,
                                                               child:
-                                                                  GestureDetector(
-                                                                onTap: () => _model
-                                                                        .unfocusNode
-                                                                        .canRequestFocus
-                                                                    ? FocusScope.of(
-                                                                            context)
-                                                                        .requestFocus(_model
-                                                                            .unfocusNode)
-                                                                    : FocusScope.of(
-                                                                            context)
-                                                                        .unfocus(),
+                                                                  WebViewAware(
                                                                 child:
-                                                                    SizedBox(
-                                                                  height: 150.0,
-                                                                  width: 250.0,
+                                                                    GestureDetector(
+                                                                  onTap: () => _model
+                                                                          .unfocusNode
+                                                                          .canRequestFocus
+                                                                      ? FocusScope.of(
+                                                                              context)
+                                                                          .requestFocus(_model
+                                                                              .unfocusNode)
+                                                                      : FocusScope.of(
+                                                                              context)
+                                                                          .unfocus(),
                                                                   child:
-                                                                      ProcedureStepMenuWidget(
-                                                                    callBack:
-                                                                        (upStep,
-                                                                            idItem) async {},
-                                                                    callBackDelete:
-                                                                        () async {},
+                                                                      SizedBox(
+                                                                    height:
+                                                                        150.0,
+                                                                    width:
+                                                                        250.0,
+                                                                    child:
+                                                                        ProcedureStepMenuWidget(
+                                                                      callBack:
+                                                                          (upStep,
+                                                                              idItem) async {},
+                                                                      callBackDelete:
+                                                                          () async {},
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),

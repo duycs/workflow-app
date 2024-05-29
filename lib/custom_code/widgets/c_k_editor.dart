@@ -115,13 +115,27 @@ class CKEditorState extends State<CKEditor> {
           // ... other options will come here, add a comma after each
         ),
         otherOptions: OtherOptions(height: widget.height! - 40),
+        // callbacks: Callbacks(onChangeContent: (String? currentHtml) {
+        //   if (widget.action != null) {
+        //     widget.action!((currentHtml ?? "") as String);
+        //   }
+        //   // FFAppState().update(() {
+        //   //   FFAppState().dataCkEditor = currentHtml ?? "";
+        //   // });
+        // }),
         callbacks: Callbacks(onChangeContent: (String? currentHtml) {
-          if (widget.action != null) {
-            widget.action!((currentHtml ?? "") as String);
+          // Kiểm tra và xử lý nội dung khi bị xóa
+          if (currentHtml != null && currentHtml.trim().isEmpty) {
+            currentHtml =
+                ""; // Đặt nội dung thành chuỗi rỗng nếu bị xóa hoàn toàn
+          } else {
+            // Loại bỏ tất cả các thẻ <br> nếu không có nội dung nào khác
+            currentHtml = currentHtml?.replaceAll(RegExp(r'<br\s*/?>'), '');
           }
-          // FFAppState().update(() {
-          //   FFAppState().dataCkEditor = currentHtml ?? "";
-          // });
+
+          if (widget.action != null) {
+            widget.action!(currentHtml ?? "");
+          }
         }),
       ),
     );

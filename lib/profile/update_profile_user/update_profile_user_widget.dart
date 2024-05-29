@@ -11,6 +11,7 @@ import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'update_profile_user_model.dart';
 export 'update_profile_user_model.dart';
 
@@ -935,27 +936,29 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                   context: context,
                                                   builder:
                                                       (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: const Text('Xác nhận'),
-                                                      content: const Text(
-                                                          'Bạn chắc chắn muốn lưu?'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  false),
-                                                          child: const Text('Hủy'),
-                                                        ),
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  true),
-                                                          child:
-                                                              const Text('Xác nhận'),
-                                                        ),
-                                                      ],
+                                                    return WebViewAware(
+                                                      child: AlertDialog(
+                                                        title: const Text('Xác nhận'),
+                                                        content: const Text(
+                                                            'Bạn chắc chắn muốn lưu?'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext,
+                                                                    false),
+                                                            child: const Text('Hủy'),
+                                                          ),
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext,
+                                                                    true),
+                                                            child: const Text(
+                                                                'Xác nhận'),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     );
                                                   },
                                                 ) ??

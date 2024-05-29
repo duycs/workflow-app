@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/procedure/procedure_step_update/procedure_step_update_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'procedure_step_menu_model.dart';
 export 'procedure_step_menu_model.dart';
 
@@ -116,23 +117,25 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
                         enableDrag: false,
                         context: context,
                         builder: (context) {
-                          return Padding(
-                            padding: MediaQuery.viewInsetsOf(context),
-                            child: SizedBox(
-                              height: double.infinity,
-                              child: ProcedureStepUpdateWidget(
-                                data: widget.item!,
-                                callBack: (addItem) async {
-                                  setState(() {
-                                    _model.data = addItem;
-                                  });
-                                  setState(() {
-                                    _model.isLoad = true;
-                                  });
-                                },
-                                calBackUnBottom: () async {
-                                  Navigator.pop(context);
-                                },
+                          return WebViewAware(
+                            child: Padding(
+                              padding: MediaQuery.viewInsetsOf(context),
+                              child: SizedBox(
+                                height: double.infinity,
+                                child: ProcedureStepUpdateWidget(
+                                  data: widget.item!,
+                                  callBack: (addItem) async {
+                                    setState(() {
+                                      _model.data = addItem;
+                                    });
+                                    setState(() {
+                                      _model.isLoad = true;
+                                    });
+                                  },
+                                  calBackUnBottom: () async {
+                                    Navigator.pop(context);
+                                  },
+                                ),
                               ),
                             ),
                           );

@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'study_program_edit_model.dart';
 export 'study_program_edit_model.dart';
 
@@ -503,17 +504,20 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                       await showDialog(
                                         context: context,
                                         builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: Text(_model
-                                                .estimateInDayTextController
-                                                .text),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: const Text('Ok'),
-                                              ),
-                                            ],
+                                          return WebViewAware(
+                                            child: AlertDialog(
+                                              title: Text(_model
+                                                  .estimateInDayTextController
+                                                  .text),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: const Text('Ok'),
+                                                ),
+                                              ],
+                                            ),
                                           );
                                         },
                                       );
@@ -723,15 +727,17 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: const Text('Bài học đã có!'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: const Text('Ok'),
-                                          ),
-                                        ],
+                                      return WebViewAware(
+                                        child: AlertDialog(
+                                          title: const Text('Bài học đã có!'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: const Text('Ok'),
+                                            ),
+                                          ],
+                                        ),
                                       );
                                     },
                                   );
@@ -882,13 +888,23 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                                   'published'
                                               ? true
                                               : false,
-                                      onChanged: ('1' == '1')
-                                          ? null
-                                          : (newValue) async {
-                                              setState(() =>
-                                                  _model.switchListTileValue =
-                                                      newValue);
-                                            },
+                                      onChanged: (newValue) async {
+                                        setState(() => _model
+                                            .switchListTileValue = newValue);
+                                        if (newValue) {
+                                          setState(() {
+                                            _model.updateRequestDataStruct(
+                                              (e) => e..status = 'published',
+                                            );
+                                          });
+                                        } else {
+                                          setState(() {
+                                            _model.updateRequestDataStruct(
+                                              (e) => e..status = 'draft',
+                                            );
+                                          });
+                                        }
+                                      },
                                       title: Text(
                                         'Trạng thái hoạt động',
                                         style: FlutterFlowTheme.of(context)
@@ -900,15 +916,10 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                       ),
                                       tileColor: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      activeColor: ('1' == '1')
-                                          ? FlutterFlowTheme.of(context)
-                                              .secondaryBackground
-                                          : FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                      activeTrackColor: ('1' == '1')
-                                          ? FlutterFlowTheme.of(context).primary
-                                          : FlutterFlowTheme.of(context)
-                                              .primary,
+                                      activeColor: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      activeTrackColor:
+                                          FlutterFlowTheme.of(context).primary,
                                       dense: false,
                                       controlAffinity:
                                           ListTileControlAffinity.trailing,

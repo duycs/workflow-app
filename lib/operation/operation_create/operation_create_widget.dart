@@ -8,6 +8,7 @@ import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'operation_create_model.dart';
 export 'operation_create_model.dart';
 
@@ -511,22 +512,24 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                         bool>(
                                       context: context,
                                       builder: (alertDialogContext) {
-                                        return AlertDialog(
-                                          title: const Text('Xác nhận'),
-                                          content:
-                                              const Text('Bạn chắc chắn muốn lưu?'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext, false),
-                                              child: const Text('Hủy'),
-                                            ),
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext, true),
-                                              child: const Text('Xác nhận'),
-                                            ),
-                                          ],
+                                        return WebViewAware(
+                                          child: AlertDialog(
+                                            title: const Text('Xác nhận'),
+                                            content:
+                                                const Text('Bạn chắc chắn muốn lưu?'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, false),
+                                                child: const Text('Hủy'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, true),
+                                                child: const Text('Xác nhận'),
+                                              ),
+                                            ],
+                                          ),
                                         );
                                       },
                                     ) ??

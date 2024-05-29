@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'menu_delete_model.dart';
 export 'menu_delete_model.dart';
 
@@ -90,21 +91,23 @@ class _MenuDeleteWidgetState extends State<MenuDeleteWidget> {
                       var confirmDialogResponse = await showDialog<bool>(
                             context: context,
                             builder: (alertDialogContext) {
-                              return AlertDialog(
-                                title: const Text('Xác nhận'),
-                                content: const Text('Xóa bình luận'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(
-                                        alertDialogContext, false),
-                                    child: const Text('Hủy'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext, true),
-                                    child: const Text('Xóa'),
-                                  ),
-                                ],
+                              return WebViewAware(
+                                child: AlertDialog(
+                                  title: const Text('Xác nhận'),
+                                  content: const Text('Xóa bình luận'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, false),
+                                      child: const Text('Hủy'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, true),
+                                      child: const Text('Xóa'),
+                                    ),
+                                  ],
+                                ),
                               );
                             },
                           ) ??

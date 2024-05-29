@@ -10,6 +10,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'order_detail_model.dart';
 export 'order_detail_model.dart';
 
@@ -842,20 +843,23 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                   enableDrag: false,
                                   context: context,
                                   builder: (context) {
-                                    return Padding(
-                                      padding: MediaQuery.viewInsetsOf(context),
-                                      child: OrderUpdateWidget(
-                                        image: widget.image,
-                                        name: widget.name!,
-                                        rating: widget.rating,
-                                        numlession: 0,
-                                        price: widget.price!,
-                                        quantity: widget.quantity!,
-                                        totalPrice: widget.totalPrice!,
-                                        author: widget.author!,
-                                        private: widget.private!,
-                                        orderId: widget.orderId!,
-                                        programId: widget.programId!,
+                                    return WebViewAware(
+                                      child: Padding(
+                                        padding:
+                                            MediaQuery.viewInsetsOf(context),
+                                        child: OrderUpdateWidget(
+                                          image: widget.image,
+                                          name: widget.name!,
+                                          rating: widget.rating,
+                                          numlession: 0,
+                                          price: widget.price!,
+                                          quantity: widget.quantity!,
+                                          totalPrice: widget.totalPrice!,
+                                          author: widget.author!,
+                                          private: widget.private!,
+                                          orderId: widget.orderId!,
+                                          programId: widget.programId!,
+                                        ),
                                       ),
                                     );
                                   },
@@ -898,13 +902,16 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                   enableDrag: false,
                                   context: context,
                                   builder: (context) {
-                                    return Padding(
-                                      padding: MediaQuery.viewInsetsOf(context),
-                                      child: PaymentWidget(
-                                        orderId: widget.orderId!,
-                                        private: widget.private == '0'
-                                            ? 'private0'
-                                            : 'private1',
+                                    return WebViewAware(
+                                      child: Padding(
+                                        padding:
+                                            MediaQuery.viewInsetsOf(context),
+                                        child: PaymentWidget(
+                                          orderId: widget.orderId!,
+                                          private: widget.private == '0'
+                                              ? 'private0'
+                                              : 'private1',
+                                        ),
                                       ),
                                     );
                                   },

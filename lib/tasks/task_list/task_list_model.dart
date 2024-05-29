@@ -165,9 +165,11 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
   }
 
   Future getNumberTask(BuildContext context) async {
-    ApiCallResponse? apiResultGetTaskList;
+    ApiCallResponse? apiResultGetTaskDone;
+    ApiCallResponse? apiResultGetTaskToDo;
+    ApiCallResponse? apiResultGetTaskWait;
 
-    apiResultGetTaskList = await TaskGroup.getListTaskCall.call(
+    apiResultGetTaskDone = await TaskGroup.getListTaskCall.call(
       accessToken: FFAppState().accessToken,
       filter:
           '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
@@ -176,35 +178,50 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
       ).toString().toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.organization_id''',
-      ).toString().toString()}\"}}}]}',
+      ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"done\"}}]}',
+      meta: 'filter_count',
     );
-    if ((apiResultGetTaskList.succeeded ?? true)) {
-      totalDone = TaskListDataStruct.maybeFromMap(
-              (apiResultGetTaskList.jsonBody ?? ''))
-          ?.data
-          .where((e) =>
-              (e.status == 'done') &&
-              (e.submitStaffId.id ==
-                  getJsonField(
-                    FFAppState().staffLogin,
-                    r'''$.id''',
-                  )))
-          .toList()
-          .length;
-      totalWait = TaskListDataStruct.maybeFromMap(
-              (apiResultGetTaskList.jsonBody ?? ''))!
-          .data
-          .where(
-              (e) => (e.status == 'todo') && (e.current.toString() == '0'))
-          .toList()
-          .length;
-      totalTodo = TaskListDataStruct.maybeFromMap(
-              (apiResultGetTaskList.jsonBody ?? ''))!
-          .data
-          .where(
-              (e) => (e.status == 'todo') && (e.current.toString() == '1'))
-          .toList()
-          .length;
+    if ((apiResultGetTaskDone.succeeded ?? true)) {
+      totalDone = getJsonField(
+        (apiResultGetTaskDone.jsonBody ?? ''),
+        r'''$.meta.filter_count''',
+      );
+    }
+    apiResultGetTaskToDo = await TaskGroup.getListTaskCall.call(
+      accessToken: FFAppState().accessToken,
+      filter:
+          '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffLogin,
+        r'''$.id''',
+      ).toString().toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffLogin,
+        r'''$.organization_id''',
+      ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"1\"}}]}',
+      meta: 'filter_count',
+    );
+    if ((apiResultGetTaskToDo.succeeded ?? true)) {
+      totalTodo = getJsonField(
+        (apiResultGetTaskToDo.jsonBody ?? ''),
+        r'''$.meta.filter_count''',
+      );
+    }
+    apiResultGetTaskWait = await TaskGroup.getListTaskCall.call(
+      accessToken: FFAppState().accessToken,
+      filter:
+          '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffLogin,
+        r'''$.id''',
+      ).toString().toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffLogin,
+        r'''$.organization_id''',
+      ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"0\"}}]}',
+      meta: 'filter_count',
+    );
+    if ((apiResultGetTaskWait.succeeded ?? true)) {
+      totalWait = getJsonField(
+        (apiResultGetTaskWait.jsonBody ?? ''),
+        r'''$.meta.filter_count''',
+      );
     }
   }
 

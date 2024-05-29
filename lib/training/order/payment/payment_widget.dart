@@ -5,8 +5,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/order/after_payment/after_payment_widget.dart';
+import '/training/order/payment_copy/payment_copy_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'payment_model.dart';
 export 'payment_model.dart';
 
@@ -599,6 +601,52 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                             shouldSetState = true;
                             if ((_model.apiResultUpdateStatuOrder?.succeeded ??
                                 true)) {
+                              await showDialog(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return WebViewAware(
+                                    child: AlertDialog(
+                                      title: Text(getJsonField(
+                                        (_model.apiResultUpdateStatuOrder
+                                                ?.jsonBody ??
+                                            ''),
+                                        r'''$.qrLink''',
+                                      ).toString()),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: const Text('Ok'),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                enableDrag: false,
+                                context: context,
+                                builder: (context) {
+                                  return WebViewAware(
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: PaymentCopyWidget(
+                                        orderId: '',
+                                        private: '',
+                                        qr: getJsonField(
+                                          (_model.apiResultUpdateStatuOrder
+                                                  ?.jsonBody ??
+                                              ''),
+                                          r'''$.qrLink''',
+                                        ).toString(),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ).then((value) => safeSetState(() {}));
+
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
@@ -649,16 +697,18 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                 enableDrag: false,
                                 context: context,
                                 builder: (context) {
-                                  return Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: AfterPaymentWidget(
-                                      programId: getJsonField(
-                                        (_model.apiResultUpdateStatuOrder
-                                                ?.jsonBody ??
-                                            ''),
-                                        r'''$.programs[0].id''',
-                                      ).toString(),
-                                      private: widget.private!,
+                                  return WebViewAware(
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: AfterPaymentWidget(
+                                        programId: getJsonField(
+                                          (_model.apiResultUpdateStatuOrder
+                                                  ?.jsonBody ??
+                                              ''),
+                                          r'''$.programs[0].id''',
+                                        ).toString(),
+                                        private: widget.private!,
+                                      ),
                                     ),
                                   );
                                 },

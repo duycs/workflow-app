@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/operation/operation_update/operation_update_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'operation_detail_model.dart';
 export 'operation_detail_model.dart';
 
@@ -486,10 +487,12 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                                 enableDrag: false,
                                 context: context,
                                 builder: (context) {
-                                  return Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: OperationUpdateWidget(
-                                      operationUpdate: widget.operationDetail,
+                                  return WebViewAware(
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: OperationUpdateWidget(
+                                        operationUpdate: widget.operationDetail,
+                                      ),
                                     ),
                                   );
                                 },

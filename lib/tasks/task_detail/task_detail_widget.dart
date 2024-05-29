@@ -16,6 +16,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'task_detail_model.dart';
 export 'task_detail_model.dart';
 
@@ -521,27 +522,29 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                         context: context,
                                                         builder:
                                                             (alertDialogContext) {
-                                                          return AlertDialog(
-                                                            content: const Text(
-                                                                'Xác nhận hoàn thành task!'),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext,
-                                                                        false),
-                                                                child: const Text(
-                                                                    'Đóng'),
-                                                              ),
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext,
-                                                                        true),
-                                                                child: const Text(
-                                                                    'Xác nhận'),
-                                                              ),
-                                                            ],
+                                                          return WebViewAware(
+                                                            child: AlertDialog(
+                                                              content: const Text(
+                                                                  'Xác nhận hoàn thành task!'),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          false),
+                                                                  child: const Text(
+                                                                      'Đóng'),
+                                                                ),
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          true),
+                                                                  child: const Text(
+                                                                      'Xác nhận'),
+                                                                ),
+                                                              ],
+                                                            ),
                                                           );
                                                         },
                                                       ) ??
@@ -1464,33 +1467,46 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                 setState(() {
                                                   _model.responseData = null;
                                                 });
-                                                while (_model.loop <
-                                                    imageid!.length) {
+                                                if (imageid.isEmpty) {
                                                   setState(() {
                                                     _model
                                                         .updateResponseDataStruct(
                                                       (e) => e
                                                         ..status = 'done'
-                                                        ..updateFiles(
-                                                          (e) => e.add(
-                                                              FileDataTypeStruct(
-                                                            directusFilesId:
-                                                                FileIDDataTypeStruct(
-                                                              id: imageid[
-                                                                  _model.loop],
-                                                            ),
-                                                          )),
-                                                        ),
+                                                        ..files = [],
                                                     );
                                                   });
+                                                } else {
+                                                  while (_model.loop <
+                                                      imageid!.length) {
+                                                    setState(() {
+                                                      _model
+                                                          .updateResponseDataStruct(
+                                                        (e) => e
+                                                          ..status = 'done'
+                                                          ..updateFiles(
+                                                            (e) => e.add(
+                                                                FileDataTypeStruct(
+                                                              directusFilesId:
+                                                                  FileIDDataTypeStruct(
+                                                                id: imageid[
+                                                                    _model
+                                                                        .loop],
+                                                              ),
+                                                            )),
+                                                          ),
+                                                      );
+                                                    });
+                                                    setState(() {
+                                                      _model.loop =
+                                                          _model.loop + 1;
+                                                    });
+                                                  }
                                                   setState(() {
-                                                    _model.loop =
-                                                        _model.loop + 1;
+                                                    _model.loop = 0;
                                                   });
                                                 }
-                                                setState(() {
-                                                  _model.loop = 0;
-                                                });
+
                                                 _model.updateImageToken =
                                                     await action_blocks
                                                         .tokenReload(context);
@@ -1739,71 +1755,65 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                           Directionality.of(
                                                                               context)),
                                                                   child:
-                                                                      GestureDetector(
-                                                                    onTap: () => _model
-                                                                            .unfocusNode
-                                                                            .canRequestFocus
-                                                                        ? FocusScope.of(context).requestFocus(_model
-                                                                            .unfocusNode)
-                                                                        : FocusScope.of(context)
-                                                                            .unfocus(),
+                                                                      WebViewAware(
                                                                     child:
-                                                                        TaskDetailCkPopupWidget(
-                                                                      item: dataListItem
-                                                                          .operations
-                                                                          .first
-                                                                          .operationsId
-                                                                          .result,
-                                                                      workflowId:
-                                                                          widget
-                                                                              .workflowId!,
-                                                                      publishedCount:
-                                                                          widget
-                                                                              .publishedCount!,
-                                                                      paramBack:
-                                                                          widget
-                                                                              .paramBack,
-                                                                      action:
-                                                                          (ckString) async {
-                                                                        _model.apiResultx5lTokenCopy =
-                                                                            await action_blocks.tokenReload(context);
-                                                                        if (_model
-                                                                            .apiResultx5lTokenCopy!) {
-                                                                          _model.apiResultx5lCopy = await TaskGroup
-                                                                              .updateOperationCall
-                                                                              .call(
-                                                                            accessToken:
-                                                                                FFAppState().accessToken,
-                                                                            operationId:
-                                                                                dataListItem.operations.first.operationsId.id,
-                                                                            requestDataJson: <String,
-                                                                                dynamic>{
-                                                                              'status': 'done',
-                                                                              'result': ckString,
-                                                                            },
-                                                                          );
-                                                                          if (!(_model.apiResultx5lCopy?.succeeded ??
-                                                                              true)) {
-                                                                            ScaffoldMessenger.of(context).showSnackBar(
-                                                                              SnackBar(
-                                                                                content: Text(
-                                                                                  'Xác nhận thất bại',
-                                                                                  style: TextStyle(
-                                                                                    color: FlutterFlowTheme.of(context).primaryText,
-                                                                                  ),
-                                                                                ),
-                                                                                duration: const Duration(milliseconds: 4000),
-                                                                                backgroundColor: FlutterFlowTheme.of(context).secondary,
-                                                                              ),
+                                                                        GestureDetector(
+                                                                      onTap: () => _model
+                                                                              .unfocusNode
+                                                                              .canRequestFocus
+                                                                          ? FocusScope.of(context).requestFocus(_model
+                                                                              .unfocusNode)
+                                                                          : FocusScope.of(context)
+                                                                              .unfocus(),
+                                                                      child:
+                                                                          TaskDetailCkPopupWidget(
+                                                                        item: dataListItem
+                                                                            .operations
+                                                                            .first
+                                                                            .operationsId
+                                                                            .result,
+                                                                        workflowId:
+                                                                            widget.workflowId!,
+                                                                        publishedCount:
+                                                                            widget.publishedCount!,
+                                                                        paramBack:
+                                                                            widget.paramBack,
+                                                                        action:
+                                                                            (ckString) async {
+                                                                          _model.apiResultx5lTokenCopy =
+                                                                              await action_blocks.tokenReload(context);
+                                                                          if (_model
+                                                                              .apiResultx5lTokenCopy!) {
+                                                                            _model.apiResultx5lCopy =
+                                                                                await TaskGroup.updateOperationCall.call(
+                                                                              accessToken: FFAppState().accessToken,
+                                                                              operationId: dataListItem.operations.first.operationsId.id,
+                                                                              requestDataJson: <String, dynamic>{
+                                                                                'status': 'done',
+                                                                                'result': ckString,
+                                                                              },
                                                                             );
+                                                                            if (!(_model.apiResultx5lCopy?.succeeded ??
+                                                                                true)) {
+                                                                              ScaffoldMessenger.of(context).showSnackBar(
+                                                                                SnackBar(
+                                                                                  content: Text(
+                                                                                    'Xác nhận thất bại',
+                                                                                    style: TextStyle(
+                                                                                      color: FlutterFlowTheme.of(context).primaryText,
+                                                                                    ),
+                                                                                  ),
+                                                                                  duration: const Duration(milliseconds: 4000),
+                                                                                  backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                                ),
+                                                                              );
+                                                                            }
+                                                                            setState(() {});
+                                                                          } else {
+                                                                            setState(() {});
                                                                           }
-                                                                          setState(
-                                                                              () {});
-                                                                        } else {
-                                                                          setState(
-                                                                              () {});
-                                                                        }
-                                                                      },
+                                                                        },
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 );
@@ -1890,32 +1900,45 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                               setState(() {
                                                 _model.responseData = null;
                                               });
-                                              while (
-                                                  _model.loop < file!.length) {
+                                              if (file.isEmpty) {
                                                 setState(() {
                                                   _model
                                                       .updateResponseDataStruct(
                                                     (e) => e
                                                       ..status = 'done'
-                                                      ..updateFiles(
-                                                        (e) => e.add(
-                                                            FileDataTypeStruct(
-                                                          directusFilesId:
-                                                              FileIDDataTypeStruct(
-                                                            id: file[
-                                                                _model.loop],
-                                                          ),
-                                                        )),
-                                                      ),
+                                                      ..files = [],
                                                   );
                                                 });
+                                              } else {
+                                                while (_model.loop <
+                                                    file!.length) {
+                                                  setState(() {
+                                                    _model
+                                                        .updateResponseDataStruct(
+                                                      (e) => e
+                                                        ..status = 'done'
+                                                        ..updateFiles(
+                                                          (e) => e.add(
+                                                              FileDataTypeStruct(
+                                                            directusFilesId:
+                                                                FileIDDataTypeStruct(
+                                                              id: file[
+                                                                  _model.loop],
+                                                            ),
+                                                          )),
+                                                        ),
+                                                    );
+                                                  });
+                                                  setState(() {
+                                                    _model.loop =
+                                                        _model.loop + 1;
+                                                  });
+                                                }
                                                 setState(() {
-                                                  _model.loop = _model.loop + 1;
+                                                  _model.loop = 0;
                                                 });
                                               }
-                                              setState(() {
-                                                _model.loop = 0;
-                                              });
+
                                               _model.apiResultUpdateoperationToken =
                                                   await action_blocks
                                                       .tokenReload(context);

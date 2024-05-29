@@ -7,12 +7,15 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
-import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/training/lesson/ckeditor_update_lesson/ckeditor_update_lesson_widget.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'lesson_update_model.dart';
 export 'lesson_update_model.dart';
 
@@ -1343,6 +1346,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                 .override(
                                   fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
                                 ),
                           ),
                         ),
@@ -1351,83 +1355,143 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                           height: 45.0,
                           decoration: const BoxDecoration(),
                           alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: Container(
-                            width: 180.0,
-                            height: double.infinity,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                              borderRadius: BorderRadius.circular(10.0),
-                              border: Border.all(
-                                color: FlutterFlowTheme.of(context).alternate,
-                              ),
-                            ),
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  FlutterFlowIconButton(
-                                    borderColor:
-                                        FlutterFlowTheme.of(context).noColor,
-                                    borderRadius: 20.0,
-                                    borderWidth: 1.0,
-                                    buttonSize: 40.0,
-                                    fillColor:
-                                        FlutterFlowTheme.of(context).noColor,
-                                    icon: Icon(
-                                      Icons.edit_note_sharp,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 24.0,
-                                    ),
-                                    onPressed: () {
-                                      print('IconButton pressed ...');
-                                    },
-                                  ),
-                                  Text(
-                                    'Nhập nội dung',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
+                          child: Builder(
+                            builder: (context) => InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                await showDialog(
+                                  context: context,
+                                  builder: (dialogContext) {
+                                    return Dialog(
+                                      elevation: 0,
+                                      insetPadding: EdgeInsets.zero,
+                                      backgroundColor: Colors.transparent,
+                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                          .resolve(Directionality.of(context)),
+                                      child: WebViewAware(
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: CkeditorUpdateLessonWidget(
+                                            input: () {
+                                              if ((getJsonField(
+                                                        widget.items,
+                                                        r'''$.content''',
+                                                      ) !=
+                                                      null) &&
+                                                  (_model.output == '')) {
+                                                return getJsonField(
+                                                  widget.items,
+                                                  r'''$.content''',
+                                                ).toString();
+                                              } else if (_model.output != '') {
+                                                return _model.output;
+                                              } else {
+                                                return '';
+                                              }
+                                            }(),
+                                            output: _model.output,
+                                            callBack: (input, output) async {
+                                              setState(() {
+                                                _model.checkContent = output!;
+                                                _model.input = input!;
+                                                _model.output = output;
+                                              });
+                                            },
+                                          ),
                                         ),
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => setState(() {}));
+                              },
+                              child: Container(
+                                width: 180.0,
+                                height: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  border: Border.all(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
                                   ),
-                                ],
+                                ),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      FlutterFlowIconButton(
+                                        borderColor:
+                                            FlutterFlowTheme.of(context)
+                                                .noColor,
+                                        borderRadius: 20.0,
+                                        borderWidth: 1.0,
+                                        buttonSize: 40.0,
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .noColor,
+                                        icon: Icon(
+                                          Icons.edit_note_sharp,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          size: 24.0,
+                                        ),
+                                        onPressed: () {
+                                          print('IconButton pressed ...');
+                                        },
+                                      ),
+                                      Text(
+                                        'Chỉnh sửa nội dung',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 3.0, 0.0, 0.0),
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: 300.0,
-                            child: custom_widgets.CKEditor(
-                              width: double.infinity,
-                              height: 300.0,
-                              initialData: getJsonField(
-                                        widget.items,
-                                        r'''$.content''',
-                                      ) !=
-                                      null
-                                  ? getJsonField(
-                                      widget.items,
-                                      r'''$.content''',
-                                    ).toString()
-                                  : '',
-                              action: (data) async {
-                                setState(() {
-                                  _model.checkContent = data;
-                                });
-                              },
-                            ),
+                        Container(
+                          width: double.infinity,
+                          decoration: const BoxDecoration(),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          child: Html(
+                            data: () {
+                              if (_model.checkContent != '') {
+                                return _model.checkContent;
+                              } else if (getJsonField(
+                                    widget.items,
+                                    r'''$.content''',
+                                  ) !=
+                                  null) {
+                                return functions.formatHtml(getJsonField(
+                                  widget.items,
+                                  r'''$.content''',
+                                ).toString());
+                              } else {
+                                return '';
+                              }
+                            }(),
+                            onLinkTap: (url, _, __, ___) => launchURL(url!),
                           ),
                         ),
                       ].divide(const SizedBox(height: 6.0)),
@@ -1455,7 +1519,6 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                       setState(() {});
                     }
                     if ((_model.nameTextController.text != '') &&
-                        (_model.checkContent != '') &&
                         (_model.descriptionTextController.text != '') &&
                         (_model.durationHoursTextController.text != '') &&
                         ((_model.uploadImage != '') ||
@@ -1493,7 +1556,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                            'Kiểm tra lại ảnh bài học, tiêu đề, nội dung, mô tả, thời gian!',
+                            'Các trường ảnh bài học, tiêu đề, nội dung, mô tả, thời gian bắt buộc!',
                             style: TextStyle(
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),

@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
@@ -22,6 +21,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'task_list_done_model.dart';
 export 'task_list_done_model.dart';
 
@@ -49,49 +49,8 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
       _model.taskListDoneCaculatorTotalToken =
           await action_blocks.tokenReload(context);
       if (_model.taskListDoneCaculatorTotalToken!) {
-        _model.apiResultGetTask = await TaskGroup.getListTaskCall.call(
-          accessToken: FFAppState().accessToken,
-          filter:
-              '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
-            FFAppState().staffLogin,
-            r'''$.id''',
-          ).toString().toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-            FFAppState().staffLogin,
-            r'''$.organization_id''',
-          ).toString().toString()}\"}}}]}',
-        );
-        if ((_model.apiResultGetTask?.succeeded ?? true)) {
-          setState(() {
-            _model.taskToDo = TaskListDataStruct.maybeFromMap(
-                    (_model.apiResultGetTask?.jsonBody ?? ''))!
-                .data
-                .where((e) =>
-                    (e.status == 'todo') &&
-                    (e.current.toString() == '1'))
-                .toList()
-                .length;
-            _model.taskWait = TaskListDataStruct.maybeFromMap(
-                    (_model.apiResultGetTask?.jsonBody ?? ''))!
-                .data
-                .where((e) =>
-                    (e.status == 'todo') &&
-                    (e.current.toString() == '0'))
-                .toList()
-                .length;
-            _model.totalDone = TaskListDataStruct.maybeFromMap(
-                    (_model.apiResultGetTask?.jsonBody ?? ''))!
-                .data
-                .where((e) =>
-                    (e.status == 'done') &&
-                    (e.submitStaffId.id ==
-                        getJsonField(
-                          FFAppState().staffLogin,
-                          r'''$.id''',
-                        ).toString().toString()))
-                .toList()
-                .length;
-          });
-        }
+        await _model.getNumberTask(context);
+        setState(() {});
         setState(() {
           _model.isLoad = true;
         });
@@ -311,45 +270,47 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                            child: GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
-                                                      .unfocus(),
-                                              child: FilterTaskListDoneWidget(
-                                                filterSearch:
-                                                    _model.textController.text,
-                                                dateStart:
-                                                    _model.dateStartFilter,
-                                                dateEnd: _model.dateEndFilter,
-                                                type: _model.typeFilter,
-                                                created: _model.createdFilter,
-                                                workflowName:
-                                                    _model.workflowNameFilter,
-                                                callback: (dateStarCallback,
-                                                    dateEndCallback,
-                                                    typeCallback,
-                                                    createdCallback,
-                                                    workflowNameFilter) async {
-                                                  setState(() {
-                                                    _model.dateStartFilter =
-                                                        dateStarCallback;
-                                                    _model.dateEndFilter =
-                                                        dateEndCallback;
-                                                    _model.typeFilter =
-                                                        typeCallback;
-                                                    _model.createdFilter =
-                                                        createdCallback!;
-                                                    _model.workflowNameFilter =
-                                                        workflowNameFilter!;
-                                                  });
-                                                  setState(() => _model
-                                                      .listViewPagingController1
-                                                      ?.refresh());
-                                                },
+                                            child: WebViewAware(
+                                              child: GestureDetector(
+                                                onTap: () => _model.unfocusNode
+                                                        .canRequestFocus
+                                                    ? FocusScope.of(context)
+                                                        .requestFocus(
+                                                            _model.unfocusNode)
+                                                    : FocusScope.of(context)
+                                                        .unfocus(),
+                                                child: FilterTaskListDoneWidget(
+                                                  filterSearch: _model
+                                                      .textController.text,
+                                                  dateStart:
+                                                      _model.dateStartFilter,
+                                                  dateEnd: _model.dateEndFilter,
+                                                  type: _model.typeFilter,
+                                                  created: _model.createdFilter,
+                                                  workflowName:
+                                                      _model.workflowNameFilter,
+                                                  callback: (dateStarCallback,
+                                                      dateEndCallback,
+                                                      typeCallback,
+                                                      createdCallback,
+                                                      workflowNameFilter) async {
+                                                    setState(() {
+                                                      _model.dateStartFilter =
+                                                          dateStarCallback;
+                                                      _model.dateEndFilter =
+                                                          dateEndCallback;
+                                                      _model.typeFilter =
+                                                          typeCallback;
+                                                      _model.createdFilter =
+                                                          createdCallback!;
+                                                      _model.workflowNameFilter =
+                                                          workflowNameFilter!;
+                                                    });
+                                                    setState(() => _model
+                                                        .listViewPagingController1
+                                                        ?.refresh());
+                                                  },
+                                                ),
                                               ),
                                             ),
                                           );
@@ -1772,11 +1733,13 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                                   insetPadding: EdgeInsets.zero,
                                                                                   backgroundColor: Colors.transparent,
                                                                                   alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                  child: GestureDetector(
-                                                                                    onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
-                                                                                    child: PopupSeeMoreWidget(
-                                                                                      fileName: fileItemsItem.directusFilesId.filenameDownload,
-                                                                                      fileId: fileItemsItem.directusFilesId.id,
+                                                                                  child: WebViewAware(
+                                                                                    child: GestureDetector(
+                                                                                      onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                      child: PopupSeeMoreWidget(
+                                                                                        fileName: fileItemsItem.directusFilesId.filenameDownload,
+                                                                                        fileId: fileItemsItem.directusFilesId.id,
+                                                                                      ),
                                                                                     ),
                                                                                   ),
                                                                                 );

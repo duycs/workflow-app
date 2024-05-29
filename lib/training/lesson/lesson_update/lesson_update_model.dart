@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'lesson_update_widget.dart' show LessonUpdateWidget;
 import 'package:flutter/material.dart';
 
@@ -30,6 +31,10 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
   String checkContent = '';
 
   int? checkTime;
+
+  String input = '';
+
+  String output = '';
 
   ///  State fields for stateful widgets in this page.
 
@@ -149,7 +154,12 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
               radioButtonStatusValue == 'Hoạt động' ? 'published' : 'draft',
           'name': nameTextController.text,
           'description': descriptionTextController.text,
-          'content': checkContent,
+          'content': checkContent != ''
+              ? checkContent
+              : functions.formatHtml(getJsonField(
+                  widget.items,
+                  r'''$.content''',
+                ).toString().toString()),
           'image_cover': () {
             if (uploadImage != '') {
               return uploadImage;
@@ -273,7 +283,12 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
               radioButtonStatusValue == 'Hoạt động' ? 'published' : 'draft',
           'name': nameTextController.text,
           'description': descriptionTextController.text,
-          'content': checkContent,
+          'content': checkContent != ''
+              ? checkContent
+              : functions.formatHtml(getJsonField(
+                  widget.items,
+                  r'''$.content''',
+                ).toString().toString()),
           'image_cover': () {
             if (uploadImage != '') {
               return uploadImage;
