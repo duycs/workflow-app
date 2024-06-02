@@ -118,6 +118,38 @@ class _DetailActionTypeUploadFileWidgetState
                                   if (functions.checkFileLast((String tail) {
                                         return tail.split('.').last;
                                       }(dataFileItem.filenameDownload)) ==
+                                      'video')
+                                    Container(
+                                      width: 35.0,
+                                      height: 35.0,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.asset(
+                                        'assets/images/360_F_281189262_rmGjRoqcjAiaHeTQQDHOUvfhvH9LjkUR.jpg',
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  if (functions.checkFileLast((String tail) {
+                                        return tail.split('.').last;
+                                      }(dataFileItem.filenameDownload)) ==
+                                      'img')
+                                    Container(
+                                      width: 35.0,
+                                      height: 35.0,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.asset(
+                                        'assets/images/9967614.png',
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  if (functions.checkFileLast((String tail) {
+                                        return tail.split('.').last;
+                                      }(dataFileItem.filenameDownload)) ==
                                       'exc')
                                     Container(
                                       width: 35.0,
@@ -319,6 +351,38 @@ class _DetailActionTypeUploadFileWidgetState
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              if (functions.checkFileLast((String tail) {
+                                    return tail.split('.').last;
+                                  }(functions.fileName(dataFileUploadItem)!)) ==
+                                  'video')
+                                Container(
+                                  width: 35.0,
+                                  height: 35.0,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.asset(
+                                    'assets/images/360_F_281189262_rmGjRoqcjAiaHeTQQDHOUvfhvH9LjkUR.jpg',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              if (functions.checkFileLast((String tail) {
+                                    return tail.split('.').last;
+                                  }(functions.fileName(dataFileUploadItem)!)) ==
+                                  'img')
+                                Container(
+                                  width: 35.0,
+                                  height: 35.0,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.asset(
+                                    'assets/images/9967614.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                               if (functions.checkFileLast((String tail) {
                                     return tail.split('.').last;
                                   }(functions.fileName(dataFileUploadItem)!)) ==

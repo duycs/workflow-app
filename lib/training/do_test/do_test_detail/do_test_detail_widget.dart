@@ -530,7 +530,7 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                               ),
                                             ),
                                             if (questionListItem.answerType ==
-                                                'radio')
+                                                '1')
                                               Builder(
                                                 builder: (context) {
                                                   final listAnswerRadio =
@@ -664,21 +664,25 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                   ),
                                               ].divide(const SizedBox(height: 8.0)),
                                             ),
-                                            if (questionListItem.answerType ==
-                                                'checkbox')
+                                            if ((questionListItem.answerType ==
+                                                    'checkbox') ||
+                                                (questionListItem.answerType ==
+                                                    'radio'))
                                               Builder(
                                                 builder: (context) {
                                                   final listAnswer2 =
                                                       questionListItem
                                                           .questionId.answers
                                                           .toList();
-                                                  return ListView.builder(
+                                                  return ListView.separated(
                                                     padding: EdgeInsets.zero,
                                                     shrinkWrap: true,
                                                     scrollDirection:
                                                         Axis.vertical,
                                                     itemCount:
                                                         listAnswer2.length,
+                                                    separatorBuilder: (_, __) =>
+                                                        const SizedBox(height: 4.0),
                                                     itemBuilder: (context,
                                                         listAnswer2Index) {
                                                       final listAnswer2Item =
@@ -755,51 +759,52 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                                         .info,
                                                               ),
                                                             ),
-                                                            Text(
-                                                              listAnswer2Item
-                                                                  .answersId
-                                                                  .content,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Nunito Sans',
-                                                                    color: () {
-                                                                      if ((listAnswer2Item.answersId.correct ==
-                                                                              1) &&
-                                                                          (questionListItem.answers.where((e) => e.answersId.id == listAnswer2Item.answersId.id).toList().isNotEmpty)) {
-                                                                        return FlutterFlowTheme.of(context)
-                                                                            .primary;
-                                                                      } else if ((listAnswer2Item.answersId.correct !=
-                                                                              1) &&
-                                                                          (questionListItem.answers.where((e) => e.answersId.id == listAnswer2Item.answersId.id).toList().isNotEmpty)) {
-                                                                        return FlutterFlowTheme.of(context)
-                                                                            .error;
-                                                                      } else if ((listAnswer2Item.answersId.correct ==
-                                                                              1) &&
-                                                                          (questionListItem.answers.isEmpty)) {
-                                                                        return FlutterFlowTheme.of(context)
-                                                                            .primary;
-                                                                      } else if ((listAnswer2Item.answersId.correct !=
-                                                                              1) &&
-                                                                          (questionListItem.answers.isEmpty)) {
-                                                                        return FlutterFlowTheme.of(context)
-                                                                            .primaryText;
-                                                                      } else if (listAnswer2Item
-                                                                              .answersId
-                                                                              .correct ==
-                                                                          1) {
-                                                                        return FlutterFlowTheme.of(context)
-                                                                            .primary;
-                                                                      } else {
-                                                                        return FlutterFlowTheme.of(context)
-                                                                            .primaryText;
-                                                                      }
-                                                                    }(),
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
+                                                            Expanded(
+                                                              child: Text(
+                                                                listAnswer2Item
+                                                                    .answersId
+                                                                    .content,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      color:
+                                                                          () {
+                                                                        if ((listAnswer2Item.answersId.correct ==
+                                                                                1) &&
+                                                                            (questionListItem.answers.where((e) => e.answersId.id == listAnswer2Item.answersId.id).toList().isNotEmpty)) {
+                                                                          return FlutterFlowTheme.of(context)
+                                                                              .primary;
+                                                                        } else if ((listAnswer2Item.answersId.correct !=
+                                                                                1) &&
+                                                                            (questionListItem.answers.where((e) => e.answersId.id == listAnswer2Item.answersId.id).toList().isNotEmpty)) {
+                                                                          return FlutterFlowTheme.of(context)
+                                                                              .error;
+                                                                        } else if ((listAnswer2Item.answersId.correct ==
+                                                                                1) &&
+                                                                            (questionListItem.answers.isEmpty)) {
+                                                                          return FlutterFlowTheme.of(context)
+                                                                              .primary;
+                                                                        } else if ((listAnswer2Item.answersId.correct !=
+                                                                                1) &&
+                                                                            (questionListItem.answers.isEmpty)) {
+                                                                          return FlutterFlowTheme.of(context)
+                                                                              .primaryText;
+                                                                        } else if (listAnswer2Item.answersId.correct ==
+                                                                            1) {
+                                                                          return FlutterFlowTheme.of(context)
+                                                                              .primary;
+                                                                        } else {
+                                                                          return FlutterFlowTheme.of(context)
+                                                                              .primaryText;
+                                                                        }
+                                                                      }(),
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
                                                             ),
                                                           ],
                                                         ),

@@ -118,6 +118,22 @@ class _DoActionTypeUploadFileWidgetState
                                 if (functions.checkFileLast((String tail) {
                                       return tail.split('.').last;
                                     }(dataItem.filenameDownload)) ==
+                                    'video')
+                                  Container(
+                                    width: 35.0,
+                                    height: 35.0,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Image.asset(
+                                      'assets/images/360_F_281189262_rmGjRoqcjAiaHeTQQDHOUvfhvH9LjkUR.jpg',
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                if (functions.checkFileLast((String tail) {
+                                      return tail.split('.').last;
+                                    }(dataItem.filenameDownload)) ==
                                     'exc')
                                   Container(
                                     width: 35.0,
@@ -128,6 +144,22 @@ class _DoActionTypeUploadFileWidgetState
                                     ),
                                     child: Image.asset(
                                       'assets/images/excel.png',
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                if (functions.checkFileLast((String tail) {
+                                      return tail.split('.').last;
+                                    }(dataItem.filenameDownload)) ==
+                                    'img')
+                                  Container(
+                                    width: 35.0,
+                                    height: 35.0,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Image.asset(
+                                      'assets/images/9967614.png',
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -321,6 +353,23 @@ class _DoActionTypeUploadFileWidgetState
                                             .checkFileLast((String tail) {
                                           return tail.split('.').last;
                                         }(functions.fileName(dataUploadItem)!)) ==
+                                        'video')
+                                      Container(
+                                        width: 35.0,
+                                        height: 35.0,
+                                        clipBehavior: Clip.antiAlias,
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: Image.asset(
+                                          'assets/images/360_F_281189262_rmGjRoqcjAiaHeTQQDHOUvfhvH9LjkUR.jpg',
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    if (functions
+                                            .checkFileLast((String tail) {
+                                          return tail.split('.').last;
+                                        }(functions.fileName(dataUploadItem)!)) ==
                                         'exc')
                                       Container(
                                         width: 35.0,
@@ -331,6 +380,23 @@ class _DoActionTypeUploadFileWidgetState
                                         ),
                                         child: Image.asset(
                                           'assets/images/excel.png',
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    if (functions
+                                            .checkFileLast((String tail) {
+                                          return tail.split('.').last;
+                                        }(functions.fileName(dataUploadItem)!)) ==
+                                        'img')
+                                      Container(
+                                        width: 35.0,
+                                        height: 35.0,
+                                        clipBehavior: Clip.antiAlias,
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: Image.asset(
+                                          'assets/images/9967614.png',
                                           fit: BoxFit.cover,
                                         ),
                                       ),

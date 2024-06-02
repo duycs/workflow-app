@@ -15,10 +15,10 @@ import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 Future notifiAddServer(String staffId) async {
   // Add your function code here!
-  OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
+  await OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
 
-  OneSignal.initialize("014e851d-ca32-4c5e-840e-236166738a06");
-  OneSignal.Notifications.requestPermission(true);
+   OneSignal.initialize("014e851d-ca32-4c5e-840e-236166738a06");
+   await OneSignal.Notifications.requestPermission(true);
   // OneSignal.InAppMessages.addClickListener((event) {
   //   Fluttertoast.showToast(
   //     msg: '${event}',
@@ -26,10 +26,9 @@ Future notifiAddServer(String staffId) async {
   //     toastLength: Toast.LENGTH_LONG,
   //   );
   // });
-  OneSignal.login(staffId);
+  await OneSignal.login(staffId);
+  await OneSignal.User.pushSubscription.optIn();
   print("StaffId: " + staffId);
-  OneSignal.User.addTagWithKey("test2", "val2");
-  debugPrint("StaffId: " + staffId);
   // OneSignal.User.pushSubscription.addObserver((state) {
   //   print(OneSignal.User.pushSubscription.optedIn);
   //   print(OneSignal.User.pushSubscription.id);

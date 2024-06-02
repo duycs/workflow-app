@@ -208,577 +208,556 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
       ),
       body: SafeArea(
         top: true,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 4.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      controller: _model.textNameTextController,
-                      focusNode: _model.textNameFocusNode,
-                      onChanged: (_) => EasyDebounce.debounce(
-                        '_model.textNameTextController',
-                        const Duration(milliseconds: 500),
-                        () async {
-                          setState(() {});
-                          setState(
-                              () => _model.gridViewPagingController?.refresh());
-                        },
-                      ),
-                      autofocus: false,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                        hintText: 'Tìm kiếm...',
-                        hintStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Color(0x00000000),
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primary,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        filled: true,
-                        fillColor:
-                            FlutterFlowTheme.of(context).primaryBackground,
-                        contentPadding:
-                            const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
-                        prefixIcon: const Icon(
-                          Icons.search,
-                        ),
-                        suffixIcon: _model
-                                .textNameTextController!.text.isNotEmpty
-                            ? InkWell(
-                                onTap: () async {
-                                  _model.textNameTextController?.clear();
-                                  setState(() {});
-                                  setState(() => _model.gridViewPagingController
-                                      ?.refresh());
-                                  setState(() {});
-                                },
-                                child: Icon(
-                                  Icons.clear,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 20.0,
-                                ),
-                              )
-                            : null,
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Nunito Sans',
-                            letterSpacing: 0.0,
-                          ),
-                      cursorColor: FlutterFlowTheme.of(context).primary,
-                      validator: _model.textNameTextControllerValidator
-                          .asValidator(context),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            if ('1' == '3')
+        child: Visibility(
+          visible: _model.isLoad == true,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 12.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 4.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
-                      child: FlutterFlowDropDown<String>(
-                        controller: _model.dropDownValueController ??=
-                            FormFieldController<String>(
-                          _model.dropDownValue ??= '1',
+                      child: TextFormField(
+                        controller: _model.textNameTextController,
+                        focusNode: _model.textNameFocusNode,
+                        onChanged: (_) => EasyDebounce.debounce(
+                          '_model.textNameTextController',
+                          const Duration(milliseconds: 500),
+                          () async {
+                            setState(() {});
+                            setState(() =>
+                                _model.gridViewPagingController?.refresh());
+                          },
                         ),
-                        options: List<String>.from(
-                            _model.domainList.map((e) => e.id).toList()),
-                        optionLabels:
-                            _model.domainList.map((e) => e.name).toList(),
-                        onChanged: (val) async {
-                          setState(() => _model.dropDownValue = val);
-                          await _model.callSearchList(context);
-                          setState(() {});
-                          setState(() {});
-                        },
-                        width: 300.0,
-                        height: 56.0,
-                        textStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                        hintText: 'Chọn lĩnh vực ...',
-                        icon: Icon(
-                          Icons.keyboard_arrow_down_rounded,
-                          color: FlutterFlowTheme.of(context).secondaryText,
-                          size: 24.0,
+                        autofocus: false,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          labelStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                          hintText: 'Tìm kiếm...',
+                          hintStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Color(0x00000000),
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).primary,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          filled: true,
+                          fillColor:
+                              FlutterFlowTheme.of(context).primaryBackground,
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 0.0, 0.0),
+                          prefixIcon: const Icon(
+                            Icons.search,
+                          ),
+                          suffixIcon:
+                              _model.textNameTextController!.text.isNotEmpty
+                                  ? InkWell(
+                                      onTap: () async {
+                                        _model.textNameTextController?.clear();
+                                        setState(() {});
+                                        setState(() => _model
+                                            .gridViewPagingController
+                                            ?.refresh());
+                                        setState(() {});
+                                      },
+                                      child: Icon(
+                                        Icons.clear,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 20.0,
+                                      ),
+                                    )
+                                  : null,
                         ),
-                        fillColor:
-                            FlutterFlowTheme.of(context).secondaryBackground,
-                        elevation: 2.0,
-                        borderColor: FlutterFlowTheme.of(context).alternate,
-                        borderWidth: 2.0,
-                        borderRadius: 8.0,
-                        margin: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 4.0, 16.0, 4.0),
-                        hidesUnderline: true,
-                        isOverButton: true,
-                        isSearchable: false,
-                        isMultiSelect: false,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Nunito Sans',
+                              letterSpacing: 0.0,
+                            ),
+                        cursorColor: FlutterFlowTheme.of(context).primary,
+                        validator: _model.textNameTextControllerValidator
+                            .asValidator(context),
                       ),
                     ),
                   ],
                 ),
               ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 12.0),
-                    child: FlutterFlowChoiceChips(
-                      options: _model.categoriesList
-                          .map((e) => e.name)
-                          .toList()
-                          .map((label) => ChipData(label))
-                          .toList(),
-                      onChanged: (val) async {
-                        setState(
-                            () => _model.choiceChipsValue = val?.firstOrNull);
-                        setState(() {});
-                        while (_model.loop < _model.categoriesList.length) {
-                          if (_model.categoriesList[_model.loop].name ==
-                              _model.choiceChipsValue) {
+              if ('1' == '3')
+                Padding(
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 12.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: FlutterFlowDropDown<String>(
+                          controller: _model.dropDownValueController ??=
+                              FormFieldController<String>(
+                            _model.dropDownValue ??= '1',
+                          ),
+                          options: List<String>.from(
+                              _model.domainList.map((e) => e.id).toList()),
+                          optionLabels:
+                              _model.domainList.map((e) => e.name).toList(),
+                          onChanged: (val) async {
+                            setState(() => _model.dropDownValue = val);
+                            await _model.callSearchList(context);
+                            setState(() {});
+                            setState(() {});
+                          },
+                          width: 300.0,
+                          height: 56.0,
+                          textStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                          hintText: 'Chọn lĩnh vực ...',
+                          icon: Icon(
+                            Icons.keyboard_arrow_down_rounded,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            size: 24.0,
+                          ),
+                          fillColor:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          elevation: 2.0,
+                          borderColor: FlutterFlowTheme.of(context).alternate,
+                          borderWidth: 2.0,
+                          borderRadius: 8.0,
+                          margin: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 4.0, 16.0, 4.0),
+                          hidesUnderline: true,
+                          isOverButton: true,
+                          isSearchable: false,
+                          isMultiSelect: false,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 12.0),
+                      child: FlutterFlowChoiceChips(
+                        options: _model.categoriesList
+                            .map((e) => e.name)
+                            .toList()
+                            .map((label) => ChipData(label))
+                            .toList(),
+                        onChanged: (val) async {
+                          setState(
+                              () => _model.choiceChipsValue = val?.firstOrNull);
+                          setState(() {});
+                          while (_model.loop < _model.categoriesList.length) {
+                            if (_model.categoriesList[_model.loop].name ==
+                                _model.choiceChipsValue) {
+                              setState(() {
+                                _model.categoryId =
+                                    _model.categoriesList[_model.loop].id;
+                              });
+                            }
                             setState(() {
-                              _model.categoryId =
-                                  _model.categoriesList[_model.loop].id;
+                              _model.loop = _model.loop + 1;
                             });
                           }
                           setState(() {
-                            _model.loop = _model.loop + 1;
+                            _model.loop = 0;
                           });
-                        }
-                        setState(() {
-                          _model.loop = 0;
-                        });
-                        setState(
-                            () => _model.gridViewPagingController?.refresh());
-                      },
-                      selectedChipStyle: ChipStyle(
-                        backgroundColor: FlutterFlowTheme.of(context).secondary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.override(
-                                  fontFamily: 'Nunito Sans',
-                                  color: FlutterFlowTheme.of(context).info,
-                                  letterSpacing: 0.0,
-                                ),
-                        iconColor: FlutterFlowTheme.of(context).info,
-                        iconSize: 14.0,
-                        elevation: 2.0,
-                        borderColor: FlutterFlowTheme.of(context).noColor,
-                        borderWidth: 1.0,
-                        borderRadius: BorderRadius.circular(8.0),
+                          setState(
+                              () => _model.gridViewPagingController?.refresh());
+                        },
+                        selectedChipStyle: ChipStyle(
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: FlutterFlowTheme.of(context).info,
+                                    letterSpacing: 0.0,
+                                  ),
+                          iconColor: FlutterFlowTheme.of(context).info,
+                          iconSize: 14.0,
+                          elevation: 2.0,
+                          borderColor: FlutterFlowTheme.of(context).noColor,
+                          borderWidth: 1.0,
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        unselectedChipStyle: ChipStyle(
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).alternate,
+                          textStyle: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: 'Nunito Sans',
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                letterSpacing: 0.0,
+                              ),
+                          iconColor: FlutterFlowTheme.of(context).secondaryText,
+                          iconSize: 14.0,
+                          elevation: 0.0,
+                          borderColor:
+                              FlutterFlowTheme.of(context).primaryBackground,
+                          borderWidth: 1.0,
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        chipSpacing: 8.0,
+                        rowSpacing: 12.0,
+                        multiselect: false,
+                        initialized: _model.choiceChipsValue != null,
+                        alignment: WrapAlignment.start,
+                        controller: _model.choiceChipsValueController ??=
+                            FormFieldController<List<String>>(
+                          ['Tất cả'],
+                        ),
+                        wrapped: true,
                       ),
-                      unselectedChipStyle: ChipStyle(
-                        backgroundColor: FlutterFlowTheme.of(context).alternate,
-                        textStyle: FlutterFlowTheme.of(context)
-                            .bodyMedium
-                            .override(
-                              fontFamily: 'Nunito Sans',
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              letterSpacing: 0.0,
-                            ),
-                        iconColor: FlutterFlowTheme.of(context).secondaryText,
-                        iconSize: 14.0,
-                        elevation: 0.0,
-                        borderColor:
-                            FlutterFlowTheme.of(context).primaryBackground,
-                        borderWidth: 1.0,
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      chipSpacing: 8.0,
-                      rowSpacing: 12.0,
-                      multiselect: false,
-                      initialized: _model.choiceChipsValue != null,
-                      alignment: WrapAlignment.start,
-                      controller: _model.choiceChipsValueController ??=
-                          FormFieldController<List<String>>(
-                        ['Tất cả'],
-                      ),
-                      wrapped: true,
                     ),
-                  ),
-                ]
-                    .addToStart(const SizedBox(width: 16.0))
-                    .addToEnd(const SizedBox(width: 16.0)),
-              ),
-            ),
-            if ('${_model.domainSearch.isNotEmpty ? (List<String> strings) {
-                    return strings.map((str) => '"$str"').join(',');
-                  }(_model.domainSearch.toList()) : ' '}${(_model.categoryId != '') && (_model.categoryId != '1') && (_model.categoryId != ' ') ? _model.categoryId : ' '}${_model.textNameTextController.text != '' ? _model.textNameTextController.text : ' '}' !=
-                '   ')
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 12.0),
-                child: Text(
-                  '#Kết quả hiển thị theo bộ lọc',
-                  textAlign: TextAlign.start,
-                  style: FlutterFlowTheme.of(context).labelMedium.override(
-                        fontFamily: 'Nunito Sans',
-                        fontSize: 12.0,
-                        letterSpacing: 0.0,
-                        fontStyle: FontStyle.italic,
-                      ),
+                  ]
+                      .addToStart(const SizedBox(width: 16.0))
+                      .addToEnd(const SizedBox(width: 16.0)),
                 ),
               ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(15.0, 5.0, 15.0, 0.0),
-                child: PagedGridView<ApiPagingParams, dynamic>(
-                  pagingController: _model.setGridViewController(
-                    (nextPageMarker) =>
-                        ProcedureTemplateGroup.workflowsListCall.call(
-                      offset: nextPageMarker.nextPageNumber * 20,
-                      limit: 20,
-                      accessToken: FFAppState().accessToken,
-                      filter: '{\"_and\":[{\"template\":{\"_eq\":\"1\"}}${_model.domainSearch.isNotEmpty ? ',{\"domain_id\":{\"_in\":[${(List<String> strings) {
-                          return strings.map((str) => '"$str"').join(',');
-                        }(_model.domainSearch.toList())}]}}' : ' '}${(_model.categoryId != '') && (_model.categoryId != '1') && (_model.categoryId != ' ') ? ',{\"category_id\":{\"_eq\":\"${_model.categoryId}\"}}' : ' '}${_model.textNameTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.textNameTextController.text}\"}}' : ' '}]}',
-                    ),
-                  ),
-                  padding: EdgeInsets.zero,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount:
-                        MediaQuery.sizeOf(context).width < kBreakpointMedium
-                            ? 2
-                            : 3,
-                    crossAxisSpacing: 15.0,
-                    mainAxisSpacing: 25.0,
-                    childAspectRatio: 1.0,
-                  ),
-                  scrollDirection: Axis.vertical,
-                  builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                    // Customize what your widget looks like when it's loading the first page.
-                    firstPageProgressIndicatorBuilder: (_) => Center(
-                      child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            FlutterFlowTheme.of(context).primary,
-                          ),
+              if ('${_model.domainSearch.isNotEmpty ? (List<String> strings) {
+                      return strings.map((str) => '"$str"').join(',');
+                    }(_model.domainSearch.toList()) : ' '}${(_model.categoryId != '') && (_model.categoryId != '1') && (_model.categoryId != ' ') ? _model.categoryId : ' '}${_model.textNameTextController.text != '' ? _model.textNameTextController.text : ' '}' !=
+                  '   ')
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 12.0),
+                  child: Text(
+                    '#Kết quả hiển thị theo bộ lọc',
+                    textAlign: TextAlign.start,
+                    style: FlutterFlowTheme.of(context).labelMedium.override(
+                          fontFamily: 'Nunito Sans',
+                          fontSize: 12.0,
+                          letterSpacing: 0.0,
+                          fontStyle: FontStyle.italic,
                         ),
+                  ),
+                ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(15.0, 5.0, 15.0, 0.0),
+                  child: PagedGridView<ApiPagingParams, dynamic>(
+                    pagingController: _model.setGridViewController(
+                      (nextPageMarker) =>
+                          ProcedureTemplateGroup.workflowsListCall.call(
+                        offset: nextPageMarker.nextPageNumber * 20,
+                        limit: 20,
+                        accessToken: FFAppState().accessToken,
+                        filter: '{\"_and\":[{\"template\":{\"_eq\":\"1\"}}${_model.domainSearch.isNotEmpty ? ',{\"domain_id\":{\"_in\":[${(List<String> strings) {
+                            return strings.map((str) => '"$str"').join(',');
+                          }(_model.domainSearch.toList())}]}}' : ' '}${(_model.categoryId != '') && (_model.categoryId != '1') && (_model.categoryId != ' ') ? ',{\"category_id\":{\"_eq\":\"${_model.categoryId}\"}}' : ' '}${_model.textNameTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.textNameTextController.text}\"}}' : ' '}]}',
                       ),
                     ),
-                    // Customize what your widget looks like when it's loading another page.
-                    newPageProgressIndicatorBuilder: (_) => Center(
-                      child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            FlutterFlowTheme.of(context).primary,
-                          ),
-                        ),
-                      ),
+                    padding: EdgeInsets.zero,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount:
+                          MediaQuery.sizeOf(context).width < kBreakpointMedium
+                              ? 2
+                              : 3,
+                      crossAxisSpacing: 15.0,
+                      mainAxisSpacing: 25.0,
+                      childAspectRatio: 1.0,
                     ),
-                    noItemsFoundIndicatorBuilder: (_) => const Center(
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: DataNotFoundWidget(),
-                      ),
-                    ),
-                    itemBuilder: (context, _, listGridIndex) {
-                      final listGridItem = _model
-                          .gridViewPagingController!.itemList![listGridIndex];
-                      return InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed(
-                            'ProcessTemplateDetail',
-                            queryParameters: {
-                              'id': serializeParam(
-                                listGridItem.id,
-                                ParamType.String,
-                              ),
-                            }.withoutNulls,
-                            extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
-                                hasTransition: true,
-                                transitionType: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                              ),
-                            },
-                          );
-                        },
-                        child: Container(
-                          width: double.infinity,
+                    scrollDirection: Axis.vertical,
+                    builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                      // Customize what your widget looks like when it's loading the first page.
+                      firstPageProgressIndicatorBuilder: (_) => Center(
+                        child: SizedBox(
+                          width: 50.0,
                           height: 50.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            boxShadow: const [
-                              BoxShadow(
-                                blurRadius: 4.0,
-                                color: Color(0x33000000),
-                                offset: Offset(
-                                  0.0,
-                                  2.0,
-                                ),
-                              )
-                            ],
-                            borderRadius: BorderRadius.circular(10.0),
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
                             ),
                           ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Container(
-                                    width: double.infinity,
-                                    height: double.infinity,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                    ),
-                                    child: Visibility(
-                                      visible: listGridItem.steps.length > 0,
-                                      child: Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  5.0, 0.0, 5.0, 0.0),
-                                          child: SingleChildScrollView(
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Container(
-                                                  width: functions
-                                                      .stringToInt(
-                                                          (int var1) {
-                                                        return var1 != 0
-                                                            ? (25 / var1)
-                                                                .round()
-                                                                .toString()
-                                                            : 0.toString();
-                                                      }(listGridItem.steps.length))
-                                                      .toDouble(),
-                                                  height: functions
-                                                      .stringToInt(
-                                                          (int var1) {
-                                                        return var1 != 0
-                                                            ? (25 / var1)
-                                                                .round()
-                                                                .toString()
-                                                            : 0.toString();
-                                                      }(listGridItem.steps.length))
-                                                      .toDouble(),
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                    shape: BoxShape.circle,
-                                                    border: Border.all(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
+                        ),
+                      ),
+                      // Customize what your widget looks like when it's loading another page.
+                      newPageProgressIndicatorBuilder: (_) => Center(
+                        child: SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
+                            ),
+                          ),
+                        ),
+                      ),
+                      noItemsFoundIndicatorBuilder: (_) => const Center(
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: DataNotFoundWidget(),
+                        ),
+                      ),
+                      itemBuilder: (context, _, listGridIndex) {
+                        final listGridItem = _model
+                            .gridViewPagingController!.itemList![listGridIndex];
+                        return InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed(
+                              'ProcessTemplateDetail',
+                              queryParameters: {
+                                'id': serializeParam(
+                                  listGridItem.id,
+                                  ParamType.String,
+                                ),
+                              }.withoutNulls,
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: const TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 0),
+                                ),
+                              },
+                            );
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            height: 50.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              boxShadow: const [
+                                BoxShadow(
+                                  blurRadius: 4.0,
+                                  color: Color(0x33000000),
+                                  offset: Offset(
+                                    0.0,
+                                    2.0,
+                                  ),
+                                )
+                              ],
+                              borderRadius: BorderRadius.circular(10.0),
+                              border: Border.all(
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                              ),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      ),
+                                      child: Visibility(
+                                        visible: listGridItem.steps.length > 0,
+                                        child: Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    5.0, 0.0, 5.0, 0.0),
+                                            child: SingleChildScrollView(
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Container(
+                                                    width: functions
+                                                        .stringToInt(
+                                                            (int var1) {
+                                                          return var1 != 0
+                                                              ? (25 / var1)
+                                                                  .round()
+                                                                  .toString()
+                                                              : 0.toString();
+                                                        }(listGridItem.steps.length))
+                                                        .toDouble(),
+                                                    height: functions
+                                                        .stringToInt(
+                                                            (int var1) {
+                                                          return var1 != 0
+                                                              ? (25 / var1)
+                                                                  .round()
+                                                                  .toString()
+                                                              : 0.toString();
+                                                        }(listGridItem.steps.length))
+                                                        .toDouble(),
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      shape: BoxShape.circle,
+                                                      border: Border.all(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                                Builder(
-                                                  builder: (context) {
-                                                    final listStep =
-                                                        listGridItem.steps
-                                                            .toList();
-                                                    return ListView.builder(
-                                                      padding: EdgeInsets.zero,
-                                                      primary: false,
-                                                      shrinkWrap: true,
-                                                      scrollDirection:
-                                                          Axis.vertical,
-                                                      itemCount:
-                                                          listStep.length,
-                                                      itemBuilder: (context,
-                                                          listStepIndex) {
-                                                        final listStepItem =
-                                                            listStep[
-                                                                listStepIndex];
-                                                        return Container(
-                                                          decoration:
-                                                              const BoxDecoration(),
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .stretch,
-                                                            children: [
-                                                              Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                children: [
-                                                                  Container(
-                                                                    width: 1.0,
-                                                                    height: functions
-                                                                        .stringToInt((int var1) {
-                                                                          return var1 != 0
-                                                                              ? (num.parse((30 / var1.round()).toStringAsFixed(0))).toString()
-                                                                              : 0.toString();
-                                                                        }(listGridItem.steps.length))
-                                                                        .toDouble(),
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              Align(
-                                                                alignment:
-                                                                    const AlignmentDirectional(
-                                                                        0.0,
-                                                                        0.0),
-                                                                child: Row(
+                                                  Builder(
+                                                    builder: (context) {
+                                                      final listStep =
+                                                          listGridItem.steps
+                                                              .toList();
+                                                      return ListView.builder(
+                                                        padding:
+                                                            EdgeInsets.zero,
+                                                        primary: false,
+                                                        shrinkWrap: true,
+                                                        scrollDirection:
+                                                            Axis.vertical,
+                                                        itemCount:
+                                                            listStep.length,
+                                                        itemBuilder: (context,
+                                                            listStepIndex) {
+                                                          final listStepItem =
+                                                              listStep[
+                                                                  listStepIndex];
+                                                          return Container(
+                                                            decoration:
+                                                                const BoxDecoration(),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .stretch,
+                                                              children: [
+                                                                Row(
                                                                   mainAxisSize:
                                                                       MainAxisSize
-                                                                          .min,
+                                                                          .max,
                                                                   mainAxisAlignment:
                                                                       MainAxisAlignment
                                                                           .center,
                                                                   children: [
                                                                     Container(
-                                                                      width: functions
-                                                                          .stringToInt((int var1, double var2) {
-                                                                            return var1 != 1 && var1 != 0
-                                                                                ? (num.parse((((var2 / 2).round()) / var1.round()).toStringAsFixed(0))).toString()
-                                                                                : var1 == 0
-                                                                                    ? 0.toString()
-                                                                                    : (var2 / 3).round().toString();
-                                                                          }(listGridItem.steps.length, MediaQuery.sizeOf(context).width))
-                                                                          .toDouble(),
+                                                                      width:
+                                                                          1.0,
                                                                       height: functions
                                                                           .stringToInt((int var1) {
                                                                             return var1 != 0
-                                                                                ? (num.parse((40 / var1.round()).toStringAsFixed(0))).toString()
+                                                                                ? (num.parse((30 / var1.round()).toStringAsFixed(0))).toString()
                                                                                 : 0.toString();
                                                                           }(listGridItem.steps.length))
                                                                           .toDouble(),
-                                                                      constraints:
-                                                                          const BoxConstraints(
-                                                                        maxWidth:
-                                                                            double.infinity,
-                                                                        maxHeight:
-                                                                            double.infinity,
-                                                                      ),
                                                                       decoration:
                                                                           BoxDecoration(
                                                                         color: FlutterFlowTheme.of(context)
-                                                                            .primaryBackground,
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(2.0),
-                                                                        shape: BoxShape
-                                                                            .rectangle,
-                                                                        border:
-                                                                            Border.all(
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryText,
-                                                                        ),
+                                                                            .primaryText,
                                                                       ),
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.min,
-                                                                        children: [
-                                                                          Padding(
-                                                                            padding:
-                                                                                EdgeInsets.all(valueOrDefault<double>(
-                                                                              functions
-                                                                                  .stringToInt((int var1) {
-                                                                                    return var1 != 0 ? (num.parse((8 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                                  }(listGridItem.steps.length))
-                                                                                  .toDouble(),
-                                                                              0.0,
-                                                                            )),
-                                                                            child:
-                                                                                Text(
-                                                                              '${(listStepIndex + 1).toString()}.',
-                                                                              maxLines: 2,
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Nunito Sans',
-                                                                                    fontSize: functions
-                                                                                        .stringToInt((int var1) {
-                                                                                          return var1 != 0 ? (num.parse((14 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                                        }(listGridItem.steps.length))
-                                                                                        .toDouble(),
-                                                                                    letterSpacing: 0.0,
-                                                                                  ),
-                                                                            ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .min,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .center,
+                                                                    children: [
+                                                                      Container(
+                                                                        width: functions
+                                                                            .stringToInt((int var1, double var2) {
+                                                                              return var1 != 1 && var1 != 0
+                                                                                  ? (num.parse((((var2 / 2).round()) / var1.round()).toStringAsFixed(0))).toString()
+                                                                                  : var1 == 0
+                                                                                      ? 0.toString()
+                                                                                      : (var2 / 3).round().toString();
+                                                                            }(listGridItem.steps.length, MediaQuery.sizeOf(context).width))
+                                                                            .toDouble(),
+                                                                        height: functions
+                                                                            .stringToInt((int var1) {
+                                                                              return var1 != 0 ? (num.parse((40 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
+                                                                            }(listGridItem.steps.length))
+                                                                            .toDouble(),
+                                                                        constraints:
+                                                                            const BoxConstraints(
+                                                                          maxWidth:
+                                                                              double.infinity,
+                                                                          maxHeight:
+                                                                              double.infinity,
+                                                                        ),
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryBackground,
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(2.0),
+                                                                          shape:
+                                                                              BoxShape.rectangle,
+                                                                          border:
+                                                                              Border.all(
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryText,
                                                                           ),
-                                                                          Expanded(
-                                                                            child:
-                                                                                Padding(
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.min,
+                                                                          children: [
+                                                                            Padding(
                                                                               padding: EdgeInsets.all(valueOrDefault<double>(
                                                                                 functions
                                                                                     .stringToInt((int var1) {
@@ -788,7 +767,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                                 0.0,
                                                                               )),
                                                                               child: Text(
-                                                                                listStepItem.name != null && listStepItem.name != '' ? listStepItem.name : ' ',
+                                                                                '${(listStepIndex + 1).toString()}.',
                                                                                 maxLines: 2,
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       fontFamily: 'Nunito Sans',
@@ -801,82 +780,109 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                                                     ),
                                                                               ),
                                                                             ),
-                                                                          ),
-                                                                        ],
+                                                                            Expanded(
+                                                                              child: Padding(
+                                                                                padding: EdgeInsets.all(valueOrDefault<double>(
+                                                                                  functions
+                                                                                      .stringToInt((int var1) {
+                                                                                        return var1 != 0 ? (num.parse((8 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
+                                                                                      }(listGridItem.steps.length))
+                                                                                      .toDouble(),
+                                                                                  0.0,
+                                                                                )),
+                                                                                child: Text(
+                                                                                  listStepItem.name != null && listStepItem.name != '' ? listStepItem.name : ' ',
+                                                                                  maxLines: 2,
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Nunito Sans',
+                                                                                        fontSize: functions
+                                                                                            .stringToInt((int var1) {
+                                                                                              return var1 != 0 ? (num.parse((14 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
+                                                                                            }(listGridItem.steps.length))
+                                                                                            .toDouble(),
+                                                                                        letterSpacing: 0.0,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
                                                                       ),
-                                                                    ),
-                                                                  ],
+                                                                    ],
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Container(
-                                                      width: 1.0,
-                                                      height: functions
-                                                          .stringToInt(
-                                                              (int var1) {
-                                                            return var1 != 0
-                                                                ? (30 / var1)
-                                                                    .round()
-                                                                    .toString()
-                                                                : 0.toString();
-                                                          }(listGridItem.steps.length))
-                                                          .toDouble(),
-                                                      decoration: BoxDecoration(
+                                                              ],
+                                                            ),
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Container(
+                                                        width: 1.0,
+                                                        height: functions
+                                                            .stringToInt(
+                                                                (int var1) {
+                                                              return var1 != 0
+                                                                  ? (30 / var1)
+                                                                      .round()
+                                                                      .toString()
+                                                                  : 0.toString();
+                                                            }(listGridItem.steps.length))
+                                                            .toDouble(),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Container(
+                                                    width: functions
+                                                        .stringToInt(
+                                                            (int var1) {
+                                                          return var1 != 0
+                                                              ? (25 / var1)
+                                                                  .round()
+                                                                  .toString()
+                                                              : 0.toString();
+                                                        }(listGridItem.steps.length))
+                                                        .toDouble(),
+                                                    height: functions
+                                                        .stringToInt(
+                                                            (int var1) {
+                                                          return var1 != 0
+                                                              ? (25 / var1)
+                                                                  .round()
+                                                                  .toString()
+                                                              : 0.toString();
+                                                        }(listGridItem.steps.length))
+                                                        .toDouble(),
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      shape: BoxShape.circle,
+                                                      border: Border.all(
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
                                                       ),
                                                     ),
-                                                  ],
-                                                ),
-                                                Container(
-                                                  width: functions
-                                                      .stringToInt(
-                                                          (int var1) {
-                                                        return var1 != 0
-                                                            ? (25 / var1)
-                                                                .round()
-                                                                .toString()
-                                                            : 0.toString();
-                                                      }(listGridItem.steps.length))
-                                                      .toDouble(),
-                                                  height: functions
-                                                      .stringToInt(
-                                                          (int var1) {
-                                                        return var1 != 0
-                                                            ? (25 / var1)
-                                                                .round()
-                                                                .toString()
-                                                            : 0.toString();
-                                                      }(listGridItem.steps.length))
-                                                      .toDouble(),
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    shape: BoxShape.circle,
-                                                    border: Border.all(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                    ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -884,46 +890,46 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                     ),
                                   ),
                                 ),
-                              ),
-                              Divider(
-                                height: 1.0,
-                                thickness: 1.0,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 4.0, 0.0, 4.0),
-                                child: Text(
-                                  listGridItem.name != null &&
-                                          listGridItem.name != ''
-                                      ? listGridItem.name
-                                      : ' '.maybeHandleOverflow(
-                                          maxChars: 25,
-                                          replacement: '…',
-                                        ),
-                                  textAlign: TextAlign.center,
-                                  maxLines: 1,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        letterSpacing: 0.0,
-                                      ),
+                                Divider(
+                                  height: 1.0,
+                                  thickness: 1.0,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
                                 ),
-                              ),
-                            ],
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 4.0, 0.0, 4.0),
+                                  child: Text(
+                                    listGridItem.name != null &&
+                                            listGridItem.name != ''
+                                        ? listGridItem.name
+                                        : ' '.maybeHandleOverflow(
+                                            maxChars: 25,
+                                            replacement: '…',
+                                          ),
+                                    textAlign: TextAlign.center,
+                                    maxLines: 1,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/one_select_answer_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -75,6 +76,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                 ).toString().toString(),
                 questionId: '',
               ));
+              _model.addToListIdCheck('');
             });
             setState(() {
               _model.loopList = _model.loopList + 1;
@@ -872,7 +874,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                               .questionsId
                                                               .answers
                                                               .toList();
-                                                      return ListView.builder(
+                                                      return ListView.separated(
                                                         padding:
                                                             EdgeInsets.zero,
                                                         shrinkWrap: true,
@@ -880,6 +882,9 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                             Axis.vertical,
                                                         itemCount:
                                                             dataQuestion.length,
+                                                        separatorBuilder:
+                                                            (_, __) => const SizedBox(
+                                                                height: 4.0),
                                                         itemBuilder: (context,
                                                             dataQuestionIndex) {
                                                           final dataQuestionItem =
@@ -1014,6 +1019,121 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                 if (listQuestionItem.questionsId
                                                         .answerType ==
                                                     'radio')
+                                                  Builder(
+                                                    builder: (context) {
+                                                      final dataQuestionOne =
+                                                          listQuestionItem
+                                                              .questionsId
+                                                              .answers
+                                                              .toList();
+                                                      return ListView.separated(
+                                                        padding:
+                                                            EdgeInsets.zero,
+                                                        shrinkWrap: true,
+                                                        scrollDirection:
+                                                            Axis.vertical,
+                                                        itemCount:
+                                                            dataQuestionOne
+                                                                .length,
+                                                        separatorBuilder:
+                                                            (_, __) => const SizedBox(
+                                                                height: 4.0),
+                                                        itemBuilder: (context,
+                                                            dataQuestionOneIndex) {
+                                                          final dataQuestionOneItem =
+                                                              dataQuestionOne[
+                                                                  dataQuestionOneIndex];
+                                                          return wrapWithModel(
+                                                            model: _model
+                                                                .oneSelectAnswerModels
+                                                                .getModel(
+                                                              '${dataQuestionOneItem.answersId.id}${_model.listIdCheck[listQuestionIndex]}',
+                                                              dataQuestionOneIndex,
+                                                            ),
+                                                            updateCallback:
+                                                                () => setState(
+                                                                    () {}),
+                                                            child:
+                                                                OneSelectAnswerWidget(
+                                                              key: Key(
+                                                                'Keycaz_${'${dataQuestionOneItem.answersId.id}${_model.listIdCheck[listQuestionIndex]}'}',
+                                                              ),
+                                                              data:
+                                                                  dataQuestionOneItem
+                                                                      .answersId,
+                                                              stringId: _model
+                                                                      .listIdCheck[
+                                                                  listQuestionIndex],
+                                                              callback:
+                                                                  (id) async {
+                                                                setState(() {
+                                                                  _model
+                                                                      .updateListIdCheckAtIndex(
+                                                                    listQuestionIndex,
+                                                                    (_) => id!,
+                                                                  );
+                                                                });
+                                                                setState(() {
+                                                                  _model.checkboxAnswer =
+                                                                      dataQuestionOneItem
+                                                                          .answersId
+                                                                          .id;
+                                                                  _model.checkTrue =
+                                                                      dataQuestionOneItem
+                                                                          .answersId
+                                                                          .correct;
+                                                                });
+                                                                setState(() {
+                                                                  _model
+                                                                      .updateRequestDataAtIndex(
+                                                                    listQuestionIndex,
+                                                                    (e) => e
+                                                                      ..answers =
+                                                                          [],
+                                                                  );
+                                                                });
+                                                                setState(() {
+                                                                  _model
+                                                                      .updateRequestDataAtIndex(
+                                                                    listQuestionIndex,
+                                                                    (e) => e
+                                                                      ..correct =
+                                                                          _model
+                                                                              .checkTrue
+                                                                      ..answerType = listQuestionItem
+                                                                          .questionsId
+                                                                          .answerType
+                                                                      ..questionId =
+                                                                          listQuestionItem
+                                                                              .questionsId
+                                                                              .id
+                                                                      ..updateAnswers(
+                                                                        (e) => e
+                                                                            .add(AnswersListStruct(
+                                                                          answersId:
+                                                                              TestAnswersIdStruct(
+                                                                            id: _model.checkboxAnswer,
+                                                                          ),
+                                                                        )),
+                                                                      ),
+                                                                  );
+                                                                });
+                                                                setState(() {
+                                                                  _model.checkboxAnswer =
+                                                                      null;
+                                                                  _model.checkTrue =
+                                                                      null;
+                                                                });
+                                                              },
+                                                            ),
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                  ),
+                                                if (listQuestionItem.questionsId
+                                                        .answerType ==
+                                                    '1')
                                                   SelectListQuestionWidget(
                                                     key: Key(
                                                         'Keyias_${listQuestionIndex}_of_${listQuestion.length}'),

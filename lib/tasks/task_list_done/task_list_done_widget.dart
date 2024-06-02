@@ -92,6 +92,9 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                 .length;
           });
         }
+        setState(() {
+          _model.isLoad = true;
+        });
       } else {
         setState(() {});
         return;
@@ -1554,6 +1557,34 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                         }(fileItemsItem
                                                                             .directusFilesId
                                                                             .filenameDownload)) ==
+                                                                        'video')
+                                                                      Container(
+                                                                        width:
+                                                                            35.0,
+                                                                        height:
+                                                                            35.0,
+                                                                        clipBehavior:
+                                                                            Clip.antiAlias,
+                                                                        decoration:
+                                                                            const BoxDecoration(
+                                                                          shape:
+                                                                              BoxShape.circle,
+                                                                        ),
+                                                                        child: Image
+                                                                            .asset(
+                                                                          'assets/images/360_F_281189262_rmGjRoqcjAiaHeTQQDHOUvfhvH9LjkUR.jpg',
+                                                                          fit: BoxFit
+                                                                              .cover,
+                                                                        ),
+                                                                      ),
+                                                                    if (functions.checkFileLast((String
+                                                                            tail) {
+                                                                          return tail
+                                                                              .split('.')
+                                                                              .last;
+                                                                        }(fileItemsItem
+                                                                            .directusFilesId
+                                                                            .filenameDownload)) ==
                                                                         'exc')
                                                                       Container(
                                                                         width:
@@ -1570,6 +1601,34 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                         child: Image
                                                                             .asset(
                                                                           'assets/images/excel.png',
+                                                                          fit: BoxFit
+                                                                              .cover,
+                                                                        ),
+                                                                      ),
+                                                                    if (functions.checkFileLast((String
+                                                                            tail) {
+                                                                          return tail
+                                                                              .split('.')
+                                                                              .last;
+                                                                        }(fileItemsItem
+                                                                            .directusFilesId
+                                                                            .filenameDownload)) ==
+                                                                        'img')
+                                                                      Container(
+                                                                        width:
+                                                                            35.0,
+                                                                        height:
+                                                                            35.0,
+                                                                        clipBehavior:
+                                                                            Clip.antiAlias,
+                                                                        decoration:
+                                                                            const BoxDecoration(
+                                                                          shape:
+                                                                              BoxShape.circle,
+                                                                        ),
+                                                                        child: Image
+                                                                            .asset(
+                                                                          'assets/images/9967614.png',
                                                                           fit: BoxFit
                                                                               .cover,
                                                                         ),

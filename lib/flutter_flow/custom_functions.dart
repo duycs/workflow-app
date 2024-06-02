@@ -466,6 +466,16 @@ String checkFileLast(String text) {
     List<String> exc = ['xls', 'xlsm', 'xlsx', 'xlt'];
     List<String> word = ['docx', 'doc', 'docm', 'dot'];
     List<String> pdf = ['pdf'];
+    List<String> video = [
+      'mpeg-4',
+      'mpeg-2',
+      'hevc',
+      'mp4',
+      'avi',
+      'mov',
+      'flv',
+      'wmv'
+    ];
     if (pptx.contains(text)) {
       return 'pptx';
     } else if (exc.contains(text)) {
@@ -476,6 +486,8 @@ String checkFileLast(String text) {
       return 'word';
     } else if (pdf.contains(text)) {
       return 'pdf';
+    } else if (video.contains(text)) {
+      return 'video';
     } else {
       return '1';
     }
@@ -502,13 +514,30 @@ String? fileName(FFUploadedFile? file) {
 }
 
 int totaResultWorkflow(ProcedurePublishedListStruct data) {
-  int doneTasks = data.steps
-          ?.where((step) =>
-              (step.tasks ?? []).every((task) => task.status == "done"))
-          .toList()
-          .length ??
-      0;
-  return doneTasks;
+  var count = 0;
+  //if (data.steps.isEmpty) {
+  for (var group in data.steps) {
+    var groups = {group};
+    if (groups.isEmpty) {
+    } else {
+      var allTasks = groups.expand((step) => step.tasks ?? []).toList();
+
+      var lenghtStep = groups.length;
+
+      for (int i = 1; i <= allTasks.length ~/ lenghtStep; i++) {
+        var check = allTasks
+            .where((item) =>
+                item['published_count'] == i && item['status'] == 'done')
+            .toList();
+        if (check.length == lenghtStep) {
+          count++;
+        }
+      }
+    }
+    // }
+  }
+  print("$count");
+  return count;
 }
 
 double? newCaculator(List<dynamic>? list) {

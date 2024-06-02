@@ -754,7 +754,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                                     'yyyy-MM-dd',
                                                                                     getCurrentTimestamp,
                                                                                     locale: FFLocalizations.of(context).languageCode,
-                                                                                  ))} ngày';
+                                                                                  ))}  ngày';
                                                                             } else if ((String item1, int item2, String item3) {
                                                                               return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays <= 0;
                                                                             }(
@@ -799,7 +799,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                                 'yyyy-MM-dd',
                                                                                 getCurrentTimestamp,
                                                                                 locale: FFLocalizations.of(context).languageCode,
-                                                                              ))} ngày';
+                                                                              ))}  ngày';
                                                                         } else if ((String item1, int item2, String item3) {
                                                                           return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays <=
                                                                               0;
@@ -841,7 +841,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                                 'yyyy-MM-dd',
                                                                                 getCurrentTimestamp,
                                                                                 locale: FFLocalizations.of(context).languageCode,
-                                                                              ))}ngày';
+                                                                              ))}  ngày';
                                                                         } else if ((String item1, int item2, String item3) {
                                                                           return DateTime.parse(item1).add(Duration(days: item2)).difference(DateTime.parse(item3)).inDays <=
                                                                               0;
@@ -1388,9 +1388,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                 padding:
                                                                     const EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            5.0,
+                                                                            0.0,
                                                                             2.0,
-                                                                            5.0,
+                                                                            0.0,
                                                                             2.0),
                                                                 child: Text(
                                                                   () {
@@ -2537,9 +2537,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                               padding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          5.0,
+                                                                          0.0,
                                                                           2.0,
-                                                                          5.0,
+                                                                          0.0,
                                                                           2.0),
                                                               child: Text(
                                                                 () {

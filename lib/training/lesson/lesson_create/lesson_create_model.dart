@@ -29,6 +29,10 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
 
   int? checkTime;
 
+  String input = '';
+
+  String output = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

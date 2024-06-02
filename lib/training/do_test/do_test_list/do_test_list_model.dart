@@ -25,13 +25,11 @@ class DoTestListModel extends FlutterFlowModel<DoTestListWidget> {
 
   String dateEndFilter = '';
 
-  bool isShow = false;
+  bool isShow = true;
 
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Action Block - tokenReload] action in DoTestList widget.
-  bool? tokenReloadDoTestList;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

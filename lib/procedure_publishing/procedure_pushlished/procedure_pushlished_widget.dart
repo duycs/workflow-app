@@ -149,7 +149,7 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                           .bodyLarge
                                           .override(
                                             fontFamily: 'Nunito Sans',
-                                            fontSize: 20.0,
+                                            fontSize: 18.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),

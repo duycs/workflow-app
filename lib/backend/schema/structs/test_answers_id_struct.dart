@@ -10,9 +10,11 @@ class TestAnswersIdStruct extends BaseStruct {
     String? id,
     String? content,
     int? correct,
+    bool? check,
   })  : _id = id,
         _content = content,
-        _correct = correct;
+        _correct = correct,
+        _check = check;
 
   // "id" field.
   String? _id;
@@ -33,11 +35,18 @@ class TestAnswersIdStruct extends BaseStruct {
   void incrementCorrect(int amount) => _correct = correct + amount;
   bool hasCorrect() => _correct != null;
 
+  // "check" field.
+  bool? _check;
+  bool get check => _check ?? false;
+  set check(bool? val) => _check = val;
+  bool hasCheck() => _check != null;
+
   static TestAnswersIdStruct fromMap(Map<String, dynamic> data) =>
       TestAnswersIdStruct(
         id: data['id'] as String?,
         content: data['content'] as String?,
         correct: castToType<int>(data['correct']),
+        check: data['check'] as bool?,
       );
 
   static TestAnswersIdStruct? maybeFromMap(dynamic data) => data is Map
@@ -48,6 +57,7 @@ class TestAnswersIdStruct extends BaseStruct {
         'id': _id,
         'content': _content,
         'correct': _correct,
+        'check': _check,
       }.withoutNulls;
 
   @override
@@ -63,6 +73,10 @@ class TestAnswersIdStruct extends BaseStruct {
         'correct': serializeParam(
           _correct,
           ParamType.int,
+        ),
+        'check': serializeParam(
+          _check,
+          ParamType.bool,
         ),
       }.withoutNulls;
 
@@ -83,6 +97,11 @@ class TestAnswersIdStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
+        check: deserializeParam(
+          data['check'],
+          ParamType.bool,
+          false,
+        ),
       );
 
   @override
@@ -93,20 +112,23 @@ class TestAnswersIdStruct extends BaseStruct {
     return other is TestAnswersIdStruct &&
         id == other.id &&
         content == other.content &&
-        correct == other.correct;
+        correct == other.correct &&
+        check == other.check;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([id, content, correct]);
+  int get hashCode => const ListEquality().hash([id, content, correct, check]);
 }
 
 TestAnswersIdStruct createTestAnswersIdStruct({
   String? id,
   String? content,
   int? correct,
+  bool? check,
 }) =>
     TestAnswersIdStruct(
       id: id,
       content: content,
       correct: correct,
+      check: check,
     );

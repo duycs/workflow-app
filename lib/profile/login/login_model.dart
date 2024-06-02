@@ -170,37 +170,23 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
             (apiResultGetStaffId.jsonBody ?? ''),
             r'''$.organization''',
           );
-          await actions.notifiRemoveServer();
           await actions.notifiAddServer(
             getJsonField(
               (apiResultGetStaffId.jsonBody ?? ''),
               r'''$.staff.id''',
             ).toString().toString(),
           );
-          await actions.checkNofiLoad();
-          if (FFAppState().alertCheck == 'Task mới') {
-            context.pushNamed(
-              'ProcedurePublishedList',
-              extra: <String, dynamic>{
-                kTransitionInfoKey: const TransitionInfo(
-                  hasTransition: true,
-                  transitionType: PageTransitionType.fade,
-                  duration: Duration(milliseconds: 0),
-                ),
-              },
-            );
-          } else {
-            context.pushNamed(
-              'TaskList',
-              extra: <String, dynamic>{
-                kTransitionInfoKey: const TransitionInfo(
-                  hasTransition: true,
-                  transitionType: PageTransitionType.fade,
-                  duration: Duration(milliseconds: 0),
-                ),
-              },
-            );
-          }
+
+          context.pushNamed(
+            'TaskList',
+            extra: <String, dynamic>{
+              kTransitionInfoKey: const TransitionInfo(
+                hasTransition: true,
+                transitionType: PageTransitionType.fade,
+                duration: Duration(milliseconds: 0),
+              ),
+            },
+          );
         } else {
           return;
         }

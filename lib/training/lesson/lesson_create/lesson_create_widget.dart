@@ -6,7 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
-import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/training/lesson/ckeditor_create_lesson/ckeditor_create_lesson_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -90,14 +90,36 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
               context.pop();
             },
           ),
-          title: Text(
-            'Tạo bài học',
-            style: FlutterFlowTheme.of(context).headlineSmall.override(
-                  fontFamily: 'Nunito Sans',
-                  fontSize: 18.0,
-                  letterSpacing: 0.0,
-                  fontWeight: FontWeight.normal,
-                ),
+          title: InkWell(
+            splashColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () async {
+              await showDialog(
+                context: context,
+                builder: (alertDialogContext) {
+                  return AlertDialog(
+                    title: Text(_model.checkContent),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(alertDialogContext),
+                        child: const Text('Ok'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+            child: Text(
+              'Tạo bài học',
+              style: FlutterFlowTheme.of(context).headlineSmall.override(
+                    fontFamily: 'Nunito Sans',
+                    fontSize: 18.0,
+                    letterSpacing: 0.0,
+                    fontWeight: FontWeight.normal,
+                  ),
+            ),
           ),
           actions: const [],
           centerTitle: false,
@@ -1116,21 +1138,111 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                 ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 3.0, 0.0, 0.0),
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: 300.0,
-                            child: custom_widgets.CKEditor(
-                              width: double.infinity,
-                              height: 300.0,
-                              initialData: '',
-                              action: (data) async {
-                                setState(() {
-                                  _model.checkContent = data;
-                                });
+                        Container(
+                          width: double.infinity,
+                          height: 45.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).noColor,
+                            borderRadius: BorderRadius.circular(0.0),
+                            shape: BoxShape.rectangle,
+                            border: Border.all(
+                              color: FlutterFlowTheme.of(context).noColor,
+                            ),
+                          ),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          child: Builder(
+                            builder: (context) => InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                await showDialog(
+                                  context: context,
+                                  builder: (dialogContext) {
+                                    return Dialog(
+                                      elevation: 0,
+                                      insetPadding: EdgeInsets.zero,
+                                      backgroundColor: Colors.transparent,
+                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                          .resolve(Directionality.of(context)),
+                                      child: GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: CkeditorCreateLessonWidget(
+                                          input: _model.input,
+                                          output: _model.output,
+                                          callBack: (input, output) async {
+                                            setState(() {
+                                              _model.checkContent = output!;
+                                              _model.input = input!;
+                                              _model.output = output;
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => setState(() {}));
                               },
+                              child: Container(
+                                width: 180.0,
+                                height: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  border: Border.all(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                  ),
+                                ),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      FlutterFlowIconButton(
+                                        borderColor:
+                                            FlutterFlowTheme.of(context)
+                                                .noColor,
+                                        borderRadius: 20.0,
+                                        borderWidth: 1.0,
+                                        buttonSize: 40.0,
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .noColor,
+                                        icon: Icon(
+                                          Icons.edit_note_sharp,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          size: 24.0,
+                                        ),
+                                        onPressed: () {
+                                          print('IconButton pressed ...');
+                                        },
+                                      ),
+                                      Text(
+                                        'Nhập nội dung',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),

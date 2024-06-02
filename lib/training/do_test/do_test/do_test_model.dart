@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/one_select_answer_widget.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/instant_timer.dart';
@@ -57,6 +58,17 @@ class DoTestModel extends FlutterFlowModel<DoTestWidget> {
 
   int loopList = 0;
 
+  bool check = false;
+
+  List<String> listIdCheck = [];
+  void addToListIdCheck(String item) => listIdCheck.add(item);
+  void removeFromListIdCheck(String item) => listIdCheck.remove(item);
+  void removeAtIndexFromListIdCheck(int index) => listIdCheck.removeAt(index);
+  void insertAtIndexInListIdCheck(int index, String item) =>
+      listIdCheck.insert(index, item);
+  void updateListIdCheckAtIndex(int index, Function(String) updateFn) =>
+      listIdCheck[index] = updateFn(listIdCheck[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -94,6 +106,8 @@ class DoTestModel extends FlutterFlowModel<DoTestWidget> {
   List<AnswersListStruct> get checkboxCheckedItems =>
       checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
 
+  // Models for OneSelectAnswer dynamic component.
+  late FlutterFlowDynamicModels<OneSelectAnswerModel> oneSelectAnswerModels;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? createStaffTestToken;
   // Stores action output result for [Backend Call - API (CreateStaffTests)] action in Button widget.
@@ -108,12 +122,16 @@ class DoTestModel extends FlutterFlowModel<DoTestWidget> {
   ApiCallResponse? apiResultCaculatorScores;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    oneSelectAnswerModels =
+        FlutterFlowDynamicModels(() => OneSelectAnswerModel());
+  }
 
   @override
   void dispose() {
     unfocusNode.dispose();
     instantTimer?.cancel();
     timerController.dispose();
+    oneSelectAnswerModels.dispose();
   }
 }
