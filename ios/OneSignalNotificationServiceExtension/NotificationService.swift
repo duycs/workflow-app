@@ -2,7 +2,7 @@
 //  NotificationService.swift
 //  OneSignalNotificationServiceExtension
 //
-//  Created by Duy Chu Sy on 16/05/2024.
+//  Created by Duy Chu Sy on 03/06/2024.
 //
 
 import UserNotifications
@@ -18,7 +18,7 @@ class NotificationService: UNNotificationServiceExtension {
         
         if let bestAttemptContent = bestAttemptContent {
             // Modify the notification content here...
-            bestAttemptContent.title = "\(bestAttemptContent.title)"
+            bestAttemptContent.title = "\(bestAttemptContent.title) [modified]"
             
             contentHandler(bestAttemptContent)
         }
